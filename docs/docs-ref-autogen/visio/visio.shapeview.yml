@@ -1,0 +1,197 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 1c2b1141db1227e169d6a5d4c2f43352fc6f79dd
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24041557"
+items:
+- uid: visio.Visio.ShapeView
+  summary: >-
+    表示 ShapeView 类。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: Visio.ShapeView
+  fullName: visio.Visio.ShapeView
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: visio
+  children:
+  - visio.Visio.ShapeView.addOverlay
+  - visio.Visio.ShapeView.highlight
+  - visio.Visio.ShapeView.load
+  - visio.Visio.ShapeView.removeOverlay
+  - visio.Visio.ShapeView.toJSON
+- uid: visio.Visio.ShapeView.addOverlay
+  summary: >-
+    在形状之上添加覆盖。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: addOverlay(OverlayType, Content, OverlayHorizontalAlignment, OverlayVerticalAlignment, Width, Height)
+  fullName: visio.Visio.ShapeView.addOverlay
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addOverlay(OverlayType: Visio.OverlayType, Content: string, OverlayHorizontalAlignment: Visio.OverlayHorizontalAlignment, OverlayVerticalAlignment: Visio.OverlayVerticalAlignment, Width: number, Height: number): OfficeExtension.ClientResult<number>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<number>
+      description: ''
+    parameters:
+    - id: OverlayType
+      description: 覆盖类型。 可以是文本或图像。
+      type:
+      - visio.Visio.OverlayType
+    - id: Content
+      description: 覆盖的内容。
+      type:
+      - string
+    - id: OverlayHorizontalAlignment
+      description: 重叠的水平对齐方式。 可以是 Left、 中心或 Right。
+      type:
+      - visio.Visio.OverlayHorizontalAlignment
+    - id: OverlayVerticalAlignment
+      description: 覆盖的垂直对齐方式。 可以是主要、 中间居、 下。
+      type:
+      - visio.Visio.OverlayVerticalAlignment
+    - id: Width
+      description: 覆盖宽度。
+      type:
+      - number
+    - id: Height
+      description: 覆盖高度。
+      type:
+      - number
+- uid: visio.Visio.ShapeView.highlight
+  summary: >-
+    表示形状周围的突出显示内容。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: highlight
+  fullName: visio.Visio.ShapeView.highlight
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'highlight: Visio.Highlight;'
+    return:
+      type:
+      - visio.Visio.Highlight
+- uid: visio.Visio.ShapeView.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: >-
+    除了此签名，此方法具有以下签名：
+
+
+    `load(option?: { select?: string; expand?: string; }): Visio.ShapeView`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.ShapeView`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    Visio.run(session, function (ctx) {
+        var activePage = ctx.document.getActivePage();
+        var shape = activePage.shapes.getItem(0);
+        shape.view.highlight = { color: "#E7E7E7", width: 100 };
+        return ctx.sync();
+    }).catch(function(error) {
+        console.log("Error: " + error);
+        if (error instanceof OfficeExtension.Error) {
+            console.log("Debug info: " + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
+
+    ```javascript
+
+    Visio.run(session, function (ctx) {
+        var activePage = ctx.document.getActivePage();
+        var shape = activePage.shapes.getItem(0);
+        var overlayId=shape.view.addOverlay(1, "Visio Online", 2, 2, 50, 50);
+        return ctx.sync();
+    }).catch(function(error) {
+        console.log("Error: " + error);
+        if (error instanceof OfficeExtension.Error) {
+            console.log("Debug info: " + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
+
+    ```javascript
+
+    Visio.run(session, function (ctx) {
+        var activePage = ctx.document.getActivePage();
+        var shape = activePage.shapes.getItem(0);
+        shape.view.removeOverlay(1);
+        return ctx.sync();
+    }).catch(function(error) {
+        console.log("Error: " + error);
+        if (error instanceof OfficeExtension.Error) {
+            console.log("Debug info: " + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
+  name: load(option)
+  fullName: visio.Visio.ShapeView.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Visio.ShapeView;'
+    return:
+      type:
+      - visio.Visio.ShapeView
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: visio.Visio.ShapeView.removeOverlay
+  summary: >-
+    删除形状上的特定覆盖或所有覆盖。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: removeOverlay(OverlayId)
+  fullName: visio.Visio.ShapeView.removeOverlay
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'removeOverlay(OverlayId: number): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: OverlayId
+      description: 覆盖 ID。删除形状上特定 ID 的覆盖。
+      type:
+      - number
+- uid: visio.Visio.ShapeView.toJSON
+  name: toJSON()
+  fullName: visio.Visio.ShapeView.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Visio.Interfaces.ShapeViewData;'
+    return:
+      type:
+      - visio.Visio.Interfaces.ShapeViewData
+      description: ''

@@ -1,0 +1,475 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 7ced60018f77a2b22a171bc96bbe9c5bc8bfc523
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24040284"
+items:
+- uid: onenote.OneNote.Paragraph
+  summary: >-
+    页面上可见内容的容器。Paragraph 可包含任何一种 ParagraphType 类型的内容。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: OneNote.Paragraph
+  fullName: onenote.OneNote.Paragraph
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: onenote
+  children:
+  - onenote.OneNote.Paragraph.addNoteTag
+  - onenote.OneNote.Paragraph.delete
+  - onenote.OneNote.Paragraph.getParagraphInfo
+  - onenote.OneNote.Paragraph.id
+  - onenote.OneNote.Paragraph.image
+  - onenote.OneNote.Paragraph.inkWords
+  - onenote.OneNote.Paragraph.insertHtmlAsSibling
+  - onenote.OneNote.Paragraph.insertImageAsSibling
+  - onenote.OneNote.Paragraph.insertRichTextAsSibling
+  - onenote.OneNote.Paragraph.insertTableAsSibling
+  - onenote.OneNote.Paragraph.load
+  - onenote.OneNote.Paragraph.outline
+  - onenote.OneNote.Paragraph.paragraphs
+  - onenote.OneNote.Paragraph.parentParagraph
+  - onenote.OneNote.Paragraph.parentParagraphOrNull
+  - onenote.OneNote.Paragraph.parentTableCell
+  - onenote.OneNote.Paragraph.parentTableCellOrNull
+  - onenote.OneNote.Paragraph.richText
+  - onenote.OneNote.Paragraph.table
+  - onenote.OneNote.Paragraph.toJSON
+  - onenote.OneNote.Paragraph.track
+  - onenote.OneNote.Paragraph.type
+  - onenote.OneNote.Paragraph.untrack
+- uid: onenote.OneNote.Paragraph.addNoteTag
+  summary: >-
+    向的段落添加 NoteTag。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: addNoteTag(type, status)
+  fullName: onenote.OneNote.Paragraph.addNoteTag
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addNoteTag(type: OneNote.NoteTagType, status: OneNote.NoteTagStatus): OneNote.NoteTag;'
+    return:
+      type:
+      - onenote.OneNote.NoteTag
+      description: ''
+    parameters:
+    - id: type
+      description: NoteTag 的类型。
+      type:
+      - onenote.OneNote.NoteTagType
+    - id: status
+      description: NoteTag 的状态。
+      type:
+      - onenote.OneNote.NoteTagStatus
+- uid: onenote.OneNote.Paragraph.delete
+  summary: >-
+    删除 paragraph
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: delete()
+  fullName: onenote.OneNote.Paragraph.delete
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'delete(): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the collection of pageContent items from the page.\n    var pageContents = context.application.getActivePage().contents;\n\n    // Get the first PageContent on the page\n    // Assuming its an outline, get the outline's paragraphs.\n    var pageContent = pageContents.getItemAt(0);\n    \n    var paragraphs = pageContent.outline.paragraphs;\n    \n    var firstParagraph = paragraphs.getItemAt(0);\n    \n    // Queue a command to load the id and type of the first paragraph\n    firstParagraph.load(\"id,type\");\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            \n            // Queue a command to delete the first paragraph                 \n            firstParagraph.delete();\n            \n            // Run the command to delete it\n            return context.sync();\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: onenote.OneNote.Paragraph.getParagraphInfo
+  summary: >-
+    获取列表信息的段落
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: getParagraphInfo()
+  fullName: onenote.OneNote.Paragraph.getParagraphInfo
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getParagraphInfo(): OfficeExtension.ClientResult<OneNote.ParagraphInfo>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<OneNote.ParagraphInfo>
+      description: ''
+- uid: onenote.OneNote.Paragraph.id
+  summary: >-
+    获取 Paragraph 对象的 ID。只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: id
+  fullName: onenote.OneNote.Paragraph.id
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly id: string;'
+    return:
+      type:
+      - string
+- uid: onenote.OneNote.Paragraph.image
+  summary: >-
+    获取 Paragraph 中的 Image 对象。如果 ParagraphType 不是 Image，则引发异常。只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: image
+  fullName: onenote.OneNote.Paragraph.image
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly image: OneNote.Image;'
+    return:
+      type:
+      - onenote.OneNote.Image
+- uid: onenote.OneNote.Paragraph.inkWords
+  summary: >-
+    获取 Paragraph 中的 Ink 集合。如果 ParagraphType 不为 Ink，则引发异常。只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: inkWords
+  fullName: onenote.OneNote.Paragraph.inkWords
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly inkWords: OneNote.InkWordCollection;'
+    return:
+      type:
+      - onenote.OneNote.InkWordCollection
+- uid: onenote.OneNote.Paragraph.insertHtmlAsSibling
+  summary: >-
+    插入指定的 HTML 内容
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: insertHtmlAsSibling(insertLocation, html)
+  fullName: onenote.OneNote.Paragraph.insertHtmlAsSibling
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'insertHtmlAsSibling(insertLocation: OneNote.InsertLocation, html: string): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the collection of pageContent items from the page.\n    var pageContents = context.application.getActivePage().contents;\n\n    // Get the first PageContent on the page\n    // Assuming its an outline, get the outline's paragraphs.\n    var pageContent = pageContents.getItemAt(0);\n    var paragraphs = pageContent.outline.paragraphs;\n    var firstParagraph = paragraphs.getItemAt(0);\n\n    // Queue a command to load the id and type of the first paragraph\n    firstParagraph.load(\"id,type\");\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            // Queue commands to insert before and after the first paragraph\n            firstParagraph.insertHtmlAsSibling(\"Before\", \"<p>ContentBeforeFirstParagraph</p>\");\n            firstParagraph.insertHtmlAsSibling(\"After\", \"<p>ContentAfterFirstParagraph</p>\");\n            \n            // Run the command to run inserts\n            return context.sync();\n        });\n))\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: insertLocation
+      description: 新内容相对于当前 Paragraph 的位置。
+      type:
+      - onenote.OneNote.InsertLocation
+    - id: html
+      description: 描述内容的可视化演示文稿的 HTML 字符串。 OneNote 外接程序的 JavaScript API，请参阅[支持的 HTML](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) 。
+      type:
+      - string
+- uid: onenote.OneNote.Paragraph.insertImageAsSibling
+  summary: >-
+    在指定的插入位置插入图像。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: insertImageAsSibling(insertLocation, base64EncodedImage, width, height)
+  fullName: onenote.OneNote.Paragraph.insertImageAsSibling
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'insertImageAsSibling(insertLocation: OneNote.InsertLocation, base64EncodedImage: string, width: number, height: number): OneNote.Image;'
+    return:
+      type:
+      - onenote.OneNote.Image
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the collection of pageContent items from the page.\n    var pageContents = context.application.getActivePage().contents;\n\n    // Get the first PageContent on the page\n    // Assuming its an outline, get the outline's paragraphs.\n    var pageContent = pageContents.getItemAt(0);\n    var paragraphs = pageContent.outline.paragraphs;\n    var firstParagraph = paragraphs.getItemAt(0);\n\n    // Queue a command to load the id and type of the first paragraph\n    firstParagraph.load(\"id,type\");\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            // Queue commands to insert before and after the first paragraph\n            firstParagraph.insertImageAsSibling(\"Before\", \"R0lGODlhDwAPAKECAAAAzMzM/////wAAACwAAAAADwAPAAACIISPeQHsrZ5ModrLlN48CXF8m2iQ3YmmKqVlRtW4MLwWACH+H09wdGltaXplZCBieSBVbGVhZCBTbWFydFNhdmVyIQAAOw==\");\n            firstParagraph.insertImageAsSibling(\"After\", \"R0lGODlhDwAPAKECAAAAzMzM/////wAAACwAAAAADwAPAAACIISPeQHsrZ5ModrLlN48CXF8m2iQ3YmmKqVlRtW4MLwWACH+H09wdGltaXplZCBieSBVbGVhZCBTbWFydFNhdmVyIQAAOw==\");\n            \n            // Run the command to insert images\n            return context.sync();\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: insertLocation
+      description: 表相对于当前 Paragraph 的位置。
+      type:
+      - onenote.OneNote.InsertLocation
+    - id: base64EncodedImage
+      description: 要追加的 HTML 字符串。
+      type:
+      - string
+    - id: width
+      description: 可选。以磅为单位的宽度。默认值为 null，将考虑图像宽度。
+      type:
+      - number
+    - id: height
+      description: 可选。以磅为单位的高度。默认值为 null，将考虑图像高度。
+      type:
+      - number
+- uid: onenote.OneNote.Paragraph.insertRichTextAsSibling
+  summary: >-
+    在指定的插入位置插入段落文本。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: insertRichTextAsSibling(insertLocation, paragraphText)
+  fullName: onenote.OneNote.Paragraph.insertRichTextAsSibling
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'insertRichTextAsSibling(insertLocation: OneNote.InsertLocation, paragraphText: string): OneNote.RichText;'
+    return:
+      type:
+      - onenote.OneNote.RichText
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the collection of pageContent items from the page.\n    var pageContents = context.application.getActivePage().contents;\n\n    // Get the first PageContent on the page\n    // Assuming its an outline, get the outline's paragraphs.\n    var pageContent = pageContents.getItemAt(0);\n    var paragraphs = pageContent.outline.paragraphs;\n    var firstParagraph = paragraphs.getItemAt(0);\n\n    // Queue a command to load the id and type of the first paragraph\n    firstParagraph.load(\"id,type\");\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            // Queue commands to insert before and after the first paragraph\n            firstParagraph.insertRichTextAsSibling(\"Before\", \"Text Appears Before Paragraph\");\n            firstParagraph.insertRichTextAsSibling(\"After\", \"Text Appears After Paragraph\");\n            \n            // Run the command to insert text contents\n            return context.sync();\n        });\n})    \n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n}); \n```"
+    parameters:
+    - id: insertLocation
+      description: 表相对于当前 Paragraph 的位置。
+      type:
+      - onenote.OneNote.InsertLocation
+    - id: paragraphText
+      description: 要追加的 HTML 字符串。
+      type:
+      - string
+- uid: onenote.OneNote.Paragraph.insertTableAsSibling
+  summary: >-
+    将具有指定行数和列数的表格添加到当前段落的之前或之后。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: insertTableAsSibling(insertLocation, rowCount, columnCount, values)
+  fullName: onenote.OneNote.Paragraph.insertTableAsSibling
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'insertTableAsSibling(insertLocation: OneNote.InsertLocation, rowCount: number, columnCount: number, values?: string[][]): OneNote.Table;'
+    return:
+      type:
+      - OneNote.Table
+      description: ''
+    parameters:
+    - id: insertLocation
+      description: 表相对于当前 Paragraph 的位置。
+      type:
+      - onenote.OneNote.InsertLocation
+    - id: rowCount
+      description: 表格中的行数。
+      type:
+      - number
+    - id: columnCount
+      description: 表格中的列数。
+      type:
+      - number
+    - id: values
+      description: 可选的二维数组。 如果指定数组中的对应字符串，则填充单元格。
+      type:
+      - string[][]
+- uid: onenote.OneNote.Paragraph.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): OneNote.Paragraph`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Paragraph`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the collection of pageContent items from the page.\n    var pageContents = context.application.getActivePage().contents;\n    \n    // Queue a command to load the outline property of each pageContent.\n    pageContents.load(\"outline\");\n        \n    // Get the first PageContent on the page, and then get its Outline.\n    var pageContent = pageContents._GetItem(0);\n    var paragraphs = pageContent.outline.paragraphs;\n            \n    // Queue a command to load the id and type of each paragraph.\n    paragraphs.load(\"id,type\");\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            \n            // Write the text.                  \n            $.each(paragraphs.items, function(index, paragraph) {\n                console.log(\"Paragraph type: \" + paragraph.type);\n                console.log(\"Paragraph ID: \" + paragraph.id);\n            });\n        });\n})        \n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n}); \n```\n```javascript\nOneNote.run(function(context) {\n    var app = context.application;\n    \n    // Gets the active outline\n    var outline = app.getActiveOutline();\n    \n    // load nested paragraphs and their types.\n    outline.load(\"paragraphs/type\");\n    \n    return context.sync().then(function () {\n        var paragraphs = outline.paragraphs.items;\n        \n        var promise;\n        // for each nested paragraphs, load tables only\n        for (var i = 0; i < paragraphs.length; i++) {\n            var paragraph = paragraphs[i];\n            if (paragraph.type == \"Table\") {\n                paragraph.load(\"table/id\");\n                promise =  context.sync().then(function() {\n                    console.log(paragraph.table.id);\n                });\n            }\n        }\n        return promise;\n    })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  name: load(option)
+  fullName: onenote.OneNote.Paragraph.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): OneNote.Paragraph;'
+    return:
+      type:
+      - onenote.OneNote.Paragraph
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: onenote.OneNote.Paragraph.outline
+  summary: >-
+    获取包含“段落”的“边框”对象。只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: outline
+  fullName: onenote.OneNote.Paragraph.outline
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly outline: OneNote.Outline;'
+    return:
+      type:
+      - onenote.OneNote.Outline
+- uid: onenote.OneNote.Paragraph.paragraphs
+  summary: >-
+    此段落下的段落集合。 只读
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: paragraphs
+  fullName: onenote.OneNote.Paragraph.paragraphs
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly paragraphs: OneNote.ParagraphCollection;'
+    return:
+      type:
+      - onenote.OneNote.ParagraphCollection
+- uid: onenote.OneNote.Paragraph.parentParagraph
+  summary: >-
+    获取父段落对象。如果父段落不存在，则引发。只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: parentParagraph
+  fullName: onenote.OneNote.Paragraph.parentParagraph
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly parentParagraph: OneNote.Paragraph;'
+    return:
+      type:
+      - onenote.OneNote.Paragraph
+- uid: onenote.OneNote.Paragraph.parentParagraphOrNull
+  summary: >-
+    获取父段落对象。如果父段落不存在，则返回 null。只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: parentParagraphOrNull
+  fullName: onenote.OneNote.Paragraph.parentParagraphOrNull
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly parentParagraphOrNull: OneNote.Paragraph;'
+    return:
+      type:
+      - onenote.OneNote.Paragraph
+- uid: onenote.OneNote.Paragraph.parentTableCell
+  summary: >-
+    获取包含 Paragraph 的 TableCell 对象（如果存在）。如果父级不为 TableCell，则引发 ItemNotFound。只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: parentTableCell
+  fullName: onenote.OneNote.Paragraph.parentTableCell
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly parentTableCell: OneNote.TableCell;'
+    return:
+      type:
+      - onenote.OneNote.TableCell
+- uid: onenote.OneNote.Paragraph.parentTableCellOrNull
+  summary: >-
+    获取包含 Paragraph 的 TableCell 对象（如果存在）。如果父级不为 TableCell，则返回 null。只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: parentTableCellOrNull
+  fullName: onenote.OneNote.Paragraph.parentTableCellOrNull
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly parentTableCellOrNull: OneNote.TableCell;'
+    return:
+      type:
+      - onenote.OneNote.TableCell
+- uid: onenote.OneNote.Paragraph.richText
+  summary: >-
+    获取 Paragraph 中的 RichText 对象。 如果 ParagraphType 不是 RichText，抛出异常。 只读
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: richText
+  fullName: onenote.OneNote.Paragraph.richText
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly richText: OneNote.RichText;'
+    return:
+      type:
+      - onenote.OneNote.RichText
+- uid: onenote.OneNote.Paragraph.table
+  summary: >-
+    获取 Paragraph 中的 Table 对象。如果 ParagraphType 不为 Table，则引发异常。只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: table
+  fullName: onenote.OneNote.Paragraph.table
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly table: OneNote.Table;'
+    return:
+      type:
+      - OneNote.Table
+- uid: onenote.OneNote.Paragraph.toJSON
+  name: toJSON()
+  fullName: onenote.OneNote.Paragraph.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): OneNote.Interfaces.ParagraphData;'
+    return:
+      type:
+      - onenote.OneNote.Interfaces.ParagraphData
+      description: ''
+- uid: onenote.OneNote.Paragraph.track
+  summary: 跟踪自动调整根据周围的文档中的更改的对象。 此呼叫是 context.trackedObjects.add(thisObject) 简写。 如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。
+  name: track()
+  fullName: onenote.OneNote.Paragraph.track
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'track(): OneNote.Paragraph;'
+    return:
+      type:
+      - onenote.OneNote.Paragraph
+      description: ''
+- uid: onenote.OneNote.Paragraph.type
+  summary: >-
+    获取 Paragraph 对象的类型。 只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: type
+  fullName: onenote.OneNote.Paragraph.type
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly type: OneNote.ParagraphType | "RichText" | "Image" | "Table" | "Ink" | "Other";'
+    return:
+      type:
+      - OneNote.ParagraphType | "RichText" | "Image" | "Table" | "Ink" | "Other"
+- uid: onenote.OneNote.Paragraph.untrack
+  summary: 发行版与此对象，如果以前跟踪关联的内存。 此呼叫是简写 context.trackedObjects.remove(thisObject)。 具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。 您将需要的内存版本生效前调用"context.sync()"。
+  name: untrack()
+  fullName: onenote.OneNote.Paragraph.untrack
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'untrack(): OneNote.Paragraph;'
+    return:
+      type:
+      - onenote.OneNote.Paragraph
+      description: ''

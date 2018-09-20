@@ -1,0 +1,211 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: c4c679765c2366dc8b95782f0855853d6568ed53
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24042169"
+items:
+- uid: office.Office.Binding
+  summary: 表示对一部分文档的绑定。
+  remarks: >-
+    <table><tr><td>要求集</td><td>MatrixBinding, TableBinding, TextBinding</td></tr></table>
+
+
+    Binding 对象公开揭示所有绑定无论类型的功能。
+
+
+    从不直接调用的 Binding 对象。 它是表示每种类型的绑定的对象的抽象父类别： [Office.MatrixBinding](xref:office.Office.MatrixBinding)<!-- -->， [Office.TableBinding](xref:office.Office.TableBinding)<!-- -->，或[Office.TextBinding](xref:office.Office.TextBinding)<!-- -->。 所有这三个这些对象继承 getDataAsync 和 setDataAsync 方法从 Binding 对象使您与绑定中的数据进行交互。 他们还继承查询这些属性值的 id 和类型的属性。 此外的 MatrixBinding 或 TableBinding 对象公开矩阵和表格特定功能，例如计数的行和列数的其他的方法。
+
+
+    **支持详细信息**
+
+
+    在以下矩阵大写 Y 表示此接口支持在相应的 Office 主机应用程序。 空单元格指示 Office 主机应用程序不支持此接口。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
+  name: Office.Binding
+  fullName: office.Office.Binding
+  langs:
+  - typeScript
+  type: interface
+  package: office
+  children:
+  - office.Office.Binding.addHandlerAsync
+  - office.Office.Binding.document
+  - office.Office.Binding.getDataAsync
+  - office.Office.Binding.id
+  - office.Office.Binding.removeHandlerAsync
+  - office.Office.Binding.setDataAsync
+  - office.Office.Binding.type
+- uid: office.Office.Binding.addHandlerAsync
+  summary: 将事件处理程序添加到该对象指定[Office.EventType](xref:office.Office.EventType)<!-- -->。 支持的 EventTypes 是`Office.EventType.BindingDataChanged`和`Office.EventType.BindingSelectionChanged`。
+  remarks: "只要每个事件处理程序函数的名称是唯一的您可以添加为指定的 eventType 的多个事件处理程序。\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following code sample calls the select method of the Office object to access the binding\n// with ID \"MyBinding\", and then calls the addHandlerAsync method to add a handler function \n// for the bindingDataChanged event of that binding.\nfunction addEventHandlerToBinding() {\n    Office.select(\"bindings#MyBinding\").addHandlerAsync(\n        Office.EventType.BindingDataChanged, onBindingDataChanged);\n}\n\nfunction onBindingDataChanged(eventArgs) {\n    write(\"Data has changed in binding: \" + eventArgs.binding.id);\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```\n```javascript\n// To add an event handler for the BindingSelectionChanged event of a binding, \n// use the addHandlerAsync method of the Binding object.\n// The event handler receives an argument of type BindingSelectionChangedEventArgs.\nfunction addEventHandlerToBinding() {\n    Office.select(\"bindings#MyBinding\").addHandlerAsync(\n        Office.EventType.BindingSelectionChanged, onBindingSelectionChanged);\n}\n\nfunction onBindingSelectionChanged(eventArgs) {\n    write(eventArgs.binding.id + \" has been selected.\");\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: addHandlerAsync(eventType, handler, options, callback)
+  fullName: office.Office.Binding.addHandlerAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addHandlerAsync(eventType: Office.EventType, handler: any, options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: eventType
+      description: 事件类型。 对于绑定，它可以是`Office.EventType.BindingDataChanged`或`Office.EventType.BindingSelectionChanged`。
+      type:
+      - Office.EventType
+    - id: handler
+      description: 事件处理程序函数添加，其唯一参数属于类型[Office.BindingDataChangedEventArgs](xref:office.Office.BindingDataChangedEventArgs)或[Office.BindingSelectionChangedEventArgs](xref:office.Office.BindingSelectionChangedEventArgs)<!-- -->。
+      type:
+      - any
+    - id: options
+      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
+      type:
+      - '(result: Office.AsyncResult<void>) => void'
+- uid: office.Office.Binding.document
+  summary: 获取与绑定关联的 Document 对象。
+  name: document
+  fullName: office.Office.Binding.document
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'document: Office.Document;'
+    return:
+      type:
+      - office.Office.Document
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOffice.context.document.bindings.getByIdAsync(\"myBinding\", function (asyncResult) {\n    write(asyncResult.value.document.url);\n});\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+- uid: office.Office.Binding.getDataAsync
+  summary: 返回绑定中包含的数据。
+  remarks: "<table><tr><td>要求集</td><td>MatrixBindings, TableBindings, TextBindings</td></tr></table>\n\n当从 MatrixBinding 或 TableBinding 调用，getDataAsync 方法将返回绑定值的子集，如果指定了可选 startRow、 startColumn、 rowCount 和 columnCount 参数 （且它们指定连续且有效范围）。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction showBindingData() {\n    Office.select(\"bindings#MyBinding\").getDataAsync(function (asyncResult) {\n        write(asyncResult.value)\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// There is an important difference in behavior between using the \"table\" and \"matrix\" coercionType with the\n// Binding.getDataAsync method, with respect to data formatted with header rows, as shown in the following\n// two examples. These code examples show event handler functions for the Binding.SelectionChanged event.\n\n// If you specify the \"table\" coercionType, the TableData.rows property ( result.value.rows in the following\n// code example) returns an array that contains only the body rows of the table. So, its 0th row will be the\n// first non-header row in the table.\nfunction selectionChanged(evtArgs) { \n    Office.select(\"bindings#TableTranslate\").getDataAsync(\n        { coercionType: 'table', \n          startRow: evtArgs.startRow, \n          startCol: 0, \n          rowCount: 1, \n          columnCount: 1 },  \n        function (result) { \n            if (result.status == 'succeeded') { \n                write(\"Image to find: \" + result.value.rows[0][0]); \n            } \n            else \n                write(result.error.message); \n    }); \n}     \n// Function that writes to a div with id='message' on the page. \nfunction write(message){ \n    document.getElementById('message').innerText += message; \n}\n\n// However, if you specify the \"matrix\" coercionType, result.value in the following code example returns an array\n// that contains the table header in the 0th row. If the table header contains multiple rows, then these are all\n// included in the result.value matrix as separate rows before the table body rows are included.\nfunction selectionChanged(evtArgs) { \n    Office.select(\"bindings#TableTranslate\").getDataAsync(\n        { coercionType: 'matrix', \n          startRow: evtArgs.startRow, \n          startCol: 0, \n          rowCount: 1, \n          columnCount: 1 },  \n        function (result) { \n            if (result.status == 'succeeded') { \n                write(\"Image to find: \" + result.value[1][0]); \n            } \n            else \n                write(result.error.message); \n    }); \n}     \n// Function that writes to a div with id='message' on the page. \nfunction write(message){ \n    document.getElementById('message').innerText += message; \n}\n```"
+  name: getDataAsync(options, callback)
+  fullName: office.Office.Binding.getDataAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getDataAsync<T>(options?: GetBindingDataOptions, callback?: (result: AsyncResult<T>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: 提供了有关如何获取绑定中数据的选项。
+      type:
+      - office.Office.GetBindingDataOptions
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`属性的结果是指定绑定中的值。 如果`coercionType`指定参数 （且呼叫是成功），以 CoercionType 枚举主题中所述的格式返回的数据。
+      type:
+      - '(result: AsyncResult<T>) => void'
+- uid: office.Office.Binding.id
+  summary: 一个唯一标识此同一[Office.Document](xref:office.Office.Document)对象中绑定之间的绑定的字符串。
+  name: id
+  fullName: office.Office.Binding.id
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'id: string;'
+    return:
+      type:
+      - string
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOffice.context.document.bindings.getByIdAsync(\"myBinding\", function (asyncResult) {\n    write(asyncResult.value.id);\n});\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+- uid: office.Office.Binding.removeHandlerAsync
+  summary: 从绑定移除指定事件类型的指定处理程序。
+  remarks: >-
+    <table><tr><td>要求集</td><td>BindingEvents</td></tr></table>
+
+    #### 示例
+
+
+    ```javascript
+
+    function removeEventHandlerFromBinding() {
+        Office.select("bindings#MyBinding").removeHandlerAsync(
+            Office.EventType.BindingDataChanged, {handler:onBindingDataChanged});
+    }
+
+    ```
+  name: removeHandlerAsync(eventType, options, callback)
+  fullName: office.Office.Binding.removeHandlerAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'removeHandlerAsync(eventType: Office.EventType, options?: RemoveHandlerOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: eventType
+      description: 事件类型。 对于绑定，它可以是`Office.EventType.BindingDataChanged`或`Office.EventType.BindingSelectionChanged`。
+      type:
+      - Office.EventType
+    - id: options
+      description: 提供选项以确定哪些事件处理程序或处理程序将删除。
+      type:
+      - office.Office.RemoveHandlerOptions
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: office.Office.Binding.setDataAsync
+  summary: 将数据写入指定的绑定对象表示的文档的绑定部分。
+  remarks: "<table><tr><td>要求集</td><td>MatrixBindings, TableBindings, TextBindings</td></tr></table>\n\n为数据传递的值包含绑定中写入的数据。 传递值的类型确定下表中所述，将写入内容。\n\n<table> <tr> <th>`data`值</th> <th>写入的数据</th> </tr> <tr> <td>一个字符串</td> <td>纯文本或可以强制为 string 的任何内容，将写入。</td> </tr> <tr> <td>数组的数组（“矩阵”）</td> <td>将写入不带标题的表格数据。 例如，若要将数据写入三行两列，可以传递如下的数组：`[[\"R1C1\", \"R1C2\"], [\"R2C1\", \"R2C2\"], [\"R3C1\", \"R3C2\"]]`。 若要写入一列的三行，传递类似如下的数组： `[[\"R1C1\"], [\"R2C1\"], [\"R3C1\"]]`。</td> </tr> <tr> <td>[Office.TableData](xref:office.Office.TableData)对象</td> <td>将写入带标题的表格数据。</td> </tr> </table>\n\n此外，这些特定于应用程序的操作在将数据写入绑定时适用。 对于 Word，将指定的 data 写入绑定如下：\n\n<table> <tr> <th>`data`值</th> <th>写入的数据</th> </tr> <tr> <td>一个字符串</td> <td>写入指定的文本。</td> </tr> <tr> <td>数组的数组 （\"矩阵\"） 或[Office.TableData](xref:office.Office.TableData)对象</td> <td>写入 Word 表格。</td> </tr> <tr> <td>HTML</td> <td>写入指定的 HTML。 如果任何您编写无效的 HTML，Word 将不会引发错误。 Word 将写入尽可能多的 html，因为它可以并将忽略任何无效数据。</td> </tr> <tr> <td>Office Open XML (\"Open XML\")</td> <td>写入指定的 XML。</td> </tr> </table>\n\n适用于 Excel，将指定的 data 写入绑定如下：\n\n<table> <tr> <th>`data`值</th> <th>写入的数据</th> </tr> <tr> <td>一个字符串</td> <td>指定的文本将作为第一个绑定单元格的值插入。您还可以指定有效的公式添加到绑定的单元格的公式。 例如，将 data 设置为 `\"=SUM(A1:A5)\"` 将计算指定区域中值的总数。 但是，当你在绑定单元格中设置公式时，设置后将无法从绑定单元格读取添加的公式（或任何已有公式）。 如果要读取其数据的绑定单元格上调用 Binding.getDataAsync 方法，该方法可以返回仅显示在单元格中 （公式的结果） 的数据。</td> </tr> <tr> <td>数组的数组（“矩阵”），形状与指定绑定的形状完全匹配</td> <td>写入一组的行和列。您还可以指定包含有效的公式，以将它们添加到绑定的单元格的数组的数组。 例如，将数据设置为`[[\"=SUM(A1:A5)\",\"=AVERAGE(A1:A5)\"]]`会将这些两个公式添加到包含两个单元格的绑定。 就像在上一个绑定单元格设置公式，您不能从与绑定读取添加的公式 （或任何事先公式）`Binding.getDataAsync`方法-其返回绑定的单元格中显示的数据。</td> </tr> <tr> <td>[Office.TableData](xref:office.Office.TableData)对象和表格的形状与绑定的表匹配。</td> <td>如果不会覆盖周围单元格中的其他数据，则写入一组行和/或标题。注意：如果您在为 data 参数传递的 *TableData* 对象中指定公式，您可能无法获取预期的结果，这是由于 Excel 的“计算列”功能，此功能会自动复制列中的公式。要解决此问题，如果您希望将包含公式的 *data* 写入到绑定表中，请尝试将数据指定为数组的数组（而非 TableData 对象），并将 *coercionType* 指定为 Microsoft.Office.Matrix 或“矩阵”。</td> </tr> </table>\n\nExcel Online:\n\n- 在传递给 data 参数的值的单元格的总数不能超过 20000 中单个调用此方法。\n\n- 传递到 cellFormat 参数的格式组的数量不能超过 100。 单个格式组包括一组应用于特定单元格范围的格式。\n\n在其他所有情况下，都会返回错误。\n\n则 setDataAsync 方法将表或矩阵绑定如果指定了可选 startRow 和 startColumn 参数，并且它们指定一个有效的范围的子集中写入数据。\n\n在传递给 setDataAsync 方法的回调函数，您可以使用 AsyncResult 对象的属性返回以下信息。\n\n<table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回 undefined，因为没有要检索数据或对象。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>\n#### 示例\n\n```javascript\nfunction setBindingData() {\n    Office.select(\"bindings#MyBinding\").setDataAsync('Hello World!', function (asyncResult) { });\n}\n\n// Specifying the optional coercionType parameter lets you specify the kind of data you want to write to a binding.\n// For example, in Word if you want to write HTML to a text binding, you can specify the coercionType parameter \n// as \"html\" as shown in the following example, which uses HTML <b> tags to make \"Hello\" bold.\nfunction writeHtmlData() {\n    Office.select(\"bindings#myBinding\").setDataAsync(\n        \"<b>Hello</b> World!\", {coercionType: \"html\"}, function (asyncResult) {\n        if (asyncResult.status == \"failed\") {\n            write('Error: ' + asyncResult.error.message);\n        }\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// In this example, the call to setDataAsync passes the data parameter as an array of arrays\n// (to create a single column of three rows), and specifies the data structure with the \n// coercionType parameter as a \"matrix\".\nfunction writeBoundDataMatrix() {\n    Office.select(\"bindings#myBinding\").setDataAsync(\n        [['Berlin'],['Munich'],['Duisburg']],{ coercionType: \"matrix\" }, function (asyncResult) {\n        if (asyncResult.status == \"failed\") {\n            write('Error: ' + asyncResult.error.message);\n        } else {\n            write('Bound data: ' + asyncResult.value);\n        }\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// In the writeBoundDataTable function in this example, the call to setDataAsync passes the data parameter \n// as a TableData object (to write three columns and three rows), and specifies the data structure\n// with the coercionType parameter as a \"table\".\n\n// In the updateTableData function, the call to setDataAsync again passes the data parameter as a TableData object,\n// but as a single column with a new header and three rows, to update the values in the last column \n// of the table created with the writeBoundDataTable function. The optional zero-based startColumn parameter \n// is specified as 2 to replace the values in the third column of the table.\nfunction writeBoundDataTable() {\n    // Create a TableData object.\n    var myTable = new Office.TableData();\n    myTable.headers = ['First Name', 'Last Name', 'Grade'];\n    myTable.rows = [['Kim', 'Abercrombie', 'A'], ['Junmin','Hao', 'C'],['Toni','Poe','B']];\n\n    // Set myTable in the binding.\n    Office.select(\"bindings#myBinding\").setDataAsync(myTable, { coercionType: \"table\" }, \n        function (asyncResult) {\n            if (asyncResult.status == Office.AsyncResultStatus.Failed) {\n                write('Error: '+ asyncResult.error.message);\n        } else {\n            write('Bound data: ' + asyncResult.value);\n        }\n    });\n}\n\n// Replace last column with different data.\nfunction updateTableData() {\n    var newTable = new Office.TableData();\n    newTable.headers = [\"Gender\"];\n    newTable.rows = [[\"M\"],[\"M\"],[\"F\"]];\n    Office.select(\"bindings#myBinding\").setDataAsync(newTable, { coercionType: \"table\", startColumn:2 }, \n        function (asyncResult) {\n            if (asyncResult.status == Office.AsyncResultStatus.Failed) {\n                write('Error: '+ asyncResult.error.message);\n        } else {\n            write('Bound data: ' + asyncResult.value);\n        }     \n    });   \n}\n\n// In this example, the following call passes two formatting groups to cellFormat.\nOffice.select(\"bindings#myBinding\").setDataAsync([['Berlin'],['Munich'],['Duisburg']],\n  {cellFormat:[{cells: {row: 1}, format: {fontColor: \"yellow\"}}, \n      {cells: {row: 3, column: 4}, format: {borderColor: \"white\", fontStyle: \"bold\"}}]}, \n  function (asyncResult){});\n```"
+  name: setDataAsync(data, options, callback)
+  fullName: office.Office.Binding.setDataAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setDataAsync(data: TableData | any, options?: SetBindingDataOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: data
+      description: >-
+        当前选择中要设置的数据。 通过主机的可能的数据类型： string: Excel、 Excel Online、 Word 和 Word Online 仅数组的数组： Excel 和 Word 仅[Office.TableData](xref:office.Office.TableData)<!-- -->: Access、 Excel 和仅限 Word
+
+
+        HTML: Word 和仅限 Word Online
+
+
+        仅限 Word office Open XML:
+      type:
+      - TableData | any
+    - id: options
+      description: 提供有关如何将数据绑定中设置选项。
+      type:
+      - office.Office.SetBindingDataOptions
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: office.Office.Binding.type
+  summary: 获取绑定的类型。
+  name: type
+  fullName: office.Office.Binding.type
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'type: Office.BindingType;'
+    return:
+      type:
+      - Office.BindingType
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOffice.context.document.bindings.getByIdAsync(\"MyBinding\", function (asyncResult) { \n    write(asyncResult.value.type); \n}) \n\n// Function that writes to a div with id='message' on the page. \nfunction write(message){ \n    document.getElementById('message').innerText += message;  \n}\n```"

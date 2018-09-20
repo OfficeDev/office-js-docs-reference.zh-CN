@@ -1,0 +1,637 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 066b3619f53533cd8f311a596e5bbd2d30229b01
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24040214"
+items:
+- uid: word.Word.InlinePicture
+  summary: >-
+    表示嵌入式图片。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: Word.InlinePicture
+  fullName: word.Word.InlinePicture
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: word
+  children:
+  - word.Word.InlinePicture.altTextDescription
+  - word.Word.InlinePicture.altTextTitle
+  - word.Word.InlinePicture.delete
+  - word.Word.InlinePicture.getBase64ImageSrc
+  - word.Word.InlinePicture.getNext
+  - word.Word.InlinePicture.getNextOrNullObject
+  - word.Word.InlinePicture.getRange
+  - word.Word.InlinePicture.height
+  - word.Word.InlinePicture.hyperlink
+  - word.Word.InlinePicture.insertBreak
+  - word.Word.InlinePicture.insertContentControl
+  - word.Word.InlinePicture.insertFileFromBase64
+  - word.Word.InlinePicture.insertHtml
+  - word.Word.InlinePicture.insertInlinePictureFromBase64
+  - word.Word.InlinePicture.insertOoxml
+  - word.Word.InlinePicture.insertParagraph
+  - word.Word.InlinePicture.insertText
+  - word.Word.InlinePicture.load
+  - word.Word.InlinePicture.lockAspectRatio
+  - word.Word.InlinePicture.paragraph
+  - word.Word.InlinePicture.parentContentControl
+  - word.Word.InlinePicture.parentContentControlOrNullObject
+  - word.Word.InlinePicture.parentTable
+  - word.Word.InlinePicture.parentTableCell
+  - word.Word.InlinePicture.parentTableCellOrNullObject
+  - word.Word.InlinePicture.parentTableOrNullObject
+  - word.Word.InlinePicture.select
+  - word.Word.InlinePicture.toJSON
+  - word.Word.InlinePicture.track
+  - word.Word.InlinePicture.untrack
+  - word.Word.InlinePicture.width
+- uid: word.Word.InlinePicture.altTextDescription
+  summary: >-
+    获取或设置一个 string 值，该值代表内嵌图像相关联的可选文字。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: altTextDescription
+  fullName: word.Word.InlinePicture.altTextDescription
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'altTextDescription: string;'
+    return:
+      type:
+      - string
+- uid: word.Word.InlinePicture.altTextTitle
+  summary: >-
+    获取或设置包含嵌入式图像的标题的字符串。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: altTextTitle
+  fullName: word.Word.InlinePicture.altTextTitle
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'altTextTitle: string;'
+    return:
+      type:
+      - string
+- uid: word.Word.InlinePicture.delete
+  summary: >-
+    从 document 中删除 inlinePicture。
+
+
+    \[[API 集： WordApi 1.2](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: delete()
+  fullName: word.Word.InlinePicture.delete
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'delete(): void;'
+    return:
+      type:
+      - void
+      description: ''
+- uid: word.Word.InlinePicture.getBase64ImageSrc
+  summary: >-
+    获取嵌入式图像的 base64 编码的字符串表示。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: getBase64ImageSrc()
+  fullName: word.Word.InlinePicture.getBase64ImageSrc
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getBase64ImageSrc(): OfficeExtension.ClientResult<string>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<string>
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Word.run(async (context) => {\n    const firstPicture = context.document.body.inlinePictures.getFirst();\n    firstPicture.load(\"width, height\");\n\n    await context.sync();\n    console.log(`Image dimensions: ${firstPicture.width} x ${firstPicture.height}`);\n    //To get the image encoded as base64:\n    const base64 = firstPicture.getBase64ImageSrc();\n\n    await context.sync();\n    console.log(base64.value);\n});\n```"
+- uid: word.Word.InlinePicture.getNext
+  summary: >-
+    获取下一个嵌入式图像。如果该嵌入式图像为最后一个图像，则引发。
+
+
+    \[[API 集： WordApi 1.3](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: getNext()
+  fullName: word.Word.InlinePicture.getNext
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getNext(): Word.InlinePicture;'
+    return:
+      type:
+      - word.Word.InlinePicture
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// To use this snippet, add an inline picture to the document and assign it an alt text title.\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Create a proxy object for the first inline picture.\n    var firstPicture = context.document.body.inlinePictures.getFirstOrNullObject();\n\n    // Queue a command to load the alternative text title of the picture.\n    context.load(firstPicture, 'altTextTitle');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        if (firstPicture.isNullObject) {\n            console.log('There are inline pictures in this document.')\n        } else {\n            console.log(firstPicture.altTextTitle);\n        }\n    });   \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: word.Word.InlinePicture.getNextOrNullObject
+  summary: >-
+    获取下一个嵌入式图像。如果该嵌入式图像为最后一个，则返回 null 对象。
+
+
+    \[[API 集： WordApi 1.3](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: getNextOrNullObject()
+  fullName: word.Word.InlinePicture.getNextOrNullObject
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getNextOrNullObject(): Word.InlinePicture;'
+    return:
+      type:
+      - word.Word.InlinePicture
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// To use this snippet, add an inline picture to the document and assign it an alt text title.\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Create a proxy object for the first inline picture.\n    var firstPicture = context.document.body.inlinePictures.getFirstOrNullObject();\n\n    // Queue a command to load the alternative text title of the picture.\n    context.load(firstPicture, 'altTextTitle');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        if (firstPicture.isNullObject) {\n            console.log('There are inline pictures in this document.')\n        } else {\n            console.log(firstPicture.altTextTitle);\n        }\n    });   \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: word.Word.InlinePicture.getRange
+  summary: >-
+    获取 picture 或 picture 的起点/终点作为 range。
+
+
+    \[[API 集： WordApi 1.3](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: getRange(rangeLocation)
+  fullName: word.Word.InlinePicture.getRange
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getRange(rangeLocation?: Word.RangeLocation): Word.Range;'
+    return:
+      type:
+      - Word.Range
+      description: ''
+    parameters:
+    - id: rangeLocation
+      description: 可选。 区域位置可以是整数，开始，或结束。
+      type:
+      - word.Word.RangeLocation
+- uid: word.Word.InlinePicture.height
+  summary: >-
+    获取或设置描述嵌入式图像的高度的数字。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: height
+  fullName: word.Word.InlinePicture.height
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'height: number;'
+    return:
+      type:
+      - number
+- uid: word.Word.InlinePicture.hyperlink
+  summary: >-
+    获取或设置图像的超链接。 使用\#从可选位置部件分隔的地址部分。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: hyperlink
+  fullName: word.Word.InlinePicture.hyperlink
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'hyperlink: string;'
+    return:
+      type:
+      - string
+- uid: word.Word.InlinePicture.insertBreak
+  summary: >-
+    在主文档的指定位置插入分隔符。insertLocation 的可取值为“Before”或“After”。
+
+
+    \[[API 集： WordApi 1.2](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: insertBreak(breakType, insertLocation)
+  fullName: word.Word.InlinePicture.insertBreak
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'insertBreak(breakType: Word.BreakType, insertLocation: Word.InsertLocation): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: breakType
+      description: 必需。 若要添加分页符类型。
+      type:
+      - word.Word.BreakType
+    - id: insertLocation
+      description: 必需。值可以为“Before”或“After”。
+      type:
+      - Word.InsertLocation
+- uid: word.Word.InlinePicture.insertContentControl
+  summary: >-
+    使用富文本内容控件封装嵌入式图像。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: insertContentControl()
+  fullName: word.Word.InlinePicture.insertContentControl
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'insertContentControl(): Word.ContentControl;'
+    return:
+      type:
+      - word.Word.ContentControl
+      description: ''
+- uid: word.Word.InlinePicture.insertFileFromBase64
+  summary: >-
+    在指定位置插入 document。insertLocation 的可取值为“Before”或“After”。
+
+
+    \[[API 集： WordApi 1.2](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: insertFileFromBase64(base64File, insertLocation)
+  fullName: word.Word.InlinePicture.insertFileFromBase64
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'insertFileFromBase64(base64File: string, insertLocation: Word.InsertLocation): Word.Range;'
+    return:
+      type:
+      - Word.Range
+      description: ''
+    parameters:
+    - id: base64File
+      description: 必需。Base64 编码的 .docx 文件内容。
+      type:
+      - string
+    - id: insertLocation
+      description: 必需。值可以为“Before”或“After”。
+      type:
+      - Word.InsertLocation
+- uid: word.Word.InlinePicture.insertHtml
+  summary: >-
+    在指定位置插入 HTML。insertLocation 值可以为“Before”或“After”。
+
+
+    \[[API 集： WordApi 1.2](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: insertHtml(html, insertLocation)
+  fullName: word.Word.InlinePicture.insertHtml
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'insertHtml(html: string, insertLocation: Word.InsertLocation): Word.Range;'
+    return:
+      type:
+      - Word.Range
+      description: ''
+    parameters:
+    - id: html
+      description: 必需。要插入的 HTML。
+      type:
+      - string
+    - id: insertLocation
+      description: 必需。值可以为“Before”或“After”。
+      type:
+      - Word.InsertLocation
+- uid: word.Word.InlinePicture.insertInlinePictureFromBase64
+  summary: >-
+    指定位置处插入嵌入式图片。 InsertLocation 值可以是将'，'之前，或之后。
+
+
+    \[[API 集： WordApi 1.2](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: insertInlinePictureFromBase64(base64EncodedImage, insertLocation)
+  fullName: word.Word.InlinePicture.insertInlinePictureFromBase64
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'insertInlinePictureFromBase64(base64EncodedImage: string, insertLocation: Word.InsertLocation): Word.InlinePicture;'
+    return:
+      type:
+      - word.Word.InlinePicture
+      description: ''
+    parameters:
+    - id: base64EncodedImage
+      description: 必需。要插入的 base64 编码的图像。
+      type:
+      - string
+    - id: insertLocation
+      description: 必需。 值可以是将'，'之前，或之后。
+      type:
+      - Word.InsertLocation
+- uid: word.Word.InlinePicture.insertOoxml
+  summary: >-
+    在指定位置插入 OOXML。 insertLocation 值可以为“Before”或“After”。
+
+
+    \[[API 集： WordApi 1.2](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: insertOoxml(ooxml, insertLocation)
+  fullName: word.Word.InlinePicture.insertOoxml
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'insertOoxml(ooxml: string, insertLocation: Word.InsertLocation): Word.Range;'
+    return:
+      type:
+      - Word.Range
+      description: ''
+    parameters:
+    - id: ooxml
+      description: 必需。要插入的 OOXML。
+      type:
+      - string
+    - id: insertLocation
+      description: 必需。值可以为“Before”或“After”。
+      type:
+      - Word.InsertLocation
+- uid: word.Word.InlinePicture.insertParagraph
+  summary: >-
+    在指定位置插入段落。insertLocation 值可以为“Before”或“After”。
+
+
+    \[[API 集： WordApi 1.2](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: insertParagraph(paragraphText, insertLocation)
+  fullName: word.Word.InlinePicture.insertParagraph
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'insertParagraph(paragraphText: string, insertLocation: Word.InsertLocation): Word.Paragraph;'
+    return:
+      type:
+      - Word.Paragraph
+      description: ''
+    parameters:
+    - id: paragraphText
+      description: 必需。要插入的段落文本。
+      type:
+      - string
+    - id: insertLocation
+      description: 必需。值可以为“Before”或“After”。
+      type:
+      - Word.InsertLocation
+- uid: word.Word.InlinePicture.insertText
+  summary: >-
+    在指定位置插入文本。insertLocation 的可取值为“Before”或“After”。
+
+
+    \[[API 集： WordApi 1.2](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: insertText(text, insertLocation)
+  fullName: word.Word.InlinePicture.insertText
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'insertText(text: string, insertLocation: Word.InsertLocation): Word.Range;'
+    return:
+      type:
+      - Word.Range
+      description: ''
+    parameters:
+    - id: text
+      description: 必需。要插入的文本。
+      type:
+      - string
+    - id: insertLocation
+      description: 必需。值可以为“Before”或“After”。
+      type:
+      - Word.InsertLocation
+- uid: word.Word.InlinePicture.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: >-
+    除了此签名，此方法具有以下签名：
+
+
+    `load(option?: { select?: string; expand?: string; }): Word.InlinePicture`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.InlinePicture`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
+  name: load(option)
+  fullName: word.Word.InlinePicture.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Word.InlinePicture;'
+    return:
+      type:
+      - word.Word.InlinePicture
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: word.Word.InlinePicture.lockAspectRatio
+  summary: >-
+    获取或设置指示在您调整嵌入式图像大小时其是否保留原始比例的值。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: lockAspectRatio
+  fullName: word.Word.InlinePicture.lockAspectRatio
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'lockAspectRatio: boolean;'
+    return:
+      type:
+      - boolean
+- uid: word.Word.InlinePicture.paragraph
+  summary: >-
+    获取包含嵌入式图像的父段落。只读。
+
+
+    \[[API 集： WordApi 1.2](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: paragraph
+  fullName: word.Word.InlinePicture.paragraph
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly paragraph: Word.Paragraph;'
+    return:
+      type:
+      - Word.Paragraph
+- uid: word.Word.InlinePicture.parentContentControl
+  summary: >-
+    获取包含嵌入式图像的内容控件。如果不存在父内容控件，则引发。只读。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: parentContentControl
+  fullName: word.Word.InlinePicture.parentContentControl
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly parentContentControl: Word.ContentControl;'
+    return:
+      type:
+      - word.Word.ContentControl
+- uid: word.Word.InlinePicture.parentContentControlOrNullObject
+  summary: >-
+    获取包含嵌入式图像的内容控件。如果不存在父内容控件，则返回 Null 对象。只读。
+
+
+    \[[API 集： WordApi 1.3](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: parentContentControlOrNullObject
+  fullName: word.Word.InlinePicture.parentContentControlOrNullObject
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly parentContentControlOrNullObject: Word.ContentControl;'
+    return:
+      type:
+      - word.Word.ContentControl
+- uid: word.Word.InlinePicture.parentTable
+  summary: >-
+    获取包含嵌入式图像的 table。如果未包含在 table 中，则引发。只读。
+
+
+    \[[API 集： WordApi 1.3](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: parentTable
+  fullName: word.Word.InlinePicture.parentTable
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly parentTable: Word.Table;'
+    return:
+      type:
+      - Word.Table
+- uid: word.Word.InlinePicture.parentTableCell
+  summary: >-
+    获取包含嵌入式图像的 tableCell。如果未包含在 table 单元格中，则引发。只读。
+
+
+    \[[API 集： WordApi 1.3](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: parentTableCell
+  fullName: word.Word.InlinePicture.parentTableCell
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly parentTableCell: Word.TableCell;'
+    return:
+      type:
+      - Word.TableCell
+- uid: word.Word.InlinePicture.parentTableCellOrNullObject
+  summary: >-
+    获取包含嵌入式图像的 tableCell。如果未包含在 tableCell 中，则此关系返回空对象。只读。
+
+
+    \[[API 集： WordApi 1.3](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: parentTableCellOrNullObject
+  fullName: word.Word.InlinePicture.parentTableCellOrNullObject
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly parentTableCellOrNullObject: Word.TableCell;'
+    return:
+      type:
+      - Word.TableCell
+- uid: word.Word.InlinePicture.parentTableOrNullObject
+  summary: >-
+    获取包含嵌入式图像的 table。如果未包含在 table 中，则此关系返回空对象。只读。
+
+
+    \[[API 集： WordApi 1.3](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: parentTableOrNullObject
+  fullName: word.Word.InlinePicture.parentTableOrNullObject
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly parentTableOrNullObject: Word.Table;'
+    return:
+      type:
+      - Word.Table
+- uid: word.Word.InlinePicture.select
+  summary: >-
+    选择 inlinePicture。这会导致 Word 滚动到选定内容。
+
+
+    \[[API 集： WordApi 1.2](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: select(selectionMode)
+  fullName: word.Word.InlinePicture.select
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'select(selectionMode?: Word.SelectionMode): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: selectionMode
+      description: 可选。选择模式可以为“Select”、“Start”或“End”。“Select”为默认值。
+      type:
+      - Word.SelectionMode
+- uid: word.Word.InlinePicture.toJSON
+  name: toJSON()
+  fullName: word.Word.InlinePicture.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Word.Interfaces.InlinePictureData;'
+    return:
+      type:
+      - word.Word.Interfaces.InlinePictureData
+      description: ''
+- uid: word.Word.InlinePicture.track
+  summary: 跟踪自动调整根据周围的文档中的更改的对象。 此呼叫是 context.trackedObjects.add(thisObject) 简写。 如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。
+  name: track()
+  fullName: word.Word.InlinePicture.track
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'track(): Word.InlinePicture;'
+    return:
+      type:
+      - word.Word.InlinePicture
+      description: ''
+- uid: word.Word.InlinePicture.untrack
+  summary: 发行版与此对象，如果以前跟踪关联的内存。 此呼叫是简写 context.trackedObjects.remove(thisObject)。 具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。 您将需要的内存版本生效前调用"context.sync()"。
+  name: untrack()
+  fullName: word.Word.InlinePicture.untrack
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'untrack(): Word.InlinePicture;'
+    return:
+      type:
+      - word.Word.InlinePicture
+      description: ''
+- uid: word.Word.InlinePicture.width
+  summary: >-
+    获取或设置描述嵌入式图像的宽度的数字。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: width
+  fullName: word.Word.InlinePicture.width
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'width: number;'
+    return:
+      type:
+      - number

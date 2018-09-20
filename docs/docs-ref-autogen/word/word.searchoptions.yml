@@ -1,0 +1,206 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: f5eb1a7b1ce31ae9b06f88ecc303042d43ef8b80
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24042388"
+items:
+- uid: word.Word.SearchOptions
+  summary: >-
+    指定要包括在搜索操作中的选项。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: Word.SearchOptions
+  fullName: word.Word.SearchOptions
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: word
+  children:
+  - word.Word.SearchOptions.ignorePunct
+  - word.Word.SearchOptions.ignoreSpace
+  - word.Word.SearchOptions.load
+  - word.Word.SearchOptions.matchCase
+  - word.Word.SearchOptions.matchPrefix
+  - word.Word.SearchOptions.matchSuffix
+  - word.Word.SearchOptions.matchWholeWord
+  - word.Word.SearchOptions.matchWildcards
+  - word.Word.SearchOptions.matchWildCards
+  - word.Word.SearchOptions.newObject
+  - word.Word.SearchOptions.toJSON
+- uid: word.Word.SearchOptions.ignorePunct
+  summary: >-
+    获取或设置指示是否忽略单词之间的所有标点符号的值。对应于“查找和替换”对话框中的“忽略标点符号”复选框。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: ignorePunct
+  fullName: word.Word.SearchOptions.ignorePunct
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'ignorePunct: boolean;'
+    return:
+      type:
+      - boolean
+- uid: word.Word.SearchOptions.ignoreSpace
+  summary: >-
+    获取或设置一个值，该值指示是否忽略单词之间的所有空格。对应于“查找和替换”对话框中的“忽略空格字符”复选框。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: ignoreSpace
+  fullName: word.Word.SearchOptions.ignoreSpace
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'ignoreSpace: boolean;'
+    return:
+      type:
+      - boolean
+- uid: word.Word.SearchOptions.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): Word.SearchOptions`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.SearchOptions`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Ignore punctuation search\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Queue a command to search the document and ignore punctuation.\n    var searchResults = context.document.body.search('video you', {ignorePunct: true});\n\n    // Queue a command to load the search results and get the font property values.\n    context.load(searchResults, 'font');\n    \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        console.log('Found count: ' + searchResults.items.length);\n\n        // Queue a set of commands to change the font for each found item.\n        for (var i = 0; i < searchResults.items.length; i++) {\n            searchResults.items[i].font.color = 'purple';\n            searchResults.items[i].font.highlightColor = '#FFFF00'; //Yellow\n            searchResults.items[i].font.bold = true;\n        }\n        \n        // Synchronize the document state by executing the queued commands, \n        // and return a promise to indicate task completion.\n        return context.sync();\n    });  \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Search based on a prefix\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Queue a command to search the document based on a prefix.\n    var searchResults = context.document.body.search('vid', {matchPrefix: true});\n\n    // Queue a command to load the search results and get the font property values.\n    context.load(searchResults, 'font');\n    \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        console.log('Found count: ' + searchResults.items.length);\n\n        // Queue a set of commands to change the font for each found item.\n        for (var i = 0; i < searchResults.items.length; i++) {\n            searchResults.items[i].font.color = 'purple';\n            searchResults.items[i].font.highlightColor = '#FFFF00'; //Yellow\n            searchResults.items[i].font.bold = true;\n        }\n        \n        // Synchronize the document state by executing the queued commands, \n        // and return a promise to indicate task completion.\n        return context.sync();\n    });  \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Search based on a suffix\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n\n    // Queue a command to search the document for any string of characters after 'ly'.\n    var searchResults = context.document.body.search('ly', {matchSuffix: true});\n\n    // Queue a command to load the search results and get the font property values.\n    context.load(searchResults, 'font');\n    \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        console.log('Found count: ' + searchResults.items.length);\n\n        // Queue a set of commands to change the font for each found item.\n        for (var i = 0; i < searchResults.items.length; i++) {\n            searchResults.items[i].font.color = 'orange';\n            searchResults.items[i].font.highlightColor = 'black';\n            searchResults.items[i].font.bold = true;\n        }\n        \n        // Synchronize the document state by executing the queued commands, \n        // and return a promise to indicate task completion.\n        return context.sync();\n    });  \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Search using a wildcard\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Queue a command to search the document with a wildcard\n    // for any string of characters that starts with 'to' and ends with 'n'.\n    var searchResults = context.document.body.search('to*n', {matchWildCards: true});\n\n    // Queue a command to load the search results and get the font property values.\n    context.load(searchResults, 'font');\n    \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        console.log('Found count: ' + searchResults.items.length);\n\n        // Queue a set of commands to change the font for each found item.\n        for (var i = 0; i < searchResults.items.length; i++) {\n            searchResults.items[i].font.color = 'purple';\n            searchResults.items[i].font.highlightColor = 'pink';\n            searchResults.items[i].font.bold = true;\n        }\n        \n        // Synchronize the document state by executing the queued commands, \n        // and return a promise to indicate task completion.\n        return context.sync();\n    });  \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  name: load(option)
+  fullName: word.Word.SearchOptions.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Word.SearchOptions;'
+    return:
+      type:
+      - word.Word.SearchOptions
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: word.Word.SearchOptions.matchCase
+  summary: >-
+    获取或设置一个值，指示是否执行区分大小写的搜索。 对应于 查找和替换对话框中的 区分大小写复选框。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: matchCase
+  fullName: word.Word.SearchOptions.matchCase
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'matchCase: boolean;'
+    return:
+      type:
+      - boolean
+- uid: word.Word.SearchOptions.matchPrefix
+  summary: >-
+    获取或设置指示是否匹配以搜索字符串开头的单词。对应于“查找和替换”对话框中的“匹配前缀”复选框。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: matchPrefix
+  fullName: word.Word.SearchOptions.matchPrefix
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'matchPrefix: boolean;'
+    return:
+      type:
+      - boolean
+- uid: word.Word.SearchOptions.matchSuffix
+  summary: >-
+    获取或设置指示是否匹配以搜索字符串结尾的单词。对应于“查找和替换”对话框中的“匹配后缀”复选框。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: matchSuffix
+  fullName: word.Word.SearchOptions.matchSuffix
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'matchSuffix: boolean;'
+    return:
+      type:
+      - boolean
+- uid: word.Word.SearchOptions.matchWholeWord
+  summary: >-
+    获取或设置指示是否只查找整个单词，而不查找长单词的一部分的值。对应于“查找和替换”对话框中的“全字匹配”复选框。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: matchWholeWord
+  fullName: word.Word.SearchOptions.matchWholeWord
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'matchWholeWord: boolean;'
+    return:
+      type:
+      - boolean
+- uid: word.Word.SearchOptions.matchWildcards
+  summary: >-
+    获取或设置指示搜索是否使用特殊搜索操作符执行的值。对应于“查找和替换”对话框中的“使用通配符”复选框。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: matchWildcards
+  fullName: word.Word.SearchOptions.matchWildcards
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'matchWildcards: boolean;'
+    return:
+      type:
+      - boolean
+- uid: word.Word.SearchOptions.matchWildCards
+  name: matchWildCards
+  fullName: word.Word.SearchOptions.matchWildCards
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'matchWildCards: boolean;'
+    return:
+      type:
+      - boolean
+- uid: word.Word.SearchOptions.newObject
+  summary: 创建 Word.SearchOptions 对象的新实例
+  name: newObject(context)
+  fullName: word.Word.SearchOptions.newObject
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'static newObject(context: OfficeExtension.ClientRequestContext): Word.SearchOptions;'
+    return:
+      type:
+      - word.Word.SearchOptions
+      description: ''
+    parameters:
+    - id: context
+      description: ''
+      type:
+      - office.OfficeExtension.ClientRequestContext
+- uid: word.Word.SearchOptions.toJSON
+  name: toJSON()
+  fullName: word.Word.SearchOptions.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Word.Interfaces.SearchOptionsData;'
+    return:
+      type:
+      - word.Word.Interfaces.SearchOptionsData
+      description: ''

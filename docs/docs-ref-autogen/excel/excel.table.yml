@@ -1,0 +1,475 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: c453a37f5018849fc54cce9b2a647b1db6fedeb1
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24042352"
+items:
+- uid: excel.Excel.Table
+  summary: >-
+    表示一个 Excel 表。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  remarks: 我们[使用表的操作方法指南](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-tables)提供了详细演练、 图像和代码示例。
+  name: Excel.Table
+  fullName: excel.Excel.Table
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: excel
+  children:
+  - excel.Excel.Table.clearFilters
+  - excel.Excel.Table.columns
+  - excel.Excel.Table.convertToRange
+  - excel.Excel.Table.delete
+  - excel.Excel.Table.getDataBodyRange
+  - excel.Excel.Table.getHeaderRowRange
+  - excel.Excel.Table.getRange
+  - excel.Excel.Table.getTotalRowRange
+  - excel.Excel.Table.highlightFirstColumn
+  - excel.Excel.Table.highlightLastColumn
+  - excel.Excel.Table.id
+  - excel.Excel.Table.load
+  - excel.Excel.Table.name
+  - excel.Excel.Table.onChanged
+  - excel.Excel.Table.onSelectionChanged
+  - excel.Excel.Table.reapplyFilters
+  - excel.Excel.Table.rows
+  - excel.Excel.Table.showBandedColumns
+  - excel.Excel.Table.showBandedRows
+  - excel.Excel.Table.showFilterButton
+  - excel.Excel.Table.showHeaders
+  - excel.Excel.Table.showTotals
+  - excel.Excel.Table.sort
+  - excel.Excel.Table.style
+  - excel.Excel.Table.toJSON
+  - excel.Excel.Table.worksheet
+- uid: excel.Excel.Table.clearFilters
+  summary: >-
+    清除当前表上应用的所有筛选器。
+
+
+    \[[API 集： ExcelApi 1.2](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: clearFilters()
+  fullName: excel.Excel.Table.clearFilters
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'clearFilters(): void;'
+    return:
+      type:
+      - void
+      description: ''
+- uid: excel.Excel.Table.columns
+  summary: >-
+    表示表中所有列的集合。只读。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: columns
+  fullName: excel.Excel.Table.columns
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly columns: Excel.TableColumnCollection;'
+    return:
+      type:
+      - excel.Excel.TableColumnCollection
+- uid: excel.Excel.Table.convertToRange
+  summary: >-
+    将表转换为普通单元格区域。保留所有数据。
+
+
+    \[[API 集： ExcelApi 1.2](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: convertToRange()
+  fullName: excel.Excel.Table.convertToRange
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'convertToRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var table = ctx.workbook.tables.getItem(tableName);\n    table.convertToRange();\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.Table.delete
+  summary: >-
+    删除表。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: delete()
+  fullName: excel.Excel.Table.delete
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'delete(): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var table = ctx.workbook.tables.getItem(tableName);\n    table.delete();\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.Table.getDataBodyRange
+  summary: >-
+    获取与表的数据体相关的 range 对象。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getDataBodyRange()
+  fullName: excel.Excel.Table.getDataBodyRange
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getDataBodyRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var table = ctx.workbook.tables.getItem(tableName);\n    var tableDataRange = table.getDataBodyRange();\n    tableDataRange.load('address')\n    return ctx.sync().then(function() {\n            console.log(tableDataRange.address);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.Table.getHeaderRowRange
+  summary: >-
+    获取与表的标头行相关的 range 对象。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getHeaderRowRange()
+  fullName: excel.Excel.Table.getHeaderRowRange
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getHeaderRowRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var table = ctx.workbook.tables.getItem(tableName);\n    var tableHeaderRange = table.getHeaderRowRange();\n    tableHeaderRange.load('address');\n    return ctx.sync().then(function() {\n        console.log(tableHeaderRange.address);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.Table.getRange
+  summary: >-
+    获取与整个表相关的 range 对象。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getRange()
+  fullName: excel.Excel.Table.getRange
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var table = ctx.workbook.tables.getItem(tableName);\n    var tableRange = table.getRange();\n    tableRange.load('address');    \n    return ctx.sync().then(function() {\n            console.log(tableRange.address);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.Table.getTotalRowRange
+  summary: >-
+    获取与表的总计行相关的 range 对象。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getTotalRowRange()
+  fullName: excel.Excel.Table.getTotalRowRange
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getTotalRowRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var table = ctx.workbook.tables.getItem(tableName);\n    var tableTotalsRange = table.getTotalRowRange();\n    tableTotalsRange.load('address');    \n    return ctx.sync().then(function() {\n            console.log(tableTotalsRange.address);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.Table.highlightFirstColumn
+  summary: >-
+    指明第一列是否包含特殊格式。
+
+
+    \[[API 集： ExcelApi 1.3](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: highlightFirstColumn
+  fullName: excel.Excel.Table.highlightFirstColumn
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'highlightFirstColumn: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.Table.highlightLastColumn
+  summary: >-
+    指明最后一列是否包含特殊格式。
+
+
+    \[[API 集： ExcelApi 1.3](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: highlightLastColumn
+  fullName: excel.Excel.Table.highlightLastColumn
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'highlightLastColumn: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.Table.id
+  summary: >-
+    返回用于唯一标识指定工作簿中表的值。即使表被重命名，标识符的值仍然相同。只读。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: id
+  fullName: excel.Excel.Table.id
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly id: string;'
+    return:
+      type:
+      - string
+- uid: excel.Excel.Table.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): Excel.Table`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Table`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Get a table by name. \nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var table = ctx.workbook.tables.getItem(tableName);\n    table.load('index')\n    return ctx.sync().then(function() {\n            console.log(table.index);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Get a table by index.\nExcel.run(function (ctx) { \n    var index = 0;\n    var table = ctx.workbook.tables.getItemAt(0);\n    table.load('id')\n    return ctx.sync().then(function() {\n            console.log(table.id);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Set table style. \nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var table = ctx.workbook.tables.getItem(tableName);\n    table.name = 'Table1-Renamed';\n    table.showTotals = false;\n    table.style = 'TableStyleMedium2';\n    table.load('tableStyle');\n    return ctx.sync().then(function() {\n            console.log(table.style);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  name: load(option)
+  fullName: excel.Excel.Table.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Excel.Table;'
+    return:
+      type:
+      - excel.Excel.Table
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: excel.Excel.Table.name
+  summary: >-
+    表的名称。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: name
+  fullName: excel.Excel.Table.name
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'name: string;'
+    return:
+      type:
+      - string
+- uid: excel.Excel.Table.onChanged
+  summary: >-
+    在特定的表格中单元格的数据更改时发生。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: onChanged
+  fullName: excel.Excel.Table.onChanged
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onChanged: OfficeExtension.EventHandlers<Excel.TableChangedEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.TableChangedEventArgs>
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    let table = context.workbook.tables.getItemAt(0);\n    table.onChanged.add(onChange);\n\n    await context.sync();\n\n    OfficeHelpers.UI.notify(\"A handler has been registered for the onChanged event\",\n        \"Try changing a cell value in the table, and watch the console output.\");\n});\n```"
+- uid: excel.Excel.Table.onSelectionChanged
+  summary: >-
+    在特定的表上的选定内容更改时发生。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: onSelectionChanged
+  fullName: excel.Excel.Table.onSelectionChanged
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onSelectionChanged: OfficeExtension.EventHandlers<Excel.TableSelectionChangedEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.TableSelectionChangedEventArgs>
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    let table = context.workbook.tables.getItemAt(0);\n    table.onSelectionChanged.add(onSelectionChange);\n\n    await context.sync();\n\n    OfficeHelpers.UI.notify(\"A handler has been registered for table onSelectionChanged event\",\n        \"Try changing a range selection in the table, and watch the console output.\");\n});\n```"
+- uid: excel.Excel.Table.reapplyFilters
+  summary: >-
+    重新应用当前表上的所有筛选器。
+
+
+    \[[API 集： ExcelApi 1.2](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: reapplyFilters()
+  fullName: excel.Excel.Table.reapplyFilters
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'reapplyFilters(): void;'
+    return:
+      type:
+      - void
+      description: ''
+- uid: excel.Excel.Table.rows
+  summary: >-
+    表示表中所有行的集合。只读。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: rows
+  fullName: excel.Excel.Table.rows
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly rows: Excel.TableRowCollection;'
+    return:
+      type:
+      - excel.Excel.TableRowCollection
+- uid: excel.Excel.Table.showBandedColumns
+  summary: >-
+    指明列是否采用镶边格式来以不同的方式突出显示奇数列与偶数列，让表更易于阅读。
+
+
+    \[[API 集： ExcelApi 1.3](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: showBandedColumns
+  fullName: excel.Excel.Table.showBandedColumns
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'showBandedColumns: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.Table.showBandedRows
+  summary: >-
+    指明行是否采用镶边格式来以不同的方式突出显示奇数行与偶数行，让表更易于阅读。
+
+
+    \[[API 集： ExcelApi 1.3](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: showBandedRows
+  fullName: excel.Excel.Table.showBandedRows
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'showBandedRows: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.Table.showFilterButton
+  summary: >-
+    指明是否在每个列标题的顶部显示筛选器按钮。仅当 table 中包含标题行时，才允许设定此设置。
+
+
+    \[[API 集： ExcelApi 1.3](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: showFilterButton
+  fullName: excel.Excel.Table.showFilterButton
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'showFilterButton: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.Table.showHeaders
+  summary: >-
+    指示标头行是否可见。该值可以设置为显示或删除标头行。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: showHeaders
+  fullName: excel.Excel.Table.showHeaders
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'showHeaders: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.Table.showTotals
+  summary: >-
+    指示总计行是否可见。该值可以设置为显示或删除总计行。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: showTotals
+  fullName: excel.Excel.Table.showTotals
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'showTotals: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.Table.sort
+  summary: >-
+    表示表的排序。只读。
+
+
+    \[[API 集： ExcelApi 1.2](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: sort
+  fullName: excel.Excel.Table.sort
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly sort: Excel.TableSort;'
+    return:
+      type:
+      - excel.Excel.TableSort
+- uid: excel.Excel.Table.style
+  summary: >-
+    表示表格样式的常量值。可能的值是：TableStyleLight1 thru TableStyleLight21、TableStyleMedium1 thru TableStyleMedium28、TableStyleStyleDark1 thru TableStyleStyleDark11。还可以指定工作簿中显示的用户定义的自定义样式。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: style
+  fullName: excel.Excel.Table.style
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'style: string;'
+    return:
+      type:
+      - string
+- uid: excel.Excel.Table.toJSON
+  name: toJSON()
+  fullName: excel.Excel.Table.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.TableData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.TableData
+      description: ''
+- uid: excel.Excel.Table.worksheet
+  summary: >-
+    包含当前表的工作表。只读。
+
+
+    \[[API 集： ExcelApi 1.2](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: worksheet
+  fullName: excel.Excel.Table.worksheet
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly worksheet: Excel.Worksheet;'
+    return:
+      type:
+      - excel.Excel.Worksheet

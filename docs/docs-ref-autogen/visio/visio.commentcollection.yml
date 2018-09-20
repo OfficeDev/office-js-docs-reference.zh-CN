@@ -1,0 +1,146 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: b4d491d6430eb7ad42edc4bf1fd90f6060e7de30
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24041032"
+items:
+- uid: visio.Visio.CommentCollection
+  summary: >-
+    表示给定形状的 CommentCollection 对象。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: Visio.CommentCollection
+  fullName: visio.Visio.CommentCollection
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: visio
+  children:
+  - visio.Visio.CommentCollection.getCount
+  - visio.Visio.CommentCollection.getItem
+  - visio.Visio.CommentCollection.items
+  - visio.Visio.CommentCollection.load
+  - visio.Visio.CommentCollection.toJSON
+- uid: visio.Visio.CommentCollection.getCount
+  summary: >-
+    获取 Comment 对象的数量。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: getCount()
+  fullName: visio.Visio.CommentCollection.getCount
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getCount(): OfficeExtension.ClientResult<number>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<number>
+      description: ''
+- uid: visio.Visio.CommentCollection.getItem
+  summary: >-
+    按 Comment 对象的名称获取此对象。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: getItem(key)
+  fullName: visio.Visio.CommentCollection.getItem
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItem(key: string): Visio.Comment;'
+    return:
+      type:
+      - visio.Visio.Comment
+      description: ''
+    parameters:
+    - id: key
+      description: 键是要检索的 Comment 的名称。
+      type:
+      - string
+- uid: visio.Visio.CommentCollection.items
+  summary: 获取此集合中的加载的子项目。
+  name: items
+  fullName: visio.Visio.CommentCollection.items
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly items: Visio.Comment[];'
+    return:
+      type:
+      - Visio.Comment[]
+- uid: visio.Visio.CommentCollection.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: >-
+    除了此签名，此方法具有以下签名：
+
+
+    `load(option?: { select?: string; expand?: string; }): Visio.CommentCollection`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.CommentCollection`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    Visio.run(session, function (ctx) {
+        var activePage = ctx.document.getActivePage();
+        var shapeName = "Position Belt.41";
+        var shape = activePage.shapes.getItem(shapeName);
+        var shapecomments= shape.comments;
+        shapecomments.load();
+        return ctx.sync().then(function () {
+            for(var i=0; i<shapecomments.items.length;i++)
+            {
+                var comment= shapecomments.items[i];
+                console.log("comment Author: " + comment.author);
+                console.log("Comment Text: " + comment.text);
+                console.log("Date " + comment.date);
+            }
+        });
+    }).catch(function(error) {
+        console.log("Error: " + error);
+        if (error instanceof OfficeExtension.Error) {
+            console.log("Debug info: " + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
+  name: load(option)
+  fullName: visio.Visio.CommentCollection.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Visio.CommentCollection;'
+    return:
+      type:
+      - visio.Visio.CommentCollection
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: visio.Visio.CommentCollection.toJSON
+  name: toJSON()
+  fullName: visio.Visio.CommentCollection.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Visio.Interfaces.CommentCollectionData;'
+    return:
+      type:
+      - visio.Visio.Interfaces.CommentCollectionData
+      description: ''

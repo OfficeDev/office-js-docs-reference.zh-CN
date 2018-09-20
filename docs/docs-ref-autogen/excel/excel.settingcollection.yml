@@ -1,0 +1,185 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 5621d142189bc646ab6d9806da0fe6502f740db3
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24040982"
+items:
+- uid: excel.Excel.SettingCollection
+  summary: >-
+    代表设置工作簿的一部分的对象的键 / 值对的集合。 范围是限制为每个文件和外接程序 （任务窗格或内容） 的组合。
+
+
+    \[[API 集： ExcelApi 1.4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.SettingCollection
+  fullName: excel.Excel.SettingCollection
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: excel
+  children:
+  - excel.Excel.SettingCollection.add
+  - excel.Excel.SettingCollection.getCount
+  - excel.Excel.SettingCollection.getItem
+  - excel.Excel.SettingCollection.getItemOrNullObject
+  - excel.Excel.SettingCollection.items
+  - excel.Excel.SettingCollection.load
+  - excel.Excel.SettingCollection.onSettingsChanged
+  - excel.Excel.SettingCollection.toJSON
+- uid: excel.Excel.SettingCollection.add
+  summary: >-
+    设置指定的 Setting 对象，或将其添加到工作簿中。
+
+
+    \[[API 集： ExcelApi 1.4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: add(key, value)
+  fullName: excel.Excel.SettingCollection.add
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'add(key: string, value: string | number | boolean | Date | Array<any> | any): Excel.Setting;'
+    return:
+      type:
+      - excel.Excel.Setting
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const settings = context.workbook.settings; \n    settings.onSettingsChanged.add(onChangedSetting);\n    OfficeHelpers.UI.notify(\"Handler registered\", \"\");\n\n    await context.sync();\n});\n```"
+    parameters:
+    - id: key
+      description: 新设置的键。
+      type:
+      - string
+    - id: value
+      description: 新设置的值。
+      type:
+      - string | number | boolean | Date | Array<any> | any
+- uid: excel.Excel.SettingCollection.getCount
+  summary: >-
+    获取集合中的 Setting 对象的数量。
+
+
+    \[[API 集： ExcelApi 1.4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getCount()
+  fullName: excel.Excel.SettingCollection.getCount
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getCount(): OfficeExtension.ClientResult<number>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<number>
+      description: ''
+- uid: excel.Excel.SettingCollection.getItem
+  summary: >-
+    按键获取设置项。
+
+
+    \[[API 集： ExcelApi 1.4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getItem(key)
+  fullName: excel.Excel.SettingCollection.getItem
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItem(key: string): Excel.Setting;'
+    return:
+      type:
+      - excel.Excel.Setting
+      description: ''
+    parameters:
+    - id: key
+      description: 设置的键。
+      type:
+      - string
+- uid: excel.Excel.SettingCollection.getItemOrNullObject
+  summary: >-
+    按键获取 Setting 项。如果没有 Setting 项，将返回 NULL 对象。
+
+
+    \[[API 集： ExcelApi 1.4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getItemOrNullObject(key)
+  fullName: excel.Excel.SettingCollection.getItemOrNullObject
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItemOrNullObject(key: string): Excel.Setting;'
+    return:
+      type:
+      - excel.Excel.Setting
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const settings = context.workbook.settings;\n    let needsReview = settings.getItem(\"NeedsReview\");\n    needsReview.delete();\n    needsReview = settings.getItemOrNullObject(\"NeedsReview\");\n\n    await context.sync();\n\n    if (needsReview.isNullObject) {\n        OfficeHelpers.UI.notify(\"The setting has been deleted\");\n    } else {\n        OfficeHelpers.UI.notify(\"The setting was not deleted\");\n    }\n\n    await context.sync();\n});\n```"
+    parameters:
+    - id: key
+      description: 设置的键。
+      type:
+      - string
+- uid: excel.Excel.SettingCollection.items
+  summary: 获取此集合中的加载的子项目。
+  name: items
+  fullName: excel.Excel.SettingCollection.items
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly items: Excel.Setting[];'
+    return:
+      type:
+      - Excel.Setting[]
+- uid: excel.Excel.SettingCollection.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: >-
+    除了此签名，此方法具有以下签名：
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.SettingCollection`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.SettingCollection`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
+  name: load(option)
+  fullName: excel.Excel.SettingCollection.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Excel.SettingCollection;'
+    return:
+      type:
+      - excel.Excel.SettingCollection
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: excel.Excel.SettingCollection.onSettingsChanged
+  summary: >-
+    当文档中的设置变化时发生。
+
+
+    \[[API 集： ExcelApi 1.4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: onSettingsChanged
+  fullName: excel.Excel.SettingCollection.onSettingsChanged
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onSettingsChanged: OfficeExtension.EventHandlers<Excel.SettingsChangedEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.SettingsChangedEventArgs>
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const settings = context.workbook.settings; \n    settings.onSettingsChanged.add(onChangedSetting);\n    OfficeHelpers.UI.notify(\"Handler registered\", \"\");\n\n    await context.sync();\n});\n```"
+- uid: excel.Excel.SettingCollection.toJSON
+  name: toJSON()
+  fullName: excel.Excel.SettingCollection.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.SettingCollectionData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.SettingCollectionData
+      description: ''

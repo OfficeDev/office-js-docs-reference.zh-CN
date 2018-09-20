@@ -1,0 +1,158 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: b0436d89db9b46e0dc1850fd3b2715496b541150
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24041612"
+items:
+- uid: excel.Excel.WorksheetFreezePanes
+  summary: '\[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]'
+  name: Excel.WorksheetFreezePanes
+  fullName: excel.Excel.WorksheetFreezePanes
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: excel
+  children:
+  - excel.Excel.WorksheetFreezePanes.freezeAt
+  - excel.Excel.WorksheetFreezePanes.freezeColumns
+  - excel.Excel.WorksheetFreezePanes.freezeRows
+  - excel.Excel.WorksheetFreezePanes.getLocation
+  - excel.Excel.WorksheetFreezePanes.getLocationOrNullObject
+  - excel.Excel.WorksheetFreezePanes.toJSON
+  - excel.Excel.WorksheetFreezePanes.unfreeze
+- uid: excel.Excel.WorksheetFreezePanes.freezeAt
+  summary: >-
+    活动工作表视图中设置冻结单元格。 提供的范围对应于将冻结顶层和左窗格中的单元格。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: freezeAt(frozenRange)
+  fullName: excel.Excel.WorksheetFreezePanes.freezeAt
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'freezeAt(frozenRange: Range | string): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    // Freeze the specified range in top-and-left-most pane of the worksheet.\n    sheet.freezePanes.freezeAt(sheet.getRange(\"H2:K5\"));\n\n    await context.sync();\n});\n```"
+    parameters:
+    - id: frozenRange
+      description: 代表要冻结，则为 null，删除所有的冻结的窗格的单元格区域。
+      type:
+      - Range | string
+- uid: excel.Excel.WorksheetFreezePanes.freezeColumns
+  summary: >-
+    冻结就地工作表的第一列。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: freezeColumns(count)
+  fullName: excel.Excel.WorksheetFreezePanes.freezeColumns
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'freezeColumns(count?: number): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    // Freeze the first two columns in the worksheet.\n    sheet.freezePanes.freezeColumns(2);\n\n    await context.sync();\n});\n```"
+    parameters:
+    - id: count
+      description: 可选要冻结，或零以解除冻结所有列的列数
+      type:
+      - number
+- uid: excel.Excel.WorksheetFreezePanes.freezeRows
+  summary: >-
+    冻结就地工作表的顶部行。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: freezeRows(count)
+  fullName: excel.Excel.WorksheetFreezePanes.freezeRows
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'freezeRows(count?: number): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    // Freeze the top two rows in the worksheet.\n    sheet.freezePanes.freezeRows(2);\n\n    await context.sync();\n});\n```"
+    parameters:
+    - id: count
+      description: 冻结，或零取消冻结所有行的行的可选号码
+      type:
+      - number
+- uid: excel.Excel.WorksheetFreezePanes.getLocation
+  summary: >-
+    获取介绍活动工作表视图中的冻结单元格的范围。 冻结的范围是对应于冻结顶层和左窗格中的单元格。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getLocation()
+  fullName: excel.Excel.WorksheetFreezePanes.getLocation
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getLocation(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: ''
+- uid: excel.Excel.WorksheetFreezePanes.getLocationOrNullObject
+  summary: >-
+    获取介绍活动工作表视图中的冻结单元格的范围。 冻结的范围是对应于冻结顶层和左窗格中的单元格。 如果没有任何冻结的窗格，则返回 null 对象。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getLocationOrNullObject()
+  fullName: excel.Excel.WorksheetFreezePanes.getLocationOrNullObject
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getLocationOrNullObject(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const frozenRange = sheet.freezePanes.getLocationOrNullObject();\n    frozenRange.load(\"address\");\n\n    await context.sync();\n\n    if (frozenRange.isNullObject) {\n        OfficeHelpers.UI.notify(`The worksheet does not contain a frozen pane.`);\n    } else {\n        OfficeHelpers.UI.notify(`The address of the frozen range (cells that are frozen in the top-and-left-most pane) is \"${frozenRange.address}\"`);\n    }\n});\n```"
+- uid: excel.Excel.WorksheetFreezePanes.toJSON
+  name: toJSON()
+  fullName: excel.Excel.WorksheetFreezePanes.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON:'
+    return:
+      type:
+      - >-
+        {
+                    [key: string]: string;
+                }
+      description: ''
+- uid: excel.Excel.WorksheetFreezePanes.unfreeze
+  summary: >-
+    工作表中删除所有的冻结的窗格。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: unfreeze()
+  fullName: excel.Excel.WorksheetFreezePanes.unfreeze
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'unfreeze(): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    sheet.freezePanes.unfreeze();\n\n    await context.sync();\n});\n```"

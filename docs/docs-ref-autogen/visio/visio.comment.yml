@@ -1,0 +1,143 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 8bfde5df4c7819a4ab5e5768522041acbb7b08c6
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24040136"
+items:
+- uid: visio.Visio.Comment
+  summary: >-
+    表示 Comment 对象。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: Visio.Comment
+  fullName: visio.Visio.Comment
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: visio
+  children:
+  - visio.Visio.Comment.author
+  - visio.Visio.Comment.date
+  - visio.Visio.Comment.load
+  - visio.Visio.Comment.text
+  - visio.Visio.Comment.toJSON
+- uid: visio.Visio.Comment.author
+  summary: >-
+    指定注释的作者姓名的字符串。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: author
+  fullName: visio.Visio.Comment.author
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'author: string;'
+    return:
+      type:
+      - string
+- uid: visio.Visio.Comment.date
+  summary: >-
+    指定注释创建日期的字符串。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: date
+  fullName: visio.Visio.Comment.date
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'date: string;'
+    return:
+      type:
+      - string
+- uid: visio.Visio.Comment.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: >-
+    除了此签名，此方法具有以下签名：
+
+
+    `load(option?: { select?: string; expand?: string; }): Visio.Comment`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.Comment`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    Visio.run(session, function (ctx) {
+        var activePage = ctx.document.getActivePage();
+        var shapeName = "Position Belt.41";
+        var shape = activePage.shapes.getItem(shapeName);
+        var shapecomments= shape.comments;
+        shapecomments.load();
+        return ctx.sync().then(function () {
+            for(var i=0; i<shapecomments.items.length;i++)
+            {
+                var comment= shapecomments.items[i];
+                console.log("comment Author: " + comment.author);
+                console.log("Comment Text: " + comment.text);
+                console.log("Date " + comment.date);
+            }
+        });
+    }).catch(function(error) {
+        console.log("Error: " + error);
+        if (error instanceof OfficeExtension.Error) {
+            console.log("Debug info: " + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
+  name: load(option)
+  fullName: visio.Visio.Comment.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Visio.Comment;'
+    return:
+      type:
+      - visio.Visio.Comment
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: visio.Visio.Comment.text
+  summary: >-
+    包含注释文本的字符串。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: text
+  fullName: visio.Visio.Comment.text
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'text: string;'
+    return:
+      type:
+      - string
+- uid: visio.Visio.Comment.toJSON
+  name: toJSON()
+  fullName: visio.Visio.Comment.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Visio.Interfaces.CommentData;'
+    return:
+      type:
+      - visio.Visio.Interfaces.CommentData
+      description: ''

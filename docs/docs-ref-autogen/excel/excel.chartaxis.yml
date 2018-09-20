@@ -1,0 +1,614 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 871ff6faa3d3b13d6d8ee8500ba5d820bda0d115
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24040326"
+items:
+- uid: excel.Excel.ChartAxis
+  summary: >-
+    代表图表中的单个坐标轴。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.ChartAxis
+  fullName: excel.Excel.ChartAxis
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: excel
+  children:
+  - excel.Excel.ChartAxis.axisGroup
+  - excel.Excel.ChartAxis.baseTimeUnit
+  - excel.Excel.ChartAxis.categoryType
+  - excel.Excel.ChartAxis.customDisplayUnit
+  - excel.Excel.ChartAxis.displayUnit
+  - excel.Excel.ChartAxis.format
+  - excel.Excel.ChartAxis.height
+  - excel.Excel.ChartAxis.left
+  - excel.Excel.ChartAxis.load
+  - excel.Excel.ChartAxis.logBase
+  - excel.Excel.ChartAxis.majorGridlines
+  - excel.Excel.ChartAxis.majorTickMark
+  - excel.Excel.ChartAxis.majorTimeUnitScale
+  - excel.Excel.ChartAxis.majorUnit
+  - excel.Excel.ChartAxis.maximum
+  - excel.Excel.ChartAxis.minimum
+  - excel.Excel.ChartAxis.minorGridlines
+  - excel.Excel.ChartAxis.minorTickMark
+  - excel.Excel.ChartAxis.minorTimeUnitScale
+  - excel.Excel.ChartAxis.minorUnit
+  - excel.Excel.ChartAxis.reversePlotOrder
+  - excel.Excel.ChartAxis.scaleType
+  - excel.Excel.ChartAxis.setCategoryNames
+  - excel.Excel.ChartAxis.setCustomDisplayUnit
+  - excel.Excel.ChartAxis.showDisplayUnitLabel
+  - excel.Excel.ChartAxis.tickLabelPosition
+  - excel.Excel.ChartAxis.tickLabelSpacing
+  - excel.Excel.ChartAxis.tickMarkSpacing
+  - excel.Excel.ChartAxis.title
+  - excel.Excel.ChartAxis.toJSON
+  - excel.Excel.ChartAxis.top
+  - excel.Excel.ChartAxis.type
+  - excel.Excel.ChartAxis.visible
+  - excel.Excel.ChartAxis.width
+- uid: excel.Excel.ChartAxis.axisGroup
+  summary: >-
+    代表指定坐标轴组。 有关详细信息，请参阅 Excel.ChartAxisGroup。 只读。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: axisGroup
+  fullName: excel.Excel.ChartAxis.axisGroup
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly axisGroup: Excel.ChartAxisGroup | "Primary" | "Secondary";'
+    return:
+      type:
+      - Excel.ChartAxisGroup | "Primary" | "Secondary"
+- uid: excel.Excel.ChartAxis.baseTimeUnit
+  summary: >-
+    返回或设置指定分类轴的基本单位。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: baseTimeUnit
+  fullName: excel.Excel.ChartAxis.baseTimeUnit
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'baseTimeUnit: Excel.ChartAxisTimeUnit | "Days" | "Months" | "Years";'
+    return:
+      type:
+      - Excel.ChartAxisTimeUnit | "Days" | "Months" | "Years"
+- uid: excel.Excel.ChartAxis.categoryType
+  summary: >-
+    返回或设置分类轴类型。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: categoryType
+  fullName: excel.Excel.ChartAxis.categoryType
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'categoryType: Excel.ChartAxisCategoryType | "Automatic" | "TextAxis" | "DateAxis";'
+    return:
+      type:
+      - Excel.ChartAxisCategoryType | "Automatic" | "TextAxis" | "DateAxis"
+- uid: excel.Excel.ChartAxis.customDisplayUnit
+  summary: >-
+    代表自定义轴显示单位的值。 只读。 若要设置该属性，请使用 SetCustomDisplayUnit(double) 方法。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: customDisplayUnit
+  fullName: excel.Excel.ChartAxis.customDisplayUnit
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly customDisplayUnit: number;'
+    return:
+      type:
+      - number
+- uid: excel.Excel.ChartAxis.displayUnit
+  summary: >-
+    代表轴显示单位。 有关详细信息，请参阅 Excel.ChartAxisDisplayUnit。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: displayUnit
+  fullName: excel.Excel.ChartAxis.displayUnit
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'displayUnit: Excel.ChartAxisDisplayUnit | "None" | "Hundreds" | "Thousands" | "TenThousands" | "HundredThousands" | "Millions" | "TenMillions" | "HundredMillions" | "Billions" | "Trillions" | "Custom";'
+    return:
+      type:
+      - Excel.ChartAxisDisplayUnit | "None" | "Hundreds" | "Thousands" | "TenThousands" | "HundredThousands" | "Millions" | "TenMillions" | "HundredMillions" | "Billions" | "Trillions" | "Custom"
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    let chart = sheet.charts.getItemAt(0);\n    let categoryAxis = chart.axes.categoryAxis;\n    let valueAxis = chart.axes.valueAxis;\n\n    // Load to get display unit.\n    valueAxis.load(\"displayUnit\");\n   \n    await context.sync();\n\n    OfficeHelpers.UI.notify(\"The vertical axis display unit is: \" +  valueAxis.displayUnit);\n});\n```"
+- uid: excel.Excel.ChartAxis.format
+  summary: >-
+    表示 chart 对象的格式，包括线条和字体格式。只读。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: format
+  fullName: excel.Excel.ChartAxis.format
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly format: Excel.ChartAxisFormat;'
+    return:
+      type:
+      - excel.Excel.ChartAxisFormat
+- uid: excel.Excel.ChartAxis.height
+  summary: >-
+    表示高度，以磅为单位的图表坐标轴。 如果坐标轴不可见，则为 null。 只读。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: height
+  fullName: excel.Excel.ChartAxis.height
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly height: number;'
+    return:
+      type:
+      - number
+- uid: excel.Excel.ChartAxis.left
+  summary: >-
+    表示从左侧的图表区的轴的左边缘的距离，以磅为单位。 如果坐标轴不可见，则为 null。 只读。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: left
+  fullName: excel.Excel.ChartAxis.left
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly left: number;'
+    return:
+      type:
+      - number
+- uid: excel.Excel.ChartAxis.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): Excel.ChartAxis`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartAxis`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Get the maximum of Chart Axis from Chart1\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n    var axis = chart.axes.valueAxis;\n    axis.load('maximum');\n    return ctx.sync().then(function() {\n            console.log(axis.maximum);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Set the maximum, minimum, majorunit, minorunit of valueaxis. \nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n    chart.axes.valueAxis.maximum = 5;\n    chart.axes.valueAxis.minimum = 0;\n    chart.axes.valueAxis.majorUnit = 1;\n    chart.axes.valueAxis.minorUnit = 0.2;\n    return ctx.sync().then(function() {\n            console.log(\"Axis Settings Changed\");\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  name: load(option)
+  fullName: excel.Excel.ChartAxis.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Excel.ChartAxis;'
+    return:
+      type:
+      - excel.Excel.ChartAxis
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: excel.Excel.ChartAxis.logBase
+  summary: >-
+    代表对数的基时使用对数刻度。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: logBase
+  fullName: excel.Excel.ChartAxis.logBase
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'logBase: number;'
+    return:
+      type:
+      - number
+- uid: excel.Excel.ChartAxis.majorGridlines
+  summary: >-
+    返回一个表示指定坐标轴的主要网格线的网格线对象。只读。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: majorGridlines
+  fullName: excel.Excel.ChartAxis.majorGridlines
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly majorGridlines: Excel.ChartGridlines;'
+    return:
+      type:
+      - excel.Excel.ChartGridlines
+- uid: excel.Excel.ChartAxis.majorTickMark
+  summary: >-
+    表示指定坐标轴的主要刻度线标志的类型。 有关详细信息，请参阅 Excel.ChartAxisTickMark。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: majorTickMark
+  fullName: excel.Excel.ChartAxis.majorTickMark
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'majorTickMark: Excel.ChartAxisTickMark | "None" | "Cross" | "Inside" | "Outside";'
+    return:
+      type:
+      - Excel.ChartAxisTickMark | "None" | "Cross" | "Inside" | "Outside"
+- uid: excel.Excel.ChartAxis.majorTimeUnitScale
+  summary: >-
+    返回或设置分类轴的主要刻度单位扩展值，当 CategoryType 属性设置为时间刻度。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: majorTimeUnitScale
+  fullName: excel.Excel.ChartAxis.majorTimeUnitScale
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'majorTimeUnitScale: Excel.ChartAxisTimeUnit | "Days" | "Months" | "Years";'
+    return:
+      type:
+      - Excel.ChartAxisTimeUnit | "Days" | "Months" | "Years"
+- uid: excel.Excel.ChartAxis.majorUnit
+  summary: >-
+    表示两个主要刻度线之间的间隔。 可以设置为数字值或空字符串。 返回的值始终是一个数字。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: majorUnit
+  fullName: excel.Excel.ChartAxis.majorUnit
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'majorUnit: any;'
+    return:
+      type:
+      - any
+- uid: excel.Excel.ChartAxis.maximum
+  summary: >-
+    代表上数值轴的最大值。 可以设置为数字值或空字符串 （用于自动轴值）。 返回的值始终是一个数字。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: maximum
+  fullName: excel.Excel.ChartAxis.maximum
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'maximum: any;'
+    return:
+      type:
+      - any
+- uid: excel.Excel.ChartAxis.minimum
+  summary: >-
+    代表数值轴上的最小值。 可以设置为数字值或空字符串 （用于自动轴值）。 返回的值始终是一个数字。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: minimum
+  fullName: excel.Excel.ChartAxis.minimum
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'minimum: any;'
+    return:
+      type:
+      - any
+- uid: excel.Excel.ChartAxis.minorGridlines
+  summary: >-
+    返回一个表示指定坐标轴的次要网格线的网格线对象。只读。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: minorGridlines
+  fullName: excel.Excel.ChartAxis.minorGridlines
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly minorGridlines: Excel.ChartGridlines;'
+    return:
+      type:
+      - excel.Excel.ChartGridlines
+- uid: excel.Excel.ChartAxis.minorTickMark
+  summary: >-
+    表示指定坐标轴的次要刻度线的类型。 有关详细信息，请参阅 Excel.ChartAxisTickMark。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: minorTickMark
+  fullName: excel.Excel.ChartAxis.minorTickMark
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'minorTickMark: Excel.ChartAxisTickMark | "None" | "Cross" | "Inside" | "Outside";'
+    return:
+      type:
+      - Excel.ChartAxisTickMark | "None" | "Cross" | "Inside" | "Outside"
+- uid: excel.Excel.ChartAxis.minorTimeUnitScale
+  summary: >-
+    返回或设置分类轴的次要刻度单位扩展值，当 CategoryType 属性设置为时间刻度。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: minorTimeUnitScale
+  fullName: excel.Excel.ChartAxis.minorTimeUnitScale
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'minorTimeUnitScale: Excel.ChartAxisTimeUnit | "Days" | "Months" | "Years";'
+    return:
+      type:
+      - Excel.ChartAxisTimeUnit | "Days" | "Months" | "Years"
+- uid: excel.Excel.ChartAxis.minorUnit
+  summary: >-
+    表示两个次要刻度线之间的间隔。 可以设置为数字值或空字符串 （用于自动轴值）。 返回的值始终是一个数字。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: minorUnit
+  fullName: excel.Excel.ChartAxis.minorUnit
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'minorUnit: any;'
+    return:
+      type:
+      - any
+- uid: excel.Excel.ChartAxis.reversePlotOrder
+  summary: >-
+    表示是否 Microsoft Excel 数据点绘制数据从最后一到第一个。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: reversePlotOrder
+  fullName: excel.Excel.ChartAxis.reversePlotOrder
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'reversePlotOrder: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.ChartAxis.scaleType
+  summary: >-
+    代表数值轴的刻度类型。 有关详细信息，请参阅 Excel.ChartAxisScaleType。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: scaleType
+  fullName: excel.Excel.ChartAxis.scaleType
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'scaleType: Excel.ChartAxisScaleType | "Linear" | "Logarithmic";'
+    return:
+      type:
+      - Excel.ChartAxisScaleType | "Linear" | "Logarithmic"
+- uid: excel.Excel.ChartAxis.setCategoryNames
+  summary: >-
+    设置指定坐标轴的所有类别名称。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: setCategoryNames(sourceData)
+  fullName: excel.Excel.ChartAxis.setCategoryNames
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setCategoryNames(sourceData: Range): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: sourceData
+      description: 对应于源数据的 Range 对象。
+      type:
+      - Range
+- uid: excel.Excel.ChartAxis.setCustomDisplayUnit
+  summary: >-
+    将轴显示单位设置为自定义值。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: setCustomDisplayUnit(value)
+  fullName: excel.Excel.ChartAxis.setCustomDisplayUnit
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setCustomDisplayUnit(value: number): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: value
+      description: 显示单位的自定义值。
+      type:
+      - number
+- uid: excel.Excel.ChartAxis.showDisplayUnitLabel
+  summary: >-
+    代表轴显示单位标签是否可见。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: showDisplayUnitLabel
+  fullName: excel.Excel.ChartAxis.showDisplayUnitLabel
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'showDisplayUnitLabel: boolean;'
+    return:
+      type:
+      - boolean
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    let chart = sheet.charts.getItemAt(0);\n    let axis = chart.axes.valueAxis;\n\n    // Remove display unit.\n    axis.showDisplayUnitLabel = false;\n\n    await context.sync();\n});\n```"
+- uid: excel.Excel.ChartAxis.tickLabelPosition
+  summary: >-
+    代表指定坐标轴上刻度线标签的位置。 有关详细信息，请参阅 Excel.ChartAxisTickLabelPosition。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: tickLabelPosition
+  fullName: excel.Excel.ChartAxis.tickLabelPosition
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'tickLabelPosition: Excel.ChartAxisTickLabelPosition | "NextToAxis" | "High" | "Low" | "None";'
+    return:
+      type:
+      - Excel.ChartAxisTickLabelPosition | "NextToAxis" | "High" | "Low" | "None"
+- uid: excel.Excel.ChartAxis.tickLabelSpacing
+  summary: >-
+    表示类别或刻度线标签之间的系列的数量。 可以是介于 1 至 31999 或自动设置为空字符串。 返回的值始终是一个数字。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: tickLabelSpacing
+  fullName: excel.Excel.ChartAxis.tickLabelSpacing
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'tickLabelSpacing: any;'
+    return:
+      type:
+      - any
+- uid: excel.Excel.ChartAxis.tickMarkSpacing
+  summary: >-
+    表示类别或刻度线之间的系列的数量。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: tickMarkSpacing
+  fullName: excel.Excel.ChartAxis.tickMarkSpacing
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'tickMarkSpacing: number;'
+    return:
+      type:
+      - number
+- uid: excel.Excel.ChartAxis.title
+  summary: >-
+    表示坐标轴标题。只读。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: title
+  fullName: excel.Excel.ChartAxis.title
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly title: Excel.ChartAxisTitle;'
+    return:
+      type:
+      - excel.Excel.ChartAxisTitle
+- uid: excel.Excel.ChartAxis.toJSON
+  name: toJSON()
+  fullName: excel.Excel.ChartAxis.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.ChartAxisData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.ChartAxisData
+      description: ''
+- uid: excel.Excel.ChartAxis.top
+  summary: >-
+    代表中的图表区域顶部的轴的上边缘的距离，以磅为单位。 如果坐标轴不可见，则为 null。 只读。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: top
+  fullName: excel.Excel.ChartAxis.top
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly top: number;'
+    return:
+      type:
+      - number
+- uid: excel.Excel.ChartAxis.type
+  summary: >-
+    代表坐标轴类型。 有关详细信息，请参阅 Excel.ChartAxisType。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: type
+  fullName: excel.Excel.ChartAxis.type
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly type: Excel.ChartAxisType | "Invalid" | "Category" | "Value" | "Series";'
+    return:
+      type:
+      - Excel.ChartAxisType | "Invalid" | "Category" | "Value" | "Series"
+- uid: excel.Excel.ChartAxis.visible
+  summary: >-
+    一个布尔值代表坐标轴的可见性。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: visible
+  fullName: excel.Excel.ChartAxis.visible
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'visible: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.ChartAxis.width
+  summary: >-
+    表示的宽度，以磅为单位的图表坐标轴。 如果坐标轴不可见，则为 null。 只读。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: width
+  fullName: excel.Excel.ChartAxis.width
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly width: number;'
+    return:
+      type:
+      - number

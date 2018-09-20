@@ -1,0 +1,154 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 1e6c65b0232661ef332c79441e1b808b899c3d83
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24040217"
+items:
+- uid: excel.Excel.ChartSeriesCollection
+  summary: >-
+    表示一组图表系列。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.ChartSeriesCollection
+  fullName: excel.Excel.ChartSeriesCollection
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: excel
+  children:
+  - excel.Excel.ChartSeriesCollection.add
+  - excel.Excel.ChartSeriesCollection.count
+  - excel.Excel.ChartSeriesCollection.getCount
+  - excel.Excel.ChartSeriesCollection.getItemAt
+  - excel.Excel.ChartSeriesCollection.items
+  - excel.Excel.ChartSeriesCollection.load
+  - excel.Excel.ChartSeriesCollection.toJSON
+- uid: excel.Excel.ChartSeriesCollection.add
+  summary: >-
+    向集合添加一个新系列。 添加了新系列不可见，直到集值 / x 轴值/气泡大小为其 （取决于图表类型）。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: add(name, index)
+  fullName: excel.Excel.ChartSeriesCollection.add
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'add(name?: string, index?: number): Excel.ChartSeries;'
+    return:
+      type:
+      - excel.Excel.ChartSeries
+      description: ''
+    parameters:
+    - id: name
+      description: 可选。 数据系列的名称。
+      type:
+      - string
+    - id: index
+      description: 可选。 要添加的系列的索引值。 零编制索引。
+      type:
+      - number
+- uid: excel.Excel.ChartSeriesCollection.count
+  summary: >-
+    返回集合中的系列数量。只读。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: count
+  fullName: excel.Excel.ChartSeriesCollection.count
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly count: number;'
+    return:
+      type:
+      - number
+- uid: excel.Excel.ChartSeriesCollection.getCount
+  summary: >-
+    返回集合中的系列数量。
+
+
+    \[[API 集： ExcelApi 1.4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getCount()
+  fullName: excel.Excel.ChartSeriesCollection.getCount
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getCount(): OfficeExtension.ClientResult<number>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<number>
+      description: ''
+- uid: excel.Excel.ChartSeriesCollection.getItemAt
+  summary: >-
+    根据其在集合中的位置检索系列
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getItemAt(index)
+  fullName: excel.Excel.ChartSeriesCollection.getItemAt
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItemAt(index: number): Excel.ChartSeries;'
+    return:
+      type:
+      - excel.Excel.ChartSeries
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Get the name of the first series in the series collection.\nExcel.run(function (ctx) { \n    var seriesCollection = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\").series;\n    seriesCollection.load('items');\n    return ctx.sync().then(function() {\n        console.log(seriesCollection.items[0].name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: index
+      description: 要检索的对象的索引值。从零开始编制索引。
+      type:
+      - number
+- uid: excel.Excel.ChartSeriesCollection.items
+  summary: 获取此集合中的加载的子项目。
+  name: items
+  fullName: excel.Excel.ChartSeriesCollection.items
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly items: Excel.ChartSeries[];'
+    return:
+      type:
+      - Excel.ChartSeries[]
+- uid: excel.Excel.ChartSeriesCollection.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): Excel.ChartSeriesCollection`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartSeriesCollection`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Getting the names of series in the series collection.\nExcel.run(function (ctx) { \n    var seriesCollection = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\").series;\n    seriesCollection.load('items');\n    return ctx.sync().then(function() {\n        for (var i = 0; i < seriesCollection.items.length; i++)\n        {\n            console.log(seriesCollection.items[i].name);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Get the number of chart series in collection.\nExcel.run(function (ctx) { \n    var seriesCollection = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\").series;\n    seriesCollection.load('count');\n    return ctx.sync().then(function() {\n        console.log(\"series: Count= \" + seriesCollection.count);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  name: load(option)
+  fullName: excel.Excel.ChartSeriesCollection.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Excel.ChartSeriesCollection;'
+    return:
+      type:
+      - excel.Excel.ChartSeriesCollection
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: excel.Excel.ChartSeriesCollection.toJSON
+  name: toJSON()
+  fullName: excel.Excel.ChartSeriesCollection.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.ChartSeriesCollectionData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.ChartSeriesCollectionData
+      description: ''

@@ -1,0 +1,99 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 2a15d0b3b0e5368a3dfed462a0404a3dab6d1d26
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24041997"
+items:
+- uid: excel.Excel.ChartFill
+  summary: >-
+    表示图表元素的填充格式。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.ChartFill
+  fullName: excel.Excel.ChartFill
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: excel
+  children:
+  - excel.Excel.ChartFill.clear
+  - excel.Excel.ChartFill.load
+  - excel.Excel.ChartFill.setSolidColor
+  - excel.Excel.ChartFill.toJSON
+- uid: excel.Excel.ChartFill.clear
+  summary: >-
+    清除图表元素的填充颜色。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: clear()
+  fullName: excel.Excel.ChartFill.clear
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'clear(): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Clear the line format of the major Gridlines on value axis of the Chart named \"Chart1\"\nExcel.run(function (ctx) { \n    var gridlines = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\").axes.valueAxis.majorGridlines;\n    gridlines.format.line.clear();\n    return ctx.sync().then(function() {\n            console.log(\"Chart Major Gridlines Format Cleared\");\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.ChartFill.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  name: load(option)
+  fullName: excel.Excel.ChartFill.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[] | OfficeExtension.LoadOption): Excel.ChartFill;'
+    return:
+      type:
+      - excel.Excel.ChartFill
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - string | string[] | OfficeExtension.LoadOption
+- uid: excel.Excel.ChartFill.setSolidColor
+  summary: >-
+    将图表元素的填充格式设置为统一颜色。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: setSolidColor(color)
+  fullName: excel.Excel.ChartFill.setSolidColor
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setSolidColor(color: string): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n\n    chart.format.fill.setSolidColor(\"#FF0000\");\n\n    return ctx.sync().then(function() {\n            console.log(\"Chart1 Background Color Changed.\");\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    let pointsCollection = sheet.charts.getItemAt(0).series.getItemAt(0).points;\n    let point = pointsCollection.getItemAt(2);\n\n    // Set color for chart point.\n    point.format.fill.setSolidColor('red');\n\n    await context.sync();\n\n    OfficeHelpers.UI.notify(\"Successfully set chart point color to red (for the third item in series 1).\");            \n});\n```"
+    parameters:
+    - id: color
+      description: HTML 表示边框线，窗体的颜色的颜色代码\#RRGGBB (例如"FFA500") 或为已命名的 HTML 颜色 （例如"橙色"）。
+      type:
+      - string
+- uid: excel.Excel.ChartFill.toJSON
+  name: toJSON()
+  fullName: excel.Excel.ChartFill.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON:'
+    return:
+      type:
+      - >-
+        {
+                    [key: string]: string;
+                }
+      description: ''

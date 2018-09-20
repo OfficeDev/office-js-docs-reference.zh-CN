@@ -1,0 +1,158 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 755148e7c5308242e0dc4fb00105b830312bc367
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24041048"
+items:
+- uid: Outlook_1_5.Office.CustomProperties
+  summary: >-
+    CustomProperties 对象表示特定于特定项目和特定于 Outlook 邮件外接程序的自定义属性。例如，邮件外接程序可能有必要保存一些特定于激活应用程序的当前电子邮件的数据。如果用户以后再次访问相同的消息，并再次激活邮件外接程序，应用程序将能够检索作为自定义属性保存的数据。
+
+
+    Outlook for Mac 不缓存自定义属性，如果用户的网络不可用，因为邮件外接程序无法访问其自定义属性。
+
+
+    \[[API 集： 邮箱 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+  name: Office.CustomProperties
+  fullName: Outlook_1_5.Office.CustomProperties
+  langs:
+  - typeScript
+  type: interface
+  package: Outlook_1_5
+  children:
+  - Outlook_1_5.Office.CustomProperties.get
+  - Outlook_1_5.Office.CustomProperties.remove
+  - Outlook_1_5.Office.CustomProperties.saveAsync
+  - Outlook_1_5.Office.CustomProperties.set
+- uid: Outlook_1_5.Office.CustomProperties.get
+  summary: 返回指定自定义属性的值。
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+  name: get(name)
+  fullName: Outlook_1_5.Office.CustomProperties.get
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'get(name: string): any;'
+    return:
+      type:
+      - any
+      description: >-
+        指定的自定义属性的值。
+
+
+        \[Api 集： 邮箱 1.0\]
+    parameters:
+    - id: name
+      description: 要返回的自定义属性的名称。
+      type:
+      - string
+- uid: Outlook_1_5.Office.CustomProperties.remove
+  summary: >-
+    从自定义属性集合中移除指定的属性。
+
+
+    若要永久移除属性，必须调用 CustomProperties 对象的 saveAsync 方法。
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+  name: remove(name)
+  fullName: Outlook_1_5.Office.CustomProperties.remove
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'remove(name: string): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: name
+      description: 要移除的属性的名称。 \[Api 集： 邮箱 1.0\]
+      type:
+      - string
+- uid: Outlook_1_5.Office.CustomProperties.saveAsync
+  summary: >-
+    将特定于项目的自定义属性保存到服务器。
+
+
+    您必须调用 saveAsync 方法来保留使用 CustomProperties 对象的 set 方法或 remove 方法所做的任何更改。保存操作是异步操作。
+
+
+    最好具有回调函数中检查和处理从 saveAsync 错误。 尤其要注意的是，当用户在阅读窗体中处于连接状态时，可以激活阅读外接程序，随后用户将断开连接。 如果加载项调用 saveAsync 在断开连接的状态，saveAsync 将返回错误。 你的回调方法应该会相应地处理此错误。
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+  name: saveAsync(callback, asyncContext)
+  fullName: Outlook_1_5.Office.CustomProperties.saveAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'saveAsync(callback?: (result: AsyncResult) => void, asyncContext?: any): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: 可选。 方法完成后，使用单个的类型为 AsyncResult 参数调用中的 callback 参数传递的函数。
+      type:
+      - '(result: AsyncResult) => void'
+    - id: asyncContext
+      description: 可选。 传递给回调方法的任何状态数据。 \[Api 集： 邮箱 1.0\]
+      type:
+      - any
+- uid: Outlook_1_5.Office.CustomProperties.set
+  summary: >-
+    将指定属性设置为指定值。
+
+
+    set 方法将指定属性设置为指定值。必须使用 saveAsync 方法将该属性保存到服务器中。
+
+
+    如果尚不存在指定属性，set 方法将创建一个新的属性；否则现有值将替换为新值。value 参数可以是任何类型；但是始终作为字符串传递给服务器。
+
+
+    \[[API 集： 邮箱 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+  name: set(name, value)
+  fullName: Outlook_1_5.Office.CustomProperties.set
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(name: string, value: string): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: name
+      description: 要设置的属性的名称。
+      type:
+      - string
+    - id: value
+      description: 要设置的属性的值。
+      type:
+      - string

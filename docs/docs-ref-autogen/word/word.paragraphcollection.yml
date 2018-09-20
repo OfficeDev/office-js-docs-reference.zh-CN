@@ -1,0 +1,169 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: e4a68eab0ef93c39ad5e88a17813921b6796f97b
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24042395"
+items:
+- uid: word.Word.ParagraphCollection
+  summary: >-
+    包含[Word.Paragraph](xref:word.Word.Paragraph)对象的集合。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: Word.ParagraphCollection
+  fullName: word.Word.ParagraphCollection
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: word
+  children:
+  - word.Word.ParagraphCollection.getFirst
+  - word.Word.ParagraphCollection.getFirstOrNullObject
+  - word.Word.ParagraphCollection.getLast
+  - word.Word.ParagraphCollection.getLastOrNullObject
+  - word.Word.ParagraphCollection.items
+  - word.Word.ParagraphCollection.load
+  - word.Word.ParagraphCollection.toJSON
+  - word.Word.ParagraphCollection.track
+  - word.Word.ParagraphCollection.untrack
+- uid: word.Word.ParagraphCollection.getFirst
+  summary: >-
+    获取此集合中的第一个 paragraph。当此集合为空时引发。
+
+
+    \[[API 集： WordApi 1.3](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: getFirst()
+  fullName: word.Word.ParagraphCollection.getFirst
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getFirst(): Word.Paragraph;'
+    return:
+      type:
+      - Word.Paragraph
+      description: ''
+- uid: word.Word.ParagraphCollection.getFirstOrNullObject
+  summary: >-
+    获取此集合中的第一个 paragraph。如果此集合为空，则返回 null 对象。
+
+
+    \[[API 集： WordApi 1.3](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: getFirstOrNullObject()
+  fullName: word.Word.ParagraphCollection.getFirstOrNullObject
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getFirstOrNullObject(): Word.Paragraph;'
+    return:
+      type:
+      - Word.Paragraph
+      description: ''
+- uid: word.Word.ParagraphCollection.getLast
+  summary: >-
+    获取此集合中的最后一个 paragraph。当此集合为空时引发。
+
+
+    \[[API 集： WordApi 1.3](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: getLast()
+  fullName: word.Word.ParagraphCollection.getLast
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getLast(): Word.Paragraph;'
+    return:
+      type:
+      - Word.Paragraph
+      description: ''
+- uid: word.Word.ParagraphCollection.getLastOrNullObject
+  summary: >-
+    获取此集合中的最后一个 paragraph。如果此集合为空，则返回 null 对象。
+
+
+    \[[API 集： WordApi 1.3](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: getLastOrNullObject()
+  fullName: word.Word.ParagraphCollection.getLastOrNullObject
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getLastOrNullObject(): Word.Paragraph;'
+    return:
+      type:
+      - Word.Paragraph
+      description: ''
+- uid: word.Word.ParagraphCollection.items
+  summary: 获取此集合中的加载的子项目。
+  name: items
+  fullName: word.Word.ParagraphCollection.items
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly items: Word.Paragraph[];'
+    return:
+      type:
+      - Word.Paragraph[]
+- uid: word.Word.ParagraphCollection.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): Word.ParagraphCollection`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.ParagraphCollection`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// This example shows how to get the paragraphs in the Word document\n// along with their text and font size properties.\n// \n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n\n    // Create a proxy object for the paragraphs collection.\n    var paragraphs = context.document.body.paragraphs;\n\n    // Queue a commmand to load the text and font properties.\n    // It is best practice to always specify the property set. Otherwise, all properties are\n    // returned in on the object.\n    context.load(paragraphs, 'text, font/size');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n\n    // Insert code that works with the paragraphs loaded by context.load().\n    })\n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  name: load(option)
+  fullName: word.Word.ParagraphCollection.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Word.ParagraphCollection;'
+    return:
+      type:
+      - Word.ParagraphCollection
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: word.Word.ParagraphCollection.toJSON
+  name: toJSON()
+  fullName: word.Word.ParagraphCollection.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Word.Interfaces.ParagraphCollectionData;'
+    return:
+      type:
+      - Word.Interfaces.ParagraphCollectionData
+      description: ''
+- uid: word.Word.ParagraphCollection.track
+  summary: 跟踪自动调整根据周围的文档中的更改的对象。 此呼叫是 context.trackedObjects.add(thisObject) 简写。 如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。
+  name: track()
+  fullName: word.Word.ParagraphCollection.track
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'track(): Word.ParagraphCollection;'
+    return:
+      type:
+      - Word.ParagraphCollection
+      description: ''
+- uid: word.Word.ParagraphCollection.untrack
+  summary: 发行版与此对象，如果以前跟踪关联的内存。 此呼叫是简写 context.trackedObjects.remove(thisObject)。 具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。 您将需要的内存版本生效前调用"context.sync()"。
+  name: untrack()
+  fullName: word.Word.ParagraphCollection.untrack
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'untrack(): Word.ParagraphCollection;'
+    return:
+      type:
+      - Word.ParagraphCollection
+      description: ''
