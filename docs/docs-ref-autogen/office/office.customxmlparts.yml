@@ -1,0 +1,112 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 62419a668fbf12531043f27ee38c6dc1859980ac
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24041745"
+items:
+- uid: office.Office.CustomXmlParts
+  summary: <span data-ttu-id="768e7-101">表示 CustomXmlPart 对象的集合。</span><span class="sxs-lookup"><span data-stu-id="768e7-101">Represents a collection of CustomXmlPart objects.</span></span>
+  remarks: >-
+    <table><tr><td><span data-ttu-id="768e7-102">要求集</span><span class="sxs-lookup"><span data-stu-id="768e7-102">Requirement Sets</span></span></td><td><span data-ttu-id="768e7-103">CustomXmlParts</span><span class="sxs-lookup"><span data-stu-id="768e7-103">CustomXmlParts</span></span></td></tr></table>
+
+
+    <span data-ttu-id="768e7-104">**支持详细信息**</span><span class="sxs-lookup"><span data-stu-id="768e7-104">**Support details**</span></span>
+
+
+    <span data-ttu-id="768e7-105">在以下矩阵大写 Y 表示此接口支持在相应的 Office 主机应用程序。</span><span class="sxs-lookup"><span data-stu-id="768e7-105">A capital Y in the following matrix indicates that this interface is supported in the corresponding Office host application.</span></span> <span data-ttu-id="768e7-106">空单元格指示 Office 主机应用程序不支持此接口。</span><span class="sxs-lookup"><span data-stu-id="768e7-106">An empty cell indicates that the Office host application doesn't support this interface.</span></span>
+
+
+    <span data-ttu-id="768e7-107">有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。</span><span class="sxs-lookup"><span data-stu-id="768e7-107">For more information about Office host application and server requirements, see [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.</span></span>
+
+
+    <span data-ttu-id="768e7-108">*支持的主机（按平台）*</span><span class="sxs-lookup"><span data-stu-id="768e7-108">*Supported hosts, by platform*</span></span> <table> <tr><th> </th><th> <span data-ttu-id="768e7-109">Office for Windows Desktop</span><span class="sxs-lookup"><span data-stu-id="768e7-109">Office for Windows desktop</span></span> </th><th> <span data-ttu-id="768e7-110">Office Online（在浏览器中）</span><span class="sxs-lookup"><span data-stu-id="768e7-110">Office Online (in browser)</span></span> </th><th> <span data-ttu-id="768e7-111">Office for iPad</span><span class="sxs-lookup"><span data-stu-id="768e7-111">Office for iPad</span></span> </th></tr> <tr><td><span data-ttu-id="768e7-112"><strong>Word</strong></span><span class="sxs-lookup"><span data-stu-id="768e7-112"><strong> Word </strong></span></span></td><td> <span data-ttu-id="768e7-113">Y</span><span class="sxs-lookup"><span data-stu-id="768e7-113">Y</span></span> </td><td> </td><td> <span data-ttu-id="768e7-114">Y</span><span class="sxs-lookup"><span data-stu-id="768e7-114">Y</span></span> </td></tr> </table>
+  name: Office.CustomXmlParts
+  fullName: office.Office.CustomXmlParts
+  langs:
+  - typeScript
+  type: interface
+  package: office
+  children:
+  - office.Office.CustomXmlParts.addAsync
+  - office.Office.CustomXmlParts.getByIdAsync
+  - office.Office.CustomXmlParts.getByNamespaceAsync
+- uid: office.Office.CustomXmlParts.addAsync
+  summary: <span data-ttu-id="768e7-115">将新的自定义 XML 部件异步添加到文件中。</span><span class="sxs-lookup"><span data-stu-id="768e7-115">Asynchronously adds a new custom XML part to a file.</span></span>
+  name: addAsync(xml, options, callback)
+  fullName: office.Office.CustomXmlParts.addAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addAsync(xml: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<CustomXmlPart>) => void): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"768e7-116\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"768e7-116\">Examples</span></span>\n\n```javascript\nfunction addXMLPart() {\n    Office.context.document.customXmlParts.addAsync(\n        '<root categoryId=\"1\" xmlns=\"http://tempuri.org\"><item name=\"Cheap Item\" price=\"$193.95\"/><item name=\"Expensive Item\" price=\"$931.88\"/></root>',\n        function (result) {});\n}\n\nfunction addXMLPartandHandler() {\n    Office.context.document.customXmlParts.addAsync(\n        \"<testns:book xmlns:testns='http://testns.com'><testns:page number='1'>Hello</testns:page><testns:page number='2'>world!</testns:page></testns:book>\",\n        function(r) { r.value.addHandlerAsync(Office.EventType.DataNodeDeleted,\n            function(a) {write(a.type)\n            },\n                function(s) {write(s.status)\n                });\n        });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message;\n}\n```"
+    parameters:
+    - id: xml
+      description: <span data-ttu-id="768e7-117">要将添加到新创建的自定义 XML 部件的 XML。</span><span class="sxs-lookup"><span data-stu-id="768e7-117">The XML to add to the newly created custom XML part.</span></span>
+      type:
+      - string
+    - id: options
+      description: <span data-ttu-id="768e7-118">提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。</span><span class="sxs-lookup"><span data-stu-id="768e7-118">Provides an option for preserving context data of any type, unchanged, for use in a callback.</span></span>
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: <span data-ttu-id="768e7-119">可选。</span><span class="sxs-lookup"><span data-stu-id="768e7-119">Optional.</span></span> <span data-ttu-id="768e7-120">在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。</span><span class="sxs-lookup"><span data-stu-id="768e7-120">A function that is invoked when the callback returns, whose only parameter is of type[Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->.</span></span> <span data-ttu-id="768e7-121">`value`结果属性是新创建的 CustomXmlPart 对象。</span><span class="sxs-lookup"><span data-stu-id="768e7-121">The `value` property of the result is the newly created CustomXmlPart object.</span></span>
+      type:
+      - '(result: AsyncResult<CustomXmlPart>) => void'
+- uid: office.Office.CustomXmlParts.getByIdAsync
+  summary: <span data-ttu-id="768e7-122">由其 id 异步获取指定的自定义 XML 部件。</span><span class="sxs-lookup"><span data-stu-id="768e7-122">Asynchronously gets the specified custom XML part by its id.</span></span>
+  name: getByIdAsync(id, options, callback)
+  fullName: office.Office.CustomXmlParts.getByIdAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getByIdAsync(id: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<CustomXmlPart>) => void): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"768e7-123\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"768e7-123\">Examples</span></span>\n\n```javascript\nfunction showXMLPartInnerXML() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getXmlAsync({}, function (eventArgs) {\n            write(eventArgs.value);\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+    parameters:
+    - id: id
+      description: <span data-ttu-id="768e7-124">自定义 XML 部件，包括括号和右括号的 GUID。</span><span class="sxs-lookup"><span data-stu-id="768e7-124">The GUID of the custom XML part, including opening and closing braces.</span></span>
+      type:
+      - string
+    - id: options
+      description: <span data-ttu-id="768e7-125">提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。</span><span class="sxs-lookup"><span data-stu-id="768e7-125">Provides an option for preserving context data of any type, unchanged, for use in a callback.</span></span>
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: <span data-ttu-id="768e7-126">可选。</span><span class="sxs-lookup"><span data-stu-id="768e7-126">Optional.</span></span> <span data-ttu-id="768e7-127">在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。</span><span class="sxs-lookup"><span data-stu-id="768e7-127">A function that is invoked when the callback returns, whose only parameter is of type[Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->.</span></span> <span data-ttu-id="768e7-128">`value`结果属性是一个值，该值代表指定的自定义 XML 部件的 CustomXmlPart 对象。</span><span class="sxs-lookup"><span data-stu-id="768e7-128">The `value` property of the result is a CustomXmlPart object that represents the specified custom XML part.</span></span> <span data-ttu-id="768e7-129">如果不没有具有指定 id 的任何自定义 XML 部件，该方法返回 null。</span><span class="sxs-lookup"><span data-stu-id="768e7-129">If there is no custom XML part with the specified id, the method returns null.</span></span>
+      type:
+      - '(result: AsyncResult<CustomXmlPart>) => void'
+- uid: office.Office.CustomXmlParts.getByNamespaceAsync
+  summary: <span data-ttu-id="768e7-130">异步获取指定的自定义 XML 部件由其命名空间。</span><span class="sxs-lookup"><span data-stu-id="768e7-130">Asynchronously gets the specified custom XML part(s) by its namespace.</span></span>
+  name: getByNamespaceAsync(ns, options, callback)
+  fullName: office.Office.CustomXmlParts.getByNamespaceAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getByNamespaceAsync(ns: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<CustomXmlPart[]>) => void): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"768e7-131\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"768e7-131\">Examples</span></span>\n\n```javascript\nfunction showXMLPartsInNamespace() {\n    Office.context.document.customXmlParts.getByNamespaceAsync(\n        \"http://tempuri.org\", \n        function (eventArgs) {\n            write(\"Found \" + eventArgs.value.length + \" parts with this namespace\");\n    }); \n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+    parameters:
+    - id: ns
+      description: <span data-ttu-id="768e7-132">命名空间 URI。</span><span class="sxs-lookup"><span data-stu-id="768e7-132">The namespace URI.</span></span>
+      type:
+      - string
+    - id: options
+      description: <span data-ttu-id="768e7-133">提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。</span><span class="sxs-lookup"><span data-stu-id="768e7-133">Provides an option for preserving context data of any type, unchanged, for use in a callback.</span></span>
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: <span data-ttu-id="768e7-134">可选。</span><span class="sxs-lookup"><span data-stu-id="768e7-134">Optional.</span></span> <span data-ttu-id="768e7-135">在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。</span><span class="sxs-lookup"><span data-stu-id="768e7-135">A function that is invoked when the callback returns, whose only parameter is of type[Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->.</span></span> <span data-ttu-id="768e7-136">`value`属性的结果是匹配指定命名空间的 CustomXmlPart 对象的数组。</span><span class="sxs-lookup"><span data-stu-id="768e7-136">The `value` property of the result is an array of CustomXmlPart objects that match the specified namespace.</span></span>
+      type:
+      - '(result: AsyncResult<CustomXmlPart[]>) => void'
