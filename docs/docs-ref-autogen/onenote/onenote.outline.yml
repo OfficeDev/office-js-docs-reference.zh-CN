@@ -1,0 +1,268 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 710d131a5f459dabeffa2ba938c93fa77d860d7b
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24042431"
+items:
+- uid: onenote.OneNote.Outline
+  summary: >-
+    <span data-ttu-id="36524-101">表示 Paragraph 对象的容器。</span><span class="sxs-lookup"><span data-stu-id="36524-101">Represents a container for Paragraph objects.</span></span>
+
+
+    <span data-ttu-id="36524-102">\[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="36524-102">\[ [API set: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+  name: OneNote.Outline
+  fullName: onenote.OneNote.Outline
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: onenote
+  children:
+  - onenote.OneNote.Outline.appendHtml
+  - onenote.OneNote.Outline.appendImage
+  - onenote.OneNote.Outline.appendRichText
+  - onenote.OneNote.Outline.appendTable
+  - onenote.OneNote.Outline.id
+  - onenote.OneNote.Outline.isTitle
+  - onenote.OneNote.Outline.load
+  - onenote.OneNote.Outline.pageContent
+  - onenote.OneNote.Outline.paragraphs
+  - onenote.OneNote.Outline.toJSON
+  - onenote.OneNote.Outline.track
+  - onenote.OneNote.Outline.untrack
+- uid: onenote.OneNote.Outline.appendHtml
+  summary: >-
+    <span data-ttu-id="36524-103">将指定的 HTML 添加到“边框”的底部。</span><span class="sxs-lookup"><span data-stu-id="36524-103">Adds the specified HTML to the bottom of the Outline.</span></span>
+
+
+    <span data-ttu-id="36524-104">\[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="36524-104">\[ [API set: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+  name: appendHtml(html)
+  fullName: onenote.OneNote.Outline.appendHtml
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'appendHtml(html: string): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"36524-105\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"36524-105\">Examples</span></span>\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var activePage = context.application.getActivePage();\n\n    // Get pageContents of the activePage. \n    var pageContents = activePage.contents;\n\n    // Queue a command to load the pageContents to access its data.\n    context.load(pageContents);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            if (pageContents.items.length != 0 && pageContents.items[0].type == \"Outline\")\n            {\n                // First item is an outline.\n                outline = pageContents.items[0].outline;\n\n                // Queue a command to append a paragraph to the outline.\n                outline.appendHtml(\"<p>new paragraph</p>\");\n\n                // Run the queued commands.\n                return context.sync();\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: html
+      description: <span data-ttu-id="36524-106">要追加的 HTML 字符串。</span><span class="sxs-lookup"><span data-stu-id="36524-106">The HTML string to append.</span></span> <span data-ttu-id="36524-107">OneNote 外接程序的 JavaScript API，请参阅[支持的 HTML](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) 。</span><span class="sxs-lookup"><span data-stu-id="36524-107">See[Supported HTML](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) for the OneNote add-ins JavaScript API.</span></span>
+      type:
+      - string
+- uid: onenote.OneNote.Outline.appendImage
+  summary: >-
+    <span data-ttu-id="36524-108">将指定的图像添加到“边框”的底部。</span><span class="sxs-lookup"><span data-stu-id="36524-108">Adds the specified image to the bottom of the Outline.</span></span>
+
+
+    <span data-ttu-id="36524-109">\[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="36524-109">\[ [API set: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+  name: appendImage(base64EncodedImage, width, height)
+  fullName: onenote.OneNote.Outline.appendImage
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'appendImage(base64EncodedImage: string, width: number, height: number): OneNote.Image;'
+    return:
+      type:
+      - onenote.OneNote.Image
+      description: ''
+    parameters:
+    - id: base64EncodedImage
+      description: <span data-ttu-id="36524-110">要追加的 HTML 字符串。</span><span class="sxs-lookup"><span data-stu-id="36524-110">HTML string to append.</span></span>
+      type:
+      - string
+    - id: width
+      description: <span data-ttu-id="36524-p102">可选。以磅为单位的宽度。默认值为 null，将考虑图像宽度。</span><span class="sxs-lookup"><span data-stu-id="36524-p102">Optional. Width in the unit of Points. The default value is null and image width will be respected.</span></span>
+      type:
+      - number
+    - id: height
+      description: <span data-ttu-id="36524-p103">可选。以磅为单位的高度。默认值为 null，将考虑图像高度。</span><span class="sxs-lookup"><span data-stu-id="36524-p103">Optional. Height in the unit of Points. The default value is null and image height will be respected.</span></span>
+      type:
+      - number
+- uid: onenote.OneNote.Outline.appendRichText
+  summary: >-
+    <span data-ttu-id="36524-117">将指定的文本添加到“边框”的底部。</span><span class="sxs-lookup"><span data-stu-id="36524-117">Adds the specified text to the bottom of the Outline.</span></span>
+
+
+    <span data-ttu-id="36524-118">\[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="36524-118">\[ [API set: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+  name: appendRichText(paragraphText)
+  fullName: onenote.OneNote.Outline.appendRichText
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'appendRichText(paragraphText: string): OneNote.RichText;'
+    return:
+      type:
+      - onenote.OneNote.RichText
+      description: ''
+    parameters:
+    - id: paragraphText
+      description: <span data-ttu-id="36524-119">要追加的 HTML 字符串。</span><span class="sxs-lookup"><span data-stu-id="36524-119">HTML string to append.</span></span>
+      type:
+      - string
+- uid: onenote.OneNote.Outline.appendTable
+  summary: >-
+    <span data-ttu-id="36524-120">将具有指定行数和列数的表格添加到边框的底部。</span><span class="sxs-lookup"><span data-stu-id="36524-120">Adds a table with the specified number of rows and columns to the bottom of the outline.</span></span>
+
+
+    <span data-ttu-id="36524-121">\[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="36524-121">\[ [API set: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+  name: appendTable(rowCount, columnCount, values)
+  fullName: onenote.OneNote.Outline.appendTable
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'appendTable(rowCount: number, columnCount: number, values?: string[][]): OneNote.Table;'
+    return:
+      type:
+      - OneNote.Table
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"36524-122\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"36524-122\">Examples</span></span>\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var activePage = context.application.getActivePage();\n\n    // Get pageContents of the activePage. \n    var pageContents = activePage.contents;\n\n    // Queue a command to load the pageContents to access its data.\n    context.load(pageContents);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            if (pageContents.items.length != 0 && pageContents.items[0].type == \"Outline\") {\n                // First item is an outline.\n                var outline = pageContents.items[0].outline;\n\n                // Queue a command to append a paragraph to the outline.\n                outline.appendTable(2, 2, [[1, 2],[3, 4]]);\n\n                // Run the queued commands.\n                return context.sync();\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: rowCount
+      description: <span data-ttu-id="36524-p104">必需。表格的行数。</span><span class="sxs-lookup"><span data-stu-id="36524-p104">Required. The number of rows in the table.</span></span>
+      type:
+      - number
+    - id: columnCount
+      description: <span data-ttu-id="36524-p105">必需。表格的列数。</span><span class="sxs-lookup"><span data-stu-id="36524-p105">Required. The number of columns in the table.</span></span>
+      type:
+      - number
+    - id: values
+      description: <span data-ttu-id="36524-127">可选的二维数组。</span><span class="sxs-lookup"><span data-stu-id="36524-127">Optional 2D array.</span></span> <span data-ttu-id="36524-128">如果指定数组中的对应字符串，则填充单元格。</span><span class="sxs-lookup"><span data-stu-id="36524-128">Cells are filled if the corresponding strings are specified in the array.</span></span>
+      type:
+      - string[][]
+- uid: onenote.OneNote.Outline.id
+  summary: >-
+    <span data-ttu-id="36524-p107">获取 Outline 对象的 ID。只读。</span><span class="sxs-lookup"><span data-stu-id="36524-p107">Gets the ID of the Outline object. Read-only.</span></span>
+
+
+    <span data-ttu-id="36524-131">\[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="36524-131">\[ [API set: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+  name: id
+  fullName: onenote.OneNote.Outline.id
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly id: string;'
+    return:
+      type:
+      - string
+- uid: onenote.OneNote.Outline.isTitle
+  summary: >-
+    <span data-ttu-id="36524-132">检查大纲是否标题大纲。</span><span class="sxs-lookup"><span data-stu-id="36524-132">Check if the outline is title outline.</span></span>
+
+
+    <span data-ttu-id="36524-133">\[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="36524-133">\[ [API set: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+  name: isTitle()
+  fullName: onenote.OneNote.Outline.isTitle
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'isTitle(): OfficeExtension.ClientResult<boolean>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<boolean>
+      description: ''
+- uid: onenote.OneNote.Outline.load
+  summary: <span data-ttu-id="36524-134">队列设置命令加载指定的对象的属性。</span><span class="sxs-lookup"><span data-stu-id="36524-134">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="36524-135">读取属性之前，必须调用"context.sync()"。</span><span class="sxs-lookup"><span data-stu-id="36524-135">You must call "context.sync()" before reading the properties.</span></span>
+  remarks: >-
+    <span data-ttu-id="36524-136">除了此签名，此方法具有以下签名：</span><span class="sxs-lookup"><span data-stu-id="36524-136">In addition to this signature, this method has the following signatures:</span></span>
+
+
+    <span data-ttu-id="36524-137">`load(option?: { select?: string; expand?: string; }): OneNote.Outline`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="36524-137">`load(option?: { select?: string; expand?: string; }): OneNote.Outline` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+
+
+    <span data-ttu-id="36524-138">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Outline`-仅可对集合的类型。</span><span class="sxs-lookup"><span data-stu-id="36524-138">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Outline` - Only available on collection types.</span></span> <span data-ttu-id="36524-139">它是类似于前一个签名。</span><span class="sxs-lookup"><span data-stu-id="36524-139">It is similar to the preceding signature.</span></span> <span data-ttu-id="36524-140">Option.top 指定集合项可在结果中包含的最大数目。</span><span class="sxs-lookup"><span data-stu-id="36524-140">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="36524-141">Option.skip 指定要跳过和结果中不包含的项的数目。</span><span class="sxs-lookup"><span data-stu-id="36524-141">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="36524-142">如果指定 option.top，则将跳过指定的数目的项后启动结果集。</span><span class="sxs-lookup"><span data-stu-id="36524-142">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+  name: load(option)
+  fullName: onenote.OneNote.Outline.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): OneNote.Outline;'
+    return:
+      type:
+      - onenote.OneNote.Outline
+      description: ''
+    parameters:
+    - id: option
+      description: <span data-ttu-id="36524-143">以逗号分隔字符串或一个指定要加载的属性的字符串数组。</span><span class="sxs-lookup"><span data-stu-id="36524-143">A comma-delimited string or an array of strings that specify the properties to load.</span></span>
+      type:
+      - string | string[]
+- uid: onenote.OneNote.Outline.pageContent
+  summary: >-
+    <span data-ttu-id="36524-p110">获取包含边框的 PageContent 对象。此对象定义页面上 Outline 的位置。只读。</span><span class="sxs-lookup"><span data-stu-id="36524-p110">Gets the PageContent object that contains the Outline. This object defines the position of the Outline on the page. Read-only.</span></span>
+
+
+    <span data-ttu-id="36524-147">\[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="36524-147">\[ [API set: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+  name: pageContent
+  fullName: onenote.OneNote.Outline.pageContent
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly pageContent: OneNote.PageContent;'
+    return:
+      type:
+      - onenote.OneNote.PageContent
+- uid: onenote.OneNote.Outline.paragraphs
+  summary: >-
+    <span data-ttu-id="36524-p111">获取“边框”中 Paragraph 对象的集合。只读。</span><span class="sxs-lookup"><span data-stu-id="36524-p111">Gets the collection of Paragraph objects in the Outline. Read-only.</span></span>
+
+
+    <span data-ttu-id="36524-150">\[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="36524-150">\[ [API set: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+  name: paragraphs
+  fullName: onenote.OneNote.Outline.paragraphs
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly paragraphs: OneNote.ParagraphCollection;'
+    return:
+      type:
+      - onenote.OneNote.ParagraphCollection
+- uid: onenote.OneNote.Outline.toJSON
+  name: toJSON()
+  fullName: onenote.OneNote.Outline.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): OneNote.Interfaces.OutlineData;'
+    return:
+      type:
+      - onenote.OneNote.Interfaces.OutlineData
+      description: ''
+- uid: onenote.OneNote.Outline.track
+  summary: <span data-ttu-id="36524-151">跟踪自动调整根据周围的文档中的更改的对象。</span><span class="sxs-lookup"><span data-stu-id="36524-151">Track the object for automatic adjustment based on surrounding changes in the document.</span></span> <span data-ttu-id="36524-152">此呼叫是 context.trackedObjects.add(thisObject) 简写。</span><span class="sxs-lookup"><span data-stu-id="36524-152">This call is a shorthand for context.trackedObjects.add(thisObject).</span></span> <span data-ttu-id="36524-153">如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。</span><span class="sxs-lookup"><span data-stu-id="36524-153">If you are using this object across ".sync" calls and outside the sequential execution of a ".run" batch, and get an "InvalidObjectPath" error when setting a property or invoking a method on the object, you needed to have added the object to the tracked object collection when the object was first created.</span></span>
+  name: track()
+  fullName: onenote.OneNote.Outline.track
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'track(): OneNote.Outline;'
+    return:
+      type:
+      - onenote.OneNote.Outline
+      description: ''
+- uid: onenote.OneNote.Outline.untrack
+  summary: <span data-ttu-id="36524-154">发行版与此对象，如果以前跟踪关联的内存。</span><span class="sxs-lookup"><span data-stu-id="36524-154">Release the memory associated with this object, if it has previously been tracked.</span></span> <span data-ttu-id="36524-155">此呼叫是简写 context.trackedObjects.remove(thisObject)。</span><span class="sxs-lookup"><span data-stu-id="36524-155">This call is shorthand for context.trackedObjects.remove(thisObject).</span></span> <span data-ttu-id="36524-156">具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。</span><span class="sxs-lookup"><span data-stu-id="36524-156">Having many tracked objects slows down the host application, so please remember to free any objects you add, once you're done using them.</span></span> <span data-ttu-id="36524-157">您将需要的内存版本生效前调用"context.sync()"。</span><span class="sxs-lookup"><span data-stu-id="36524-157">You will need to call "context.sync()" before the memory release takes effect.</span></span>
+  name: untrack()
+  fullName: onenote.OneNote.Outline.untrack
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'untrack(): OneNote.Outline;'
+    return:
+      type:
+      - onenote.OneNote.Outline
+      description: ''

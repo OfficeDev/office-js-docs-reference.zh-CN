@@ -1,0 +1,29 @@
+# <a name="requirements-element"></a><span data-ttu-id="a3b50-101">Requirements 元素</span><span class="sxs-lookup"><span data-stu-id="a3b50-101">Requirements element</span></span>
+
+<span data-ttu-id="a3b50-102">指定适用于 Office 的 JavaScript API 要求（[要求集](https://docs.microsoft.com/office/dev/add-ins/develop/office-versions-and-requirement-sets#specify-office-hosts-and-requirement-sets)和/或方法）的最小集，Office 外接程序需要该集才能激活。</span><span class="sxs-lookup"><span data-stu-id="a3b50-102">Specifies the minimum set of JavaScript API for Office requirements ([requirement sets](https://docs.microsoft.com/office/dev/add-ins/develop/office-versions-and-requirement-sets#specify-office-hosts-and-requirement-sets) and/or methods) that your Office Add-in needs to activate.</span></span>
+
+<span data-ttu-id="a3b50-103">**外接程序类型：** 内容、任务窗格、邮件</span><span class="sxs-lookup"><span data-stu-id="a3b50-103">**Add-in type:** Content, Task pane, Mail</span></span>
+
+## <a name="syntax"></a><span data-ttu-id="a3b50-104">语法</span><span class="sxs-lookup"><span data-stu-id="a3b50-104">Syntax</span></span>
+
+```XML
+<Requirements>
+   ...
+</Requirements>
+```
+
+## <a name="contained-in"></a><span data-ttu-id="a3b50-105">包含在</span><span class="sxs-lookup"><span data-stu-id="a3b50-105">Contained in</span></span>
+
+[<span data-ttu-id="a3b50-106">OfficeApp</span><span class="sxs-lookup"><span data-stu-id="a3b50-106">OfficeApp</span></span>](officeapp.md)
+
+## <a name="can-contain"></a><span data-ttu-id="a3b50-107">可以包含</span><span class="sxs-lookup"><span data-stu-id="a3b50-107">Can contain</span></span>
+
+|<span data-ttu-id="a3b50-108">**元素**</span><span class="sxs-lookup"><span data-stu-id="a3b50-108">**Element**</span></span>|<span data-ttu-id="a3b50-109">**内容**</span><span class="sxs-lookup"><span data-stu-id="a3b50-109">**Content**</span></span>|<span data-ttu-id="a3b50-110">**邮件**</span><span class="sxs-lookup"><span data-stu-id="a3b50-110">**Mail**</span></span>|<span data-ttu-id="a3b50-111">**TaskPane**</span><span class="sxs-lookup"><span data-stu-id="a3b50-111">**TaskPane**</span></span>|
+|:-----|:-----|:-----|:-----|
+|[<span data-ttu-id="a3b50-112">Sets</span><span class="sxs-lookup"><span data-stu-id="a3b50-112">Sets</span></span>](sets.md)|<span data-ttu-id="a3b50-113">x</span><span class="sxs-lookup"><span data-stu-id="a3b50-113">x</span></span>|<span data-ttu-id="a3b50-114">x</span><span class="sxs-lookup"><span data-stu-id="a3b50-114">x</span></span>|<span data-ttu-id="a3b50-115">x</span><span class="sxs-lookup"><span data-stu-id="a3b50-115">x</span></span>|
+|[<span data-ttu-id="a3b50-116">方法</span><span class="sxs-lookup"><span data-stu-id="a3b50-116">Methods</span></span>](methods.md)|<span data-ttu-id="a3b50-117">x</span><span class="sxs-lookup"><span data-stu-id="a3b50-117">x</span></span>||<span data-ttu-id="a3b50-118">x</span><span class="sxs-lookup"><span data-stu-id="a3b50-118">x</span></span>|
+
+## <a name="remarks"></a><span data-ttu-id="a3b50-119">备注</span><span class="sxs-lookup"><span data-stu-id="a3b50-119">Remarks</span></span>
+
+<span data-ttu-id="a3b50-120">有关要求集的详细信息，请参阅[Office 版本和要求集](https://docs.microsoft.com/office/dev/add-ins/develop/office-versions-and-requirement-sets)。</span><span class="sxs-lookup"><span data-stu-id="a3b50-120">For more information about requirement sets, see [Office versions and requirement sets](https://docs.microsoft.com/office/dev/add-ins/develop/office-versions-and-requirement-sets).</span></span>
+
