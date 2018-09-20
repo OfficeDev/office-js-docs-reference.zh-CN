@@ -1,0 +1,157 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 26ce48cc61720d1f718d6ca3a76cf4dd6b640df8
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24041696"
+items:
+- uid: office.Office.UI
+  summary: >-
+    提供对象和您可用于创建和操作 UI 组件，如对话框中，在 Office 外接程序中的方法。
+
+
+    访问"[使用您 Office 加载项中的对话框 API](https://docs.microsoft.com/office/dev/add-ins/develop/dialog-api-in-office-add-ins)<!-- -->"的详细信息。
+  name: Office.UI
+  fullName: office.Office.UI
+  langs:
+  - typeScript
+  type: interface
+  package: office
+  children:
+  - office.Office.UI.closeContainer
+  - office.Office.UI.displayDialogAsync
+  - office.Office.UI.messageParent
+- uid: office.Office.UI.closeContainer
+  summary: 关闭正在执行 JavaScript 的 UI 容器。
+  remarks: >-
+    <table><tr><td>主机</td><td>Excel、 Word、 PowerPoint、 Outlook (最低要求组： 邮箱 1.5)</td></tr></table>
+
+
+    此方法的行为由以下指定：
+
+
+    - 从无用户界面命令按钮调用： 没有影响。 displayDialogAsync 打开的任何对话框将保持打开状态。
+
+
+    - 从任务窗格调用： 任务窗格将关闭。 也将关闭任何打开的 displayDialogAsync 的对话框。 如果任务窗格支持固定并被用户固定，则将取消固定它。
+
+
+    - 调用从模块扩展： 没有影响。
+  name: closeContainer()
+  fullName: office.Office.UI.closeContainer
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'closeContainer(): void;'
+    return:
+      type:
+      - void
+      description: ''
+- uid: office.Office.UI.displayDialogAsync
+  summary: 显示一个对话框，以显示或从用户处收集信息，或者便于 Web 导航。
+  remarks: >-
+    <table><tr><td>主机</td><td>Word、 Excel、 Outlook、 PowerPoint</td></tr>
+
+
+    <tr><td>要求集</td><td>DialogAPI，邮箱 1.4</td></tr></table>
+
+
+    此方法可在 DialogApi 要求为 Word、 Excel 或 PowerPoint 加载项设置，在邮箱中要求为 1.4 Outlook。 有关如何指定您的清单中设置的要求的详细信息，请参阅[指定 Office 主机和 API 要求](https://docs.microsoft.com/office/dev/add-ins/develop/specify-office-hosts-and-api-requirements)<!-- -->。
+
+
+    初始网页必须位于同一个域作为父页面 （startAddress 参数）。 初始网页加载后，你可以转到其他域。
+
+
+    任何页呼叫`office.context.ui.messageParent`还必须在同一个域作为父页面上。
+
+
+    **设计注意事项**：
+
+
+    下列设计注意事项适用于对话框：
+
+
+    - Office 加载项任务窗格可以随时打开只有一个对话框。 在从加载项命令 （自定义功能区按钮或菜单项） 的同一时间，可以打开多个对话。
+
+
+    - 用户可以移动每个对话框和调整其大小。
+
+
+    - 每个对话框在打开时都在屏幕上居中显示。
+
+
+    - 对话框按照创建的顺序出现在主机应用程序顶部。
+
+
+    使用对话框可以执行以下操作：
+
+
+    - 显示身份验证页以收集用户凭据。
+
+
+    - 显示从 ShowTaskpane 或 ExecuteAction 命令错误/进度/输入屏幕。
+
+
+    - 临时增加用户可用于完成一项任务的表面区域。
+
+
+    不要使用对话框与文档进行交互。而是使用任务窗格。
+
+
+    有关可以用于创建对话框的设计模式，请参阅 GitHub 的 Office 外接程序 UX 设计模式存储库中的 [客户端对话框](https://github.com/OfficeDev/Office-Add-in-UX-Design-Patterns/blob/master/Patterns/Client_Dialog.md)。
+
+
+    **displayDialogAsync 错误**：
+
+
+    <table> <tr> <th>代码编号</th> <th>含义</th> </tr> <tr> <td>12004</td> <td>传递给 displayDialogAsync 的 url 域不受信任。 域必须是主页面 （包括协议和端口号），或者是同一域或它必须注册<AppDomains>外接程序的清单的部分。</td> </tr> <tr> <td>12005</td> <td>传递给 displayDialogAsync URL 使用 HTTP 协议。 HTTPS 是必需的。 （在某些版本，与 12005 返回的错误消息是 office 的相同的一个返回 12004。）</td> </tr> <tr> <td>12007</td> <td>从任务窗格已经打开了一个对话框。任务窗格外接程序一次只能打开一个对话框。</td> </tr> </table>
+
+
+    在传递给 displayDialogAsync 方法的回调函数中，您可以使用 AsyncResult 对象的属性返回以下信息。
+
+
+    <table> <tr> <th>属性</th> <th>用于</th> </tr> <tr> <td>AsyncResult.value</td> <td>访问 Dialog 对象。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>如果你将用户定义的对象或值作为 asyncContext 参数传递，则对其进行访问。</td> </tr> </table>
+  name: displayDialogAsync(startAddress, options, callback)
+  fullName: office.Office.UI.displayDialogAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'displayDialogAsync(startAddress: string, options?: DialogOptions, callback?: (result: AsyncResult<Dialog>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: startAddress
+      description: 接受对话框中打开的初始 HTTPS URL。
+      type:
+      - string
+    - id: options
+      description: 可选。 接受[Office.DialogOptions](xref:office.Office.DialogOptions)对象定义对话框显示。
+      type:
+      - office.Office.DialogOptions
+    - id: callback
+      description: 可选。 接受用于处理对话框创建尝试的 callback 方法。 如果成功，则 AsyncResult.value 是 Dialog 对象。
+      type:
+      - '(result: AsyncResult<Dialog>) => void'
+- uid: office.Office.UI.messageParent
+  summary: 将对话框中的消息传送到其父页/开始页。调用此 API 的页必须与父页位于相同的域。
+  name: messageParent(messageObject)
+  fullName: office.Office.UI.messageParent
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'messageParent(messageObject: any): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: messageObject
+      description: 接受从对话框传送到外接程序的消息。
+      type:
+      - any

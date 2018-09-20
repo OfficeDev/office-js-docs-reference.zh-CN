@@ -1,0 +1,197 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: d868de0bd4b05b310086bcc6cc0d2f7f3080a55e
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24041780"
+items:
+- uid: excel.Excel.Binding
+  summary: >-
+    表示工作簿中定义的 Office.js 绑定。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.Binding
+  fullName: excel.Excel.Binding
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: excel
+  children:
+  - excel.Excel.Binding.delete
+  - excel.Excel.Binding.getRange
+  - excel.Excel.Binding.getTable
+  - excel.Excel.Binding.getText
+  - excel.Excel.Binding.id
+  - excel.Excel.Binding.load
+  - excel.Excel.Binding.onDataChanged
+  - excel.Excel.Binding.onSelectionChanged
+  - excel.Excel.Binding.toJSON
+  - excel.Excel.Binding.type
+- uid: excel.Excel.Binding.delete
+  summary: >-
+    删除绑定。
+
+
+    \[[API 集： ExcelApi 1.3](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: delete()
+  fullName: excel.Excel.Binding.delete
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'delete(): void;'
+    return:
+      type:
+      - void
+      description: ''
+- uid: excel.Excel.Binding.getRange
+  summary: >-
+    返回绑定表示的区域。如果绑定类型不正确，将引发错误。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getRange()
+  fullName: excel.Excel.Binding.getRange
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var binding = ctx.workbook.bindings.getItemAt(0);\n    var range = binding.getRange();\n    range.load('cellCount');\n    return ctx.sync().then(function() {\n        console.log(range.cellCount);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.Binding.getTable
+  summary: >-
+    返回绑定表示的表。如果绑定类型不正确，将引发错误。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getTable()
+  fullName: excel.Excel.Binding.getTable
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getTable(): Excel.Table;'
+    return:
+      type:
+      - excel.Excel.Table
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var binding = ctx.workbook.bindings.getItemAt(0);\n    var table = binding.getTable();\n    table.load('name');\n    return ctx.sync().then(function() {\n            console.log(table.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.Binding.getText
+  summary: >-
+    返回绑定表示的文本。如果绑定类型不正确，将引发错误。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getText()
+  fullName: excel.Excel.Binding.getText
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getText(): OfficeExtension.ClientResult<string>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<string>
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var binding = ctx.workbook.bindings.getItemAt(0);\n    var text = binding.getText();\n    binding.load('text');\n    return ctx.sync().then(function() {\n        console.log(text);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.Binding.id
+  summary: >-
+    表示绑定标识符。只读。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: id
+  fullName: excel.Excel.Binding.id
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly id: string;'
+    return:
+      type:
+      - string
+- uid: excel.Excel.Binding.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): Excel.Binding`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Binding`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var binding = ctx.workbook.bindings.getItemAt(0);\n    binding.load('type');\n    return ctx.sync().then(function() {\n        console.log(binding.type);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  name: load(option)
+  fullName: excel.Excel.Binding.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Excel.Binding;'
+    return:
+      type:
+      - excel.Excel.Binding
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: excel.Excel.Binding.onDataChanged
+  summary: >-
+    当绑定内的数据或格式变化时发生。
+
+
+    \[[API 集： ExcelApi 1.2](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: onDataChanged
+  fullName: excel.Excel.Binding.onDataChanged
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onDataChanged: OfficeExtension.EventHandlers<Excel.BindingDataChangedEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.BindingDataChangedEventArgs>
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");    \n    const salesTable = sheet.tables.getItem(\"SalesTable\");\n    const salesByQuarterBinding = context.workbook.bindings.add(salesTable.getRange(), \"Table\", \"SalesByQuarter\");\n    salesByQuarterBinding.onDataChanged.add(onSalesDataChanged);\n\n    OfficeHelpers.UI.notify(\"The handler is registered.\", \"Change the value in one of the data cells and watch this message banner. (Be sure to complete the edit by pressing Enter or clicking in another cell.)\");\n\n    await context.sync();\n});\n```"
+- uid: excel.Excel.Binding.onSelectionChanged
+  summary: >-
+    绑定中的所选的内容更改时发生。
+
+
+    \[[API 集： ExcelApi 1.2](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: onSelectionChanged
+  fullName: excel.Excel.Binding.onSelectionChanged
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onSelectionChanged: OfficeExtension.EventHandlers<Excel.BindingSelectionChangedEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.BindingSelectionChangedEventArgs>
+- uid: excel.Excel.Binding.toJSON
+  name: toJSON()
+  fullName: excel.Excel.Binding.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.BindingData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.BindingData
+      description: ''
+- uid: excel.Excel.Binding.type
+  summary: >-
+    返回绑定的类型。 有关详细信息，请参阅 Excel.BindingType。 只读。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: type
+  fullName: excel.Excel.Binding.type
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly type: Excel.BindingType | "Range" | "Table" | "Text";'
+    return:
+      type:
+      - Excel.BindingType | "Range" | "Table" | "Text"

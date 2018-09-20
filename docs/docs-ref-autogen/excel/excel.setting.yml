@@ -1,0 +1,115 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: dbf7155c3afe2e10b782cf957a9df5d831b138e9
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24041732"
+items:
+- uid: excel.Excel.Setting
+  summary: >-
+    设置的键 / 值对设置表示保持在文档 （每个每个加载项文件）。 可以使用这些自定义的键 / 值对存储所需的内容或任务窗格的状态或生命周期信息外接程序。 注意，设置保留文档中，因此，不存储任何敏感或受保护的信息，如用户信息和密码的位置。
+
+
+    \[[API 集： ExcelApi 1.4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.Setting
+  fullName: excel.Excel.Setting
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: excel
+  children:
+  - excel.Excel.Setting.delete
+  - excel.Excel.Setting.key
+  - excel.Excel.Setting.load
+  - excel.Excel.Setting.toJSON
+  - excel.Excel.Setting.value
+- uid: excel.Excel.Setting.delete
+  summary: >-
+    删除 setting 对象。
+
+
+    \[[API 集： ExcelApi 1.4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: delete()
+  fullName: excel.Excel.Setting.delete
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'delete(): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const settings = context.workbook.settings;\n    let needsReview = settings.getItem(\"NeedsReview\");\n    needsReview.delete();\n    needsReview = settings.getItemOrNullObject(\"NeedsReview\");\n\n    await context.sync();\n\n    if (needsReview.isNullObject) {\n        OfficeHelpers.UI.notify(\"The setting has been deleted\");\n    } else {\n        OfficeHelpers.UI.notify(\"The setting was not deleted\");\n    }\n\n    await context.sync();\n});\n```"
+- uid: excel.Excel.Setting.key
+  summary: >-
+    返回表示 setting 对象的 ID 的键。只读。
+
+
+    \[[API 集： ExcelApi 1.4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: key
+  fullName: excel.Excel.Setting.key
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly key: string;'
+    return:
+      type:
+      - string
+- uid: excel.Excel.Setting.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: >-
+    除了此签名，此方法具有以下签名：
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.Setting`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Setting`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
+  name: load(option)
+  fullName: excel.Excel.Setting.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Excel.Setting;'
+    return:
+      type:
+      - excel.Excel.Setting
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: excel.Excel.Setting.toJSON
+  name: toJSON()
+  fullName: excel.Excel.Setting.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.SettingData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.SettingData
+      description: ''
+- uid: excel.Excel.Setting.value
+  summary: >-
+    表示为此设置存储的值。
+
+
+    \[[API 集： ExcelApi 1.4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: value
+  fullName: excel.Excel.Setting.value
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'value: any;'
+    return:
+      type:
+      - any

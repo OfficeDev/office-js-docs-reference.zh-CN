@@ -1,0 +1,221 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: a687c8c72f3f55328eca10581e5db1bc61c325d8
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24041968"
+items:
+- uid: visio.Visio.PageView
+  summary: >-
+    表示 PageView 类。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: Visio.PageView
+  fullName: visio.Visio.PageView
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: visio
+  children:
+  - visio.Visio.PageView.centerViewportOnShape
+  - visio.Visio.PageView.fitToWindow
+  - visio.Visio.PageView.getPosition
+  - visio.Visio.PageView.getSelection
+  - visio.Visio.PageView.isShapeInViewport
+  - visio.Visio.PageView.load
+  - visio.Visio.PageView.setPosition
+  - visio.Visio.PageView.toJSON
+  - visio.Visio.PageView.zoom
+- uid: visio.Visio.PageView.centerViewportOnShape
+  summary: >-
+    平移 Visio 绘图，将指定的形状放置在视图中心位置。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: centerViewportOnShape(ShapeId)
+  fullName: visio.Visio.PageView.centerViewportOnShape
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'centerViewportOnShape(ShapeId: number): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nVisio.run(session, function (ctx) {\n    var activePage = ctx.document.getActivePage();\n    var shape = activePage.shapes.getItem(0);\n    activePage.view.centerViewportOnShape(shape.Id);\n    return ctx.sync();\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: ShapeId
+      description: 在中心位置显示的形状的 ID。
+      type:
+      - number
+- uid: visio.Visio.PageView.fitToWindow
+  summary: >-
+    让页面填满当前窗口。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: fitToWindow()
+  fullName: visio.Visio.PageView.fitToWindow
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'fitToWindow(): void;'
+    return:
+      type:
+      - void
+      description: ''
+- uid: visio.Visio.PageView.getPosition
+  summary: >-
+    返回在视图中指定页面位置的 Position 对象。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: getPosition()
+  fullName: visio.Visio.PageView.getPosition
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getPosition(): OfficeExtension.ClientResult<Visio.Position>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<Visio.Position>
+      description: ''
+- uid: visio.Visio.PageView.getSelection
+  summary: >-
+    表示页面中的 Selection 对象。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: getSelection()
+  fullName: visio.Visio.PageView.getSelection
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getSelection(): Visio.Selection;'
+    return:
+      type:
+      - visio.Visio.Selection
+      description: ''
+- uid: visio.Visio.PageView.isShapeInViewport
+  summary: >-
+    检查形状是否在页面的视区内。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: isShapeInViewport(Shape)
+  fullName: visio.Visio.PageView.isShapeInViewport
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'isShapeInViewport(Shape: Visio.Shape): OfficeExtension.ClientResult<boolean>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<boolean>
+      description: ''
+    parameters:
+    - id: Shape
+      description: 要检查的形状。
+      type:
+      - visio.Visio.Shape
+- uid: visio.Visio.PageView.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: >-
+    除了此签名，此方法具有以下签名：
+
+
+    `load(option?: { select?: string; expand?: string; }): Visio.PageView`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.PageView`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    Visio.run(session, function (ctx) {
+        var activePage = ctx.document.getActivePage();
+        activePage.view.zoom = 300;
+        return ctx.sync();
+    }).catch(function(error) {
+        console.log("Error: " + error);
+        if (error instanceof OfficeExtension.Error) {
+            console.log("Debug info: " + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
+  name: load(option)
+  fullName: visio.Visio.PageView.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Visio.PageView;'
+    return:
+      type:
+      - visio.Visio.PageView
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: visio.Visio.PageView.setPosition
+  summary: >-
+    在视图中设置页面的位置。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: setPosition(Position)
+  fullName: visio.Visio.PageView.setPosition
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setPosition(Position: Visio.Position): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: Position
+      description: 指定页面在视图中的新位置的位置对象。
+      type:
+      - visio.Visio.Position
+- uid: visio.Visio.PageView.toJSON
+  name: toJSON()
+  fullName: visio.Visio.PageView.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Visio.Interfaces.PageViewData;'
+    return:
+      type:
+      - visio.Visio.Interfaces.PageViewData
+      description: ''
+- uid: visio.Visio.PageView.zoom
+  summary: >-
+    获取和设置页的缩放级别。 值可以是 10 到 400 之间，表示缩放的百分比。
+
+
+    \[[API 集： 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: zoom
+  fullName: visio.Visio.PageView.zoom
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'zoom: number;'
+    return:
+      type:
+      - number
