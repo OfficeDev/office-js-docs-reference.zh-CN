@@ -1,0 +1,355 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: d5da1c39163213c97575ff41916e26d685cbaafa
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24041255"
+items:
+- uid: excel.Excel.Workbook
+  summary: >-
+    工作簿是顶级对象，它包含相关 workbook 对象，例如工作表、表、范围等。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.Workbook
+  fullName: excel.Excel.Workbook
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: excel
+  children:
+  - excel.Excel.Workbook.application
+  - excel.Excel.Workbook.bindings
+  - excel.Excel.Workbook.customXmlParts
+  - excel.Excel.Workbook.dataConnections
+  - excel.Excel.Workbook.functions
+  - excel.Excel.Workbook.getActiveCell
+  - excel.Excel.Workbook.getSelectedRange
+  - excel.Excel.Workbook.load
+  - excel.Excel.Workbook.name
+  - excel.Excel.Workbook.names
+  - excel.Excel.Workbook.onSelectionChanged
+  - excel.Excel.Workbook.pivotTables
+  - excel.Excel.Workbook.properties
+  - excel.Excel.Workbook.protection
+  - excel.Excel.Workbook.settings
+  - excel.Excel.Workbook.styles
+  - excel.Excel.Workbook.tables
+  - excel.Excel.Workbook.toJSON
+  - excel.Excel.Workbook.worksheets
+- uid: excel.Excel.Workbook.application
+  summary: >-
+    代表包含此工作簿的 Excel 应用程序实例。 只读。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: application
+  fullName: excel.Excel.Workbook.application
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly application: Excel.Application;'
+    return:
+      type:
+      - excel.Excel.Application
+- uid: excel.Excel.Workbook.bindings
+  summary: >-
+    表示属于工作簿的绑定的集合。只读。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: bindings
+  fullName: excel.Excel.Workbook.bindings
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly bindings: Excel.BindingCollection;'
+    return:
+      type:
+      - excel.Excel.BindingCollection
+- uid: excel.Excel.Workbook.customXmlParts
+  summary: >-
+    代表此工作簿包含的自定义 XML 部件的集合。只读。
+
+
+    \[[API 集： ExcelApi 1.5](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: customXmlParts
+  fullName: excel.Excel.Workbook.customXmlParts
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly customXmlParts: Excel.CustomXmlPartCollection;'
+    return:
+      type:
+      - excel.Excel.CustomXmlPartCollection
+- uid: excel.Excel.Workbook.dataConnections
+  summary: >-
+    代表工作簿中的所有数据连接。 只读。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: dataConnections
+  fullName: excel.Excel.Workbook.dataConnections
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly dataConnections: Excel.DataConnectionCollection;'
+    return:
+      type:
+      - excel.Excel.DataConnectionCollection
+- uid: excel.Excel.Workbook.functions
+  summary: >-
+    代表可用于计算的工作表函数的集合。 只读。
+
+
+    \[[API 集： ExcelApi 1.2](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: functions
+  fullName: excel.Excel.Workbook.functions
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly functions: Excel.Functions;'
+    return:
+      type:
+      - excel.Excel.Functions
+- uid: excel.Excel.Workbook.getActiveCell
+  summary: >-
+    从工作簿中获取当前活动单元格。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getActiveCell()
+  fullName: excel.Excel.Workbook.getActiveCell
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getActiveCell(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n\n    let myWorkbook = context.workbook;\n    let activeCell = myWorkbook.getActiveCell();\n    activeCell.load(\"address\");\n\n    await context.sync();\n    \n    console.log(\"The active cell is \" + activeCell.address);\n});\n```"
+- uid: excel.Excel.Workbook.getSelectedRange
+  summary: >-
+    从工作簿中获取的当前所选的单个范围。 如果选择的多个区域，则此方法将引发错误。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getSelectedRange()
+  fullName: excel.Excel.Workbook.getSelectedRange
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getSelectedRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var selectedRange = ctx.workbook.getSelectedRange();\n    selectedRange.load('address');\n    return ctx.sync().then(function() {\n            console.log(selectedRange.address);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.Workbook.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: >-
+    除了此签名，此方法具有以下签名：
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.Workbook`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Workbook`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
+  name: load(option)
+  fullName: excel.Excel.Workbook.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Excel.Workbook;'
+    return:
+      type:
+      - excel.Excel.Workbook
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: excel.Excel.Workbook.name
+  summary: >-
+    获取工作簿的名称。 只读。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: name
+  fullName: excel.Excel.Workbook.name
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly name: string;'
+    return:
+      type:
+      - string
+- uid: excel.Excel.Workbook.names
+  summary: >-
+    表示工作簿范围内的已命名项目（称为区域和常量）的集合。只读。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: names
+  fullName: excel.Excel.Workbook.names
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly names: Excel.NamedItemCollection;'
+    return:
+      type:
+      - excel.Excel.NamedItemCollection
+- uid: excel.Excel.Workbook.onSelectionChanged
+  summary: >-
+    文档中的选择更改时发生。
+
+
+    \[[API 集： ExcelApi 1.2](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: onSelectionChanged
+  fullName: excel.Excel.Workbook.onSelectionChanged
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onSelectionChanged: OfficeExtension.EventHandlers<Excel.SelectionChangedEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.SelectionChangedEventArgs>
+- uid: excel.Excel.Workbook.pivotTables
+  summary: >-
+    表示一组与 workbook 相关联的 PivotTable 对象。只读。
+
+
+    \[[API 集： ExcelApi 1.3](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: pivotTables
+  fullName: excel.Excel.Workbook.pivotTables
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly pivotTables: Excel.PivotTableCollection;'
+    return:
+      type:
+      - excel.Excel.PivotTableCollection
+- uid: excel.Excel.Workbook.properties
+  summary: >-
+    获取工作簿属性。 只读。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: properties
+  fullName: excel.Excel.Workbook.properties
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly properties: Excel.DocumentProperties;'
+    return:
+      type:
+      - excel.Excel.DocumentProperties
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    let titleValue = \"Excel document properties API\";\n    let subjectValue = \"Set and get document properties\";\n    let keywordsValue = \"Set and get operations\";\n    let commentsValue = \"This is an Excel document properties API code sample\";\n    let categoryValue = \"Office Add-ins\";\n    let managerValue = \"John\";\n    let companyValue = \"Microsoft\";\n\n    let docProperties = context.workbook.properties;\n\n    // Set the writeable document properties.\n    docProperties.title = titleValue;\n    docProperties.subject = subjectValue;\n    docProperties.keywords = keywordsValue;\n    docProperties.comments = commentsValue;\n    docProperties.category = categoryValue;\n    docProperties.manager = managerValue;\n    docProperties.company = companyValue;\n\n    await context.sync();\n\n    OfficeHelpers.UI.notify(\"Set the following document properties: title, subject, keywords, comments, category, manager, company.\");\n});\n```"
+- uid: excel.Excel.Workbook.protection
+  summary: >-
+    返回工作簿的 workbook protection 对象。 只读。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: protection
+  fullName: excel.Excel.Workbook.protection
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly protection: Excel.WorkbookProtection;'
+    return:
+      type:
+      - excel.Excel.WorkbookProtection
+- uid: excel.Excel.Workbook.settings
+  summary: >-
+    表示一组与 workbook 相关联的 setting 对象。只读。
+
+
+    \[[API 集： ExcelApi 1.4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: settings
+  fullName: excel.Excel.Workbook.settings
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly settings: Excel.SettingCollection;'
+    return:
+      type:
+      - excel.Excel.SettingCollection
+- uid: excel.Excel.Workbook.styles
+  summary: >-
+    代表工作簿相关联的样式的集合。 只读。
+
+
+    \[[API 集： ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: styles
+  fullName: excel.Excel.Workbook.styles
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly styles: Excel.StyleCollection;'
+    return:
+      type:
+      - excel.Excel.StyleCollection
+- uid: excel.Excel.Workbook.tables
+  summary: >-
+    表示与工作簿关联的表的集合。只读。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: tables
+  fullName: excel.Excel.Workbook.tables
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly tables: Excel.TableCollection;'
+    return:
+      type:
+      - excel.Excel.TableCollection
+- uid: excel.Excel.Workbook.toJSON
+  name: toJSON()
+  fullName: excel.Excel.Workbook.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.WorkbookData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.WorkbookData
+      description: ''
+- uid: excel.Excel.Workbook.worksheets
+  summary: >-
+    表示与工作簿关联的工作表的集合。只读。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: worksheets
+  fullName: excel.Excel.Workbook.worksheets
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly worksheets: Excel.WorksheetCollection;'
+    return:
+      type:
+      - excel.Excel.WorksheetCollection

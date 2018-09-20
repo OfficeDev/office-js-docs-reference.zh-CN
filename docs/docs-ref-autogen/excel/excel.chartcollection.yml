@@ -1,0 +1,204 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 199ac82dede1eefade22e13ef663b5aadc98e999
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24042051"
+items:
+- uid: excel.Excel.ChartCollection
+  summary: >-
+    工作表中所有 Chart 对象的集合。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.ChartCollection
+  fullName: excel.Excel.ChartCollection
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: excel
+  children:
+  - excel.Excel.ChartCollection.add
+  - excel.Excel.ChartCollection.count
+  - excel.Excel.ChartCollection.getCount
+  - excel.Excel.ChartCollection.getItem
+  - excel.Excel.ChartCollection.getItemAt
+  - excel.Excel.ChartCollection.getItemOrNullObject
+  - excel.Excel.ChartCollection.items
+  - excel.Excel.ChartCollection.load
+  - excel.Excel.ChartCollection.toJSON
+- uid: excel.Excel.ChartCollection.add
+  summary: >-
+    创建新图表。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: add(type, sourceData, seriesBy)
+  fullName: excel.Excel.ChartCollection.add
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'add(type: Excel.ChartType, sourceData: Range, seriesBy?: Excel.ChartSeriesBy): Excel.Chart;'
+    return:
+      type:
+      - excel.Excel.Chart
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Add a chart of chartType \"ColumnClustered\" on worksheet \"Charts\" \n// with sourceData from Range \"A1:B4\" and seriresBy is set to be \"auto\".\nExcel.run(function (ctx) { \n    var rangeSelection = \"A1:B4\";\n    var range = ctx.workbook.worksheets.getItem(sheetName)\n        .getRange(rangeSelection);\n    var chart = ctx.workbook.worksheets.getItem(sheetName)\n        .charts.add(\"ColumnClustered\", range, \"auto\");    return ctx.sync().then(function() {\n            console.log(\"New Chart Added\");\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: type
+      description: 代表图表的类型。 有关详细信息，请参阅 Excel.ChartType。
+      type:
+      - excel.Excel.ChartType
+    - id: sourceData
+      description: 对应于源数据的 Range 对象。
+      type:
+      - Range
+    - id: seriesBy
+      description: 可选。 指定的方式列或行用作图表上的数据系列。 有关详细信息，请参阅 Excel.ChartSeriesBy。
+      type:
+      - excel.Excel.ChartSeriesBy
+- uid: excel.Excel.ChartCollection.count
+  summary: >-
+    返回工作表中的图表数。只读。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: count
+  fullName: excel.Excel.ChartCollection.count
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly count: number;'
+    return:
+      type:
+      - number
+- uid: excel.Excel.ChartCollection.getCount
+  summary: >-
+    返回工作表中的图表数。
+
+
+    \[[API 集： ExcelApi 1.4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getCount()
+  fullName: excel.Excel.ChartCollection.getCount
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getCount(): OfficeExtension.ClientResult<number>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<number>
+      description: ''
+- uid: excel.Excel.ChartCollection.getItem
+  summary: >-
+    使用图表名称获取图表。如果存在多个名称相同的图表，将返回第一个图表。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getItem(name)
+  fullName: excel.Excel.ChartCollection.getItem
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItem(name: string): Excel.Chart;'
+    return:
+      type:
+      - excel.Excel.Chart
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var chartname = 'Chart1';\n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(chartname);\n    return ctx.sync().then(function() {\n            console.log(chart.height);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nExcel.run(function (ctx) { \n    var chartId = 'SamplChartId';\n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(chartId);\n    return ctx.sync().then(function() {\n            console.log(chart.height);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nExcel.run(function (ctx) { \n    var lastPosition = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.count - 1;\n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItemAt(lastPosition);\n    return ctx.sync().then(function() {\n            console.log(chart.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: name
+      description: 要检索的图表的名称。
+      type:
+      - string
+- uid: excel.Excel.ChartCollection.getItemAt
+  summary: >-
+    根据其在集合中的位置获取图表。
+
+
+    \[[API 集： ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getItemAt(index)
+  fullName: excel.Excel.ChartCollection.getItemAt
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItemAt(index: number): Excel.Chart;'
+    return:
+      type:
+      - excel.Excel.Chart
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var lastPosition = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.count - 1;\n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItemAt(lastPosition);\n    return ctx.sync().then(function() {\n            console.log(chart.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: index
+      description: 要检索的对象的索引值。从零开始编制索引。
+      type:
+      - number
+- uid: excel.Excel.ChartCollection.getItemOrNullObject
+  summary: >-
+    获取使用其名称的图表。 如果具有相同名称的多个图表，则将返回第一个。 如果图表不存在，将返回 null 对象。
+
+
+    \[[API 集： ExcelApi 1.4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getItemOrNullObject(name)
+  fullName: excel.Excel.ChartCollection.getItemOrNullObject
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItemOrNullObject(name: string): Excel.Chart;'
+    return:
+      type:
+      - excel.Excel.Chart
+      description: ''
+    parameters:
+    - id: name
+      description: 要检索的图表的名称。
+      type:
+      - string
+- uid: excel.Excel.ChartCollection.items
+  summary: 获取此集合中的加载的子项目。
+  name: items
+  fullName: excel.Excel.ChartCollection.items
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly items: Excel.Chart[];'
+    return:
+      type:
+      - Excel.Chart[]
+- uid: excel.Excel.ChartCollection.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): Excel.ChartCollection`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartCollection`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var charts = ctx.workbook.worksheets.getItem(\"Sheet1\").charts;\n    charts.load('items');\n    return ctx.sync().then(function() {\n        for (var i = 0; i < charts.items.length; i++)\n        {\n            console.log(charts.items[i].name);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Get the number of charts\nExcel.run(function (ctx) { \n    var charts = ctx.workbook.worksheets.getItem(\"Sheet1\").charts;\n    charts.load('count');\n    return ctx.sync().then(function() {\n        console.log(\"charts: Count= \" + charts.count);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  name: load(option)
+  fullName: excel.Excel.ChartCollection.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Excel.ChartCollection;'
+    return:
+      type:
+      - excel.Excel.ChartCollection
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: excel.Excel.ChartCollection.toJSON
+  name: toJSON()
+  fullName: excel.Excel.ChartCollection.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.ChartCollectionData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.ChartCollectionData
+      description: ''

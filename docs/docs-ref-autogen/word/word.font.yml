@@ -1,0 +1,491 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 932101dd810955b075f7b98dc22ff547af29976a
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24041335"
+items:
+- uid: word.Word.Font
+  summary: >-
+    表示字体。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: Word.Font
+  fullName: word.Word.Font
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: word
+  children:
+  - word.Word.Font.bold
+  - word.Word.Font.color
+  - word.Word.Font.doubleStrikeThrough
+  - word.Word.Font.highlightColor
+  - word.Word.Font.italic
+  - word.Word.Font.load
+  - word.Word.Font.name
+  - word.Word.Font.size
+  - word.Word.Font.strikeThrough
+  - word.Word.Font.subscript
+  - word.Word.Font.superscript
+  - word.Word.Font.toJSON
+  - word.Word.Font.track
+  - word.Word.Font.underline
+  - word.Word.Font.untrack
+- uid: word.Word.Font.bold
+  summary: >-
+    获取或设置表示字体是否为粗体的值。如果字体格式为粗体则为 true，否则为 false。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: bold
+  fullName: word.Word.Font.bold
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'bold: boolean;'
+    return:
+      type:
+      - boolean
+- uid: word.Word.Font.color
+  summary: >-
+    获取或设置指定字体的颜色。 您可以提供中的值\#RRGGBB 格式或颜色名称。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: color
+  fullName: word.Word.Font.color
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'color: string;'
+    return:
+      type:
+      - string
+- uid: word.Word.Font.doubleStrikeThrough
+  summary: >-
+    获取或设置一个值，该值指示字体是否具有双删除线。 如果字体为双删除线文本，否则为返回 false，则为 true。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: doubleStrikeThrough
+  fullName: word.Word.Font.doubleStrikeThrough
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'doubleStrikeThrough: boolean;'
+    return:
+      type:
+      - boolean
+- uid: word.Word.Font.highlightColor
+  summary: >-
+    获取或设置的突出显示颜色。 若要将其设置，使用一个值，也在\#RRGGBB 格式或颜色名称。 若要删除突出显示颜色，请将其设置为 null。 返回突出显示颜色可以是在\#RRGGBB 格式，对于混合突出显示颜色，为空字符串，或无 null 突出显示颜色。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: highlightColor
+  fullName: word.Word.Font.highlightColor
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'highlightColor: string;'
+    return:
+      type:
+      - string
+- uid: word.Word.Font.italic
+  summary: >-
+    获取或设置表示字体是否为斜体的值。如果字体为斜体则为 true，否则为 false。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: italic
+  fullName: word.Word.Font.italic
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'italic: boolean;'
+    return:
+      type:
+      - boolean
+- uid: word.Word.Font.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: >-
+    除了此签名，此方法具有以下签名：
+
+
+    `load(option?: { select?: string; expand?: string; }): Word.Font`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.Font`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // Change the font name
+
+    // Run a batch operation against the Word object model.
+
+    Word.run(function (context) {
+
+        // Create a range proxy object for the current selection.
+        var selection = context.document.getSelection();
+
+        // Queue a commmand to change the current selection's font name.
+        selection.font.name = 'Arial';
+
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        return context.sync().then(function () {
+            console.log('The font name has changed.');
+        });
+    })
+
+    .catch(function (error) {
+        console.log('Error: ' + JSON.stringify(error));
+        if (error instanceof OfficeExtension.Error) {
+            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
+
+    ```javascript
+
+    // Change the font color
+
+    // Run a batch operation against the Word object model.
+
+    Word.run(function (context) {
+
+        // Create a range proxy object for the current selection.
+        var selection = context.document.getSelection();
+
+        // Queue a commmand to change the font color of the current selection.
+        selection.font.color = 'blue';
+
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        return context.sync().then(function () {
+            console.log('The font color of the selection has been changed.');
+        });
+    })
+
+    .catch(function (error) {
+        console.log('Error: ' + JSON.stringify(error));
+        if (error instanceof OfficeExtension.Error) {
+            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
+
+    ```javascript
+
+    // Change the font size
+
+    // Run a batch operation against the Word object model.
+
+    Word.run(function (context) {
+
+        // Create a range proxy object for the current selection.
+        var selection = context.document.getSelection();
+
+        // Queue a commmand to change the current selection's font size.
+        selection.font.size = 20;
+
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        return context.sync().then(function () {
+            console.log('The font size has changed.');
+        });
+    })
+
+    .catch(function (error) {
+        console.log('Error: ' + JSON.stringify(error));
+        if (error instanceof OfficeExtension.Error) {
+            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
+
+    ```javascript
+
+    // Highlight selected text
+
+    // Run a batch operation against the Word object model.
+
+    Word.run(function (context) {
+
+        // Create a range proxy object for the current selection.
+        var selection = context.document.getSelection();
+
+        // Queue a commmand to highlight the current selection.
+        selection.font.highlightColor = '#FFFF00'; // Yellow
+
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        return context.sync().then(function () {
+            console.log('The selection has been highlighted.');
+        });
+    })
+
+    .catch(function (error) {
+        console.log('Error: ' + JSON.stringify(error));
+        if (error instanceof OfficeExtension.Error) {
+            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
+
+    ```javascript
+
+    // Bold format text
+
+    // Run a batch operation against the Word object model.
+
+    Word.run(function (context) {
+
+        // Create a range proxy object for the current selection.
+        var selection = context.document.getSelection();
+
+        // Queue a commmand to make the current selection bold.
+        selection.font.bold = true;
+
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        return context.sync().then(function () {
+            console.log('The selection is now bold.');
+        });
+    })
+
+    .catch(function (error) {
+        console.log('Error: ' + JSON.stringify(error));
+        if (error instanceof OfficeExtension.Error) {
+            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
+
+    ```javascript
+
+    // Underline format text
+
+    // Run a batch operation against the Word object model.
+
+    Word.run(function (context) {
+
+        // Create a range proxy object for the current selection.
+        var selection = context.document.getSelection();
+
+        // Queue a commmand to underline the current selection.
+        selection.font.underline = Word.UnderlineType.single;
+
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        return context.sync().then(function () {
+            console.log('The selection now has an underline style.');
+        });
+    })
+
+    .catch(function (error) {
+        console.log('Error: ' + JSON.stringify(error));
+        if (error instanceof OfficeExtension.Error) {
+            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
+
+    ```javascript
+
+    // Strike format text
+
+    // Run a batch operation against the Word object model.
+
+    Word.run(function (context) {
+
+        // Create a range proxy object for the current selection.
+        var selection = context.document.getSelection();
+
+        // Queue a commmand to strikethrough the font of the current selection.
+        selection.font.strikeThrough = true;
+
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        return context.sync().then(function () {
+            console.log('The selection now has a strikethrough.');
+        });
+    })
+
+    .catch(function (error) {
+        console.log('Error: ' + JSON.stringify(error));
+        if (error instanceof OfficeExtension.Error) {
+            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
+  name: load(option)
+  fullName: word.Word.Font.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Word.Font;'
+    return:
+      type:
+      - word.Word.Font
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: word.Word.Font.name
+  summary: >-
+    获取或设置表示字体名称的值。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: name
+  fullName: word.Word.Font.name
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'name: string;'
+    return:
+      type:
+      - string
+- uid: word.Word.Font.size
+  summary: >-
+    获取或设置表示字体大小（以磅值表示）的值。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: size
+  fullName: word.Word.Font.size
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'size: number;'
+    return:
+      type:
+      - number
+- uid: word.Word.Font.strikeThrough
+  summary: >-
+    获取或设置一个值，指示该字体是否删除线。 如果字体为删除线文本，否则为返回 false，则为 true。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: strikeThrough
+  fullName: word.Word.Font.strikeThrough
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'strikeThrough: boolean;'
+    return:
+      type:
+      - boolean
+- uid: word.Word.Font.subscript
+  summary: >-
+    获取或设置表示字体是否为下标的值。如果字体格式为下标则为 true，否则为 false。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: subscript
+  fullName: word.Word.Font.subscript
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'subscript: boolean;'
+    return:
+      type:
+      - boolean
+- uid: word.Word.Font.superscript
+  summary: >-
+    获取或设置表示字体是否为上标的值。如果字体格式为上标则为 true，否则为 false。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: superscript
+  fullName: word.Word.Font.superscript
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'superscript: boolean;'
+    return:
+      type:
+      - boolean
+- uid: word.Word.Font.toJSON
+  name: toJSON()
+  fullName: word.Word.Font.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Word.Interfaces.FontData;'
+    return:
+      type:
+      - word.Word.Interfaces.FontData
+      description: ''
+- uid: word.Word.Font.track
+  summary: 跟踪自动调整根据周围的文档中的更改的对象。 此呼叫是 context.trackedObjects.add(thisObject) 简写。 如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。
+  name: track()
+  fullName: word.Word.Font.track
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'track(): Word.Font;'
+    return:
+      type:
+      - word.Word.Font
+      description: ''
+- uid: word.Word.Font.underline
+  summary: >-
+    获取或设置一个值，指示字体的下划线类型。 None 如果的字体不加下划线。
+
+
+    \[[API 集： WordApi 1.1](/javascript/office/requirement-sets/word-api-requirement-sets)\]
+  name: underline
+  fullName: word.Word.Font.underline
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'underline: Word.UnderlineType | "Mixed" | "None" | "Hidden" | "DotLine" | "Single" | "Word" | "Double" | "Thick" | "Dotted" | "DottedHeavy" | "DashLine" | "DashLineHeavy" | "DashLineLong" | "DashLineLongHeavy" | "DotDashLine" | "DotDashLineHeavy" | "TwoDotDashLine" | "TwoDotDashLineHeavy" | "Wave" | "WaveHeavy" | "WaveDouble";'
+    return:
+      type:
+      - Word.UnderlineType | "Mixed" | "None" | "Hidden" | "DotLine" | "Single" | "Word" | "Double" | "Thick" | "Dotted" | "DottedHeavy" | "DashLine" | "DashLineHeavy" | "DashLineLong" | "DashLineLongHeavy" | "DotDashLine" | "DotDashLineHeavy" | "TwoDotDashLine" | "TwoDotDashLineHeavy" | "Wave" | "WaveHeavy" | "WaveDouble"
+- uid: word.Word.Font.untrack
+  summary: 发行版与此对象，如果以前跟踪关联的内存。 此呼叫是简写 context.trackedObjects.remove(thisObject)。 具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。 您将需要的内存版本生效前调用"context.sync()"。
+  name: untrack()
+  fullName: word.Word.Font.untrack
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'untrack(): Word.Font;'
+    return:
+      type:
+      - word.Word.Font
+      description: ''

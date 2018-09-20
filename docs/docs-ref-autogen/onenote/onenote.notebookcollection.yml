@@ -1,0 +1,183 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 10737336d011fe6c5a29f0e1e139c8ba5061732e
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24041262"
+items:
+- uid: onenote.OneNote.NotebookCollection
+  summary: >-
+    表示一组笔记本。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: OneNote.NotebookCollection
+  fullName: onenote.OneNote.NotebookCollection
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: onenote
+  children:
+  - onenote.OneNote.NotebookCollection.count
+  - onenote.OneNote.NotebookCollection.getByName
+  - onenote.OneNote.NotebookCollection.getItem
+  - onenote.OneNote.NotebookCollection.getItemAt
+  - onenote.OneNote.NotebookCollection.items
+  - onenote.OneNote.NotebookCollection.load
+  - onenote.OneNote.NotebookCollection.toJSON
+  - onenote.OneNote.NotebookCollection.track
+  - onenote.OneNote.NotebookCollection.untrack
+- uid: onenote.OneNote.NotebookCollection.count
+  summary: >-
+    返回集合中笔记本的数目。只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: count
+  fullName: onenote.OneNote.NotebookCollection.count
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly count: number;'
+    return:
+      type:
+      - number
+- uid: onenote.OneNote.NotebookCollection.getByName
+  summary: >-
+    获取在应用程序实例中打开的指定名称的笔记本集合。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: getByName(name)
+  fullName: onenote.OneNote.NotebookCollection.getByName
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getByName(name: string): OneNote.NotebookCollection;'
+    return:
+      type:
+      - onenote.OneNote.NotebookCollection
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the notebooks that are open in the application instance and have the specified name.\n    var notebooks = context.application.notebooks.getByName(\"Homework\");\n\n    // Queue a command to load the notebooks. \n    // For best performance, request specific properties.           \n    notebooks.load(\"id,name\");\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            // Iterate through the collection or access items individually by index,\n            // for example: notebooks.items[0]\n            if (notebooks.items.length > 0) {\n                console.log(\"Notebook name: \" + notebooks.items[0].name);\n                console.log(\"Notebook ID: \" + notebooks.items[0].id);\n            }\n                \n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: name
+      description: 笔记本的名称。
+      type:
+      - string
+- uid: onenote.OneNote.NotebookCollection.getItem
+  summary: >-
+    按其在集合中的 ID 或索引获取笔记本。只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: getItem(index)
+  fullName: onenote.OneNote.NotebookCollection.getItem
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItem(index: number | string): OneNote.Notebook;'
+    return:
+      type:
+      - onenote.OneNote.Notebook
+      description: ''
+    parameters:
+    - id: index
+      description: 笔记本的 ID 或集合中笔记本的索引位置。
+      type:
+      - number | string
+- uid: onenote.OneNote.NotebookCollection.getItemAt
+  summary: >-
+    按其在集合中的位置获取笔记本。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: getItemAt(index)
+  fullName: onenote.OneNote.NotebookCollection.getItemAt
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItemAt(index: number): OneNote.Notebook;'
+    return:
+      type:
+      - onenote.OneNote.Notebook
+      description: ''
+    parameters:
+    - id: index
+      description: 要检索的对象的索引值。从零开始编制索引。
+      type:
+      - number
+- uid: onenote.OneNote.NotebookCollection.items
+  summary: 获取此集合中的加载的子项目。
+  name: items
+  fullName: onenote.OneNote.NotebookCollection.items
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly items: OneNote.Notebook[];'
+    return:
+      type:
+      - OneNote.Notebook[]
+- uid: onenote.OneNote.NotebookCollection.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): OneNote.NotebookCollection`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.NotebookCollection`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the notebooks that are open in the application instance and have the specified name.\n    var notebooks = context.application.notebooks.getByName(\"Homework\");\n\n    // Queue a command to load the notebooks. \n    // For best performance, request specific properties.           \n    notebooks.load(\"id\");\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            // Iterate through the collection or access items individually by index, \n            // for example: notebooks.items[0]\n            $.each(notebooks.items, function(index, notebook) {\n                notebook.addSection(\"Biology\");\n                notebook.addSection(\"Spanish\");\n                notebook.addSection(\"Computer Science\");\n            });\n            \n            return context.sync();\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  name: load(option)
+  fullName: onenote.OneNote.NotebookCollection.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): OneNote.NotebookCollection;'
+    return:
+      type:
+      - onenote.OneNote.NotebookCollection
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: onenote.OneNote.NotebookCollection.toJSON
+  name: toJSON()
+  fullName: onenote.OneNote.NotebookCollection.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): OneNote.Interfaces.NotebookCollectionData;'
+    return:
+      type:
+      - onenote.OneNote.Interfaces.NotebookCollectionData
+      description: ''
+- uid: onenote.OneNote.NotebookCollection.track
+  summary: 跟踪自动调整根据周围的文档中的更改的对象。 此呼叫是 context.trackedObjects.add(thisObject) 简写。 如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。
+  name: track()
+  fullName: onenote.OneNote.NotebookCollection.track
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'track(): OneNote.NotebookCollection;'
+    return:
+      type:
+      - onenote.OneNote.NotebookCollection
+      description: ''
+- uid: onenote.OneNote.NotebookCollection.untrack
+  summary: 发行版与此对象，如果以前跟踪关联的内存。 此呼叫是简写 context.trackedObjects.remove(thisObject)。 具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。 您将需要的内存版本生效前调用"context.sync()"。
+  name: untrack()
+  fullName: onenote.OneNote.NotebookCollection.untrack
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'untrack(): OneNote.NotebookCollection;'
+    return:
+      type:
+      - onenote.OneNote.NotebookCollection
+      description: ''
