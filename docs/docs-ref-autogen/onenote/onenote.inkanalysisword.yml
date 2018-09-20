@@ -1,0 +1,169 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 811e30336412c97a709e905bcaa40b18d8b4c067
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24040115"
+items:
+- uid: onenote.OneNote.InkAnalysisWord
+  summary: >-
+    表示墨迹笔划形成的已识别字词的墨迹分析数据。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: OneNote.InkAnalysisWord
+  fullName: onenote.OneNote.InkAnalysisWord
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: onenote
+  children:
+  - onenote.OneNote.InkAnalysisWord.id
+  - onenote.OneNote.InkAnalysisWord.languageId
+  - onenote.OneNote.InkAnalysisWord.line
+  - onenote.OneNote.InkAnalysisWord.load
+  - onenote.OneNote.InkAnalysisWord.strokePointers
+  - onenote.OneNote.InkAnalysisWord.toJSON
+  - onenote.OneNote.InkAnalysisWord.track
+  - onenote.OneNote.InkAnalysisWord.untrack
+  - onenote.OneNote.InkAnalysisWord.wordAlternates
+- uid: onenote.OneNote.InkAnalysisWord.id
+  summary: >-
+    获取 InkAnalysisWord 对象的 ID。只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: id
+  fullName: onenote.OneNote.InkAnalysisWord.id
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly id: string;'
+    return:
+      type:
+      - string
+- uid: onenote.OneNote.InkAnalysisWord.languageId
+  summary: >-
+    此 inkAnalysisWord 中已识别语言的 ID。只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: languageId
+  fullName: onenote.OneNote.InkAnalysisWord.languageId
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly languageId: string;'
+    return:
+      type:
+      - string
+- uid: onenote.OneNote.InkAnalysisWord.line
+  summary: >-
+    对父级 InkAnalysisLine 的引用。只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: line
+  fullName: onenote.OneNote.InkAnalysisWord.line
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly line: OneNote.InkAnalysisLine;'
+    return:
+      type:
+      - onenote.OneNote.InkAnalysisLine
+- uid: onenote.OneNote.InkAnalysisWord.load
+  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): OneNote.InkAnalysisWord`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.InkAnalysisWord`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (ctx) {        \n    var app = ctx.application;\n    \n    // Gets the active page.\n    var page = app.getActivePage();\n    \n    page.load('inkAnalysisOrNull/paragraphs/lines/words');\n    return ctx.sync()\n        .then(function() {\n            var inkParagraphs = page.inkAnalysisOrNull.paragraphs;\n            $.each(inkParagraphs.items, function(i, inkParagraph) {\n                var inkLines = inkParagraph.lines;\n                $.each(inkLines.items, function(j, inkLine) {\n                    var inkWords = inkLine.words;\n                    $.each(inkWords.items, function(k, inkWord) {\n                    \n                        // Log language Id of the word\n                        console.log(inkWord.languageId);\n                        \n                        // Log every ink analyzed words.\n                        $.each(inkWord.wordAlternates, function(l, word) {\n                            console.log(word);                                    \n                        })\n                    })\n                })\n            })\n        })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n}); \n```"
+  name: load(option)
+  fullName: onenote.OneNote.InkAnalysisWord.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): OneNote.InkAnalysisWord;'
+    return:
+      type:
+      - onenote.OneNote.InkAnalysisWord
+      description: ''
+    parameters:
+    - id: option
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
+      - string | string[]
+- uid: onenote.OneNote.InkAnalysisWord.strokePointers
+  summary: >-
+    对已识别为此墨迹分析字词一部分的墨迹笔划的弱引用。只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: strokePointers
+  fullName: onenote.OneNote.InkAnalysisWord.strokePointers
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly strokePointers: OneNote.InkStrokePointer[];'
+    return:
+      type:
+      - OneNote.InkStrokePointer[]
+- uid: onenote.OneNote.InkAnalysisWord.toJSON
+  name: toJSON()
+  fullName: onenote.OneNote.InkAnalysisWord.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): OneNote.Interfaces.InkAnalysisWordData;'
+    return:
+      type:
+      - onenote.OneNote.Interfaces.InkAnalysisWordData
+      description: ''
+- uid: onenote.OneNote.InkAnalysisWord.track
+  summary: 跟踪自动调整根据周围的文档中的更改的对象。 此呼叫是 context.trackedObjects.add(thisObject) 简写。 如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。
+  name: track()
+  fullName: onenote.OneNote.InkAnalysisWord.track
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'track(): OneNote.InkAnalysisWord;'
+    return:
+      type:
+      - onenote.OneNote.InkAnalysisWord
+      description: ''
+- uid: onenote.OneNote.InkAnalysisWord.untrack
+  summary: 发行版与此对象，如果以前跟踪关联的内存。 此呼叫是简写 context.trackedObjects.remove(thisObject)。 具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。 您将需要的内存版本生效前调用"context.sync()"。
+  name: untrack()
+  fullName: onenote.OneNote.InkAnalysisWord.untrack
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'untrack(): OneNote.InkAnalysisWord;'
+    return:
+      type:
+      - onenote.OneNote.InkAnalysisWord
+      description: ''
+- uid: onenote.OneNote.InkAnalysisWord.wordAlternates
+  summary: >-
+    按照可能性的顺序，已在此墨迹字词中识别的字词。只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: wordAlternates
+  fullName: onenote.OneNote.InkAnalysisWord.wordAlternates
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly wordAlternates: string[];'
+    return:
+      type:
+      - string[]
