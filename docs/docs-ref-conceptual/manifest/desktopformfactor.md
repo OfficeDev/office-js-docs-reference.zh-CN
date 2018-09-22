@@ -1,18 +1,23 @@
-# <a name="desktopformfactor-element"></a><span data-ttu-id="591e1-101">DesktopFormFactor 元素</span><span class="sxs-lookup"><span data-stu-id="591e1-101">DesktopFormFactor element</span></span>
+# <a name="desktopformfactor-element"></a><span data-ttu-id="5a23b-101">DesktopFormFactor 元素</span><span class="sxs-lookup"><span data-stu-id="5a23b-101">DesktopFormFactor element</span></span>
 
-<span data-ttu-id="591e1-p101">指定对桌面外形规格的外接程序的设置。桌面外形规格包括 Office for Windows、Office for Mac 和 Office Online。它包含该外形规格的所有外接程序信息（**资源**节点的信息除外）。</span><span class="sxs-lookup"><span data-stu-id="591e1-p101">Specifies the settings for an add-in for the desktop form factor. The desktop form factor includes Office for Windows, Office for Mac, and Office Online. It contains all the add-in information for the desktop form factor except for the  **Resources** node.</span></span>
+<span data-ttu-id="5a23b-p101">指定对桌面外形规格的外接程序的设置。桌面外形规格包括 Office for Windows、Office for Mac 和 Office Online。它包含该外形规格的所有外接程序信息（**资源**节点的信息除外）。</span><span class="sxs-lookup"><span data-stu-id="5a23b-p101">Specifies the settings for an add-in for the desktop form factor. The desktop form factor includes Office for Windows, Office for Mac, and Office Online. It contains all the add-in information for the desktop form factor except for the  **Resources** node.</span></span>
 
-<span data-ttu-id="591e1-p102">每个 DesktopFormFactor 定义均包含 **FunctionFile** 元素和一个或多个 **ExtensionPoint** 元素。有关详细信息，请参阅 [FunctionFile 元素](functionfile.md) 和 [ExtensionPoint 元素](extensionpoint.md)。</span><span class="sxs-lookup"><span data-stu-id="591e1-p102">Each DesktopFormFactor definition contains the  **FunctionFile** element and one or more **ExtensionPoint** elements. For more information, see [FunctionFile element](functionfile.md) and [ExtensionPoint element](extensionpoint.md).</span></span> 
+<span data-ttu-id="5a23b-p102">每个 DesktopFormFactor 定义均包含 **FunctionFile** 元素和一个或多个 **ExtensionPoint** 元素。有关详细信息，请参阅 [FunctionFile 元素](functionfile.md) 和 [ExtensionPoint 元素](extensionpoint.md)。</span><span class="sxs-lookup"><span data-stu-id="5a23b-p102">Each DesktopFormFactor definition contains the  **FunctionFile** element and one or more **ExtensionPoint** elements. For more information, see [FunctionFile element](functionfile.md) and [ExtensionPoint element](extensionpoint.md).</span></span>
 
-## <a name="child-elements"></a><span data-ttu-id="591e1-107">子元素</span><span class="sxs-lookup"><span data-stu-id="591e1-107">Child elements</span></span>
+> [!IMPORTANT]
+> <span data-ttu-id="5a23b-107">SupportsSharedFolders 元素是仅在 Outlook 外接程序预览要求设置针对 Exchange Online 中可用。</span><span class="sxs-lookup"><span data-stu-id="5a23b-107">The SupportsSharedFolders element is only available in the Outlook add-ins Preview Requirement Set against Exchange Online.</span></span>
+> <span data-ttu-id="5a23b-108">外接程序，使用此元素不允许在 Office 商店或集中部署。</span><span class="sxs-lookup"><span data-stu-id="5a23b-108">Add-ins that use this element aren't allowed in the Office Store or Centralized Deployment.</span></span>
 
-| <span data-ttu-id="591e1-108">元素</span><span class="sxs-lookup"><span data-stu-id="591e1-108">Element</span></span>                               | <span data-ttu-id="591e1-109">必需</span><span class="sxs-lookup"><span data-stu-id="591e1-109">Required</span></span> | <span data-ttu-id="591e1-110">说明</span><span class="sxs-lookup"><span data-stu-id="591e1-110">Description</span></span>  |
+## <a name="child-elements"></a><span data-ttu-id="5a23b-109">子元素</span><span class="sxs-lookup"><span data-stu-id="5a23b-109">Child elements</span></span>
+
+| <span data-ttu-id="5a23b-110">元素</span><span class="sxs-lookup"><span data-stu-id="5a23b-110">Element</span></span>                               | <span data-ttu-id="5a23b-111">必需</span><span class="sxs-lookup"><span data-stu-id="5a23b-111">Required</span></span> | <span data-ttu-id="5a23b-112">说明</span><span class="sxs-lookup"><span data-stu-id="5a23b-112">Description</span></span>  |
 |:--------------------------------------|:--------:|:-------------|
-| [<span data-ttu-id="591e1-111">ExtensionPoint</span><span class="sxs-lookup"><span data-stu-id="591e1-111">ExtensionPoint</span></span>](extensionpoint.md) | <span data-ttu-id="591e1-112">是</span><span class="sxs-lookup"><span data-stu-id="591e1-112">Yes</span></span>      | <span data-ttu-id="591e1-113">定义外接程序公开功能的位置。</span><span class="sxs-lookup"><span data-stu-id="591e1-113">Defines where an add-in exposes functionality.</span></span> |
-| [<span data-ttu-id="591e1-114">FunctionFile</span><span class="sxs-lookup"><span data-stu-id="591e1-114">FunctionFile</span></span>](functionfile.md)     | <span data-ttu-id="591e1-115">是</span><span class="sxs-lookup"><span data-stu-id="591e1-115">Yes</span></span>      | <span data-ttu-id="591e1-116">包含 JavaScript 函数的文件的 URL。</span><span class="sxs-lookup"><span data-stu-id="591e1-116">A URL to a file that contains JavaScript functions.</span></span>|
-| [<span data-ttu-id="591e1-117">GetStarted</span><span class="sxs-lookup"><span data-stu-id="591e1-117">GetStarted</span></span>](getstarted.md)         | <span data-ttu-id="591e1-118">否</span><span class="sxs-lookup"><span data-stu-id="591e1-118">No</span></span>       | <span data-ttu-id="591e1-119">定义在 Word、Excel 或 PowerPoint 主机中安装外接程序时将显示的标注。</span><span class="sxs-lookup"><span data-stu-id="591e1-119">Defines the callout that appears when installing the add-in in Word, Excel, or PowerPoint hosts.</span></span> |
+| [<span data-ttu-id="5a23b-113">ExtensionPoint</span><span class="sxs-lookup"><span data-stu-id="5a23b-113">ExtensionPoint</span></span>](extensionpoint.md)   | <span data-ttu-id="5a23b-114">是</span><span class="sxs-lookup"><span data-stu-id="5a23b-114">Yes</span></span>      | <span data-ttu-id="5a23b-115">定义外接程序公开功能的位置。</span><span class="sxs-lookup"><span data-stu-id="5a23b-115">Defines where an add-in exposes functionality.</span></span> |
+| [<span data-ttu-id="5a23b-116">FunctionFile</span><span class="sxs-lookup"><span data-stu-id="5a23b-116">FunctionFile</span></span>](functionfile.md)       | <span data-ttu-id="5a23b-117">是</span><span class="sxs-lookup"><span data-stu-id="5a23b-117">Yes</span></span>      | <span data-ttu-id="5a23b-118">包含 JavaScript 函数的文件的 URL。</span><span class="sxs-lookup"><span data-stu-id="5a23b-118">A URL to a file that contains JavaScript functions.</span></span>|
+| [<span data-ttu-id="5a23b-119">GetStarted</span><span class="sxs-lookup"><span data-stu-id="5a23b-119">GetStarted</span></span>](getstarted.md)           | <span data-ttu-id="5a23b-120">否</span><span class="sxs-lookup"><span data-stu-id="5a23b-120">No</span></span>       | <span data-ttu-id="5a23b-121">定义在 Word、Excel 或 PowerPoint 主机中安装外接程序时将显示的标注。</span><span class="sxs-lookup"><span data-stu-id="5a23b-121">Defines the callout that appears when installing the add-in in Word, Excel, or PowerPoint hosts.</span></span> |
+| <span data-ttu-id="5a23b-122">SupportsSharedFolders</span><span class="sxs-lookup"><span data-stu-id="5a23b-122">SupportsSharedFolders</span></span>                 | <span data-ttu-id="5a23b-123">否</span><span class="sxs-lookup"><span data-stu-id="5a23b-123">No</span></span>       | <span data-ttu-id="5a23b-124">定义是否 Outlook 外接程序在委派方案和默认设置为*false* 。</span><span class="sxs-lookup"><span data-stu-id="5a23b-124">Defines whether the Outlook add-in is available in delegate scenarios and is set to *false* by default.</span></span> <span data-ttu-id="5a23b-125">预览要求集。</span><span class="sxs-lookup"><span data-stu-id="5a23b-125">Preview requirement set.</span></span>|
 
-## <a name="desktopformfactor-example"></a><span data-ttu-id="591e1-120">DesktopFormFactor 示例</span><span class="sxs-lookup"><span data-stu-id="591e1-120">DesktopFormFactor example</span></span>
+## <a name="desktopformfactor-example"></a><span data-ttu-id="5a23b-126">DesktopFormFactor 示例</span><span class="sxs-lookup"><span data-stu-id="5a23b-126">DesktopFormFactor example</span></span>
 
 ```xml
 ...
@@ -25,7 +30,7 @@
       </GetStarted>
       <ExtensionPoint xsi:type="PrimaryCommandSurface">
         <!-- information on this extension point -->
-      </ExtensionPoint> 
+      </ExtensionPoint>
       <!-- possibly more ExtensionPoint elements -->
     </DesktopFormFactor>
   </Host>
