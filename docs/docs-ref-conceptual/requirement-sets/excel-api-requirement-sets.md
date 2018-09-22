@@ -12,11 +12,12 @@
 |  要求集  |  用于 Windows 的 office 365\*  |  Office 365 for iPad  |  Office 365 for Mac  | Office Online  |  Office Online Server  |
 |:-----|-----|:-----|:-----|:-----|:-----|
 | Beta  | 请[访问我们的 Excel 的 JavaScript API 打开规范页面](https://github.com/OfficeDev/office-js-docs/tree/ExcelJs_OpenSpec)！ |
-| ExcelApi1.7  | 版本 1801 (生成 9001.2171) 或更高版本| 2.9 或更高版本 | 16.9 或更高版本 | 2018 年 4 月 | 即将推出 |
-| ExcelApi1.6  | 版本 1704（生成号 8201.2001）或更高版本| 2.2 或更高版本 |15.36 或更高版本| 2017 年 4 月 | 即将推出|
-| ExcelApi1.5  | 版本 1703（内部版本 8067.2070）或更高版本| 2.2 或更高版本 |15.36 或更高版本| 2017 年 3 月 | 即将推出|
-| ExcelApi1.4 | 版本 1701（内部版本 7870.2024）或更高版本| 2.2 或更高版本 |15.36 或更高版本| 2017 年 1 月 | 即将推出|
-| ExcelApi1.3  | 版本 1608（内部版本 7369.2055）或更高版本| 1.27 或更高版本 |  15.27 或更高版本| 2016 年 9 月 | 版本 1608（内部版本 7601.6800）或更高版本|
+| ExcelApi1.8  | 版本 1808 (生成 10730.20102) 或更高版本 | 2.17 或更高版本 | 16.17 或更高版本 | 年 9 月 2018 | 即将推出 |
+| ExcelApi1.7  | 版本 1801 (生成 9001.2171) 或更高版本   | 2.9 或更高版本 | 16.9 或更高版本 | 2018 年 4 月 | 即将推出 |
+| ExcelApi1.6  | 版本 1704（生成号 8201.2001）或更高版本   | 2.2 或更高版本 |15.36 或更高版本| 2017 年 4 月 | 即将推出|
+| ExcelApi1.5  | 版本 1703（内部版本 8067.2070）或更高版本   | 2.2 或更高版本 |15.36 或更高版本| 2017 年 3 月 | 即将推出|
+| ExcelApi1.4  | 版本 1701（内部版本 7870.2024）或更高版本   | 2.2 或更高版本 |15.36 或更高版本| 2017 年 1 月 | 即将推出|
+| ExcelApi1.3  | 版本 1608（内部版本 7369.2055）或更高版本 | 1.27 或更高版本 |  15.27 或更高版本| 2016 年 9 月 | 版本 1608（内部版本 7601.6800）或更高版本|
 | ExcelApi1.2  | 版本 1601（内部版本 6741.2088）或更高版本 | 1.21 或更高版本 | 15.22 或更高版本| 2016 年 1 月 ||
 | ExcelApi1.1  | 版本 1509（内部版本 4266.1001）或更高版本 | 1.19 或更高版本 | 15.20 或更高版本| 2016 年 1 月 ||
 
@@ -31,9 +32,279 @@
 - 
   [Office Online Server 概述](https://docs.microsoft.com/officeonlineserver/office-online-server-overview)
 
+## <a name="whats-new-in-excel-javascript-api-18"></a>What's new in Excel JavaScript API 1.8
+
+Excel 的 JavaScript API 要求集 1.8 功能包括 Api 的数据透视表、 数据验证、 图表、 图表、 性能选项和工作簿创建的事件。
+
+### <a name="pivottable"></a>PivotTable
+
+波形 2 的数据透视表 Api 允许加载项设置的数据透视表的层次结构。 您现在可以控制数据和聚合方式。 我们的[数据透视表文章](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-pivottables)包含有关新的数据透视表功能的详细信息。
+
+### <a name="data-validation"></a>数据验证
+
+您可以控制哪些用户的进入工作表中的数据验证提供。 您可以限制预定义的应答设置单元格或提供有关不需要输入弹出警告。 了解有关[添加到区域的数据验证](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-data-validation)今天。
+
+### <a name="charts"></a>图表
+
+另一轮图表 Api 将图表元素的更大编程控制。 您现在可以更高版本访问图例、 轴、 趋势线和绘图区。
+
+### <a name="events"></a>事件
+
+对于图表，已经添加多个[事件](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-events)。 具有与图表交互的用户您外接程序做出反应。 您还可以[切换事件](https://docs.microsoft.com/office/dev/add-ins/excel/performance#enable-and-disable-events)触发跨整个工作簿。
+
+
+|对象| 最近更新| 说明|要求集|
+|:----|:----|:----|:----|
+|[application](/javascript/api/excel/excel.application)|_方法_ > [createWorkbook(base64File: string)](/javascript/api/excel/excel.application)|使用可选的 base64 编码的.xlsx 文件创建一个新的隐藏工作簿。|1.8|
+|[basicDataValidation](/javascript/api/excel/excel.basicdatavalidation)|_属性_> formula1|获取或设置 Formula1，即最小值或运算符的具体的值。|1.8|
+|[basicDataValidation](/javascript/api/excel/excel.basicdatavalidation)|_属性_> formula2|获取或设置 Formula2，即最大值或运算符的具体的值。|1.8|
+|[basicDataValidation](/javascript/api/excel/excel.basicdatavalidation)|_关系_> 运算符|要用于验证的数据的运算符。|1.8|
+|[chart](/javascript/api/excel/excel.chart)|_属性_> categoryLabelLevel|返回或设置引用的其中源自分类标签正在级别 ChartCategoryLabelLevel 枚举常量。 读/写。|1.8|
+|[chart](/javascript/api/excel/excel.chart)|_属性_> plotVisibleOnly|如此 如果只绘制可见单元格。 假 如果可见和隐藏单元格的绘制。 ReadWrite。|1.8|
+|[chart](/javascript/api/excel/excel.chart)|_属性_> seriesNameLevel|返回或设置引用的其中源自系列名称正在级别 ChartSeriesNameLevel 枚举常量。 读/写。|1.8|
+|[chart](/javascript/api/excel/excel.chart)|_属性_> showDataLabelsOverMaximum|代表时是否显示数据标签的值大于上数值轴的最大值。|1.8|
+|[chart](/javascript/api/excel/excel.chart)|_属性_ > style|返回或设置图表的图表样式。 ReadWrite。|1.8|
+|[chart](/javascript/api/excel/excel.chart)|_关系_> displayBlanksAs|返回或设置在图表上绘制空白单元格方式。 ReadWrite。|1.8|
+|[chart](/javascript/api/excel/excel.chart)|_关系_> plotArea|代表图表 plotArea。 只读。|1.8|
+|[chart](/javascript/api/excel/excel.chart)|_关系_> plotBy|返回或设置行或列用作数据系列在图表上的方式。 ReadWrite。|1.8|
+|[chartActivatedEventArgs](/javascript/api/excel/excel.chartactivatedeventargs)|_属性_> chartId|获取的图表的激活 id。|1.8|
+|[chartActivatedEventArgs](/javascript/api/excel/excel.chartactivatedeventargs)|_属性_> 类型|获取该事件的类型。|1.8|
+|[chartActivatedEventArgs](/javascript/api/excel/excel.chartactivatedeventargs)|_属性_> worksheetId|获取在其中激活图表工作表的 id。|1.8|
+|[chartAddedEventArgs](/javascript/api/excel/excel.chartaddedeventargs)|_属性_> chartId|获取添加到表中的图表的 id。|1.8|
+|[chartAddedEventArgs](/javascript/api/excel/excel.chartaddedeventargs)|_属性_> 类型|获取该事件的类型。|1.8|
+|[chartAddedEventArgs](/javascript/api/excel/excel.chartaddedeventargs)|_属性_> worksheetId|获取在其中添加图表工作表的 id。|1.8|
+|[chartAddedEventArgs](/javascript/api/excel/excel.chartaddedeventargs)|_关系_> 源|获取在事件的源。|1.8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_属性_> isBetweenCategories|表示是否数值轴与分类坐标轴相交于分类之间。|1.8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_属性_> 多级|代表坐标轴是否多级。|1.8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_属性_ > numberFormat|代表坐标轴刻度线标签的格式代码。|1.8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_属性_> 偏移|代表标签的级别和第一级与坐标轴之间的距离之间的距离。 值应为从 0 到 1000 之间的整数。|1.8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_属性_> positionAt|代表与其他坐标轴相交在指定的坐标轴位置。 应使用 SetPositionAt(double) 方法设置该属性。 只读。|1.8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_属性_> textOrientation|代表坐标轴刻度线标签的文本方向。 值应为整数从-90 至 90 或 180 纵向文本。|1.8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_关系_> 对齐方式|代表指定的坐标轴刻度线标签的对齐方式。|1.8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_关系_> 位置|代表与其他坐标轴相交的指定的坐标轴位置。|1.8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_方法_ > [setPositionAt(value: double)](/javascript/api/excel/excel.chartaxis)|设置与其他坐标轴相交在指定的坐标轴位置。|1.8|
+|[chartAxisFormat](/javascript/api/excel/excel.chartaxisformat)|_关系_> 填充|代表图表填充格式。 只读。|1.8|
+|[chartAxisTitle](/javascript/api/excel/excel.chartaxistitle)|_方法_ > [setFormula(formula: string)](/javascript/api/excel/excel.chartaxistitle)|一个字符串值，它代表图表坐标轴标题使用 A1 样式表示法的公式。|1.8|
+|[chartAxisTitleFormat](/javascript/api/excel/excel.chartaxistitleformat)|_关系_> 边框|代表边框格式，其中包括颜色、 linestyle 和权重。 只读。|1.8|
+|[chartAxisTitleFormat](/javascript/api/excel/excel.chartaxistitleformat)|_关系_> 填充|代表图表填充格式。 只读。|1.8|
+|[chartBorder](/javascript/api/excel/excel.chartborder)|_方法_ > [clear()](/javascript/api/excel/excel.chartborder)|清除图表元素的边框格式。|1.8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_属性_> 自动图文集|布尔值，表示如果数据标签自动生成相应基于上下文的文字。|1.8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_属性_> 公式|String 值，它代表 A1 样式表示法的图表数据标签的公式。|1.8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_属性_ > height|返回高度，以磅为单位的图表数据标签。 只读。 如果图表数据标签不可见，则为 null。 只读。|1.8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_属性_> 左侧|从左边缘到图表区的左边缘的图表数据标签表示的距离，以磅为单位。 如果图表数据标签不可见，则为 null。|1.8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_属性_ > numberFormat|String 值，它代表数据标签的格式代码。|1.8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_属性_ > text|表示图表上的数据标签的文本字符串。|1.8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_属性_> textOrientation|代表图表数据标签的文本方向。 值应为整数从-90 至 90 或 180 纵向文本。|1.8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_属性_> 顶部|代表从图表的图表区域顶部的数据标签的上边缘的距离，以磅为单位。 如果图表数据标签不可见，则为 null。|1.8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_属性_ > width|返回宽度，以磅为单位的图表数据标签。 只读。 如果图表数据标签不可见，则为 null。 只读。|1.8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_关系_> 格式|代表图表数据标签的格式。 只读。|1.8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_关系_ > horizontalAlignment|代表图表数据标签的水平对齐方式。|1.8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_关系_ > verticalAlignment|代表图表数据标签的垂直对齐方式。|1.8|
+|[chartDataLabelFormat](/javascript/api/excel/excel.chartdatalabelformat)|_关系_> 边框|代表边框格式，其中包括颜色、 linestyle 和权重。 只读。|1.8|
+|[chartDataLabels](/javascript/api/excel/excel.chartdatalabels)|_属性_> 自动图文集|表示是否数据标签自动生成合适基于上下文的文字。|1.8|
+|[chartDataLabels](/javascript/api/excel/excel.chartdatalabels)|_属性_ > numberFormat|代表数据标签的格式代码。|1.8|
+|[chartDataLabels](/javascript/api/excel/excel.chartdatalabels)|_属性_> textOrientation|代表数据标签的文本方向。 值应为整数，一种从-90 至 90，或 0 到 180 纵向文本。|1.8|
+|[chartDataLabels](/javascript/api/excel/excel.chartdatalabels)|_关系_ > horizontalAlignment|代表图表数据标签的水平对齐方式。|1.8|
+|[chartDataLabels](/javascript/api/excel/excel.chartdatalabels)|_关系_ > verticalAlignment|代表图表数据标签的垂直对齐方式。|1.8|
+|[chartDeactivatedEventArgs](/javascript/api/excel/excel.chartdeactivatedeventargs)|_属性_> chartId|获取停用的图表的 id。|1.8|
+|[chartDeactivatedEventArgs](/javascript/api/excel/excel.chartdeactivatedeventargs)|_属性_> 类型|获取该事件的类型。|1.8|
+|[chartDeactivatedEventArgs](/javascript/api/excel/excel.chartdeactivatedeventargs)|_属性_> worksheetId|获取一个图表的被停用的工作表的 id。|1.8|
+|[chartDeletedEventArgs](/javascript/api/excel/excel.chartdeletedeventargs)|_属性_> chartId|获取的图表工作表中删除的 id。|1.8|
+|[chartDeletedEventArgs](/javascript/api/excel/excel.chartdeletedeventargs)|_属性_> 类型|获取该事件的类型。|1.8|
+|[chartDeletedEventArgs](/javascript/api/excel/excel.chartdeletedeventargs)|_属性_> worksheetId|获取在其中删除图表工作表的 id。|1.8|
+|[chartDeletedEventArgs](/javascript/api/excel/excel.chartdeletedeventargs)|_关系_> 源|获取在事件的源。|1.8|
+|[chartLegendEntry](/javascript/api/excel/excel.chartlegendentry)|_属性_ > height|代表图表图例 legendEntry 的高度。 只读。|1.8|
+|[chartLegendEntry](/javascript/api/excel/excel.chartlegendentry)|_属性_ > index|代表图表图例中 legendEntry 的索引。 只读。|1.8|
+|[chartLegendEntry](/javascript/api/excel/excel.chartlegendentry)|_属性_> 左侧|代表图表 legendEntry 的左侧。 只读。|1.8|
+|[chartLegendEntry](/javascript/api/excel/excel.chartlegendentry)|_属性_> 顶部|代表图表 legendEntry 顶部。 只读。|1.8|
+|[chartLegendEntry](/javascript/api/excel/excel.chartlegendentry)|_属性_ > width|代表图表图例上 legendEntry 的宽度。 只读。|1.8|
+|[chartLegendFormat](/javascript/api/excel/excel.chartlegendformat)|_关系_> 边框|代表边框格式，其中包括颜色、 linestyle 和权重。 只读。|1.8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_属性_ > height|代表 plotArea 的高度值。|1.8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_属性_> insideHeight|代表 plotArea 的 insideHeight 值。|1.8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_属性_> insideLeft|代表 plotArea insideLeft 值。|1.8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_属性_> insideTop|代表 plotArea insideTop 值。|1.8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_属性_> insideWidth|代表 plotArea insideWidth 值。|1.8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_属性_> 左侧|代表 plotArea 左侧的值。|1.8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_属性_> 顶部|代表 plotArea 的顶部的值。|1.8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_属性_ > width|代表 plotArea 的宽度值。|1.8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_关系_> 格式|代表图表 plotArea 的格式。 只读。|1.8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_关系_> 位置|代表 plotArea 的位置。|1.8|
+|[chartPlotAreaFormat](/javascript/api/excel/excel.chartplotareaformat)|_关系_> 边框|代表图表 plotArea 的边框属性。 只读。|1.8|
+|[chartPlotAreaFormat](/javascript/api/excel/excel.chartplotareaformat)|_关系_> 填充|表示对象的填充格式，包括背景格式信息。只读。|1.8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_属性_> explosion|返回或设置饼图或圆环图的扇区的分离程度值。 如果没有分离 （切片的提示是与饼图中心中），则返回 0 （零）。 ReadWrite。|1.8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_属性_> firstSliceAngle|返回或设置从顺时针 （垂直） 中的第一个复合饼图或圆环图扇面的角度。 仅适用于饼图、 三维饼图和圆环图。 可以为 0 到 360 之间的值。 ReadWrite|1.8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_属性_> invertIfNegative|如果 Microsoft Excel 反转项中的图案，当它对应于为负数，则为 true。 ReadWrite。|1.8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_属性_> 重叠|指定条形和柱形的排列方式。 可以为-100 到 100 之间的值。 仅适用于二维条形图和二维柱形图。 ReadWrite。|1.8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_属性_> secondPlotSize|返回或设置的第二部分的大小复合饼图或复合条饼图，主要饼图的大小的百分比。 可以为从 5 到 200 的值。 ReadWrite。|1.8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_属性_> varyByCategories|如果 Microsoft Excel 将不同的颜色或模式分配给每个数据标记，则为 true。 该属性所应用的图表只能包含一个系列。 ReadWrite。|1.8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_关系_> axisGroup|返回或设置指定的数据系列的组。 ReadWrite|1.8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_关系_> dataLabels|代表系列中的所有数据标签的集合。 只读。|1.8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_关系_> splitType|返回或设置复合饼图或复合条饼图的两个部分将被拆分的方式。 ReadWrite。|1.8|
+|[chartTrendline](/javascript/api/excel/excel.charttrendline)|_属性_> backwardPeriod|代表趋势线向后延伸的周期数。|1.8|
+|[chartTrendline](/javascript/api/excel/excel.charttrendline)|_属性_> forwardPeriod|代表趋势线向前延伸的周期数。|1.8|
+|[chartTrendline](/javascript/api/excel/excel.charttrendline)|_属性_> showEquation|如果在图表上显示趋势线公式，则为 true。|1.8|
+|[chartTrendline](/javascript/api/excel/excel.charttrendline)|_属性_> showRSquared|如果 R 平方趋势线在图表上显示，则为 true。|1.8|
+|[chartTrendline](/javascript/api/excel/excel.charttrendline)|_关系_> 标签|代表图表中趋势线的标签。 只读。|1.8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_属性_> 自动图文集|布尔值，表示如果趋势线标签自动生成相应基于上下文的文字。|1.8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_属性_> 公式|String 值，它代表 A1 样式表示法的图表趋势线标签的公式。|1.8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_属性_ > height|返回以磅为单位的图表趋势线标签的高度。 只读。 如果图表趋势线标签不可见，则为 null。 只读。|1.8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_属性_> 左侧|代表中图表区的左边缘到图表趋势线标签的左边缘的距离，以磅为单位。 如果图表趋势线标签不可见，则为 null。|1.8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_属性_ > numberFormat|String 值，它代表趋势线标签的格式代码。|1.8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_属性_ > text|表示图表上的趋势线标签的文本字符串。|1.8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_属性_> textOrientation|代表图表趋势线标签的文本方向。 值应为整数从-90 至 90 或 180 纵向文本。|1.8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_属性_> 顶部|代表从图表的图表区域顶部的趋势线标签的上边缘的距离，以磅为单位。 如果图表趋势线标签不可见，则为 null。|1.8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_属性_ > width|返回宽度，以磅为单位的图表趋势线标签。 只读。 如果图表趋势线标签不可见，则为 null。 只读。|1.8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_关系_> 格式|代表图表趋势线标签的格式。 只读。|1.8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_关系_ > horizontalAlignment|代表图表趋势线标签的水平对齐方式。|1.8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_关系_ > verticalAlignment|代表图表趋势线标签的垂直对齐方式。|1.8|
+|[chartTrendlineLabelFormat](/javascript/api/excel/excel.charttrendlinelabelformat)|_关系_> 边框|代表边框格式，其中包括颜色、 linestyle 和权重。 只读。|1.8|
+|[chartTrendlineLabelFormat](/javascript/api/excel/excel.charttrendlinelabelformat)|_关系_> 填充|代表当前图表趋势线标签的填充格式。 只读。|1.8|
+|[chartTrendlineLabelFormat](/javascript/api/excel/excel.charttrendlinelabelformat)|_关系_ > font|代表图表趋势线标签的字体属性 （字体名称、 字号、 颜色等）。 只读。|1.8|
+|[createWorkbookPostProcessAction](/javascript/api/excel/excel.createworkbookpostprocessaction)|_属性_> fakeFileId|传输到客户端，例如，对于 TableSelectionChangedEvent worksheetId 的其他数据。|1.8|
+|[createWorkbookPostProcessAction](/javascript/api/excel/excel.createworkbookpostprocessaction)|_属性_> fileBase64|传输到客户端，例如，对于 TableSelectionChangedEvent worksheetId 的其他数据。|1.8|
+|[createWorkbookPostProcessAction](/javascript/api/excel/excel.createworkbookpostprocessaction)|_关系_> actionType|传输到客户端，例如，对于 TableSelectionChangedEvent worksheetId 的其他数据。|1.8|
+|[customDataValidation](/javascript/api/excel/excel.customdatavalidation)|_属性_> 公式| 自定义数据验证公式。 这将创建特殊输入的规则，例如阻止重复或限制单元格区域中的总数。|1.8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_属性_ > id|DataPivotHierarchy 的 id。 只读。|1.8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_属性_ > name|DataPivotHierarchy 的名称。|1.8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_属性_ > numberFormat|DataPivotHierarchy 数字格式。|1.8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_属性_> 位置|DataPivotHierarchy 位置。|1.8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_关系_> 字段|返回与 DataPivotHierarchy 关联的数据透视。 只读。|1.8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_关系_> showAs|确定数据是否应为特定的汇总计算或不显示。|1.8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_关系_> summarizeBy|确定是否显示 DataPivotHierarchy 的所有项目。|1.8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_方法_ > [setToDefault()](/javascript/api/excel/excel.datapivothierarchy#settodefault)|DataPivotHierarchy 重置为其默认值。|1.8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_属性_ > items|DataPivotHierarchy 对象的集合。 只读。|1.8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_方法_ > [add(pivotHierarchy: PivotHierarchy)](/javascript/api/excel/excel.datapivothierarchycollection)|向当前轴 PivotHierarchy。|1.8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_方法_  >  [getCount()](/javascript/api/excel/excel.datapivothierarchycollection)|获取集合中的数据透视表层次结构的数量。|1.8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_方法_ > [getItem(name: 字符串)](/javascript/api/excel/excel.datapivothierarchycollection)|获取 DataPivotHierarchy 按其名称或 id。|1.8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_方法_  >  [getItemOrNullObject(name: string)](/javascript/api/excel/excel.datapivothierarchycollection)|按名称获取 DataPivotHierarchy。 如果 DataPivotHierarchy 不存在，将返回 null 对象。|1.8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_方法_ > [remove(DataPivotHierarchy: DataPivotHierarchy)](/javascript/api/excel/excel.datapivothierarchycollection)|删除当前轴 PivotHierarchy。|1.8|
+|[验证说明数据验证](/javascript/api/excel/excel.datavalidation)|_属性_> ignoreBlanks|忽略空值： 无数据验证将空白单元格上执行，其默认值为 true。|1.8|
+|[验证说明数据验证](/javascript/api/excel/excel.datavalidation)|_属性_> 有效|代表所有单元格的值是否有效根据数据验证规则。 只读。|1.8|
+|[验证说明数据验证](/javascript/api/excel/excel.datavalidation)|_关系_> errorAlert|错误警报，如果用户输入无效数据。|1.8|
+|[验证说明数据验证](/javascript/api/excel/excel.datavalidation)|_关系_> 提示|当用户选择单元格的提示。|1.8|
+|[验证说明数据验证](/javascript/api/excel/excel.datavalidation)|_关系_> 规则|包含不同类型的数据验证条件的数据有效性规则。|1.8|
+|[验证说明数据验证](/javascript/api/excel/excel.datavalidation)|_关系_ > type|键入的数据验证，有关详细信息，请参阅[Excel.DataValidationType](/javascript/api/excel/excel.datavalidationtype) 。 只读。|1.8|
+|[验证说明数据验证](/javascript/api/excel/excel.datavalidation)|_方法_ > [clear()](/javascript/api/excel/excel.datavalidation)|清除当前范围中的数据有效性。|1.8|
+|[dataValidationErrorAlert](/javascript/api/excel/excel.datavalidationerroralert)|_属性_> 邮件|代表错误警告消息。|1.8|
+|[dataValidationErrorAlert](/javascript/api/excel/excel.datavalidationerroralert)|_属性_> showAlert|确定是否显示错误的警报对话框或不时用户输入无效数据。 默认值为 true。|1.8|
+|[dataValidationErrorAlert](/javascript/api/excel/excel.datavalidationerroralert)|_属性_ > title|代表错误警报对话框标题。|1.8|
+|[dataValidationErrorAlert](/javascript/api/excel/excel.datavalidationerroralert)|_关系_> 样式|代表数据验证通知类型，有关详细信息，请参阅[Excel.DataValidationAlertStyle](/javascript/api/excel/excel.datavalidationalertstyle) 。|1.8|
+|[dataValidationPrompt](/javascript/api/excel/excel.datavalidationprompt)|_属性_> 邮件|表示的消息的提示。|1.8|
+|[dataValidationPrompt](/javascript/api/excel/excel.datavalidationprompt)|_属性_> showPrompt|确定显示提示，当用户选择单元格的数据有效性。|1.8|
+|[dataValidationPrompt](/javascript/api/excel/excel.datavalidationprompt)|_属性_ > title|代表提示符处的标题。|1.8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_关系_> 自定义|自定义数据验证条件。|1.8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_关系_> 日期|日期数据验证条件。|1.8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_关系_> 十进制|十进制数据验证条件。|1.8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_关系_ > list|列表数据验证条件。|1.8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_关系_> textLength|TextLength 数据验证条件。|1.8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_关系_> 时间|时间数据验证条件。|1.8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_关系_> wholeNumber|WholeNumber 数据验证条件。|1.8|
+|[dateTimeDataValidation](/javascript/api/excel/excel.datetimedatavalidation)|_属性_> formula1|获取或设置 Formula1，即最小值或根据运算符的值。|1.8|
+|[dateTimeDataValidation](/javascript/api/excel/excel.datetimedatavalidation)|_属性_> formula2|获取或设置 Formula2，即最大值或根据运算符的值。|1.8|
+|[dateTimeDataValidation](/javascript/api/excel/excel.datetimedatavalidation)|_关系_> 运算符|要用于验证的数据的运算符。|1.8|
+|[enableEventsPostProcessAction](/javascript/api/excel/excel.enableeventspostprocessaction)|_属性_> isEnableEvents {|传输到客户端，例如，对于 TableSelectionChangedEvent worksheetId 的其他数据。|1.8|
+|[enableEventsPostProcessAction](/javascript/api/excel/excel.enableeventspostprocessaction)|_关系_> actionType|传输到客户端，例如，对于 TableSelectionChangedEvent worksheetId 的其他数据。|1.8|
+|[enableEventsPostProcessAction](/javascript/api/excel/excel.enableeventspostprocessaction)|_关系_> controlId|传输到客户端，例如，对于 TableSelectionChangedEvent worksheetId 的其他数据。|1.8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_属性_> enableMultipleFilterItems|确定是否允许多个筛选项目。|1.8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_属性_ > id|FilterPivotHierarchy 的 id。 只读。|1.8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_属性_ > name|FilterPivotHierarchy 的名称。|1.8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_属性_> 位置|FilterPivotHierarchy 位置。|1.8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_关系_ > fields|返回与 FilterPivotHierarchy 关联的数据透视。 只读。|1.8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_方法_ > [setToDefault()](/javascript/api/excel/excel.filterpivothierarchy)|FilterPivotHierarchy 重置为其默认值。|1.8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_属性_ > items|FilterPivotHierarchy 对象的集合。 只读。|1.8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_方法_ > [add(pivotHierarchy: PivotHierarchy)](/javascript/api/excel/excel.filterpivothierarchycollection)|向当前轴 PivotHierarchy。 如果存在行、 列或筛选轴上的其他位置层次结构，它将从该位置。|1.8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_方法_  >  [getCount()](/javascript/api/excel/excel.filterpivothierarchycollection)|获取集合中的数据透视表层次结构的数量。|1.8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_方法_ > [getItem(name: 字符串)](/javascript/api/excel/excel.filterpivothierarchycollection)|获取 FilterPivotHierarchy 按其名称或 id。|1.8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_方法_  >  [getItemOrNullObject(name: string)](/javascript/api/excel/excel.filterpivothierarchycollection)|按名称获取 FilterPivotHierarchy。 如果 FilterPivotHierarchy 不存在，将返回 null 对象。|1.8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_方法_ > [remove(filterPivotHierarchy: FilterPivotHierarchy)](/javascript/api/excel/excel.filterpivothierarchycollection)|删除当前轴 PivotHierarchy。|1.8|
+|[listDataValidation](/javascript/api/excel/excel.listdatavalidation)|_属性_> inCellDropDown|显示或不下拉列表中单元格，则默认为 true。|1.8|
+|[listDataValidation](/javascript/api/excel/excel.listdatavalidation)|_属性_> 源|源的数据有效性的列表|1.8|
+|[openWorkbookPostProcessAction](/javascript/api/excel/excel.openworkbookpostprocessaction)|_属性_> fakeFileId|传输到客户端，例如，对于 TableSelectionChangedEvent worksheetId 的其他数据。|1.8|
+|[openWorkbookPostProcessAction](/javascript/api/excel/excel.openworkbookpostprocessaction)|_关系_> actionType|传输到客户端，例如，对于 TableSelectionChangedEvent worksheetId 的其他数据。|1.8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_属性_ > id|透视字段的 id。 只读。|1.8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_属性_ > name|透视字段的名称。|1.8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_属性_> showAllItems|确定是否显示透视字段的所有项。|1.8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_关系_> 项目|返回与 PivotField 关联的数据透视。 只读。|1.8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_关系_> 分类汇总|分类汇总的透视字段。|1.8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_方法_ > [sortByLabels(sortby: SortBy)](/javascript/api/excel/excel.pivotfield)|对透视字段进行排序。 如果指定 DataPivotHierarchy，则排序将应用基于，如果没有排序将基于本身的 PivotField。|1.8|
+|[pivotFieldCollection](/javascript/api/excel/excel.pivotfieldcollection)|_属性_ > items|PivotField 对象的集合。 只读。|1.8|
+|[pivotFieldCollection](/javascript/api/excel/excel.pivotfieldcollection)|_方法_  >  [getCount()](/javascript/api/excel/excel.pivotfieldcollection)|获取集合中的数据透视表层次结构的数量。|1.8|
+|[pivotFieldCollection](/javascript/api/excel/excel.pivotfieldcollection)|_方法_ > [getItem(name: 字符串)](/javascript/api/excel/excel.pivotfieldcollection)|获取 PivotHierarchy 按其名称或 id。|1.8|
+|[pivotFieldCollection](/javascript/api/excel/excel.pivotfieldcollection)|_方法_  >  [getItemOrNullObject(name: string)](/javascript/api/excel/excel.pivotfieldcollection)|按名称获取 PivotHierarchy。 如果 PivotHierarchy 不存在，将返回 null 对象。|1.8|
+|[pivotHierarchy](/javascript/api/excel/excel.pivothierarchy)|_属性_ > id|PivotHierarchy 的 id。 只读。|1.8|
+|[pivotHierarchy](/javascript/api/excel/excel.pivothierarchy)|_属性_ > name|PivotHierarchy 的名称。|1.8|
+|[pivotHierarchy](/javascript/api/excel/excel.pivothierarchy)|_关系_ > fields|返回与 PivotHierarchy 关联的数据透视。 只读。|1.8|
+|[pivotHierarchyCollection](/javascript/api/excel/excel.pivothierarchycollection)|_属性_ > items|PivotHierarchy 对象的集合。 只读。|1.8|
+|[pivotHierarchyCollection](/javascript/api/excel/excel.pivothierarchycollection)|_方法_  >  [getCount()](/javascript/api/excel/excel.pivothierarchycollection)|获取集合中的数据透视表层次结构的数量。|1.8|
+|[pivotHierarchyCollection](/javascript/api/excel/excel.pivothierarchycollection)|_方法_ > [getItem(name: 字符串)](/javascript/api/excel/excel.pivothierarchycollection)|获取 PivotHierarchy 按其名称或 id。|1.8|
+|[pivotHierarchyCollection](/javascript/api/excel/excel.pivothierarchycollection)|_方法_  >  [getItemOrNullObject(name: string)](/javascript/api/excel/excel.pivothierarchycollection)|按名称获取 PivotHierarchy。 如果 PivotHierarchy 不存在，将返回 null 对象。|1.8|
+|[pivotItem](/javascript/api/excel/excel.pivotitem)|_属性_ > id|PivotItem 的 id。 只读。|1.8|
+|[pivotItem](/javascript/api/excel/excel.pivotitem)|_属性_> isExpanded|确定项目是否已展开以显示子项目，或如果折叠和已被隐藏子项目。|1.8|
+|[pivotItem](/javascript/api/excel/excel.pivotitem)|_属性_ > name|PivotItem 的名称。|1.8|
+|[pivotItem](/javascript/api/excel/excel.pivotitem)|_属性_> 可见|确定 PivotItem 是否可见。|1.8|
+|[pivotItemCollection](/javascript/api/excel/excel.pivotitemcollection)|_属性_ > items|PivotItem 对象的集合。 只读。|1.8|
+|[pivotItemCollection](/javascript/api/excel/excel.pivotitemcollection)|_方法_  >  [getCount()](/javascript/api/excel/excel.pivotitemcollection)|获取集合中的数据透视表层次结构的数量。|1.8|
+|[pivotItemCollection](/javascript/api/excel/excel.pivotitemcollection)|_方法_ > [getItem(name: 字符串)](/javascript/api/excel/excel.pivotitemcollection)|获取 PivotHierarchy 按其名称或 id。|1.8|
+|[pivotItemCollection](/javascript/api/excel/excel.pivotitemcollection)|_方法_  >  [getItemOrNullObject(name: string)](/javascript/api/excel/excel.pivotitemcollection)|按名称获取 PivotHierarchy。 如果 PivotHierarchy 不存在，将返回 null 对象。|1.8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_属性_> showColumnGrandTotals|如果数据透视表报表显示总计总计列，则为 true。|1.8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_属性_> showRowGrandTotals|如果数据透视表报表显示总计行的总数。|1.8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_属性_> subtotalLocation|此属性指示对数据透视表的所有字段的 SubtotalLocationType。 如果字段具有不同的状态，这将为空。 可能的值为： AtTop、 AtBottom。|1.8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_关系_> layoutType|此属性指示对数据透视表的所有字段的 PivotLayoutType。 如果字段具有不同的状态，这将为空。|1.8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_方法_ > [getColumnLabelRange()](/javascript/api/excel/excel.pivotlayout)|返回数据透视表的列标签所在的区域。|1.8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_方法_ > [getDataBodyRange()](/javascript/api/excel/excel.pivotlayout)|返回数据透视表的数据值所在的区域。|1.8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout.md)|_方法_ > [getFilterAxisRange()](/javascript/api/excel/excel.pivotlayout)|返回数据透视表的筛选器区域的范围。|1.8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_方法_ > [getRange()](/javascript/api/excel/excel.pivotlayout)|返回位于数据透视表，排除筛选器区域的范围。|1.8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_方法_ > [getRowLabelRange()](/javascript/api/excel/excel.pivotlayout)|返回数据透视表的行标签所在的区域。|1.8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_关系_> columnHierarchies|数据透视表列数据透视表层次结构中。 只读。|1.8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_关系_> dataHierarchies|数据透视表的数据透视层次结构中。 只读。|1.8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_关系_> filterHierarchies|数据透视表筛选器数据透视表层次结构中。 只读。|1.8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_关系_> 层次结构|数据透视表的数据透视表层次结构中。 只读。|1.8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_关系_> 布局|用于说明布局和数据透视表的可视结构 PivotLayout。 只读。|1.8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_关系_> rowHierarchies|数据透视表行数据透视表层次结构中。 只读。|1.8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_方法_ > [delete()](/javascript/api/excel/excel.pivottable)|删除数据透视表。|1.8|
+|[pivotTableCollection](/javascript/api/excel/excel.pivottablecollection)|_方法_ > [add(name: string, source: object, destination: object)](/javascript/api/excel/excel.pivottablecollection)|添加数据透视表基于指定的源数据并将其插入目标区域左上角单元格。|1.8|
+|[range](/javascript/api/excel/excel.range)|_关系_> 验证说明数据验证|返回的数据验证对象。 只读。|1.8|
+|[rowColumnPivotHierarchy](/javascript/api/excel/excel.rowcolumnpivothierarchy)|_属性_ > id|RowColumnPivotHierarchy 的 id。 只读。|1.8|
+|[rowColumnPivotHierarchy](/javascript/api/excel/excel.rowcolumnpivothierarchy)|_属性_ > name|RowColumnPivotHierarchy 的名称。|1.8|
+|[rowColumnPivotHierarchy](/javascript/api/excel/excel.rowcolumnpivothierarchy)|_属性_> 位置|RowColumnPivotHierarchy 位置。|1.8|
+|[rowColumnPivotHierarchy](/javascript/api/excel/excel.rowcolumnpivothierarchy)|_关系_ > fields|返回与 RowColumnPivotHierarchy 关联的数据透视。 只读。|1.8|
+|[rowColumnPivotHierarchy](/javascript/api/excel/excel.rowcolumnpivothierarchy)|_方法_ > [setToDefault()](/javascript/api/excel/excel.rowcolumnpivothierarchy)|RowColumnPivotHierarchy 重置为其默认值。|1.8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_属性_ > items|RowColumnPivotHierarchy 对象的集合。 只读。|1.8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_方法_ > [add(pivotHierarchy: PivotHierarchy)](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|向当前轴 PivotHierarchy。 层次结构上是否存在其他地方行中，列中，|1.8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_方法_  >  [getCount()](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|获取集合中的数据透视表层次结构的数量。|1.8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_方法_ > [getItem(name: 字符串)](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|获取 RowColumnPivotHierarchy 按其名称或 id。|1.8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_方法_  >  [getItemOrNullObject(name: string)](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|按名称获取 RowColumnPivotHierarchy。 如果 RowColumnPivotHierarchy 不存在，将返回 null 对象。|1.8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_方法_ > [remove(rowColumnPivotHierarchy: RowColumnPivotHierarchy)](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|删除当前轴 PivotHierarchy。|1.8|
+|[运行时](/javascript/api/excel/excel.runtime)|_属性_> enableEvents|切换 JavaScript 中的当前任务窗格或内容加载项的事件。|1.8|
+|[showAsRule](/javascript/api/excel/excel.showasrule)|_关系_> baseField|基本透视字段中，如果适用，则基于 ShowAs 计算，基于 else null ShowAsCalculation 类型。|1.8|
+|[showAsRule](/javascript/api/excel/excel.showasrule)|_关系_> baseItem|基本的项，如果适用，基于 ShowAs 计算基于 else null ShowAsCalculation 类型。|1.8|
+|[showAsRule](/javascript/api/excel/excel.showasrule)|_关系_> 计算|要用于数据透视字段 ShowAs 计算。|1.8|
+|[style](/javascript/api/excel/excel.style)|_属性_> 自动|指示是否文本会自动缩进单元格中的文本对齐方式设置为等距分布时。|1.8|
+|[style](/javascript/api/excel/excel.style)|_属性_> textOrientation|样式的文本方向。|1.8|
+|[分类汇总](/javascript/api/excel/excel.subtotals)|_属性_> 自动|如果自动设置为 true，则所有其他值将被忽略时设置分类汇总。|1.8|
+|[分类汇总](/javascript/api/excel/excel.subtotals)|_属性_> 平均| |1.8|
+|[分类汇总](/javascript/api/excel/excel.subtotals)|_属性_> 计数| |1.8|
+|[分类汇总](/javascript/api/excel/excel.subtotals)|_属性_> countNumbers| |1.8|
+|[分类汇总](/javascript/api/excel/excel.subtotals)|_属性_> 最大| |1.8|
+|[分类汇总](/javascript/api/excel/excel.subtotals)|_属性_> 最小值| |1.8|
+|[分类汇总](/javascript/api/excel/excel.subtotals)|_属性_> 产品| |1.8|
+|[分类汇总](/javascript/api/excel/excel.subtotals)|_属性_> standardDeviation| |1.8|
+|[分类汇总](/javascript/api/excel/excel.subtotals)|_属性_> standardDeviationP| |1.8|
+|[分类汇总](/javascript/api/excel/excel.subtotals)|_属性_> sum| |1.8|
+|[分类汇总](/javascript/api/excel/excel.subtotals)|_属性_> 差异| |1.8|
+|[分类汇总](/javascript/api/excel/excel.subtotals)|_属性_> varianceP| |1.8|
+|[table](/javascript/api/excel/excel.table)|_属性_> legacyId|返回数字的 id。只读的。|1.8|
+|[workbook](/javascript/api/excel/excel.workbook)|_属性_> readOnly|如果在只读模式中打开工作簿，则为 true。 只读。|1.8|
+|[workbookCreated](/javascript/api/excel/excel.workbookcreated)|_属性_ > id|返回一个值，用于唯一标识 WorkbookCreated 对象。 只读。|1.8|
+|[workbookCreated](/javascript/api/excel/excel.workbookcreated)|_方法_ > [open()](/javascript/api/excel/excel.workbookcreated)|打开工作簿。|1.8|
+|[worksheet](/javascript/api/excel/excel.worksheet)|_属性_> showGridlines|获取或设置工作表的网格线标志。|1.8|
+|[worksheet](/javascript/api/excel/excel.worksheet)|_属性_> showHeadings|获取或设置工作表的标题的标志。|1.8|
+|[worksheetCalculatedEventArgs](/javascript/api/excel/excel.worksheetcalculatedeventargs)|_属性_> 类型|获取该事件的类型。|1.8|
+|[worksheetCalculatedEventArgs](/javascript/api/excel/excel.worksheetcalculatedeventargs)|_属性_> worksheetId|获取的计算工作表的 id。|1.8|
+
 ## <a name="whats-new-in-excel-javascript-api-17"></a>What's new in Excel JavaScript API 1.7
 
-Excel 的 JavaScript API 要求集 1.7 功能包括图表、 事件、 数据验证、 工作表、 区域、 文档属性，为项目、 保护选项和样式的 Api。
+Excel 的 JavaScript API 要求集 1.7 功能包括图表、 事件、 工作表、 区域、 文档属性，为项目、 保护选项和样式的 Api。
 
 ### <a name="customize-charts"></a>自定义图表
 

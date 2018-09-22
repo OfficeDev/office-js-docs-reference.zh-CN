@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 871ff6faa3d3b13d6d8ee8500ba5d820bda0d115
-ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.openlocfilehash: e94215b64b1c0a780c6b511af3e7c54356009eeb
+ms.sourcegitcommit: e9cb2f2717e1cf062a2f6ffe6a382d7b9b934ba0
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/20/2018
-ms.locfileid: "24040326"
+ms.lasthandoff: 09/21/2018
+ms.locfileid: "24062903"
 items:
 - uid: excel.Excel.ChartAxis
   summary: >-
@@ -21,6 +21,7 @@ items:
   - OfficeExtension.ClientObject
   package: excel
   children:
+  - excel.Excel.ChartAxis.alignment
   - excel.Excel.ChartAxis.axisGroup
   - excel.Excel.ChartAxis.baseTimeUnit
   - excel.Excel.ChartAxis.categoryType
@@ -28,6 +29,7 @@ items:
   - excel.Excel.ChartAxis.displayUnit
   - excel.Excel.ChartAxis.format
   - excel.Excel.ChartAxis.height
+  - excel.Excel.ChartAxis.isBetweenCategories
   - excel.Excel.ChartAxis.left
   - excel.Excel.ChartAxis.load
   - excel.Excel.ChartAxis.logBase
@@ -41,11 +43,18 @@ items:
   - excel.Excel.ChartAxis.minorTickMark
   - excel.Excel.ChartAxis.minorTimeUnitScale
   - excel.Excel.ChartAxis.minorUnit
+  - excel.Excel.ChartAxis.multiLevel
+  - excel.Excel.ChartAxis.numberFormat
+  - excel.Excel.ChartAxis.offset
+  - excel.Excel.ChartAxis.position
+  - excel.Excel.ChartAxis.positionAt
   - excel.Excel.ChartAxis.reversePlotOrder
   - excel.Excel.ChartAxis.scaleType
   - excel.Excel.ChartAxis.setCategoryNames
   - excel.Excel.ChartAxis.setCustomDisplayUnit
+  - excel.Excel.ChartAxis.setPositionAt
   - excel.Excel.ChartAxis.showDisplayUnitLabel
+  - excel.Excel.ChartAxis.textOrientation
   - excel.Excel.ChartAxis.tickLabelPosition
   - excel.Excel.ChartAxis.tickLabelSpacing
   - excel.Excel.ChartAxis.tickMarkSpacing
@@ -55,6 +64,22 @@ items:
   - excel.Excel.ChartAxis.type
   - excel.Excel.ChartAxis.visible
   - excel.Excel.ChartAxis.width
+- uid: excel.Excel.ChartAxis.alignment
+  summary: >-
+    代表指定的坐标轴刻度线标签的对齐方式。 有关详细信息，请参阅 Excel.ChartTextHorizontalAlignment。
+
+
+    \[[API 集： ExcelApi 1.8](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: alignment
+  fullName: excel.Excel.ChartAxis.alignment
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'alignment: Excel.ChartTickLabelAlignment | "Center" | "Left" | "Right";'
+    return:
+      type:
+      - Excel.ChartTickLabelAlignment | "Center" | "Left" | "Right"
 - uid: excel.Excel.ChartAxis.axisGroup
   summary: >-
     代表指定坐标轴组。 有关详细信息，请参阅 Excel.ChartAxisGroup。 只读。
@@ -168,6 +193,22 @@ items:
     return:
       type:
       - number
+- uid: excel.Excel.ChartAxis.isBetweenCategories
+  summary: >-
+    表示是否数值轴与分类坐标轴相交于分类之间。
+
+
+    \[[API 集： ExcelApi 1.8](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: isBetweenCategories
+  fullName: excel.Excel.ChartAxis.isBetweenCategories
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'isBetweenCategories: boolean;'
+    return:
+      type:
+      - boolean
 - uid: excel.Excel.ChartAxis.left
   summary: >-
     表示从左侧的图表区的轴的左边缘的距离，以磅为单位。 如果坐标轴不可见，则为 null。 只读。
@@ -379,6 +420,86 @@ items:
     return:
       type:
       - any
+- uid: excel.Excel.ChartAxis.multiLevel
+  summary: >-
+    代表坐标轴是否多级。
+
+
+    \[[API 集： ExcelApi 1.8](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: multiLevel
+  fullName: excel.Excel.ChartAxis.multiLevel
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'multiLevel: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.ChartAxis.numberFormat
+  summary: >-
+    代表坐标轴刻度线标签的格式代码。
+
+
+    \[[API 集： ExcelApi 1.8](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: numberFormat
+  fullName: excel.Excel.ChartAxis.numberFormat
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'numberFormat: string;'
+    return:
+      type:
+      - string
+- uid: excel.Excel.ChartAxis.offset
+  summary: >-
+    代表标签的级别和第一级与坐标轴之间的距离之间的距离。 值应为从 0 到 1000 之间的整数。
+
+
+    \[[API 集： ExcelApi 1.8](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: offset
+  fullName: excel.Excel.ChartAxis.offset
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'offset: number;'
+    return:
+      type:
+      - number
+- uid: excel.Excel.ChartAxis.position
+  summary: >-
+    代表与其他坐标轴相交的指定的坐标轴位置。 有关详细信息，请参阅 Excel.ChartAxisPosition。
+
+
+    \[[API 集： ExcelApi 1.8](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: position
+  fullName: excel.Excel.ChartAxis.position
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'position: Excel.ChartAxisPosition | "Automatic" | "Maximum" | "Minimum" | "Custom";'
+    return:
+      type:
+      - Excel.ChartAxisPosition | "Automatic" | "Maximum" | "Minimum" | "Custom"
+- uid: excel.Excel.ChartAxis.positionAt
+  summary: >-
+    代表与其他坐标轴相交在指定的坐标轴位置。 只读。 设置为此属性应使用 SetPositionAt(double) 方法。
+
+
+    \[[API 集： ExcelApi 1.8](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: positionAt
+  fullName: excel.Excel.ChartAxis.positionAt
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly positionAt: number;'
+    return:
+      type:
+      - number
 - uid: excel.Excel.ChartAxis.reversePlotOrder
   summary: >-
     表示是否 Microsoft Excel 数据点绘制数据从最后一到第一个。
@@ -455,6 +576,28 @@ items:
       description: 显示单位的自定义值。
       type:
       - number
+- uid: excel.Excel.ChartAxis.setPositionAt
+  summary: >-
+    设置与其他坐标轴相交在指定的坐标轴位置。
+
+
+    \[[API 集： ExcelApi 1.8](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: setPositionAt(value)
+  fullName: excel.Excel.ChartAxis.setPositionAt
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setPositionAt(value: number): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: value
+      description: 在 crosses 的自定义值
+      type:
+      - number
 - uid: excel.Excel.ChartAxis.showDisplayUnitLabel
   summary: >-
     代表轴显示单位标签是否可见。
@@ -472,6 +615,22 @@ items:
       type:
       - boolean
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    let chart = sheet.charts.getItemAt(0);\n    let axis = chart.axes.valueAxis;\n\n    // Remove display unit.\n    axis.showDisplayUnitLabel = false;\n\n    await context.sync();\n});\n```"
+- uid: excel.Excel.ChartAxis.textOrientation
+  summary: >-
+    代表坐标轴刻度线标签的文本方向。 值应为整数从-90 至 90 或 180 纵向文本。
+
+
+    \[[API 集： ExcelApi 1.8](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: textOrientation
+  fullName: excel.Excel.ChartAxis.textOrientation
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'textOrientation: any;'
+    return:
+      type:
+      - any
 - uid: excel.Excel.ChartAxis.tickLabelPosition
   summary: >-
     代表指定坐标轴上刻度线标签的位置。 有关详细信息，请参阅 Excel.ChartAxisTickLabelPosition。

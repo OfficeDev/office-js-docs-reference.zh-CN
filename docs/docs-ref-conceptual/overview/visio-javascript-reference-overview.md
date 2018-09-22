@@ -2,7 +2,7 @@
 
 可以使用 Visio JavaScript API 在 SharePoint Online 中嵌入 Visio 图表。 嵌入的 Visio 图表是存储在 SharePoint 文档库并在 SharePoint 页面上显示的图表。 若要嵌入的 Visio 图表，显示在 HTML`<iframe>`元素。 然后，可以使用 Visio JavaScript API 以程序化方式处理嵌入的图表。
 
-![SharePoint 页面上 iframe 中的 Visio 图表，以及脚本编辑器 Web 部件](../images/visio-api-block-diagram.png)
+![SharePoint 页面上 iframe 中的 Visio 图表，以及脚本编辑器 Web 部件](/javascript/api/docs-ref-conceptual/images/visio-api-block-diagram.png)
 
 
 可以使用 Visio JavaScript API 执行以下操作：
@@ -20,33 +20,32 @@ EmbeddedSession 对象初始化开发者框架和 Visio Online 框架之间的�
 
 ```js
 var session = new OfficeExtension.EmbeddedSession(url, { id: "embed-iframe",container: document.getElementById("iframeHost") });
-session.init().then(function () {    
+session.init().then(function () {
     window.console.log("Session successfully initialized");
 });
 ```
 
 ## <a name="visiorunsession-functioncontext--batch-"></a>Visio.run （会话，function(context) {批处理}）
 
-**Visio.run()** 运行一个对 Visio 对象模型执行操作的批处理脚本。 批处理命令包括定义本地 JavaScript 代理对象、在本地和 Visio 对象之间同步状态的 **sync()** 方法以及承诺实现。 **Visio.run()** 中的批处理请求的优势在于，当实现承诺时，在执行期间分配的任何被跟踪的页面对象将会自动释放。 
+**Visio.run()** 运行一个对 Visio 对象模型执行操作的批处理脚本。 批处理命令包括定义本地 JavaScript 代理对象、在本地和 Visio 对象之间同步状态的 **sync()** 方法以及承诺实现。 **Visio.run()** 中的批处理请求的优势在于，当实现承诺时，在执行期间分配的任何被跟踪的页面对象将会自动释放。
 
-运行的方法接受会话和 RequestContext 对象并返回承诺 (通常刚刚**context.sync()** 的结果)。 可以在 **Visio.run()** 之外运行批处理操作。 不过，在这种情况下，需要手动跟踪和管理任何页面对象引用。 
+运行的方法接受会话和 RequestContext 对象并返回承诺 (通常刚刚**context.sync()** 的结果)。 可以在 **Visio.run()** 之外运行批处理操作。 不过，在这种情况下，需要手动跟踪和管理任何页面对象引用。
 
 ## <a name="requestcontext"></a>RequestContext
 
-RequestContext 对象方便了 Visio 应用程序的请求。 开发人员图文框与 Visio Online 应用程序在两个不同的 iframe 中运行，因为需要 RequestContext 对象 （在下面的示例上下文） 来获得对 Visio 和相关的对象，如网页和形状，从开发人员框架的访问。 
+RequestContext 对象方便了 Visio 应用程序的请求。 开发人员图文框与 Visio Online 应用程序在两个不同的 iframe 中运行，因为需要 RequestContext 对象 （在下一个示例中的上下文） 来获得对 Visio 和相关的对象，如网页和形状，从开发人员框架的访问。
 
 ```js
 function hideToolbars() {
     Visio.run(session, function(context){
         var app = context.document.application;
-        app.showToolbars = false;            
-        return context.sync().then(function ()
-        {
+        app.showToolbars = false;
+        return context.sync().then(function () {
             window.console.log("Toolbars Hidden");
-        });      
-        }).catch(function(error)
+        });
+    }).catch(function(error)
     {
-        window.console.log("Error: " + error);            
+        window.console.log("Error: " + error);
     });
 };
 ```
@@ -81,27 +80,27 @@ object.load(string: properties); //or object.load(array: properties); //or objec
 
 ## <a name="example-printing-all-shapes-text-in-active-page"></a>示例：打印活动页中的所有形状文本
 
-下面的示例展示了如何打印数组形状对象的形状文本值。 **Visio.run()** 方法包含一批指令。 在此次批处理期间，将会创建一个代理对象，引用活动文档中的形状。
+下面的示例展示了如何打印数组形状对象的形状文本值。
+**Visio.run()** 方法包含一批指令。 在此次批处理期间，将会创建一个代理对象，引用活动文档中的形状。
 
 所有这些命令是排队，并在调用**context.sync()** 时运行。 **sync()** 方法返回一个承诺，可用于将其与其他操作关联起来。
 
 ```js
 Visio.run(session, function (context) {
-   var page = context.document.getActivePage();
-   var shapes = page.shapes;
-   shapes.load();
-   return context.sync().then(function () {
-        for(var i=0; i<shapes.items.length;i++)
- {
+    var page = context.document.getActivePage();
+    var shapes = page.shapes;
+    shapes.load();
+    return context.sync().then(function () {
+        for(var i=0; i<shapes.items.length;i++) {
             var shape = shapes.items[i];
-     window.console.log("Shape Text: " + shape.text );
- }
-});
+            window.console.log("Shape Text: " + shape.text );
+        }
+    });
 }).catch(function(error) {
-  window.console.log("Error: " + error);
-  if (error instanceof OfficeExtension.Error) {
-       window.console.log ("Debug info: " + JSON.stringify(error.debugInfo));
-  }
+    window.console.log("Error: " + error);
+    if (error instanceof OfficeExtension.Error) {
+        window.console.log ("Debug info: " + JSON.stringify(error.debugInfo));
+    }
 });
 ```
 
@@ -136,45 +135,43 @@ document.write("<div id='iframeHost' />");
 
 let session; // Global variable to store the session and pass it afterwards in Visio.run()
 var textArea;
-// Loads the Visio application and Initializes communication between devloper frame and Visio online frame
+// Loads the Visio application and Initializes communication between developer frame and Visio online frame
 function initEmbeddedFrame() {
-        textArea = document.getElementById('ResultOutput');
+    textArea = document.getElementById('ResultOutput');
     var url = document.getElementById('fileUrl').value;
     if (!url) {
         window.alert("File URL should not be empty");
     }
-    // APIs are enabled for EmbedView action only.   
+    // APIs are enabled for EmbedView action only.
     url = url.replace("action=view","action=embedview");
     url = url.replace("action=interactivepreview","action=embedview");
     url = url.replace("action=default","action=embedview");
     url = url.replace("action=edit","action=embedview");
   
-       session = new OfficeExtension.EmbeddedSession(url, { id: "embed-iframe",container: document.getElementById("iframeHost") });
-       return session.init().then(function () {
-        // Initilization is successful 
-        textArea.value  = "Initilization is successful";
+    session = new OfficeExtension.EmbeddedSession(url, { id: "embed-iframe",container: document.getElementById("iframeHost") });
+    return session.init().then(function () {
+        // Initialization is successful
+        textArea.value  = "Initialization is successful";
     });
-     }
+}
 
 // Code for getting selected Shape Text using the shapes collection object
 function getSelectedShapeText() {
-    Visio.run(session, function (context) {     
-       var page = context.document.getActivePage();
-       var shapes = page.shapes;
-       shapes.load();
-           return context.sync().then(function () {
-               textArea.value = "Please select a Shape in the Diagram";
-               for(var i=0; i<shapes.items.length;i++)
-            {
-              var shape = shapes.items[i];
-                  if ( shape.select == true)
-               {
-                textArea.value = shape.text;
+    Visio.run(session, function (context) {
+        var page = context.document.getActivePage();
+        var shapes = page.shapes;
+        shapes.load();
+        return context.sync().then(function () {
+            textArea.value = "Please select a Shape in the Diagram";
+            for(var i=0; i<shapes.items.length;i++) {
+                var shape = shapes.items[i];
+                if ( shape.select == true) {
+                    textArea.value = shape.text;
                     return;
-                   }
+                }
             }
-      });
-     }).catch(function(error) {
+        });
+    }).catch(function(error) {
         textArea.value = "Error: ";
         if (error instanceof OfficeExtension.Error) {
             textArea.value += "Debug info: " + JSON.stringify(error.debugInfo);
@@ -186,13 +183,13 @@ function getSelectedShapeText() {
 
 之后，所需的只是您想要使用的 Visio 图表的 URL。 只需将 Visio 图表上载到 SharePoint Online，然后打开该 Visio Online 中。 从该处，打开嵌入对话框，并在上面的示例使用嵌入的 URL。
 
-![将 Visio 文件 URL 复制从嵌入对话框](../images/Visio-embed-url.png)
+![将 Visio 文件 URL 复制从嵌入对话框](/javascript/api/docs-ref-conceptual/images/Visio-embed-url.png)
 
-如果您使用 Visio Online 在编辑模式下，打开嵌入对话框中，请选择**文件** > **共享** > **嵌入**。 如果您使用 Visio 联机视图模式中，打开嵌入对话框中，请选择...，然后**嵌入**。 
+如果您使用 Visio Online 在编辑模式下，打开嵌入对话框中，请选择**文件** > **共享** > **嵌入**。 如果您使用 Visio 联机视图模式中，打开嵌入对话框中，请选择...，然后**嵌入**。
 
 ## <a name="open-api-specifications"></a>开放 API 规范
 
-在设计和开发新的 API 时，我们会“[开放性 API 规范](../openspec.md)”页面上提供这些 API，以便你向我们提供反馈。了解管道中的新增功能，并提供你对我们的设计规范的宝贵意见。 
+在设计和开发新的 API 时，我们会“[开放性 API 规范](../openspec.md)”页面上提供这些 API，以便你向我们提供反馈。了解管道中的新增功能，并提供你对我们的设计规范的宝贵意见。
 
 ## <a name="visio-javascript-api-reference"></a>Visio 的 JavaScript API 参考 （英文）
 

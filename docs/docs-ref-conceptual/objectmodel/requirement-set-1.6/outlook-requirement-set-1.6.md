@@ -1,6 +1,6 @@
 # <a name="outlook-add-in-api-requirement-set-16"></a>Outlook 加载项 API 要求集 1.6
 
-适用于 Office 的 JavaScript API 的 Outlook 外接程序 API 子集包括您可以在 Outlook 外接程序中使用的对象、方法、属性和事件。
+Outlook 加载项 API 子集的 JavaScript API for Office 包括对象、 方法、 属性和事件，您可以在 Outlook 中使用外接程序。
 
 ## <a name="whats-new-in-16"></a>What's new in 1.6？
 

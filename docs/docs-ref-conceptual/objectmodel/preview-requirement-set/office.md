@@ -88,11 +88,11 @@
 
 | 名称 | 类型 | 说明 | 最低要求集 |
 |---|---|---|---|
-|`AppointmentTimeChanged`| String | 已更改的日期或时间的所选系列的约会。 | Preview |
+|`AppointmentTimeChanged`| String | 已更改的日期或时间所选的约会或系列。 | 1.7 |
 |`ItemChanged`| 字符串 | 选定的项已更改。 | 1.5 |
 |`OfficeThemeChanged`| 字符串 | 选定的项已更改。 | Preview |
-|`RecipientsChanged`| String | 已更改选定项目的收件人列表。 | Preview |
-|`RecurrencePatternChanged`| String | 所选系列的定期模式已更改。 | Preview |
+|`RecipientsChanged`| String | 已更改所选的项目或约会位置的收件人列表。 | 1.7 |
+|`RecurrenceChanged`| String | 所选系列的定期模式已更改。 | 1.7 |
 
 ##### <a name="requirements"></a>要求
 

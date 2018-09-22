@@ -18,9 +18,9 @@ Outlook 加载项声明要求通过使用其[清单](https://docs.microsoft.com/
 
 ## <a name="using-apis-from-later-requirement-sets"></a>使用更高版本要求集中的 API
 
-设置要求集不会限制外接程序可使用的可用 API。例如，如果外接程序指定要求集 1.1，但它在支持 1.3 的 Outlook 客户端中运行，则外接程序可以使用要求集 1.3 中的 API。
+设置要求集不限制外接程序可以使用的可用 Api。 例如，如果外接程序指定要求设置 1.1，但它运行中的 Outlook 客户端支持 1.3 外, 接程序可以使用 Api 要求集中 1.3。
 
-要使用较新的 API，开发人员可使用标准 JavaScript 技术来检查是否存在新 API
+若要使用较新的 Api，开发人员可以只检查它们存在通过使用标准 JavaScript 技术：
 
 ```js
 if (item.somePropertyOrFunction !== undefined) {
@@ -40,7 +40,7 @@ if (item.somePropertyOrFunction !== undefined) {
 
 | 客户端 | 受支持的 API 要求集 |
 | --- | --- |
-| Outlook 2016（即点即用）for Windows | 1.1、 1.2、 1.3、 1.4、 1.5、 1.6 |
+| Outlook 2016（即点即用）for Windows | 1.1、 1.2、 1.3、 1.4、 1.5、 1.6、 1.7 |
 | Outlook 2016 (MSI) for Windows | 1.1、1.2、1.3、1.4 |
 | Outlook 2016 for Mac | 1.1、 1.2、 1.3、 1.4、 1.5、 1.6 |
 | Outlook 2013 for Windows | 1.1、1.2、1.3、1.4 |
@@ -50,5 +50,5 @@ if (item.somePropertyOrFunction !== undefined) {
 | Outlook Web App（本地 Exchange 2013） | 1.1 |
 | Outlook Web App（本地 Exchange 2016） | 1.1, 1.2. 1.3 |
 
-> [!NOTE] 
+> [!NOTE]
 > 在 Outlook 2013 中的 1.3 支持已添加的[年 12 月 8，2015，Outlook 2013 (KB3114349) 的更新的](https://support.microsoft.com/kb/3114349)一部分。 在 Outlook 2013 中的 1.4 支持已添加的[年 9 月 13，2016，Outlook 2013 (KB3118280) 的更新的](https://support.microsoft.com/help/3118280)一部分。

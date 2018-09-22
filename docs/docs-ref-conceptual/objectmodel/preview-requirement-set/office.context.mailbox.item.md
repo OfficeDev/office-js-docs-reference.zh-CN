@@ -58,6 +58,7 @@
 | [getSelectedDataAsync](#getselecteddataasynccoerciontype-options-callback--string) | 方法 |
 | [getSelectedEntities](#getselectedentities--entitiesjavascriptapioutlookofficeentities) | 方法 |
 | [getSelectedRegExMatches](#getselectedregexmatches--object) | 方法 |
+| [getSharedPropertiesAsync](#getsharedpropertiesasyncoptions-callback) | 方法 |
 | [loadCustomPropertiesAsync](#loadcustompropertiesasynccallback-usercontext) | 方法 |
 | [removeAttachmentAsync](#removeattachmentasyncattachmentid-options-callback) | 方法 |
 | [removeHandlerAsync](#removehandlerasynceventtype-handler-options-callback) | 方法 |
@@ -183,7 +184,7 @@ function callback(asyncResult) {
 
 `cc`属性返回`Recipients`提供方法用于获取或更新的邮件**Cc**行上的收件人对象。
 
-##### <a name="type"></a>类型：
+##### <a name="type"></a>类型:
 
 *   Array.<[EmailAddressDetails](/javascript/api/outlook/office.emailaddressdetails)> | [Recipients](/javascript/api/outlook/office.recipients)
 
@@ -360,7 +361,7 @@ function callback(asyncResult) {
 
 |要求|||
 |---|---|---|
-|[最低版本的邮箱要求集](/javascript/office/requirement-sets/outlook-api-requirement-sets)|1.0|预览|
+|[最低版本的邮箱要求集](/javascript/office/requirement-sets/outlook-api-requirement-sets)|1.0|1.7|
 |[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)|ReadItem|ReadWriteItem|
 |[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)|Read|撰写|
 
@@ -610,7 +611,7 @@ function callback(asyncResult) {
 
 |要求|||
 |---|---|---|
-|[最低版本的邮箱要求集](/javascript/office/requirement-sets/outlook-api-requirement-sets)|1.0|预览|
+|[最低版本的邮箱要求集](/javascript/office/requirement-sets/outlook-api-requirement-sets)|1.0|1.7|
 |[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)|ReadItem|ReadWriteItem|
 |[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)|Read|撰写|
 
@@ -637,7 +638,7 @@ var organizerAddress = Office.context.mailbox.item.organizer.emailAddress;
 
 |要求|值|
 |---|---|
-|[最低版本的邮箱要求集](/javascript/office/requirement-sets/outlook-api-requirement-sets)|预览|
+|[最低版本的邮箱要求集](/javascript/office/requirement-sets/outlook-api-requirement-sets)|1.7|
 |[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)|ReadItem|
 |[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)|撰写或阅读|
 
@@ -724,14 +725,14 @@ var senderAddress = Office.context.mailbox.item.sender.emailAddress;
 
 |要求|值|
 |---|---|
-|[最低版本的邮箱要求集](/javascript/office/requirement-sets/outlook-api-requirement-sets)|预览|
+|[最低版本的邮箱要求集](/javascript/office/requirement-sets/outlook-api-requirement-sets)|1.7|
 |[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)|ReadItem|
 |[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)|撰写或阅读|
 
 ##### <a name="example"></a>示例
 
 ```
-var seriesId = Office.context.mailbox.item.seriesId; 
+var seriesId = Office.context.mailbox.item.seriesId;
 var isSeries = (seriesId == null);
 ```
 
@@ -998,7 +999,7 @@ Office.context.mailbox.item.addFileAttachmentFromBase64Async(
 
 添加支持事件的事件处理程序。
 
-当前受支持的事件类型的`Office.EventType.AppointmentTimeChanged`， `Office.EventType.RecipientsChanged`，和`Office.EventType.RecurrencePatternChanged`
+当前受支持的事件类型的`Office.EventType.AppointmentTimeChanged`， `Office.EventType.RecipientsChanged`，和`Office.EventType.RecurrenceChanged`
 
 ##### <a name="parameters"></a>参数：
 
@@ -1014,28 +1015,9 @@ Office.context.mailbox.item.addFileAttachmentFromBase64Async(
 
 |要求| 值|
 |---|---|
-|[最低版本的邮箱要求集](/javascript/office/requirement-sets/outlook-api-requirement-sets)| 预览 |
+|[最低版本的邮箱要求集](/javascript/office/requirement-sets/outlook-api-requirement-sets)| 1.7 |
 |[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)| ReadItem |
 |[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)| 撰写或阅读 |
-
-##### <a name="example"></a>示例
-
-```
-Office.initialize = function (reason) {
-  $(document).ready(function () {
-    Office.context.mailbox.item.addHandlerAsync(Office.EventType.RecurrencePatternChanged, loadNewItem, function (result) {
-      if (result.status === Office.AsyncResultStatus.Failed) {
-        // Handle error
-      }
-    });
-  });
-};
-
-function loadNewItem(eventArgs) {
-  // Load the properties of the newly selected item
-  loadProps(Office.context.mailbox.item);
-};
-```
 
 ####  <a name="additemattachmentasyncitemid-attachmentname-options-callback"></a>addItemAttachmentAsync(itemId, attachmentName, [options], [callback])
 
@@ -1393,7 +1375,7 @@ var contacts = Office.context.mailbox.item.getEntities().contacts;
 |---|---|---|
 |`entityType`|[Office.MailboxEnums.EntityType](/javascript/api/outlook/office.mailboxenums.entitytype)|EntityType 枚举值之一。|
 
-##### <a name="requirements"></a>要求
+##### <a name="requirements"></a>Requirements
 
 |要求|值|
 |---|---|
@@ -1761,6 +1743,36 @@ var fruits = selectedMatches.fruits;
 var veggies = selectedMatches.veggies;
 ```
 
+#### <a name="getsharedpropertiesasyncoptions-callback"></a>getSharedPropertiesAsync ([选项] 回调)
+
+获取共享的文件夹、 日历或邮箱中的所选的约会或邮件的属性。
+
+##### <a name="parameters"></a>参数：
+
+|名称|类型|属性|说明|
+|---|---|---|---|
+|`options`|对象|&lt;可选&gt;|包含一个或多个以下属性的对象文本。|
+|`options.asyncContext`|对象|&lt;可选&gt;|开发人员可以提供他们想要在回调方法中访问的任何对象。|
+|`callback`|函数||方法完成后，使用单个参数 `callback`（一个 [`asyncResult`](/javascript/api/office/office.asyncresult) 对象）调用在 `AsyncResult` 参数中传递的函数。<br/><br/>共享的属性提供为[`SharedProperties`](/javascript/api/outlook/office.sharedproperties)对象在`asyncResult.value`属性。 此对象可用于获取项目的共享的属性。|
+
+##### <a name="requirements"></a>要求
+
+|要求|值|
+|---|---|
+|[最低版本的邮箱要求集](/javascript/office/requirement-sets/outlook-api-requirement-sets)|预览|
+|[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)|ReadItem|
+|[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)|撰写或阅读|
+
+##### <a name="example"></a>示例
+
+```js
+Office.context.mailbox.item.getSharedPropertiesAsync(callback);
+function callback (asyncResult) {
+  var context=asyncResult.context;
+  var sharedProperties = asyncResult.value;
+}
+```
+
 ####  <a name="loadcustompropertiesasynccallback-usercontext"></a>loadCustomPropertiesAsync(callback, [userContext])
 
 异步加载所选项目上此外接程序的自定义属性。
@@ -1857,7 +1869,7 @@ Office.context.mailbox.item.removeAttachmentAsync(
 
 删除事件处理程序支持的事件。
 
-当前受支持的事件类型的`Office.EventType.AppointmentTimeChanged`， `Office.EventType.RecipientsChanged`，和`Office.EventType.RecurrencePatternChanged`
+当前受支持的事件类型的`Office.EventType.AppointmentTimeChanged`， `Office.EventType.RecipientsChanged`，和`Office.EventType.RecurrenceChanged`
 
 ##### <a name="parameters"></a>参数：
 
@@ -1873,28 +1885,9 @@ Office.context.mailbox.item.removeAttachmentAsync(
 
 |要求| 值|
 |---|---|
-|[最低版本的邮箱要求集](/javascript/office/requirement-sets/outlook-api-requirement-sets)| 预览 |
+|[最低版本的邮箱要求集](/javascript/office/requirement-sets/outlook-api-requirement-sets)| 1.7 |
 |[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)| ReadItem |
 |[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)| 撰写或阅读 |
-
-##### <a name="example"></a>示例
-
-```
-Office.initialize = function (reason) {
-  $(document).ready(function () {
-    Office.context.mailbox.item.removeHandlerAsync(Office.EventType.RecurrencePatternChanged, loadNewItem, function (result) {
-      if (result.status === Office.AsyncResultStatus.Failed) {
-        // Handle error
-      }
-    });
-  });
-};
-
-function loadNewItem(eventArgs) {
-  // Load the properties of the newly selected item
-  loadProps(Office.context.mailbox.item);
-};
-```
 
 ####  <a name="saveasyncoptions-callback"></a>saveAsync([options], callback)
 
