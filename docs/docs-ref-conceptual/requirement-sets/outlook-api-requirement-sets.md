@@ -40,6 +40,8 @@ if (item.somePropertyOrFunction !== undefined) {
 
 | 客户端 | 受支持的 API 要求集 |
 | --- | --- |
+| 用于 Windows 的 outlook 2019 | 1.1、 1.2、 1.3、 1.4、 1.5、 1.6 |
+| Outlook 2019 for Mac | 1.1、 1.2、 1.3、 1.4、 1.5、 1.6 |
 | Outlook 2016（即点即用）for Windows | 1.1、 1.2、 1.3、 1.4、 1.5、 1.6、 1.7 |
 | Outlook 2016 (MSI) for Windows | 1.1、1.2、1.3、1.4 |
 | Outlook 2016 for Mac | 1.1、 1.2、 1.3、 1.4、 1.5、 1.6 |
