@@ -8,9 +8,9 @@
 |:-----|:-----|:-----|
 |  Group      | 是 |  定义一组命令。对于每个外接程序，只能将一个组添加到默认选项卡。  |
 
-下面是主机的有效选项卡 `id` 值。以**粗体** 显示的值在桌面和联机状态中均受支持（例如，适用于 Windows 的 Word 2016 和 Word Online）。 
+下面是主机的有效选项卡 `id` 值。 以**粗体显示**的值都支持桌面和联机 （例如，Word 2016 或更高版本的 Windows 和 Word Online）。
 
-### <a name="outlook"></a>Outlook 
+### <a name="outlook"></a>Outlook
 
 - **TabDefault**
 

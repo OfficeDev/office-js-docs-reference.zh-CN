@@ -49,8 +49,8 @@ if (item.somePropertyOrFunction !== undefined) {
 | Outlook for iPhone | 1.1, 1.2, 1.3, 1.4, 1.5 |
 | Outlook for Android | 1.1, 1.2, 1.3, 1.4, 1.5 |
 | Outlook 网页版（Office 365 和 Outlook.com） | 1.1、 1.2、 1.3、 1.4、 1.5、 1.6 |
-| Outlook Web App（本地 Exchange 2013） | 1.1 |
-| Outlook Web App（本地 Exchange 2016） | 1.1, 1.2. 1.3 |
+| Outlook Web App （Exchange 2013 内部部署） | 1.1 |
+| Outlook Web App （Exchange 2016 本地） | 1.1, 1.2. 1.3 |
 
 > [!NOTE]
 > 在 Outlook 2013 中的 1.3 支持已添加的[年 12 月 8，2015，Outlook 2013 (KB3114349) 的更新的](https://support.microsoft.com/kb/3114349)一部分。 在 Outlook 2013 中的 1.4 支持已添加的[年 9 月 13，2016，Outlook 2013 (KB3118280) 的更新的](https://support.microsoft.com/help/3118280)一部分。

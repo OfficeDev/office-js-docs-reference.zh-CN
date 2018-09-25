@@ -2,7 +2,7 @@
 
 要求集是指各组已命名的 API 成员。 Office 加载项使用清单中指定要求集，或使用运行时检查以确定是否的 Office 主机支持外接程序需要的 Api。 有关详细信息，请参阅[Office 版本和要求集](https://docs.microsoft.com/office/dev/add-ins/develop/office-versions-and-requirement-sets)。
 
-跨多个版本的 Office，包括 Windows、 ipad 版的 Office、 Office for Mac，和 Office Online 的 Office 2016 运行 Word 加载项。 下表列出了 Word 要求集，这些应用程序支持的要求集和生成或版本号码的 Office 主机应用程序。
+Word 加载项运行跨多个版本的 Office，包括 Office 2016 或更高版本的 Windows、 ipad 版的 Office、 Office for Mac，和 Office Online。 下表列出了 Word 要求集，这些应用程序支持的要求集和生成或版本号码的 Office 主机应用程序。
 
 > [!NOTE]
 > 对于要求集标记为 Beta，使用指定 （或更高版本） 版的 Office 软件和使用 CDN 的 Beta 库： https://appsforoffice.microsoft.com/lib/beta/hosted/office.js。

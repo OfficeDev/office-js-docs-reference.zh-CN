@@ -2,7 +2,7 @@
 
 要求集是指各组已命名的 API 成员。 Office 加载项使用清单中指定要求集，或使用运行时检查以确定是否的 Office 主机支持外接程序需要的 Api。 有关详细信息，请参阅[Office 版本和要求集](https://docs.microsoft.com/office/dev/add-ins/develop/office-versions-and-requirement-sets)。
 
-跨多个版本的 Office，包括 Windows、 ipad 版的 Office、 Office for Mac，和 Office Online 的 Office 2016 运行 Excel 加载项。 下表列出了 Excel 要求集，支持每个要求集和生成版本或数字这些应用程序的 Office 主机应用程序。
+Excel 加载项运行跨多个版本的 Office，包括 Office 2016 或更高版本的 Windows、 ipad 版的 Office、 Office for Mac，和 Office Online。 下表列出了 Excel 要求集，支持每个要求集和生成版本或数字这些应用程序的 Office 主机应用程序。
 
 > [!NOTE]
 > 标记为**Beta**任何 API 不为最终用户生产做好准备。 我们使其可供开发人员执行试用测试和开发环境中。 它们不旨在用于针对生产/业务关键文档。

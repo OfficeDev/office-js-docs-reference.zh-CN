@@ -26,7 +26,7 @@ Word JavaScript API 通过 Office.js 进行加载，改变了你与文档和段�
 
 若要运行外接程序，请使用 Office.initialize 事件处理程序。若要详细了解如何初始化外接程序，请参阅[了解 API](https://docs.microsoft.com/office/dev/add-ins/develop/understanding-the-javascript-api-for-office)。
 
-面向 Word 2016 的外接程序通过向 **Word.run()** 方法传递函数来执行。传递到 **run** 方法的函数必须具有上下文自变量。虽然此[上下文对象](/javascript/api/word/word.requestcontext)不同于你从 Office 对象获取的上下文对象，但它也用于与 Word 运行时环境进行交互。此上下文对象提供了对 Word JavaScript API 对象模型的访问权限。下面的示例展示了如何使用 **Word.run()** 方法初始化和执行 Word 外接程序。
+加载项的目标设定 Word 2016 或更高版本执行通过将一个函数传递到**Word.run()** 方法。 向**运行**方法中传递的函数必须具有上下文参数。 此[上下文对象](/javascript/api/word/word.requestcontext)不同于上下文对象获得 Office 对象，但它还用于与 Word 运行时环境进行交互。 Context 对象提供对 Word 的 JavaScript API 对象模型的访问。 下面的示例显示如何初始化并执行 Word 加载项使用**Word.run()** 方法。
 
 ```js
 (function () {

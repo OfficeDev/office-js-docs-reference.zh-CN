@@ -1453,7 +1453,7 @@ Office.initialize = function () {
 当[可操作邮件激活](https://docs.microsoft.com/outlook/actionable-messages/invoke-add-in-from-actionable-message)加载项时，获取传递的初始化数据。
 
 > [!NOTE]
-> 仅支持使用此方法通过 Outlook 2016 Windows （单击即点即用版本大于 16.0.8413.1000） 和 Outlook web 上的 Office 365。
+> 仅支持使用此方法通过 Outlook 2016 或更高版本 Windows （单击即点即用版本高于 16.0.8413.1000） 和 Outlook web 上的 Office 365。
 
 ##### <a name="parameters"></a>参数：
 |名称|类型|属性|说明|

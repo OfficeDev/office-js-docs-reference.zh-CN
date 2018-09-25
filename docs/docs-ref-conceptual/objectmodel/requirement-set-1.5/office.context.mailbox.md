@@ -78,7 +78,7 @@ Microsoft Outlook 和 Microsoft Outlook on the web 提供对 Outlook 加载项�
 在撰写模式中，必须调用 [`saveAsync`](Office.context.mailbox.item.md#saveasyncoptions-callback) 方法，才能使用 `restUrl` 成员。应用必须具有调用 `saveAsync` 方法的 **ReadWriteItem** 权限。
 
 > [!NOTE]
-> 连接到 Exchange 2016 与自定义配置的 REST URL 的本地安装的 outlook 客户端将返回值无效`restUrl`。
+> Outlook 客户端连接到的本地安装的 Exchange 2016 或更高版本与自定义配置的 REST URL 将返回值无效`restUrl`。
 
 ##### <a name="type"></a>类型:
 

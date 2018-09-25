@@ -25,7 +25,7 @@
 ####  <a name="accounttype-string"></a>accountType： 字符串
 
 > [!NOTE]
-> 此成员是当前支持中有仅 Outlook 2016 for Mac、 构建 16.9.1212 和更高版本。
+> 此成员是当前只支持在 Outlook 2016 或更高版本 for Mac (生成 16.9.1212 或更高版本)。
 
 获取与邮箱关联的用户的帐户类型。 下表列出了可能的值。
 

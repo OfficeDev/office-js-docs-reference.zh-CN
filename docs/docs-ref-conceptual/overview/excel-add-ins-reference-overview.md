@@ -1,6 +1,6 @@
 # <a name="excel-javascript-api-overview"></a>Excel 的 JavaScript API 概述
 
-你可以使用 Excel JavaScript API 构建适用于 Excel 2016 的外接程序。 以下列表显示在 API 中可用的高级 Excel 对象。 每个对象页上链接包含的属性、 事件和方法的对象上的说明。 如需了解详细信息，请从菜单中浏览相应链接。
+Excel 的 JavaScript API 可用于生成加载项的 Excel 2016 或更高版本。 以下列表显示在 API 中可用的高级 Excel 对象。 每个对象页上链接包含的属性、 事件和方法的对象上的说明。 如需了解详细信息，请从菜单中浏览相应链接。
 
 为了方便起见，下面列出了一些核心 Excel 对象： 
 
