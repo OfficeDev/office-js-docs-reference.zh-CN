@@ -1,34 +1,34 @@
-# <a name="action-element"></a><span data-ttu-id="8b79a-101">Action 元素</span><span class="sxs-lookup"><span data-stu-id="8b79a-101">Action element</span></span>
+# <a name="action-element"></a><span data-ttu-id="4fa56-101">Action 元素</span><span class="sxs-lookup"><span data-stu-id="4fa56-101">Action element</span></span>
 
-<span data-ttu-id="8b79a-102">指定用户选择 [按钮](control.md#button-control)或[菜单](control.md#menu-dropdown-button-controls)控件时将执行的操作。</span><span class="sxs-lookup"><span data-stu-id="8b79a-102">Specifies the action to perform when the user selects a  [Button](control.md#button-control) or [Menu](control.md#menu-dropdown-button-controls) controls.</span></span>
+<span data-ttu-id="4fa56-102">指定用户选择 [按钮](control.md#button-control)或[菜单](control.md#menu-dropdown-button-controls)控件时将执行的操作。</span><span class="sxs-lookup"><span data-stu-id="4fa56-102">Specifies the action to perform when the user selects a  [Button](control.md#button-control) or [Menu](control.md#menu-dropdown-button-controls) controls.</span></span>
  
-## <a name="attributes"></a><span data-ttu-id="8b79a-103">属性</span><span class="sxs-lookup"><span data-stu-id="8b79a-103">Attributes</span></span>
+## <a name="attributes"></a><span data-ttu-id="4fa56-103">属性</span><span class="sxs-lookup"><span data-stu-id="4fa56-103">Attributes</span></span>
 
-|  <span data-ttu-id="8b79a-104">属性</span><span class="sxs-lookup"><span data-stu-id="8b79a-104">Attribute</span></span>  |  <span data-ttu-id="8b79a-105">必需</span><span class="sxs-lookup"><span data-stu-id="8b79a-105">Required</span></span>  |  <span data-ttu-id="8b79a-106">说明</span><span class="sxs-lookup"><span data-stu-id="8b79a-106">Description</span></span>  |
+|  <span data-ttu-id="4fa56-104">属性</span><span class="sxs-lookup"><span data-stu-id="4fa56-104">Attribute</span></span>  |  <span data-ttu-id="4fa56-105">必需</span><span class="sxs-lookup"><span data-stu-id="4fa56-105">Required</span></span>  |  <span data-ttu-id="4fa56-106">说明</span><span class="sxs-lookup"><span data-stu-id="4fa56-106">Description</span></span>  |
 |:-----|:-----|:-----|
-|  [<span data-ttu-id="8b79a-107">xsi:type</span><span class="sxs-lookup"><span data-stu-id="8b79a-107">xsi:type</span></span>](#xsitype)  |  <span data-ttu-id="8b79a-108">是</span><span class="sxs-lookup"><span data-stu-id="8b79a-108">Yes</span></span>  | <span data-ttu-id="8b79a-109">要执行的操作类型</span><span class="sxs-lookup"><span data-stu-id="8b79a-109">Action type to take</span></span>|
+|  [<span data-ttu-id="4fa56-107">xsi:type</span><span class="sxs-lookup"><span data-stu-id="4fa56-107">xsi:type</span></span>](#xsitype)  |  <span data-ttu-id="4fa56-108">是</span><span class="sxs-lookup"><span data-stu-id="4fa56-108">Yes</span></span>  | <span data-ttu-id="4fa56-109">要执行的操作类型</span><span class="sxs-lookup"><span data-stu-id="4fa56-109">Action type to take</span></span>|
 
-## <a name="child-elements"></a><span data-ttu-id="8b79a-110">子元素</span><span class="sxs-lookup"><span data-stu-id="8b79a-110">Child elements</span></span>
+## <a name="child-elements"></a><span data-ttu-id="4fa56-110">子元素</span><span class="sxs-lookup"><span data-stu-id="4fa56-110">Child elements</span></span>
 
-|  <span data-ttu-id="8b79a-111">元素</span><span class="sxs-lookup"><span data-stu-id="8b79a-111">Element</span></span> |  <span data-ttu-id="8b79a-112">说明</span><span class="sxs-lookup"><span data-stu-id="8b79a-112">Description</span></span>  |
+|  <span data-ttu-id="4fa56-111">元素</span><span class="sxs-lookup"><span data-stu-id="4fa56-111">Element</span></span> |  <span data-ttu-id="4fa56-112">说明</span><span class="sxs-lookup"><span data-stu-id="4fa56-112">Description</span></span>  |
 |:-----|:-----|
-|  [<span data-ttu-id="8b79a-113">FunctionName</span><span class="sxs-lookup"><span data-stu-id="8b79a-113">FunctionName</span></span>](#functionname) |    <span data-ttu-id="8b79a-114">指定要执行的函数的名称。</span><span class="sxs-lookup"><span data-stu-id="8b79a-114">Specifies the name of the function to execute.</span></span> |
-|  [<span data-ttu-id="8b79a-115">SourceLocation</span><span class="sxs-lookup"><span data-stu-id="8b79a-115">SourceLocation</span></span>](#sourcelocation) |    <span data-ttu-id="8b79a-116">指定该操作的源文件位置。</span><span class="sxs-lookup"><span data-stu-id="8b79a-116">Specifies the source file location for this action.</span></span> |
-|  [<span data-ttu-id="8b79a-117">TaskpaneId</span><span class="sxs-lookup"><span data-stu-id="8b79a-117">TaskpaneId</span></span>](#taskpaneid) | <span data-ttu-id="8b79a-118">指定任务窗格容器的 ID。</span><span class="sxs-lookup"><span data-stu-id="8b79a-118">Specifies the ID of the task pane container.</span></span>|
-|  [<span data-ttu-id="8b79a-119">Title</span><span class="sxs-lookup"><span data-stu-id="8b79a-119">Title</span></span>](#title) | <span data-ttu-id="8b79a-120">指定任务窗格的自定义标题。</span><span class="sxs-lookup"><span data-stu-id="8b79a-120">Specifies the custom title for the task pane.</span></span>|
-|  [<span data-ttu-id="8b79a-121">SupportsPinning</span><span class="sxs-lookup"><span data-stu-id="8b79a-121">SupportsPinning</span></span>](#supportspinning) | <span data-ttu-id="8b79a-122">指定任务窗格支持固定，即使用户选择其他对象，任务窗格也可以继续处于打开状态。</span><span class="sxs-lookup"><span data-stu-id="8b79a-122">Specifies that a task pane supports pinning, which keeps the task pane open when the user changes the selection.</span></span>|
+|  [<span data-ttu-id="4fa56-113">FunctionName</span><span class="sxs-lookup"><span data-stu-id="4fa56-113">FunctionName</span></span>](#functionname) |    <span data-ttu-id="4fa56-114">指定要执行的函数的名称。</span><span class="sxs-lookup"><span data-stu-id="4fa56-114">Specifies the name of the function to execute.</span></span> |
+|  [<span data-ttu-id="4fa56-115">SourceLocation</span><span class="sxs-lookup"><span data-stu-id="4fa56-115">SourceLocation</span></span>](#sourcelocation) |    <span data-ttu-id="4fa56-116">指定该操作的源文件位置。</span><span class="sxs-lookup"><span data-stu-id="4fa56-116">Specifies the source file location for this action.</span></span> |
+|  [<span data-ttu-id="4fa56-117">TaskpaneId</span><span class="sxs-lookup"><span data-stu-id="4fa56-117">TaskpaneId</span></span>](#taskpaneid) | <span data-ttu-id="4fa56-118">指定任务窗格容器的 ID。</span><span class="sxs-lookup"><span data-stu-id="4fa56-118">Specifies the ID of the task pane container.</span></span>|
+|  [<span data-ttu-id="4fa56-119">Title</span><span class="sxs-lookup"><span data-stu-id="4fa56-119">Title</span></span>](#title) | <span data-ttu-id="4fa56-120">指定任务窗格的自定义标题。</span><span class="sxs-lookup"><span data-stu-id="4fa56-120">Specifies the custom title for the task pane.</span></span>|
+|  [<span data-ttu-id="4fa56-121">SupportsPinning</span><span class="sxs-lookup"><span data-stu-id="4fa56-121">SupportsPinning</span></span>](#supportspinning) | <span data-ttu-id="4fa56-122">指定任务窗格支持固定，即使用户选择其他对象，任务窗格也可以继续处于打开状态。</span><span class="sxs-lookup"><span data-stu-id="4fa56-122">Specifies that a task pane supports pinning, which keeps the task pane open when the user changes the selection.</span></span>|
   
 
-## <a name="xsitype"></a><span data-ttu-id="8b79a-123">xsi:type</span><span class="sxs-lookup"><span data-stu-id="8b79a-123">xsi:type</span></span>
+## <a name="xsitype"></a><span data-ttu-id="4fa56-123">xsi:type</span><span class="sxs-lookup"><span data-stu-id="4fa56-123">xsi:type</span></span>
 
-<span data-ttu-id="8b79a-p101">此属性指定当用户选择按钮时所执行的操作类型。可取值如下：</span><span class="sxs-lookup"><span data-stu-id="8b79a-p101">This attribute specifies the kind of action performed when the user selects the button. It can be one of the following:</span></span>
+<span data-ttu-id="4fa56-p101">此属性指定当用户选择按钮时所执行的操作类型。可取值如下：</span><span class="sxs-lookup"><span data-stu-id="4fa56-p101">This attribute specifies the kind of action performed when the user selects the button. It can be one of the following:</span></span>
 
 - `ExecuteFunction`
 - `ShowTaskpane`
 
-## <a name="functionname"></a><span data-ttu-id="8b79a-126">FunctionName</span><span class="sxs-lookup"><span data-stu-id="8b79a-126">FunctionName</span></span>
+## <a name="functionname"></a><span data-ttu-id="4fa56-126">FunctionName</span><span class="sxs-lookup"><span data-stu-id="4fa56-126">FunctionName</span></span>
 
-<span data-ttu-id="8b79a-p102">**xsi:type** 为“ExecuteFunction”时的必需元素。指定要执行的函数的名称。函数包含在 [FunctionFile](functionfile.md) 元素指定的文件中。</span><span class="sxs-lookup"><span data-stu-id="8b79a-p102">Required element when **xsi:type** is "ExecuteFunction". Specifies the name of the function to execute. The function is contained in the file specified in the [FunctionFile](functionfile.md) element.</span></span>
+<span data-ttu-id="4fa56-p102">**xsi:type** 为“ExecuteFunction”时的必需元素。指定要执行的函数的名称。函数包含在 [FunctionFile](functionfile.md) 元素指定的文件中。</span><span class="sxs-lookup"><span data-stu-id="4fa56-p102">Required element when **xsi:type** is "ExecuteFunction". Specifies the name of the function to execute. The function is contained in the file specified in the [FunctionFile](functionfile.md) element.</span></span>
 
 ```xml
 <Action xsi:type="ExecuteFunction">
@@ -36,9 +36,9 @@
 </Action>
 ```
 
-## <a name="sourcelocation"></a><span data-ttu-id="8b79a-130">SourceLocation</span><span class="sxs-lookup"><span data-stu-id="8b79a-130">SourceLocation</span></span>
+## <a name="sourcelocation"></a><span data-ttu-id="4fa56-130">SourceLocation</span><span class="sxs-lookup"><span data-stu-id="4fa56-130">SourceLocation</span></span>
 
-<span data-ttu-id="8b79a-p103">**xsi:type** 为 ShowTaskpane 时的必需元素。指定此操作的源文件位置。 **resid** 属性必须设置为 **Urls** 元素（位于 **Resources** 元素）中 **Url** 元素的 [id](resources.md) 属性的值。</span><span class="sxs-lookup"><span data-stu-id="8b79a-p103">Required element when  **xsi:type** is "ShowTaskpane". Specifies the source file location for this action. The **resid** attribute must be set to the value of the **id** attribute of a **Url** element in the **Urls** element in the [Resources](resources.md) element.</span></span>
+<span data-ttu-id="4fa56-p103">**xsi:type** 为 ShowTaskpane 时的必需元素。指定此操作的源文件位置。 **resid** 属性必须设置为 **Urls** 元素（位于 **Resources** 元素）中 **Url** 元素的 [id](resources.md) 属性的值。</span><span class="sxs-lookup"><span data-stu-id="4fa56-p103">Required element when  **xsi:type** is "ShowTaskpane". Specifies the source file location for this action. The **resid** attribute must be set to the value of the **id** attribute of a **Url** element in the **Urls** element in the [Resources](resources.md) element.</span></span>
 
 ```xml
 <Action xsi:type="ShowTaskpane">
@@ -46,14 +46,14 @@
 </Action>
 ```  
 
-## <a name="taskpaneid"></a><span data-ttu-id="8b79a-134">TaskpaneId</span><span class="sxs-lookup"><span data-stu-id="8b79a-134">TaskpaneId</span></span>
+## <a name="taskpaneid"></a><span data-ttu-id="4fa56-134">TaskpaneId</span><span class="sxs-lookup"><span data-stu-id="4fa56-134">TaskpaneId</span></span>
 
-<span data-ttu-id="8b79a-p104">可选元素，当 **xsi: type** 是“ShowTaskpane”时。指定任务窗格容器的 ID。具有多个“ShowTaskpane”操作时，如果想要对每个操作使用独立的窗格，则使用不同的 **TaskpaneId**。为共享相同窗格的不同操作使用同一 **TaskpaneId**当用户选择共享同一 **TaskpaneId** 的命令时，窗格容器将保持打开状态，但窗格的内容将被替换为相应的操作“SourceLocation”</span><span class="sxs-lookup"><span data-stu-id="8b79a-p104">Optional element when  **xsi:type** is "ShowTaskpane". Specifies the ID of the task pane container. When you have multiple "ShowTaskpane" actions, use a different **TaskpaneId** if you want an independent pane for each. Use the same **TaskpaneId** for  different actions that share the same pane. When users choose commands that share the same **TaskpaneId**, the pane container will remain open but the contents of the pane will be replaced with the corresponding Action "SourceLocation".</span></span> 
+<span data-ttu-id="4fa56-p104">可选元素，当 **xsi: type** 是“ShowTaskpane”时。指定任务窗格容器的 ID。具有多个“ShowTaskpane”操作时，如果想要对每个操作使用独立的窗格，则使用不同的 **TaskpaneId**。为共享相同窗格的不同操作使用同一 **TaskpaneId**当用户选择共享同一 **TaskpaneId** 的命令时，窗格容器将保持打开状态，但窗格的内容将被替换为相应的操作“SourceLocation”</span><span class="sxs-lookup"><span data-stu-id="4fa56-p104">Optional element when  **xsi:type** is "ShowTaskpane". Specifies the ID of the task pane container. When you have multiple "ShowTaskpane" actions, use a different **TaskpaneId** if you want an independent pane for each. Use the same **TaskpaneId** for  different actions that share the same pane. When users choose commands that share the same **TaskpaneId**, the pane container will remain open but the contents of the pane will be replaced with the corresponding Action "SourceLocation".</span></span> 
 
 > [!NOTE]
-> <span data-ttu-id="8b79a-140">在 Outlook 中不支持此元素。</span><span class="sxs-lookup"><span data-stu-id="8b79a-140">This element is not supported in Outlook.</span></span>
+> <span data-ttu-id="4fa56-140">在 Outlook 中不支持此元素。</span><span class="sxs-lookup"><span data-stu-id="4fa56-140">This element is not supported in Outlook.</span></span>
 
-<span data-ttu-id="8b79a-141">下面的示例展示了两个共享同一个 **TaskpaneId** 的操作。</span><span class="sxs-lookup"><span data-stu-id="8b79a-141">The following example shows two actions that share the same **TaskpaneId**.</span></span> 
+<span data-ttu-id="4fa56-141">下面的示例展示了两个共享同一个 **TaskpaneId** 的操作。</span><span class="sxs-lookup"><span data-stu-id="4fa56-141">The following example shows two actions that share the same **TaskpaneId**.</span></span> 
 
 ```xml
 <Action xsi:type="ShowTaskpane">
@@ -67,7 +67,7 @@
 </Action>
 ```  
 
-<span data-ttu-id="8b79a-p105">下面的示例展示了两个使用不同 **TaskpaneId** 的操作。若要查看上下文中的这些示例，请参阅[简单的外接程序命令示例](https://github.com/OfficeDev/Office-Add-in-Commands-Samples/blob/master/Simple/Manifest/SimpleAddin.xml)。</span><span class="sxs-lookup"><span data-stu-id="8b79a-p105">The following examples show two actions that use a different **TaskpaneId**. To see these examples in context, see [Simple Add-in Commands Sample](https://github.com/OfficeDev/Office-Add-in-Commands-Samples/blob/master/Simple/Manifest/SimpleAddin.xml).</span></span>
+<span data-ttu-id="4fa56-p105">下面的示例展示了两个使用不同 **TaskpaneId** 的操作。若要查看上下文中的这些示例，请参阅[简单的外接程序命令示例](https://github.com/OfficeDev/Office-Add-in-Commands-Samples/blob/master/Simple/Manifest/SimpleAddin.xml)。</span><span class="sxs-lookup"><span data-stu-id="4fa56-p105">The following examples show two actions that use a different **TaskpaneId**. To see these examples in context, see [Simple Add-in Commands Sample](https://github.com/OfficeDev/Office-Add-in-Commands-Samples/blob/master/Simple/Manifest/SimpleAddin.xml).</span></span>
 
 ```xml
 <Action xsi:type="ShowTaskpane">
@@ -88,10 +88,10 @@
 </bt:Urls>
 ```  
 
-## <a name="title"></a><span data-ttu-id="8b79a-144">Title</span><span class="sxs-lookup"><span data-stu-id="8b79a-144">Title</span></span>
-<span data-ttu-id="8b79a-p106">当 **xsi: type** 是“ShowTaskpane”时的可选元素。指定此操作任务窗格的自定义标题。</span><span class="sxs-lookup"><span data-stu-id="8b79a-p106">Optional element when  **xsi:type** is "ShowTaskpane". Specifies the custom title for the task pane for this action.</span></span> 
+## <a name="title"></a><span data-ttu-id="4fa56-144">Title</span><span class="sxs-lookup"><span data-stu-id="4fa56-144">Title</span></span>
+<span data-ttu-id="4fa56-p106">当 **xsi: type** 是“ShowTaskpane”时的可选元素。指定此操作任务窗格的自定义标题。</span><span class="sxs-lookup"><span data-stu-id="4fa56-p106">Optional element when  **xsi:type** is "ShowTaskpane". Specifies the custom title for the task pane for this action.</span></span> 
 
-<span data-ttu-id="8b79a-147">下面的示例展示了两个使用 **Title** 元素的不同操作。</span><span class="sxs-lookup"><span data-stu-id="8b79a-147">The following examples show two different actions that use the **Title** element.</span></span>
+<span data-ttu-id="4fa56-147">下面的示例展示了两个使用 **Title** 元素的不同操作。</span><span class="sxs-lookup"><span data-stu-id="4fa56-147">The following examples show two different actions that use the **Title** element.</span></span>
 
 ```xml
 <Action xsi:type="ShowTaskpane">
@@ -122,12 +122,12 @@
 </bt:ShortStrings>
 ``` 
 
-## <a name="supportspinning"></a><span data-ttu-id="8b79a-148">SupportsPinning</span><span class="sxs-lookup"><span data-stu-id="8b79a-148">SupportsPinning</span></span>
+## <a name="supportspinning"></a><span data-ttu-id="4fa56-148">SupportsPinning</span><span class="sxs-lookup"><span data-stu-id="4fa56-148">SupportsPinning</span></span>
 
-<span data-ttu-id="8b79a-p107">**xsi: type** 是“ShowTaskpane”时的可选元素。包含的 [ VersionOverrides ](versionoverrides.md) 元素的 `xsi:type` 属性值必须为 `VersionOverridesV1_1`。添加此元素时将值设为 `true` 可以支持任务窗格固定。这样一来，用户可以“固定”任务窗格，即使用户选择其他对象，任务窗格也可以继续处于打开状态。有关详细信息，请参阅[在 Outlook 中实现可固定的任务窗格](https://docs.microsoft.com/outlook/add-ins/pinnable-taskpane)</span><span class="sxs-lookup"><span data-stu-id="8b79a-p107">Optional element when **xsi:type** is "ShowTaskpane". The containing [VersionOverrides](versionoverrides.md) elements must have an `xsi:type` attribute value of `VersionOverridesV1_1`. Include this element with a value of `true` to support taskpane pinning. The user will be able to "pin" the taskpane, causing it to stay open when changing the selection. For more information, see [Implement a pinnable taskpane in Outlook](https://docs.microsoft.com/outlook/add-ins/pinnable-taskpane).</span></span>
+<span data-ttu-id="4fa56-p107">**xsi: type** 是“ShowTaskpane”时的可选元素。包含的 [ VersionOverrides ](versionoverrides.md) 元素的 `xsi:type` 属性值必须为 `VersionOverridesV1_1`。添加此元素时将值设为 `true` 可以支持任务窗格固定。这样一来，用户可以“固定”任务窗格，即使用户选择其他对象，任务窗格也可以继续处于打开状态。有关详细信息，请参阅[在 Outlook 中实现可固定的任务窗格](https://docs.microsoft.com/outlook/add-ins/pinnable-taskpane)</span><span class="sxs-lookup"><span data-stu-id="4fa56-p107">Optional element when **xsi:type** is "ShowTaskpane". The containing [VersionOverrides](versionoverrides.md) elements must have an `xsi:type` attribute value of `VersionOverridesV1_1`. Include this element with a value of `true` to support taskpane pinning. The user will be able to "pin" the taskpane, causing it to stay open when changing the selection. For more information, see [Implement a pinnable taskpane in Outlook](https://docs.microsoft.com/outlook/add-ins/pinnable-taskpane).</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="8b79a-154">SupportsPinning 当前只支持由 Outlook 2016 Windows （构建 7628.1000 或更高版本）。</span><span class="sxs-lookup"><span data-stu-id="8b79a-154">SupportsPinning currently only supported by Outlook 2016 for Windows (build 7628.1000 or later).</span></span>
+> <span data-ttu-id="4fa56-154">SupportsPinning 当前只支持由 Outlook 2016 Windows （构建 7628.1000 或更高版本）。</span><span class="sxs-lookup"><span data-stu-id="4fa56-154">SupportsPinning currently only supported by Outlook 2016 for Windows (build 7628.1000 or later).</span></span>
 
 ```xml
 <Action xsi:type="ShowTaskpane">
