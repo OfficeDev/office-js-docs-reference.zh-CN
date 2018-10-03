@@ -24,7 +24,7 @@ Office 加载项运行跨多个版本的 Office。 下表列出标识 API 要求
 
 ## <a name="identityapi-11"></a>IdentityAPI 1.1 
 
-单一登录 IdentityAPI 1.1 是 API 的第一个版本。 有关 API 的详细信息，请参阅`getAccessTokenAsync` [Office.Auth](/javascript/api/office/office.auth)参考主题中的方法。
+单一登录 IdentityAPI 1.1 是 API 的第一个版本。 有关此 API 的详细信息，请参阅[外接程序中启用 SSO](https://docs.microsoft.com/office/dev/add-ins/develop/sso-in-office-add-ins)的[SSO API 参考](https://docs.microsoft.com/office/dev/add-ins/develop/sso-in-office-add-ins#sso-api-reference)部分。
 
 ## <a name="see-also"></a>另请参阅
 
