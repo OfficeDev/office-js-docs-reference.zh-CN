@@ -6,7 +6,7 @@ Office 加载项运行跨多个版本的 Office。 下表列出标识 API 要求
 
 |  要求集  | Office 2013 for Windows | 用于 Windows 的 office 365   |  Office 365 for iPad  |  Office 365 for Mac  | Office Online  | SharePoint Online | OneDrive.com |Outlook.com & Exchange Online|
 |:-----|-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| IdentityAPI 1.1  | 不适用 | 预览**和 #42;** | 即将推出 | 预览**和 #42;**| 可用 | 可用| 即将推出 | 即将推出 |
+| IdentityAPI 1.1  | 不适用 | 预览**和 #42;** | 即将推出 | 预览**和 #42;**| 预览 | 预览| 即将推出 | 即将推出 |
 
 > **= #42;** 预览阶段中，Identity API 支持 Windows 2016 和 Mac 上只使用快速选项的内部程序中的用户。 若要加入内部程序，请参阅[为 Office 内幕](https://products.office.com/office-insider?tab=tab-1)。 要切换到快速跟踪，请参阅[Fast 内幕](https://answers.microsoft.com/en-us/msoffice/forum/msoffice_officeinsider-mso_win10-msoinsider_reg/its-here-office-insider-fast-for-office-2016-on/dbe8e7bb-9523-44a4-948b-9436fedfd961)。
 
