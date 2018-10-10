@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 7ddbdf535e6616013f749ad3d60ee55a2973712a
-ms.sourcegitcommit: 262b7c417245b7b61a57d53eee33a477a722ca6e
+ms.openlocfilehash: d079c7a4ec0955f99f62022415a7c3c796bcf9b4
+ms.sourcegitcommit: a36161c2113d94680dc68150d024e68bdf0390fa
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "24041964"
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "25458080"
 items:
 - uid: visio.Visio.SelectionChangedEventArgs
   summary: >-
@@ -18,6 +18,7 @@ items:
   - typeScript
   type: interface
   package: visio
+  remarks: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nvar eventResult; //Global Variable to store the EventHandlerResult returned on attaching handler.\n\nfunction AttachHandler()\n{\n    Visio.run(function(ctx)\n    {\n        var doc = ctx.document;\n        eventResult = doc.onSelectionChanged.add(\n            function (args) {\n                console.log(\"Selected Shape Name: \"+args.shapeNames[0]);\n            });\n        return ctx.sync().then(function(){\n            console.log(\"Handler attached\");\n        });\n    }).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n    });\n\n    function onSelectionChanged(args)\n    {\n        console.log(Date.now() + \"Selection Changes Event\" + JSON.stringify(args));\n    }\n}\n\nfunction RemoveHandler()\n{\n    if(!eventResult || !eventResult.context)\n    {\n        console.log(\"Handler has not been attached\");\n        return;\n    }\n\n    Visio.run(eventResult.context, function(ctx)\n    {\n        eventResult.remove();\n        return ctx.sync().then(function (){\n            eventResult = null;\n            console.log(\"Handler removed\");\n        });\n    }).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n    });\n}\n```"
   children:
   - visio.Visio.SelectionChangedEventArgs.pageName
   - visio.Visio.SelectionChangedEventArgs.shapeNames
