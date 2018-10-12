@@ -11,5 +11,5 @@ JavaScript API for Office 使您能够与 Office 主机应用程序中的对象�
 
 ## <a name="see-also"></a>另请参阅
 
-- [适用于 Office 的 JavaScript API](https://docs.microsoft.com/javascript/office/javascript-api-for-office?view=office-js)
+- [适用于 Office 的 JavaScript API](https://docs.microsoft.com/office/dev/add-ins/reference/javascript-api-for-office?view=office-js)
 - [快速开始、 教程和高级编程指南 Office 加载项](https://docs.microsoft.com/office/dev/add-ins/overview/office-add-ins?view=office-js)
