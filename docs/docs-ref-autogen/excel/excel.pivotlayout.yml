@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: b1781034827c2397a0cd6a7d045398a01b46ea78
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: 342f7b34dc1e6f7a70b6a39a2291dcebe5ac829c
+ms.sourcegitcommit: 9034a7d2fb2934046178915d4305b0f0cf8f7934
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25591335"
+ms.lasthandoff: 10/26/2018
+ms.locfileid: "25798192"
 items:
 - uid: excel.Excel.PivotLayout
   summary: >-
@@ -65,7 +65,7 @@ items:
     return:
       type:
       - excel.Excel.Range
-      description: ''
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n\n    // the layout controls the ranges used by the PivotTable\n    const range = pivotTable.layout.getDataBodyRange();\n\n    // get all the data hierarchy totals\n    const grandTotalRange = range.getLastRow();\n    grandTotalRange.load(\"address\");\n    await context.sync();\n    \n    // use the wholesale and farm sale totals to make a final sum\n    const masterTotalRange = context.workbook.worksheets.getActiveWorksheet().getRange(\"B27:C27\");\n    masterTotalRange.formulas = [[\"All Crates\", \"=SUM(\" + grandTotalRange.address + \")\"]];\n    await context.sync();\n});\n```"
 - uid: excel.Excel.PivotLayout.getFilterAxisRange
   summary: >-
     返回数据透视表的筛选器区域的范围。

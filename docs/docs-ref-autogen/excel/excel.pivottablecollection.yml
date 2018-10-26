@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: febeb98fb73d27eb509d744fb17e7249ea541090
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: c4bc8273a7ef3fcd2748cc5eefc8815e6237429a
+ms.sourcegitcommit: 9034a7d2fb2934046178915d4305b0f0cf8f7934
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25591405"
+ms.lasthandoff: 10/26/2018
+ms.locfileid: "25798185"
 items:
 - uid: excel.Excel.PivotTableCollection
   summary: >-
@@ -45,7 +45,23 @@ items:
     return:
       type:
       - excel.Excel.PivotTable
-      description: 返回新插入的数据透视表。
+      description: >-
+        返回新插入的数据透视表。
+
+        #### <a name="examples"></a>示例
+
+
+        ```typescript
+
+        await Excel.run(async (context) => {
+            const rangeToAnalyze = context.workbook.worksheets.getItem("Data").getRange("A1:E21");
+            const rangeToPlacePivot = context.workbook.worksheets.getItem("Pivot").getRange("A2");
+            context.workbook.worksheets.getItem("Pivot").pivotTables.add("Farm Sales", rangeToAnalyze, rangeToPlacePivot);
+
+            await context.sync();
+        });
+
+        ```
     parameters:
     - id: name
       description: 新数据透视表的名称。

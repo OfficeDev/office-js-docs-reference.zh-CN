@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 2811726f2ec6aba4e6c080b1c7d9293d57a06ba9
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: 3f33e2da9e2254df50cc3801dd7fcc86056d7d22
+ms.sourcegitcommit: 9034a7d2fb2934046178915d4305b0f0cf8f7934
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25591685"
+ms.lasthandoff: 10/26/2018
+ms.locfileid: "25798173"
 items:
 - uid: excel.Excel.DataValidation
   summary: >-
@@ -63,6 +63,7 @@ items:
     return:
       type:
       - excel.Excel.DataValidationErrorAlert
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Decision\");\n    const commentsRange = \n        sheet.tables.getItem(\"NameOptionsTable\").columns.getItem(\"Comments\").getDataBodyRange();\n\n    // When you are developing, it is a good practice to\n    // clear the dataValidation object with each run of your code.\n    commentsRange.dataValidation.clear();   \n\n    // If the value of A2 is contained in the value of C2, then \n    // SEARCH(A2,C2) returns the number where it begins. Otherwise,\n    // it does not return a number.\n    let redundantStringRule = {\n        custom: {\n            formula: \"=NOT(ISNUMBER(SEARCH(A2,C2)))\"\n        }\n    };\n    commentsRange.dataValidation.rule = redundantStringRule;\n    commentsRange.dataValidation.errorAlert = {\n        message: \"It is redundant to include the baby name in the comment.\",\n        showAlert: true,\n        style: \"Information\",\n        title: \"Baby Name in Comment\"\n    };\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.DataValidation.ignoreBlanks
   summary: >-
     忽略空值： 无数据验证将空白单元格上执行，其默认值为 true。
