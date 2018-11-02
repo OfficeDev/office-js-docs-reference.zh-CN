@@ -1,14 +1,14 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 723e4d6f43b964b4c6186ced14b7692eb05c74a0
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: 2f652dca7753dd73409c41ce7f773a536bb40b86
+ms.sourcegitcommit: 4bbd18c863a4140ad456b859f9c0309e153e10b2
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25592875"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "25913955"
 items:
 - uid: Outlook_1_6.Office.Mailbox
   summary: >-
-    Microsoft Outlook 和 Microsoft Outlook on the web 提供对 Outlook 加载项对象模型的访问。
+    为 Microsoft Outlook 和 Microsoft Outlook 网页版提供对 Outlook 外接程序对象模型的访问权限。
 
 
     命名空间：
@@ -51,6 +51,7 @@ items:
   - Outlook_1_6.Office.Mailbox.getUserIdentityTokenAsync
   - Outlook_1_6.Office.Mailbox.item
   - Outlook_1_6.Office.Mailbox.makeEwsRequestAsync
+  - Outlook_1_6.Office.Mailbox.removeHandlerAsync
   - Outlook_1_6.Office.Mailbox.restUrl
   - Outlook_1_6.Office.Mailbox.userProfile
 - uid: Outlook_1_6.Office.Mailbox.addHandlerAsync
@@ -58,7 +59,7 @@ items:
     添加支持事件的事件处理程序。
 
 
-    目前唯一受支持的事件类型是 Office.EventType.ItemChanged，当用户选择一个新项目。 此事件由加载项实现可固定的任务窗格，并允许外接程序刷新 UI 基于当前所选项目任务窗格。
+    目前，仅支持的事件类型是`Office.EventType.ItemChanged` <!-- -->。
 
 
     \[[API 集： 邮箱 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -73,7 +74,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'addHandlerAsync(eventType: Office.EventType, handler: (type: EventType) => void, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult) => void): void;'
+    content: 'addHandlerAsync(eventType: Office.EventType, handler: (type: EventType) => void, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -92,9 +93,9 @@ items:
       type:
       - office.Office.AsyncContextOptions
     - id: callback
-      description: 可选。 方法完成后，使用单个的类型为 AsyncResult 参数调用中的 callback 参数传递的函数。
+      description: 可选。 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。
       type:
-      - '(result: AsyncResult) => void'
+      - '(result: AsyncResult<void>) => void'
 - uid: Outlook_1_6.Office.Mailbox.convertToEwsId
   summary: >-
     将项目 ID 格式化（从 REST 转换为 EWS 格式）。
@@ -246,7 +247,7 @@ items:
     - hostVersion （字符串）： 一个字符串，表示主机应用程序或 Exchange Server 的版本。 如果 Outlook 桌面客户端或适用于 iOS 的 Outlook 邮件外接程序正在运行，hostVersion 属性将返回主机应用程序，Outlook 的版本。 在 Outlook Web App 中，该属性返回的 Exchange Server 的版本。 例如，15.0.468.0 的字符串。
 
 
-    - OWAView （字符串）： 一个字符串，表示 Outlook Web App 的当前视图。 如果主机应用程序不是 Outlook Web App，则访问此属性将导致返回 undefined。 Outlook Web App 具有三个视图 （OneColumn-屏幕为窄时显示、 TwoColumns-时屏幕的宽度，显示和 ThreeColumns-显示时屏幕的范围。） 的对应的宽度屏幕和窗口，并的列数可以显示的。
+    - OWAView （MailboxEnums.OWAView 或字符串）： 枚举 （或字符串文字），表示 Outlook Web App 的当前视图。 如果主机应用程序不是 Outlook Web App，则访问此属性将导致返回 undefined。 Outlook Web App 具有三个视图 （OneColumn-屏幕为窄时显示、 TwoColumns-时屏幕的宽度，显示和 ThreeColumns-屏幕为宽时显示） 的对应的宽度屏幕和窗口，并的列数可以显示的。
 
 
     信息越多越下[Office.Diagnostics](xref:Outlook_1_6.Office.Diagnostics)<!-- -->。
@@ -424,7 +425,41 @@ items:
       description: ''
     parameters:
     - id: parameters
-      description: '字典，其中包含要填写新表单中为用户的所有值。 所有参数都是可选的。 toRecipients： 一个包含电子邮件地址或在收件人行上的收件人的每个包含[Office.EmailAddressDetails](xref:Outlook_1_6.Office.EmailAddressDetails)对象的数组的字符串数组。 数组限制为最多 100 个条目。 ccRecipients： 一个包含电子邮件地址或抄送行上的收件人的每个包含[Office.EmailAddressDetails](xref:Outlook_1_6.Office.EmailAddressDetails)对象的数组的字符串数组。 数组限制为最多 100 个条目。 bccRecipients： 一个包含电子邮件地址或密件抄送行上的收件人的每个包含一个[Office.EmailAddressDetails](xref:Outlook_1_6.Office.EmailAddressDetails) object 的数组的字符串数组。 数组限制为最多 100 个条目。 主题： 一个包含邮件的主题的字符串。 字符串长度限制为最多 255 个字符。 htmlBody： 邮件 HTML 正文。 正文内容限制为最大 32 KB。 附件: 文件或项目的附件的 JSON 对象的数组。 attachments.type： 指示附件的类型。 必须是文件附件或项目的项目附件的文件。 attachments.name： 一个字符串，包含附件，最长 255 个字符的名称。 attachments.url： 仅使用类型设置为文件。 文件的位置的 URI。 attachments.isInline： 仅使用类型设置为文件。 如果为 true，指示附件将显示嵌入在邮件正文中，并且不应在附件列表中显示。 attachments.itemId： 如果类型设置仅使用到项目。 附件的 EWS 项目 ID。 字符串最长为 100 个字符。'
+      description: >-
+        字典，其中包含要填写新表单中为用户的所有值。 所有参数都是可选的。
+
+
+        toRecipients： 一个包含电子邮件地址或在收件人行上的收件人的每个包含[Office.EmailAddressDetails](xref:Outlook_1_6.Office.EmailAddressDetails)对象的数组的字符串数组。 数组限制为最多 100 个条目。
+
+
+        ccRecipients： 一个包含电子邮件地址或抄送行上的收件人的每个包含[Office.EmailAddressDetails](xref:Outlook_1_6.Office.EmailAddressDetails)对象的数组的字符串数组。 数组限制为最多 100 个条目。
+
+
+        bccRecipients： 一个包含电子邮件地址或密件抄送行上的收件人的每个包含一个[Office.EmailAddressDetails](xref:Outlook_1_6.Office.EmailAddressDetails) object 的数组的字符串数组。 数组限制为最多 100 个条目。
+
+
+        主题： 一个包含邮件的主题的字符串。 字符串长度限制为最多 255 个字符。
+
+
+        htmlBody： 邮件 HTML 正文。 正文内容限制为最大 32 KB。
+
+
+        附件: 文件或项目的附件的 JSON 对象的数组。
+
+
+        attachments.type： 指示附件的类型。 必须是文件附件或项目的项目附件的文件。
+
+
+        attachments.name： 一个字符串，包含附件，最长 255 个字符的名称。
+
+
+        attachments.url： 仅使用类型设置为文件。 文件的位置的 URI。
+
+
+        attachments.isInline： 仅使用类型设置为文件。 如果为 true，指示附件将显示嵌入在邮件正文中，并且不应在附件列表中显示。
+
+
+        attachments.itemId： 如果类型设置仅使用到项目。 您想要附加到新邮件的现有电子邮件 EWS 项 id。 字符串最长为 100 个字符。
       type:
       - any
 - uid: Outlook_1_6.Office.Mailbox.ewsUrl
@@ -500,17 +535,17 @@ items:
     除了此签名，该方法具有以下签名：
 
 
-    `getCallbackTokenAsync(callback: (result: AsyncResult) => void): void;`
+    `getCallbackTokenAsync(callback: (result: AsyncResult<string>) => void): void;`
 
 
-    `getCallbackTokenAsync(callback: (result: AsyncResult) => void, userContext?: any): void;`
+    `getCallbackTokenAsync(callback: (result: AsyncResult<string>) => void, userContext?: any): void;`
   name: getCallbackTokenAsync(options, callback)
   fullName: Outlook_1_6.Office.Mailbox.getCallbackTokenAsync
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'getCallbackTokenAsync(options: Office.AsyncContextOptions, callback: (result: AsyncResult) => void): void;'
+    content: 'getCallbackTokenAsync(options: Office.AsyncContextOptions & { isRest?: boolean }, callback: (result: AsyncResult<string>) => void): void;'
     return:
       type:
       - void
@@ -519,11 +554,11 @@ items:
     - id: options
       description: 包含一个或多个以下属性的对象文本。 isRest： 确定是否将 Outlook REST Api 或 Exchange Web 服务使用提供的令牌。 默认值为 false。 asyncContext： 向异步方法传递任何状态数据。
       type:
-      - office.Office.AsyncContextOptions
+      - 'Office.AsyncContextOptions & { isRest?: boolean }'
     - id: callback
-      description: 方法完成后，使用单个的类型为 AsyncResult 参数调用中的 callback 参数传递的函数。 令牌作为 asyncResult.value 属性中的字符串提供。
+      description: 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 令牌作为 asyncResult.value 属性中的字符串提供。
       type:
-      - '(result: AsyncResult) => void'
+      - '(result: AsyncResult<string>) => void'
 - uid: Outlook_1_6.Office.Mailbox.getUserIdentityTokenAsync
   summary: >-
     获取用于标识用户和 Office 外接程序的令牌。
@@ -547,22 +582,22 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getUserIdentityTokenAsync(callback: (result: AsyncResult) => void, userContext?: any): void;'
+    content: 'getUserIdentityTokenAsync(callback: (result: AsyncResult<string>) => void, userContext?: any): void;'
     return:
       type:
       - void
       description: ''
     parameters:
     - id: callback
-      description: 方法完成后，使用单个的类型为 AsyncResult 参数调用中的 callback 参数传递的函数。
+      description: 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 令牌作为 asyncResult.value 属性中的字符串提供。
       type:
-      - '(result: AsyncResult) => void'
+      - '(result: AsyncResult<string>) => void'
     - id: userContext
       description: 可选。 传递给异步方法的任何状态数据。\|
       type:
       - any
 - uid: Outlook_1_6.Office.Mailbox.item
-  summary: 邮箱项目。 根据上下文中的外接程序打开项目可能的任意数量的类型。 如果您想要仅特定类型，请参阅智能感知，应将此项目的以下项之一： `ItemCompose`， `ItemRead`， `MessageCompose`， `MessageRead`， `AppointmentCompose`，`AppointmentRead`
+  summary: 邮箱项目。 根据上下文中的外接程序打开项目可能的任意数量的类型。 如果您想要仅特定类型，请参阅智能感知，应将此项目的以下项之一： `ItemCompose` <!-- -->， `ItemRead` <!-- -->， `MessageCompose` <!-- -->， `MessageRead` <!-- -->， `AppointmentCompose` <!-- -->，`AppointmentRead`
   name: item
   fullName: Outlook_1_6.Office.Mailbox.item
   langs:
@@ -590,13 +625,19 @@ items:
     XML 请求必须指定 UTF-8 编码。 &lt;?xml 版本 ="1.0"编码 ="utf-8"？&gt;
 
 
-    您的外接程序必须具有 ReadWriteMailbox 权限才能使用 makeEwsRequestAsync 方法。有关使用 ReadWriteMailbox 权限和可使用 makeEwsRequestAsync 方法调用 EWS 操作的信息，请参阅指定访问用户邮箱的邮件外接程序的权限。
+    加载项必须使用 makeEwsRequestAsync 方法的 ReadWriteMailbox 权限。 有关使用 ReadWriteMailbox 权限并且您可以调用 EWS 操作 makeEwsRequestAsync 方法的信息，请参阅[指定邮件加载项访问权限的用户邮箱](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->。
 
 
     EWS 调用的 XML 结果作为 asyncResult.value 属性中的字符串提供。如果结果大小超过 1 MB，则返回一条错误消息。
 
 
-    注意： 以下方案中不支持此方法。 Outlook 开发 iOS 或 Android-加载 Gmail 邮箱中的外接程序时的 Outlook 项
+    注意： 以下方案中不支持此方法：
+
+
+    - 在适用于 iOS 的 Outlook 或 Outlook for Android。
+
+
+    - 外接程序加载时 Gmail 邮箱中。
 
 
     注意： 服务器管理员必须将 OAuthAuthentication 设置为 true 以启用 makeEwsRequestAsync 方法才能发出 EWS 请求在客户端访问服务器 EWS 目录上。
@@ -608,7 +649,7 @@ items:
     当您在较 15.0.4535.1004 版本更早的 Outlook 版本中运行的邮件应用程序中使用 makeEwsRequestAsync 方法，应当将编码值设置为 ISO-8859-1。
 
 
-    `&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;`
+    `<?xml version="1.0" encoding="iso-8859-1"?>`
 
 
     当邮件应用程序运行在 Outlook 网页版中时，您不需要设置编码值。可以通过使用 mailbox.diagnostics.hostName 属性来确定您的邮件应用程序在 Outlook 中还是 Outlook 网页版中运行。可以通过使用 mailbox.diagnostics.hostVersion 属性来确定正在运行的是 Outlook 的哪个版本。
@@ -626,7 +667,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'makeEwsRequestAsync(data: any, callback: (result: AsyncResult) => void, userContext?: any): void;'
+    content: 'makeEwsRequestAsync(data: any, callback: (result: AsyncResult<string>) => void, userContext?: any): void;'
     return:
       type:
       - void
@@ -637,13 +678,55 @@ items:
       type:
       - any
     - id: callback
-      description: 方法完成后，使用单个的类型为 AsyncResult 参数调用中的 callback 参数传递的函数。
+      description: 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 `value`结果属性是以字符串形式提供 EWS 请求的 XML。 如果结果的大小超过 1 MB，而被返回一条错误消息。
       type:
-      - '(result: AsyncResult) => void'
+      - '(result: AsyncResult<string>) => void'
     - id: userContext
       description: 可选。 传递给异步方法的任何状态数据。
       type:
       - any
+- uid: Outlook_1_6.Office.Mailbox.removeHandlerAsync
+  summary: >-
+    删除事件处理程序支持的事件。
+
+
+    目前，仅支持的事件类型是`Office.EventType.ItemChanged` <!-- -->。
+
+
+    \[[API 集： 邮箱 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+  name: removeHandlerAsync(eventType, handler, options, callback)
+  fullName: Outlook_1_6.Office.Mailbox.removeHandlerAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'removeHandlerAsync(eventType: Office.EventType, handler: (type: EventType) => void, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: eventType
+      description: 应取消处理程序的事件。
+      type:
+      - Office.EventType
+    - id: handler
+      description: 要处理的事件的函数。 函数必须接受一个参数，即对象文本。 参数的类型属性将匹配 eventType 参数传递给 addHandlerAsync。
+      type:
+      - '(type: EventType) => void'
+    - id: options
+      description: 可选。 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: 可选。 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。
+      type:
+      - '(result: AsyncResult<void>) => void'
 - uid: Outlook_1_6.Office.Mailbox.restUrl
   summary: >-
     获取此电子邮件帐户的 REST 终结点的 URL。

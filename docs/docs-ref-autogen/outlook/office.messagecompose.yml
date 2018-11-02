@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 7e7ea622413bb56d4f71183a34ed3f084310b319
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: 0ff86da1108c9175bbe21faa41cd5bb0b4845657
+ms.sourcegitcommit: 4bbd18c863a4140ad456b859f9c0309e153e10b2
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25586211"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "25915453"
 items:
 - uid: outlook.Office.MessageCompose
   summary: >-
@@ -33,8 +33,10 @@ items:
   - outlook.Office.MessageCompose.dateTimeCreated
   - outlook.Office.MessageCompose.dateTimeModifed
   - outlook.Office.MessageCompose.from
+  - outlook.Office.MessageCompose.getAttachmentsAsync
   - outlook.Office.MessageCompose.getInitializationContextAsync
   - outlook.Office.MessageCompose.getSelectedDataAsync
+  - outlook.Office.MessageCompose.internetHeaders
   - outlook.Office.MessageCompose.itemType
   - outlook.Office.MessageCompose.loadCustomPropertiesAsync
   - outlook.Office.MessageCompose.notificationMessages
@@ -163,7 +165,7 @@ items:
     添加支持事件的事件处理程序。
 
 
-    当前受支持的事件类型的`Office.EventType.AppointmentTimeChanged` <!-- -->， `Office.EventType.RecipientsChanged` <!-- -->，和`Office.EventType.RecurrenceChanged` <!-- -->。
+    当前受支持的事件类型的`Office.EventType.AppointmentTimeChanged` <!-- -->， `Office.EventType.RecipientsChanged` <!-- -->，和`Office.EventType.RecurrenceChanged` <!-- -->。 在预览`Office.EventType.AttachmentsChanged`，还支持。
 
 
     \[[API 集： 邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -546,6 +548,34 @@ items:
     return:
       type:
       - outlook.Office.From
+- uid: outlook.Office.MessageCompose.getAttachmentsAsync
+  summary: >-
+    作为数组中获取项目的附件。
+
+
+    \[[API 集： 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr></table>\n####示例\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar outputString = \"\";\nitem.getAttachmentsAsync(callback);  \nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var _att = result.value [i];\n            outputString += \"<BR>\" + i + \". Name: \";\n            outputString += _att.name;\n            outputString += \"<BR>ID: \" + _att.id;\n            outputString += \"<BR>contentType: \" + _att.contentType;\n            outputString += \"<BR>size: \" + _att.size;\n            outputString += \"<BR>attachmentType: \" + _att.attachmentType;\n            outputString += \"<BR>isInline: \" + _att.isInline;\n        }\n    }\n}\n```"
+  isPreview: true
+  name: getAttachmentsAsync(options, callback)
+  fullName: outlook.Office.MessageCompose.getAttachmentsAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAttachmentsAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<Office.AttachmentDetails[]>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 asyncContext： 开发人员可以提供他们希望在回调方法访问任何对象。
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: 可选。 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 如果调用失败，asyncResult.error 属性将包含，错误代码与失败的原因。
+      type:
+      - '(result: AsyncResult<Office.AttachmentDetails[]>) => void'
 - uid: outlook.Office.MessageCompose.getInitializationContextAsync
   summary: >-
     当可操作邮件激活加载项时，获取传递的初始化数据。
@@ -647,6 +677,31 @@ items:
       description: 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。
       type:
       - '(result: AsyncResult<any>) => void'
+- uid: outlook.Office.MessageCompose.internetHeaders
+  summary: >-
+    设置消息的 internet 邮件头。
+
+
+    InternetHeaders 属性返回一个 InternetHeaders 对象，提供用于管理邮件上的 internet 标头的方法。
+
+
+    \[[API 集： 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件撰写</td></tr></table>
+  isPreview: true
+  name: internetHeaders
+  fullName: outlook.Office.MessageCompose.internetHeaders
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'internetHeaders: Office.InternetHeaders;'
+    return:
+      type:
+      - outlook.Office.InternetHeaders
 - uid: outlook.Office.MessageCompose.itemType
   summary: >-
     获取实例表示的项的类型。
@@ -764,7 +819,7 @@ items:
     将附件从邮件或约会中删除。
 
 
-    removeAttachmentAsync 方法删除项目中带指定标识符的附件。最佳做法是，仅当同一个邮件应用程序在同一会话中添加了一个附件时，您才应使用该附件标识符来删除该附件。在 Outlook Web App 和适用于设备的 OWA 中，附件标识符只在同一个会话中才有效。当用户关闭应用程序，或者如果用户开始在内嵌窗体中撰写，并在随后弹出的内嵌窗体中继续在单独的窗口撰写时，会话即结束。
+    RemoveAttachmentAsync 方法从项目中删除具有指定标识符的附件。 最佳做法是，仅当同一个邮件应用程序在同一会话中添加了一个附件时，你才应使用该附件标识符来删除该附件。 在 Outlook Web App 和适用于设备的 OWA 中，附件标识符只在同一个会话中才有效。 会话是通过，当用户关闭应用程序，或如果用户开始撰写内嵌窗体，则随后弹出窗体继续在单独的窗口。
 
 
     \[[API 集： 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -835,7 +890,7 @@ items:
     删除事件处理程序支持的事件。
 
 
-    当前受支持的事件类型的`Office.EventType.AppointmentTimeChanged` <!-- -->， `Office.EventType.RecipientsChanged` <!-- -->，和`Office.EventType.RecurrenceChanged` <!-- -->。
+    当前受支持的事件类型的`Office.EventType.AppointmentTimeChanged` <!-- -->， `Office.EventType.RecipientsChanged` <!-- -->，和`Office.EventType.RecurrenceChanged` <!-- -->。 在预览`Office.EventType.AttachmentsChanged`，还支持。
 
 
     \[[API 集： 邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -863,7 +918,7 @@ items:
       description: ''
     parameters:
     - id: eventType
-      description: 应调用处理程序的事件。
+      description: 应取消处理程序的事件。
       type:
       - EventType
     - id: handler

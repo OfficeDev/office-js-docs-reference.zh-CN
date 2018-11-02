@@ -1,14 +1,14 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 92468bfdd998872d603044a5726e06ac621da5c0
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: ec0ae1f16fb7de22ac10842ce0ffc94162b1046b
+ms.sourcegitcommit: 4bbd18c863a4140ad456b859f9c0309e153e10b2
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25581318"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "25915355"
 items:
 - uid: Outlook_1_3.Office.Mailbox
   summary: >-
-    Microsoft Outlook 和 Microsoft Outlook on the web 提供对 Outlook 加载项对象模型的访问。
+    为 Microsoft Outlook 和 Microsoft Outlook 网页版提供对 Outlook 外接程序对象模型的访问权限。
 
 
     命名空间：
@@ -201,7 +201,7 @@ items:
     - hostVersion （字符串）： 一个字符串，表示主机应用程序或 Exchange Server 的版本。 如果 Outlook 桌面客户端或适用于 iOS 的 Outlook 邮件外接程序正在运行，hostVersion 属性将返回主机应用程序，Outlook 的版本。 在 Outlook Web App 中，该属性返回的 Exchange Server 的版本。 例如，15.0.468.0 的字符串。
 
 
-    - OWAView （字符串）： 一个字符串，表示 Outlook Web App 的当前视图。 如果主机应用程序不是 Outlook Web App，则访问此属性将导致返回 undefined。 Outlook Web App 具有三个视图 （OneColumn-屏幕为窄时显示、 TwoColumns-时屏幕的宽度，显示和 ThreeColumns-显示时屏幕的范围。） 的对应的宽度屏幕和窗口，并的列数可以显示的。
+    - OWAView （MailboxEnums.OWAView 或字符串）： 枚举 （或字符串文字），表示 Outlook Web App 的当前视图。 如果主机应用程序不是 Outlook Web App，则访问此属性将导致返回 undefined。 Outlook Web App 具有三个视图 （OneColumn-屏幕为窄时显示、 TwoColumns-时屏幕的宽度，显示和 ThreeColumns-屏幕为宽时显示） 的对应的宽度屏幕和窗口，并的列数可以显示的。
 
 
     信息越多越下[Office.Diagnostics](xref:Outlook_1_3.Office.Diagnostics)<!-- -->。
@@ -411,16 +411,16 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getCallbackTokenAsync(callback: (result: AsyncResult) => void, userContext?: any): void;'
+    content: 'getCallbackTokenAsync(callback: (result: AsyncResult<string>) => void, userContext?: any): void;'
     return:
       type:
       - void
       description: ''
     parameters:
     - id: callback
-      description: 方法完成后，使用单个的类型为 AsyncResult 参数调用中的 callback 参数传递的函数。 令牌作为 asyncResult.value 属性中的字符串提供。
+      description: 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 令牌作为 asyncResult.value 属性中的字符串提供。
       type:
-      - '(result: AsyncResult) => void'
+      - '(result: AsyncResult<string>) => void'
     - id: userContext
       description: 可选。 传递给异步方法的任何状态数据。
       type:
@@ -448,22 +448,22 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getUserIdentityTokenAsync(callback: (result: AsyncResult) => void, userContext?: any): void;'
+    content: 'getUserIdentityTokenAsync(callback: (result: AsyncResult<string>) => void, userContext?: any): void;'
     return:
       type:
       - void
       description: ''
     parameters:
     - id: callback
-      description: 方法完成后，使用单个的类型为 AsyncResult 参数调用中的 callback 参数传递的函数。
+      description: 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 令牌作为 asyncResult.value 属性中的字符串提供。
       type:
-      - '(result: AsyncResult) => void'
+      - '(result: AsyncResult<string>) => void'
     - id: userContext
       description: 可选。 传递给异步方法的任何状态数据。\|
       type:
       - any
 - uid: Outlook_1_3.Office.Mailbox.item
-  summary: 邮箱项目。 根据上下文中的外接程序打开项目可能的任意数量的类型。 如果您想要仅特定类型，请参阅智能感知，应将此项目的以下项之一： `ItemCompose`， `ItemRead`， `MessageCompose`， `MessageRead`， `AppointmentCompose`，`AppointmentRead`
+  summary: 邮箱项目。 根据上下文中的外接程序打开项目可能的任意数量的类型。 如果您想要仅特定类型，请参阅智能感知，应将此项目的以下项之一： `ItemCompose` <!-- -->， `ItemRead` <!-- -->， `MessageCompose` <!-- -->， `MessageRead` <!-- -->， `AppointmentCompose` <!-- -->，`AppointmentRead`
   name: item
   fullName: Outlook_1_3.Office.Mailbox.item
   langs:
@@ -491,13 +491,19 @@ items:
     XML 请求必须指定 UTF-8 编码。 &lt;?xml 版本 ="1.0"编码 ="utf-8"？&gt;
 
 
-    您的外接程序必须具有 ReadWriteMailbox 权限才能使用 makeEwsRequestAsync 方法。有关使用 ReadWriteMailbox 权限和可使用 makeEwsRequestAsync 方法调用 EWS 操作的信息，请参阅指定访问用户邮箱的邮件外接程序的权限。
+    加载项必须使用 makeEwsRequestAsync 方法的 ReadWriteMailbox 权限。 有关使用 ReadWriteMailbox 权限并且您可以调用 EWS 操作 makeEwsRequestAsync 方法的信息，请参阅[指定邮件加载项访问权限的用户邮箱](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->。
 
 
     EWS 调用的 XML 结果作为 asyncResult.value 属性中的字符串提供。如果结果大小超过 1 MB，则返回一条错误消息。
 
 
-    注意： 以下方案中不支持此方法。 Outlook 开发 iOS 或 Android-加载 Gmail 邮箱中的外接程序时的 Outlook 项
+    注意： 以下方案中不支持此方法：
+
+
+    - 在适用于 iOS 的 Outlook 或 Outlook for Android。
+
+
+    - 外接程序加载时 Gmail 邮箱中。
 
 
     注意： 服务器管理员必须将 OAuthAuthentication 设置为 true 以启用 makeEwsRequestAsync 方法才能发出 EWS 请求在客户端访问服务器 EWS 目录上。
@@ -509,7 +515,7 @@ items:
     当您在较 15.0.4535.1004 版本更早的 Outlook 版本中运行的邮件应用程序中使用 makeEwsRequestAsync 方法，应当将编码值设置为 ISO-8859-1。
 
 
-    `&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;`
+    `<?xml version="1.0" encoding="iso-8859-1"?>`
 
 
     当邮件应用程序运行在 Outlook 网页版中时，您不需要设置编码值。可以通过使用 mailbox.diagnostics.hostName 属性来确定您的邮件应用程序在 Outlook 中还是 Outlook 网页版中运行。可以通过使用 mailbox.diagnostics.hostVersion 属性来确定正在运行的是 Outlook 的哪个版本。
@@ -527,7 +533,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'makeEwsRequestAsync(data: any, callback: (result: AsyncResult) => void, userContext?: any): void;'
+    content: 'makeEwsRequestAsync(data: any, callback: (result: AsyncResult<string>) => void, userContext?: any): void;'
     return:
       type:
       - void
@@ -538,9 +544,9 @@ items:
       type:
       - any
     - id: callback
-      description: 方法完成后，使用单个的类型为 AsyncResult 参数调用中的 callback 参数传递的函数。
+      description: 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 `value`结果属性是以字符串形式提供 EWS 请求的 XML。 如果结果的大小超过 1 MB，而被返回一条错误消息。
       type:
-      - '(result: AsyncResult) => void'
+      - '(result: AsyncResult<string>) => void'
     - id: userContext
       description: 可选。 传递给异步方法的任何状态数据。
       type:

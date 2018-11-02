@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: aed02c23f9c6af0d61b1124d36fde84cc7b711c1
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: 464cf60863dbfdc585f3597bb5abebe5fcf4136a
+ms.sourcegitcommit: 4bbd18c863a4140ad456b859f9c0309e153e10b2
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25585532"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "25914347"
 items:
 - uid: outlook.Office.Mailbox
   summary: >-
@@ -51,6 +51,7 @@ items:
   - outlook.Office.Mailbox.getUserIdentityTokenAsync
   - outlook.Office.Mailbox.item
   - outlook.Office.Mailbox.makeEwsRequestAsync
+  - outlook.Office.Mailbox.removeHandlerAsync
   - outlook.Office.Mailbox.restUrl
   - outlook.Office.Mailbox.userProfile
 - uid: outlook.Office.Mailbox.addHandlerAsync
@@ -58,7 +59,7 @@ items:
     添加支持事件的事件处理程序。
 
 
-    目前，支持的事件类型的`Office.EventType.ItemChanged`和`Office.EventType.OfficeThemeChanged` <!-- -->。
+    目前，仅支持的事件类型是`Office.EventType.ItemChanged` <!-- -->。 在预览`Office.EventType.OfficeThemeChanged`，还支持。
 
 
     \[[API 集： 邮箱 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -889,6 +890,48 @@ items:
       description: 可选。 传递给异步方法的任何状态数据。
       type:
       - any
+- uid: outlook.Office.Mailbox.removeHandlerAsync
+  summary: >-
+    删除事件处理程序支持的事件。
+
+
+    目前，仅支持的事件类型是`Office.EventType.ItemChanged` <!-- -->。 在预览`Office.EventType.OfficeThemeChanged`，还支持。
+
+
+    \[[API 集： 邮箱 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+  name: removeHandlerAsync(eventType, handler, options, callback)
+  fullName: outlook.Office.Mailbox.removeHandlerAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'removeHandlerAsync(eventType: Office.EventType, handler: (type: EventType) => void, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: eventType
+      description: 应取消处理程序的事件。
+      type:
+      - Office.EventType
+    - id: handler
+      description: 要处理的事件的函数。 函数必须接受一个参数，即对象文本。 参数的类型属性将匹配 eventType 参数传递给 addHandlerAsync。
+      type:
+      - '(type: EventType) => void'
+    - id: options
+      description: 可选。 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: 可选。 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。
+      type:
+      - '(result: AsyncResult<void>) => void'
 - uid: outlook.Office.Mailbox.restUrl
   summary: >-
     获取此电子邮件帐户的 REST 终结点的 URL。

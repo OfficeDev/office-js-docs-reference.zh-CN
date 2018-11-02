@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 995aba70576e3dbe4a41cdfc856ef9f8ddfab33c
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: 3a43db18f25a9b18b64433969b9747c413960303
+ms.sourcegitcommit: 4bbd18c863a4140ad456b859f9c0309e153e10b2
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25582179"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "25915341"
 items:
 - uid: word.Word.ContentControlCollection
   summary: >-
@@ -94,7 +94,7 @@ items:
     return:
       type:
       - word.Word.ContentControlCollection
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n\n    // Create a proxy object for the content controls collection that contains a specific tag.\n    var contentControlsWithTag = context.document.contentControls.getByTag('Customer-Address');\n\n    // Queue a command to load the text property for all of content controls with a specific tag.\n    context.load(contentControlsWithTag, 'text');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        if (contentControlsWithTag.items.length === 0) {\n            console.log(\"There isn't a content control with a tag of Customer-Address in this document.\");\n        } else {\n            console.log(\n                'The first content control with the tag of Customer-Address has this text: ' + \n                contentControlsWithTag.items[0].text);\n        }\n\n    });\n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n\n// The Word-Add-in-DocumentAssembly sample has another example of using the getByTag method.\n// https://github.com/OfficeDev/Word-Add-in-DocumentAssembly\n```\n```typescript\nawait Word.run(async (context) => {\n    let contentControls = context.document.contentControls.getByTag(\"customer\");\n    contentControls.load(\"text\");\n\n    await context.sync();\n\n    for (let i = 0; i < contentControls.items.length; i++) {\n        contentControls.items[i].insertText(\"Fabrikam\", \"Replace\");\n    }\n\n    await context.sync();\n});\n```"
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n\n    // Create a proxy object for the content controls collection that contains a specific tag.\n    var contentControlsWithTag = context.document.contentControls.getByTag('Customer-Address');\n\n    // Queue a command to load the text property for all of content controls with a specific tag.\n    context.load(contentControlsWithTag, 'text');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        if (contentControlsWithTag.items.length === 0) {\n            console.log(\"There isn't a content control with a tag of Customer-Address in this document.\");\n        } else {\n            console.log(\n                'The first content control with the tag of Customer-Address has this text: ' + \n                contentControlsWithTag.items[0].text);\n        }\n\n    });\n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n\n// The Word-Add-in-DocumentAssembly sample has another example of using the getByTag method.\n// https://github.com/OfficeDev/Word-Add-in-DocumentAssembly\n```\n```typescript\nawait Word.run(async (context) => {\n    let contentControls = context.document.contentControls.getByTag(\"customer\");\n    contentControls.load(\"text\");\n\n    await context.sync();\n\n    for (let i = 0; i < contentControls.items.length; i++) {\n      contentControls.items[i].insertText(\"Fabrikam\", \"Replace\");\n    }\n\n    await context.sync();\n});\n```"
     parameters:
     - id: tag
       description: 必需。在内容控件上设置的标记。

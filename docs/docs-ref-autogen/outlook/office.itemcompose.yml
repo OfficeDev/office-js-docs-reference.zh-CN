@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 8db5811f0c62ec071a02d70d6ee5b2a38b15bc2b
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: bffdd3c1188e27b726cc7202c6b0d15bbb232e54
+ms.sourcegitcommit: 4bbd18c863a4140ad456b859f9c0309e153e10b2
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25581437"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "25912562"
 items:
 - uid: outlook.Office.ItemCompose
   summary: >-
@@ -25,6 +25,7 @@ items:
   - outlook.Office.ItemCompose.addFileAttachmentFromBase64Async
   - outlook.Office.ItemCompose.addItemAttachmentAsync
   - outlook.Office.ItemCompose.close
+  - outlook.Office.ItemCompose.getAttachmentsAsync
   - outlook.Office.ItemCompose.getInitializationContextAsync
   - outlook.Office.ItemCompose.getSelectedDataAsync
   - outlook.Office.ItemCompose.removeAttachmentAsync
@@ -234,6 +235,38 @@ items:
       type:
       - void
       description: ''
+- uid: outlook.Office.ItemCompose.getAttachmentsAsync
+  summary: >-
+    作为数组中获取项目的附件。
+
+
+    \[[API 集： 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr></table>
+  isPreview: true
+  name: getAttachmentsAsync(options, callback)
+  fullName: outlook.Office.ItemCompose.getAttachmentsAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAttachmentsAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<Office.AttachmentDetails[]>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 asyncContext： 开发人员可以提供他们希望在回调方法访问任何对象。
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: 可选。 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 如果调用失败，asyncResult.error 属性将包含，错误代码与失败的原因。
+      type:
+      - '(result: AsyncResult<Office.AttachmentDetails[]>) => void'
 - uid: outlook.Office.ItemCompose.getInitializationContextAsync
   summary: >-
     当可操作邮件激活加载项时，获取传递的初始化数据。
@@ -314,7 +347,7 @@ items:
     将附件从邮件或约会中删除。
 
 
-    removeAttachmentAsync 方法删除项目中带指定标识符的附件。最佳做法是，仅当同一个邮件应用程序在同一会话中添加了一个附件时，您才应使用该附件标识符来删除该附件。在 Outlook Web App 和适用于设备的 OWA 中，附件标识符只在同一个会话中才有效。当用户关闭应用程序，或者如果用户开始在内嵌窗体中撰写，并在随后弹出的内嵌窗体中继续在单独的窗口撰写时，会话即结束。
+    RemoveAttachmentAsync 方法从项目中删除具有指定标识符的附件。 最佳做法是，仅当同一个邮件应用程序在同一会话中添加了一个附件时，你才应使用该附件标识符来删除该附件。 在 Outlook Web App 和适用于设备的 OWA 中，附件标识符只在同一个会话中才有效。 会话是通过，当用户关闭应用程序，或如果用户开始撰写内嵌窗体，则随后弹出窗体继续在单独的窗口。
 
 
     \[[API 集： 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
