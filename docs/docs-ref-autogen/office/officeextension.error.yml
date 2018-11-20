@@ -1,15 +1,15 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 871024b1f5fc48a59891b6e56cf8c1f8b6fe2b8b
-ms.sourcegitcommit: a36161c2113d94680dc68150d024e68bdf0390fa
+ms.openlocfilehash: 244d32f81364753d62265cdc791e4d8a489e0883
+ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "25458052"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "26228211"
 items:
 - uid: office.OfficeExtension.Error
   summary: 返回 error 对象`context.sync()` <!-- -->，如果由于错误处理的请求时将被拒绝承诺。
   name: OfficeExtension.Error
-  fullName: office.OfficeExtension.Error
+  fullName: OfficeExtension.Error
   langs:
   - typeScript
   type: class
@@ -26,7 +26,7 @@ items:
 - uid: office.OfficeExtension.Error.code
   summary: 错误代码的字符串，如"InvalidArgument"。
   name: code
-  fullName: office.OfficeExtension.Error.code
+  fullName: code
   langs:
   - typeScript
   type: property
@@ -38,7 +38,7 @@ items:
 - uid: office.OfficeExtension.Error.debugInfo
   summary: 调试信息 (有用详细日志记录的错误，即通过`JSON.stringify(...)` <!-- -->)。
   name: debugInfo
-  fullName: office.OfficeExtension.Error.debugInfo
+  fullName: debugInfo
   langs:
   - typeScript
   type: property
@@ -50,7 +50,7 @@ items:
 - uid: office.OfficeExtension.Error.innerError
   summary: 内部错误，如果适用。
   name: innerError
-  fullName: office.OfficeExtension.Error.innerError
+  fullName: innerError
   langs:
   - typeScript
   type: property
@@ -62,7 +62,7 @@ items:
 - uid: office.OfficeExtension.Error.message
   summary: 从 Office 应用程序的主机，通过传递的错误消息。
   name: message
-  fullName: office.OfficeExtension.Error.message
+  fullName: message
   langs:
   - typeScript
   type: property
@@ -74,7 +74,7 @@ items:
 - uid: office.OfficeExtension.Error.name
   summary: 错误名称:"OfficeExtension.Error"。
   name: name
-  fullName: office.OfficeExtension.Error.name
+  fullName: name
   langs:
   - typeScript
   type: property
@@ -86,7 +86,7 @@ items:
 - uid: office.OfficeExtension.Error.stack
   summary: 如果适用，则堆栈跟踪。
   name: stack
-  fullName: office.OfficeExtension.Error.stack
+  fullName: stack
   langs:
   - typeScript
   type: property
@@ -98,13 +98,13 @@ items:
 - uid: office.OfficeExtension.Error.traceMessages
   summary: 跟踪邮件 （如果有） 的已通过添加`context.trace()`之前调用的调用`context.sync()` <!-- -->。 如果出现错误，其中包含错误发生之前已执行的所有跟踪消息。 这些邮件可帮助您监视程序执行顺序和检测错误的大小写。
   name: traceMessages
-  fullName: office.OfficeExtension.Error.traceMessages
+  fullName: traceMessages
   langs:
   - typeScript
   type: property
   syntax:
-    content: 'traceMessages: Array<string>;'
+    content: 'traceMessages: string[];'
     return:
       type:
-      - Array<string>
+      - string[]
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following example shows how you can instrument a batch of commands\n// to determine where an error occurred. The first batch successfully\n// inserts the first two paragraphs into the document and cause no errors.\n// The second batch successfully inserts the third and fourth paragraphs\n// but fails in the call to insert the fifth paragraph. All other commands\n// after the failed command in the batch are not executed, including the\n// command that adds the fifth trace message. In this case, the error\n// occurred after the fourth paragraph was inserted, and before adding the\n// fifth trace message.\n\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n\n    // Create a proxy object for the document body.\n    var body = context.document.body;\n\n    // Queue a commmand to insert the paragraph at the end of the document body.\n    // Start a batch of commands.\n    body.insertParagraph('1st paragraph', Word.InsertLocation.end);\n    // Queue a command for instrumenting this part of the batch.\n    context.trace('1st paragraph successful');\n\n    body.insertParagraph('2nd paragraph', Word.InsertLocation.end);\n    context.trace('2nd paragraph successful');\n\n    // Synchronize the document state by executing the queued-up commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        // Queue a commmand to insert the paragraph at the end of the document body.\n        // Start a new batch of commands.\n        body.insertParagraph('3rd paragraph', Word.InsertLocation.end);\n        context.trace('3rd paragraph successful');\n\n        body.insertParagraph('4th paragraph', Word.InsertLocation.end);\n        context.trace('4th paragraph successful');\n\n        // This command will cause an error. The trace messages in the queue up to\n        // this point will be available via Error.traceMessages.\n        body.insertParagraph(0, '5th paragraph', Word.InsertLocation.end);\n        // Queue a command for instrumenting this part of the batch.\n        // This trace message will not be set on Error.traceMessages.\n        context.trace('5th paragraph successful');\n    }).then(context.sync);\n})\n.catch(function (error) {\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Trace messages: ' + error.traceMessages);\n    }\n});\n\n// Output: \"Trace messages: 3rd paragraph successful,4th paragraph successful\"\n```"

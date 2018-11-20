@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: d0781da0477529a8d003d1e32678ee9206d8c1f7
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: 58e9c3d346583ad0b13e2fbdb6dfa288cc4901ca
+ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25581153"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "26224186"
 items:
 - uid: onenote.OneNote.Section
   summary: >-
@@ -13,7 +13,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: OneNote.Section
-  fullName: onenote.OneNote.Section
+  fullName: OneNote.Section
   langs:
   - typeScript
   type: class
@@ -47,7 +47,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: addPage(title)
-  fullName: onenote.OneNote.Section.addPage
+  fullName: addPage
   langs:
   - typeScript
   type: method
@@ -69,7 +69,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: clientUrl
-  fullName: onenote.OneNote.Section.clientUrl
+  fullName: clientUrl
   langs:
   - typeScript
   type: property
@@ -85,7 +85,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: copyToNotebook(destinationNotebook)
-  fullName: onenote.OneNote.Section.copyToNotebook
+  fullName: copyToNotebook
   langs:
   - typeScript
   type: method
@@ -107,7 +107,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: copyToSectionGroup(destinationSectionGroup)
-  fullName: onenote.OneNote.Section.copyToSectionGroup
+  fullName: copyToSectionGroup
   langs:
   - typeScript
   type: method
@@ -129,7 +129,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: getRestApiId()
-  fullName: onenote.OneNote.Section.getRestApiId
+  fullName: getRestApiId
   langs:
   - typeScript
   type: method
@@ -146,7 +146,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: id
-  fullName: onenote.OneNote.Section.id
+  fullName: id
   langs:
   - typeScript
   type: property
@@ -162,7 +162,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: insertSectionAsSibling(location, title)
-  fullName: onenote.OneNote.Section.insertSectionAsSibling
+  fullName: insertSectionAsSibling
   langs:
   - typeScript
   type: method
@@ -188,7 +188,7 @@ items:
 
     \[[API 集： OneNoteApi 1.2](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: isEncrypted
-  fullName: onenote.OneNote.Section.isEncrypted
+  fullName: isEncrypted
   langs:
   - typeScript
   type: property
@@ -204,7 +204,7 @@ items:
 
     \[[API 集： OneNoteApi 1.2](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: isLocked
-  fullName: onenote.OneNote.Section.isLocked
+  fullName: isLocked
   langs:
   - typeScript
   type: property
@@ -217,7 +217,7 @@ items:
   summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
   remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): OneNote.Section`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Section`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n        \n    // Get the current section.\n    var section = context.application.getActiveSection();\n            \n    // Queue a command to load the section. \n    // For best performance, request specific properties.           \n    section.load(\"id\");\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            console.log(\"Section ID: \" + section.id);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function (context) {\n        \n    // Get the current section.\n    var section = context.application.getActiveSection();\n            \n    // Queue a command to load the section with the specified properties. \n    section.load(\"name,notebook/name\");\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            console.log(\"Section name: \" + section.name);\n            console.log(\"Parent notebook name: \" + section.notebook.name);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function (context) {\n    // Queue a command to add a page to the current section.\n    var section = context.application.getActiveSection();\n    section.load('clientUrl,notebook');\n    var sectionGroup = section.parentSectionGroupOrNull;\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            if(sectionGroup.isNull === false)\n            {\n                // If a parent section group exists, queue a command to add a section in it!\n                sectionGroup.addSection(\"NewSectionInSectionGroup\");\n            }\n            return context.sync();\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   name: load(option)
-  fullName: onenote.OneNote.Section.load
+  fullName: load
   langs:
   - typeScript
   type: method
@@ -239,7 +239,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: name
-  fullName: onenote.OneNote.Section.name
+  fullName: name
   langs:
   - typeScript
   type: property
@@ -255,7 +255,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: notebook
-  fullName: onenote.OneNote.Section.notebook
+  fullName: notebook
   langs:
   - typeScript
   type: property
@@ -271,7 +271,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: pages
-  fullName: onenote.OneNote.Section.pages
+  fullName: pages
   langs:
   - typeScript
   type: property
@@ -287,7 +287,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: parentSectionGroup
-  fullName: onenote.OneNote.Section.parentSectionGroup
+  fullName: parentSectionGroup
   langs:
   - typeScript
   type: property
@@ -303,7 +303,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: parentSectionGroupOrNull
-  fullName: onenote.OneNote.Section.parentSectionGroupOrNull
+  fullName: parentSectionGroupOrNull
   langs:
   - typeScript
   type: property
@@ -314,7 +314,7 @@ items:
       - onenote.OneNote.SectionGroup
 - uid: onenote.OneNote.Section.toJSON
   name: toJSON()
-  fullName: onenote.OneNote.Section.toJSON
+  fullName: toJSON
   langs:
   - typeScript
   type: method
@@ -327,7 +327,7 @@ items:
 - uid: onenote.OneNote.Section.track
   summary: 跟踪自动调整根据周围的文档中的更改的对象。 此呼叫是 context.trackedObjects.add(thisObject) 简写。 如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。
   name: track()
-  fullName: onenote.OneNote.Section.track
+  fullName: track
   langs:
   - typeScript
   type: method
@@ -340,7 +340,7 @@ items:
 - uid: onenote.OneNote.Section.untrack
   summary: 发行版与此对象，如果以前跟踪关联的内存。 此呼叫是简写 context.trackedObjects.remove(thisObject)。 具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。 您将需要的内存版本生效前调用"context.sync()"。
   name: untrack()
-  fullName: onenote.OneNote.Section.untrack
+  fullName: untrack
   langs:
   - typeScript
   type: method
@@ -357,7 +357,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: webUrl
-  fullName: onenote.OneNote.Section.webUrl
+  fullName: webUrl
   langs:
   - typeScript
   type: property

@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 981706ec414c52c3206f8d331f441c67f074aa76
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: 557671cc8c50a868ae0e7d5a79aeebf8b0f788d3
+ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25580583"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "26226363"
 items:
 - uid: excel.Excel.TableRowCollection
   summary: >-
@@ -16,7 +16,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: Excel.TableRowCollection
-  fullName: excel.Excel.TableRowCollection
+  fullName: Excel.TableRowCollection
   langs:
   - typeScript
   type: class
@@ -41,7 +41,7 @@ items:
 
     \[[API 集： ExcelApi 1.1 添加单行; 1.4 允许添加的多个行。](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
   name: add(index, values)
-  fullName: excel.Excel.TableRowCollection.add
+  fullName: add
   langs:
   - typeScript
   type: method
@@ -67,7 +67,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: count
-  fullName: excel.Excel.TableRowCollection.count
+  fullName: count
   langs:
   - typeScript
   type: property
@@ -83,7 +83,7 @@ items:
 
     \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getCount()
-  fullName: excel.Excel.TableRowCollection.getCount
+  fullName: getCount
   langs:
   - typeScript
   type: method
@@ -103,7 +103,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItemAt(index)
-  fullName: excel.Excel.TableRowCollection.getItemAt
+  fullName: getItemAt
   langs:
   - typeScript
   type: method
@@ -121,7 +121,7 @@ items:
 - uid: excel.Excel.TableRowCollection.items
   summary: 获取此集合中的加载的子项目。
   name: items
-  fullName: excel.Excel.TableRowCollection.items
+  fullName: items
   langs:
   - typeScript
   type: property
@@ -134,7 +134,7 @@ items:
   summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
   remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): Excel.TableRowCollection`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TableRowCollection`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tablerows = ctx.workbook.tables.getItem('Table1').rows;\n    tablerows.load('items');\n    return ctx.sync().then(function() {\n        console.log(\"tablerows Count: \" + tablerows.count);\n        for (var i = 0; i < tablerows.items.length; i++)\n        {\n            console.log(tablerows.items[i].index);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// In the example, we'll select the top 100 rows of the table.\nExcel.run(function (ctx) { \n    var table = ctx.workbook.tables.getItem(\"Table1\");\n    var tableRows = table.rows.load({\"select\" : \"index, values\",\"top\": 100, \"skip\": 0 })\n    return ctx.sync().then(function() {\n        for (var i = 0; i < tableRows.items.length; i++)\n        {\n            console.log(tableRows.items[i].index);\n            console.log(tableRows.items[i].values);\n        }\n    });\n}).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n});\n```"
   name: load(option)
-  fullName: excel.Excel.TableRowCollection.load
+  fullName: load
   langs:
   - typeScript
   type: method
@@ -151,7 +151,7 @@ items:
       - string | string[]
 - uid: excel.Excel.TableRowCollection.toJSON
   name: toJSON()
-  fullName: excel.Excel.TableRowCollection.toJSON
+  fullName: toJSON
   langs:
   - typeScript
   type: method
