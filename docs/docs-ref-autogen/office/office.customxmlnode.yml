@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 5fcda619495e1ef3f50e53afe6975f410abaaec9
-ms.sourcegitcommit: a36161c2113d94680dc68150d024e68bdf0390fa
+ms.openlocfilehash: 20bc98c2a19e73ae2ddbcbacff8904d349292e04
+ms.sourcegitcommit: 31847d2ea6be78b8f473dfbfb0a575fdecd877be
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "25457996"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "26298076"
 items:
 - uid: office.Office.CustomXmlNode
   summary: 表示文档中的树中的 XML 节点。
@@ -23,7 +23,7 @@ items:
 
     *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
   name: Office.CustomXmlNode
-  fullName: office.Office.CustomXmlNode
+  fullName: Office.CustomXmlNode
   langs:
   - typeScript
   type: interface
@@ -43,7 +43,7 @@ items:
   summary: 获取不带命名空间前缀的节点的基名称（如有）。
   remarks: "<table><tr><td>要求集</td><td>CustomXmlParts</td></tr></table>\n#### 示例\n\n```javascript\nfunction showXmlNodeBaseNames() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*/*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                write(node.baseName);\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: baseName
-  fullName: office.Office.CustomXmlNode.baseName
+  fullName: baseName
   langs:
   - typeScript
   type: property
@@ -56,7 +56,7 @@ items:
   summary: 获取与 XPath 表达式关联的节点。
   remarks: "<table><tr><td>要求集</td><td>CustomXmlParts</td></tr></table>\n#### 示例\n\n```javascript\nfunction showXmlChildNodes() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                node.getNodesAsync('*', function (nodeResults) {\n                    write(nodeResults.value.length + \" childNodes\");\n                });\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: getNodesAsync(xPath, options, callback)
-  fullName: office.Office.CustomXmlNode.getNodesAsync
+  fullName: getNodesAsync
   langs:
   - typeScript
   type: method
@@ -83,7 +83,7 @@ items:
   summary: 获取节点值。
   remarks: "<table><tr><td>要求集</td><td>CustomXmlParts</td></tr></table>\n#### 示例\n\n```javascript\nfunction showXmlNodeValues() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*/*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                node.getNodeValueAsync(function (asyncResult) {\n                    write(asyncResult.value);\n                });\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: getNodeValueAsync(options, callback)
-  fullName: office.Office.CustomXmlNode.getNodeValueAsync
+  fullName: getNodeValueAsync
   langs:
   - typeScript
   type: method
@@ -106,7 +106,7 @@ items:
   summary: 获取自定义 XML 部件中的 XML 节点的文本。
   remarks: "<table><tr><td>要求集</td><td>CustomXmlParts</td></tr></table>\n#### 示例\n\n```javascript\n// Get the built-in core properties XML part by using its ID. This results in a call to Word.\nOffice.context.document.customXmlParts.getByIdAsync(\n    \"{6C3C8BC8-F283-45AE-878A-BAB7291924A1}\", function (getByIdAsyncResult) {\n    \n    // Access the XML part.\n    var xmlPart = getByIdAsyncResult.value;\n    \n    // Add namespaces to the namespace manager. These two calls result in two calls to Word.\n    xmlPart.namespaceManager.addNamespaceAsync(\n        'cp',\n        'http://schemas.openxmlformats.org/package/2006/metadata/core-properties',\n        function () {\n        xmlPart.namespaceManager.addNamespaceAsync(\n            'dc', \n            'http://purl.org/dc/elements/1.1/', \n            function () {\n\n            // Get XML nodes by using an Xpath expression. This results in a call to Word.\n            xmlPart.getNodesAsync(\"/cp:coreProperties/dc:title\", function (getNodesAsyncResult) {\n                \n                // Get the first node returned by using the Xpath expression. \n                var node = getNodesAsyncResult.value[0];\n                \n                // Get the text value of the node and use the asyncContext. This results in a call to Word. \n                // The results are logged to the browser console.\n                node.getTextAsync({asyncContext: \"StateNormal\"}, function (getTextAsyncResult) {\n                  console.log(\"Text of the title element = \" + getTextAsyncResult.value;\n                  console.log(\"The asyncContext value = \" + getTextAsyncResult.asyncContext;\n                });\n            });\n        });\n    });\n});\n```"
   name: getTextAsync(options, callback)
-  fullName: office.Office.CustomXmlNode.getTextAsync
+  fullName: getTextAsync
   langs:
   - typeScript
   type: method
@@ -129,7 +129,7 @@ items:
   summary: 获取节点的 XML。
   remarks: "<table><tr><td>要求集</td><td>CustomXmlParts</td></tr></table>\n#### 示例\n\n```javascript\nfunction showXmlNodeInnerXml() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                node.getXmlAsync(function (asyncResult) {\n                    write(asyncResult.value);\n                });\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: getXmlAsync(options, callback)
-  fullName: office.Office.CustomXmlNode.getXmlAsync
+  fullName: getXmlAsync
   langs:
   - typeScript
   type: method
@@ -152,7 +152,7 @@ items:
   summary: 检索 CustomXMLPart 的 GUID 的字符串。
   remarks: "<table><tr><td>要求集</td><td>CustomXmlParts</td></tr></table>\n#### 示例\n\n```javascript\nfunction showXmlNamespaceUri() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*/*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                write(node.namespaceUri);\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: namespaceUri
-  fullName: office.Office.CustomXmlNode.namespaceUri
+  fullName: namespaceUri
   langs:
   - typeScript
   type: property
@@ -165,7 +165,7 @@ items:
   summary: 获取 CustomXMLNode 的类型。
   remarks: "<table><tr><td>要求集</td><td>CustomXmlParts</td></tr></table>\n#### 示例\n\n```javascript\nfunction showXmlNodeType() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*/*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                write(node.nodeType);\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: nodeType
-  fullName: office.Office.CustomXmlNode.nodeType
+  fullName: nodeType
   langs:
   - typeScript
   type: property
@@ -178,7 +178,7 @@ items:
   summary: 设置节点值。
   remarks: "<table><tr><td>要求集</td><td>CustomXmlParts</td></tr></table>\n#### 示例\n\n```javascript\nfunction setXmlNodeValue() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*/*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                write(node);\n                node.setNodeValueAsync(\"item number\" + i, {}, function (result) { });\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: setNodeValueAsync(value, options, callback)
-  fullName: office.Office.CustomXmlNode.setNodeValueAsync
+  fullName: setNodeValueAsync
   langs:
   - typeScript
   type: method
@@ -205,7 +205,7 @@ items:
   summary: 异步设置自定义 XML 部件中 XML 节点的文本。
   remarks: "<table><tr><td>主机</td><td>Word</td></tr>\n\n<tr><td>要求集</td><td>CustomXmlParts</td></tr></table>\n#### 示例\n\n```javascript\n// Learn how to set the text value of a node in a custom XML part from the following example.\n\n// Get the built-in core properties XML part by using its ID. This results in a call to Word.\nOffice.context.document.customXmlParts.getByIdAsync(\n    \"{6C3C8BC8-F283-45AE-878A-BAB7291924A1}\",\n    function (getByIdAsyncResult) {\n    \n    // Access the XML part.\n    var xmlPart = getByIdAsyncResult.value;\n    \n    // Add namespaces to the namespace manager. These two calls result in two calls to Word.\n    xmlPart.namespaceManager.addNamespaceAsync(\n        'cp', \n        'http://schemas.openxmlformats.org/package/2006/metadata/core-properties', \n        function () {\n        xmlPart.namespaceManager.addNamespaceAsync(\n            'dc', \n            'http://purl.org/dc/elements/1.1/', \n            function () {\n\n            // Get XML nodes by using an Xpath expression. This results in a call to the host.\n            xmlPart.getNodesAsync(\"/cp:coreProperties/dc:subject\", function (getNodesAsyncResult) {\n                \n                // Get the first node returned by using the Xpath expression.\n                // This will be the subject element in this example.\n                var subjectNode = getNodesAsyncResult.value[0];\n                \n                // Set the text value of the subject node and use the asyncContext. \n                // This results in a call to the host.  The results are logged to the browser console.\n                subjectNode.setTextAsync(\n                    \"newSubject\", \n                    {asyncContext: \"StateNormal\"}, \n                    function (setTextAsyncResult) {\n                        console.log(\"The status of the call: \" + setTextAsyncResult.status);\n                        console.log(\"The asyncContext value = \" + setTextAsyncResult.asyncContext);\n                });\n            });\n        });\n    });\n});\n```"
   name: setTextAsync(text, options, callback)
-  fullName: office.Office.CustomXmlNode.setTextAsync
+  fullName: setTextAsync
   langs:
   - typeScript
   type: method
@@ -253,7 +253,7 @@ items:
 
     ```
   name: setXmlAsync(xml, options, callback)
-  fullName: office.Office.CustomXmlNode.setXmlAsync
+  fullName: setXmlAsync
   langs:
   - typeScript
   type: method

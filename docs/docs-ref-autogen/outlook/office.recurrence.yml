@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 8d65f35e980d8915fb42b3043978d01454047f43
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: 0560bbc49798b1c0d1288ed5ef7312ee6346dfaf
+ms.sourcegitcommit: 31847d2ea6be78b8f473dfbfb0a575fdecd877be
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25583152"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "26297817"
 items:
 - uid: outlook.Office.Recurrence
   summary: >-
@@ -24,7 +24,7 @@ items:
 
     <table> <tr> <th>State</th> <th>可编辑？</th> <th>可查看？</th> </tr> <tr> <td>约会组织者的撰写系列</td> <td>是 (setAsync)</td> <td>是 (getAsync)</td> </tr> <tr> <td>约会组织者的撰写实例</td> <td>无 （setAsync 返回错误）</td> <td>是 (getAsync)</td> </tr> <tr> <td>约会 Attendee-读取系列</td> <td>无 (setAsync 不可用)</td> <td>是 (item.recurrence)</td> </tr> <tr> <td>约会 Attendee-读取实例</td> <td>无 (setAsync 不可用)</td> <td>是 (item.recurrence)</td> </tr> <tr> <td>会议请求-读取系列</td> <td>无 (setAsync 不可用)</td> <td>是 (item.recurrence)</td> </tr> <tr> <td>会议请求-读取实例</td> <td>无 (setAsync 不可用)</td> <td>是 (item.recurrence)</td> </tr> </table>
   name: Office.Recurrence
-  fullName: outlook.Office.Recurrence
+  fullName: Office.Recurrence
   langs:
   - typeScript
   type: interface
@@ -47,7 +47,7 @@ items:
     \[[API 集： 邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>\n\n除了此签名，此方法还具有以下签名：\n\n`getAsync(callback?: (result: AsyncResult<Office.Recurrence>) => void): void;`\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// This example gets the recurrence object of an appointment or meeting request item.\nOffice.context.mailbox.item.recurrence.getAsync(callback);\nfunction callback(asyncResult){\n    var context = asyncResult.context;\n    var recurrence = asyncResult.value;\n    var endDate = recurrence.seriesTime.getEndDate();\n}\n\n// The following is an example of the results of the getAsync call.\nRecurrence = {\n    \"recurrenceType\": \"weekly\",\n    \"recurrenceProperties\": {\"interval\": 2, \"days\": [\"mon\",\"thu\",\"fri\"], \"firstDayOfWeek\": \"sun\"},\n    \"seriesTime\": {seriesTimeObject}, \n    \"recurrenceTimeZone\": {\"name\": \"Pacific Standard Time\", \"offset\": -480}}\n```"
   name: getAsync(options, callback)
-  fullName: outlook.Office.Recurrence.getAsync
+  fullName: getAsync
   langs:
   - typeScript
   type: method
@@ -78,7 +78,7 @@ items:
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
   name: recurrenceProperties
-  fullName: outlook.Office.Recurrence.recurrenceProperties
+  fullName: recurrenceProperties
   langs:
   - typeScript
   type: property
@@ -99,7 +99,7 @@ items:
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
   name: recurrenceTimeZone
-  fullName: outlook.Office.Recurrence.recurrenceTimeZone
+  fullName: recurrenceTimeZone
   langs:
   - typeScript
   type: property
@@ -120,7 +120,7 @@ items:
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
   name: recurrenceType
-  fullName: outlook.Office.Recurrence.recurrenceType
+  fullName: recurrenceType
   langs:
   - typeScript
   type: property
@@ -141,7 +141,7 @@ items:
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
   name: seriesTime
-  fullName: outlook.Office.Recurrence.seriesTime
+  fullName: seriesTime
   langs:
   - typeScript
   type: property
@@ -159,9 +159,9 @@ items:
 
 
     \[[API 集： 邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr>\n\n<tr><td>错误</td><td>InvalidEndTime-早于开始时间是约会结束时间。</td></tr></table>\n\n除了此签名，此方法还具有以下签名：\n\n`setAsync(recurrencePattern: Recurrence, callback?: (result: AsyncResult<void>) => void): void;`\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following example sets the recurrence pattern of an appointment series.\nvar seriesTimeObject = new SeriesTime(); \nseriesTimeObject.setStartDate(2017,11,2);  \nseriesTimeObject.setEndDate(2017,12,2); \nseriesTimeObject.setStartTime(10,30); \nseriesTimeObject.setDuration(30);\n\nvar pattern = {\n    \"seriesTime\": seriesTimeObject,\n    \"type\": \"weekly\",\n    \"properties\": {\"interval\": 1, \"days\": [\"tue\", \"thu\"], \"firstDayOfWeek\": \"sun\"},\n    \"recurrenceTimeZone\": {\"name\": \"Pacific Standard Time\"}}; \n\nOffice.context.mailbox.item.recurrence.setAsync(pattern, options, callback);\n\n//Result: This created a recurring event from November 2, 2017 to December 2, 2017\n//        at 10:30 A.M. to 11 A.M. PST every Tuesday and Thursday.\n```"
+  remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr>\n\n<tr><td>Errors</td><td>InvalidEndTime-早于开始时间是约会结束时间。</td></tr></table>\n\n除了此签名，此方法还具有以下签名：\n\n`setAsync(recurrencePattern: Recurrence, callback?: (result: AsyncResult<void>) => void): void;`\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following example sets the recurrence pattern of an appointment series.\nvar seriesTimeObject = new SeriesTime(); \nseriesTimeObject.setStartDate(2017,11,2);  \nseriesTimeObject.setEndDate(2017,12,2); \nseriesTimeObject.setStartTime(10,30); \nseriesTimeObject.setDuration(30);\n\nvar pattern = {\n    \"seriesTime\": seriesTimeObject,\n    \"type\": \"weekly\",\n    \"properties\": {\"interval\": 1, \"days\": [\"tue\", \"thu\"], \"firstDayOfWeek\": \"sun\"},\n    \"recurrenceTimeZone\": {\"name\": \"Pacific Standard Time\"}}; \n\nOffice.context.mailbox.item.recurrence.setAsync(pattern, options, callback);\n\n//Result: This created a recurring event from November 2, 2017 to December 2, 2017\n//        at 10:30 A.M. to 11 A.M. PST every Tuesday and Thursday.\n```"
   name: setAsync(recurrencePattern, options, callback)
-  fullName: outlook.Office.Recurrence.setAsync
+  fullName: setAsync
   langs:
   - typeScript
   type: method

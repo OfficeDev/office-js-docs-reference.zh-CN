@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: b5453f6140829021b0526876bbb34c491f0ff432
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: dbef18a1be98166387cd8c67c657f4392d23d459
+ms.sourcegitcommit: 31847d2ea6be78b8f473dfbfb0a575fdecd877be
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25582599"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "26298216"
 items:
 - uid: onenote.OneNote.TableCell
   summary: >-
@@ -13,7 +13,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: OneNote.TableCell
-  fullName: onenote.OneNote.TableCell
+  fullName: OneNote.TableCell
   langs:
   - typeScript
   type: class
@@ -43,7 +43,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: appendHtml(html)
-  fullName: onenote.OneNote.TableCell.appendHtml
+  fullName: appendHtml
   langs:
   - typeScript
   type: method
@@ -65,7 +65,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: appendImage(base64EncodedImage, width, height)
-  fullName: onenote.OneNote.TableCell.appendImage
+  fullName: appendImage
   langs:
   - typeScript
   type: method
@@ -95,7 +95,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: appendRichText(paragraphText)
-  fullName: onenote.OneNote.TableCell.appendRichText
+  fullName: appendRichText
   langs:
   - typeScript
   type: method
@@ -117,7 +117,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: appendTable(rowCount, columnCount, values)
-  fullName: onenote.OneNote.TableCell.appendTable
+  fullName: appendTable
   langs:
   - typeScript
   type: method
@@ -142,12 +142,12 @@ items:
       - string[][]
 - uid: onenote.OneNote.TableCell.cellIndex
   summary: >-
-    获取单元格行中的单元格索引。只读。
+    获取单元格在行中的索引。只读。
 
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: cellIndex
-  fullName: onenote.OneNote.TableCell.cellIndex
+  fullName: cellIndex
   langs:
   - typeScript
   type: property
@@ -163,7 +163,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: clear()
-  fullName: onenote.OneNote.TableCell.clear
+  fullName: clear
   langs:
   - typeScript
   type: method
@@ -180,7 +180,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: id
-  fullName: onenote.OneNote.TableCell.id
+  fullName: id
   langs:
   - typeScript
   type: property
@@ -193,7 +193,7 @@ items:
   summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
   remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): OneNote.TableCell`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.TableCell`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    var outline = app.getActiveOutline();\n    \n    // Queue a command to load outline.paragraphs and their types.\n    ctx.load(outline, \"paragraphs, paragraphs/type\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync().then(function () {\n        var paragraphs = outline.paragraphs;\n        \n        // for each table, get a table cell at row one and column two.\n        for (var i = 0; i < paragraphs.items.length; i++) {\n            var paragraph = paragraphs.items[i];\n            if (paragraph.type == \"Table\") {\n                var table = paragraph.table;\n                var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);\n                \n                // Queue a command to load the table cell.\n                ctx.load(cell);\n                ctx.sync().then(function() {\n                    console.log(\"Cell Id: \" + cell.id);\n                    console.log(\"Cell Index: \" + cell.cellIndex);\n                    console.log(\"Cell's Row Index: \" + cell.rowIndex);\n                });\n            }\n        }\n        return ctx.sync();\n    })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nParentTable, ParentRow, Paragraphs\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    var outline = app.getActiveOutline();\n    \n    // Queue a command to load outline.paragraphs and their types.\n    ctx.load(outline, \"paragraphs, paragraphs/type\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync().then(function () {\n        var paragraphs = outline.paragraphs;\n        \n        // for each table, get a table cell at row one and column two.\n        for (var i = 0; i < paragraphs.items.length; i++) {\n            var paragraph = paragraphs.items[i];\n            if (paragraph.type == \"Table\") {\n                var table = paragraph.table;\n                var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);\n                \n                // Queue a command to load parentTable, parentRow and paragraphs of the table cell.\n                ctx.load(cell, \"parentTable, parentRow, paragraphs\");\n                \n                ctx.sync().then(function() {\n                    console.log(\"Parent Table Id: \" + cell.parentTable.id);\n                    console.log(\"Parent Row Id: \" + cell.parentRow.id);\n                    var paragraphs = cell.paragraphs;\n                    \n                    for (var i = 0; i < paragraphs.items.length; i++) {\n                        console.log(\"Paragraph Id: \" + paragraphs.items[i].id);\n                    }\n                });\n            }\n        }\n        return ctx.sync();\n    })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   name: load(option)
-  fullName: onenote.OneNote.TableCell.load
+  fullName: load
   langs:
   - typeScript
   type: method
@@ -215,7 +215,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: paragraphs
-  fullName: onenote.OneNote.TableCell.paragraphs
+  fullName: paragraphs
   langs:
   - typeScript
   type: property
@@ -231,7 +231,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: parentRow
-  fullName: onenote.OneNote.TableCell.parentRow
+  fullName: parentRow
   langs:
   - typeScript
   type: property
@@ -242,12 +242,12 @@ items:
       - OneNote.TableRow
 - uid: onenote.OneNote.TableCell.rowIndex
   summary: >-
-    获取表中单元格行的索引。只读。
+    获取行中单元格在表中的索引。只读。
 
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: rowIndex
-  fullName: onenote.OneNote.TableCell.rowIndex
+  fullName: rowIndex
   langs:
   - typeScript
   type: property
@@ -263,7 +263,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: shadingColor
-  fullName: onenote.OneNote.TableCell.shadingColor
+  fullName: shadingColor
   langs:
   - typeScript
   type: property
@@ -274,7 +274,7 @@ items:
       - string
 - uid: onenote.OneNote.TableCell.toJSON
   name: toJSON()
-  fullName: onenote.OneNote.TableCell.toJSON
+  fullName: toJSON
   langs:
   - typeScript
   type: method
@@ -287,7 +287,7 @@ items:
 - uid: onenote.OneNote.TableCell.track
   summary: 跟踪自动调整根据周围的文档中的更改的对象。 此呼叫是 context.trackedObjects.add(thisObject) 简写。 如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。
   name: track()
-  fullName: onenote.OneNote.TableCell.track
+  fullName: track
   langs:
   - typeScript
   type: method
@@ -300,7 +300,7 @@ items:
 - uid: onenote.OneNote.TableCell.untrack
   summary: 发行版与此对象，如果以前跟踪关联的内存。 此呼叫是简写 context.trackedObjects.remove(thisObject)。 具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。 您将需要的内存版本生效前调用"context.sync()"。
   name: untrack()
-  fullName: onenote.OneNote.TableCell.untrack
+  fullName: untrack
   langs:
   - typeScript
   type: method

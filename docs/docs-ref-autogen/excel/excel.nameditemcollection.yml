@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: de5bb9107ab40ecd653e010c672438408f70d86f
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: 21467b5958e49032fda1cfba8a405a94d085720e
+ms.sourcegitcommit: 31847d2ea6be78b8f473dfbfb0a575fdecd877be
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25588472"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "26297908"
 items:
 - uid: excel.Excel.NamedItemCollection
   summary: >-
@@ -13,7 +13,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: Excel.NamedItemCollection
-  fullName: excel.Excel.NamedItemCollection
+  fullName: Excel.NamedItemCollection
   langs:
   - typeScript
   type: class
@@ -36,7 +36,7 @@ items:
 
     \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: add(name, reference, comment)
-  fullName: excel.Excel.NamedItemCollection.add
+  fullName: add
   langs:
   - typeScript
   type: method
@@ -45,7 +45,7 @@ items:
     return:
       type:
       - excel.Excel.NamedItem
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const headerRange = sheet.getRange(\"A1:E1\");\n    sheet.names.add(\"ExpensesHeader\", headerRange);\n    const namedItems = sheet.names.load(\"name, type\");\n\n    await context.sync();\n\n    let namedItemsList = `This workbook contains ${namedItems.items.length} named item(s):`;\n    for (let i = 0; i < namedItems.items.length; i++) {\n        namedItemsList += JSON.stringify(namedItems.items[i]);\n    }\n    OfficeHelpers.UI.notify(namedItemsList);\n\n    await context.sync();\n});\n```\n```typescript\ntry {\n    await Excel.run(async (context) => {\n\n        await OfficeHelpers.ExcelUtilities.forceCreateSheet(context.workbook, \"Sample\");\n\n        const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n        let expensesTable = sheet.tables.add(\"A1:D1\", true);\n        expensesTable.name = \"ExpensesTable\";\n\n        expensesTable.getHeaderRowRange().values = [[\"DATE\", \"MERCHANT\", \"CATEGORY\", \"AMOUNT\"]];\n\n        let newData = transactions.map(item =>\n            [item.DATE, item.MERCHANT, item.CATEGORY, item.AMOUNT]);\n\n        expensesTable.rows.add(null, newData);\n\n        sheet.names.add(\"TotalAmount\", \"=SUM(ExpensesTable[AMOUNT])\");\n\n        sheet.getRange(\"D11\").values = [[\"=TotalAmount\"]];\n\n        if (Office.context.requirements.isSetSupported(\"ExcelApi\", 1.2)) {\n            sheet.getUsedRange().format.autofitColumns();\n            sheet.getUsedRange().format.autofitRows();\n        }\n\n        sheet.activate();\n\n        await context.sync();\n    });\n}\ncatch (error) {\n    OfficeHelpers.UI.notify(error);\n    OfficeHelpers.Utilities.log(error);\n}\n```"
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const headerRange = sheet.getRange(\"A1:E1\");\n    sheet.names.add(\"ExpensesHeader\", headerRange);\n    const namedItems = sheet.names.load(\"name, type\");\n\n    await context.sync();\n\n    let namedItemsList = `This workbook contains ${namedItems.items.length} named item(s):`;\n    for (let i = 0; i < namedItems.items.length; i++) {\n        namedItemsList += JSON.stringify(namedItems.items[i]);\n    }\n    OfficeHelpers.UI.notify(namedItemsList);\n\n    await context.sync();\n});\n```\n```typescript\ntry {\n    await Excel.run(async (context) => {\n        const sheet = context.workbook.worksheets.getItem(\"Sample\");\n        sheet.names.add(\"TotalAmount\", \"=SUM(ExpensesTable[AMOUNT])\");\n        sheet.getRange(\"D11\").values = [[\"=TotalAmount\"]];\n        await context.sync();\n    });\n}\ncatch (error) {\n    OfficeHelpers.UI.notify(error);\n    OfficeHelpers.Utilities.log(error);\n}\n```"
     parameters:
     - id: name
       description: 已命名项的名称。
@@ -66,7 +66,7 @@ items:
 
     \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: addFormulaLocal(name, formula, comment)
-  fullName: excel.Excel.NamedItemCollection.addFormulaLocal
+  fullName: addFormulaLocal
   langs:
   - typeScript
   type: method
@@ -96,7 +96,7 @@ items:
 
     \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getCount()
-  fullName: excel.Excel.NamedItemCollection.getCount
+  fullName: getCount
   langs:
   - typeScript
   type: method
@@ -113,7 +113,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItem(name)
-  fullName: excel.Excel.NamedItemCollection.getItem
+  fullName: getItem
   langs:
   - typeScript
   type: method
@@ -135,7 +135,7 @@ items:
 
     \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItemOrNullObject(name)
-  fullName: excel.Excel.NamedItemCollection.getItemOrNullObject
+  fullName: getItemOrNullObject
   langs:
   - typeScript
   type: method
@@ -153,7 +153,7 @@ items:
 - uid: excel.Excel.NamedItemCollection.items
   summary: 获取此集合中的加载的子项目。
   name: items
-  fullName: excel.Excel.NamedItemCollection.items
+  fullName: items
   langs:
   - typeScript
   type: property
@@ -166,7 +166,7 @@ items:
   summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
   remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): Excel.NamedItemCollection`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.NamedItemCollection`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var nameditems = ctx.workbook.names;\n    nameditems.load('items');\n    return ctx.sync().then(function() {\n        for (var i = 0; i < nameditems.items.length; i++)\n        {\n            console.log(nameditems.items[i].name);\n            console.log(nameditems.items[i].index);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   name: load(option)
-  fullName: excel.Excel.NamedItemCollection.load
+  fullName: load
   langs:
   - typeScript
   type: method
@@ -183,7 +183,7 @@ items:
       - string | string[]
 - uid: excel.Excel.NamedItemCollection.toJSON
   name: toJSON()
-  fullName: excel.Excel.NamedItemCollection.toJSON
+  fullName: toJSON
   langs:
   - typeScript
   type: method

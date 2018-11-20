@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 2fe40ba9fd8069151d0375985dc3c8d38b53a16b
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: b4aa6919f77ab1e974dd2444fc088a0b5176090c
+ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25592833"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "26232600"
 items:
 - uid: onenote.OneNote.Image
   summary: >-
@@ -13,7 +13,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: OneNote.Image
-  fullName: onenote.OneNote.Image
+  fullName: OneNote.Image
   langs:
   - typeScript
   type: class
@@ -41,7 +41,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: description
-  fullName: onenote.OneNote.Image.description
+  fullName: description
   langs:
   - typeScript
   type: property
@@ -57,7 +57,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: getBase64Image()
-  fullName: onenote.OneNote.Image.getBase64Image
+  fullName: getBase64Image
   langs:
   - typeScript
   type: method
@@ -74,7 +74,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: height
-  fullName: onenote.OneNote.Image.height
+  fullName: height
   langs:
   - typeScript
   type: property
@@ -90,7 +90,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: hyperlink
-  fullName: onenote.OneNote.Image.hyperlink
+  fullName: hyperlink
   langs:
   - typeScript
   type: property
@@ -106,7 +106,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: id
-  fullName: onenote.OneNote.Image.id
+  fullName: id
   langs:
   - typeScript
   type: property
@@ -119,7 +119,7 @@ items:
   summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
   remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): OneNote.Image`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Image`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function(ctx){\n    // Get the current outline.         \n    var outline = ctx.application.getActiveOutline();\n    var image = null;\n    \n    // Queue a command to load paragraphs and their types. \n    outline.load(\"paragraphs/type\")\n    return ctx.sync().\n        then(function(){\n            for (var i=0; i < outline.paragraphs.items.length; i++)\n            {\n                var paragraph = outline.paragraphs.items[i];\n                if (paragraph.type == \"Image\")\n                {\n                    image = paragraph.image;\n                }\n            }\n        })\n        .then(function(){\n            if (image != null)\n            {\n                // load every properties and relationships\n                ctx.load(image);\n                return ctx.sync();\n            }\n        })\n        .then(function(){\n            if (image != null)\n            {                   \n                console.log(\"image \" + image.id + \" width is \" + image.width + \" height is \" + image.height);\n                console.log(\"description: \" + image.description);                   \n                console.log(\"hyperlink: \" + image.hyperlink);\n            }\n        });\n});\n```\n```javascript\nvar image = null;\n\nOneNote.run(function(ctx){\n    // Get the current outline.\n    var outline = ctx.application.getActiveOutline();\n\n    // Queue a command to load paragraphs and their types.\n    outline.load(\"paragraphs\")\n    return ctx.sync().\n        then(function(){\n            for (var i=0; i < outline.paragraphs.items.length; i++)\n            {\n                var paragraph = outline.paragraphs.items[i];\n                if (paragraph.type == \"Image\")\n                {\n                    image = paragraph.image;\n                }\n            }\n            if (image != null)\n            {\n               image.load(\"ocrData\");\n            }\n            return ctx.sync();\n        })\n        .then(function(){\n            console.log(image.ocrData);\n        });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function(ctx){\n    // Get the current outline.         \n    var outline = ctx.application.getActiveOutline();\n    var searchedParagraph = null;\n    \n    // Queue a command to load paragraphs and their types. \n    outline.load(\"paragraphs/type\")\n    return ctx.sync().\n        then(function() {\n            for (var i=0; i < outline.paragraphs.items.length; i++)\n            {\n                var paragraph = outline.paragraphs.items[i];\n                if (paragraph.type == \"Image\")\n                {\n                    searchedParagraph = paragraph;\n                    break;\n                }\n            }\n        })\n        .then(function() {\n            if (searchedParagraph != null)\n            {\n                // load every properties and relationships\n                searchedParagraph.image.load('paragraph');\n                return ctx.sync();\n            }\n        })\n        .then(function() {\n            if (searchedParagraph != null)\n            {                   \n                if (searchedParagraph.id != searchedParagraph.image.paragraph.id)\n                {\n                    console.log(\"id must match\");\n                }\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n}); \n```"
   name: load(option)
-  fullName: onenote.OneNote.Image.load
+  fullName: load
   langs:
   - typeScript
   type: method
@@ -141,7 +141,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: ocrData
-  fullName: onenote.OneNote.Image.ocrData
+  fullName: ocrData
   langs:
   - typeScript
   type: property
@@ -157,7 +157,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: pageContent
-  fullName: onenote.OneNote.Image.pageContent
+  fullName: pageContent
   langs:
   - typeScript
   type: property
@@ -173,7 +173,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: paragraph
-  fullName: onenote.OneNote.Image.paragraph
+  fullName: paragraph
   langs:
   - typeScript
   type: property
@@ -184,7 +184,7 @@ items:
       - onenote.OneNote.Paragraph
 - uid: onenote.OneNote.Image.toJSON
   name: toJSON()
-  fullName: onenote.OneNote.Image.toJSON
+  fullName: toJSON
   langs:
   - typeScript
   type: method
@@ -197,7 +197,7 @@ items:
 - uid: onenote.OneNote.Image.track
   summary: 跟踪自动调整根据周围的文档中的更改的对象。 此呼叫是 context.trackedObjects.add(thisObject) 简写。 如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。
   name: track()
-  fullName: onenote.OneNote.Image.track
+  fullName: track
   langs:
   - typeScript
   type: method
@@ -210,7 +210,7 @@ items:
 - uid: onenote.OneNote.Image.untrack
   summary: 发行版与此对象，如果以前跟踪关联的内存。 此呼叫是简写 context.trackedObjects.remove(thisObject)。 具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。 您将需要的内存版本生效前调用"context.sync()"。
   name: untrack()
-  fullName: onenote.OneNote.Image.untrack
+  fullName: untrack
   langs:
   - typeScript
   type: method
@@ -227,7 +227,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: width
-  fullName: onenote.OneNote.Image.width
+  fullName: width
   langs:
   - typeScript
   type: property

@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 9c4796da102c44d50159545a2a297c4a785e3add
-ms.sourcegitcommit: 4bbd18c863a4140ad456b859f9c0309e153e10b2
+ms.openlocfilehash: b3f6be80d14059816525e8168b2fc331fbb0f732
+ms.sourcegitcommit: 31847d2ea6be78b8f473dfbfb0a575fdecd877be
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "25914291"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "26298195"
 items:
 - uid: outlook.Office.Item
   summary: >-
@@ -18,7 +18,7 @@ items:
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
   name: Office.Item
-  fullName: outlook.Office.Item
+  fullName: Office.Item
   langs:
   - typeScript
   type: interface
@@ -48,7 +48,7 @@ items:
     \[[API 集： 邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>\n\n除了此签名，该方法还具有以下签名：\n\n`addHandlerAsync(eventType: Office.EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;`\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction myHandlerFunction(eventarg) { \n    if (eventarg.attachmentStatus == Office.MailboxEnums.AttachmentStatus.Added) { \n        var _att = eventarg.attachmentDetails; \n        showMessage(\"Event Fired and Attachment Added!\"); \n        getAttachmentContentAsync(_att.id, options, callback); \n    } \n} \nOffice.context.mailbox.item.addHandlerAsync(Office.EventType.AttachmentsChanged, myHandlerFunction, myCallback);\n```"
   name: addHandlerAsync(eventType, handler, options, callback)
-  fullName: outlook.Office.Item.addHandlerAsync
+  fullName: addHandlerAsync
   langs:
   - typeScript
   type: method
@@ -87,7 +87,7 @@ items:
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
   name: body
-  fullName: outlook.Office.Item.body
+  fullName: body
   langs:
   - typeScript
   type: property
@@ -108,7 +108,7 @@ items:
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Read</td></tr></table>
   name: dateTimeCreated
-  fullName: outlook.Office.Item.dateTimeCreated
+  fullName: dateTimeCreated
   langs:
   - typeScript
   type: property
@@ -132,7 +132,7 @@ items:
 
     注意：在 Outlook for iOS 或 Outlook for Android 中不支持此成员。
   name: dateTimeModifed
-  fullName: outlook.Office.Item.dateTimeModifed
+  fullName: dateTimeModifed
   langs:
   - typeScript
   type: property
@@ -150,10 +150,10 @@ items:
 
 
     \[[API 集： 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr>\n\n<tr><td>错误</td><td>InvalidAttachmentId-附件标识符不存在。</td></tr></table>\n####示例\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar listOfAttachments = [];\nitem.getAttachmentsAsync(callback);\nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var options = {asyncContext: {type: result.value[i].attachmentType}};\n            getAttachmentContentAsync(result.value[i].id, options, handleAttachmentsCallback);  \n        }\n    }\n}\n\nfunction handleAttachmentsCallback(result) {\n    //parse string to be a url, an .eml file, or a base64 encoded string\n    if (result.format == Office.MailboxEnums.AttachmentContentFormat.Base64) {\n        //handle file attachment\n    }\n    else if (result.format == Office.MailboxEnums.AttachmentContentFormat.Eml) {\n        //handle item attachment\n    }\n    else {\n        //handle cloud attachment  \n    }\n}\n```"
+  remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr>\n\n<tr><td>Errors</td><td>InvalidAttachmentId-附件标识符不存在。</td></tr></table>\n####示例\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar listOfAttachments = [];\nitem.getAttachmentsAsync(callback);\nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var options = {asyncContext: {type: result.value[i].attachmentType}};\n            getAttachmentContentAsync(result.value[i].id, options, handleAttachmentsCallback);  \n        }\n    }\n}\n\nfunction handleAttachmentsCallback(result) {\n    // parse string to be a url, an .eml file, a base64-encoded string, or an .icalendar file\n    if (result.format == Office.MailboxEnums.AttachmentContentFormat.Base64) {\n        // handle file attachment\n    }\n    else if (result.format == Office.MailboxEnums.AttachmentContentFormat.Eml) {\n        // handle item attachment\n    }\n    else if (result.format == Office.MailboxEnums.AttachmentContentFormat.ICalendar) {\n        // handle .icalender attachment\n    }\n    else {\n        // handle cloud attachment  \n    }\n}\n```"
   isPreview: true
   name: getAttachmentContentAsync(attachmentId, options, callback)
-  fullName: outlook.Office.Item.getAttachmentContentAsync
+  fullName: getAttachmentContentAsync
   langs:
   - typeScript
   type: method
@@ -228,7 +228,7 @@ items:
     ```
   isPreview: true
   name: getInitializationContextAsync(options, callback)
-  fullName: outlook.Office.Item.getInitializationContextAsync
+  fullName: getInitializationContextAsync
   langs:
   - typeScript
   type: method
@@ -280,7 +280,7 @@ items:
     ```
   isPreview: true
   name: getSharedPropertiesAsync(options, callback)
-  fullName: outlook.Office.Item.getSharedPropertiesAsync
+  fullName: getSharedPropertiesAsync
   langs:
   - typeScript
   type: method
@@ -325,7 +325,7 @@ items:
         // do something else
     ```
   name: itemType
-  fullName: outlook.Office.Item.itemType
+  fullName: itemType
   langs:
   - typeScript
   type: property
@@ -395,7 +395,7 @@ items:
 
     ```
   name: loadCustomPropertiesAsync(callback, userContext)
-  fullName: outlook.Office.Item.loadCustomPropertiesAsync
+  fullName: loadCustomPropertiesAsync
   langs:
   - typeScript
   type: method
@@ -426,7 +426,7 @@ items:
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
   name: notificationMessages
-  fullName: outlook.Office.Item.notificationMessages
+  fullName: notificationMessages
   langs:
   - typeScript
   type: property
@@ -456,7 +456,7 @@ items:
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
   name: recurrence
-  fullName: outlook.Office.Item.recurrence
+  fullName: recurrence
   langs:
   - typeScript
   type: property
@@ -486,7 +486,7 @@ items:
 
     `removeHandlerAsync(eventType: Office.EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;`
   name: removeHandlerAsync(eventType, handler, options, callback)
-  fullName: outlook.Office.Item.removeHandlerAsync
+  fullName: removeHandlerAsync
   langs:
   - typeScript
   type: method
@@ -530,7 +530,7 @@ items:
     \[[API 集： 邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>\n####示例\n\n```javascript\nvar seriesId = Office.context.mailbox.item.seriesId; \nvar isSeries = (seriesId == null);\n```"
   name: seriesId
-  fullName: outlook.Office.Item.seriesId
+  fullName: seriesId
   langs:
   - typeScript
   type: property

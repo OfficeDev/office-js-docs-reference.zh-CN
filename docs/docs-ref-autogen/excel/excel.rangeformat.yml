@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 7fe7139b3ba87da6a860178f80c21243a90d5ba2
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: 2b9390674a117504460cf7d5941f8541e9ad4524
+ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25581220"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "26236387"
 items:
 - uid: excel.Excel.RangeFormat
   summary: >-
@@ -13,7 +13,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: Excel.RangeFormat
-  fullName: excel.Excel.RangeFormat
+  fullName: Excel.RangeFormat
   langs:
   - typeScript
   type: class
@@ -44,7 +44,7 @@ items:
 
     \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: autofitColumns()
-  fullName: excel.Excel.RangeFormat.autofitColumns
+  fullName: autofitColumns
   langs:
   - typeScript
   type: method
@@ -61,7 +61,7 @@ items:
 
     \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: autofitRows()
-  fullName: excel.Excel.RangeFormat.autofitRows
+  fullName: autofitRows
   langs:
   - typeScript
   type: method
@@ -78,7 +78,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: borders
-  fullName: excel.Excel.RangeFormat.borders
+  fullName: borders
   langs:
   - typeScript
   type: property
@@ -94,7 +94,7 @@ items:
 
     \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: columnWidth
-  fullName: excel.Excel.RangeFormat.columnWidth
+  fullName: columnWidth
   langs:
   - typeScript
   type: property
@@ -110,7 +110,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: fill
-  fullName: excel.Excel.RangeFormat.fill
+  fullName: fill
   langs:
   - typeScript
   type: property
@@ -126,7 +126,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: font
-  fullName: excel.Excel.RangeFormat.font
+  fullName: font
   langs:
   - typeScript
   type: property
@@ -142,7 +142,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: horizontalAlignment
-  fullName: excel.Excel.RangeFormat.horizontalAlignment
+  fullName: horizontalAlignment
   langs:
   - typeScript
   type: property
@@ -155,7 +155,7 @@ items:
   summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
   remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): Excel.RangeFormat`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.RangeFormat`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Below example selects all of the Range's format properties. \nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"F:G\";\n    var worksheet = ctx.workbook.worksheets.getItem(sheetName);\n    var range = worksheet.getRange(rangeAddress);\n    range.load([\"format/*\", \"format/fill\", \"format/borders\", \"format/font\"]);\n    return ctx.sync().then(function() {\n        console.log(range.format.wrapText);\n        console.log(range.format.fill.color);\n        console.log(range.format.font.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// The example below sets font name, fill color and wraps text. \nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"F:G\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.format.wrapText = true;\n    range.format.font.name = 'Times New Roman';\n    range.format.fill.color = '0000FF';\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// The example below adds grid border around the range.\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"F:G\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.format.borders.getItem('InsideHorizontal').style = 'Continuous';\n    range.format.borders.getItem('InsideVertical').style = 'Continuous';\n    range.format.borders.getItem('EdgeBottom').style = 'Continuous';\n    range.format.borders.getItem('EdgeLeft').style = 'Continuous';\n    range.format.borders.getItem('EdgeRight').style = 'Continuous';\n    range.format.borders.getItem('EdgeTop').style = 'Continuous';\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   name: load(option)
-  fullName: excel.Excel.RangeFormat.load
+  fullName: load
   langs:
   - typeScript
   type: method
@@ -177,7 +177,7 @@ items:
 
     \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: protection
-  fullName: excel.Excel.RangeFormat.protection
+  fullName: protection
   langs:
   - typeScript
   type: property
@@ -193,7 +193,7 @@ items:
 
     \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: rowHeight
-  fullName: excel.Excel.RangeFormat.rowHeight
+  fullName: rowHeight
   langs:
   - typeScript
   type: property
@@ -209,7 +209,7 @@ items:
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: textOrientation
-  fullName: excel.Excel.RangeFormat.textOrientation
+  fullName: textOrientation
   langs:
   - typeScript
   type: property
@@ -221,7 +221,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B2:E2\");\n\n    // Set textOrientation to either an integer between -90 and 90\n    // or to 180 for vertically-oriented text.\n    range.format.textOrientation = 90;\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.RangeFormat.toJSON
   name: toJSON()
-  fullName: excel.Excel.RangeFormat.toJSON
+  fullName: toJSON
   langs:
   - typeScript
   type: method
@@ -238,7 +238,7 @@ items:
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: useStandardHeight
-  fullName: excel.Excel.RangeFormat.useStandardHeight
+  fullName: useStandardHeight
   langs:
   - typeScript
   type: property
@@ -254,7 +254,7 @@ items:
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: useStandardWidth
-  fullName: excel.Excel.RangeFormat.useStandardWidth
+  fullName: useStandardWidth
   langs:
   - typeScript
   type: property
@@ -270,7 +270,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: verticalAlignment
-  fullName: excel.Excel.RangeFormat.verticalAlignment
+  fullName: verticalAlignment
   langs:
   - typeScript
   type: property
@@ -286,7 +286,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: wrapText
-  fullName: excel.Excel.RangeFormat.wrapText
+  fullName: wrapText
   langs:
   - typeScript
   type: property
