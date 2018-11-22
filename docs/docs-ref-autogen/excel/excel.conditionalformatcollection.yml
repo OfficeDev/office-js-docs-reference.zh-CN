@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 5d0ebc9ff18757866b6f4c765d22b375ac193ddd
-ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
+ms.openlocfilehash: 206134f17f18e082f1b620510e4db08c4b649718
+ms.sourcegitcommit: b05ee546d9dfbc914c8d1c594d9b206b04780bbc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "26227455"
+ms.lasthandoff: 11/22/2018
+ms.locfileid: "26645864"
 items:
 - uid: excel.Excel.ConditionalFormatCollection
   summary: >-
@@ -147,7 +147,7 @@ items:
     return:
       type:
       - excel.Excel.ConditionalFormat
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) {\n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:C3\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    var conditionalFormats = range.conditionalFormats;\n    var conditionalFormat = conditionalFormats.getItemAt(3);\n    return ctx.sync().then(function () {\n        console.log(\"Conditional Format at Item 3 Loaded\");\n    });\n}).catch(function (error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const worksheetRange = sheet.getRange();\n    worksheetRange.conditionalFormats.load(\"type\");\n\n    await context.sync();\n\n    let cfRangePairs: { cf: Excel.ConditionalFormat, range: Excel.Range }[] = [];\n    worksheetRange.conditionalFormats.items.forEach(item => {\n        cfRangePairs.push({\n            cf: item,\n            range: item.getRange().load(\"address\")\n        });\n    });\n\n    await context.sync();\n\n    $(\"#conditional-formats li\").remove();\n    if (cfRangePairs.length > 0) {\n        cfRangePairs.forEach(item => {\n            let $p = $(\"<p></p>\").text(\n                `${item.cf.type}`)\n            let $li = $(`<li></li>`);\n            $li.append($p);\n            $(\"#conditional-formats\").append($li);\n            $(\".conditional-formats\").show()[0].scrollIntoView();\n        })\n    }\n    else {\n        OfficeHelpers.UI.notify(\"None to display\", \"No conditional formats in workbook\", \"warning\");\n    }\n});\n```"
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) {\n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:C3\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    var conditionalFormats = range.conditionalFormats;\n    var conditionalFormat = conditionalFormats.getItemAt(3);\n    return ctx.sync().then(function () {\n        console.log(\"Conditional Format at Item 3 Loaded\");\n    });\n}).catch(function (error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const worksheetRange = sheet.getRange();\n    worksheetRange.conditionalFormats.load(\"type\");\n\n    await context.sync();\n\n    let cfRangePairs: { cf: Excel.ConditionalFormat, range: Excel.Range }[] = [];\n    worksheetRange.conditionalFormats.items.forEach(item => {\n        cfRangePairs.push({\n            cf: item,\n            range: item.getRange().load(\"address\")\n        });\n    });\n\n    await context.sync();\n\n    if (cfRangePairs.length > 0) {\n        cfRangePairs.forEach(item => {\n            console.log(item.cf.type);\n        });\n    } else {\n        console.log(\"No conditional formats applied.\");\n    }\n});\n```"
     parameters:
     - id: index
       description: 要检索的条件格式的索引。

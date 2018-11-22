@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 0f978eecaa431539ca42923817eef15ddc3c2980
-ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
+ms.openlocfilehash: 7017a0c9ce3a5617875c331fc44ddd5fbbacbc39
+ms.sourcegitcommit: b05ee546d9dfbc914c8d1c594d9b206b04780bbc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "26223843"
+ms.lasthandoff: 11/22/2018
+ms.locfileid: "26649154"
 items:
 - uid: excel.Excel.ConditionalFormat
   summary: >-
@@ -211,7 +211,7 @@ items:
     return:
       type:
       - excel.Excel.Range
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const worksheetRange = sheet.getRange();\n    worksheetRange.conditionalFormats.load(\"type\");\n\n    await context.sync();\n\n    let cfRangePairs: { cf: Excel.ConditionalFormat, range: Excel.Range }[] = [];\n    worksheetRange.conditionalFormats.items.forEach(item => {\n        cfRangePairs.push({\n            cf: item,\n            range: item.getRange().load(\"address\")\n        });\n    });\n\n    await context.sync();\n\n    $(\"#conditional-formats li\").remove();\n    if (cfRangePairs.length > 0) {\n        cfRangePairs.forEach(item => {\n            let $p = $(\"<p></p>\").text(\n                `${item.cf.type}`)\n            let $li = $(`<li></li>`);\n            $li.append($p);\n            $(\"#conditional-formats\").append($li);\n            $(\".conditional-formats\").show()[0].scrollIntoView();\n        })\n    }\n    else {\n        OfficeHelpers.UI.notify(\"None to display\", \"No conditional formats in workbook\", \"warning\");\n    }\n});\n```"
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const worksheetRange = sheet.getRange();\n    worksheetRange.conditionalFormats.load(\"type\");\n\n    await context.sync();\n\n    let cfRangePairs: { cf: Excel.ConditionalFormat, range: Excel.Range }[] = [];\n    worksheetRange.conditionalFormats.items.forEach(item => {\n        cfRangePairs.push({\n            cf: item,\n            range: item.getRange().load(\"address\")\n        });\n    });\n\n    await context.sync();\n\n    if (cfRangePairs.length > 0) {\n        cfRangePairs.forEach(item => {\n            console.log(item.cf.type);\n        });\n    } else {\n        console.log(\"No conditional formats applied.\");\n    }\n});\n```"
 - uid: excel.Excel.ConditionalFormat.getRangeOrNullObject
   summary: >-
     如果条件格式应用于多个区域，返回 conditonal 格式应用到的区域或 null 对象。 只读。
@@ -462,4 +462,4 @@ items:
     return:
       type:
       - Excel.ConditionalFormatType | "Custom" | "DataBar" | "ColorScale" | "IconSet" | "TopBottom" | "PresetCriteria" | "ContainsText" | "CellValue"
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const worksheetRange = sheet.getRange();\n    worksheetRange.conditionalFormats.load(\"type\");\n\n    await context.sync();\n\n    let cfRangePairs: { cf: Excel.ConditionalFormat, range: Excel.Range }[] = [];\n    worksheetRange.conditionalFormats.items.forEach(item => {\n        cfRangePairs.push({\n            cf: item,\n            range: item.getRange().load(\"address\")\n        });\n    });\n\n    await context.sync();\n\n    $(\"#conditional-formats li\").remove();\n    if (cfRangePairs.length > 0) {\n        cfRangePairs.forEach(item => {\n            let $p = $(\"<p></p>\").text(\n                `${item.cf.type}`)\n            let $li = $(`<li></li>`);\n            $li.append($p);\n            $(\"#conditional-formats\").append($li);\n            $(\".conditional-formats\").show()[0].scrollIntoView();\n        })\n    }\n    else {\n        OfficeHelpers.UI.notify(\"None to display\", \"No conditional formats in workbook\", \"warning\");\n    }\n});\n```"
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const worksheetRange = sheet.getRange();\n    worksheetRange.conditionalFormats.load(\"type\");\n\n    await context.sync();\n\n    let cfRangePairs: { cf: Excel.ConditionalFormat, range: Excel.Range }[] = [];\n    worksheetRange.conditionalFormats.items.forEach(item => {\n        cfRangePairs.push({\n            cf: item,\n            range: item.getRange().load(\"address\")\n        });\n    });\n\n    await context.sync();\n\n    if (cfRangePairs.length > 0) {\n        cfRangePairs.forEach(item => {\n            console.log(item.cf.type);\n        });\n    } else {\n        console.log(\"No conditional formats applied.\");\n    }\n});\n```"

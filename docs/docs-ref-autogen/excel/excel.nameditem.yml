@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 78155d421f9bee6a91fee16e5709431ed11d5a8c
-ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
+ms.openlocfilehash: 610be133bec15ddc057777f89468050c33fee281
+ms.sourcegitcommit: b05ee546d9dfbc914c8d1c594d9b206b04780bbc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "26225922"
+ms.lasthandoff: 11/22/2018
+ms.locfileid: "26646803"
 items:
 - uid: excel.Excel.NamedItem
   summary: >-
@@ -84,7 +84,7 @@ items:
     return:
       type:
       - void
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\ntry {\n    await Excel.run(async (context) => {\n\n        const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n        sheet.names.getItem(\"TotalAmount\").delete();\n\n        // Replace the named item (TotalAmount) with the actual formula for TotalAmount to avoid displaying #NAME in the cell.\n        sheet.getRange(\"D11\").values = [[\"=SUM(ExpensesTable[AMOUNT])\"]];\n\n        await context.sync();\n\n    });\n}\ncatch (error) {\n    OfficeHelpers.UI.notify(error);\n    OfficeHelpers.Utilities.log(error);\n}\n```"
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const totalName = sheet.names.getItemOrNullObject(\"TotalAmount\");\n    totalName.load();\n    await context.sync();\n\n    if (totalName.value) {\n        totalName.delete();\n\n        // Replace the named item (TotalAmount) with the actual formula for TotalAmount to avoid displaying #NAME in the cell.\n        sheet.getRange(\"D11\").values = [[\"=SUM(ExpensesTable[AMOUNT])\"]];\n    } else {\n        console.log(\"No named item created for the formula.\");\n    }\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.NamedItem.formula
   summary: >-
     获取或设置命名项的公式。 公式始终开头 = 登录。
@@ -101,7 +101,7 @@ items:
     return:
       type:
       - any
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    // Get the named item\n    const myNamedItem = sheet.names.getItemOrNullObject(\"MyRange\");\n    myNamedItem.load(\"name, formula\");\n\n    await context.sync();\n\n    if (myNamedItem.isNullObject) {\n        OfficeHelpers.UI.notify(`There is no named item with the name \"MyRange\".`);\n    } else {\n        \n        // Update named item to point to the second range\n        myNamedItem.formula = \"=Sample!$B$10:$D$14\";\n\n        sheet.getRange(\"B10:D14\").select();\n\n        await context.sync();\n\n        OfficeHelpers.UI.notify(`Just updated the named item \"${myNamedItem.name}\" -- it's now located here: ${myNamedItem.formula}`);\n    }\n});\n```"
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    // Get the named item\n    const myNamedItem = sheet.names.getItemOrNullObject(\"MyRange\");\n    myNamedItem.load(\"name, formula\");\n    await context.sync();\n\n    if (myNamedItem.isNullObject) {\n        OfficeHelpers.UI.notify(`There is no named item. Create it with \"Add named item for a range\" first.`);\n    } else {                    \n        // Update named item to point to the second range\n        myNamedItem.formula = \"=Sample!$B$10:$D$14\";\n        sheet.getRange(\"B10:D14\").select();\n        await context.sync();\n\n        console.log(`Just updated the named item \"${myNamedItem.name}\" -- it's now located here: ${myNamedItem.formula}`);\n    }\n});\n```"
 - uid: excel.Excel.NamedItem.getRange
   summary: >-
     返回与名称相关联的 Range 对象。如果已命名项的类型不是 Range，将引发错误。

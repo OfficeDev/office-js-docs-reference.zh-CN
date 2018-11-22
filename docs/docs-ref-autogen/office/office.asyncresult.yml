@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 8651db1ad807e40e9af4c926b9699eb5adb47607
-ms.sourcegitcommit: 31847d2ea6be78b8f473dfbfb0a575fdecd877be
+ms.openlocfilehash: 5fe31f8406e5ea7b628c70602fe4942239a904d4
+ms.sourcegitcommit: b05ee546d9dfbc914c8d1c594d9b206b04780bbc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "26297964"
+ms.lasthandoff: 11/22/2018
+ms.locfileid: "26647152"
 items:
 - uid: office.Office.AsyncResult
   summary: 用于封装异步请求的结果的对象，包括状态和错误信息（如果请求失败）。
@@ -17,6 +17,7 @@ items:
   package: office
   children:
   - office.Office.AsyncResult.asyncContext
+  - office.Office.AsyncResult.diagnostics
   - office.Office.AsyncResult.error
   - office.Office.AsyncResult.status
   - office.Office.AsyncResult.value
@@ -30,6 +31,38 @@ items:
   type: property
   syntax:
     content: 'asyncContext: any;'
+    return:
+      type:
+      - any
+- uid: office.Office.AsyncResult.diagnostics
+  summary: 获取一个对象，可能会提供其他信息，如果出现错误。
+  remarks: >-
+    **支持详细信息**
+
+
+    在以下矩阵大写 Y 表示相应的 Office 主机应用程序中支持此属性。 空单元格指示 Office 主机应用程序不支持此枚举。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> 适用于设备的 OWA </th><th> Office for Mac </th></tr> <tr><td><strong>Outlook</strong></td><td> Y （邮箱预览） </td><td> </td><td> </td><td> </td><td> </td></tr> </table>
+
+
+    *受支持的 Api*
+
+
+    `Office.context.mailbox.item.getCallbackTokenAsync`<!-- -->, `Office.context.mailbox.item.getUserIdentityTokenAsync`
+
+
+    *支持的错误* <table> <tr><th>`AsyncResult.error.name` </th><th>`AsyncResult.error.message` </th><th>Diagnostics 对象返回的说明 </th></tr> <tr><td><strong>HTTPRequestFailure</strong> </td><td>请求失败。 请看 HTTP 错误代码的诊断对象。 </td><td>例如，对象以 json 格式的 HTTP 错误代码`{"HTTPCode":"401"}` </td></tr> <tr><td><strong>InternalServerError</strong></td><td>Exchange 服务器返回错误。 请查看诊断对象的详细信息。</td><td>例如，从 Exchange 服务器以 json 格式的错误消息对象`{"ErrorText": "The mailbox database is temporarily unavailable"}`</td></tr> </table>
+  name: diagnostics
+  fullName: diagnostics
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'diagnostics: any;'
     return:
       type:
       - any
