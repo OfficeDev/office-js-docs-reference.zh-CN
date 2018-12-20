@@ -7,7 +7,7 @@ JavaScript API for Office 使您能够与 Office 主机应用程序中的对象�
 - [Outlook](https://docs.microsoft.com/javascript/api/outlook?view=office-js)
 - [Visio](https://docs.microsoft.com/javascript/api/visio?view=office-js)
 - [Word](https://docs.microsoft.com/javascript/api/word?view=office-js)
-- [共享 API](https://docs.microsoft.com/javascript/api/office?view=office-js)
+- [常用 API](https://docs.microsoft.com/javascript/api/office?view=office-js)
 
 ## <a name="see-also"></a>另请参阅
 
