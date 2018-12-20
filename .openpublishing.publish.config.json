@@ -1,34 +1,32 @@
 {
   "docsets_to_publish": [
     {
-      "docset_name": "office-docs-ref-javascript",
-      "build_source_folder": "docs",
-      "build_output_subfolder": "office-docs-ref-javascript",
-      "locale": "zh-CN",
-      "monikers": [],
-      "moniker_ranges": [],
-      "open_to_public_contributors": false,
-      "build_entry_point": "docs",
-      "template_folder": "_themes",
       "customized_tasks": {
         "docset_prebuild": [
           "_dependentPackages/CommonPlugins/tools/JoinTOC.ps1"
         ]
       },
+      "docset_name": "office-docs-ref-javascript",
+      "build_source_folder": "docs",
+      "build_output_subfolder": "office-docs-ref-javascript",
+      "locale": "zh-cn",
+      "monikers": [],
+      "moniker_ranges": [],
+      "open_to_public_contributors": false,
+      "type_mapping": {
+        "Conceptual": "Content",
+        "ManagedReference": "Content",
+        "RestApi": "Content",
+        "UniversalReference": "Content"
+      },
+      "build_entry_point": "docs",
+      "template_folder": "_themes",
       "customized_template_paths": [
         "_dependentPackages/uref.plugins/content"
       ]
+
     }
   ],
-  "notification_subscribers": [],
-  "branches_to_filter": [
-    "live",
-    "master-sxs"
-  ],
-  "continue_with_document_error": true,
-  "skip_source_output_uploading": false,
-  "need_preview_pull_request": false,
-  "contribution_branch_mappings": {},
   "dependent_repositories": [
     {
       "path_to_root": "_themes.pdf",
@@ -38,13 +36,13 @@
     },
     {
       "path_to_root": "_themes",
-      "url": "https://github.com/Microsoft/templates.docs.msft.zh-CN",
+      "url": "https://github.com/Microsoft/templates.docs.msft.zh-cn",
       "branch": "master",
       "branch_mapping": {}
     },
     {
       "path_to_root": "_repo.en-us",
-      "url": "https://github.com/OfficeDev/office-js-docs-reference",
+      "url": "https://github.com/OfficeDev/office-js-docs-pr",
       "branch": "live",
       "branch_mapping": {
         "live": "live",
@@ -53,29 +51,38 @@
     }
   ],
   "branch_target_mapping": {
-    "live": [
-      "Publish",
-      "Pdf"
-    ],
-    "master": [
-      "Publish",
-      "Pdf"
-    ]
+   "live": [
+     "Publish",
+     "Pdf"
+   ],
+   "live-sxs": [
+     "Publish",
+     "Pdf"
+   ],
+   "master": [
+    "Publish",
+    "Pdf"
+  ]
   },
   "need_generate_pdf_url_template": true,
-  "targets": {
-    "Pdf": {
-      "template_folder": "_themes.pdf"
-    }
-  },
+  "need_generate_pdf": true,
+  "Targets": {
+    "Pdf": {  
+    "template_folder": "_themes.pdf"  
+    } 
+   },
   "JoinTOCPlugin": [
     {
       "ReferenceTOC": "docs/docs-ref-autogen/toc.yml",
-      "ReferenceTOCUrl": "/javascript/api/office_ref_toc/toc.json?view=office-js",
-      "ConceptualTOC": "docs/docs-ref-conceptual/toc.yml",
-      "ConceptualTOCUrl": "/javascript/office/toc.json?view=office-js"
+      "ConceptualTOCUrl": "/office/dev/add-ins/toc.json"
     }
   ],
+  "notification_subscribers": ["mor-oitac-eng@moravia.com"],
+  "branches_to_filter": ["live","master-sxs"],
+  "skip_source_output_uploading": false,
+  "continue_with_document_error": true,
+  "need_preview_pull_request": false,
+  "contribution_branch_mappings": {},
   "dependent_packages": [
     {
       "id": "opbuild.templates.uref",
@@ -83,6 +90,7 @@
       "path_to_root": "_dependentPackages/uref.plugins",
       "target_framework": "net45",
       "version": "latest"
+
     },
     {
       "id": "Microsoft.OpenPublishing.CommonPlugins",
@@ -93,3 +101,4 @@
     }
   ]
 }
+
