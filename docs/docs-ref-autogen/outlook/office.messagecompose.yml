@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 4fc3e4ebdfb08f8edd153c8366511382643b345c
-ms.sourcegitcommit: 31847d2ea6be78b8f473dfbfb0a575fdecd877be
+ms.openlocfilehash: aa60539a74eb853496d919ad1aff9569a11b243f
+ms.sourcegitcommit: 1665198bc1913e60caf12b3d1342844b57a3453a
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "26298447"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "27384269"
 items:
 - uid: outlook.Office.MessageCompose
   summary: >-
@@ -60,7 +60,7 @@ items:
 
 
     \[[API 集： 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件撰写</td></tr>\n\n<tr><td>Errors</td><td>AttachmentSizeExceeded-附件大于所允许。</td></tr><tr><td></td><td>FileTypeNotSupported-附件具有未允许的扩展名。</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded-的邮件或约会的附件太多。</td></tr></table>\n\n除了此签名，该方法还具有以下签名：\n\n`addFileAttachmentAsync(uri: string, attachmentName: string): void;`\n\n`addFileAttachmentAsync(uri: string, attachmentName: string, options: AsyncContextOptions): void;`\n\n`addFileAttachmentAsync(uri: string, attachmentName: string, callback: (result: AsyncResult<string>) => void): void;`\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction callback(result) {\n    if (result.error) {\n        showMessage(result.error);\n    } else {\n        showMessage(\"Attachment added\");\n    }\n}\n\nfunction addAttachment() {\n    // The values in asyncContext can be accessed in the callback\n    var options = { 'asyncContext': { var1: 1, var2: 2 } };\n\n    var attachmentURL = \"https://contoso.com/rtm/icon.png\";\n    Office.context.mailbox.item.addFileAttachmentAsync(attachmentURL, attachmentURL, options, callback);\n}\n```\n```javascript\n// The following example adds an image file as an inline attachment and\n// references the attachment in the message body.\nOffice.context.mailbox.item.addFileAttachmentAsync\n(\n    \"http://i.imgur.com/WJXklif.png\",\n    \"cute_bird.png\",\n    {\n        isInline: true\n    },\n    function (asyncResult) {\n        Office.context.mailbox.item.body.setAsync(\n            \"<p>Here's a cute bird!</p><img src='cid:cute_bird.png'>\",\n            {\n                \"coercionType\": \"html\"\n            },\n            function (asyncResult) {\n                \n            });\n    });\n```"
+  remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件撰写</td></tr>\n\n<tr><td>错误</td><td>AttachmentSizeExceeded-附件大于所允许。</td></tr><tr><td></td><td>FileTypeNotSupported-附件具有未允许的扩展名。</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded-的邮件或约会的附件太多。</td></tr></table>\n\n除了此签名，该方法还具有以下签名：\n\n`addFileAttachmentAsync(uri: string, attachmentName: string): void;`\n\n`addFileAttachmentAsync(uri: string, attachmentName: string, options: AsyncContextOptions): void;`\n\n`addFileAttachmentAsync(uri: string, attachmentName: string, callback: (result: AsyncResult<string>) => void): void;`\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction callback(result) {\n    if (result.error) {\n        showMessage(result.error);\n    } else {\n        showMessage(\"Attachment added\");\n    }\n}\n\nfunction addAttachment() {\n    // The values in asyncContext can be accessed in the callback\n    var options = { 'asyncContext': { var1: 1, var2: 2 } };\n\n    var attachmentURL = \"https://contoso.com/rtm/icon.png\";\n    Office.context.mailbox.item.addFileAttachmentAsync(attachmentURL, attachmentURL, options, callback);\n}\n```\n```javascript\n// The following example adds an image file as an inline attachment and\n// references the attachment in the message body.\nOffice.context.mailbox.item.addFileAttachmentAsync\n(\n    \"http://i.imgur.com/WJXklif.png\",\n    \"cute_bird.png\",\n    {\n        isInline: true\n    },\n    function (asyncResult) {\n        Office.context.mailbox.item.body.setAsync(\n            \"<p>Here's a cute bird!</p><img src='cid:cute_bird.png'>\",\n            {\n                \"coercionType\": \"html\"\n            },\n            function (asyncResult) {\n                \n            });\n    });\n```"
   name: addFileAttachmentAsync(uri, attachmentName, options, callback)
   fullName: addFileAttachmentAsync
   langs:
@@ -108,7 +108,7 @@ items:
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>约会组织者</td></tr>
 
 
-    <tr><td>Errors</td><td>AttachmentSizeExceeded-附件大于所允许。</td></tr><tr><td></td><td>FileTypeNotSupported-附件具有未允许的扩展名。</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded-的邮件或约会的附件太多。</td></tr></table>
+    <tr><td>错误</td><td>AttachmentSizeExceeded-附件大于所允许。</td></tr><tr><td></td><td>FileTypeNotSupported-附件具有未允许的扩展名。</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded-的邮件或约会的附件太多。</td></tr></table>
 
     ####示例
 
@@ -145,7 +145,7 @@ items:
       description: ''
     parameters:
     - id: base64File
-      description: 以 base64 编码的图像或文件添加到电子邮件或事件的内容。
+      description: 要添加到电子邮件或事件的图像或文件的 base64 编码内容。
       type:
       - string
     - id: attachmentName
@@ -230,7 +230,7 @@ items:
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件撰写</td></tr>
 
 
-    <tr><td>Errors</td><td>NumberOfAttachmentsExceeded-的邮件或约会的附件太多。</td></tr></table>
+    <tr><td>错误</td><td>NumberOfAttachmentsExceeded-的邮件或约会的附件太多。</td></tr></table>
 
 
     除了此签名，此方法还具有以下签名：
@@ -304,7 +304,7 @@ items:
       - '(result: AsyncResult<string>) => void'
 - uid: outlook.Office.MessageCompose.bcc
   summary: >-
-    获取一个对象，提供用于获取或更新邮件的密件抄送 （密件抄送副本） 行上的收件人的方法。
+    获取对象，该对象提供用于获取或更新邮件的密件抄送 (Bcc) 行上的收件人的方法。
 
 
     \[[API 集： 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -364,7 +364,7 @@ items:
       - outlook.Office.Body
 - uid: outlook.Office.MessageCompose.cc
   summary: >-
-    提供对邮件的抄送 (cc) 收件人访问。 对象的类型和访问级别取决于当前项的模式。
+    提供对邮件的抄送 (Cc) 收件人的访问权限。 对象的类型和访问级别取决于当前项目的模式。
 
 
     Cc 属性返回[Office.Recipients](xref:outlook.Office.Recipients)对象提供用于获取或更新的收件人的邮件 Cc 行上的方法。
@@ -550,7 +550,7 @@ items:
       - outlook.Office.From
 - uid: outlook.Office.MessageCompose.getAttachmentsAsync
   summary: >-
-    作为数组中获取项目的附件。
+    获取项目的附件作为数组。
 
 
     \[[API 集： 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -760,7 +760,7 @@ items:
       type:
       - '(result: AsyncResult<Office.CustomProperties>) => void'
     - id: userContext
-      description: 可选。 开发人员可以提供他们想要访问的回调函数中的任何对象。 AsyncResult.asyncContext 属性的回调函数中，可以访问此对象。
+      description: 可选。 开发人员可以提供他们想要在回调函数中访问的任何对象。 AsyncResult.asyncContext 属性的回调函数中，可以访问此对象。
       type:
       - any
 - uid: outlook.Office.MessageCompose.notificationMessages
@@ -786,10 +786,10 @@ items:
       - outlook.Office.NotificationMessages
 - uid: outlook.Office.MessageCompose.recurrence
   summary: >-
-    获取或设置约会的定期模式。 获取会议请求的定期模式。 阅读和撰写的约会项目的模式。 读取模式的会议请求项目。
+    获取或设置约会的定期模式。 获取或设置会议请求的定期模式。 阅读撰写约会项目的模式。 会议请求项目的阅读模式。
 
 
-    如果项目为一系列或一系列中的实例的定期属性返回定期约会或会议请求的定期的对象。 `null`将返回单个约会和会议请求的单个约会。 `undefined`将返回不是会议请求的消息。
+    如果项目为一系列或一系列中的实例的定期属性返回定期约会或会议请求的定期的对象。 针对单个约会和单个约会的会议请求返回 `null`。 针对非会议请求的邮件返回 `undefined`。
 
 
     注意： 会议请求具有 IPM itemClass 的值。Schedule.Meeting.Request。
@@ -819,7 +819,7 @@ items:
     将附件从邮件或约会中删除。
 
 
-    RemoveAttachmentAsync 方法从项目中删除具有指定标识符的附件。 最佳做法是，仅当同一个邮件应用程序在同一会话中添加了一个附件时，你才应使用该附件标识符来删除该附件。 在 Outlook Web App 和适用于设备的 OWA 中，附件标识符只在同一个会话中才有效。 会话是通过，当用户关闭应用程序，或如果用户开始撰写内嵌窗体，则随后弹出窗体继续在单独的窗口。
+    RemoveAttachmentAsync 方法从项目中删除具有指定标识符的附件。 最佳做法是，仅当同一个邮件应用程序在同一会话中添加了一个附件时，你才应使用该附件标识符来删除该附件。 在 Outlook Web App 和适用于设备的 OWA 中，附件标识符只在同一个会话中才有效。 当用户关闭应用，或者如果用户开始在内嵌窗体中撰写，则随后弹出的窗体中继续在单独的窗口撰写时，会话即结束。
 
 
     \[[API 集： 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -830,19 +830,19 @@ items:
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件撰写</td></tr>
 
 
-    <tr><td>Errors</td><td>InvalidAttachmentId-附件标识符不存在。</td></tr></table>
+    <tr><td>错误</td><td>InvalidAttachmentId-附件标识符不存在。</td></tr></table>
 
 
     除了此签名，该方法还具有以下签名：
 
 
-    `removeAttachmentAsync(attachmentIndex: string): void;`
+    `removeAttachmentAsync(attachmentId: string): void;`
 
 
-    `removeAttachmentAsync(attachmentIndex: string, options: Office.AsyncContextOptions): void;`
+    `removeAttachmentAsync(attachmentId: string, options: Office.AsyncContextOptions): void;`
 
 
-    `removeAttachmentAsync(attachmentIndex: string, callback: (result: AsyncResult<void>) => void): void;`
+    `removeAttachmentAsync(attachmentId: string, callback: (result: AsyncResult<void>) => void): void;`
 
     #### <a name="examples"></a>示例
 
@@ -861,20 +861,20 @@ items:
     );
 
     ```
-  name: removeAttachmentAsync(attachmentIndex, options, callback)
+  name: removeAttachmentAsync(attachmentId, options, callback)
   fullName: removeAttachmentAsync
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'removeAttachmentAsync(attachmentIndex: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'removeAttachmentAsync(attachmentId: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
     return:
       type:
       - void
       description: ''
     parameters:
-    - id: attachmentIndex
-      description: 要删除的附件的标识符。字符串的最大长度为 100 个字符。
+    - id: attachmentId
+      description: 要删除的附件的标识符。
       type:
       - string
     - id: options
@@ -887,7 +887,7 @@ items:
       - '(result: AsyncResult<void>) => void'
 - uid: outlook.Office.MessageCompose.removeHandlerAsync
   summary: >-
-    删除事件处理程序支持的事件。
+    删除支持事件的事件处理程序。
 
 
     当前受支持的事件类型的`Office.EventType.AppointmentTimeChanged` <!-- -->， `Office.EventType.RecipientsChanged` <!-- -->，和`Office.EventType.RecurrenceChanged` <!-- -->。 在预览`Office.EventType.AttachmentsChanged`，还支持。
@@ -918,7 +918,7 @@ items:
       description: ''
     parameters:
     - id: eventType
-      description: 应取消处理程序的事件。
+      description: 应撤销处理程序的事件。
       type:
       - EventType
     - id: handler
@@ -964,7 +964,7 @@ items:
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件撰写</td></tr>
 
 
-    <tr><td>Errors</td><td>InvalidAttachmentId-附件标识符不存在。</td></tr></table>
+    <tr><td>错误</td><td>InvalidAttachmentId-附件标识符不存在。</td></tr></table>
 
 
     除了此签名，该方法还具有以下签名：
@@ -1026,13 +1026,13 @@ items:
       - '(result: AsyncResult<void>) => void'
 - uid: outlook.Office.MessageCompose.seriesId
   summary: >-
-    获取实例所属的系列的 id。
+    获取实例所属的系列的 ID。
 
 
     在 OWA 和 Outlook 中，可能指向返回此项目所属的父 （系列） 项的 Exchange Web Services (EWS) ID。 但是，在 iOS 和 Android，可能指向返回父项的 REST ID。
 
 
-    注意： 可能指向属性返回的标识符是 Exchange Web 服务的项标识符相同。 可能指向属性不是与 Outlook Id 使用 Outlook REST API 相同的。 使用此值的 REST API 调用之前，应将其转换使用 Office.context.mailbox.convertToRestId。 有关详细信息，请参阅[使用 Outlook REST Api 从 Outlook 外接程序](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->。
+    注意： 可能指向属性返回的标识符是 Exchange Web 服务的项标识符相同。 可能指向属性不是与 Outlook Id 使用 Outlook REST API 相同的。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关详细信息，请参阅[使用 Outlook REST Api 从 Outlook 外接程序](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->。
 
 
     可能指向属性返回 null 没有父项目，如单个约会系列项目的项目或会议请求，并返回 undefined 不是会议请求的其他任何项。
@@ -1070,7 +1070,7 @@ items:
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件撰写</td></tr>
 
 
-    <tr><td>Errors</td><td>InvalidAttachmentId-附件标识符不存在。</td></tr></table>
+    <tr><td>错误</td><td>InvalidAttachmentId-附件标识符不存在。</td></tr></table>
 
 
     除了此签名，该方法还具有以下签名：
@@ -1161,7 +1161,7 @@ items:
       - Subject
 - uid: outlook.Office.MessageCompose.to
   summary: >-
-    提供的收件人的邮件 To 行的访问。 对象的类型和访问级别取决于当前项的模式。
+    提供对邮件的“收件人”行上的收件人的访问权限。 对象的类型和访问级别取决于当前项目的模式。
 
 
     到属性返回提供方法用于获取或更新的邮件 To 行上的收件人的 Recipients 对象。

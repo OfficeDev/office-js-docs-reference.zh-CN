@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: b3f6be80d14059816525e8168b2fc331fbb0f732
-ms.sourcegitcommit: 31847d2ea6be78b8f473dfbfb0a575fdecd877be
+ms.openlocfilehash: 154fb33d6cb9b57a3b11330c5ff3030fcc277757
+ms.sourcegitcommit: 1665198bc1913e60caf12b3d1342844b57a3453a
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "26298195"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "27384234"
 items:
 - uid: outlook.Office.Item
   summary: >-
@@ -106,7 +106,7 @@ items:
     <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
 
 
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Read</td></tr></table>
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>阅读</td></tr></table>
   name: dateTimeCreated
   fullName: dateTimeCreated
   langs:
@@ -127,7 +127,7 @@ items:
     <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
 
 
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Read</td></tr></table>
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>阅读</td></tr></table>
 
 
     注意：在 Outlook for iOS 或 Outlook for Android 中不支持此成员。
@@ -146,11 +146,11 @@ items:
     从邮件或约会中获取附件，并返回其作为`Office.AttachmentContent`对象。
 
 
-    `getAttachmentContentAsync`方法从项目中获取具有指定标识符的附件。 作为最佳实践，您应使用标识符来检索 attachmentIds 检索与同一个会话中的附件`getAttachmentsAsync`或`item.attachments`呼叫。 在 Outlook Web App 和适用于设备的 OWA 中，附件标识符只在同一个会话中才有效。 会话是通过，当用户关闭应用程序，或如果用户开始撰写内嵌窗体，则随后弹出窗体继续在单独的窗口。
+    `getAttachmentContentAsync` 方法获取项目中带指定标识符的附件。 作为最佳做法，应使用标识符检索同一会话中的附件，在该会话中，使用 `getAttachmentsAsync` 或 `item.attachments` 调用检索附件 ID。 在 Outlook Web App 和适用于设备的 OWA 中，附件标识符只在同一个会话中才有效。 当用户关闭应用，或者如果用户开始在内嵌窗体中撰写，则随后弹出的窗体中继续在单独的窗口撰写时，会话即结束。
 
 
     \[[API 集： 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr>\n\n<tr><td>Errors</td><td>InvalidAttachmentId-附件标识符不存在。</td></tr></table>\n####示例\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar listOfAttachments = [];\nitem.getAttachmentsAsync(callback);\nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var options = {asyncContext: {type: result.value[i].attachmentType}};\n            getAttachmentContentAsync(result.value[i].id, options, handleAttachmentsCallback);  \n        }\n    }\n}\n\nfunction handleAttachmentsCallback(result) {\n    // parse string to be a url, an .eml file, a base64-encoded string, or an .icalendar file\n    if (result.format == Office.MailboxEnums.AttachmentContentFormat.Base64) {\n        // handle file attachment\n    }\n    else if (result.format == Office.MailboxEnums.AttachmentContentFormat.Eml) {\n        // handle item attachment\n    }\n    else if (result.format == Office.MailboxEnums.AttachmentContentFormat.ICalendar) {\n        // handle .icalender attachment\n    }\n    else {\n        // handle cloud attachment  \n    }\n}\n```"
+  remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr>\n\n<tr><td>错误</td><td>InvalidAttachmentId-附件标识符不存在。</td></tr></table>\n####示例\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar listOfAttachments = [];\nitem.getAttachmentsAsync(callback);\nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var options = {asyncContext: {type: result.value[i].attachmentType}};\n            getAttachmentContentAsync(result.value[i].id, options, handleAttachmentsCallback);  \n        }\n    }\n}\n\nfunction handleAttachmentsCallback(result) {\n    // parse string to be a url, an .eml file, a base64-encoded string, or an .icalendar file\n    if (result.format == Office.MailboxEnums.AttachmentContentFormat.Base64) {\n        // handle file attachment\n    }\n    else if (result.format == Office.MailboxEnums.AttachmentContentFormat.Eml) {\n        // handle item attachment\n    }\n    else if (result.format == Office.MailboxEnums.AttachmentContentFormat.ICalendar) {\n        // handle .icalender attachment\n    }\n    else {\n        // handle cloud attachment  \n    }\n}\n```"
   isPreview: true
   name: getAttachmentContentAsync(attachmentId, options, callback)
   fullName: getAttachmentContentAsync
@@ -165,7 +165,7 @@ items:
       description: ''
     parameters:
     - id: attachmentId
-      description: 要获取附件的标识符。 字符串的最大长度为 100 个字符。
+      description: 要获取的附件的标识符。
       type:
       - string
     - id: options
@@ -411,7 +411,7 @@ items:
       type:
       - '(result: AsyncResult<Office.CustomProperties>) => void'
     - id: userContext
-      description: 可选。 开发人员可以提供他们想要访问的回调函数中的任何对象。 AsyncResult.asyncContext 属性的回调函数中，可以访问此对象。
+      description: 可选。 开发人员可以提供他们想要在回调函数中访问的任何对象。 AsyncResult.asyncContext 属性的回调函数中，可以访问此对象。
       type:
       - any
 - uid: outlook.Office.Item.notificationMessages
@@ -437,10 +437,10 @@ items:
       - outlook.Office.NotificationMessages
 - uid: outlook.Office.Item.recurrence
   summary: >-
-    获取或设置约会的定期模式。 获取会议请求的定期模式。 阅读和撰写的约会项目的模式。 读取模式的会议请求项目。
+    获取或设置约会的定期模式。 获取或设置会议请求的定期模式。 阅读撰写约会项目的模式。 会议请求项目的阅读模式。
 
 
-    如果项目为一系列或一系列中的实例的定期属性返回定期约会或会议请求的定期的对象。 `null`将返回单个约会和会议请求的单个约会。 `undefined`将返回不是会议请求的消息。
+    如果项目为一系列或一系列中的实例的定期属性返回定期约会或会议请求的定期的对象。 针对单个约会和单个约会的会议请求返回 `null`。 针对非会议请求的邮件返回 `undefined`。
 
 
     注意： 会议请求具有 IPM itemClass 的值。Schedule.Meeting.Request。
@@ -467,7 +467,7 @@ items:
       - outlook.Office.Recurrence
 - uid: outlook.Office.Item.removeHandlerAsync
   summary: >-
-    删除事件处理程序支持的事件。
+    删除支持事件的事件处理程序。
 
 
     当前受支持的事件类型的`Office.EventType.AppointmentTimeChanged` <!-- -->， `Office.EventType.RecipientsChanged` <!-- -->，和`Office.EventType.RecurrenceChanged` <!-- -->。 在预览`Office.EventType.AttachmentsChanged`，还支持。
@@ -498,7 +498,7 @@ items:
       description: ''
     parameters:
     - id: eventType
-      description: 应取消处理程序的事件。
+      description: 应撤销处理程序的事件。
       type:
       - Office.EventType
     - id: handler
@@ -515,13 +515,13 @@ items:
       - '(result: AsyncResult<void>) => void'
 - uid: outlook.Office.Item.seriesId
   summary: >-
-    获取实例所属的系列的 id。
+    获取实例所属的系列的 ID。
 
 
     在 OWA 和 Outlook 中，可能指向返回此项目所属的父 （系列） 项的 Exchange Web Services (EWS) ID。 但是，在 iOS 和 Android，可能指向返回父项的 REST ID。
 
 
-    注意： 可能指向属性返回的标识符是 Exchange Web 服务的项标识符相同。 可能指向属性不是与 Outlook Id 使用 Outlook REST API 相同的。 使用此值的 REST API 调用之前，应将其转换使用 Office.context.mailbox.convertToRestId。 有关详细信息，请参阅[使用 Outlook REST Api 从 Outlook 外接程序](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->。
+    注意： 可能指向属性返回的标识符是 Exchange Web 服务的项标识符相同。 可能指向属性不是与 Outlook Id 使用 Outlook REST API 相同的。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关详细信息，请参阅[使用 Outlook REST Api 从 Outlook 外接程序](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->。
 
 
     可能指向属性返回 null 没有父项目，如单个约会系列项目的项目或会议请求，并返回 undefined 不是会议请求的其他任何项。
