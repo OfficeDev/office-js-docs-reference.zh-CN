@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 6cd2e814c8df31b3b4f76e737fc5a35c1b702e59
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: 0f757bb304e374f0513ab4d460afb46048b66bbf
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26994903"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28725345"
 items:
 - uid: excel.Excel.IconSetConditionalFormat
   summary: >-
@@ -21,12 +21,25 @@ items:
   - office.OfficeExtension.ClientObject
   package: excel
   children:
+  - excel.Excel.IconSetConditionalFormat.context
   - excel.Excel.IconSetConditionalFormat.criteria
   - excel.Excel.IconSetConditionalFormat.load
   - excel.Excel.IconSetConditionalFormat.reverseIconOrder
   - excel.Excel.IconSetConditionalFormat.showIconOnly
   - excel.Excel.IconSetConditionalFormat.style
   - excel.Excel.IconSetConditionalFormat.toJSON
+- uid: excel.Excel.IconSetConditionalFormat.context
+  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.IconSetConditionalFormat.criteria
   summary: >-
     有关规则和条件的图标的潜在自定义图标的条件和 IconSets 数组。 请注意，第一个条件仅自定义图标可以修改，同时类型，公式，并将设置时忽略运算符。
@@ -114,12 +127,13 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'style: Excel.IconSet | "Invalid" | "ThreeArrows" | "ThreeArrowsGray" | "ThreeFlags" | "ThreeTrafficLights1" | "ThreeTrafficLights2" | "ThreeSigns" | "ThreeSymbols" | "ThreeSymbols2" | "FourArrows" | "FourArrowsGray" | "FourRedToBlack" | "FourRating" | "FourTrafficLights" | "FiveArrows" | "FiveArrowsGray" | "FiveRating" | "FiveQuarters" | "ThreeStars" | "ThreeTriangles" | "FiveBoxes";'
+    content: 'style: Excel.IconSet | "Invalid" | "ThreeArrows" | "ThreeArrowsGray" | "ThreeFlags" | "ThreeTrafficLights1" | "ThreeTrafficLights2" | "ThreeSigns" | "ThreeSymbols" | "ThreeSymbols2" | "FourArrows" | "FourArrowsGray" | "FourRedToBlack" | "FourRating" | "FourTrafficLights" | "FiveArrows" | "FiveArrowsGray" | "FiveRating" | "FiveQuarters" | "ThreeStars" | "ThreeTriangles" | "FiveBoxes" | "LinkedEntityFinanceIcon" | "LinkedEntityMapIcon";'
     return:
       type:
-      - Excel.IconSet | "Invalid" | "ThreeArrows" | "ThreeArrowsGray" | "ThreeFlags" | "ThreeTrafficLights1" | "ThreeTrafficLights2" | "ThreeSigns" | "ThreeSymbols" | "ThreeSymbols2" | "FourArrows" | "FourArrowsGray" | "FourRedToBlack" | "FourRating" | "FourTrafficLights" | "FiveArrows" | "FiveArrowsGray" | "FiveRating" | "FiveQuarters" | "ThreeStars" | "ThreeTriangles" | "FiveBoxes"
+      - Excel.IconSet | "Invalid" | "ThreeArrows" | "ThreeArrowsGray" | "ThreeFlags" | "ThreeTrafficLights1" | "ThreeTrafficLights2" | "ThreeSigns" | "ThreeSymbols" | "ThreeSymbols2" | "FourArrows" | "FourArrowsGray" | "FourRedToBlack" | "FourRating" | "FourTrafficLights" | "FiveArrows" | "FiveArrowsGray" | "FiveRating" | "FiveQuarters" | "ThreeStars" | "ThreeTriangles" | "FiveBoxes" | "LinkedEntityFinanceIcon" | "LinkedEntityMapIcon"
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B8:E13\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.iconSet);\n    const iconSetCF = conditionalFormat.iconSet;\n    iconSetCF.style = Excel.IconSet.threeTriangles;\n\n    /*\n        The iconSetCF.criteria array is automatically prepopulated with\n        criterion elements whose properties have been given default settings.\n        You can't write to each property of a criterion directly. Instead,\n        replace the whole criteria object.\n\n        With a \"three*\" icon set style, such as \"threeTriangles\", the third\n        element in the criteria array (criteria[2]) defines the \"top\" icon;\n        e.g., a green triangle. The second (criteria[1]) defines the \"middle\"\n        icon, The first (criteria[0]) defines the \"low\" icon, but it\n        can often be left empty as this method does below, because every\n        cell that does not match the other two criteria always gets the low\n        icon.            \n    */\n    iconSetCF.criteria = [\n        {} as any,\n        {\n            type: Excel.ConditionalFormatIconRuleType.number,\n            operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,\n            formula: \"=700\"\n        },\n        {\n            type: Excel.ConditionalFormatIconRuleType.number,\n            operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,\n            formula: \"=1000\",\n        }\n    ];\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.IconSetConditionalFormat.toJSON
+  summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.IconSetConditionalFormat 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.IconSetConditionalFormatData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
   fullName: toJSON
   langs:

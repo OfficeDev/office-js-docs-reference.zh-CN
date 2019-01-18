@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 6b484bc6b47a72ed916358f9028249dcb171c987
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: 13600556218527e51c89500fa365f0b32e93c771
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26995421"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28725051"
 items:
 - uid: excel.Excel.NamedItem
   summary: >-
@@ -23,6 +23,7 @@ items:
   children:
   - excel.Excel.NamedItem.arrayValues
   - excel.Excel.NamedItem.comment
+  - excel.Excel.NamedItem.context
   - excel.Excel.NamedItem.delete
   - excel.Excel.NamedItem.formula
   - excel.Excel.NamedItem.getRange
@@ -38,7 +39,7 @@ items:
   - excel.Excel.NamedItem.worksheetOrNullObject
 - uid: excel.Excel.NamedItem.arrayValues
   summary: >-
-    返回一个包含值和类型的已命名项目对象。 只读。
+    返回包含已命名项目的值和类型的对象。 只读。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -68,6 +69,18 @@ items:
     return:
       type:
       - string
+- uid: excel.Excel.NamedItem.context
+  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.NamedItem.delete
   summary: >-
     删除给定的名称。
@@ -87,7 +100,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const totalName = sheet.names.getItemOrNullObject(\"TotalAmount\");\n    totalName.load();\n    await context.sync();\n\n    if (totalName.value) {\n        totalName.delete();\n\n        // Replace the named item (TotalAmount) with the actual formula for TotalAmount to avoid displaying #NAME in the cell.\n        sheet.getRange(\"D11\").values = [[\"=SUM(ExpensesTable[AMOUNT])\"]];\n    } else {\n        console.log(\"No named item created for the formula.\");\n    }\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.NamedItem.formula
   summary: >-
-    获取或设置命名项的公式。 公式始终开头 = 登录。
+    获取或设置的已命名项目的公式。 公式始终以等号 (=) 开头。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -188,6 +201,7 @@ items:
       type:
       - Excel.NamedItemScope | "Worksheet" | "Workbook"
 - uid: excel.Excel.NamedItem.toJSON
+  summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.NamedItem 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.NamedItemData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
   fullName: toJSON
   langs:

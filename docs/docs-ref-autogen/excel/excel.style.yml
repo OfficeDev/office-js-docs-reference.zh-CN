@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: b343e503a3fa62d30beef4789b3ad81a209df463
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: 6ba3e82f178c68789eb1283a7a0b28a8ae4c3704
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26996163"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28725436"
 items:
 - uid: excel.Excel.Style
   summary: >-
@@ -24,6 +24,7 @@ items:
   - excel.Excel.Style.autoIndent
   - excel.Excel.Style.borders
   - excel.Excel.Style.builtIn
+  - excel.Excel.Style.context
   - excel.Excel.Style.delete
   - excel.Excel.Style.fill
   - excel.Excel.Style.font
@@ -49,7 +50,7 @@ items:
   - excel.Excel.Style.wrapText
 - uid: excel.Excel.Style.autoIndent
   summary: >-
-    指示是否文本会自动缩进单元格中的文本对齐方式设置为等距分布时。
+    指示将单元格中的文本对齐方式设为相等分布时文本是否会自动缩进。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -65,7 +66,7 @@ items:
       - boolean
 - uid: excel.Excel.Style.borders
   summary: >-
-    边框表示的四个边框样式的四个 Border 对象的集合。
+    四个 Border 对象的 Border 集合，表示四个边框的样式。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -81,7 +82,7 @@ items:
       - excel.Excel.RangeBorderCollection
 - uid: excel.Excel.Style.builtIn
   summary: >-
-    指示是否样式为内置样式。
+    指示样式是否为内置样式。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -95,6 +96,18 @@ items:
     return:
       type:
       - boolean
+- uid: excel.Excel.Style.context
+  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.Style.delete
   summary: >-
     删除此样式。
@@ -130,7 +143,7 @@ items:
       - excel.Excel.RangeFill
 - uid: excel.Excel.Style.font
   summary: >-
-    Font 对象，代表样式的字体。
+    该 Font 对象表示样式的字体。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -147,7 +160,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    let style = context.workbook.styles.getItem(\"Normal\");\n    style.font.load(\"bold, color, italic, name, size\");\n    style.fill.load(\"color\");\n\n    await context.sync();\n\n    console.log(\"Bold: \" + style.font.bold);\n    console.log(\"Font color: \" + style.font.color);\n    console.log(\"Italic: \" + style.font.italic);\n    console.log(\"Name: \" + style.font.name);\n    console.log(\"Size: \" + style.font.size);\n    console.log(\"Fill color: \" + style.fill.color);\n});\n```"
 - uid: excel.Excel.Style.formulaHidden
   summary: >-
-    指示是否将在工作表处于保护状态时隐藏公式。
+    指示工作表受保护时是否隐藏公式。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -163,7 +176,7 @@ items:
       - boolean
 - uid: excel.Excel.Style.horizontalAlignment
   summary: >-
-    代表样式的水平对齐方式。 有关详细信息，请参阅 Excel.HorizontalAlignment。
+    表示样式水平对齐。 有关详细信息，请参阅 Excel.HorizontalAlignment。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -180,7 +193,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    let worksheet = context.workbook.worksheets.getItem(\"Sample\");\n    let range = worksheet.getRange(\"A1:E1\");\n\n    // Apply built-in style. \n    // Styles are in the Home tab ribbon.\n    range.style = Excel.BuiltInStyle.neutral;\n    range.format.horizontalAlignment = \"Right\";\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Style.includeAlignment
   summary: >-
-    指示该样式是否包括自动、 HorizontalAlignment、 VerticalAlignment、 WrapText、 IndentLevel 和 TextOrientation 属性。
+    指示样式是否包含 AutoIndent、HorizontalAlignment、VerticalAlignment、WrapText、IndentLevel 和 TextOrientation 属性。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -196,7 +209,7 @@ items:
       - boolean
 - uid: excel.Excel.Style.includeBorder
   summary: >-
-    指示该样式是否包括的颜色、 ColorIndex、 LineStyle 和权重边框属性。
+    指示样式是否包含 Color、ColorIndex、LineStyle 和 Weight 边框属性。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -212,7 +225,7 @@ items:
       - boolean
 - uid: excel.Excel.Style.includeFont
   summary: >-
-    指示该样式是否包括的背景、 加粗、 颜色、 ColorIndex、 FontStyle、 斜体、 名称、 大小、 删除线、 下标、 上标和下划线的字体属性。
+    指示样式是否包含 Background、Bold、Color、ColorIndex、FontStyle、Italic、Name、Size、Strikethrough、Subscrip、Superscript 和 Underline 字体属性。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -228,7 +241,7 @@ items:
       - boolean
 - uid: excel.Excel.Style.includeNumber
   summary: >-
-    指示该样式是否包括 NumberFormat 属性。
+    指示样式是否包含 NumberFormat 属性。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -244,7 +257,7 @@ items:
       - boolean
 - uid: excel.Excel.Style.includePatterns
   summary: >-
-    指示该样式是否包括颜色、 ColorIndex、 InvertIfNegative、 模式、 PatternColor 和 PatternColorIndex interior 属性。
+    指示样式是否包含 Color、ColorIndex、InvertIfNegative、Pattern、PatternColor 和 PatternColorIndex 内部属性。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -260,7 +273,7 @@ items:
       - boolean
 - uid: excel.Excel.Style.includeProtection
   summary: >-
-    指示该样式是否包括 FormulaHidden 和锁定保护属性。
+    指示样式是否包含 FormulaHidden 和 Locked 保护属性。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -276,7 +289,7 @@ items:
       - boolean
 - uid: excel.Excel.Style.indentLevel
   summary: >-
-    一个介于 0 至 250 个的整数，指示样式的缩进级别。
+    0 到 250 之间的一个整数，指示样式的缩进水平。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -311,7 +324,7 @@ items:
       - string | string[]
 - uid: excel.Excel.Style.locked
   summary: >-
-    指示是否对象已锁定时的工作表处于保护。
+    指示工作表受保护时是否锁定对象。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -343,7 +356,7 @@ items:
       - string
 - uid: excel.Excel.Style.numberFormat
   summary: >-
-    样式的数字格式的格式代码。
+    样式中数字格式的格式代码。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -359,7 +372,7 @@ items:
       - string
 - uid: excel.Excel.Style.numberFormatLocal
   summary: >-
-    样式的数字格式本地化的格式代码。
+    样式中数字格式的本地化格式代码。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -375,7 +388,7 @@ items:
       - string
 - uid: excel.Excel.Style.readingOrder
   summary: >-
-    样式的读取顺序。
+    样式中的阅读顺序。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -407,7 +420,7 @@ items:
       - boolean
 - uid: excel.Excel.Style.textOrientation
   summary: >-
-    样式的文本方向。
+    此样式中的文本方向。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -422,6 +435,7 @@ items:
       type:
       - number
 - uid: excel.Excel.Style.toJSON
+  summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.Style 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.StyleData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
   fullName: toJSON
   langs:
@@ -435,7 +449,7 @@ items:
       description: ''
 - uid: excel.Excel.Style.verticalAlignment
   summary: >-
-    代表样式的垂直对齐方式。 有关详细信息，请参阅 Excel.VerticalAlignment。
+    表示样式的垂直对齐方式。 有关详细信息，请参阅 Excel.VerticalAlignment。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -451,7 +465,7 @@ items:
       - Excel.VerticalAlignment | "Top" | "Center" | "Bottom" | "Justify" | "Distributed"
 - uid: excel.Excel.Style.wrapText
   summary: >-
-    指示是否 Microsoft Excel 会将文本包装对象中。
+    指示 Microsoft Excel 是否将对象中的文本换行。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]

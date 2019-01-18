@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: ee3e32f8e0565b6b8e59f40c1b1b07da395818f3
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: c2bb57b8e94c7b52eb83e0ceee678c452edd3e4c
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26994735"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28724666"
 items:
 - uid: excel.Excel.DataPivotHierarchy
   summary: >-
@@ -21,6 +21,7 @@ items:
   - office.OfficeExtension.ClientObject
   package: excel
   children:
+  - excel.Excel.DataPivotHierarchy.context
   - excel.Excel.DataPivotHierarchy.field
   - excel.Excel.DataPivotHierarchy.id
   - excel.Excel.DataPivotHierarchy.load
@@ -31,9 +32,21 @@ items:
   - excel.Excel.DataPivotHierarchy.showAs
   - excel.Excel.DataPivotHierarchy.summarizeBy
   - excel.Excel.DataPivotHierarchy.toJSON
+- uid: excel.Excel.DataPivotHierarchy.context
+  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.DataPivotHierarchy.field
   summary: >-
-    返回与 DataPivotHierarchy 关联的数据透视。
+    返回与 DataPivotHierarchy 相关联的 PivotFields。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -49,7 +62,7 @@ items:
       - excel.Excel.PivotField
 - uid: excel.Excel.DataPivotHierarchy.id
   summary: >-
-    DataPivotHierarchy 的 id。
+    DataPivotHierarchy ID。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -108,7 +121,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const dataHierarchies = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\").dataHierarchies\n    dataHierarchies.load(\"no-properties-needed\");\n    await context.sync();\n\n    dataHierarchies.items[0].name = \"Farm Sales\";\n    dataHierarchies.items[1].name = \"Wholesale\";\n    await context.sync();\n});\n```"
 - uid: excel.Excel.DataPivotHierarchy.numberFormat
   summary: >-
-    DataPivotHierarchy 数字格式。
+    DataPivotHierarchy 的数字格式。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -124,7 +137,7 @@ items:
       - string
 - uid: excel.Excel.DataPivotHierarchy.position
   summary: >-
-    DataPivotHierarchy 位置。
+    DataPivotHierarchy 的位置。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -140,7 +153,7 @@ items:
       - number
 - uid: excel.Excel.DataPivotHierarchy.setToDefault
   summary: >-
-    DataPivotHierarchy 重置为其默认值。
+    将 DataPivotHierarchy 重置回其默认值。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -174,7 +187,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n    const farmDataHierarchy: Excel.DataPivotHierarchy = pivotTable.dataHierarchies.getItem(\"Sum of Crates Sold at Farm\");        \n    const wholesaleDataHierarchy: Excel.DataPivotHierarchy = pivotTable.dataHierarchies.getItem(\"Sum of Crates Sold Wholesale\");\n\n    farmDataHierarchy.load(\"showAs\");\n    wholesaleDataHierarchy.load(\"showAs\");\n    await context.sync();\n\n    // show the crates of each fruit type sold at the farm as a percentage of the column's total\n    let farmShowAs = farmDataHierarchy.showAs;\n    farmShowAs.calculation = Excel.ShowAsCalculation.percentOfColumnTotal;\n    farmShowAs.baseField = pivotTable.rowHierarchies.getItem(\"Type\").fields.getItem(\"Type\");\n    farmDataHierarchy.showAs = farmShowAs;\n\n    let wholesaleShowAs = wholesaleDataHierarchy.showAs;\n    wholesaleShowAs.calculation = Excel.ShowAsCalculation.percentOfColumnTotal;\n    wholesaleShowAs.baseField = pivotTable.rowHierarchies.getItem(\"Type\").fields.getItem(\"Type\");\n    wholesaleDataHierarchy.showAs = wholesaleShowAs;\n    await context.sync();\n});\n```"
 - uid: excel.Excel.DataPivotHierarchy.summarizeBy
   summary: >-
-    确定是否显示 DataPivotHierarchy 的所有项目。
+    确定是否显示 DataPivotHierarchy 的所有项。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -189,6 +202,7 @@ items:
       type:
       - Excel.AggregationFunction | "Unknown" | "Automatic" | "Sum" | "Count" | "Average" | "Max" | "Min" | "Product" | "CountNumbers" | "StandardDeviation" | "StandardDeviationP" | "Variance" | "VarianceP"
 - uid: excel.Excel.DataPivotHierarchy.toJSON
+  summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.DataPivotHierarchy 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.DataPivotHierarchyData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
   fullName: toJSON
   langs:

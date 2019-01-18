@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 4e0cfedb25c9270421a6f262566646030d95541e
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: 81e324d2f0506211165c25dd7ccbd4f8d8d62171
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26994770"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28724897"
 items:
 - uid: excel.Excel.PivotField
   summary: >-
@@ -21,6 +21,7 @@ items:
   - office.OfficeExtension.ClientObject
   package: excel
   children:
+  - excel.Excel.PivotField.context
   - excel.Excel.PivotField.id
   - excel.Excel.PivotField.items
   - excel.Excel.PivotField.load
@@ -29,9 +30,21 @@ items:
   - excel.Excel.PivotField.sortByLabels
   - excel.Excel.PivotField.subtotals
   - excel.Excel.PivotField.toJSON
+- uid: excel.Excel.PivotField.context
+  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.PivotField.id
   summary: >-
-    透视字段的 id。
+    PivotField 的 ID。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -47,7 +60,7 @@ items:
       - string
 - uid: excel.Excel.PivotField.items
   summary: >-
-    返回与 PivotField 关联的数据透视。
+    返回与 PivotField 相关联的 PivotFields。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -89,7 +102,7 @@ items:
       - string | string[]
 - uid: excel.Excel.PivotField.name
   summary: >-
-    透视字段的名称。
+    PivotField 的名称。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -105,7 +118,7 @@ items:
       - string
 - uid: excel.Excel.PivotField.showAllItems
   summary: >-
-    确定是否显示透视字段的所有项。
+    确定是否显示 PivotField 的所有项。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -121,7 +134,7 @@ items:
       - boolean
 - uid: excel.Excel.PivotField.sortByLabels
   summary: >-
-    对透视字段进行排序。 如果指定 DataPivotHierarchy，则排序将应用基于，如果没有排序将基于本身的 PivotField。
+    PivotField 排序。 如果指定 DataPivotHierarchy，则会基于它进行排序，如果未指定，则会基于 PivotField 本身进行排序。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -131,7 +144,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'sortByLabels(sortby: Excel.SortBy): void;'
+    content: 'sortByLabels(sortby: SortBy): void;'
     return:
       type:
       - void
@@ -143,7 +156,7 @@ items:
       - excel.Excel.SortBy
 - uid: excel.Excel.PivotField.subtotals
   summary: >-
-    分类汇总的透视字段。
+    PivotField 小计。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -158,6 +171,7 @@ items:
       type:
       - excel.Excel.Subtotals
 - uid: excel.Excel.PivotField.toJSON
+  summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.PivotField 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.PivotFieldData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
   fullName: toJSON
   langs:

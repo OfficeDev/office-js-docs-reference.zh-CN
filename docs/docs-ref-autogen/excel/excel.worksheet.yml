@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 2ab6816398b76df763a4803a12b6aa2417894b4d
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: cc4fcfd114add0f06f08cd80d8ba4ca8bcfc7152
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26995491"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28725002"
 items:
 - uid: excel.Excel.Worksheet
   summary: >-
@@ -25,6 +25,7 @@ items:
   - excel.Excel.Worksheet.activate
   - excel.Excel.Worksheet.calculate
   - excel.Excel.Worksheet.charts
+  - excel.Excel.Worksheet.context
   - excel.Excel.Worksheet.copy
   - excel.Excel.Worksheet.delete
   - excel.Excel.Worksheet.freezePanes
@@ -112,9 +113,21 @@ items:
     return:
       type:
       - excel.Excel.ChartCollection
+- uid: excel.Excel.Worksheet.context
+  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.Worksheet.copy
   summary: >-
-    复制工作表，并将其放置在指定的位置。 返回复制的工作表。
+    复制工作表并将其置于指定位置。 返回复制的工作表。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -221,7 +234,7 @@ items:
       - boolean
 - uid: excel.Excel.Worksheet.getNextOrNullObject
   summary: >-
-    获取该工作表之后的工作表。如果该工作表后没有工作表，此方法将返回 null 对象。
+    获取该工作表之后的工作表。如果该工作表后没有工作表，此方法将返回 null 值。
 
 
     \[[API 集： ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -243,7 +256,7 @@ items:
       - boolean
 - uid: excel.Excel.Worksheet.getPrevious
   summary: >-
-    获取该工作表之前的工作表。如果没有以前的工作表，此方法将引发错误。
+    获取该工作表之前的工作表。如果该工作表前没有工作表，此方法将引发错误。
 
 
     \[[API 集： ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -265,7 +278,7 @@ items:
       - boolean
 - uid: excel.Excel.Worksheet.getPreviousOrNullObject
   summary: >-
-    获取该工作表之前的工作表。如果没有以前的工作表，此方法将返回 null 对象。
+    获取该工作表之前的工作表。如果该工作表前没有工作表，此方法将返回 null 值。
 
 
     \[[API 集： ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -308,7 +321,11 @@ items:
       type:
       - string
 - uid: excel.Excel.Worksheet.getRangeByIndexes
-  summary: " 获取以特定行索引和列索引开始并跨越了一定数量的行和列的 range 对象。\n\n\\[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\\]"
+  summary: >-
+    获取以特定行索引和列索引开始并跨越了一定数量的行和列的 range 对象。
+
+
+    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getRangeByIndexes(startRow, startColumn, rowCount, columnCount)
   fullName: getRangeByIndexes
   langs:
@@ -596,7 +613,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    sheet.showGridlines = true;\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Worksheet.showHeadings
   summary: >-
-    获取或设置工作表的标题的标志。 此标志确定是否向用户显示的标题。
+    获取或设置工作表的标题标志。 此标志确定是否向用户显示的标题。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -612,7 +629,7 @@ items:
       - boolean
 - uid: excel.Excel.Worksheet.standardHeight
   summary: >-
-    在表中，以磅为单位返回 standard （默认值） 所有行的高度。 只读。
+    返回工作表中所有行的标准（默认）行高，以磅为单位。 只读。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -628,7 +645,7 @@ items:
       - number
 - uid: excel.Excel.Worksheet.standardWidth
   summary: >-
-    返回或设置工作表中的所有列的标准 （默认值） 宽度。 一个列宽单位等于“常规”样式中一个字符的宽度。 对于非等宽字体，使用字符 0 （零） 的宽度。
+    返回或设置工作表中所有列的标准（默认）列宽。 一个列宽单位等于正文样式中一个字符的宽度。 对于比例字体，会使用字符 0（零）的宽度。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -676,6 +693,7 @@ items:
       type:
       - excel.Excel.TableCollection
 - uid: excel.Excel.Worksheet.toJSON
+  summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.Worksheet 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.WorksheetData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
   fullName: toJSON
   langs:

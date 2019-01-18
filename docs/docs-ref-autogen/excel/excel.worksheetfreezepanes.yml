@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 08991fad028da6e48ea68476acc166458996d612
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: 59c880ad2b9363bbe91a2388f7570f4b73182ffe
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26996823"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28725331"
 items:
 - uid: excel.Excel.WorksheetFreezePanes
   summary: '\[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]'
@@ -17,6 +17,7 @@ items:
   - office.OfficeExtension.ClientObject
   package: excel
   children:
+  - excel.Excel.WorksheetFreezePanes.context
   - excel.Excel.WorksheetFreezePanes.freezeAt
   - excel.Excel.WorksheetFreezePanes.freezeColumns
   - excel.Excel.WorksheetFreezePanes.freezeRows
@@ -24,9 +25,21 @@ items:
   - excel.Excel.WorksheetFreezePanes.getLocationOrNullObject
   - excel.Excel.WorksheetFreezePanes.toJSON
   - excel.Excel.WorksheetFreezePanes.unfreeze
+- uid: excel.Excel.WorksheetFreezePanes.context
+  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.WorksheetFreezePanes.freezeAt
   summary: >-
-    活动工作表视图中设置冻结单元格。 提供的范围对应于将冻结顶层和左窗格中的单元格。
+    设置活动工作表视图中的冻结单元格。 提供的范围对应于将冻结顶层和左窗格中的单元格。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -48,7 +61,7 @@ items:
       - Range | string
 - uid: excel.Excel.WorksheetFreezePanes.freezeColumns
   summary: >-
-    冻结就地工作表的第一列。
+    就地冻结工作表的第一列。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -70,7 +83,7 @@ items:
       - number
 - uid: excel.Excel.WorksheetFreezePanes.freezeRows
   summary: >-
-    冻结就地工作表的顶部行。
+    就地冻结工作表的顶行。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -92,7 +105,7 @@ items:
       - number
 - uid: excel.Excel.WorksheetFreezePanes.getLocation
   summary: >-
-    获取介绍活动工作表视图中的冻结单元格的范围。 冻结的范围是对应于冻结顶层和左窗格中的单元格。
+    获取用于描述活动工作表视图中的冻结单元格的区域。 冻结的范围是对应于冻结顶层和左窗格中的单元格。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -109,7 +122,7 @@ items:
       description: ''
 - uid: excel.Excel.WorksheetFreezePanes.getLocationOrNullObject
   summary: >-
-    获取介绍活动工作表视图中的冻结单元格的范围。 冻结的范围是对应于冻结顶层和左窗格中的单元格。 如果没有任何冻结的窗格，则返回 null 对象。
+    获取用于描述活动工作表视图中的冻结单元格的区域。 冻结的范围是对应于冻结顶层和左窗格中的单元格。 如果没有任何冻结的窗格，则返回 null 对象。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -125,6 +138,7 @@ items:
       - excel.Excel.Range
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const frozenRange = sheet.freezePanes.getLocationOrNullObject();\n    frozenRange.load(\"address\");\n\n    await context.sync();\n\n    if (frozenRange.isNullObject) {\n        OfficeHelpers.UI.notify(`The worksheet does not contain a frozen pane.`);\n    } else {\n        console.log(`The address of the frozen range (cells that are frozen in the top-and-left-most pane) is \"${frozenRange.address}\"`);\n    }\n});\n```"
 - uid: excel.Excel.WorksheetFreezePanes.toJSON
+  summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.WorksheetFreezePanes 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.WorksheetFreezePanesData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
   fullName: toJSON
   langs:
@@ -141,7 +155,7 @@ items:
       description: ''
 - uid: excel.Excel.WorksheetFreezePanes.unfreeze
   summary: >-
-    工作表中删除所有的冻结的窗格。
+    移除工作表中的所有冻结窗格。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]

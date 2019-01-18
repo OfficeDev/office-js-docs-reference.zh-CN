@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: a89816d6a9de00515eeba25357d0edae75e7965c
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: b25f9a9508a221fb18c36da566c0523ce1271a82
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26996023"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28724505"
 items:
 - uid: excel.Excel.PresetCriteriaConditionalFormat
   summary: >-
@@ -21,10 +21,23 @@ items:
   - office.OfficeExtension.ClientObject
   package: excel
   children:
+  - excel.Excel.PresetCriteriaConditionalFormat.context
   - excel.Excel.PresetCriteriaConditionalFormat.format
   - excel.Excel.PresetCriteriaConditionalFormat.load
   - excel.Excel.PresetCriteriaConditionalFormat.rule
   - excel.Excel.PresetCriteriaConditionalFormat.toJSON
+- uid: excel.Excel.PresetCriteriaConditionalFormat.context
+  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.PresetCriteriaConditionalFormat.format
   summary: >-
     返回一个格式对象，封装的条件格式字体、 填充、 边框和其他属性。
@@ -85,6 +98,7 @@ items:
       - excel.Excel.ConditionalPresetCriteriaRule
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B2:M5\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.presetCriteria);\n    conditionalFormat.preset.format.font.color = \"white\";\n    conditionalFormat.preset.rule = { criterion: Excel.ConditionalFormatPresetCriterion.oneStdDevAboveAverage };\n\n    await context.sync();\n});\n```\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B8:E13\");\n    const conditionalFormat = range.conditionalFormats.add(Excel.ConditionalFormatType.custom);\n    conditionalFormat.custom.rule.formula = '=IF(B8>INDIRECT(\"RC[-1]\",0),TRUE)';\n    conditionalFormat.custom.format.font.color = \"green\";\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.PresetCriteriaConditionalFormat.toJSON
+  summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.PresetCriteriaConditionalFormat 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.PresetCriteriaConditionalFormatData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
   fullName: toJSON
   langs:

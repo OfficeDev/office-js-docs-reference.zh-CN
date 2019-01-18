@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 88b480928cb80e07541362126634363124f819fe
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: 92d8c7c86435564093bdf0c639aeead2e374089e
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26994575"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28725359"
 items:
 - uid: excel.Excel.RangeFormat
   summary: >-
@@ -25,6 +25,7 @@ items:
   - excel.Excel.RangeFormat.autofitRows
   - excel.Excel.RangeFormat.borders
   - excel.Excel.RangeFormat.columnWidth
+  - excel.Excel.RangeFormat.context
   - excel.Excel.RangeFormat.fill
   - excel.Excel.RangeFormat.font
   - excel.Excel.RangeFormat.horizontalAlignment
@@ -103,6 +104,18 @@ items:
     return:
       type:
       - number
+- uid: excel.Excel.RangeFormat.context
+  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.RangeFormat.fill
   summary: >-
     返回在整个区域内定义的 fill 对象。只读。
@@ -204,7 +217,7 @@ items:
       - number
 - uid: excel.Excel.RangeFormat.textOrientation
   summary: >-
-    获取或设置范围内的所有单元格的文本方向。 文本方向应为整数从-90 至 90 或 180 纵向文本。 如果不统一范围内的方向，则将返回 null。
+    获取或设置区域内的所有单元格的文本方向。 文本方向应为整数从-90 至 90 或 180 纵向文本。 如果不统一范围内的方向，则将返回 null。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -220,6 +233,7 @@ items:
       - number
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B2:E2\");\n\n    // Set textOrientation to either an integer between -90 and 90\n    // or to 180 for vertically-oriented text.\n    range.format.textOrientation = 90;\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.RangeFormat.toJSON
+  summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.RangeFormat 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.RangeFormatData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
   fullName: toJSON
   langs:
@@ -233,7 +247,7 @@ items:
       description: ''
 - uid: excel.Excel.RangeFormat.useStandardHeight
   summary: >-
-    确定 Range 对象的行高是否等于工作表的标准高度。 如果 Range 对象的行高等于工作表的标准高度，则返回 True。 如果区域包含多个行，并且不是行的高度相同，则返回 Null。 否则返回 False。
+    确定 Range 对象的行高是否等于工作表的标准行高。 如果 Range 对象的行高等于工作表的标准高度，则返回 True。 如果区域包含多个行，并且不是行的高度相同，则返回 Null。 否则返回 False。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]

@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: af24c3642140ba568c913c48ef7b3565bb2977d9
-ms.sourcegitcommit: 4e15262bb3005b2f4ebb2756484e6a1b4e2379bd
+ms.openlocfilehash: 195d397df9fb32dbc4063c5d67d251ba87a6889a
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "27770460"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28724386"
 items:
 - uid: excel.Excel.RangeFill
   summary: >-
@@ -23,6 +23,7 @@ items:
   children:
   - excel.Excel.RangeFill.clear
   - excel.Excel.RangeFill.color
+  - excel.Excel.RangeFill.context
   - excel.Excel.RangeFill.load
   - excel.Excel.RangeFill.toJSON
 - uid: excel.Excel.RangeFill.clear
@@ -58,6 +59,18 @@ items:
     return:
       type:
       - string
+- uid: excel.Excel.RangeFill.context
+  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.RangeFill.load
   summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
   remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): Excel.RangeFill`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.RangeFill`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"F:G\";\n    var worksheet = ctx.workbook.worksheets.getItem(sheetName);\n    var range = worksheet.getRange(rangeAddress);\n    var rangeFill = range.format.fill;\n    rangeFill.load('color');\n    return ctx.sync().then(function() {\n        console.log(rangeFill.color);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// The example below sets fill color. \nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"F:G\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.format.fill.color = '0000FF';\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
@@ -78,6 +91,7 @@ items:
       type:
       - string | string[]
 - uid: excel.Excel.RangeFill.toJSON
+  summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.RangeFill 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.RangeFillData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
   fullName: toJSON
   langs:

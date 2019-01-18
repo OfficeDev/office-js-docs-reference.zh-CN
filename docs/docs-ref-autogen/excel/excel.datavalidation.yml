@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 38f301ce9182fbc761b3e867b6d3988a48db3210
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: c1e79f8060a2a13892185357fe51cd29e3a2a692
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26994889"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28724743"
 items:
 - uid: excel.Excel.DataValidation
   summary: >-
@@ -22,6 +22,7 @@ items:
   package: excel
   children:
   - excel.Excel.DataValidation.clear
+  - excel.Excel.DataValidation.context
   - excel.Excel.DataValidation.errorAlert
   - excel.Excel.DataValidation.ignoreBlanks
   - excel.Excel.DataValidation.load
@@ -32,7 +33,7 @@ items:
   - excel.Excel.DataValidation.valid
 - uid: excel.Excel.DataValidation.clear
   summary: >-
-    清除当前范围中的数据有效性。
+    清除当前区域中的数据有效性。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -47,9 +48,21 @@ items:
       type:
       - void
       description: ''
+- uid: excel.Excel.DataValidation.context
+  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.DataValidation.errorAlert
   summary: >-
-    错误警报，如果用户输入无效数据。
+    用户输入无效数据时，出现错误警报。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -66,7 +79,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Decision\");\n    const commentsRange = \n        sheet.tables.getItem(\"NameOptionsTable\").columns.getItem(\"Comments\").getDataBodyRange();\n\n    // When you are developing, it is a good practice to\n    // clear the dataValidation object with each run of your code.\n    commentsRange.dataValidation.clear();   \n\n    // If the value of A2 is contained in the value of C2, then \n    // SEARCH(A2,C2) returns the number where it begins. Otherwise,\n    // it does not return a number.\n    let redundantStringRule = {\n        custom: {\n            formula: \"=NOT(ISNUMBER(SEARCH(A2,C2)))\"\n        }\n    };\n    commentsRange.dataValidation.rule = redundantStringRule;\n    commentsRange.dataValidation.errorAlert = {\n        message: \"It is redundant to include the baby name in the comment.\",\n        showAlert: true,\n        style: \"Information\",\n        title: \"Baby Name in Comment\"\n    };\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.DataValidation.ignoreBlanks
   summary: >-
-    忽略空值： 无数据验证将空白单元格上执行，其默认值为 true。
+    忽略空白：不会对空白单元格执行数据严重，默认为 true。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -139,6 +152,7 @@ items:
       type:
       - excel.Excel.DataValidationRule
 - uid: excel.Excel.DataValidation.toJSON
+  summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.DataValidation 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.DataValidationData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
   fullName: toJSON
   langs:
@@ -152,7 +166,7 @@ items:
       description: ''
 - uid: excel.Excel.DataValidation.type
   summary: >-
-    键入的数据验证，有关详细信息，请参阅 Excel.DataValidationType。
+    数据有效性类型，有关详细信息，请参阅 Excel.DataValidationType。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -168,7 +182,7 @@ items:
       - Excel.DataValidationType | "None" | "WholeNumber" | "Decimal" | "List" | "Date" | "Time" | "TextLength" | "Custom" | "Inconsistent" | "MixedCriteria"
 - uid: excel.Excel.DataValidation.valid
   summary: >-
-    代表所有单元格的值是否有效根据数据验证规则。 如果所有单元格值都有效，或 false，如果所有单元格的值均无效，则返回 true。 如果有两个范围内的有效和无效的单元格值，返回 null。
+    表示所有单元格值根据数据有效性规则是否全部有效。 如果所有单元格值都有效，或 false，如果所有单元格的值均无效，则返回 true。 如果有两个范围内的有效和无效的单元格值，返回 null。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]

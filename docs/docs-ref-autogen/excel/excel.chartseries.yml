@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: d80c2b5614e70b2f7bc3d2d5b76c5ef005934184
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: 89607844254d949746bb049f3571256a51318f54
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26996625"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28724946"
 items:
 - uid: excel.Excel.ChartSeries
   summary: >-
@@ -23,6 +23,7 @@ items:
   children:
   - excel.Excel.ChartSeries.axisGroup
   - excel.Excel.ChartSeries.chartType
+  - excel.Excel.ChartSeries.context
   - excel.Excel.ChartSeries.dataLabels
   - excel.Excel.ChartSeries.delete
   - excel.Excel.ChartSeries.doughnutHoleSize
@@ -54,7 +55,7 @@ items:
   - excel.Excel.ChartSeries.varyByCategories
 - uid: excel.Excel.ChartSeries.axisGroup
   summary: >-
-    返回或设置指定的数据系列的组。 读/写
+    返回或设置指定系列的组。 读/写
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -70,7 +71,7 @@ items:
       - Excel.ChartAxisGroup | "Primary" | "Secondary"
 - uid: excel.Excel.ChartSeries.chartType
   summary: >-
-    表示一系列的图表类型。 有关详细信息，请参阅 Excel.ChartType。
+    表示系列的图表类型。 有关详细信息，请参阅 Excel.ChartType。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -84,9 +85,21 @@ items:
     return:
       type:
       - Excel.ChartType | "Invalid" | "ColumnClustered" | "ColumnStacked" | "ColumnStacked100" | "3DColumnClustered" | "3DColumnStacked" | "3DColumnStacked100" | "BarClustered" | "BarStacked" | "BarStacked100" | "3DBarClustered" | "3DBarStacked" | "3DBarStacked100" | "LineStacked" | "LineStacked100" | "LineMarkers" | "LineMarkersStacked" | "LineMarkersStacked100" | "PieOfPie" | "PieExploded" | "3DPieExploded" | "BarOfPie" | "XYScatterSmooth" | "XYScatterSmoothNoMarkers" | "XYScatterLines" | "XYScatterLinesNoMarkers" | "AreaStacked" | "AreaStacked100" | "3DAreaStacked" | "3DAreaStacked100" | "DoughnutExploded" | "RadarMarkers" | "RadarFilled" | "Surface" | "SurfaceWireframe" | "SurfaceTopView" | "SurfaceTopViewWireframe" | "Bubble" | "Bubble3DEffect" | "StockHLC" | "StockOHLC" | "StockVHLC" | "StockVOHLC" | "CylinderColClustered" | "CylinderColStacked" | "CylinderColStacked100" | "CylinderBarClustered" | "CylinderBarStacked" | "CylinderBarStacked100" | "CylinderCol" | "ConeColClustered" | "ConeColStacked" | "ConeColStacked100" | "ConeBarClustered" | "ConeBarStacked" | "ConeBarStacked100" | "ConeCol" | "PyramidColClustered" | "PyramidColStacked" | "PyramidColStacked100" | "PyramidBarClustered" | "PyramidBarStacked" | "PyramidBarStacked100" | "PyramidCol" | "3DColumn" | "Line" | "3DLine" | "3DPie" | "Pie" | "XYScatter" | "3DArea" | "Area" | "Doughnut" | "Radar" | "Histogram" | "Boxwhisker" | "Pareto" | "RegionMap" | "Treemap" | "Waterfall" | "Sunburst" | "Funnel"
+- uid: excel.Excel.ChartSeries.context
+  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.ChartSeries.dataLabels
   summary: >-
-    代表系列中的所有数据标签的集合。
+    表示系列中所有数据标签的集合。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -102,7 +115,7 @@ items:
       - excel.Excel.ChartDataLabels
 - uid: excel.Excel.ChartSeries.delete
   summary: >-
-    删除图表数据系列。
+    删除 chart series 对象。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -119,7 +132,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n  const sheet = context.workbook.worksheets.getItem(\"Sample\");\n  const seriesCollection = sheet.charts.getItemAt(0).series;\n  seriesCollection.load(\"count\");\n  await context.sync();\n\n  if (seriesCollection.count > 0) {\n    const series = seriesCollection.getItemAt(0);\n\n    // Delete the first series.\n    series.delete();\n  }\n\n  await context.sync();\n});\n```"
 - uid: excel.Excel.ChartSeries.doughnutHoleSize
   summary: >-
-    代表图表系列的圆环图内径大小。 仅圆环图和 doughnutExploded 图表上有效。 无效的图表上引发无效参数异常。
+    表示图表系列的圆环孔大小。 仅对圆环图和分离型圆环图有效。 无效的图表上引发无效参数异常。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -135,7 +148,7 @@ items:
       - number
 - uid: excel.Excel.ChartSeries.explosion
   summary: >-
-    返回或设置饼图或圆环图的扇区的分离程度值。 如果没有分离 （切片的提示是与饼图中心中），则返回 0 （零）。 读/写。
+    返回或设置饼图或圆环图切片的分解程度值。 如果未分解（切片尖端位于饼图中心），则返回 0（零）。 读/写。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -151,7 +164,7 @@ items:
       - number
 - uid: excel.Excel.ChartSeries.filtered
   summary: >-
-    布尔值，表示如果或不筛选数据系列。 不适用于曲面图。
+    该布尔值表示是否筛选系列。 不适用于曲面图。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -167,7 +180,7 @@ items:
       - boolean
 - uid: excel.Excel.ChartSeries.firstSliceAngle
   summary: >-
-    返回或设置从顺时针 （垂直） 中的第一个复合饼图或圆环图扇面的角度。 仅适用于饼图、 三维饼图和圆环图。 可以为 0 到 360 之间的值。 读/写
+    返回或设置第一个饼图或圆环图切片的角度，以度为单位（从垂直方向起为顺时针）。 只适用于饼图、三维饼图和圆环图。 可以是 0 到 360 之间的值。 读/写
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -199,7 +212,7 @@ items:
       - excel.Excel.ChartSeriesFormat
 - uid: excel.Excel.ChartSeries.gapWidth
   summary: >-
-    代表图表系列的间距。 唯一有效上栏和柱形图，以及特定类的行和饼图。 无效的图表上引发无效参数异常。
+    表示图表系列的间隙宽度。 唯一有效上栏和柱形图，以及特定类的行和饼图。 无效的图表上引发无效参数异常。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -215,7 +228,7 @@ items:
       - number
 - uid: excel.Excel.ChartSeries.hasDataLabels
   summary: >-
-    布尔值，表示如果系列或不具有数据标签。
+    该布尔值表示系列是否具有数据标签。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -231,7 +244,7 @@ items:
       - boolean
 - uid: excel.Excel.ChartSeries.invertIfNegative
   summary: >-
-    如果 Microsoft Excel 反转项中的图案，当它对应于为负数，则为 true。 读/写。
+    如果 Excel 在值为负数时反转项目中的图案，则为 True。 读/写。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -266,7 +279,7 @@ items:
       - string | string[]
 - uid: excel.Excel.ChartSeries.markerBackgroundColor
   summary: >-
-    代表图表系列的标记背景色。
+    表示图表系列的标记背景色。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -283,7 +296,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheet = context.workbook.worksheets.getItem(\"Sample\");\n    let salesTable = sheet.tables.getItem(\"SalesTable\");\n    let dataRange = sheet.getRange(\"A1:E7\");\n\n    // Create an XY scatter chart.\n    let chart = sheet.charts.add(\"XYScatterSmooth\", dataRange, \"Auto\");\n    chart.title.text = \"Bicycle Parts Quarterly Sales\"; \n  \n    let series = chart.series;\n    let series0 = series.getItemAt(0);\n    let series1 = series.getItemAt(1);\n    let series2 = series.getItemAt(2);\n    let series3 = series.getItemAt(3);\n\n    // Set markers.\n    series0.markerStyle = \"Dash\";\n    series0.markerForegroundColor = \"black\";\n    series1.markerStyle = \"Star\";\n    series1.markerForegroundColor = \"black\";\n    series2.markerStyle = \"X\";\n    series2.markerSize = 12;\n    series3.markerStyle = \"Triangle\";\n    series3.markerBackgroundColor = \"purple\";\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.ChartSeries.markerForegroundColor
   summary: >-
-    代表图表系列的标记前景色。
+    表示图表系列的标记前景色。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -300,7 +313,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheet = context.workbook.worksheets.getItem(\"Sample\");\n    let salesTable = sheet.tables.getItem(\"SalesTable\");\n    let dataRange = sheet.getRange(\"A1:E7\");\n\n    // Create an XY scatter chart.\n    let chart = sheet.charts.add(\"XYScatterSmooth\", dataRange, \"Auto\");\n    chart.title.text = \"Bicycle Parts Quarterly Sales\"; \n  \n    let series = chart.series;\n    let series0 = series.getItemAt(0);\n    let series1 = series.getItemAt(1);\n    let series2 = series.getItemAt(2);\n    let series3 = series.getItemAt(3);\n\n    // Set markers.\n    series0.markerStyle = \"Dash\";\n    series0.markerForegroundColor = \"black\";\n    series1.markerStyle = \"Star\";\n    series1.markerForegroundColor = \"black\";\n    series2.markerStyle = \"X\";\n    series2.markerSize = 12;\n    series3.markerStyle = \"Triangle\";\n    series3.markerBackgroundColor = \"purple\";\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.ChartSeries.markerSize
   summary: >-
-    代表图表系列的标记大小。
+    表示图表系列的标记大小。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -317,7 +330,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheet = context.workbook.worksheets.getItem(\"Sample\");\n    let salesTable = sheet.tables.getItem(\"SalesTable\");\n    let dataRange = sheet.getRange(\"A1:E7\");\n\n    // Create an XY scatter chart.\n    let chart = sheet.charts.add(\"XYScatterSmooth\", dataRange, \"Auto\");\n    chart.title.text = \"Bicycle Parts Quarterly Sales\"; \n  \n    let series = chart.series;\n    let series0 = series.getItemAt(0);\n    let series1 = series.getItemAt(1);\n    let series2 = series.getItemAt(2);\n    let series3 = series.getItemAt(3);\n\n    // Set markers.\n    series0.markerStyle = \"Dash\";\n    series0.markerForegroundColor = \"black\";\n    series1.markerStyle = \"Star\";\n    series1.markerForegroundColor = \"black\";\n    series2.markerStyle = \"X\";\n    series2.markerSize = 12;\n    series3.markerStyle = \"Triangle\";\n    series3.markerBackgroundColor = \"purple\";\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.ChartSeries.markerStyle
   summary: >-
-    代表图表系列的数据标记样式。 有关详细信息，请参阅 Excel.ChartMarkerStyle。
+    表示图表系列的标记类型。 有关详细信息，请参阅 Excel.ChartMarkerStyle。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -350,7 +363,7 @@ items:
       - string
 - uid: excel.Excel.ChartSeries.overlap
   summary: >-
-    指定条形和柱形的排列方式。 可以是 – 100 和 100 之间的值。 仅适用于二维条形图和二维柱形图。 读/写。
+    指定条柱的摆放方式。 可以是 – 100 和 100 之间的值。 只适用于二维条形图和二维柱形图。 读/写。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -366,7 +379,7 @@ items:
       - number
 - uid: excel.Excel.ChartSeries.plotOrder
   summary: >-
-    代表图表组中的图表系列的绘制顺序。
+    表示图表组中某个图表系列的绘制顺序。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -398,7 +411,7 @@ items:
       - excel.Excel.ChartPointsCollection
 - uid: excel.Excel.ChartSeries.secondPlotSize
   summary: >-
-    返回或设置的第二部分的大小复合饼图或复合条饼图，主要饼图的大小的百分比。 可以为从 5 到 200 的值。 读/写。
+    返回或设置复合饼图或复合条饼图的辅助分区的大小，以占主饼图大小的百分比表示。 可以是 5 到 200 之间的值。 读/写。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -414,7 +427,7 @@ items:
       - number
 - uid: excel.Excel.ChartSeries.setBubbleSizes
   summary: >-
-    设置图表序列的气泡大小。 仅适用于气泡图。
+    设置图表系列的气泡大小。 仅适用于气泡图。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -436,7 +449,7 @@ items:
       - Range
 - uid: excel.Excel.ChartSeries.setValues
   summary: >-
-    设置图表序列的值。 对于散点图图表，它表示的 Y 轴值。
+    设置图表系列的值。 对于散点图，它表示 Y 轴的值。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -458,7 +471,7 @@ items:
       - Range
 - uid: excel.Excel.ChartSeries.setXAxisValues
   summary: >-
-    设置的 X 轴图表系列的值。 仅适用于散点图。
+    设置图表系列 X 轴的值。 仅适用于散点图。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -496,7 +509,7 @@ items:
       - boolean
 - uid: excel.Excel.ChartSeries.smooth
   summary: >-
-    布尔值，表示系列是否平滑。 仅适用于折线图和散点图。
+    该布尔值表示系列是否平滑。 仅适用于折线图和散点图。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -512,7 +525,7 @@ items:
       - boolean
 - uid: excel.Excel.ChartSeries.splitType
   summary: >-
-    返回或设置复合饼图或复合条饼图的两个部分将被拆分的方式。 读/写。
+    返回或设置复合饼图或复合条饼图中两个分区的拆分方式。 读/写。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -522,11 +535,12 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'splitType: "SplitByPosition" | "SplitByValue" | "SplitByPercentValue" | "SplitByCustomSplit";'
+    content: 'splitType: Excel.ChartSplitType | "SplitByPosition" | "SplitByValue" | "SplitByPercentValue" | "SplitByCustomSplit";'
     return:
       type:
-      - "\"SplitByPosition\" | \"SplitByValue\" | \"SplitByPercentValue\" | \"SplitByCustomSplit\""
+      - Excel.ChartSplitType | "SplitByPosition" | "SplitByValue" | "SplitByPercentValue" | "SplitByCustomSplit"
 - uid: excel.Excel.ChartSeries.toJSON
+  summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.ChartSeries 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.ChartSeriesData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
   fullName: toJSON
   langs:
@@ -540,7 +554,7 @@ items:
       description: ''
 - uid: excel.Excel.ChartSeries.trendlines
   summary: >-
-    代表系列中的趋势线的集合。 只读。
+    表示系列中趋势线的集合。 只读。
 
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -556,7 +570,7 @@ items:
       - excel.Excel.ChartTrendlineCollection
 - uid: excel.Excel.ChartSeries.varyByCategories
   summary: >-
-    如果 Microsoft Excel 将不同的颜色或模式分配给每个数据标记，则为 true。 该属性所应用的图表只能包含一个系列。 读/写。
+    如果 Excel 为每个数据标记分配不同的颜色或图案，则为 True。 图表必须只包含一个系列。 读/写。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]

@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 1c960d432b41db3652e6458cce0c6a93370a7748
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: 0deb3498939c1fe8484d36cfc4ed64eeffee79ad
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26995925"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28725317"
 items:
 - uid: excel.Excel.ConditionalFormatCollection
   summary: >-
@@ -23,6 +23,7 @@ items:
   children:
   - excel.Excel.ConditionalFormatCollection.add
   - excel.Excel.ConditionalFormatCollection.clearAll
+  - excel.Excel.ConditionalFormatCollection.context
   - excel.Excel.ConditionalFormatCollection.getCount
   - excel.Excel.ConditionalFormatCollection.getItem
   - excel.Excel.ConditionalFormatCollection.getItemAt
@@ -53,7 +54,7 @@ items:
       - excel.Excel.ConditionalFormatType
 - uid: excel.Excel.ConditionalFormatCollection.clearAll
   summary: >-
-    清除当前指定范围中处于活动状态的所有条件格式。
+    清除当前指定区域中处于活动状态的所有条件格式。
 
 
     \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -68,6 +69,18 @@ items:
       type:
       - void
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) {\n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:C3\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    var conditionalFormats = range.conditionalFormats;\n    var conditionalFormat = conditionalFormats.clearAll();\n    return ctx.sync().then(function () {\n        console.log(\"Cleared all conditional formats from this range.\");\n    });\n}).catch(function (error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange();\n    range.conditionalFormats.clearAll();\n\n    await context.sync();\n\n    $(\".conditional-formats\").hide();\n});\n```"
+- uid: excel.Excel.ConditionalFormatCollection.context
+  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.ConditionalFormatCollection.getCount
   summary: >-
     返回工作簿中的条件格式数。只读。
@@ -87,7 +100,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) {\n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:C3\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    var conditionalFormat = range.conditionalFormats.add(Excel.ConditionalFormatType.iconSet);\n    conditionalFormat.iconOrNull.style = Excel.IconSet.fourTrafficLights;\n    var cfCount = range.conditionalFormats.getCount(); \n\n    return ctx.sync().then(function () {\n        console.log(\"Count: \" + cfCount.value);\n    });\n}).catch(function (error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
 - uid: excel.Excel.ConditionalFormatCollection.getItem
   summary: >-
-    条件格式返回给定的 id。
+    返回给定 ID 的条件格式。
 
 
     \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -192,6 +205,7 @@ items:
       type:
       - string | string[]
 - uid: excel.Excel.ConditionalFormatCollection.toJSON
+  summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)而原始`Excel.ConditionalFormatCollection`对象是 API 对象，`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.ConditionalFormatCollectionData` <!-- -->)，其中包含数组"项目"的任何加载属性集的项目的浅表副本。
   name: toJSON()
   fullName: toJSON
   langs:
