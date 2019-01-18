@@ -1,18 +1,18 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 86a143d5d3ce8e4486010f43d8a54de4b09f7980
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: f774b8bb9a5ccdddae6de035b5eff44a8c9314bd
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26996072"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28725408"
 items:
 - uid: excel.Excel.PivotTable
   summary: >-
-    <span data-ttu-id="dd31b-101">表示 Excel 数据透视表。</span><span class="sxs-lookup"><span data-stu-id="dd31b-101">Represents an Excel PivotTable.</span></span>
+    <span data-ttu-id="b8f14-101">表示 Excel 数据透视表。</span><span class="sxs-lookup"><span data-stu-id="b8f14-101">Represents an Excel PivotTable.</span></span>
 
 
-    <span data-ttu-id="dd31b-102">\[[API 集： ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="dd31b-102">\[ [API set: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
-  remarks: <span data-ttu-id="dd31b-103">我们[使用数据透视表的操作方法指南](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-pivottables)提供了详细演练、 图像和代码示例。</span><span class="sxs-lookup"><span data-stu-id="dd31b-103">Our [how-to guide on working with PivotTables](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-pivottables) has detailed walkthroughs, images, and code samples.</span></span>
+    <span data-ttu-id="b8f14-102">\[[API 集： ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b8f14-102">\[ [API set: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+  remarks: <span data-ttu-id="b8f14-103">我们[使用数据透视表的操作方法指南](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-pivottables)提供了详细演练、 图像和代码示例。</span><span class="sxs-lookup"><span data-stu-id="b8f14-103">Our [how-to guide on working with PivotTables](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-pivottables) has detailed walkthroughs, images, and code samples.</span></span>
   name: Excel.PivotTable
   fullName: Excel.PivotTable
   langs:
@@ -23,6 +23,7 @@ items:
   package: excel
   children:
   - excel.Excel.PivotTable.columnHierarchies
+  - excel.Excel.PivotTable.context
   - excel.Excel.PivotTable.dataHierarchies
   - excel.Excel.PivotTable.delete
   - excel.Excel.PivotTable.filterHierarchies
@@ -37,10 +38,10 @@ items:
   - excel.Excel.PivotTable.worksheet
 - uid: excel.Excel.PivotTable.columnHierarchies
   summary: >-
-    <span data-ttu-id="dd31b-104">数据透视表列数据透视表层次结构中。</span><span class="sxs-lookup"><span data-stu-id="dd31b-104">The Column Pivot Hierarchies of the PivotTable.</span></span>
+    <span data-ttu-id="b8f14-104">数据透视表的列透视层级结构。</span><span class="sxs-lookup"><span data-stu-id="b8f14-104">The Column Pivot Hierarchies of the PivotTable.</span></span>
 
 
-    <span data-ttu-id="dd31b-105">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="dd31b-105">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="b8f14-105">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b8f14-105">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: columnHierarchies
   fullName: columnHierarchies
   langs:
@@ -51,13 +52,25 @@ items:
     return:
       type:
       - excel.Excel.RowColumnPivotHierarchyCollection
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"dd31b-106\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"dd31b-106\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");       \n\n    // check if the PivotTable already has a column\n    const column = pivotTable.columnHierarchies.getItemOrNullObject(\"Farm\");\n    column.load(\"id\");\n    await context.sync();\n\n    if (column.isNullObject) {\n        // ading the farm column to the column hierarchy automatically removes it from the row hierarchy\n        pivotTable.columnHierarchies.add(pivotTable.hierarchies.getItem(\"Farm\"));\n    } else {\n        pivotTable.columnHierarchies.remove(column);\n    }\n\n    await context.sync();\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"b8f14-106\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"b8f14-106\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");       \n\n    // check if the PivotTable already has a column\n    const column = pivotTable.columnHierarchies.getItemOrNullObject(\"Farm\");\n    column.load(\"id\");\n    await context.sync();\n\n    if (column.isNullObject) {\n        // ading the farm column to the column hierarchy automatically removes it from the row hierarchy\n        pivotTable.columnHierarchies.add(pivotTable.hierarchies.getItem(\"Farm\"));\n    } else {\n        pivotTable.columnHierarchies.remove(column);\n    }\n\n    await context.sync();\n});\n```"
+- uid: excel.Excel.PivotTable.context
+  summary: <span data-ttu-id="b8f14-107">与对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="b8f14-107">The request context associated with the object.</span></span> <span data-ttu-id="b8f14-108">这将连接到 Office 主机应用程序的过程外接程序的过程。</span><span class="sxs-lookup"><span data-stu-id="b8f14-108">This connects the add-in's process to the Office host application's process.</span></span>
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.PivotTable.dataHierarchies
   summary: >-
-    <span data-ttu-id="dd31b-107">数据透视表的数据透视层次结构中。</span><span class="sxs-lookup"><span data-stu-id="dd31b-107">The Data Pivot Hierarchies of the PivotTable.</span></span>
+    <span data-ttu-id="b8f14-109">数据透视表的数据透视层级结构。</span><span class="sxs-lookup"><span data-stu-id="b8f14-109">The Data Pivot Hierarchies of the PivotTable.</span></span>
 
 
-    <span data-ttu-id="dd31b-108">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="dd31b-108">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="b8f14-110">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b8f14-110">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: dataHierarchies
   fullName: dataHierarchies
   langs:
@@ -68,13 +81,13 @@ items:
     return:
       type:
       - excel.Excel.DataPivotHierarchyCollection
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"dd31b-109\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"dd31b-109\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n    pivotTable.dataHierarchies.add(pivotTable.hierarchies.getItem(\"Crates Sold at Farm\"));\n    pivotTable.dataHierarchies.add(pivotTable.hierarchies.getItem(\"Crates Sold Wholesale\"));\n\n    await context.sync();\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"b8f14-111\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"b8f14-111\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n    pivotTable.dataHierarchies.add(pivotTable.hierarchies.getItem(\"Crates Sold at Farm\"));\n    pivotTable.dataHierarchies.add(pivotTable.hierarchies.getItem(\"Crates Sold Wholesale\"));\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.PivotTable.delete
   summary: >-
-    <span data-ttu-id="dd31b-110">删除数据透视表。</span><span class="sxs-lookup"><span data-stu-id="dd31b-110">Deletes the PivotTable.</span></span>
+    <span data-ttu-id="b8f14-112">删除 PivotTable 对象。</span><span class="sxs-lookup"><span data-stu-id="b8f14-112">Deletes the PivotTable.</span></span>
 
 
-    <span data-ttu-id="dd31b-111">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="dd31b-111">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="b8f14-113">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b8f14-113">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: delete()
   fullName: delete
   langs:
@@ -85,13 +98,13 @@ items:
     return:
       type:
       - void
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"dd31b-112\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"dd31b-112\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    context.workbook.worksheets.getItem(\"Pivot\").pivotTables.getItem(\"Farm Sales\").delete();\n\n    await context.sync();\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"b8f14-114\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"b8f14-114\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    context.workbook.worksheets.getItem(\"Pivot\").pivotTables.getItem(\"Farm Sales\").delete();\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.PivotTable.filterHierarchies
   summary: >-
-    <span data-ttu-id="dd31b-113">数据透视表筛选器数据透视表层次结构中。</span><span class="sxs-lookup"><span data-stu-id="dd31b-113">The Filter Pivot Hierarchies of the PivotTable.</span></span>
+    <span data-ttu-id="b8f14-115">数据透视表的筛选器透视层级结构。</span><span class="sxs-lookup"><span data-stu-id="b8f14-115">The Filter Pivot Hierarchies of the PivotTable.</span></span>
 
 
-    <span data-ttu-id="dd31b-114">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="dd31b-114">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="b8f14-116">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b8f14-116">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: filterHierarchies
   fullName: filterHierarchies
   langs:
@@ -102,13 +115,13 @@ items:
     return:
       type:
       - excel.Excel.FilterPivotHierarchyCollection
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"dd31b-115\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"dd31b-115\">Examples</span></span>\n\n```typescript\nasync function filter(functionType: Excel.AggregationFunction) {\n    await Excel.run(async (context) => {\n        const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n        const filters = pivotTable.filterHierarchies;\n        const filter = filters.getItemOrNullObject(\"Classification\");\n        filter.load();\n        await context.sync();\n\n        // add the Classification hierarchy to the filter, if it's not already there\n        if (filter.isNullObject) {\n            filters.add(pivotTable.hierarchies.getItem(\"Classification\"));\n            await context.sync();\n        }\n    });\n}\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"b8f14-117\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"b8f14-117\">Examples</span></span>\n\n```typescript\nasync function filter(functionType: Excel.AggregationFunction) {\n    await Excel.run(async (context) => {\n        const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n        const filters = pivotTable.filterHierarchies;\n        const filter = filters.getItemOrNullObject(\"Classification\");\n        filter.load();\n        await context.sync();\n\n        // add the Classification hierarchy to the filter, if it's not already there\n        if (filter.isNullObject) {\n            filters.add(pivotTable.hierarchies.getItem(\"Classification\"));\n            await context.sync();\n        }\n    });\n}\n```"
 - uid: excel.Excel.PivotTable.hierarchies
   summary: >-
-    <span data-ttu-id="dd31b-116">数据透视表的数据透视表层次结构中。</span><span class="sxs-lookup"><span data-stu-id="dd31b-116">The Pivot Hierarchies of the PivotTable.</span></span>
+    <span data-ttu-id="b8f14-118">数据透视表的透视层级结构。</span><span class="sxs-lookup"><span data-stu-id="b8f14-118">The Pivot Hierarchies of the PivotTable.</span></span>
 
 
-    <span data-ttu-id="dd31b-117">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="dd31b-117">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="b8f14-119">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b8f14-119">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: hierarchies
   fullName: hierarchies
   langs:
@@ -121,10 +134,10 @@ items:
       - excel.Excel.PivotHierarchyCollection
 - uid: excel.Excel.PivotTable.id
   summary: >-
-    <span data-ttu-id="dd31b-p101">数据透视表的 ID。只读。</span><span class="sxs-lookup"><span data-stu-id="dd31b-p101">Id of the PivotTable. Read-only.</span></span>
+    <span data-ttu-id="b8f14-p102">数据透视表的 ID。只读。</span><span class="sxs-lookup"><span data-stu-id="b8f14-p102">Id of the PivotTable. Read-only.</span></span>
 
 
-    <span data-ttu-id="dd31b-120">\[[API 集： ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="dd31b-120">\[ [API set: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="b8f14-122">\[[API 集： ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b8f14-122">\[ [API set: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: id
   fullName: id
   langs:
@@ -137,10 +150,10 @@ items:
       - string
 - uid: excel.Excel.PivotTable.layout
   summary: >-
-    <span data-ttu-id="dd31b-121">用于说明布局和数据透视表的可视结构 PivotLayout。</span><span class="sxs-lookup"><span data-stu-id="dd31b-121">The PivotLayout describing the layout and visual structure of the PivotTable.</span></span>
+    <span data-ttu-id="b8f14-123">PivotLayout，用于说明数据透视表的布局和可视化结构。</span><span class="sxs-lookup"><span data-stu-id="b8f14-123">The PivotLayout describing the layout and visual structure of the PivotTable.</span></span>
 
 
-    <span data-ttu-id="dd31b-122">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="dd31b-122">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="b8f14-124">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b8f14-124">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: layout
   fullName: layout
   langs:
@@ -151,17 +164,17 @@ items:
     return:
       type:
       - excel.Excel.PivotLayout
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"dd31b-123\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"dd31b-123\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n    pivotTable.layout.load(\"layoutType\");\n    await context.sync();\n\n    // cycle between the three layout types\n    if (pivotTable.layout.layoutType === \"Compact\") {\n        pivotTable.layout.layoutType = \"Outline\";\n    } else if (pivotTable.layout.layoutType === \"Outline\") {\n        pivotTable.layout.layoutType = \"Tabular\";\n    } else {\n        pivotTable.layout.layoutType = \"Compact\";\n    }\n    await context.sync();\n    console.log(\"Pivot layout is now \" + pivotTable.layout.layoutType);\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"b8f14-125\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"b8f14-125\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n    pivotTable.layout.load(\"layoutType\");\n    await context.sync();\n\n    // cycle between the three layout types\n    if (pivotTable.layout.layoutType === \"Compact\") {\n        pivotTable.layout.layoutType = \"Outline\";\n    } else if (pivotTable.layout.layoutType === \"Outline\") {\n        pivotTable.layout.layoutType = \"Tabular\";\n    } else {\n        pivotTable.layout.layoutType = \"Compact\";\n    }\n    await context.sync();\n    console.log(\"Pivot layout is now \" + pivotTable.layout.layoutType);\n});\n```"
 - uid: excel.Excel.PivotTable.load
-  summary: <span data-ttu-id="dd31b-124">队列设置命令加载指定的对象的属性。</span><span class="sxs-lookup"><span data-stu-id="dd31b-124">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="dd31b-125">读取属性之前，必须调用"context.sync()"。</span><span class="sxs-lookup"><span data-stu-id="dd31b-125">You must call "context.sync()" before reading the properties.</span></span>
+  summary: <span data-ttu-id="b8f14-126">队列设置命令加载指定的对象的属性。</span><span class="sxs-lookup"><span data-stu-id="b8f14-126">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="b8f14-127">读取属性之前，必须调用"context.sync()"。</span><span class="sxs-lookup"><span data-stu-id="b8f14-127">You must call "context.sync()" before reading the properties.</span></span>
   remarks: >-
-    <span data-ttu-id="dd31b-126">除了此签名，此方法具有以下签名：</span><span class="sxs-lookup"><span data-stu-id="dd31b-126">In addition to this signature, this method has the following signatures:</span></span>
+    <span data-ttu-id="b8f14-128">除了此签名，此方法具有以下签名：</span><span class="sxs-lookup"><span data-stu-id="b8f14-128">In addition to this signature, this method has the following signatures:</span></span>
 
 
-    <span data-ttu-id="dd31b-127">`load(option?: { select?: string; expand?: string; }): Excel.PivotTable`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="dd31b-127">`load(option?: { select?: string; expand?: string; }): Excel.PivotTable` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+    <span data-ttu-id="b8f14-129">`load(option?: { select?: string; expand?: string; }): Excel.PivotTable`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="b8f14-129">`load(option?: { select?: string; expand?: string; }): Excel.PivotTable` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
 
 
-    <span data-ttu-id="dd31b-128">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.PivotTable`-仅可对集合的类型。</span><span class="sxs-lookup"><span data-stu-id="dd31b-128">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.PivotTable` - Only available on collection types.</span></span> <span data-ttu-id="dd31b-129">它是类似于前一个签名。</span><span class="sxs-lookup"><span data-stu-id="dd31b-129">It is similar to the preceding signature.</span></span> <span data-ttu-id="dd31b-130">Option.top 指定集合项可在结果中包含的最大数目。</span><span class="sxs-lookup"><span data-stu-id="dd31b-130">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="dd31b-131">Option.skip 指定要跳过和结果中不包含的项的数目。</span><span class="sxs-lookup"><span data-stu-id="dd31b-131">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="dd31b-132">如果指定 option.top，则将跳过指定的数目的项后启动结果集。</span><span class="sxs-lookup"><span data-stu-id="dd31b-132">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    <span data-ttu-id="b8f14-130">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.PivotTable`-仅可对集合的类型。</span><span class="sxs-lookup"><span data-stu-id="b8f14-130">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.PivotTable` - Only available on collection types.</span></span> <span data-ttu-id="b8f14-131">它是类似于前一个签名。</span><span class="sxs-lookup"><span data-stu-id="b8f14-131">It is similar to the preceding signature.</span></span> <span data-ttu-id="b8f14-132">Option.top 指定集合项可在结果中包含的最大数目。</span><span class="sxs-lookup"><span data-stu-id="b8f14-132">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="b8f14-133">Option.skip 指定要跳过和结果中不包含的项的数目。</span><span class="sxs-lookup"><span data-stu-id="b8f14-133">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="b8f14-134">如果指定 option.top，则将跳过指定的数目的项后启动结果集。</span><span class="sxs-lookup"><span data-stu-id="b8f14-134">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
   name: load(option)
   fullName: load
   langs:
@@ -175,15 +188,15 @@ items:
       description: ''
     parameters:
     - id: option
-      description: <span data-ttu-id="dd31b-133">以逗号分隔字符串或一个指定要加载的属性的字符串数组。</span><span class="sxs-lookup"><span data-stu-id="dd31b-133">A comma-delimited string or an array of strings that specify the properties to load.</span></span>
+      description: <span data-ttu-id="b8f14-135">以逗号分隔字符串或一个指定要加载的属性的字符串数组。</span><span class="sxs-lookup"><span data-stu-id="b8f14-135">A comma-delimited string or an array of strings that specify the properties to load.</span></span>
       type:
       - string | string[]
 - uid: excel.Excel.PivotTable.name
   summary: >-
-    <span data-ttu-id="dd31b-134">PivotTable 对象的名称。</span><span class="sxs-lookup"><span data-stu-id="dd31b-134">Name of the PivotTable.</span></span>
+    <span data-ttu-id="b8f14-136">PivotTable 对象的名称。</span><span class="sxs-lookup"><span data-stu-id="b8f14-136">Name of the PivotTable.</span></span>
 
 
-    <span data-ttu-id="dd31b-135">\[[API 集： ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="dd31b-135">\[ [API set: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="b8f14-137">\[[API 集： ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b8f14-137">\[ [API set: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: name
   fullName: name
   langs:
@@ -196,10 +209,10 @@ items:
       - string
 - uid: excel.Excel.PivotTable.refresh
   summary: >-
-    <span data-ttu-id="dd31b-136">刷新 PivotTable 对象。</span><span class="sxs-lookup"><span data-stu-id="dd31b-136">Refreshes the PivotTable.</span></span>
+    <span data-ttu-id="b8f14-138">刷新 PivotTable 对象。</span><span class="sxs-lookup"><span data-stu-id="b8f14-138">Refreshes the PivotTable.</span></span>
 
 
-    <span data-ttu-id="dd31b-137">\[[API 集： ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="dd31b-137">\[ [API set: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="b8f14-139">\[[API 集： ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b8f14-139">\[ [API set: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: refresh()
   fullName: refresh
   langs:
@@ -213,10 +226,10 @@ items:
       description: ''
 - uid: excel.Excel.PivotTable.rowHierarchies
   summary: >-
-    <span data-ttu-id="dd31b-138">数据透视表行数据透视表层次结构中。</span><span class="sxs-lookup"><span data-stu-id="dd31b-138">The Row Pivot Hierarchies of the PivotTable.</span></span>
+    <span data-ttu-id="b8f14-140">数据透视表的行透视层级结构。</span><span class="sxs-lookup"><span data-stu-id="b8f14-140">The Row Pivot Hierarchies of the PivotTable.</span></span>
 
 
-    <span data-ttu-id="dd31b-139">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="dd31b-139">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="b8f14-141">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b8f14-141">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: rowHierarchies
   fullName: rowHierarchies
   langs:
@@ -228,6 +241,7 @@ items:
       type:
       - excel.Excel.RowColumnPivotHierarchyCollection
 - uid: excel.Excel.PivotTable.toJSON
+  summary: <span data-ttu-id="b8f14-142">重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。</span><span class="sxs-lookup"><span data-stu-id="b8f14-142">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`<!-- -->.</span></span> <span data-ttu-id="b8f14-143">(`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.PivotTable 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.PivotTableData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。</span><span class="sxs-lookup"><span data-stu-id="b8f14-143">(`JSON.stringify`<!-- -->, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original Excel.PivotTable object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Excel.Interfaces.PivotTableData`<!-- -->) that contains shallow copies of any loaded child properties from the original object.</span></span>
   name: toJSON()
   fullName: toJSON
   langs:
@@ -241,10 +255,10 @@ items:
       description: ''
 - uid: excel.Excel.PivotTable.worksheet
   summary: >-
-    <span data-ttu-id="dd31b-140">包含当前数据透视表的工作表。</span><span class="sxs-lookup"><span data-stu-id="dd31b-140">The worksheet containing the current PivotTable.</span></span>
+    <span data-ttu-id="b8f14-144">包含当前数据透视表的工作表。</span><span class="sxs-lookup"><span data-stu-id="b8f14-144">The worksheet containing the current PivotTable.</span></span>
 
 
-    <span data-ttu-id="dd31b-141">\[[API 集： ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="dd31b-141">\[ [API set: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="b8f14-145">\[[API 集： ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b8f14-145">\[ [API set: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: worksheet
   fullName: worksheet
   langs:

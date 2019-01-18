@@ -1,17 +1,17 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 3b7ddf68e2b048a48a68590a684f2b8cc4649a0f
-ms.sourcegitcommit: 1665198bc1913e60caf12b3d1342844b57a3453a
+ms.openlocfilehash: 18842230d95c439045d58b999c70fe8a008a7fa0
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/21/2018
-ms.locfileid: "27384241"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28725366"
 items:
 - uid: excel.Excel.StyleCollection
   summary: >-
-    <span data-ttu-id="25177-101">代表一个所有样式的集合。</span><span class="sxs-lookup"><span data-stu-id="25177-101">Represents a collection of all the styles.</span></span> <span data-ttu-id="25177-102">警告： StyleCollection 项数组从集合中加载项时具有的已知的问题。</span><span class="sxs-lookup"><span data-stu-id="25177-102">WARNING: The StyleCollection items array has a known issue when loading items from the collection.</span></span> <span data-ttu-id="25177-103">不要使用`StyleCollection.items` <!-- -->，任何`load()`方法，以及`toJSON()`方法。</span><span class="sxs-lookup"><span data-stu-id="25177-103">Do not use `StyleCollection.items`<!-- -->, any `load()` method, and the `toJSON()` method.</span></span>
+    <span data-ttu-id="462c1-101">代表一个所有样式的集合。</span><span class="sxs-lookup"><span data-stu-id="462c1-101">Represents a collection of all the styles.</span></span> <span data-ttu-id="462c1-102">警告： StyleCollection 项数组从集合中加载项时具有的已知的问题。</span><span class="sxs-lookup"><span data-stu-id="462c1-102">WARNING: The StyleCollection items array has a known issue when loading items from the collection.</span></span> <span data-ttu-id="462c1-103">不要使用`StyleCollection.items` <!-- -->，任何`load()`方法，以及`toJSON()`方法。</span><span class="sxs-lookup"><span data-stu-id="462c1-103">Do not use `StyleCollection.items`<!-- -->, any `load()` method, and the `toJSON()` method.</span></span>
 
 
-    <span data-ttu-id="25177-104">\[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="25177-104">\[ [API set: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="462c1-104">\[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="462c1-104">\[ [API set: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: Excel.StyleCollection
   fullName: Excel.StyleCollection
   langs:
@@ -22,16 +22,17 @@ items:
   package: excel
   children:
   - excel.Excel.StyleCollection.add
+  - excel.Excel.StyleCollection.context
   - excel.Excel.StyleCollection.getItem
   - excel.Excel.StyleCollection.items
   - excel.Excel.StyleCollection.load
   - excel.Excel.StyleCollection.toJSON
 - uid: excel.Excel.StyleCollection.add
   summary: >-
-    <span data-ttu-id="25177-105">向集合添加新样式。</span><span class="sxs-lookup"><span data-stu-id="25177-105">Adds a new style to the collection.</span></span>
+    <span data-ttu-id="462c1-105">向集合添加新样式。</span><span class="sxs-lookup"><span data-stu-id="462c1-105">Adds a new style to the collection.</span></span>
 
 
-    <span data-ttu-id="25177-106">\[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="25177-106">\[ [API set: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="462c1-106">\[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="462c1-106">\[ [API set: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: add(name)
   fullName: add
   langs:
@@ -42,18 +43,30 @@ items:
     return:
       type:
       - void
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"25177-107\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"25177-107\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    let styles = context.workbook.styles;\n\n    // Add a new style to the style collection.\n    // Styles is in the Home tab ribbon.\n    styles.add(\"Diagonal Orientation Style\");\n          \n    let newStyle = styles.getItem(\"Diagonal Orientation Style\");\n    \n    // The \"Diagonal Orientation Style\" properties.\n    newStyle.textOrientation = 38;\n    newStyle.autoIndent = true;\n    newStyle.includeProtection = true;\n    newStyle.shrinkToFit = true;\n    newStyle.locked = false;\n    \n    await context.sync();\n\n    console.log(\"Successfully added a new style with diagonal orientation to the Home tab ribbon.\");\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"462c1-107\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"462c1-107\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    let styles = context.workbook.styles;\n\n    // Add a new style to the style collection.\n    // Styles is in the Home tab ribbon.\n    styles.add(\"Diagonal Orientation Style\");\n          \n    let newStyle = styles.getItem(\"Diagonal Orientation Style\");\n    \n    // The \"Diagonal Orientation Style\" properties.\n    newStyle.textOrientation = 38;\n    newStyle.autoIndent = true;\n    newStyle.includeProtection = true;\n    newStyle.shrinkToFit = true;\n    newStyle.locked = false;\n    \n    await context.sync();\n\n    console.log(\"Successfully added a new style with diagonal orientation to the Home tab ribbon.\");\n});\n```"
     parameters:
     - id: name
-      description: <span data-ttu-id="25177-108">要添加的样式的名称。</span><span class="sxs-lookup"><span data-stu-id="25177-108">Name of the style to be added.</span></span>
+      description: <span data-ttu-id="462c1-108">要添加的样式的名称。</span><span class="sxs-lookup"><span data-stu-id="462c1-108">Name of the style to be added.</span></span>
       type:
       - string
+- uid: excel.Excel.StyleCollection.context
+  summary: <span data-ttu-id="462c1-109">与对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="462c1-109">The request context associated with the object.</span></span> <span data-ttu-id="462c1-110">这将连接到 Office 主机应用程序的过程外接程序的过程。</span><span class="sxs-lookup"><span data-stu-id="462c1-110">This connects the add-in's process to the Office host application's process.</span></span>
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.StyleCollection.getItem
   summary: >-
-    <span data-ttu-id="25177-109">按名称获取样式。</span><span class="sxs-lookup"><span data-stu-id="25177-109">Gets a style by name.</span></span>
+    <span data-ttu-id="462c1-111">按名称获取样式。</span><span class="sxs-lookup"><span data-stu-id="462c1-111">Gets a style by name.</span></span>
 
 
-    <span data-ttu-id="25177-110">\[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="25177-110">\[ [API set: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="462c1-112">\[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="462c1-112">\[ [API set: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: getItem(name)
   fullName: getItem
   langs:
@@ -64,14 +77,14 @@ items:
     return:
       type:
       - excel.Excel.Style
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"25177-111\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"25177-111\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    let styles = context.workbook.styles;\n\n    // Add a new style to the style collection.\n    // Styles is in the Home tab ribbon.\n    styles.add(\"Diagonal Orientation Style\");\n          \n    let newStyle = styles.getItem(\"Diagonal Orientation Style\");\n    \n    // The \"Diagonal Orientation Style\" properties.\n    newStyle.textOrientation = 38;\n    newStyle.autoIndent = true;\n    newStyle.includeProtection = true;\n    newStyle.shrinkToFit = true;\n    newStyle.locked = false;\n    \n    await context.sync();\n\n    console.log(\"Successfully added a new style with diagonal orientation to the Home tab ribbon.\");\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"462c1-113\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"462c1-113\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    let styles = context.workbook.styles;\n\n    // Add a new style to the style collection.\n    // Styles is in the Home tab ribbon.\n    styles.add(\"Diagonal Orientation Style\");\n          \n    let newStyle = styles.getItem(\"Diagonal Orientation Style\");\n    \n    // The \"Diagonal Orientation Style\" properties.\n    newStyle.textOrientation = 38;\n    newStyle.autoIndent = true;\n    newStyle.includeProtection = true;\n    newStyle.shrinkToFit = true;\n    newStyle.locked = false;\n    \n    await context.sync();\n\n    console.log(\"Successfully added a new style with diagonal orientation to the Home tab ribbon.\");\n});\n```"
     parameters:
     - id: name
-      description: <span data-ttu-id="25177-112">要检索的样式的名称。</span><span class="sxs-lookup"><span data-stu-id="25177-112">Name of the style to be retrieved.</span></span>
+      description: <span data-ttu-id="462c1-114">要检索的样式的名称。</span><span class="sxs-lookup"><span data-stu-id="462c1-114">Name of the style to be retrieved.</span></span>
       type:
       - string
 - uid: excel.Excel.StyleCollection.items
-  summary: '<span data-ttu-id="25177-113">警告： StyleCollection 项数组从集合中加载项时具有的已知的问题。</span><span class="sxs-lookup"><span data-stu-id="25177-113">WARNING: The StyleCollection items array has a known issue when loading items from the collection.</span></span> <span data-ttu-id="25177-114">不要使用`StyleCollection.items` <!-- -->，任何`load()`方法，以及`toJSON()`方法。</span><span class="sxs-lookup"><span data-stu-id="25177-114">Do not use `StyleCollection.items`<!-- -->, any `load()` method, and the `toJSON()` method.</span></span>'
+  summary: '<span data-ttu-id="462c1-115">警告： StyleCollection 项数组从集合中加载项时具有的已知的问题。</span><span class="sxs-lookup"><span data-stu-id="462c1-115">WARNING: The StyleCollection items array has a known issue when loading items from the collection.</span></span> <span data-ttu-id="462c1-116">不要使用`StyleCollection.items` <!-- -->，任何`load()`方法，以及`toJSON()`方法。</span><span class="sxs-lookup"><span data-stu-id="462c1-116">Do not use `StyleCollection.items`<!-- -->, any `load()` method, and the `toJSON()` method.</span></span>'
   name: items
   fullName: items
   langs:
@@ -83,7 +96,7 @@ items:
       type:
       - Excel.Style[]
 - uid: excel.Excel.StyleCollection.load
-  summary: '<span data-ttu-id="25177-115">警告： StyleCollection 项数组从集合中加载项时具有的已知的问题。</span><span class="sxs-lookup"><span data-stu-id="25177-115">WARNING: The StyleCollection items array has a known issue when loading items from the collection.</span></span> <span data-ttu-id="25177-116">不要使用`StyleCollection.items` <!-- -->，任何`load()`方法，以及`toJSON()`方法。</span><span class="sxs-lookup"><span data-stu-id="25177-116">Do not use `StyleCollection.items`<!-- -->, any `load()` method, and the `toJSON()` method.</span></span>'
+  summary: '<span data-ttu-id="462c1-117">警告： StyleCollection 项数组从集合中加载项时具有的已知的问题。</span><span class="sxs-lookup"><span data-stu-id="462c1-117">WARNING: The StyleCollection items array has a known issue when loading items from the collection.</span></span> <span data-ttu-id="462c1-118">不要使用`StyleCollection.items` <!-- -->，任何`load()`方法，以及`toJSON()`方法。</span><span class="sxs-lookup"><span data-stu-id="462c1-118">Do not use `StyleCollection.items`<!-- -->, any `load()` method, and the `toJSON()` method.</span></span>'
   name: load(option)
   fullName: load
   langs:
@@ -101,7 +114,7 @@ items:
       type:
       - string | string[]
 - uid: excel.Excel.StyleCollection.toJSON
-  summary: '<span data-ttu-id="25177-117">警告： StyleCollection 项数组从集合中加载项时具有的已知的问题。</span><span class="sxs-lookup"><span data-stu-id="25177-117">WARNING: The StyleCollection items array has a known issue when loading items from the collection.</span></span> <span data-ttu-id="25177-118">不要使用`StyleCollection.items` <!-- -->，任何`load()`方法，以及`toJSON()`方法。</span><span class="sxs-lookup"><span data-stu-id="25177-118">Do not use `StyleCollection.items`<!-- -->, any `load()` method, and the `toJSON()` method.</span></span>'
+  summary: '<span data-ttu-id="462c1-119">警告： StyleCollection 项数组从集合中加载项时具有的已知的问题。</span><span class="sxs-lookup"><span data-stu-id="462c1-119">WARNING: The StyleCollection items array has a known issue when loading items from the collection.</span></span> <span data-ttu-id="462c1-120">不要使用`StyleCollection.items` <!-- -->，任何`load()`方法，以及`toJSON()`方法。</span><span class="sxs-lookup"><span data-stu-id="462c1-120">Do not use `StyleCollection.items`<!-- -->, any `load()` method, and the `toJSON()` method.</span></span>'
   name: toJSON()
   fullName: toJSON
   langs:
