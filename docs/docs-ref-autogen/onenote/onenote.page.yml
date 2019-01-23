@@ -1,17 +1,17 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 3416bea571a0d9973d2e70e5927de68abbfd7482
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: 989b2e1e09f2adafab1a23d0b9e6e3c8e950b8e6
+ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26996156"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "29384837"
 items:
 - uid: onenote.OneNote.Page
   summary: >-
-    <span data-ttu-id="9f7a1-101">表示 OneNote 页面。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-101">Represents a OneNote page.</span></span>
+    <span data-ttu-id="aa4a0-101">表示 OneNote 页面。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-101">Represents a OneNote page.</span></span>
 
 
-    <span data-ttu-id="9f7a1-102">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-102">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-102">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-102">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: OneNote.Page
   fullName: OneNote.Page
   langs:
@@ -27,6 +27,7 @@ items:
   - onenote.OneNote.Page.classNotebookPageSource
   - onenote.OneNote.Page.clientUrl
   - onenote.OneNote.Page.contents
+  - onenote.OneNote.Page.context
   - onenote.OneNote.Page.copyToSection
   - onenote.OneNote.Page.copyToSectionAndSetClassNotebookPageSource
   - onenote.OneNote.Page.getRestApiId
@@ -44,10 +45,10 @@ items:
   - onenote.OneNote.Page.webUrl
 - uid: onenote.OneNote.Page.addOutline
   summary: >-
-    <span data-ttu-id="9f7a1-103">添加 Outline 至指定位置的页面。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-103">Adds an Outline to the page at the specified position.</span></span>
+    <span data-ttu-id="aa4a0-103">添加 Outline 至指定位置的页面。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-103">Adds an Outline to the page at the specified position.</span></span>
 
 
-    <span data-ttu-id="9f7a1-104">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-104">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-104">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-104">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: addOutline(left, top, html)
   fullName: addOutline
   langs:
@@ -58,26 +59,26 @@ items:
     return:
       type:
       - onenote.OneNote.Outline
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"9f7a1-105\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"9f7a1-105\">Examples</span></span>\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var page = context.application.getActivePage();\n\n    // Queue a command to add an outline with given html. \n    var outline = page.addOutline(200, 200,\n\"<p>Images and a table below:</p> \\\n <img src=\\\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\\\"> \\\n <img src=\\\"http://imagenes.es.sftcdn.net/es/scrn/6653000/6653659/microsoft-onenote-2013-01-535x535.png\\\"> \\\n <table> \\\n   <tr> \\\n     <td>Jill</td> \\\n     <td>Smith</td> \\\n     <td>50</td> \\\n   </tr> \\\n   <tr> \\\n     <td>Eve</td> \\\n     <td>Jackson</td> \\\n     <td>94</td> \\\n   </tr> \\\n </table>\"     \n        );\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .catch(function(error) {\n            console.log(\"Error: \" + error);\n            if (error instanceof OfficeExtension.Error) {\n                console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n            }\n        });\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"aa4a0-105\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"aa4a0-105\">Examples</span></span>\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var page = context.application.getActivePage();\n\n    // Queue a command to add an outline with given html. \n    var outline = page.addOutline(200, 200,\n\"<p>Images and a table below:</p> \\\n <img src=\\\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\\\"> \\\n <img src=\\\"http://imagenes.es.sftcdn.net/es/scrn/6653000/6653659/microsoft-onenote-2013-01-535x535.png\\\"> \\\n <table> \\\n   <tr> \\\n     <td>Jill</td> \\\n     <td>Smith</td> \\\n     <td>50</td> \\\n   </tr> \\\n   <tr> \\\n     <td>Eve</td> \\\n     <td>Jackson</td> \\\n     <td>94</td> \\\n   </tr> \\\n </table>\"     \n        );\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .catch(function(error) {\n            console.log(\"Error: \" + error);\n            if (error instanceof OfficeExtension.Error) {\n                console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n            }\n        });\n});\n```"
     parameters:
     - id: left
-      description: <span data-ttu-id="9f7a1-106">顶部的左边位置，Outline 的左角。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-106">The left position of the top, left corner of the Outline.</span></span>
+      description: <span data-ttu-id="aa4a0-106">顶部的左边位置，Outline 的左角。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-106">The left position of the top, left corner of the Outline.</span></span>
       type:
       - number
     - id: top
-      description: <span data-ttu-id="9f7a1-107">顶部的顶层位置，Outline 的左角。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-107">The top position of the top, left corner of the Outline.</span></span>
+      description: <span data-ttu-id="aa4a0-107">顶部的顶层位置，Outline 的左角。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-107">The top position of the top, left corner of the Outline.</span></span>
       type:
       - number
     - id: html
-      description: <span data-ttu-id="9f7a1-108">描述边框的可视化演示文稿的 HTML 字符串。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-108">An HTML string that describes the visual presentation of the Outline.</span></span> <span data-ttu-id="9f7a1-109">OneNote 外接程序的 JavaScript API，请参阅[支持的 HTML](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) 。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-109">See [Supported HTML](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) for the OneNote add-ins JavaScript API.</span></span>
+      description: <span data-ttu-id="aa4a0-108">描述边框的可视化演示文稿的 HTML 字符串。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-108">An HTML string that describes the visual presentation of the Outline.</span></span> <span data-ttu-id="aa4a0-109">OneNote 外接程序的 JavaScript API，请参阅[支持的 HTML](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) 。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-109">See [Supported HTML](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) for the OneNote add-ins JavaScript API.</span></span>
       type:
       - string
 - uid: onenote.OneNote.Page.analyzePage
   summary: >-
-    <span data-ttu-id="9f7a1-110">以 html 格式返回节点 id 和内容的 json 字符串。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-110">Return a json string with node id and content in html format.</span></span>
+    <span data-ttu-id="aa4a0-110">以 html 格式返回节点 id 和内容的 json 字符串。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-110">Return a json string with node id and content in html format.</span></span>
 
 
-    <span data-ttu-id="9f7a1-111">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-111">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-111">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-111">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: analyzePage()
   fullName: analyzePage
   langs:
@@ -91,10 +92,10 @@ items:
       description: ''
 - uid: onenote.OneNote.Page.applyTranslation
   summary: >-
-    <span data-ttu-id="9f7a1-112">插入一个新页面以翻译的内容。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-112">Inserts a new page with translated content.</span></span>
+    <span data-ttu-id="aa4a0-112">插入一个新页面以翻译的内容。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-112">Inserts a new page with translated content.</span></span>
 
 
-    <span data-ttu-id="9f7a1-113">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-113">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-113">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-113">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: applyTranslation(translatedContent)
   fullName: applyTranslation
   langs:
@@ -108,15 +109,15 @@ items:
       description: ''
     parameters:
     - id: translatedContent
-      description: <span data-ttu-id="9f7a1-114">已翻译的页面内容</span><span class="sxs-lookup"><span data-stu-id="9f7a1-114">Translated content of the page</span></span>
+      description: <span data-ttu-id="aa4a0-114">已翻译的页面内容</span><span class="sxs-lookup"><span data-stu-id="aa4a0-114">Translated content of the page</span></span>
       type:
       - string
 - uid: onenote.OneNote.Page.classNotebookPageSource
   summary: >-
-    <span data-ttu-id="9f7a1-115">获取 ClassNotebookPageSource ' 页上。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-115">Gets the ClassNotebookPageSource to the page.</span></span>
+    <span data-ttu-id="aa4a0-115">获取 ClassNotebookPageSource ' 页上。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-115">Gets the ClassNotebookPageSource to the page.</span></span>
 
 
-    <span data-ttu-id="9f7a1-116">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-116">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-116">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-116">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: classNotebookPageSource
   fullName: classNotebookPageSource
   langs:
@@ -129,10 +130,10 @@ items:
       - string
 - uid: onenote.OneNote.Page.clientUrl
   summary: >-
-    <span data-ttu-id="9f7a1-117">页面的客户端 url</span><span class="sxs-lookup"><span data-stu-id="9f7a1-117">The client url of the page.</span></span> <span data-ttu-id="9f7a1-118">只读</span><span class="sxs-lookup"><span data-stu-id="9f7a1-118">Read only</span></span>
+    <span data-ttu-id="aa4a0-117">页面的客户端 url</span><span class="sxs-lookup"><span data-stu-id="aa4a0-117">The client url of the page.</span></span> <span data-ttu-id="aa4a0-118">只读</span><span class="sxs-lookup"><span data-stu-id="aa4a0-118">Read only</span></span>
 
 
-    <span data-ttu-id="9f7a1-119">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-119">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-119">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-119">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: clientUrl
   fullName: clientUrl
   langs:
@@ -145,10 +146,10 @@ items:
       - string
 - uid: onenote.OneNote.Page.contents
   summary: >-
-    <span data-ttu-id="9f7a1-120">页面上的一组 PageContent 对象。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-120">The collection of PageContent objects on the page.</span></span> <span data-ttu-id="9f7a1-121">只读</span><span class="sxs-lookup"><span data-stu-id="9f7a1-121">Read only</span></span>
+    <span data-ttu-id="aa4a0-120">页面上的一组 PageContent 对象。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-120">The collection of PageContent objects on the page.</span></span> <span data-ttu-id="aa4a0-121">只读</span><span class="sxs-lookup"><span data-stu-id="aa4a0-121">Read only</span></span>
 
 
-    <span data-ttu-id="9f7a1-122">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-122">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-122">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-122">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: contents
   fullName: contents
   langs:
@@ -159,12 +160,24 @@ items:
     return:
       type:
       - onenote.OneNote.PageContentCollection
+- uid: onenote.OneNote.Page.context
+  summary: <span data-ttu-id="aa4a0-123">与对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-123">The request context associated with the object.</span></span> <span data-ttu-id="aa4a0-124">这将连接到 Office 主机应用程序的过程外接程序的过程。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-124">This connects the add-in's process to the Office host application's process.</span></span>
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: onenote.OneNote.Page.copyToSection
   summary: >-
-    <span data-ttu-id="9f7a1-123">将此页复制到指定的分区中。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-123">Copies this page to specified section.</span></span>
+    <span data-ttu-id="aa4a0-125">将此页复制到指定的分区中。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-125">Copies this page to specified section.</span></span>
 
 
-    <span data-ttu-id="9f7a1-124">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-124">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-126">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-126">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: copyToSection(destinationSection)
   fullName: copyToSection
   langs:
@@ -175,18 +188,18 @@ items:
     return:
       type:
       - onenote.OneNote.Page
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"9f7a1-125\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"9f7a1-125\">Examples</span></span>\n\n```javascript\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    \n    // Gets the active notebook.\n    var notebook = app.getActiveNotebook();\n    \n    // Gets the active page.\n    var page = app.getActivePage();\n    \n    // Queue a command to load sections under the notebook.\n    notebook.load('sections');\n    \n    var newPage;\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync()\n        .then(function() {\n            var section = notebook.sections.items[0];\n            \n            // copy page to the section.\n            newPage = page.copyToSection(section);\n            newPage.load('id');\n            return ctx.sync();\n        })\n        .then(function() {\n            console.log(newPage.id);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"aa4a0-127\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"aa4a0-127\">Examples</span></span>\n\n```javascript\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    \n    // Gets the active notebook.\n    var notebook = app.getActiveNotebook();\n    \n    // Gets the active page.\n    var page = app.getActivePage();\n    \n    // Queue a command to load sections under the notebook.\n    notebook.load('sections');\n    \n    var newPage;\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync()\n        .then(function() {\n            var section = notebook.sections.items[0];\n            \n            // copy page to the section.\n            newPage = page.copyToSection(section);\n            newPage.load('id');\n            return ctx.sync();\n        })\n        .then(function() {\n            console.log(newPage.id);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: destinationSection
-      description: <span data-ttu-id="9f7a1-126">要将此页复制到的分区。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-126">The section to copy this page to.</span></span>
+      description: <span data-ttu-id="aa4a0-128">要将此页复制到的分区。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-128">The section to copy this page to.</span></span>
       type:
       - onenote.OneNote.Section
 - uid: onenote.OneNote.Page.copyToSectionAndSetClassNotebookPageSource
   summary: >-
-    <span data-ttu-id="9f7a1-127">将此页复制到指定节，并设置 ClassNotebookPageSource。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-127">Copies this page to specified section and sets ClassNotebookPageSource.</span></span>
+    <span data-ttu-id="aa4a0-129">将此页复制到指定节，并设置 ClassNotebookPageSource。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-129">Copies this page to specified section and sets ClassNotebookPageSource.</span></span>
 
 
-    <span data-ttu-id="9f7a1-128">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-128">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-130">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-130">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: copyToSectionAndSetClassNotebookPageSource(destinationSection)
   fullName: copyToSectionAndSetClassNotebookPageSource
   langs:
@@ -205,10 +218,10 @@ items:
       - onenote.OneNote.Section
 - uid: onenote.OneNote.Page.getRestApiId
   summary: >-
-    <span data-ttu-id="9f7a1-129">获取 REST API id。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-129">Gets the REST API ID.</span></span>
+    <span data-ttu-id="aa4a0-131">获取 REST API id。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-131">Gets the REST API ID.</span></span>
 
 
-    <span data-ttu-id="9f7a1-130">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-130">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-132">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-132">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: getRestApiId()
   fullName: getRestApiId
   langs:
@@ -219,13 +232,13 @@ items:
     return:
       type:
       - OfficeExtension.ClientResult<string>
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"9f7a1-131\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"9f7a1-131\">Examples</span></span>\n\n```javascript\nOneNote.run(function(ctx){\n    // Get the current page.         \n    var page = ctx.application.getActivePage();\n    var restApiId = page.getRestApiId();\n\n    return ctx.sync().\n        then(function(){\n            console.log(\"The REST API ID is \" + restApiId.value);\n            // Note that the REST API ID isn't all you need to interact with the OneNote REST API.\n            // This is only required for SharePoint notebooks. baseUrl will be null for OneDrive notebooks.\n            // For SharePoint notebooks, the notebook baseUrl should be used to talk to the OneNote REST API\n            // according to the OneNote Development Blog.\n            // https://blogs.msdn.microsoft.com/onenotedev/2015/06/11/and-sharepoint-makes-three/\n        });\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"aa4a0-133\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"aa4a0-133\">Examples</span></span>\n\n```javascript\nOneNote.run(function(ctx){\n    // Get the current page.         \n    var page = ctx.application.getActivePage();\n    var restApiId = page.getRestApiId();\n\n    return ctx.sync().\n        then(function(){\n            console.log(\"The REST API ID is \" + restApiId.value);\n            // Note that the REST API ID isn't all you need to interact with the OneNote REST API.\n            // This is only required for SharePoint notebooks. baseUrl will be null for OneDrive notebooks.\n            // For SharePoint notebooks, the notebook baseUrl should be used to talk to the OneNote REST API\n            // according to the OneNote Development Blog.\n            // https://blogs.msdn.microsoft.com/onenotedev/2015/06/11/and-sharepoint-makes-three/\n        });\n});\n```"
 - uid: onenote.OneNote.Page.hasTitleContent
   summary: >-
-    <span data-ttu-id="9f7a1-132">页面具有内容标题。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-132">Does the page has content title.</span></span>
+    <span data-ttu-id="aa4a0-134">页面具有内容标题。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-134">Does the page has content title.</span></span>
 
 
-    <span data-ttu-id="9f7a1-133">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-133">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-135">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-135">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: hasTitleContent()
   fullName: hasTitleContent
   langs:
@@ -239,10 +252,10 @@ items:
       description: ''
 - uid: onenote.OneNote.Page.id
   summary: >-
-    <span data-ttu-id="9f7a1-p104">获取页面的 ID。只读。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-p104">Gets the ID of the page. Read-only.</span></span>
+    <span data-ttu-id="aa4a0-p105">获取页面的 ID。只读。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-p105">Gets the ID of the page. Read-only.</span></span>
 
 
-    <span data-ttu-id="9f7a1-136">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-136">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-138">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-138">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: id
   fullName: id
   langs:
@@ -255,10 +268,10 @@ items:
       - string
 - uid: onenote.OneNote.Page.inkAnalysisOrNull
   summary: >-
-    <span data-ttu-id="9f7a1-137">页面上墨迹的文本解释。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-137">Text interpretation for the ink on the page.</span></span> <span data-ttu-id="9f7a1-138">如果没有墨迹分析信息，则返回 null。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-138">Returns null if there is no ink analysis information.</span></span> <span data-ttu-id="9f7a1-139">只读。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-139">Read only.</span></span>
+    <span data-ttu-id="aa4a0-139">页面上墨迹的文本解释。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-139">Text interpretation for the ink on the page.</span></span> <span data-ttu-id="aa4a0-140">如果没有墨迹分析信息，则返回 null。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-140">Returns null if there is no ink analysis information.</span></span> <span data-ttu-id="aa4a0-141">只读。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-141">Read only.</span></span>
 
 
-    <span data-ttu-id="9f7a1-140">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-140">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-142">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-142">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: inkAnalysisOrNull
   fullName: inkAnalysisOrNull
   langs:
@@ -271,10 +284,10 @@ items:
       - onenote.OneNote.InkAnalysis
 - uid: onenote.OneNote.Page.insertPageAsSibling
   summary: >-
-    <span data-ttu-id="9f7a1-141">在当前分区之前或之后插入一个新的页面。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-141">Inserts a new page before or after the current page.</span></span>
+    <span data-ttu-id="aa4a0-143">在当前分区之前或之后插入一个新的页面。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-143">Inserts a new page before or after the current page.</span></span>
 
 
-    <span data-ttu-id="9f7a1-142">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-142">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-144">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-144">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: insertPageAsSibling(location, title)
   fullName: insertPageAsSibling
   langs:
@@ -285,19 +298,19 @@ items:
     return:
       type:
       - onenote.OneNote.Page
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"9f7a1-143\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"9f7a1-143\">Examples</span></span>\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var activePage = context.application.getActivePage();\n\n    // Queue a command to add a new page after the active page. \n    var newPage = activePage.insertPageAsSibling(\"After\", \"Next Page\");\n\n    // Queue a command to load the newPage to access its data.\n    context.load(newPage);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            console.log(\"page is created with title: \" + newPage.title);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"aa4a0-145\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"aa4a0-145\">Examples</span></span>\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var activePage = context.application.getActivePage();\n\n    // Queue a command to add a new page after the active page. \n    var newPage = activePage.insertPageAsSibling(\"After\", \"Next Page\");\n\n    // Queue a command to load the newPage to access its data.\n    context.load(newPage);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            console.log(\"page is created with title: \" + newPage.title);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: location
-      description: <span data-ttu-id="9f7a1-144">新页面相对于当前页面的位置。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-144">The location of the new page relative to the current page.</span></span>
+      description: <span data-ttu-id="aa4a0-146">新页面相对于当前页面的位置。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-146">The location of the new page relative to the current page.</span></span>
       type:
       - onenote.OneNote.InsertLocation
     - id: title
-      description: <span data-ttu-id="9f7a1-145">新页面的标题。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-145">The title of the new page.</span></span>
+      description: <span data-ttu-id="aa4a0-147">新页面的标题。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-147">The title of the new page.</span></span>
       type:
       - string
 - uid: onenote.OneNote.Page.load
-  summary: <span data-ttu-id="9f7a1-146">队列设置命令加载指定的对象的属性。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-146">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="9f7a1-147">读取属性之前，必须调用"context.sync()"。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-147">You must call "context.sync()" before reading the properties.</span></span>
-  remarks: "<span data-ttu-id=\"9f7a1-148\">除了此签名，此方法具有以下签名：</span><span class=\"sxs-lookup\"><span data-stu-id=\"9f7a1-148\">In addition to this signature, this method has the following signatures:</span></span>\n\n<span data-ttu-id=\"9f7a1-149\">`load(option?: { select?: string; expand?: string; }): OneNote.Page`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。</span><span class=\"sxs-lookup\"><span data-stu-id=\"9f7a1-149\">`load(option?: { select?: string; expand?: string; }): OneNote.Page` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>\n\n<span data-ttu-id=\"9f7a1-150\">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Page`-仅可对集合的类型。</span><span class=\"sxs-lookup\"><span data-stu-id=\"9f7a1-150\">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Page` - Only available on collection types.</span></span> <span data-ttu-id=\"9f7a1-151\">它是类似于前一个签名。</span><span class=\"sxs-lookup\"><span data-stu-id=\"9f7a1-151\">It is similar to the preceding signature.</span></span> <span data-ttu-id=\"9f7a1-152\">Option.top 指定集合项可在结果中包含的最大数目。</span><span class=\"sxs-lookup\"><span data-stu-id=\"9f7a1-152\">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id=\"9f7a1-153\">Option.skip 指定要跳过和结果中不包含的项的数目。</span><span class=\"sxs-lookup\"><span data-stu-id=\"9f7a1-153\">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id=\"9f7a1-154\">如果指定 option.top，则将跳过指定的数目的项后启动结果集。</span><span class=\"sxs-lookup\"><span data-stu-id=\"9f7a1-154\">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>\n#### <a name=\"examples\"></a><span data-ttu-id=\"9f7a1-155\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"9f7a1-155\">Examples</span></span>\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var activePage = context.application.getActivePage();\n\n    // Queue a command to add a new page after the active page. \n    var pageContents = activePage.contents;\n\n    // Queue a command to load the pageContents to access its data.\n    context.load(pageContents);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            for(var i=0; i < pageContents.items.length; i++)\n            {\n                var pageContent = pageContents.items[i];\n                if (pageContent.type == \"Outline\")\n                {\n                    console.log(\"Found an outline\");\n                }\n                else if (pageContent.type == \"Image\")\n                {\n                    console.log(\"Found an image\");\n                }\n                else if (pageContent.type == \"Other\")\n                {\n                    console.log(\"Found a type not supported yet.\");\n                }\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function (context) {\n\n    var app = context.application;\n    \n    // Gets the active page.\n    var page = app.getActivePage();\n    \n    // Queue a command to load the webUrl of the page.\n    page.load(\"webUrl\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            console.log(page.webUrl);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function (ctx) {        \n    var app = ctx.application;\n    \n    // Gets the active page.\n    var page = app.getActivePage();\n    \n    // Load ink words\n    page.load('inkAnalysisOrNull/paragraphs/lines/words');\n    \n    return ctx.sync()\n        .then(function() {\n            if (!page.inkAnalysisOrNull.isNull)\n                console.log(page.inkAnalysisOrNull.paragraphs.length);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  summary: <span data-ttu-id="aa4a0-148">队列设置命令加载指定的对象的属性。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-148">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="aa4a0-149">读取属性之前，必须调用"context.sync()"。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-149">You must call "context.sync()" before reading the properties.</span></span>
+  remarks: "<span data-ttu-id=\"aa4a0-150\">除了此签名，此方法具有以下签名：</span><span class=\"sxs-lookup\"><span data-stu-id=\"aa4a0-150\">In addition to this signature, this method has the following signatures:</span></span>\n\n<span data-ttu-id=\"aa4a0-151\">`load(option?: { select?: string; expand?: string; }): OneNote.Page`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。</span><span class=\"sxs-lookup\"><span data-stu-id=\"aa4a0-151\">`load(option?: { select?: string; expand?: string; }): OneNote.Page` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>\n\n<span data-ttu-id=\"aa4a0-152\">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Page`-仅可对集合的类型。</span><span class=\"sxs-lookup\"><span data-stu-id=\"aa4a0-152\">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Page` - Only available on collection types.</span></span> <span data-ttu-id=\"aa4a0-153\">它是类似于前一个签名。</span><span class=\"sxs-lookup\"><span data-stu-id=\"aa4a0-153\">It is similar to the preceding signature.</span></span> <span data-ttu-id=\"aa4a0-154\">Option.top 指定集合项可在结果中包含的最大数目。</span><span class=\"sxs-lookup\"><span data-stu-id=\"aa4a0-154\">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id=\"aa4a0-155\">Option.skip 指定要跳过和结果中不包含的项的数目。</span><span class=\"sxs-lookup\"><span data-stu-id=\"aa4a0-155\">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id=\"aa4a0-156\">如果指定 option.top，则将跳过指定的数目的项后启动结果集。</span><span class=\"sxs-lookup\"><span data-stu-id=\"aa4a0-156\">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>\n#### <a name=\"examples\"></a><span data-ttu-id=\"aa4a0-157\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"aa4a0-157\">Examples</span></span>\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var activePage = context.application.getActivePage();\n\n    // Queue a command to add a new page after the active page. \n    var pageContents = activePage.contents;\n\n    // Queue a command to load the pageContents to access its data.\n    context.load(pageContents);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            for(var i=0; i < pageContents.items.length; i++)\n            {\n                var pageContent = pageContents.items[i];\n                if (pageContent.type == \"Outline\")\n                {\n                    console.log(\"Found an outline\");\n                }\n                else if (pageContent.type == \"Image\")\n                {\n                    console.log(\"Found an image\");\n                }\n                else if (pageContent.type == \"Other\")\n                {\n                    console.log(\"Found a type not supported yet.\");\n                }\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function (context) {\n\n    var app = context.application;\n    \n    // Gets the active page.\n    var page = app.getActivePage();\n    \n    // Queue a command to load the webUrl of the page.\n    page.load(\"webUrl\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            console.log(page.webUrl);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function (ctx) {        \n    var app = ctx.application;\n    \n    // Gets the active page.\n    var page = app.getActivePage();\n    \n    // Load ink words\n    page.load('inkAnalysisOrNull/paragraphs/lines/words');\n    \n    return ctx.sync()\n        .then(function() {\n            if (!page.inkAnalysisOrNull.isNull)\n                console.log(page.inkAnalysisOrNull.paragraphs.length);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   name: load(option)
   fullName: load
   langs:
@@ -311,15 +324,15 @@ items:
       description: ''
     parameters:
     - id: option
-      description: <span data-ttu-id="9f7a1-156">以逗号分隔字符串或一个指定要加载的属性的字符串数组。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-156">A comma-delimited string or an array of strings that specify the properties to load.</span></span>
+      description: <span data-ttu-id="aa4a0-158">以逗号分隔字符串或一个指定要加载的属性的字符串数组。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-158">A comma-delimited string or an array of strings that specify the properties to load.</span></span>
       type:
       - string | string[]
 - uid: onenote.OneNote.Page.pageLevel
   summary: >-
-    <span data-ttu-id="9f7a1-157">获取或设置页面的缩进级别。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-157">Gets or sets the indentation level of the page.</span></span>
+    <span data-ttu-id="aa4a0-159">获取或设置页面的缩进级别。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-159">Gets or sets the indentation level of the page.</span></span>
 
 
-    <span data-ttu-id="9f7a1-158">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-158">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-160">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-160">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: pageLevel
   fullName: pageLevel
   langs:
@@ -332,10 +345,10 @@ items:
       - number
 - uid: onenote.OneNote.Page.parentSection
   summary: >-
-    <span data-ttu-id="9f7a1-p108">获取包含页面的分区。只读。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-p108">Gets the section that contains the page. Read-only.</span></span>
+    <span data-ttu-id="aa4a0-p109">获取包含页面的分区。只读。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-p109">Gets the section that contains the page. Read-only.</span></span>
 
 
-    <span data-ttu-id="9f7a1-161">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-161">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-163">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-163">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: parentSection
   fullName: parentSection
   langs:
@@ -348,10 +361,10 @@ items:
       - onenote.OneNote.Section
 - uid: onenote.OneNote.Page.title
   summary: >-
-    <span data-ttu-id="9f7a1-162">获取或设置页面标题。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-162">Gets or sets the title of the page.</span></span>
+    <span data-ttu-id="aa4a0-164">获取或设置页面标题。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-164">Gets or sets the title of the page.</span></span>
 
 
-    <span data-ttu-id="9f7a1-163">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-163">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-165">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-165">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: title
   fullName: title
   langs:
@@ -363,6 +376,7 @@ items:
       type:
       - string
 - uid: onenote.OneNote.Page.toJSON
+  summary: <span data-ttu-id="aa4a0-166">重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-166">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`<!-- -->.</span></span> <span data-ttu-id="aa4a0-167">(`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 OneNote.Page 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`OneNote.Interfaces.PageData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-167">(`JSON.stringify`<!-- -->, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original OneNote.Page object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `OneNote.Interfaces.PageData`<!-- -->) that contains shallow copies of any loaded child properties from the original object.</span></span>
   name: toJSON()
   fullName: toJSON
   langs:
@@ -375,7 +389,7 @@ items:
       - onenote.OneNote.Interfaces.PageData
       description: ''
 - uid: onenote.OneNote.Page.track
-  summary: <span data-ttu-id="9f7a1-164">跟踪自动调整根据周围的文档中的更改的对象。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-164">Track the object for automatic adjustment based on surrounding changes in the document.</span></span> <span data-ttu-id="9f7a1-165">此呼叫是 context.trackedObjects.add(thisObject) 简写。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-165">This call is a shorthand for context.trackedObjects.add(thisObject).</span></span> <span data-ttu-id="9f7a1-166">如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-166">If you are using this object across ".sync" calls and outside the sequential execution of a ".run" batch, and get an "InvalidObjectPath" error when setting a property or invoking a method on the object, you needed to have added the object to the tracked object collection when the object was first created.</span></span>
+  summary: <span data-ttu-id="aa4a0-168">跟踪自动调整根据周围的文档中的更改的对象。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-168">Track the object for automatic adjustment based on surrounding changes in the document.</span></span> <span data-ttu-id="aa4a0-169">此呼叫是 context.trackedObjects.add(thisObject) 简写。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-169">This call is a shorthand for context.trackedObjects.add(thisObject).</span></span> <span data-ttu-id="aa4a0-170">如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-170">If you are using this object across ".sync" calls and outside the sequential execution of a ".run" batch, and get an "InvalidObjectPath" error when setting a property or invoking a method on the object, you needed to have added the object to the tracked object collection when the object was first created.</span></span>
   name: track()
   fullName: track
   langs:
@@ -388,7 +402,7 @@ items:
       - onenote.OneNote.Page
       description: ''
 - uid: onenote.OneNote.Page.untrack
-  summary: <span data-ttu-id="9f7a1-167">发行版与此对象，如果以前跟踪关联的内存。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-167">Release the memory associated with this object, if it has previously been tracked.</span></span> <span data-ttu-id="9f7a1-168">此呼叫是简写 context.trackedObjects.remove(thisObject)。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-168">This call is shorthand for context.trackedObjects.remove(thisObject).</span></span> <span data-ttu-id="9f7a1-169">具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-169">Having many tracked objects slows down the host application, so please remember to free any objects you add, once you're done using them.</span></span> <span data-ttu-id="9f7a1-170">您将需要的内存版本生效前调用"context.sync()"。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-170">You will need to call "context.sync()" before the memory release takes effect.</span></span>
+  summary: <span data-ttu-id="aa4a0-171">发行版与此对象，如果以前跟踪关联的内存。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-171">Release the memory associated with this object, if it has previously been tracked.</span></span> <span data-ttu-id="aa4a0-172">此呼叫是简写 context.trackedObjects.remove(thisObject)。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-172">This call is shorthand for context.trackedObjects.remove(thisObject).</span></span> <span data-ttu-id="aa4a0-173">具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-173">Having many tracked objects slows down the host application, so please remember to free any objects you add, once you're done using them.</span></span> <span data-ttu-id="aa4a0-174">您将需要的内存版本生效前调用"context.sync()"。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-174">You will need to call "context.sync()" before the memory release takes effect.</span></span>
   name: untrack()
   fullName: untrack
   langs:
@@ -402,10 +416,10 @@ items:
       description: ''
 - uid: onenote.OneNote.Page.webUrl
   summary: >-
-    <span data-ttu-id="9f7a1-171">页面的 Web URL。</span><span class="sxs-lookup"><span data-stu-id="9f7a1-171">The web url of the page.</span></span> <span data-ttu-id="9f7a1-172">只读</span><span class="sxs-lookup"><span data-stu-id="9f7a1-172">Read only</span></span>
+    <span data-ttu-id="aa4a0-175">页面的 Web URL。</span><span class="sxs-lookup"><span data-stu-id="aa4a0-175">The web url of the page.</span></span> <span data-ttu-id="aa4a0-176">只读</span><span class="sxs-lookup"><span data-stu-id="aa4a0-176">Read only</span></span>
 
 
-    <span data-ttu-id="9f7a1-173">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f7a1-173">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="aa4a0-177">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="aa4a0-177">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: webUrl
   fullName: webUrl
   langs:
