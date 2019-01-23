@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: b1576dd3037f25a6cb1f31c0f244d071719e082f
-ms.sourcegitcommit: b05ee546d9dfbc914c8d1c594d9b206b04780bbc
+ms.openlocfilehash: 554a3faddac14bf979bf77a16a9c3bdacd029a43
+ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/22/2018
-ms.locfileid: "26649112"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "29385201"
 items:
 - uid: Outlook_1_7.Office.MessageCompose
   summary: >-
@@ -428,20 +428,20 @@ items:
 
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件撰写</td></tr></table>
-  name: getSelectedDataAsync(coerciontype, callback)
+  name: getSelectedDataAsync(coercionType, callback)
   fullName: getSelectedDataAsync
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'getSelectedDataAsync(coerciontype: Office.CoercionType, callback: (result: AsyncResult<any>) => void): void;'
+    content: 'getSelectedDataAsync(coercionType: Office.CoercionType, callback: (result: AsyncResult<any>) => void): void;'
     return:
       type:
       - void
       description: 作为字符串的所选数据的格式由 coercionType 确定。
     parameters:
-    - id: coerciontype
-      description: ''
+    - id: coercionType
+      description: 请求的数据的格式。 如果文本，该方法返回作为 string 的纯文本，删除任何 HTML 标记存在。 如果 HTML，该方法返回所选的文本，是否纯文本或 HTML。
       type:
       - office.Office.CoercionType
     - id: callback
@@ -582,27 +582,27 @@ items:
     除了此签名，该方法还具有以下签名：
 
 
-    `removeAttachmentAsync(attachmentIndex: string): void;`
+    `removeAttachmentAsync(attachmentId: string): void;`
 
 
-    `removeAttachmentAsync(attachmentIndex: string, options: Office.AsyncContextOptions): void;`
+    `removeAttachmentAsync(attachmentId: string, options: Office.AsyncContextOptions): void;`
 
 
-    `removeAttachmentAsync(attachmentIndex: string, callback: (result: AsyncResult<void>) => void): void;`
-  name: removeAttachmentAsync(attachmentIndex, options, callback)
+    `removeAttachmentAsync(attachmentId: string, callback: (result: AsyncResult<void>) => void): void;`
+  name: removeAttachmentAsync(attachmentId, options, callback)
   fullName: removeAttachmentAsync
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'removeAttachmentAsync(attachmentIndex: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'removeAttachmentAsync(attachmentId: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
     return:
       type:
       - void
       description: ''
     parameters:
-    - id: attachmentIndex
-      description: 要删除的附件的标识符。字符串的最大长度为 100 个字符。
+    - id: attachmentId
+      description: 要删除的附件的标识符。
       type:
       - string
     - id: options
@@ -615,7 +615,7 @@ items:
       - '(result: AsyncResult<void>) => void'
 - uid: Outlook_1_7.Office.MessageCompose.removeHandlerAsync
   summary: >-
-    删除支持事件的事件处理程序。
+    删除的事件处理程序支持的事件类型。
 
 
     当前受支持的事件类型的`Office.EventType.AppointmentTimeChanged` <!-- -->， `Office.EventType.RecipientsChanged` <!-- -->，和`Office.EventType.RecurrenceChanged` <!-- -->。
@@ -632,14 +632,14 @@ items:
     除了此签名，该方法还具有以下签名：
 
 
-    `removeHandlerAsync(eventType:EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;`
-  name: removeHandlerAsync(eventType, handler, options, callback)
+    `removeHandlerAsync(eventType:EventType, callback?: (result: AsyncResult<void>) => void): void;`
+  name: removeHandlerAsync(eventType, options, callback)
   fullName: removeHandlerAsync
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'removeHandlerAsync(eventType:EventType, handler: any, options?: any, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'removeHandlerAsync(eventType:EventType, options?: any, callback?: (result: AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -649,10 +649,6 @@ items:
       description: 应撤销处理程序的事件。
       type:
       - EventType
-    - id: handler
-      description: 要处理的事件的函数。 函数必须接受一个参数，即对象文本。 参数的类型属性将匹配 eventType 参数传递给 removeHandlerAsync。
-      type:
-      - any
     - id: options
       description: 可选。 包含一个或多个以下属性的对象文本。 asyncContext： 开发人员可以提供他们希望在回调方法访问任何对象。
       type:

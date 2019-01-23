@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 0c7c0ba26034c7ca935a47ace83ad05366419cd7
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: 9a863fd73f7a3a8af89c759bfa08fb85bf339025
+ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26995400"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "29385383"
 items:
 - uid: word.Word.Body
   summary: >-
@@ -23,6 +23,7 @@ items:
   children:
   - word.Word.Body.clear
   - word.Word.Body.contentControls
+  - word.Word.Body.context
   - word.Word.Body.font
   - word.Word.Body.getHtml
   - word.Word.Body.getOoxml
@@ -89,6 +90,18 @@ items:
     return:
       type:
       - word.Word.ContentControlCollection
+- uid: word.Word.Body.context
+  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: word.Word.Body.font
   summary: >-
     获取正文的文本格式。使用此关系可获取并设置字体名称、大小、颜色和其他属性。只读。
@@ -107,7 +120,7 @@ items:
       - word.Word.Font
 - uid: word.Word.Body.getHtml
   summary: >-
-    获取 body 对象的 HTML 表示形式。
+    获取 body 对象 HTML 表示形式。 在网页或 HTML 查看器中呈现时, 的格式将关闭，但不是精确，匹配的文档的格式。 此方法不会返回不同的平台 （Windows、 Mac、 Word Online 等。） 上的同一文档的完全相同 HTML。 如果您需要跨平台精确保真度或一致性，使用`Body.getOoxml()`，将返回的 XML 转换为 HTML。
 
 
     \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
@@ -662,7 +675,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n\n    // Create a proxy object for the document body.\n    var body = context.document.body;\n\n    // Queue a commmand to search the document.\n    var searchResults = context.document.body.search('video', {matchCase: false});\n\n    // Queue a commmand to load the results.\n    context.load(searchResults, 'text, font');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        var results = 'Found count: ' + searchResults.items.length +\n                      '; we highlighted the results.';\n\n        // Queue a command to change the font for each found item.\n        for (var i = 0; i < searchResults.items.length; i++) {\n          searchResults.items[i].font.color = '#FF0000'    // Change color to Red\n          searchResults.items[i].font.highlightColor = '#FFFF00';\n          searchResults.items[i].font.bold = true;\n        }\n\n        // Synchronize the document state by executing the queued commands,\n        // and return a promise to indicate task completion.\n        return context.sync().then(function () {\n            console.log(results);\n        });\n    });\n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n\n// The Word-Add-in-DocumentAssembly sample provides another example of how to search a document.\n// https://github.com/OfficeDev/Word-Add-in-DocumentAssembly\n```\n```typescript\nawait Word.run(async (context) => {\n    let results = context.document.body.search(\"Online\");\n    results.load(\"font/highlightColor\");\n\n    await context.sync();\n\n    // Let's traverse the search results... and highlight...\n    for (let i = 0; i < results.items.length; i++) {\n        results.items[i].font.highlightColor = \"yellow\";\n    }\n\n    await context.sync();\n});\n```\n```typescript\nawait Word.run(async (context) => {\n    // Check out how wildcard expression are built, also use the second parameter of the search method to include search modes (i.e. we are using wildcards).\n    let results = context.document.body.search(\"$*.[0-9][0-9]\", { matchWildcards: true });\n    results.load(\"font/highlightColor, font/color\");\n\n    await context.sync();\n\n    // Let's traverse the search results... and highlight...\n    for (let i = 0; i < results.items.length; i++) {\n        results.items[i].font.highlightColor = \"red\";\n        results.items[i].font.color = \"white\";\n    }\n\n    await context.sync();\n});\n```"
     parameters:
     - id: searchText
-      description: 必需。 搜索文本。 最多可包含 255 个字符。
+      description: 必需项。 搜索文本。 最多可包含 255 个字符。
       type:
       - string
     - id: searchOptions

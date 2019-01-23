@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 27394556625c23b97c1b4d83977ae05ab79cee92
-ms.sourcegitcommit: 4e15262bb3005b2f4ebb2756484e6a1b4e2379bd
+ms.openlocfilehash: 4ec604434ffbae02c99cb4a027cdec774427dfc8
+ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "27770537"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "29385390"
 items:
 - uid: word.Word.ContentControl
   summary: >-
@@ -27,6 +27,7 @@ items:
   - word.Word.ContentControl.clear
   - word.Word.ContentControl.color
   - word.Word.ContentControl.contentControls
+  - word.Word.ContentControl.context
   - word.Word.ContentControl.delete
   - word.Word.ContentControl.font
   - word.Word.ContentControl.getHtml
@@ -166,6 +167,18 @@ items:
     return:
       type:
       - word.Word.ContentControlCollection
+- uid: word.Word.ContentControl.context
+  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: word.Word.ContentControl.delete
   summary: >-
     删除内容控件及其内容。如果将 keepContent 设置为 true，则不删除内容。
@@ -206,7 +219,7 @@ items:
       - word.Word.Font
 - uid: word.Word.ContentControl.getHtml
   summary: >-
-    获取内容控件对象的 HTML 表示形式。
+    获取 HTML 表示形式的内容控件对象。 在网页或 HTML 查看器中呈现时, 的格式将关闭，但不是精确，匹配的文档的格式。 此方法不会返回不同的平台 （Windows、 Mac、 Word Online 等。） 上的同一文档的完全相同 HTML。 如果您需要跨平台精确保真度或一致性，使用`ContentControl.getOoxml()`，将返回的 XML 转换为 HTML。
 
 
     \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
@@ -337,11 +350,11 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Create a proxy object for the content controls collection.\n    var contentControls = context.document.contentControls;\n    \n    // Queue a commmand to load the id property for all of content controls. \n    context.load(contentControls, 'id');\n    \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion. We now will have \n    // access to the content control collection.\n    return context.sync().then(function () {\n        if (contentControls.items.length === 0) {\n            console.log('No content control found.');\n        }\n        else {\n            // Queue a command to insert a page break after the first content control. \n            contentControls.items[0].insertBreak('page', \"After\");\n            \n            // Synchronize the document state by executing the queued commands, \n            // and return a promise to indicate task completion. \n            return context.sync()\n                .then(function () {\n                    console.log('Inserted a page break after the first content control.');    \n            });\n        }\n    });  \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: breakType
-      description: 必需。 分隔符的类型。
+      description: 必需项。 分隔符的类型。
       type:
       - word.Word.BreakType
     - id: insertLocation
-      description: 必需。 值可以是开始，End，之前，或之后。
+      description: 必需项。 值可以是开始，End，之前，或之后。
       type:
       - Word.InsertLocation
 - uid: word.Word.ContentControl.insertFileFromBase64
@@ -367,7 +380,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
+      description: 必需项。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
       type:
       - Word.InsertLocation
 - uid: word.Word.ContentControl.insertHtml
@@ -393,7 +406,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
+      description: 必需项。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
       type:
       - Word.InsertLocation
 - uid: word.Word.ContentControl.insertInlinePictureFromBase64
@@ -419,7 +432,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
+      description: 必需项。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
       type:
       - Word.InsertLocation
 - uid: word.Word.ContentControl.insertOoxml
@@ -445,12 +458,12 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
+      description: 必需项。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
       type:
       - Word.InsertLocation
 - uid: word.Word.ContentControl.insertParagraph
   summary: >-
-    指定位置处插入一个段落。 InsertLocation 值可以是开始，End，之前，或之后。 如果内容控件包括一个或多个段落完整仅支持使用此方法。
+    指定位置处插入一个段落。 InsertLocation 值可以是开始，End，之前，或之后。
 
 
     \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
@@ -471,7 +484,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需。 值可以是开始，End，之前，或之后。 早于和 After 不能用于 RichTextTable'，'RichTextTableRow' 和 'RichTextTableCell 的内容控件。
+      description: 必需项。 值可以是开始，End，之前，或之后。 早于和 After 不能用于 RichTextTable'，'RichTextTableRow' 和 'RichTextTableCell 的内容控件。
       type:
       - Word.InsertLocation
 - uid: word.Word.ContentControl.insertTable
@@ -501,7 +514,7 @@ items:
       type:
       - number
     - id: insertLocation
-      description: 必需。 值可以是开始，End，之前，或之后。 早于和 After 不能用于 RichTextTable'，'RichTextTableRow' 和 'RichTextTableCell 的内容控件。
+      description: 必需项。 值可以是开始，End，之前，或之后。 早于和 After 不能用于 RichTextTable'，'RichTextTableRow' 和 'RichTextTableCell 的内容控件。
       type:
       - Word.InsertLocation
     - id: values
@@ -531,7 +544,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
+      description: 必需项。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
       type:
       - Word.InsertLocation
 - uid: word.Word.ContentControl.lists
@@ -699,7 +712,7 @@ items:
       - Word.Table
 - uid: word.Word.ContentControl.placeholderText
   summary: >-
-    获取内容控件的占位符的文本。 内容控件为空时，将显示变暗的文本。
+    获取或设置内容控件的占位符文本。内容控件为空时，将显示灰色的文本。
 
 
     \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]

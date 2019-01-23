@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 9e812f4592c762e1aa7004df6a55416c9d1f4363
-ms.sourcegitcommit: 31847d2ea6be78b8f473dfbfb0a575fdecd877be
+ms.openlocfilehash: 8742db4c3d537157faa2fc70b6fdc1106ee0af77
+ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "26298300"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "29385068"
 items:
 - uid: outlook.Office.AppointmentRead
   summary: >-
@@ -102,7 +102,7 @@ items:
       - '(result: AsyncResult<void>) => void'
 - uid: outlook.Office.AppointmentRead.attachments
   summary: >-
-    作为数组中获取项目的附件。
+    获取项目的附件作为数组。
 
 
     \[[API 集： 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -503,7 +503,7 @@ items:
       - Date
 - uid: outlook.Office.AppointmentRead.getEntities
   summary: >-
-    获取在选定的项的正文中找到的实体。
+    获取在所选项目的正文中找到的实体。
 
 
     注意：在 Outlook for iOS 或 Outlook for Android 中不支持此方法。
@@ -528,7 +528,7 @@ items:
       description: ''
 - uid: outlook.Office.AppointmentRead.getEntitiesByType
   summary: >-
-    获取选定的项的正文中找到的指定的实体类型的所有实体的数组。
+    获取所选项目的正文中找到的指定实体类型的所有实体的数组。
 
 
     注意：在 Outlook for iOS 或 Outlook for Android 中不支持此方法。
@@ -545,7 +545,7 @@ items:
     当使用此方法的最低权限级别受限时，某些实体类型需要 ReadItem 才能进行访问，如下表中所指定。
 
 
-    <table> <tr> <th>entityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需的权限级别</th> </tr> <tr> <td>Address</td> <td>字符串</td> <td>受限</td> </tr> <tr> <td>联系人</td> <td>联系人</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>字符串</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>字符串</td> <td>受限</td> </tr> </table>
+    <table> <tr> <th>entityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需的权限级别</th> </tr> <tr> <td>Address</td> <td>字符串</td> <td>受限</td> </tr> <tr> <td>联系人</td> <td>联系人</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>字符串</td> <td>受限</td> </tr> </table>
 
     #### 示例
 
@@ -581,7 +581,7 @@ items:
     return:
       type:
       - (string | Contact | MeetingSuggestion | PhoneNumber | TaskSuggestion)[]
-      description: 如果 entityType 中传递的值不是有效 EntityType 枚举的成员，则该方法返回 null。 如果没有指定类型的实体的存在于项目的正文中，该方法将返回空数组。 否则，返回的数组中的对象类型取决于请求 entityType 参数中的实体的类型。
+      description: 如果 entityType 中传递的值不是有效 EntityType 枚举的成员，则该方法返回 null。 如果指定类型的任何实体都不存在于该项目的正文中，该方法将返回空数组。 否则，返回的数组中的对象类型取决于请求 entityType 参数中的实体的类型。
     parameters:
     - id: entityType
       description: EntityType 枚举值之一。
@@ -760,7 +760,7 @@ items:
       - string
 - uid: outlook.Office.AppointmentRead.getSelectedEntities
   summary: >-
-    获取在用户已选择的突出显示匹配项中找到的实体。突出显示匹配项适用于上下文外接程序。
+    获取在用户已选择的突出显示匹配项中找到的实体。突出显示匹配项适用于上下文加载项。
 
 
     注意：在 Outlook for iOS 或 Outlook for Android 中不支持此方法。
@@ -884,7 +884,7 @@ items:
     ItemId 属性不可用在撰写模式。 如果所需的项标识符，saveAsync 方法可用于将项目保存到存储库，将返回的项标识符的 AsyncResult.value 参数的回调函数中。
 
 
-    注意： itemId 属性返回的标识符是 Exchange Web 服务的项标识符相同。 ItemId 属性不与 Outlook 条目 ID 或使用 Outlook REST API 的 ID。 使用此值的 REST API 调用之前，应将其转换使用 Office.context.mailbox.convertToRestId。 有关详细信息，请参阅[使用 Outlook REST Api 从 Outlook 外接程序](https://docs.microsoft.com/outlook/add-ins/use-rest-api#get-the-item-id)<!-- -->。
+    注意： itemId 属性返回的标识符是 Exchange Web 服务的项标识符相同。 ItemId 属性不与 Outlook 条目 ID 或使用 Outlook REST API 的 ID。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关详细信息，请参阅[使用 Outlook REST Api 从 Outlook 外接程序](https://docs.microsoft.com/outlook/add-ins/use-rest-api#get-the-item-id)<!-- -->。
 
 
     \[[API 集： 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -984,7 +984,7 @@ items:
       type:
       - '(result: AsyncResult<Office.CustomProperties>) => void'
     - id: userContext
-      description: 可选。 开发人员可以提供他们想要访问的回调函数中的任何对象。 AsyncResult.asyncContext 属性的回调函数中，可以访问此对象。
+      description: 可选。 开发人员可以提供他们想要在回调函数中访问的任何对象。 AsyncResult.asyncContext 属性的回调函数中，可以访问此对象。
       type:
       - any
 - uid: outlook.Office.AppointmentRead.location
@@ -1075,7 +1075,7 @@ items:
       - outlook.Office.NotificationMessages
 - uid: outlook.Office.AppointmentRead.optionalAttendees
   summary: >-
-    提供对事件的可选与会者的访问。 对象的类型和访问级别取决于当前项的模式。
+    提供对事件的可选与会者的访问权限。 对象的类型和访问级别取决于当前项目的模式。
 
 
     OptionalAttendees 属性返回包含每个可选与会者加入会议的[Office.EmailAddressDetails](xref:outlook.Office.EmailAddressDetails)对象的数组。
@@ -1149,10 +1149,10 @@ items:
       - EmailAddressDetails
 - uid: outlook.Office.AppointmentRead.recurrence
   summary: >-
-    获取约会的定期模式。 获取会议请求的定期模式。
+    获取约会的定期模式。 获取或设置会议请求的定期模式。
 
 
-    如果项目为一系列或一系列中的实例的定期属性返回定期约会或会议请求的定期的对象。 `null`将返回单个约会和会议请求的单个约会。
+    如果项目为一系列或一系列中的实例的定期属性返回定期约会或会议请求的定期的对象。 针对单个约会和单个约会的会议请求返回 `null`。
 
 
     注意： 会议请求具有 IPM itemClass 的值。Schedule.Meeting.Request。
@@ -1179,7 +1179,7 @@ items:
       - Recurrence
 - uid: outlook.Office.AppointmentRead.removeHandlerAsync
   summary: >-
-    删除事件处理程序支持的事件。
+    删除的事件处理程序支持的事件类型。
 
 
     当前受支持的事件类型的`Office.EventType.AppointmentTimeChanged` <!-- -->， `Office.EventType.RecipientsChanged` <!-- -->，和`Office.EventType.RecurrenceChanged` <!-- -->。 在预览`Office.EventType.AttachmentsChanged`，还支持。
@@ -1196,27 +1196,23 @@ items:
     除了此签名，该方法还具有以下签名：
 
 
-    `removeHandlerAsync(eventType:EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;`
-  name: removeHandlerAsync(eventType, handler, options, callback)
+    `removeHandlerAsync(eventType:EventType, callback?: (result: AsyncResult<void>) => void): void;`
+  name: removeHandlerAsync(eventType, options, callback)
   fullName: removeHandlerAsync
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'removeHandlerAsync(eventType:EventType, handler: any, options?: any, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'removeHandlerAsync(eventType:EventType, options?: any, callback?: (result: AsyncResult<void>) => void): void;'
     return:
       type:
       - void
       description: ''
     parameters:
     - id: eventType
-      description: 应取消处理程序的事件。
+      description: 应撤销处理程序的事件。
       type:
       - EventType
-    - id: handler
-      description: 要处理的事件的函数。 函数必须接受一个参数，即对象文本。 参数的类型属性将匹配 eventType 参数传递给 removeHandlerAsync。
-      type:
-      - any
     - id: options
       description: 可选。 包含一个或多个以下属性的对象文本。 asyncContext： 开发人员可以提供他们希望在回调方法访问任何对象。
       type:
@@ -1227,7 +1223,7 @@ items:
       - '(result: AsyncResult<void>) => void'
 - uid: outlook.Office.AppointmentRead.requiredAttendees
   summary: >-
-    提供对事件的必需与会者的访问。 对象的类型和访问级别取决于当前项的模式。
+    提供对事件的必需与会者的访问权限。 对象的类型和访问级别取决于当前项目的模式。
 
 
     RequiredAttendees 属性返回一个数组，包含[Office.EmailAddressDetails](xref:outlook.Office.EmailAddressDetails)对象的每个必需与会者加入会议。
@@ -1269,13 +1265,13 @@ items:
       - EmailAddressDetails[]
 - uid: outlook.Office.AppointmentRead.seriesId
   summary: >-
-    获取实例所属的系列的 id。
+    获取实例所属的系列的 ID。
 
 
     在 OWA 和 Outlook 中，可能指向返回此项目所属的父 （系列） 项的 Exchange Web Services (EWS) ID。 但是，在 iOS 和 Android，可能指向返回父项的 REST ID。
 
 
-    注意： 可能指向属性返回的标识符是 Exchange Web 服务的项标识符相同。 可能指向属性不是与 Outlook Id 使用 Outlook REST API 相同的。 使用此值的 REST API 调用之前，应将其转换使用 Office.context.mailbox.convertToRestId。 有关详细信息，请参阅[使用 Outlook REST Api 从 Outlook 外接程序](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->。
+    注意： 可能指向属性返回的标识符是 Exchange Web 服务的项标识符相同。 可能指向属性不是与 Outlook Id 使用 Outlook REST API 相同的。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关详细信息，请参阅[使用 Outlook REST Api 从 Outlook 外接程序](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->。
 
 
     可能指向属性返回 null 没有父项目，如单个约会系列项目的项目或会议请求，并返回 undefined 不是会议请求的其他任何项。

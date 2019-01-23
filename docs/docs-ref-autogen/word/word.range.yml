@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 804047e8fc6065ca3a1844741e3de20da14377fe
-ms.sourcegitcommit: c12dfe8b909dec25d284f5254d97bd6478823b8f
+ms.openlocfilehash: 1b181a187696020813a2c02aaf4d200f84c3533e
+ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "27243455"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "29385117"
 items:
 - uid: word.Word.Range
   summary: >-
@@ -24,6 +24,7 @@ items:
   - word.Word.Range.clear
   - word.Word.Range.compareLocationWith
   - word.Word.Range.contentControls
+  - word.Word.Range.context
   - word.Word.Range.delete
   - word.Word.Range.expandTo
   - word.Word.Range.expandToOrNullObject
@@ -124,6 +125,18 @@ items:
     return:
       type:
       - word.Word.ContentControlCollection
+- uid: word.Word.Range.context
+  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: word.Word.Range.delete
   summary: >-
     从文档中删除区域及其内容。
@@ -203,7 +216,7 @@ items:
       - word.Word.Font
 - uid: word.Word.Range.getHtml
   summary: >-
-    获取 range 对象的 HTML 表示形式。
+    获取 HTML 表示形式的 range 对象。 在网页或 HTML 查看器中呈现时, 的格式将关闭，但不是精确，匹配的文档的格式。 此方法不会返回不同的平台 （Windows、 Mac、 Word Online 等。） 上的同一文档的完全相同 HTML。 如果您需要跨平台精确保真度或一致性，使用`Range.getOoxml()`，将返回的 XML 转换为 HTML。
 
 
     \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
@@ -386,7 +399,7 @@ items:
       - word.Word.InlinePictureCollection
 - uid: word.Word.Range.insertBreak
   summary: >-
-    在主文档中的指定位置插入符。
+    在主文档的指定位置插入分隔符。insertLocation 的可取值为“Before”或“After”。
 
 
     \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
@@ -403,7 +416,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n\n    // Queue a command to get the current selection and then\n    // create a proxy range object with the results.\n    var range = context.document.getSelection();\n\n    // Queue a commmand to insert a page break after the selected text.\n    range.insertBreak('page', 'After');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        console.log('Inserted a page break after the selected text.');\n    });\n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: breakType
-      description: 必需。 若要添加分页符类型。
+      description: 必需项。 若要添加分页符类型。
       type:
       - word.Word.BreakType
     - id: insertLocation
@@ -450,7 +463,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需。 值可以是 Replace、 开始、 结束，之前，或之后。
+      description: 必需项。 值可以是 Replace、 开始、 结束，之前，或之后。
       type:
       - Word.InsertLocation
 - uid: word.Word.Range.insertHtml
@@ -476,7 +489,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需。 值可以是 Replace、 开始、 结束，之前，或之后。
+      description: 必需项。 值可以是 Replace、 开始、 结束，之前，或之后。
       type:
       - Word.InsertLocation
 - uid: word.Word.Range.insertInlinePictureFromBase64
@@ -502,7 +515,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需。 值可以是 Replace、 开始、 结束，之前，或之后。
+      description: 必需项。 值可以是 Replace、 开始、 结束，之前，或之后。
       type:
       - Word.InsertLocation
 - uid: word.Word.Range.insertOoxml
@@ -528,12 +541,12 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需。 值可以是 Replace、 开始、 结束，之前，或之后。
+      description: 必需项。 值可以是 Replace、 开始、 结束，之前，或之后。
       type:
       - Word.InsertLocation
 - uid: word.Word.Range.insertParagraph
   summary: >-
-    指定位置处插入一个段落。
+    在指定位置插入段落。insertLocation 的可取值为“Before”或“After”。
 
 
     \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
@@ -559,7 +572,7 @@ items:
       - Word.InsertLocation
 - uid: word.Word.Range.insertTable
   summary: >-
-    插入一个与指定的行和列数。
+    插入包含指定行数和列数的表格。insertLocation 的可取值为“Before”或“After”。
 
 
     \[[API 集： WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
@@ -614,7 +627,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需。 值可以是 Replace、 开始、 结束，之前，或之后。
+      description: 必需项。 值可以是 Replace、 开始、 结束，之前，或之后。
       type:
       - Word.InsertLocation
 - uid: word.Word.Range.intersectWith
