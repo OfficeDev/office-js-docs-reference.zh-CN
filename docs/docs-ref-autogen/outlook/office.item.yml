@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 368d3dfd2b73e0912861f501caaeb348e0de8340
-ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
+ms.openlocfilehash: aa3fbfaf901d784dd851958342482cd0ab96f82c
+ms.sourcegitcommit: 1d3a730f48caaabe5af4f1abb74802bc91b75f4e
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "29384956"
+ms.lasthandoff: 01/25/2019
+ms.locfileid: "29539903"
 items:
 - uid: outlook.Office.Item
   summary: >-
@@ -27,7 +27,7 @@ items:
   - outlook.Office.Item.addHandlerAsync
   - outlook.Office.Item.body
   - outlook.Office.Item.dateTimeCreated
-  - outlook.Office.Item.dateTimeModifed
+  - outlook.Office.Item.dateTimeModified
   - outlook.Office.Item.getAttachmentContentAsync
   - outlook.Office.Item.getInitializationContextAsync
   - outlook.Office.Item.getSharedPropertiesAsync
@@ -117,7 +117,7 @@ items:
     return:
       type:
       - Date
-- uid: outlook.Office.Item.dateTimeModifed
+- uid: outlook.Office.Item.dateTimeModified
   summary: >-
     获取项目最近一次修改的日期和时间。仅限阅读模式。
 
@@ -131,13 +131,13 @@ items:
 
 
     注意：在 Outlook for iOS 或 Outlook for Android 中不支持此成员。
-  name: dateTimeModifed
-  fullName: dateTimeModifed
+  name: dateTimeModified
+  fullName: dateTimeModified
   langs:
   - typeScript
   type: property
   syntax:
-    content: 'dateTimeModifed: Date;'
+    content: 'dateTimeModified: Date;'
     return:
       type:
       - Date
@@ -150,7 +150,7 @@ items:
 
 
     \[[API 集： 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr>\n\n<tr><td>错误</td><td>InvalidAttachmentId-附件标识符不存在。</td></tr></table>\n####示例\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar listOfAttachments = [];\nitem.getAttachmentsAsync(callback);\nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var options = {asyncContext: {type: result.value[i].attachmentType}};\n            getAttachmentContentAsync(result.value[i].id, options, handleAttachmentsCallback);  \n        }\n    }\n}\n\nfunction handleAttachmentsCallback(result) {\n    // parse string to be a url, an .eml file, a base64-encoded string, or an .icalendar file\n    if (result.format == Office.MailboxEnums.AttachmentContentFormat.Base64) {\n        // handle file attachment\n    }\n    else if (result.format == Office.MailboxEnums.AttachmentContentFormat.Eml) {\n        // handle item attachment\n    }\n    else if (result.format == Office.MailboxEnums.AttachmentContentFormat.ICalendar) {\n        // handle .icalender attachment\n    }\n    else {\n        // handle cloud attachment  \n    }\n}\n```"
+  remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr>\n\n<tr><td>错误</td><td>InvalidAttachmentId-附件标识符不存在。</td></tr></table>\n####\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar listOfAttachments = [];\nitem.getAttachmentsAsync(callback);\nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var options = {asyncContext: {type: result.value[i].attachmentType}};\n            getAttachmentContentAsync(result.value[i].id, options, handleAttachmentsCallback);  \n        }\n    }\n}\n\nfunction handleAttachmentsCallback(result) {\n    // parse string to be a url, an .eml file, a base64-encoded string, or an .icalendar file\n    if (result.format == Office.MailboxEnums.AttachmentContentFormat.Base64) {\n        // handle file attachment\n    }\n    else if (result.format == Office.MailboxEnums.AttachmentContentFormat.Eml) {\n        // handle item attachment\n    }\n    else if (result.format == Office.MailboxEnums.AttachmentContentFormat.ICalendar) {\n        // handle .icalender attachment\n    }\n    else {\n        // handle cloud attachment  \n    }\n}\n```"
   isPreview: true
   name: getAttachmentContentAsync(attachmentId, options, callback)
   fullName: getAttachmentContentAsync
@@ -178,7 +178,7 @@ items:
       - '(result: AsyncResult<Office.AttachmentContent>) => void'
 - uid: outlook.Office.Item.getInitializationContextAsync
   summary: >-
-    获取传入外接程序为[激活通过可操作的消息](https://docs.microsoft.com/outlook/actionable-messages/invoke-add-in-from-actionable-message)时的初始化数据<!-- -->。
+    当[可操作邮件激活](https://docs.microsoft.com/outlook/actionable-messages/invoke-add-in-from-actionable-message)加载项时，获取传递的初始化数据。
 
 
     注意：仅 Outlook 2016 for Windows（高于 16.0.8413.1000 的即点即用版本）和适用于 Office 365 的 Outlook 网页版支持此方法。
@@ -312,9 +312,7 @@ items:
     <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
 
 
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
-
-    ####示例
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>示例
 
 
     ```javascript
@@ -350,9 +348,7 @@ items:
     <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
 
 
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
-
-    ####示例
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>示例
 
 
     ```javascript
@@ -517,7 +513,7 @@ items:
     在 OWA 和 Outlook 中，可能指向返回此项目所属的父 （系列） 项的 Exchange Web Services (EWS) ID。 但是，在 iOS 和 Android，可能指向返回父项的 REST ID。
 
 
-    注意： 可能指向属性返回的标识符是 Exchange Web 服务的项标识符相同。 可能指向属性不是与 Outlook Id 使用 Outlook REST API 相同的。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关详细信息，请参阅[使用 Outlook REST Api 从 Outlook 外接程序](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->。
+    注意： 可能指向属性返回的标识符是 Exchange Web 服务的项标识符相同。 可能指向属性不是与 Outlook Id 使用 Outlook REST API 相同的。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关详细信息，请参阅[从 Outlook 加载项使用 Outlook REST API](https://docs.microsoft.com/outlook/add-ins/use-rest-api)。
 
 
     可能指向属性返回 null 没有父项目，如单个约会系列项目的项目或会议请求，并返回 undefined 不是会议请求的其他任何项。
