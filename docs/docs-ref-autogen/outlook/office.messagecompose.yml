@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 1c1907743ae61b2ee7420699f6ff46a32cde6c11
-ms.sourcegitcommit: 1d3a730f48caaabe5af4f1abb74802bc91b75f4e
+ms.openlocfilehash: a21743ba36a38ad2e52374855858862c9ed5bb74
+ms.sourcegitcommit: a68606173477c7fb4069880eea941766c7d8c50d
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "29539455"
+ms.lasthandoff: 02/01/2019
+ms.locfileid: "29704553"
 items:
 - uid: outlook.Office.MessageCompose
   summary: >-
@@ -60,14 +60,14 @@ items:
 
 
     \[[API 集： 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件撰写</td></tr>\n\n<tr><td>错误</td><td>AttachmentSizeExceeded-附件大于所允许。</td></tr><tr><td></td><td>FileTypeNotSupported-附件具有未允许的扩展名。</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded-的邮件或约会的附件太多。</td></tr></table>\n\n除了此签名，该方法还具有以下签名：\n\n`addFileAttachmentAsync(uri: string, attachmentName: string): void;`\n\n`addFileAttachmentAsync(uri: string, attachmentName: string, options: AsyncContextOptions): void;`\n\n`addFileAttachmentAsync(uri: string, attachmentName: string, callback: (result: AsyncResult<string>) => void): void;`\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction callback(result) {\n    if (result.error) {\n        showMessage(result.error);\n    } else {\n        showMessage(\"Attachment added\");\n    }\n}\n\nfunction addAttachment() {\n    // The values in asyncContext can be accessed in the callback\n    var options = { 'asyncContext': { var1: 1, var2: 2 } };\n\n    var attachmentURL = \"https://contoso.com/rtm/icon.png\";\n    Office.context.mailbox.item.addFileAttachmentAsync(attachmentURL, attachmentURL, options, callback);\n}\n```\n```javascript\n// The following example adds an image file as an inline attachment and\n// references the attachment in the message body.\nOffice.context.mailbox.item.addFileAttachmentAsync\n(\n    \"http://i.imgur.com/WJXklif.png\",\n    \"cute_bird.png\",\n    {\n        isInline: true\n    },\n    function (asyncResult) {\n        Office.context.mailbox.item.body.setAsync(\n            \"<p>Here's a cute bird!</p><img src='cid:cute_bird.png'>\",\n            {\n                \"coercionType\": \"html\"\n            },\n            function (asyncResult) {\n                \n            });\n    });\n```"
+  remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件撰写</td></tr>\n\n<tr><td>错误</td><td>AttachmentSizeExceeded-附件大于所允许。</td></tr><tr><td></td><td>FileTypeNotSupported-附件具有未允许的扩展名。</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded-的邮件或约会的附件太多。</td></tr></table>\n\n除了此签名，该方法还具有以下签名：\n\n`addFileAttachmentAsync(uri: string, attachmentName: string): void;`\n\n`addFileAttachmentAsync(uri: string, attachmentName: string, options: AsyncContextOptions): void;`\n\n`addFileAttachmentAsync(uri: string, attachmentName: string, callback: (result: Office.AsyncResult<string>) => void): void;`\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction callback(result) {\n    if (result.error) {\n        showMessage(result.error);\n    } else {\n        showMessage(\"Attachment added\");\n    }\n}\n\nfunction addAttachment() {\n    // The values in asyncContext can be accessed in the callback\n    var options = { 'asyncContext': { var1: 1, var2: 2 } };\n\n    var attachmentURL = \"https://contoso.com/rtm/icon.png\";\n    Office.context.mailbox.item.addFileAttachmentAsync(attachmentURL, attachmentURL, options, callback);\n}\n```\n```javascript\n// The following example adds an image file as an inline attachment and\n// references the attachment in the message body.\nOffice.context.mailbox.item.addFileAttachmentAsync\n(\n    \"http://i.imgur.com/WJXklif.png\",\n    \"cute_bird.png\",\n    {\n        isInline: true\n    },\n    function (asyncResult) {\n        Office.context.mailbox.item.body.setAsync(\n            \"<p>Here's a cute bird!</p><img src='cid:cute_bird.png'>\",\n            {\n                \"coercionType\": \"html\"\n            },\n            function (asyncResult) {\n                \n            });\n    });\n```"
   name: addFileAttachmentAsync(uri, attachmentName, options, callback)
   fullName: addFileAttachmentAsync
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'addFileAttachmentAsync(uri: string, attachmentName: string, options?: AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    content: 'addFileAttachmentAsync(uri: string, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<string>) => void): void;'
     return:
       type:
       - void
@@ -88,13 +88,13 @@ items:
     - id: callback
       description: 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 成功，将 asyncResult.value 属性中提供的附件标识符。 如果上传附件失败，asyncResult 对象将包含一个 Error 对象，提供错误描述。
       type:
-      - '(result: AsyncResult<string>) => void'
+      - '(result: Office.AsyncResult<string>) => void'
 - uid: outlook.Office.MessageCompose.addFileAttachmentFromBase64Async
   summary: >-
     将文件作为附件添加到邮件或约会。
 
 
-    AddFileAttachmentFromBase64Async 方法从 base64 编码将文件上载，并将其附加到撰写窗体中的项。 此方法返回 AsyncResult.value 对象中的附件标识符。
+    AddFileAttachmentFromBase64Async 方法从 base64 编码将文件上载，并将其附加到撰写窗体中的项。 此方法返回 asyncResult.value 对象中的附件标识符。
 
 
     您随后可以将该标识符与 removeAttachmentAsync 方法一同使用，以删除同一个会话中的附件。
@@ -110,7 +110,7 @@ items:
 
     <tr><td>错误</td><td>AttachmentSizeExceeded-附件大于所允许。</td></tr><tr><td></td><td>FileTypeNotSupported-附件具有未允许的扩展名。</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded-的邮件或约会的附件太多。</td></tr></table>
 
-    ####
+    ####示例
 
 
     ```javascript
@@ -138,7 +138,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'addFileAttachmentFromBase64Async(base64File: string, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    content: 'addFileAttachmentFromBase64Async(base64File: string, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<string>) => void): void;'
     return:
       type:
       - void
@@ -157,9 +157,9 @@ items:
       type:
       - office.Office.AsyncContextOptions
     - id: callback
-      description: 方法完成后，使用单个的类型 asyncResult 参数调用中的 callback 参数传递的函数。 成功，将 asyncResult.value 属性中提供的附件标识符。 如果上传附件失败，asyncResult 对象将包含一个 Error 对象，提供错误描述。
+      description: 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 成功，将 asyncResult.value 属性中提供的附件标识符。 如果上传附件失败，asyncResult 对象将包含一个 Error 对象，提供错误描述。
       type:
-      - '(result: AsyncResult<string>) => void'
+      - '(result: Office.AsyncResult<string>) => void'
 - uid: outlook.Office.MessageCompose.addHandlerAsync
   summary: >-
     添加支持事件的事件处理程序。
@@ -179,14 +179,14 @@ items:
     除了此签名，该方法还具有以下签名：
 
 
-    `addHandlerAsync(eventType:EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;`
+    `addHandlerAsync(eventType: Office.EventType, handler: any, callback?: (result: Office.AsyncResult<void>) => void): void;`
   name: addHandlerAsync(eventType, handler, options, callback)
   fullName: addHandlerAsync
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'addHandlerAsync(eventType:EventType, handler: any, options?: any, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'addHandlerAsync(eventType: Office.EventType, handler: any, options?: any, callback?: (result: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -195,7 +195,7 @@ items:
     - id: eventType
       description: 应调用处理程序的事件。
       type:
-      - EventType
+      - Office.EventType
     - id: handler
       description: 要处理的事件的函数。 函数必须接受一个参数，即对象文本。 参数的类型属性将匹配 eventType 参数传递给 addHandlerAsync。
       type:
@@ -207,7 +207,7 @@ items:
     - id: callback
       description: 可选。 该方法完成后，使用一个参数 asyncResult，即 Office.AsyncResult 对象调用中的 callback 参数传递的函数。
       type:
-      - '(result: AsyncResult<void>) => void'
+      - '(result: Office.AsyncResult<void>) => void'
 - uid: outlook.Office.MessageCompose.addItemAttachmentAsync
   summary: >-
     将 Exchange 项目（如邮件）作为附件添加到邮件或约会。
@@ -242,7 +242,7 @@ items:
     `addItemAttachmentAsync(itemId: any, attachmentName: string, options: Office.AsyncContextOptions): void;`
 
 
-    `addItemAttachmentAsync(itemId: any, attachmentName: string, callback: (result: AsyncResult<string>) => void): void;`
+    `addItemAttachmentAsync(itemId: any, attachmentName: string, callback: (result: Office.AsyncResult<string>) => void): void;`
 
     #### <a name="examples"></a>示例
 
@@ -280,7 +280,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'addItemAttachmentAsync(itemId: any, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    content: 'addItemAttachmentAsync(itemId: any, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<string>) => void): void;'
     return:
       type:
       - void
@@ -299,9 +299,9 @@ items:
       type:
       - office.Office.AsyncContextOptions
     - id: callback
-      description: 方法完成后，使用单个的类型为 AsyncResult 参数调用中的 callback 参数传递的函数。 成功，将 asyncResult.value 属性中提供的附件标识符。 如果添加附件失败，asyncResult 对象将包含一个 Error 对象，提供错误描述。
+      description: 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 成功，将 asyncResult.value 属性中提供的附件标识符。 如果添加附件失败，asyncResult 对象将包含一个 Error 对象，提供错误描述。
       type:
-      - '(result: AsyncResult<string>) => void'
+      - '(result: Office.AsyncResult<string>) => void'
 - uid: outlook.Office.MessageCompose.bcc
   summary: >-
     获取对象，该对象提供用于获取或更新邮件的密件抄送 (Bcc) 行上的收件人的方法。
@@ -314,7 +314,7 @@ items:
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件撰写</td></tr></table>
 
-    ####
+    ####示例
 
 
     ```javascript
@@ -358,16 +358,16 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'body: Office.Body;'
+    content: 'body: Body;'
     return:
       type:
-      - outlook.Office.Body
+      - Body
 - uid: outlook.Office.MessageCompose.cc
   summary: >-
     提供对邮件的抄送 (Cc) 收件人的访问权限。 对象的类型和访问级别取决于当前项目的模式。
 
 
-    Cc 属性返回[Office.Recipients](xref:outlook.Office.Recipients)对象提供用于获取或更新的收件人的邮件 Cc 行上的方法。
+    Cc 属性返回一个[Office.Recipients](xref:outlook.Office.Recipients)对象，提供用于获取或更新的收件人的邮件 Cc 行上的方法。
 
 
     \[[API 集： 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -377,7 +377,7 @@ items:
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件撰写</td></tr></table>
 
-    ####
+    ####示例
 
 
     ```javascript
@@ -406,7 +406,7 @@ items:
       - Recipients
 - uid: outlook.Office.MessageCompose.close
   summary: >-
-    关闭当前正在撰写的项目。
+    关闭当前项目的所构成
 
 
     Close 方法的行为取决于所构成的项目的当前状态。 如果该项目包含未保存更改，客户端将提示用户保存、 放弃，或关闭操作。
@@ -525,7 +525,7 @@ items:
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件撰写</td></tr></table>
 
-    ####
+    ####示例
 
 
     ```javascript
@@ -544,17 +544,17 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'from: Office.From;'
+    content: 'from: From;'
     return:
       type:
-      - outlook.Office.From
+      - From
 - uid: outlook.Office.MessageCompose.getAttachmentsAsync
   summary: >-
     获取项目的附件作为数组。
 
 
     \[[API 集： 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr></table>示例\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar outputString = \"\";\nitem.getAttachmentsAsync(callback);  \nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var _att = result.value [i];\n            outputString += \"<BR>\" + i + \". Name: \";\n            outputString += _att.name;\n            outputString += \"<BR>ID: \" + _att.id;\n            outputString += \"<BR>contentType: \" + _att.contentType;\n            outputString += \"<BR>size: \" + _att.size;\n            outputString += \"<BR>attachmentType: \" + _att.attachmentType;\n            outputString += \"<BR>isInline: \" + _att.isInline;\n        }\n    }\n}\n```"
+  remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr></table>\n####示例\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar outputString = \"\";\nitem.getAttachmentsAsync(callback);  \nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var _att = result.value [i];\n            outputString += \"<BR>\" + i + \". Name: \";\n            outputString += _att.name;\n            outputString += \"<BR>ID: \" + _att.id;\n            outputString += \"<BR>contentType: \" + _att.contentType;\n            outputString += \"<BR>size: \" + _att.size;\n            outputString += \"<BR>attachmentType: \" + _att.attachmentType;\n            outputString += \"<BR>isInline: \" + _att.isInline;\n        }\n    }\n}\n```"
   isPreview: true
   name: getAttachmentsAsync(options, callback)
   fullName: getAttachmentsAsync
@@ -562,7 +562,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getAttachmentsAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<Office.AttachmentDetails[]>) => void): void;'
+    content: 'getAttachmentsAsync(options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<AttachmentDetails[]>) => void): void;'
     return:
       type:
       - void
@@ -575,7 +575,7 @@ items:
     - id: callback
       description: 可选。 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 如果调用失败，asyncResult.error 属性将包含，错误代码与失败的原因。
       type:
-      - '(result: AsyncResult<Office.AttachmentDetails[]>) => void'
+      - '(result: Office.AsyncResult<AttachmentDetails[]>) => void'
 - uid: outlook.Office.MessageCompose.getInitializationContextAsync
   summary: >-
     当可操作邮件激活加载项时，获取传递的初始化数据。
@@ -600,7 +600,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getInitializationContextAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    content: 'getInitializationContextAsync(options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<string>) => void): void;'
     return:
       type:
       - void
@@ -613,7 +613,7 @@ items:
     - id: callback
       description: 可选。 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 成功，初始化数据是以字符串形式提供 asyncResult.value 属性中。 如果没有初始化上下文，asyncResult 对象将包含代码属性设置为 9020 Error 对象和 name 属性设置为 GenericResponseError。
       type:
-      - '(result: AsyncResult<string>) => void'
+      - '(result: Office.AsyncResult<string>) => void'
 - uid: outlook.Office.MessageCompose.getSelectedDataAsync
   summary: >-
     以异步方式返回邮件的主题或正文中选定的数据。
@@ -632,7 +632,7 @@ items:
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件撰写</td></tr></table>
 
-    ####
+    ####示例
 
 
     ```javascript
@@ -663,7 +663,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getSelectedDataAsync(coercionType: Office.CoercionType, callback: (result: AsyncResult<any>) => void): void;'
+    content: 'getSelectedDataAsync(coercionType: Office.CoercionType, callback: (result: Office.AsyncResult<any>) => void): void;'
     return:
       type:
       - void
@@ -676,7 +676,7 @@ items:
     - id: callback
       description: 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。
       type:
-      - '(result: AsyncResult<any>) => void'
+      - '(result: Office.AsyncResult<any>) => void'
 - uid: outlook.Office.MessageCompose.internetHeaders
   summary: >-
     设置消息的 internet 邮件头。
@@ -698,7 +698,7 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'internetHeaders: Office.InternetHeaders;'
+    content: 'internetHeaders: InternetHeaders;'
     return:
       type:
       - outlook.Office.InternetHeaders
@@ -722,10 +722,10 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'itemType: Office.MailboxEnums.ItemType;'
+    content: 'itemType: MailboxEnums.ItemType;'
     return:
       type:
-      - outlook.Office.MailboxEnums.ItemType
+      - MailboxEnums.ItemType
 - uid: outlook.Office.MessageCompose.loadCustomPropertiesAsync
   summary: >-
     异步加载所选项目上此外接程序的自定义属性。
@@ -749,7 +749,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'loadCustomPropertiesAsync(callback: (result: AsyncResult<Office.CustomProperties>) => void, userContext?: any): void;'
+    content: 'loadCustomPropertiesAsync(callback: (result: Office.AsyncResult<CustomProperties>) => void, userContext?: any): void;'
     return:
       type:
       - void
@@ -758,7 +758,7 @@ items:
     - id: callback
       description: 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。
       type:
-      - '(result: AsyncResult<Office.CustomProperties>) => void'
+      - '(result: Office.AsyncResult<CustomProperties>) => void'
     - id: userContext
       description: 可选。 开发人员可以提供他们想要在回调函数中访问的任何对象。 AsyncResult.asyncContext 属性的回调函数中，可以访问此对象。
       type:
@@ -780,10 +780,10 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'notificationMessages: Office.NotificationMessages;'
+    content: 'notificationMessages: NotificationMessages;'
     return:
       type:
-      - outlook.Office.NotificationMessages
+      - NotificationMessages
 - uid: outlook.Office.MessageCompose.recurrence
   summary: >-
     获取或设置约会的定期模式。 获取或设置会议请求的定期模式。 阅读撰写约会项目的模式。 会议请求项目的阅读模式。
@@ -842,7 +842,7 @@ items:
     `removeAttachmentAsync(attachmentId: string, options: Office.AsyncContextOptions): void;`
 
 
-    `removeAttachmentAsync(attachmentId: string, callback: (result: AsyncResult<void>) => void): void;`
+    `removeAttachmentAsync(attachmentId: string, callback: (result: Office.AsyncResult<void>) => void): void;`
 
     #### <a name="examples"></a>示例
 
@@ -867,7 +867,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'removeAttachmentAsync(attachmentId: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'removeAttachmentAsync(attachmentId: string, options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -884,10 +884,10 @@ items:
     - id: callback
       description: 可选。 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 如果删除附件失败，则 asyncResult.error 属性将包含错误代码与失败的原因。
       type:
-      - '(result: AsyncResult<void>) => void'
+      - '(result: Office.AsyncResult<void>) => void'
 - uid: outlook.Office.MessageCompose.removeHandlerAsync
   summary: >-
-    删除的事件处理程序支持的事件类型。
+    删除受支持事件类型的事件处理程序。
 
 
     当前受支持的事件类型的`Office.EventType.AppointmentTimeChanged` <!-- -->， `Office.EventType.RecipientsChanged` <!-- -->，和`Office.EventType.RecurrenceChanged` <!-- -->。 在预览`Office.EventType.AttachmentsChanged`，还支持。
@@ -904,14 +904,14 @@ items:
     除了此签名，该方法还具有以下签名：
 
 
-    `removeHandlerAsync(eventType:EventType, callback?: (result: AsyncResult<void>) => void): void;`
+    `removeHandlerAsync(eventType: Office.EventType, callback?: (result: Office.AsyncResult<void>) => void): void;`
   name: removeHandlerAsync(eventType, options, callback)
   fullName: removeHandlerAsync
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'removeHandlerAsync(eventType:EventType, options?: any, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'removeHandlerAsync(eventType: Office.EventType, options?: any, callback?: (result: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -920,7 +920,7 @@ items:
     - id: eventType
       description: 应撤销处理程序的事件。
       type:
-      - EventType
+      - Office.EventType
     - id: options
       description: 可选。 包含一个或多个以下属性的对象文本。 asyncContext： 开发人员可以提供他们希望在回调方法访问任何对象。
       type:
@@ -928,7 +928,7 @@ items:
     - id: callback
       description: 可选。 该方法完成后，使用一个参数 asyncResult，即 Office.AsyncResult 对象调用中的 callback 参数传递的函数。
       type:
-      - '(result: AsyncResult<void>) => void'
+      - '(result: Office.AsyncResult<void>) => void'
 - uid: outlook.Office.MessageCompose.saveAsync
   summary: >-
     异步保存项目。
@@ -972,7 +972,7 @@ items:
     `saveAsync(options: Office.AsyncContextOptions): void;`
 
 
-    `saveAsync(callback: (result: AsyncResult<void>) => void): void;`
+    `saveAsync(callback: (result: Office.AsyncResult<void>) => void): void;`
 
     #### <a name="examples"></a>示例
 
@@ -1006,7 +1006,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'saveAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'saveAsync(options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -1019,7 +1019,7 @@ items:
     - id: callback
       description: 可选。 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。
       type:
-      - '(result: AsyncResult<void>) => void'
+      - '(result: Office.AsyncResult<void>) => void'
 - uid: outlook.Office.MessageCompose.seriesId
   summary: >-
     获取实例所属的系列的 ID。
@@ -1028,7 +1028,7 @@ items:
     在 OWA 和 Outlook 中，可能指向返回此项目所属的父 （系列） 项的 Exchange Web Services (EWS) ID。 但是，在 iOS 和 Android，可能指向返回父项的 REST ID。
 
 
-    注意： 可能指向属性返回的标识符是 Exchange Web 服务的项标识符相同。 可能指向属性不是与 Outlook Id 使用 Outlook REST API 相同的。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关详细信息，请参阅[从 Outlook 加载项使用 Outlook REST API](https://docs.microsoft.com/outlook/add-ins/use-rest-api)。
+    注意： 可能指向属性返回的标识符是 Exchange Web 服务的项标识符相同。 可能指向属性不是与 Outlook Id 使用 Outlook REST API 相同的。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关详细信息，请参阅[使用 Outlook REST Api 从 Outlook 外接程序](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->。
 
 
     可能指向属性返回 null 没有父项目，如单个约会系列项目的项目或会议请求，并返回 undefined 不是会议请求的其他任何项。
@@ -1078,7 +1078,7 @@ items:
     `setSelectedDataAsync(data: string, options: Office.AsyncContextOptions & CoercionTypeOptions): void;`
 
 
-    `setSelectedDataAsync(data: string, callback: (result: AsyncResult<void>) => void): void;`
+    `setSelectedDataAsync(data: string, callback: (result: Office.AsyncResult<void>) => void): void;`
 
     #### <a name="examples"></a>示例
 
@@ -1096,7 +1096,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'setSelectedDataAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'setSelectedDataAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (result: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -1113,7 +1113,7 @@ items:
     - id: callback
       description: 可选。 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。
       type:
-      - '(result: AsyncResult<void>) => void'
+      - '(result: Office.AsyncResult<void>) => void'
 - uid: outlook.Office.MessageCompose.subject
   summary: >-
     获取或设置显示在项目的主题字段中的说明。
@@ -1132,7 +1132,7 @@ items:
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件撰写</td></tr></table>
 
-    ####
+    ####示例
 
 
     ```javascript
@@ -1168,7 +1168,9 @@ items:
     <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
 
 
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件撰写</td></tr></table>示例
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件撰写</td></tr></table>
+
+    ####示例
 
 
     ```javascript

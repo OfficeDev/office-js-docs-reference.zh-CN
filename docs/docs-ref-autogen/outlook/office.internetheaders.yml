@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: ed24c93d4e7021ddd37e7fc0ceb662c36c2b18db
-ms.sourcegitcommit: c756c5499da5aad3736cc71573ac35f9ca3d6738
+ms.openlocfilehash: 370fc953094ebf91415e3921b1afac8d8ae22956
+ms.sourcegitcommit: a68606173477c7fb4069880eea941766c7d8c50d
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/19/2018
-ms.locfileid: "27378209"
+ms.lasthandoff: 02/01/2019
+ms.locfileid: "29705470"
 items:
 - uid: outlook.Office.InternetHeaders
   summary: >-
@@ -37,7 +37,7 @@ items:
 
 
     \[[API 集： 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>\n\n除了此签名，此方法还具有以下签名：\n\n`getAsync(names: string[], callback: (result: AsyncResult<Office.InternetHeaders>) => void): void;`\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOffice.context.mailbox.item.internetHeaders.getAsync([\"header1\", \"header2\"], callback); \n\nfunction callback(asyncResult) { \n    var dictionary = asyncResult.value; \n    var header1_value = dictionary[\"header1\"]; \n}\n```"
+  remarks: "<table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>\n\n除了此签名，此方法还具有以下签名：\n\n`getAsync(names: string[], callback: (result: Office.AsyncResult<InternetHeaders>) => void): void;`\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOffice.context.mailbox.item.internetHeaders.getAsync([\"header1\", \"header2\"], callback); \n\nfunction callback(asyncResult) { \n    var dictionary = asyncResult.value; \n    var header1_value = dictionary[\"header1\"]; \n}\n```"
   isPreview: true
   name: getAsync(names, options, callback)
   fullName: getAsync
@@ -45,7 +45,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getAsync(names: string[], options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<Office.InternetHeaders>) => void): void;'
+    content: 'getAsync(names: string[], options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<InternetHeaders>) => void): void;'
     return:
       type:
       - void
@@ -62,7 +62,7 @@ items:
     - id: callback
       description: 可选。 该方法完成后，使用一个参数 asyncResult，即 Office.AsyncResult 对象调用中的 callback 参数传递的函数。
       type:
-      - '(result: AsyncResult<Office.InternetHeaders>) => void'
+      - '(result: Office.AsyncResult<InternetHeaders>) => void'
 - uid: outlook.Office.InternetHeaders.removeAsync
   summary: >-
     给定数组 internet 标头名称，此方法删除 internet 标头集合中指定的标头。
@@ -79,7 +79,7 @@ items:
     除了此签名，此方法还具有以下签名：
 
 
-    `removeAsync(names: string[], callback: (result: AsyncResult<Office.Body>) => void): void;`
+    `removeAsync(names: string[], callback: (result: Office.AsyncResult<Body>) => void): void;`
 
     #### <a name="examples"></a>示例
 
@@ -96,7 +96,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'removeAsync(names: string[], options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<Office.InternetHeaders>) => void): void;'
+    content: 'removeAsync(names: string[], options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<InternetHeaders>) => void): void;'
     return:
       type:
       - void
@@ -113,7 +113,7 @@ items:
     - id: callback
       description: 可选。 该方法完成后，使用一个参数 asyncResult，即 Office.AsyncResult 对象调用中的 callback 参数传递的函数。
       type:
-      - '(result: AsyncResult<Office.InternetHeaders>) => void'
+      - '(result: Office.AsyncResult<InternetHeaders>) => void'
 - uid: outlook.Office.InternetHeaders.setAsync
   summary: >-
     将指定的 internet 邮件头设置为指定值。
@@ -133,7 +133,7 @@ items:
     除了此签名，此方法还具有以下签名：
 
 
-    `setAsync(headers: string, callback: (result: AsyncResult<void>) => void): void;`
+    `setAsync(headers: string, callback: (result: Office.AsyncResult<void>) => void): void;`
 
     #### <a name="examples"></a>示例
 
@@ -150,7 +150,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'setAsync(headers: Object, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'setAsync(headers: Object, options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -167,4 +167,4 @@ items:
     - id: callback
       description: 可选。 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 AsyncResult.error 属性中，将提供遇到的任何错误。
       type:
-      - '(result: AsyncResult<void>) => void'
+      - '(result: Office.AsyncResult<void>) => void'

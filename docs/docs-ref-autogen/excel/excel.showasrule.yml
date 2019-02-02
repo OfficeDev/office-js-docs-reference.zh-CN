@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: afa3ba8ddc28bbb450f27ed2b7b389fcf61920b1
-ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
+ms.openlocfilehash: b4b6fd23b0e84b626d16040b4d4eda5c7121ae8a
+ms.sourcegitcommit: a68606173477c7fb4069880eea941766c7d8c50d
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "26221127"
+ms.lasthandoff: 02/01/2019
+ms.locfileid: "29705638"
 items:
 - uid: excel.Excel.ShowAsRule
   summary: '\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]'
@@ -20,7 +20,7 @@ items:
   - excel.Excel.ShowAsRule.calculation
 - uid: excel.Excel.ShowAsRule.baseField
   summary: >-
-    基本透视字段中，如果适用，则基于 ShowAs 计算，基于 else null ShowAsCalculation 类型。
+    基于 ShowAs 计算的基础 PivotField，如适用，基于 ShowAsCalculation 类型，否则为 null。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -36,7 +36,7 @@ items:
       - excel.Excel.PivotField
 - uid: excel.Excel.ShowAsRule.baseItem
   summary: >-
-    基本的项，如果适用，基于 ShowAs 计算基于 else null ShowAsCalculation 类型。
+    基于 ShowAs 计算的基础 Item，如适用，基于 ShowAsCalculation 类型，否则为 null。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -53,7 +53,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n    const farmDataHierarchy: Excel.DataPivotHierarchy = pivotTable.dataHierarchies.getItem(\"Sum of Crates Sold at Farm\");\n    const wholesaleDataHierarchy: Excel.DataPivotHierarchy = pivotTable.dataHierarchies.getItem(\"Sum of Crates Sold Wholesale\");\n\n    farmDataHierarchy.load(\"showAs\");\n    wholesaleDataHierarchy.load(\"showAs\");\n    await context.sync();\n\n    // show the difference between crate sales of the \"A Farms\" and the other farms\n    // this difference is both aggregated and shown for individual fruit types (where applicable)\n    let farmShowAs = farmDataHierarchy.showAs;\n    farmShowAs.calculation = Excel.ShowAsCalculation.differenceFrom;\n    farmShowAs.baseField = pivotTable.rowHierarchies.getItem(\"Farm\").fields.getItem(\"Farm\");\n    farmShowAs.baseItem = pivotTable.rowHierarchies.getItem(\"Farm\").fields.getItem(\"Farm\").items.getItem(\"A Farms\");\n    farmDataHierarchy.showAs = farmShowAs;\n\n    let wholesaleShowAs = wholesaleDataHierarchy.showAs;\n    wholesaleShowAs.calculation = Excel.ShowAsCalculation.differenceFrom;\n    wholesaleShowAs.baseField = pivotTable.rowHierarchies.getItem(\"Farm\").fields.getItem(\"Farm\");\n    wholesaleShowAs.baseItem = pivotTable.rowHierarchies.getItem(\"Farm\").fields.getItem(\"Farm\").items.getItem(\"A Farms\");\n    wholesaleDataHierarchy.showAs = wholesaleShowAs;\n    await context.sync();\n});\n```"
 - uid: excel.Excel.ShowAsRule.calculation
   summary: >-
-    要用于数据透视字段 ShowAs 计算。 有关详细信息，请参阅 Excel.ShowAsCalculation。
+    数据 PivotField 使用的 ShowAs 计算。 有关详细信息，请参阅 Excel.ShowAsCalculation。
 
 
     \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
