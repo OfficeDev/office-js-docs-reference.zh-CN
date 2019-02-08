@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 1b181a187696020813a2c02aaf4d200f84c3533e
-ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
+ms.openlocfilehash: 76eb9fa27d0b11b1184eb1f1313bfe9d7bb2d731
+ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "29385117"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "29770028"
 items:
 - uid: word.Word.Range
   summary: >-
@@ -62,6 +62,7 @@ items:
   - word.Word.Range.parentTableOrNullObject
   - word.Word.Range.search
   - word.Word.Range.select
+  - word.Word.Range.set
   - word.Word.Range.split
   - word.Word.Range.style
   - word.Word.Range.styleBuiltIn
@@ -416,7 +417,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n\n    // Queue a command to get the current selection and then\n    // create a proxy range object with the results.\n    var range = context.document.getSelection();\n\n    // Queue a commmand to insert a page break after the selected text.\n    range.insertBreak('page', 'After');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        console.log('Inserted a page break after the selected text.');\n    });\n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: breakType
-      description: 必需项。 若要添加分页符类型。
+      description: 必需。 若要添加分页符类型。
       type:
       - word.Word.BreakType
     - id: insertLocation
@@ -463,7 +464,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需项。 值可以是 Replace、 开始、 结束，之前，或之后。
+      description: 必需。 值可以是 Replace、 开始、 结束，之前，或之后。
       type:
       - Word.InsertLocation
 - uid: word.Word.Range.insertHtml
@@ -489,7 +490,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需项。 值可以是 Replace、 开始、 结束，之前，或之后。
+      description: 必需。 值可以是 Replace、 开始、 结束，之前，或之后。
       type:
       - Word.InsertLocation
 - uid: word.Word.Range.insertInlinePictureFromBase64
@@ -515,7 +516,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需项。 值可以是 Replace、 开始、 结束，之前，或之后。
+      description: 必需。 值可以是 Replace、 开始、 结束，之前，或之后。
       type:
       - Word.InsertLocation
 - uid: word.Word.Range.insertOoxml
@@ -541,7 +542,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需项。 值可以是 Replace、 开始、 结束，之前，或之后。
+      description: 必需。 值可以是 Replace、 开始、 结束，之前，或之后。
       type:
       - Word.InsertLocation
 - uid: word.Word.Range.insertParagraph
@@ -627,7 +628,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需项。 值可以是 Replace、 开始、 结束，之前，或之后。
+      description: 必需。 值可以是 Replace、 开始、 结束，之前，或之后。
       type:
       - Word.InsertLocation
 - uid: word.Word.Range.intersectWith
@@ -926,6 +927,33 @@ items:
       description: 可选。选择模式可以为“Select”、“Start”或“End”。“Select”为默认值。
       type:
       - Word.SelectionMode
+- uid: word.Word.Range.set
+  summary: 在同一时间设置对象的多个的属性。 您可以传递具有的相应属性的普通对象或相同类型的另一个 API 对象。
+  remarks: >-
+    此方法具有以下其他签名：
+
+
+    `set(properties: Word.Range): void`
+  name: set(properties, options)
+  fullName: set
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Interfaces.RangeUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: 具有对属性的对象调用 isomorphically 结构化的属性的 JavaScript 对象。
+      type:
+      - Interfaces.RangeUpdateData
+    - id: options
+      description: 提供一个选项以取消显示错误，如果属性对象会尝试设置任何只读属性。
+      type:
+      - office.OfficeExtension.UpdateOptions
 - uid: word.Word.Range.split
   summary: >-
     使用分隔符将相应范围拆分为各个子范围。

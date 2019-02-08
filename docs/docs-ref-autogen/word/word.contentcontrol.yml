@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 4ec604434ffbae02c99cb4a027cdec774427dfc8
-ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
+ms.openlocfilehash: 304334e90c787f73e8e1b37719ab4fca33a25ac5
+ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "29385390"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "29769720"
 items:
 - uid: word.Word.ContentControl
   summary: >-
@@ -58,6 +58,7 @@ items:
   - word.Word.ContentControl.removeWhenEdited
   - word.Word.ContentControl.search
   - word.Word.ContentControl.select
+  - word.Word.ContentControl.set
   - word.Word.ContentControl.split
   - word.Word.ContentControl.style
   - word.Word.ContentControl.styleBuiltIn
@@ -350,11 +351,11 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Create a proxy object for the content controls collection.\n    var contentControls = context.document.contentControls;\n    \n    // Queue a commmand to load the id property for all of content controls. \n    context.load(contentControls, 'id');\n    \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion. We now will have \n    // access to the content control collection.\n    return context.sync().then(function () {\n        if (contentControls.items.length === 0) {\n            console.log('No content control found.');\n        }\n        else {\n            // Queue a command to insert a page break after the first content control. \n            contentControls.items[0].insertBreak('page', \"After\");\n            \n            // Synchronize the document state by executing the queued commands, \n            // and return a promise to indicate task completion. \n            return context.sync()\n                .then(function () {\n                    console.log('Inserted a page break after the first content control.');    \n            });\n        }\n    });  \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: breakType
-      description: 必需项。 分隔符的类型。
+      description: 必需。 分隔符的类型。
       type:
       - word.Word.BreakType
     - id: insertLocation
-      description: 必需项。 值可以是开始，End，之前，或之后。
+      description: 必需。 值可以是开始，End，之前，或之后。
       type:
       - Word.InsertLocation
 - uid: word.Word.ContentControl.insertFileFromBase64
@@ -380,7 +381,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需项。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
+      description: 必需。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
       type:
       - Word.InsertLocation
 - uid: word.Word.ContentControl.insertHtml
@@ -406,7 +407,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需项。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
+      description: 必需。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
       type:
       - Word.InsertLocation
 - uid: word.Word.ContentControl.insertInlinePictureFromBase64
@@ -432,7 +433,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需项。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
+      description: 必需。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
       type:
       - Word.InsertLocation
 - uid: word.Word.ContentControl.insertOoxml
@@ -458,7 +459,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需项。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
+      description: 必需。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
       type:
       - Word.InsertLocation
 - uid: word.Word.ContentControl.insertParagraph
@@ -484,7 +485,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需项。 值可以是开始，End，之前，或之后。 早于和 After 不能用于 RichTextTable'，'RichTextTableRow' 和 'RichTextTableCell 的内容控件。
+      description: 必需。 值可以是开始，End，之前，或之后。 早于和 After 不能用于 RichTextTable'，'RichTextTableRow' 和 'RichTextTableCell 的内容控件。
       type:
       - Word.InsertLocation
 - uid: word.Word.ContentControl.insertTable
@@ -514,7 +515,7 @@ items:
       type:
       - number
     - id: insertLocation
-      description: 必需项。 值可以是开始，End，之前，或之后。 早于和 After 不能用于 RichTextTable'，'RichTextTableRow' 和 'RichTextTableCell 的内容控件。
+      description: 必需。 值可以是开始，End，之前，或之后。 早于和 After 不能用于 RichTextTable'，'RichTextTableRow' 和 'RichTextTableCell 的内容控件。
       type:
       - Word.InsertLocation
     - id: values
@@ -544,7 +545,7 @@ items:
       type:
       - string
     - id: insertLocation
-      description: 必需项。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
+      description: 必需。 值可以是 Replace、 启动或结束。 替换不能用于 RichTextTable' 和 'RichTextTableRow 的内容控件。
       type:
       - Word.InsertLocation
 - uid: word.Word.ContentControl.lists
@@ -808,6 +809,74 @@ items:
       description: 可选。选择模式可以为“Select”、“Start”或“End”。“Select”为默认值。
       type:
       - Word.SelectionMode
+- uid: word.Word.ContentControl.set
+  summary: 在同一时间设置对象的多个的属性。 您可以传递具有的相应属性的普通对象或相同类型的另一个 API 对象。
+  remarks: >-
+    此方法具有以下其他签名：
+
+
+    `set(properties: Word.ContentControl): void`
+
+    #### <a name="examples"></a>示例
+
+
+    ```typescript
+
+    // Adds title and colors to odd and even content controls and changes their appearance.
+
+    await Word.run(async (context) => {
+        // Gets the complete sentence  (as range) associated with the insertion point.
+        let evenContentControls = context.document.contentControls.getByTag("even");
+        let oddContentControls = context.document.contentControls.getByTag("odd");
+        evenContentControls.load("color,title,appearance");
+        oddContentControls.load("color,title,appearance");
+
+        await context.sync();
+
+        for (let i = 0; i < evenContentControls.items.length; i++) {
+            // Change a few properties and append a paragraph
+            evenContentControls.items[i].set({
+                color: 'red',
+                title: 'Odd ContentControl #' + (i + 1),
+                appearance: 'Tags'
+            });
+            evenContentControls.items[i].insertParagraph("This is an odd content control", "End");
+        }
+
+        for (let j = 0; j < oddContentControls.items.length; j++) {
+            // Change a few properties and append a paragraph
+            oddContentControls.items[j].set({
+                color: 'green',
+                title: 'Even ContentControl #' + (j + 1),
+                appearance: 'Tags'
+            });
+            oddContentControls.items[j].insertHtml("This is an <b>even</b> content control", "End");
+        }
+
+        await context.sync();
+    });
+
+    ```
+  name: set(properties, options)
+  fullName: set
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Interfaces.ContentControlUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: 具有对属性的对象调用 isomorphically 结构化的属性的 JavaScript 对象。
+      type:
+      - Interfaces.ContentControlUpdateData
+    - id: options
+      description: 提供一个选项以取消显示错误，如果属性对象会尝试设置任何只读属性。
+      type:
+      - office.OfficeExtension.UpdateOptions
 - uid: word.Word.ContentControl.split
   summary: >-
     使用分隔符将内容控件拆分为各个子范围。

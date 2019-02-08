@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 9a863fd73f7a3a8af89c759bfa08fb85bf339025
-ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
+ms.openlocfilehash: 62bd52295a45f78d2d4e7cdf23fb88b6376419bf
+ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "29385383"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "29769846"
 items:
 - uid: word.Word.Body
   summary: >-
@@ -49,6 +49,7 @@ items:
   - word.Word.Body.parentSectionOrNullObject
   - word.Word.Body.search
   - word.Word.Body.select
+  - word.Word.Body.set
   - word.Word.Body.style
   - word.Word.Body.styleBuiltIn
   - word.Word.Body.tables
@@ -675,7 +676,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n\n    // Create a proxy object for the document body.\n    var body = context.document.body;\n\n    // Queue a commmand to search the document.\n    var searchResults = context.document.body.search('video', {matchCase: false});\n\n    // Queue a commmand to load the results.\n    context.load(searchResults, 'text, font');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        var results = 'Found count: ' + searchResults.items.length +\n                      '; we highlighted the results.';\n\n        // Queue a command to change the font for each found item.\n        for (var i = 0; i < searchResults.items.length; i++) {\n          searchResults.items[i].font.color = '#FF0000'    // Change color to Red\n          searchResults.items[i].font.highlightColor = '#FFFF00';\n          searchResults.items[i].font.bold = true;\n        }\n\n        // Synchronize the document state by executing the queued commands,\n        // and return a promise to indicate task completion.\n        return context.sync().then(function () {\n            console.log(results);\n        });\n    });\n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n\n// The Word-Add-in-DocumentAssembly sample provides another example of how to search a document.\n// https://github.com/OfficeDev/Word-Add-in-DocumentAssembly\n```\n```typescript\nawait Word.run(async (context) => {\n    let results = context.document.body.search(\"Online\");\n    results.load(\"font/highlightColor\");\n\n    await context.sync();\n\n    // Let's traverse the search results... and highlight...\n    for (let i = 0; i < results.items.length; i++) {\n        results.items[i].font.highlightColor = \"yellow\";\n    }\n\n    await context.sync();\n});\n```\n```typescript\nawait Word.run(async (context) => {\n    // Check out how wildcard expression are built, also use the second parameter of the search method to include search modes (i.e. we are using wildcards).\n    let results = context.document.body.search(\"$*.[0-9][0-9]\", { matchWildcards: true });\n    results.load(\"font/highlightColor, font/color\");\n\n    await context.sync();\n\n    // Let's traverse the search results... and highlight...\n    for (let i = 0; i < results.items.length; i++) {\n        results.items[i].font.highlightColor = \"red\";\n        results.items[i].font.color = \"white\";\n    }\n\n    await context.sync();\n});\n```"
     parameters:
     - id: searchText
-      description: 必需项。 搜索文本。 最多可包含 255 个字符。
+      description: 必需。 搜索文本。 最多可包含 255 个字符。
       type:
       - string
     - id: searchOptions
@@ -713,6 +714,33 @@ items:
       description: 可选。选择模式可以为“Select”、“Start”或“End”。“Select”为默认值。
       type:
       - Word.SelectionMode
+- uid: word.Word.Body.set
+  summary: 在同一时间设置对象的多个的属性。 您可以传递具有的相应属性的普通对象或相同类型的另一个 API 对象。
+  remarks: >-
+    此方法具有以下其他签名：
+
+
+    `set(properties: Word.Body): void`
+  name: set(properties, options)
+  fullName: set
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Interfaces.BodyUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: 具有对属性的对象调用 isomorphically 结构化的属性的 JavaScript 对象。
+      type:
+      - Interfaces.BodyUpdateData
+    - id: options
+      description: 提供一个选项以取消显示错误，如果属性对象会尝试设置任何只读属性。
+      type:
+      - office.OfficeExtension.UpdateOptions
 - uid: word.Word.Body.style
   summary: >-
     获取或设置 body 的样式名称。请对自定义样式和本地化样式名称使用此属性。若要使用可以在区域设置之间移植的嵌入样式，请参阅“styleBuiltIn”属性。

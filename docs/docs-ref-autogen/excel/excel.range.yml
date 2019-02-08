@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 74153cacd97875662360a2075d8294c133481695
-ms.sourcegitcommit: a68606173477c7fb4069880eea941766c7d8c50d
+ms.openlocfilehash: e75a1a6dbfd743a5873588cb7c2a24fa48339bf8
+ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/01/2019
-ms.locfileid: "29705778"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "29769888"
 items:
 - uid: excel.Excel.Range
   summary: >-
@@ -73,6 +73,7 @@ items:
   - excel.Excel.Range.rowHidden
   - excel.Excel.Range.rowIndex
   - excel.Excel.Range.select
+  - excel.Excel.Range.set
   - excel.Excel.Range.showCard
   - excel.Excel.Range.sort
   - excel.Excel.Range.style
@@ -1056,6 +1057,29 @@ items:
       type:
       - void
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) {\n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"F5:F10\"; \n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.select();\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.Range.set
+  summary: 在同一时间设置对象的多个的属性。 您可以传递具有的相应属性的普通对象或相同类型的另一个 API 对象。
+  remarks: "此方法具有以下其他签名：\n\n`set(properties: Excel.Range): void`\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    const range = sheet.getRange(\"B2:E2\");\n    range.set({\n        format: {\n            fill: {\n                color: \"#4472C4\"\n            },\n            font: {\n                name: \"Verdana\",\n                color: \"white\"\n            }\n        }\n    })\n    range.format.autofitColumns();\n    await context.sync();\n});\n```\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    const sourceRange = sheet.getRange(\"B2:E2\");\n    sourceRange.load(\"format/fill/color, format/font/name, format/font/color\");\n    await context.sync();\n\n    // Set properties based on the loaded and synced \n    // source range.\n    const targetRange = sheet.getRange(\"B7:E7\");\n    targetRange.set(sourceRange); \n    targetRange.format.autofitColumns();\n    await context.sync();\n});\n```"
+  name: set(properties, options)
+  fullName: set
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Interfaces.RangeUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: 具有对属性的对象调用 isomorphically 结构化的属性的 JavaScript 对象。
+      type:
+      - Interfaces.RangeUpdateData
+    - id: options
+      description: 提供一个选项以取消显示错误，如果属性对象会尝试设置任何只读属性。
+      type:
+      - office.OfficeExtension.UpdateOptions
 - uid: excel.Excel.Range.showCard
   summary: >-
     显示活动单元格的卡片（如果该单元格具有富值内容）。
