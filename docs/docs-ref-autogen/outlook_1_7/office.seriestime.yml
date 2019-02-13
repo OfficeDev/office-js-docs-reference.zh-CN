@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: f3180f94a2098297bc5694d6f52944be2c98ab09
-ms.sourcegitcommit: b05ee546d9dfbc914c8d1c594d9b206b04780bbc
+ms.openlocfilehash: bb9cd8a7a0e8710615a6b0cd0d9e18cea295d272
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/22/2018
-ms.locfileid: "26647817"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29981365"
 items:
 - uid: Outlook_1_7.Office.SeriesTime
   summary: >-
@@ -31,8 +31,11 @@ items:
   - Outlook_1_7.Office.SeriesTime.getStartTime
   - Outlook_1_7.Office.SeriesTime.setDuration
   - Outlook_1_7.Office.SeriesTime.setEndDate
+  - Outlook_1_7.Office.SeriesTime.setEndDate_1
   - Outlook_1_7.Office.SeriesTime.setStartDate
+  - Outlook_1_7.Office.SeriesTime.setStartDate_1
   - Outlook_1_7.Office.SeriesTime.setStartTime
+  - Outlook_1_7.Office.SeriesTime.setStartTime_1
 - uid: Outlook_1_7.Office.SeriesTime.getDuration
   summary: >-
     定期约会系列中获取常用实例的分钟的持续时间。
@@ -44,8 +47,26 @@ items:
 
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    // This example gets the duration of a usual instance in a recurring appointment series.
+
+    Office.context.mailbox.item.recurrence.getAsync(callback);
+
+
+    function callback(asyncResult) {
+        var context = asyncResult.context;
+        var recurrence = asyncResult.value;
+        var duration = recurrence.seriesTime.getDuration();
+    }
+
+    ```
   name: getDuration()
-  fullName: getDuration
+  fullName: getDuration()
   langs:
   - typeScript
   type: method
@@ -66,8 +87,26 @@ items:
 
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    // This example gets the end date of a recurring appointment series.
+
+    Office.context.mailbox.item.recurrence.getAsync(callback);
+
+
+    function callback(asyncResult) {
+        var context = asyncResult.context;
+        var recurrence = asyncResult.value;
+        var endDate = recurrence.seriesTime.getEndDate();
+    }
+
+    ```
   name: getEndDate()
-  fullName: getEndDate
+  fullName: getEndDate()
   langs:
   - typeScript
   type: method
@@ -88,8 +127,26 @@ items:
 
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    // This example gets the end time of a usual instance in a recurring appointment series.
+
+    Office.context.mailbox.item.recurrence.getAsync(callback);
+
+
+    function callback(asyncResult) {
+        var context = asyncResult.context;
+        var recurrence = asyncResult.value;
+        var endDate = recurrence.seriesTime.getEndTime();
+    }
+
+    ```
   name: getEndTime()
-  fullName: getEndTime
+  fullName: getEndTime()
   langs:
   - typeScript
   type: method
@@ -110,8 +167,26 @@ items:
 
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    // This example gets the start date of a recurring appointment series.
+
+    Office.context.mailbox.item.recurrence.getAsync(callback);
+
+
+    function callback(asyncResult) {
+        var context = asyncResult.context;
+        var recurrence = asyncResult.value;
+        var endDate = recurrence.seriesTime.getStartDate();
+    }
+
+    ```
   name: getStartDate()
-  fullName: getStartDate
+  fullName: getStartDate()
   langs:
   - typeScript
   type: method
@@ -132,8 +207,21 @@ items:
 
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    // This example gets the start time of a usual instance in a recurring appointment series.
+
+    var seriesTimeObject = new SeriesTime();
+
+    seriesTimeObject.setDuration(120);
+
+    ```
   name: getStartTime()
-  fullName: getStartTime
+  fullName: getStartTime()
   langs:
   - typeScript
   type: method
@@ -154,8 +242,26 @@ items:
 
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    // This example sets the duration of each appointment in a recurring series to 2 hours.
+
+    Office.context.mailbox.item.recurrence.getAsync(callback);
+
+
+    function callback(asyncResult) {
+        var context = asyncResult.context;
+        var recurrence = asyncResult.value;
+        var endDate = recurrence.seriesTime.getStartTime();
+    }
+
+    ```
   name: setDuration(minutes)
-  fullName: setDuration
+  fullName: setDuration(minutes)
   langs:
   - typeScript
   type: method
@@ -190,8 +296,21 @@ items:
 
 
     `setEndDate(date: string): void;`(其中日期是定期约会系列中的[ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)日期格式表示的结束日期:"YYYY-月-日")。
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // This example sets the end date of a recurring appointment series to November 2, 2017.
+
+    var seriesTimeObject = new SeriesTime();
+
+    seriesTimeObject.setEndDate(2017, 10, 2);
+
+    ```
   name: setEndDate(year, month, day)
-  fullName: setEndDate
+  fullName: setEndDate(year, month, day)
   langs:
   - typeScript
   type: method
@@ -214,6 +333,49 @@ items:
       description: 结束日期的日期值。
       type:
       - number
+- uid: Outlook_1_7.Office.SeriesTime.setEndDate_1
+  summary: >-
+    设置在定期约会系列的结束日期。
+
+
+    \[[API 集： 邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr>
+
+
+    <tr><td>错误</td><td>无效的日期格式-日期不在可接受的格式。</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    // This example sets the end date of a recurring appointment series to November 2, 2017 using ISO 8601 date standard.
+
+    var seriesTimeObject = new SeriesTime()
+
+    seriesTimeObject.setEndDate("2017-11-02");
+
+    ```
+  name: setEndDate(date)
+  fullName: setEndDate(date)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setEndDate(date: string): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: date
+      description: 定期约会系列中的[ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)日期格式表示的结束日期:"YYYY-月-日"。
+      type:
+      - string
 - uid: Outlook_1_7.Office.SeriesTime.setStartDate
   summary: >-
     设置在定期约会系列的开始日期。
@@ -234,8 +396,21 @@ items:
 
 
     `setStartDate(date: string): void;`(其中日期是开始日期的定期约会系列中的[ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)日期格式表示:"YYYY-月-日")。
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // This example sets the start date of a recurring appointment series to November 2, 2017.
+
+    var seriesTimeObject = new SeriesTime();
+
+    seriesTimeObject.setStartDate(2017, 10, 2);
+
+    ```
   name: setStartDate(year, month, day)
-  fullName: setStartDate
+  fullName: setStartDate(year, month, day)
   langs:
   - typeScript
   type: method
@@ -258,6 +433,49 @@ items:
       description: 开始日期的日期值。
       type:
       - number
+- uid: Outlook_1_7.Office.SeriesTime.setStartDate_1
+  summary: >-
+    设置在定期约会系列的开始日期。
+
+
+    \[[API 集： 邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr>
+
+
+    <tr><td>错误</td><td>无效的日期格式-日期不在可接受的格式。</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    // This example sets the start date of a recurring appointment series to November 2, 2017 using ISO 8601 date standard.
+
+    var seriesTimeObject = new SeriesTime()
+
+    seriesTimeObject.setStartDate("2017-11-02");
+
+    ```
+  name: setStartDate(date)
+  fullName: setStartDate(date)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setStartDate(date:string): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: date
+      description: 开始日期的定期约会系列中的[ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)日期格式表示:"YYYY-月-日"。
+      type:
+      - string
 - uid: Outlook_1_7.Office.SeriesTime.setStartTime
   summary: >-
     设置中无论所在的时区设置定期模式的定期约会系列的所有实例的开始时间 （默认情况下使用项目的时区）。
@@ -278,8 +496,26 @@ items:
 
 
     `setStartTime(time: string): void;`(其中时间是由标准 datetime 字符串格式的所有实例的开始时间:"THH:mm:ss: mmm")。
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // This example sets the start time of each instance of a recurring appointment series to 1:30 PM.
+
+    var seriesTimeObject = new SeriesTime();
+
+    seriesTimeObject.setStartTime(13, 30);
+
+
+    // This example sets the start time of each instance of a recurring appointment series to 11:30 AM.
+
+    seriesTimeObject.setStartTime(11, 30);
+
+    ```
   name: setStartTime(hours, minutes)
-  fullName: setStartTime
+  fullName: setStartTime(hours, minutes)
   langs:
   - typeScript
   type: method
@@ -298,3 +534,46 @@ items:
       description: 分钟的开始时间值。 有效的范围： 0-59。
       type:
       - number
+- uid: Outlook_1_7.Office.SeriesTime.setStartTime_1
+  summary: >-
+    设置中无论所在的时区设置定期模式的定期约会系列的所有实例的开始时间 （默认情况下使用项目的时区）。
+
+
+    \[[API 集： 邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr>
+
+
+    <tr><td>错误</td><td>无效的时间格式-时间不在可接受的格式。</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    // This example sets the start time of each instance of a recurring appointment series to 11:30 PM.
+
+    var seriesTimeObject = new SeriesTime()
+
+    seriesTimeObject.setStartTime("T23:30:00");
+
+    ```
+  name: setStartTime(time)
+  fullName: setStartTime(time)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setStartTime(time: string): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: time
+      description: '由 standard datetime 字符串格式的所有实例的开始时间:"THH:mm:ss: mmm"。'
+      type:
+      - string

@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 23b7483ce952c74d17ee7e8fd2f70b9ad37ed7cc
-ms.sourcegitcommit: b05ee546d9dfbc914c8d1c594d9b206b04780bbc
+ms.openlocfilehash: 666a959eb1a9e6ea60da03b8f347ac1ca2f1998d
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/22/2018
-ms.locfileid: "26647845"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29979489"
 items:
 - uid: office.Office.Settings
   summary: 表示作为名称/值对存储在主机文档中的任务窗格或内容外接程序的自定义设置。
@@ -33,21 +33,28 @@ items:
   package: office
   children:
   - office.Office.Settings.addHandlerAsync
+  - office.Office.Settings.addHandlerAsync_1
   - office.Office.Settings.get
   - office.Office.Settings.refreshAsync
   - office.Office.Settings.remove
   - office.Office.Settings.removeHandlerAsync
+  - office.Office.Settings.removeHandlerAsync_1
   - office.Office.Settings.saveAsync
+  - office.Office.Settings.saveAsync_1
   - office.Office.Settings.set
 - uid: office.Office.Settings.addHandlerAsync
   summary: >-
     添加 settingsChanged 事件的事件处理程序。
 
 
-    重要说明： 外接程序的代码可以注册的加载项运行的任何 Excel 客户端中，但仅当外接程序将加载包含在 Excel Online 中，打开电子表格时，将触发该事件时 settingsChanged 事件的处理程序和编辑多个用户电子表格 （共同创作）。 因此，实际上 settingsChanged 事件只支持 Excel Online 中共同创作方案。
-  remarks: "<table><tr><td>要求集</td><td>设置</td></tr></table>\n\n只要每个事件处理程序函数的名称是唯一的您可以添加为指定的 eventType 的多个事件处理程序。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction addSelectionChangedEventHandler() {\n    Office.context.document.settings.addHandlerAsync(Office.EventType.SettingsChanged, MyHandler);\n}\n\nfunction MyHandler(eventArgs) {\n    write('Event raised: ' + eventArgs.type);\n    doSomethingWithSettings(eventArgs.settings);\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+    **重要说明**： 外接程序的代码可以注册的加载项运行的任何 Excel 客户端中，但仅当外接程序将加载包含在 Excel Online 和多个用户中打开电子表格，将触发该事件时 settingsChanged 事件的处理程序正在编辑电子表格 （共同创作）。 因此，实际上 settingsChanged 事件只支持 Excel Online 中共同创作方案。
+  remarks: >-
+    <table><tr><td>要求集</td><td>设置</td></tr></table>
+
+
+    只要每个事件处理程序函数的名称是唯一的您可以添加为指定的 eventType 的多个事件处理程序。
   name: addHandlerAsync(eventType, handler, options, callback)
-  fullName: addHandlerAsync
+  fullName: addHandlerAsync(eventType, handler, options, callback)
   langs:
   - typeScript
   type: method
@@ -90,11 +97,58 @@ items:
         *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> </td><td> Y </td><td> </td></tr> </table>
       type:
       - '(result: AsyncResult<void>) => void'
+- uid: office.Office.Settings.addHandlerAsync_1
+  summary: >-
+    添加 settingsChanged 事件的事件处理程序。
+
+
+    **重要说明**： 外接程序的代码可以注册的加载项运行的任何 Excel 客户端中，但仅当外接程序将加载包含在 Excel Online 和多个用户中打开电子表格，将触发该事件时 settingsChanged 事件的处理程序正在编辑电子表格 （共同创作）。 因此，实际上 settingsChanged 事件只支持 Excel Online 中共同创作方案。
+  remarks: "<table><tr><td>要求集</td><td>设置</td></tr></table>\n\n只要每个事件处理程序函数的名称是唯一的您可以添加为指定的 eventType 的多个事件处理程序。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction addSelectionChangedEventHandler() {\n    Office.context.document.settings.addHandlerAsync(Office.EventType.SettingsChanged, MyHandler);\n}\n\nfunction MyHandler(eventArgs) {\n    write('Event raised: ' + eventArgs.type);\n    doSomethingWithSettings(eventArgs.settings);\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: addHandlerAsync(eventType, handler, callback)
+  fullName: addHandlerAsync(eventType, handler, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addHandlerAsync(eventType: Office.EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: eventType
+      description: 指定要添加的事件的类型。必需。
+      type:
+      - Office.EventType
+    - id: handler
+      description: 事件处理程序函数添加，其唯一参数是类型[Office.SettingsChangedEventArgs](xref:office.Office.SettingsChangedEventArgs)的<!-- -->。 必需。
+      type:
+      - any
+    - id: callback
+      description: >-
+        可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
+
+
+        <table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回 undefined，因为没有数据或对象来检索添加事件处理程序时。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>
+
+
+        **支持详细信息**
+
+
+        下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+        有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+        *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> </td><td> Y </td><td> </td></tr> </table>
+      type:
+      - '(result: AsyncResult<void>) => void'
 - uid: office.Office.Settings.get
   summary: 检索指定设置。
   remarks: "<table><tr><td>要求集</td><td>设置</td></tr></table>\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction displayMySetting() {\n    write('Current value for mySetting: ' + Office.context.document.settings.get('mySetting'));\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: get(name)
-  fullName: get
+  fullName: get(name)
   langs:
   - typeScript
   type: method
@@ -113,7 +167,7 @@ items:
   summary: 读取文档中保存的所有设置并刷新内容或任务窗格外接程序在内存中保留的这些设置的副本。
   remarks: "<table><tr><td>要求集</td><td>设置</td></tr></table>\n\n此方法可在 Excel、 Word 和 PowerPoint coauthoring 方案时的相同的加载项的多个实例正在对同一文档。 因为每一加载项运行正常加载文档中的设置的内存中副本针对在用户打开它，每个用户所使用的值可以获取同步的设置的时间。每当外接程序的实例调用 Settings.saveAsync 方法以持续的所有文档的该用户的设置，则可以发生此错误。 为 settingsChanged 事件的外接程序从事件处理程序调用 refreshAsync 方法将刷新所有用户的设置值。\n\n在传递给 refreshAsync 方法的回调函数中，您可以使用 AsyncResult 对象的属性返回以下信息。\n\n<table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>访问包含刷新后的值的 Settings 对象。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction refreshSettings() {\n    Office.context.document.settings.refreshAsync(function (asyncResult) {\n        write('Settings refreshed with status: ' + asyncResult.status);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: refreshAsync(callback)
-  fullName: refreshAsync
+  fullName: refreshAsync(callback)
   langs:
   - typeScript
   type: method
@@ -133,7 +187,7 @@ items:
     移除指定设置。
 
 
-    重要说明： 注意 Settings.remove 方法影响设置属性包的内存中副本。 若要保留在文档中，在调用 Settings.remove 方法后，然后外接程序已关闭，某些点指定的设置的删除操作必须调用 Settings.saveAsync 方法。
+    **重要说明**： 注意 Settings.remove 方法影响设置属性包的内存中副本。 若要保留在文档中，在调用 Settings.remove 方法后，然后外接程序已关闭，某些点指定的设置的删除操作必须调用 Settings.saveAsync 方法。
   remarks: >-
     <table><tr><td>要求集</td><td>设置</td></tr></table>
 
@@ -163,7 +217,7 @@ items:
 
     ```
   name: remove(name)
-  fullName: remove
+  fullName: remove(name)
   langs:
   - typeScript
   type: method
@@ -180,9 +234,31 @@ items:
       - string
 - uid: office.Office.Settings.removeHandlerAsync
   summary: 删除 settingsChanged 事件的事件处理程序。
-  remarks: "<table><tr><td>要求集</td><td>设置</td></tr></table>\n\n如果调用 removeHandlerAsync 方法时省略了可选 handler 参数，则将删除为指定的 eventType 的所有事件处理程序。\n\n当执行您传递给 callback 形参的函数时，它会接收您可以从回调函数的唯一参数访问的 AsyncResult 对象。\n\n在传递给 removeHandlerAsync 方法的回调函数中，您可以使用 AsyncResult 对象的属性返回以下信息。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> </td><td> Y </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction removeSettingsChangedEventHandler() {\n    Office.context.document.settings.removeHandlerAsync(Office.EventType.SettingsChanged, MyHandler);\n}\n\nfunction MyHandler(eventArgs) {\n    write('Event raised: ' + eventArgs.type);\n    doSomethingWithSettings(eventArgs.settings);\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  remarks: >-
+    <table><tr><td>要求集</td><td>设置</td></tr></table>
+
+
+    如果调用 removeHandlerAsync 方法时省略了可选 handler 参数，则将删除为指定的 eventType 的所有事件处理程序。
+
+
+    当执行您传递给 callback 形参的函数时，它会接收您可以从回调函数的唯一参数访问的 AsyncResult 对象。
+
+
+    在传递给 removeHandlerAsync 方法的回调函数中，您可以使用 AsyncResult 对象的属性返回以下信息。
+
+
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> </td><td> Y </td><td> </td></tr> </table>
   name: removeHandlerAsync(eventType, options, callback)
-  fullName: removeHandlerAsync
+  fullName: removeHandlerAsync(eventType, options, callback)
   langs:
   - typeScript
   type: method
@@ -205,11 +281,53 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
       type:
       - '(result: AsyncResult<void>) => void'
+- uid: office.Office.Settings.removeHandlerAsync_1
+  summary: 删除 settingsChanged 事件的事件处理程序。
+  remarks: "<table><tr><td>要求集</td><td>设置</td></tr></table>\n\n如果调用 removeHandlerAsync 方法时省略了可选 handler 参数，则将删除为指定的 eventType 的所有事件处理程序。\n\n当执行您传递给 callback 形参的函数时，它会接收您可以从回调函数的唯一参数访问的 AsyncResult 对象。\n\n在传递给 removeHandlerAsync 方法的回调函数中，您可以使用 AsyncResult 对象的属性返回以下信息。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> </td><td> Y </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction removeSettingsChangedEventHandler() {\n    Office.context.document.settings.removeHandlerAsync(Office.EventType.SettingsChanged, MyHandler);\n}\n\nfunction MyHandler(eventArgs) {\n    write('Event raised: ' + eventArgs.type);\n    doSomethingWithSettings(eventArgs.settings);\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: removeHandlerAsync(eventType, callback)
+  fullName: removeHandlerAsync(eventType, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'removeHandlerAsync(eventType: Office.EventType, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: eventType
+      description: 指定要移除事件的类型。必需。
+      type:
+      - Office.EventType
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
+      type:
+      - '(result: AsyncResult<void>) => void'
 - uid: office.Office.Settings.saveAsync
   summary: 将设置属性包的内存副本保留到文档中。
-  remarks: "外接程序之前保存的所有设置都会在外接程序初始化时加载。因此，在会话的生存期内，你可以只使用 set 和 get 方法来处理设置属性包的内存中副本。如果你希望保留设置以便在下次使用外接程序时使用，请使用 saveAsync 方法。\n\n注意： 这种 saveAsync 方法保留到文档文件内存中设置属性包。 但是，仅当用户 （或自动恢复设置） 将文档保存到文件系统时保存对文档文件本身的更改。 RefreshAsync 方法才有用 coauthoring 方案时相同的加载项的其他实例可能更改设置，并应进行这些更改可用于所有实例中。\n\n<table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回 undefined，因为没有要检索数据或对象。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction persistSettings() {\n    Office.context.document.settings.saveAsync(function (asyncResult) {\n        write('Settings saved with status: ' + asyncResult.status);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  remarks: >-
+    外接程序之前保存的所有设置都会在外接程序初始化时加载。因此，在会话的生存期内，你可以只使用 set 和 get 方法来处理设置属性包的内存中副本。如果你希望保留设置以便在下次使用外接程序时使用，请使用 saveAsync 方法。
+
+
+    **注意**： saveAsync 方法保留到文档文件的内存中设置属性包。 但是，仅当用户 （或自动恢复设置） 将文档保存到文件系统时保存对文档文件本身的更改。 RefreshAsync 方法才有用 coauthoring 方案时相同的加载项的其他实例可能更改设置，并应进行这些更改可用于所有实例中。
+
+
+    <table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回 undefined，因为没有要检索数据或对象。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>
+
+
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
   name: saveAsync(options, callback)
-  fullName: saveAsync
+  fullName: saveAsync(options, callback)
   langs:
   - typeScript
   type: method
@@ -228,12 +346,31 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
       type:
       - '(result: AsyncResult<void>) => void'
+- uid: office.Office.Settings.saveAsync_1
+  summary: 将设置属性包的内存副本保留到文档中。
+  remarks: "外接程序之前保存的所有设置都会在外接程序初始化时加载。因此，在会话的生存期内，你可以只使用 set 和 get 方法来处理设置属性包的内存中副本。如果你希望保留设置以便在下次使用外接程序时使用，请使用 saveAsync 方法。\n\n**注意**： saveAsync 方法保留到文档文件的内存中设置属性包。 但是，仅当用户 （或自动恢复设置） 将文档保存到文件系统时保存对文档文件本身的更改。 RefreshAsync 方法才有用 coauthoring 方案时相同的加载项的其他实例可能更改设置，并应进行这些更改可用于所有实例中。\n\n<table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回 undefined，因为没有要检索数据或对象。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction persistSettings() {\n    Office.context.document.settings.saveAsync(function (asyncResult) {\n        write('Settings saved with status: ' + asyncResult.status);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: saveAsync(callback)
+  fullName: saveAsync(callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'saveAsync(callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
+      type:
+      - '(result: AsyncResult<void>) => void'
 - uid: office.Office.Settings.set
   summary: >-
     设置或创建指定设置。
 
 
-    重要说明： 注意 Settings.set 方法影响设置属性包的内存中副本。 若要确保，添加或更改设置将可供外接程序的下次打开文档时，在某些点之后调用 Settings.set 方法且之前关闭外接程序，必须调用 Settings.saveAsync 方法以持续在文档中的设置。
+    **重要说明**： 注意 Settings.set 方法影响设置属性包的内存中副本。 若要确保，添加或更改设置将可供外接程序的下次打开文档时，在某些点之后调用 Settings.set 方法且之前关闭外接程序，必须调用 Settings.saveAsync 方法以持续在文档中的设置。
   remarks: >-
     <table><tr><td>要求集</td><td>设置</td></tr></table>
 
@@ -263,7 +400,7 @@ items:
 
     ```
   name: set(name, value)
-  fullName: set
+  fullName: set(name, value)
   langs:
   - typeScript
   type: method
