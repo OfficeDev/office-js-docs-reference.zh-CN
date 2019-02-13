@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 0e6e4bfa9ee34faa51252f3d07524d7fd0fefda2
-ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
+ms.openlocfilehash: f1af835bd78cbbe54cec0d73ab8d053d834a1e63
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "28725513"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29979209"
 items:
 - uid: excel.Excel.TableSort
   summary: >-
@@ -22,10 +22,13 @@ items:
   package: excel
   children:
   - excel.Excel.TableSort.apply
+  - excel.Excel.TableSort.apply_1
   - excel.Excel.TableSort.clear
   - excel.Excel.TableSort.context
   - excel.Excel.TableSort.fields
   - excel.Excel.TableSort.load
+  - excel.Excel.TableSort.load_1
+  - excel.Excel.TableSort.load_2
   - excel.Excel.TableSort.matchCase
   - excel.Excel.TableSort.method
   - excel.Excel.TableSort.reapply
@@ -37,7 +40,7 @@ items:
 
     \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: apply(fields, matchCase, method)
-  fullName: apply
+  fullName: apply(fields, matchCase, method)
   langs:
   - typeScript
   type: method
@@ -60,6 +63,36 @@ items:
       description: 可选。 用于中文字符排序方法。
       type:
       - excel.Excel.SortMethod
+- uid: excel.Excel.TableSort.apply_1
+  summary: >-
+    执行排序操作。
+
+
+    \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: apply(fields, matchCase, methodString)
+  fullName: apply(fields, matchCase, methodString)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'apply(fields: Excel.SortField[], matchCase?: boolean, methodString?: "PinYin" | "StrokeCount"): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: fields
+      description: 作为排序依据的条件列表。
+      type:
+      - Excel.SortField[]
+    - id: matchCase
+      description: 可选。是否让大小写对字符串排序产生影响。
+      type:
+      - boolean
+    - id: methodString
+      description: 可选。 用于中文字符排序方法。
+      type:
+      - "\"PinYin\" | \"StrokeCount\""
 - uid: excel.Excel.TableSort.clear
   summary: >-
     清除表上的当前排序。尽管这不能修改表的排序，但它会清除标题按钮的状态。
@@ -67,7 +100,7 @@ items:
 
     \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: clear()
-  fullName: clear
+  fullName: clear()
   langs:
   - typeScript
   type: method
@@ -111,26 +144,65 @@ items:
     除了此签名，此方法具有以下签名：
 
 
+    `load(option?: string | string[]): Excel.TableSort`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。
+
+
     `load(option?: { select?: string; expand?: string; }): Excel.TableSort`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
 
 
     `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TableSort`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.TableSort;'
+    content: 'load(option?: Excel.Interfaces.TableSortLoadOptions): Excel.TableSort;'
     return:
       type:
       - excel.Excel.TableSort
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.TableSortLoadOptions
+- uid: excel.Excel.TableSort.load_1
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.TableSort;'
+    return:
+      type:
+      - excel.Excel.TableSort
+      description: ''
+    parameters:
+    - id: propertyNames
       description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
       type:
       - string | string[]
+- uid: excel.Excel.TableSort.load_2
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.TableSort;'
+    return:
+      type:
+      - excel.Excel.TableSort
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中 propertyNamesAndPaths.select 是一个以逗号分隔的字符串，指定要加载的属性，propertyNamesAndPaths.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.TableSort.matchCase
   summary: >-
     表示最后一次对表进行排序时大小写是否有影响。只读。
@@ -170,7 +242,7 @@ items:
 
     \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: reapply()
-  fullName: reapply
+  fullName: reapply()
   langs:
   - typeScript
   type: method
@@ -183,7 +255,7 @@ items:
 - uid: excel.Excel.TableSort.toJSON
   summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.TableSort 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.TableSortData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

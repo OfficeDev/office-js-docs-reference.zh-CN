@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 20db6a4c07450320c7f9aa69fad122fd309884d4
-ms.sourcegitcommit: b05ee546d9dfbc914c8d1c594d9b206b04780bbc
+ms.openlocfilehash: 658b09427145fef53d4755968df3ca8894c6984c
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/22/2018
-ms.locfileid: "26645185"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29980448"
 items:
 - uid: Outlook_1_5.Office.PhoneNumber
   summary: >-
@@ -20,6 +20,27 @@ items:
 
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>阅读</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    var item = Office.context.mailbox.item;
+
+    // Get an array of strings that represent phone numbers in the current item's body.
+
+    var phoneNumbers = item.getEntitiesByType(Office.MailboxEnums.EntityType.PhoneNumber);
+
+    console.log("There are " + phoneNumbers.length + " phone numbers.")
+
+    phoneNumbers.forEach(function (phoneNumber) {
+        console.log("Phone number: " + JSON.stringify(phoneNumber.phoneString));
+        console.log("Type: " + JSON.stringify(phoneNumber.type));
+        console.log("Source text: " + JSON.stringify(phoneNumber.originalPhoneString));
+    });
+
+    ```
   name: Office.PhoneNumber
   fullName: Office.PhoneNumber
   langs:

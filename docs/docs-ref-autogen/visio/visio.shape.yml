@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 65505e8299d177a83f554c86ebc2926401f4861a
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: b1e9b5c038d95d276dd8bba24bec9bb871147043
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29769762"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29976990"
 items:
 - uid: visio.Visio.Shape
   summary: >-
@@ -26,9 +26,12 @@ items:
   - visio.Visio.Shape.hyperlinks
   - visio.Visio.Shape.id
   - visio.Visio.Shape.load
+  - visio.Visio.Shape.load_1
+  - visio.Visio.Shape.load_2
   - visio.Visio.Shape.name
   - visio.Visio.Shape.select
   - visio.Visio.Shape.set
+  - visio.Visio.Shape.set_1
   - visio.Visio.Shape.shapeDataItems
   - visio.Visio.Shape.subShapes
   - visio.Visio.Shape.text
@@ -57,7 +60,7 @@ items:
 
     \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
   name: getBounds()
-  fullName: getBounds
+  fullName: getBounds()
   langs:
   - typeScript
   type: method
@@ -103,6 +106,9 @@ items:
   summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
   remarks: >-
     除了此签名，此方法具有以下签名：
+
+
+    `load(option?: string | string[]): Visio.Shape`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。
 
 
     `load(option?: { select?: string; expand?: string; }): Visio.Shape`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
@@ -151,21 +157,57 @@ items:
 
     ```
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Visio.Shape;'
+    content: 'load(option?: Visio.Interfaces.ShapeLoadOptions): Visio.Shape;'
     return:
       type:
       - visio.Visio.Shape
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - visio.Visio.Interfaces.ShapeLoadOptions
+- uid: visio.Visio.Shape.load_1
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Visio.Shape;'
+    return:
+      type:
+      - visio.Visio.Shape
+      description: ''
+    parameters:
+    - id: propertyNames
       description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
       type:
       - string | string[]
+- uid: visio.Visio.Shape.load_2
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Visio.Shape;'
+    return:
+      type:
+      - visio.Visio.Shape
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中 propertyNamesAndPaths.select 是一个以逗号分隔的字符串，指定要加载的属性，propertyNamesAndPaths.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: visio.Visio.Shape.name
   summary: >-
     形状的名称。只读。
@@ -206,7 +248,7 @@ items:
 
     `set(properties: Visio.Shape): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -225,6 +267,24 @@ items:
       description: 提供一个选项以取消显示错误，如果属性对象会尝试设置任何只读属性。
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: visio.Visio.Shape.set_1
+  summary: 在基于现有加载对象的同一时间对象上设置多个属性。
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Visio.Shape): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - visio.Visio.Shape
 - uid: visio.Visio.Shape.shapeDataItems
   summary: >-
     返回形状的数据部分。只读。
@@ -275,7 +335,7 @@ items:
       - string
 - uid: visio.Visio.Shape.toJSON
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

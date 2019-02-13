@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: df7f436e878f20213f5017210a23cf421172c8f7
-ms.sourcegitcommit: a68606173477c7fb4069880eea941766c7d8c50d
+ms.openlocfilehash: fd28d2f87afa87c519ea0aab2c3394849149cdcd
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/01/2019
-ms.locfileid: "29704126"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29979409"
 items:
 - uid: Outlook_1_7.Office.From
   summary: >-
@@ -25,6 +25,7 @@ items:
   package: Outlook_1_7
   children:
   - Outlook_1_7.Office.From.getAsync
+  - Outlook_1_7.Office.From.getAsync_1
 - uid: Outlook_1_7.Office.From.getAsync
   summary: >-
     获取消息的值。
@@ -49,7 +50,7 @@ items:
 
     `getAsync(callback?: (result: Office.AsyncResult<EmailAddressDetails>) => void): void;`
   name: getAsync(options, callback)
-  fullName: getAsync
+  fullName: getAsync(options, callback)
   langs:
   - typeScript
   type: method
@@ -63,7 +64,55 @@ items:
     - id: options
       description: 包含一个或多个以下属性的对象文本。 asyncContext： 开发人员可以提供他们希望在回调方法访问任何对象。
       type:
-      - office.Office.AsyncContextOptions
+      - Office.AsyncContextOptions
+    - id: callback
+      description: 该方法完成后，使用一个参数 asyncResult，即 Office.AsyncResult 对象调用中的 callback 参数传递的函数。 `value`属性的结果是的 EmailAddressDetails object 的值，以后的消息。
+      type:
+      - '(result: Office.AsyncResult<EmailAddressDetails>) => void'
+- uid: Outlook_1_7.Office.From.getAsync_1
+  summary: >-
+    获取消息的值。
+
+
+    GetAsync 方法启动异步调用 Exchange 服务器获取值的邮件。
+
+
+    从项的值作为[Office.EmailAddressDetails](xref:Outlook_1_7.Office.EmailAddressDetails) asyncResult.value 属性中提供。
+
+
+    \[[API 集： 邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    Office.context.mailbox.item.from.getAsync(callback);
+
+
+    function callback(asyncResult) {
+        var from = asyncResult.value;
+        console.log("From " + from);
+    }
+
+    ```
+  name: getAsync(callback)
+  fullName: getAsync(callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAsync(callback?: (result: Office.AsyncResult<EmailAddressDetails>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
     - id: callback
       description: 该方法完成后，使用一个参数 asyncResult，即 Office.AsyncResult 对象调用中的 callback 参数传递的函数。 `value`属性的结果是的 EmailAddressDetails object 的值，以后的消息。
       type:

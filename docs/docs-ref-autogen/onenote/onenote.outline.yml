@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: ce7beafa8cc45451065485e031fa1f91100f7307
-ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
+ms.openlocfilehash: f34b697a24062068b10fa266d99ceaa356934e85
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "29384753"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29979902"
 items:
 - uid: onenote.OneNote.Outline
   summary: >-
@@ -29,6 +29,8 @@ items:
   - onenote.OneNote.Outline.id
   - onenote.OneNote.Outline.isTitle
   - onenote.OneNote.Outline.load
+  - onenote.OneNote.Outline.load_1
+  - onenote.OneNote.Outline.load_2
   - onenote.OneNote.Outline.pageContent
   - onenote.OneNote.Outline.paragraphs
   - onenote.OneNote.Outline.toJSON
@@ -41,7 +43,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: appendHtml(html)
-  fullName: appendHtml
+  fullName: appendHtml(html)
   langs:
   - typeScript
   type: method
@@ -63,7 +65,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: appendImage(base64EncodedImage, width, height)
-  fullName: appendImage
+  fullName: appendImage(base64EncodedImage, width, height)
   langs:
   - typeScript
   type: method
@@ -93,7 +95,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: appendRichText(paragraphText)
-  fullName: appendRichText
+  fullName: appendRichText(paragraphText)
   langs:
   - typeScript
   type: method
@@ -115,7 +117,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: appendTable(rowCount, columnCount, values)
-  fullName: appendTable
+  fullName: appendTable(rowCount, columnCount, values)
   langs:
   - typeScript
   type: method
@@ -173,7 +175,7 @@ items:
 
     \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: isTitle()
-  fullName: isTitle
+  fullName: isTitle()
   langs:
   - typeScript
   type: method
@@ -189,26 +191,65 @@ items:
     除了此签名，此方法具有以下签名：
 
 
+    `load(option?: string | string[]): OneNote.Outline`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。
+
+
     `load(option?: { select?: string; expand?: string; }): OneNote.Outline`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
 
 
     `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Outline`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): OneNote.Outline;'
+    content: 'load(option?: OneNote.Interfaces.OutlineLoadOptions): OneNote.Outline;'
     return:
       type:
       - onenote.OneNote.Outline
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - onenote.OneNote.Interfaces.OutlineLoadOptions
+- uid: onenote.OneNote.Outline.load_1
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): OneNote.Outline;'
+    return:
+      type:
+      - onenote.OneNote.Outline
+      description: ''
+    parameters:
+    - id: propertyNames
       description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
       type:
       - string | string[]
+- uid: onenote.OneNote.Outline.load_2
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.Outline;'
+    return:
+      type:
+      - onenote.OneNote.Outline
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中 propertyNamesAndPaths.select 是一个以逗号分隔的字符串，指定要加载的属性，propertyNamesAndPaths.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: onenote.OneNote.Outline.pageContent
   summary: >-
     获取包含边框的 PageContent 对象。此对象定义页面上 Outline 的位置。只读。
@@ -244,7 +285,7 @@ items:
 - uid: onenote.OneNote.Outline.toJSON
   summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 OneNote.Outline 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`OneNote.Interfaces.OutlineData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
@@ -257,7 +298,7 @@ items:
 - uid: onenote.OneNote.Outline.track
   summary: 跟踪自动调整根据周围的文档中的更改的对象。 此呼叫是 context.trackedObjects.add(thisObject) 简写。 如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。
   name: track()
-  fullName: track
+  fullName: track()
   langs:
   - typeScript
   type: method
@@ -270,7 +311,7 @@ items:
 - uid: onenote.OneNote.Outline.untrack
   summary: 发行版与此对象，如果以前跟踪关联的内存。 此呼叫是简写 context.trackedObjects.remove(thisObject)。 具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。 您将需要的内存版本生效前调用"context.sync()"。
   name: untrack()
-  fullName: untrack
+  fullName: untrack()
   langs:
   - typeScript
   type: method

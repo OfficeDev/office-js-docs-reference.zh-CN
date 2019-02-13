@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: b91a95e670d527d261eb6e650c97cfc3d2468bd0
-ms.sourcegitcommit: b05ee546d9dfbc914c8d1c594d9b206b04780bbc
+ms.openlocfilehash: af7a7e2f643fa925c2786c1c667ff4e7dcc86df9
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/22/2018
-ms.locfileid: "26647936"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29973938"
 items:
 - uid: office.Office.Bindings
   summary: 表示外接程序在文档中所具有的绑定。
@@ -16,17 +16,23 @@ items:
   package: office
   children:
   - office.Office.Bindings.addFromNamedItemAsync
+  - office.Office.Bindings.addFromNamedItemAsync_1
   - office.Office.Bindings.addFromPromptAsync
+  - office.Office.Bindings.addFromPromptAsync_1
   - office.Office.Bindings.addFromSelectionAsync
-  - office.Office.Bindings.document
+  - office.Office.Bindings.addFromSelectionAsync_1
   - office.Office.Bindings.getAllAsync
+  - office.Office.Bindings.getAllAsync_1
   - office.Office.Bindings.getByIdAsync
+  - office.Office.Bindings.getByIdAsync_1
   - office.Office.Bindings.releaseByIdAsync
+  - office.Office.Bindings.releaseByIdAsync_1
+  - office.Office.Bindings.document
 - uid: office.Office.Bindings.addFromNamedItemAsync
   summary: 在文档中创建的绑定对命名对象。
-  remarks: "<table><tr><td>要求集</td><td>MatrixBindings, TableBindings, TextBindings</td></tr></table>\n\n对于 Excel，itemName 参数可引用命名的区域或表。\n\n默认情况下，在 Excel 中添加表会为你添加的第一个表分配名称“Table1”，为你添加的第二个表分配名称“Table2”，以此类推。 若要分配的 Excel UI 中的一个表有意义的名称，表名称属性用于表格工具\\|的功能区的设计选项卡。\n\n注意： 在 Excel 中，指定表格作为命名项目时，您必须完全限定该名称以便包括工作表名称，如下表采用以下格式:\"Sheet1 ！Table1\"\n\n对于 Word，itemName 参数引用格式文本内容控件的 Title 属性。 （您不能绑定到内容控件的格式文本内容控件之外）。\n\n默认情况下，内容控件具有分配任何标题值。 若要在 Word UI 中分配有意义的名称，请从功能区的“开发人员”选项卡上的“控件”组中插入一个“格式文本”内容控件，并使用“控件”组中的“属性”命令显示“内容控件属性”对话框。 然后将内容控件的“标题”属性设置为需要从代码中引用的名称。\n\n注意： 在 Word 中，如果有多个格式文本内容控件具有相同的标题属性值 （名称），并尝试绑定到一个这些内容控件 （通过作为 itemName 参数指定其名称） 使用此方法时，该操作将失败。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following example adds a binding to the myRange named item in Excel as a \"matrix\" binding,\n// and assigns the binding's id as myMatrix.\nfunction bindNamedItem() {\n    Office.context.document.bindings.addFromNamedItemAsync(\n        \"myRange\", \"matrix\", {id:'myMatrix'}, function (result) {\n        if (result.status == 'succeeded'){\n            write('Added new binding with type: ' + result.value.type + ' and id: ' + result.value.id);\n            }\n        else\n            write('Error: ' + result.error.message);\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// The following example adds a binding to the Table1 named item in Excel as a \"table\" binding,\n// and assigns the binding's id as myTable.\nfunction bindNamedItem() {\n    Office.context.document.bindings.addFromNamedItemAsync(\n        \"Table1\", \"table\", {id:'myTable'}, function (result) {\n        if (result.status == 'succeeded'){\n            write('Added new binding with type: ' + result.value.type + ' and id: ' + result.value.id);\n            }\n        else\n            write('Error: ' + result.error.message);\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// The following example creates a text binding in Word to a rich text content control named \"FirstName\",\n// assigns the id \"firstName\", and then displays that information.\nfunction bindContentControl() {\n    Office.context.document.bindings.addFromNamedItemAsync('FirstName', \n        Office.BindingType.Text, {id:'firstName'},\n        function (result) {\n            if (result.status === Office.AsyncResultStatus.Succeeded) {\n                write('Control bound. Binding.id: '\n                    + result.value.id + ' Binding.type: ' + result.value.type);\n            } else {\n                write('Error:', result.error.message);\n            }\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  remarks: "<table><tr><td>要求集</td><td>MatrixBindings, TableBindings, TextBindings</td></tr></table>\n\n对于 Excel，itemName 参数可引用命名的区域或表。\n\n默认情况下，在 Excel 中添加表会为你添加的第一个表分配名称“Table1”，为你添加的第二个表分配名称“Table2”，以此类推。 若要分配的 Excel UI 中的一个表有意义的名称，表名称属性用于表格工具\\|的功能区的设计选项卡。\n\n**注意**： 在 Excel 中时指定表格作为命名项目时，您必须完全限定该名称以便包括工作表名称，如下表采用以下格式:\"Sheet1 ！Table1\"\n\n对于 Word，itemName 参数引用格式文本内容控件的 Title 属性。 （您不能绑定到内容控件的格式文本内容控件之外）。\n\n默认情况下，内容控件具有分配任何标题值。 若要在 Word UI 中分配有意义的名称，请从功能区的“开发人员”选项卡上的“控件”组中插入一个“格式文本”内容控件，并使用“控件”组中的“属性”命令显示“内容控件属性”对话框。 然后将内容控件的“标题”属性设置为需要从代码中引用的名称。\n\n**注意**： 在 Word 中，如果有多个格式文本内容控件具有相同的标题属性值 （名称），并尝试绑定到一个这些内容控件替换此方法 （通过作为 itemName 参数指定其名称），则操作将失败。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following example adds a binding to the myRange named item in Excel as a \"matrix\" binding,\n// and assigns the binding's id as myMatrix.\nfunction bindNamedItem() {\n    Office.context.document.bindings.addFromNamedItemAsync(\n        \"myRange\", \"matrix\", {id:'myMatrix'}, function (result) {\n        if (result.status == 'succeeded'){\n            write('Added new binding with type: ' + result.value.type + ' and id: ' + result.value.id);\n            }\n        else\n            write('Error: ' + result.error.message);\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// The following example adds a binding to the Table1 named item in Excel as a \"table\" binding,\n// and assigns the binding's id as myTable.\nfunction bindNamedItem() {\n    Office.context.document.bindings.addFromNamedItemAsync(\n        \"Table1\", \"table\", {id:'myTable'}, function (result) {\n        if (result.status == 'succeeded'){\n            write('Added new binding with type: ' + result.value.type + ' and id: ' + result.value.id);\n            }\n        else\n            write('Error: ' + result.error.message);\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// The following example creates a text binding in Word to a rich text content control named \"FirstName\",\n// assigns the id \"firstName\", and then displays that information.\nfunction bindContentControl() {\n    Office.context.document.bindings.addFromNamedItemAsync('FirstName', \n        Office.BindingType.Text, {id:'firstName'},\n        function (result) {\n            if (result.status === Office.AsyncResultStatus.Succeeded) {\n                write('Control bound. Binding.id: '\n                    + result.value.id + ' Binding.type: ' + result.value.type);\n            } else {\n                write('Error:', result.error.message);\n            }\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: addFromNamedItemAsync(itemName, bindingType, options, callback)
-  fullName: addFromNamedItemAsync
+  fullName: addFromNamedItemAsync(itemName, bindingType, options, callback)
   langs:
   - typeScript
   type: method
@@ -53,11 +59,69 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是表示指定的命名的项的绑定对象。
       type:
       - '(result: AsyncResult<Binding>) => void'
+- uid: office.Office.Bindings.addFromNamedItemAsync_1
+  summary: 在文档中创建的绑定对命名对象。
+  remarks: >-
+    <table><tr><td>要求集</td><td>MatrixBindings, TableBindings, TextBindings</td></tr></table>
+
+
+    对于 Excel，itemName 参数可引用命名的区域或表。
+
+
+    默认情况下，在 Excel 中添加表会为你添加的第一个表分配名称“Table1”，为你添加的第二个表分配名称“Table2”，以此类推。 若要分配的 Excel UI 中的一个表有意义的名称，表名称属性用于表格工具\|的功能区的设计选项卡。
+
+
+    **注意**： 在 Excel 中时指定表格作为命名项目时，您必须完全限定该名称以便包括工作表名称，如下表采用以下格式:"Sheet1 ！Table1"
+
+
+    对于 Word，itemName 参数引用格式文本内容控件的 Title 属性。 （您不能绑定到内容控件的格式文本内容控件之外）。
+
+
+    默认情况下，内容控件具有分配任何标题值。 若要在 Word UI 中分配有意义的名称，请从功能区的“开发人员”选项卡上的“控件”组中插入一个“格式文本”内容控件，并使用“控件”组中的“属性”命令显示“内容控件属性”对话框。 然后将内容控件的“标题”属性设置为需要从代码中引用的名称。
+
+
+    **注意**： 在 Word 中，如果有多个格式文本内容控件具有相同的标题属性值 （名称），并尝试绑定到一个这些内容控件替换此方法 （通过作为 itemName 参数指定其名称），则操作将失败。
+
+
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
+  name: addFromNamedItemAsync(itemName, bindingType, callback)
+  fullName: addFromNamedItemAsync(itemName, bindingType, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addFromNamedItemAsync(itemName: string, bindingType: BindingType, callback?: (result: AsyncResult<Binding>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: itemName
+      description: 在文档中的可绑定对象的名称。 例如在 Excel 中的 MyExpenses 表。"
+      type:
+      - string
+    - id: bindingType
+      description: 数据[Office.BindingType](xref:office.Office.BindingType) 。 该方法返回 null，如果所选的对象不能强制为指定的类型。
+      type:
+      - BindingType
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是表示指定的命名的项的绑定对象。
+      type:
+      - '(result: AsyncResult<Binding>) => void'
 - uid: office.Office.Bindings.addFromPromptAsync
   summary: 提示用户对文档进行选择创建的绑定。
   remarks: "<table><tr><td>要求集</td><td>不在集合中</td></tr></table>\n\n将指定类型的绑定对象添加到 Bindings 集合，该集合将用所提供的 id 进行标识。如果无法绑定指定选择，则该方法会失败。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction addBindingFromPrompt() {\n    Office.context.document.bindings.addFromPromptAsync(\n        Office.BindingType.Text, \n        { id: 'MyBinding', promptText: 'Select text to bind to.' },\n        function (asyncResult) {\n            write('Added new binding with type: ' + asyncResult.value.type + ' and id: ' + asyncResult.value.id);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: addFromPromptAsync(bindingType, options, callback)
-  fullName: addFromPromptAsync
+  fullName: addFromPromptAsync(bindingType, options, callback)
   langs:
   - typeScript
   type: method
@@ -80,11 +144,50 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`属性的结果是代表用户指定选区的 Binding 对象。
       type:
       - '(result: AsyncResult<Binding>) => void'
+- uid: office.Office.Bindings.addFromPromptAsync_1
+  summary: 提示用户对文档进行选择创建的绑定。
+  remarks: >-
+    <table><tr><td>要求集</td><td>不在集合中</td></tr></table>
+
+
+    将指定类型的绑定对象添加到 Bindings 集合，该集合将用所提供的 id 进行标识。如果无法绑定指定选择，则该方法会失败。
+
+
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
+  name: addFromPromptAsync(bindingType, callback)
+  fullName: addFromPromptAsync(bindingType, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addFromPromptAsync(bindingType: BindingType, callback?: (result: AsyncResult<Binding>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: bindingType
+      description: 指定要创建的绑定对象的类型。 必需。 如果所选的对象不能强制为指定的类型，返回 null。
+      type:
+      - BindingType
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`属性的结果是代表用户指定选区的 Binding 对象。
+      type:
+      - '(result: AsyncResult<Binding>) => void'
 - uid: office.Office.Bindings.addFromSelectionAsync
   summary: 创建基于用户的当前所选内容的绑定。
   remarks: "<table><tr><td>要求集</td><td>MatrixBindings, TableBindings, TextBindings</td></tr></table>\n\n将指定的类型的绑定对象添加到绑定集合中，将用所提供的 id 标识。\n\n注意在 Excel，如果您调用 Binding.id 为现有绑定中传递的 addFromSelectionAsync 方法，使用该绑定的 Binding.type，并且不能更改其类型指定为 bindingType 参数不同的值。 如果需要使用现有 id 并更改 bindingType，请先调用 Bindings.releaseByIdAsync 方法释放该绑定，然后调用 addFromSelectionAsync 方法重新建立新类型的绑定。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction addBindingFromSelection() {\n    Office.context.document.bindings.addFromSelectionAsync(Office.BindingType.Text, { id: 'MyBinding' }, \n        function (asyncResult) {\n        write('Added new binding with type: ' + asyncResult.value.type + ' and id: ' + asyncResult.value.id);\n        }\n    );\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: addFromSelectionAsync(bindingType, options, callback)
-  fullName: addFromSelectionAsync
+  fullName: addFromSelectionAsync(bindingType, options, callback)
   langs:
   - typeScript
   type: method
@@ -107,34 +210,66 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`属性的结果是代表用户指定选区的 Binding 对象。
       type:
       - '(result: AsyncResult<Binding>) => void'
-- uid: office.Office.Bindings.document
-  summary: 获取一个[Office.Document](xref:office.Office.Document)对象，表示与此组绑定关联的文档。
+- uid: office.Office.Bindings.addFromSelectionAsync_1
+  summary: 创建基于用户的当前所选内容的绑定。
   remarks: >-
+    <table><tr><td>要求集</td><td>MatrixBindings, TableBindings, TextBindings</td></tr></table>
+
+
+    将指定的类型的绑定对象添加到绑定集合中，将用所提供的 id 标识。
+
+
+    注意在 Excel，如果您调用 Binding.id 为现有绑定中传递的 addFromSelectionAsync 方法，使用该绑定的 Binding.type，并且不能更改其类型指定为 bindingType 参数不同的值。 如果需要使用现有 id 并更改 bindingType，请先调用 Bindings.releaseByIdAsync 方法释放该绑定，然后调用 addFromSelectionAsync 方法重新建立新类型的绑定。
+
+
     **支持详细信息**
 
 
-    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此属性。空的单元格表示相应的 Office 主机应用程序不支持此属性。
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
 
 
     有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
 
 
     *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
-  name: document
-  fullName: document
+  name: addFromSelectionAsync(bindingType, callback)
+  fullName: addFromSelectionAsync(bindingType, callback)
   langs:
   - typeScript
-  type: property
+  type: method
   syntax:
-    content: 'document: Document;'
+    content: 'addFromSelectionAsync(bindingType: BindingType, callback?: (result: AsyncResult<Binding>) => void): void;'
     return:
       type:
-      - Document
+      - void
+      description: ''
+    parameters:
+    - id: bindingType
+      description: 指定要创建的绑定对象的类型。 必需。 如果所选的对象不能强制为指定的类型，返回 null。
+      type:
+      - BindingType
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`属性的结果是代表用户指定选区的 Binding 对象。
+      type:
+      - '(result: AsyncResult<Binding>) => void'
 - uid: office.Office.Bindings.getAllAsync
   summary: 获取先前创建的所有绑定。
-  remarks: "<table><tr><td>要求集</td><td>MatrixBindings, TableBindings, TextBindings</td></tr></table>\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction displayAllBindingNames() {\n    Office.context.document.bindings.getAllAsync(function (asyncResult) {\n        var bindingString = '';\n        for (var i in asyncResult.value) {\n            bindingString += asyncResult.value[i].id + '\\n';\n        }\n        write('Existing bindings: ' + bindingString);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  remarks: >-
+    <table><tr><td>要求集</td><td>MatrixBindings, TableBindings, TextBindings</td></tr></table>
+
+
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
   name: getAllAsync(options, callback)
-  fullName: getAllAsync
+  fullName: getAllAsync(options, callback)
   langs:
   - typeScript
   type: method
@@ -153,11 +288,46 @@ items:
       description: 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是一个数组，包含引用的 Bindings 对象创建每个绑定。
       type:
       - '(result: AsyncResult<Binding[]>) => void'
+- uid: office.Office.Bindings.getAllAsync_1
+  summary: 获取先前创建的所有绑定。
+  remarks: "<table><tr><td>要求集</td><td>MatrixBindings, TableBindings, TextBindings</td></tr></table>\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction displayAllBindingNames() {\n    Office.context.document.bindings.getAllAsync(function (asyncResult) {\n        var bindingString = '';\n        for (var i in asyncResult.value) {\n            bindingString += asyncResult.value[i].id + '\\n';\n        }\n        write('Existing bindings: ' + bindingString);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: getAllAsync(callback)
+  fullName: getAllAsync(callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAllAsync(callback?: (result: AsyncResult<Binding[]>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是一个数组，包含引用的 Bindings 对象创建每个绑定。
+      type:
+      - '(result: AsyncResult<Binding[]>) => void'
 - uid: office.Office.Bindings.getByIdAsync
   summary: 检索基于其名称绑定
-  remarks: "<table><tr><td>要求集</td><td>CustomXmlParts, MatrixBindings, TableBindings, TextBindings</td></tr></table>\n\n如果指定的 id 不存在，失败。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction displayBindingType() {\n    Office.context.document.bindings.getByIdAsync('MyBinding', function (asyncResult) {\n        write('Retrieved binding with type: ' + asyncResult.value.type + ' and id: ' + asyncResult.value.id);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  remarks: >-
+    <table><tr><td>要求集</td><td>CustomXmlParts, MatrixBindings, TableBindings, TextBindings</td></tr></table>
+
+
+    如果指定的 id 不存在，失败。
+
+
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
   name: getByIdAsync(id, options, callback)
-  fullName: getByIdAsync
+  fullName: getByIdAsync(id, options, callback)
   langs:
   - typeScript
   type: method
@@ -180,11 +350,50 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`属性的结果是通过调用中的 id 指定的 Binding 对象。
       type:
       - '(result: AsyncResult<Binding>) => void'
+- uid: office.Office.Bindings.getByIdAsync_1
+  summary: 检索基于其名称绑定
+  remarks: "<table><tr><td>要求集</td><td>CustomXmlParts, MatrixBindings, TableBindings, TextBindings</td></tr></table>\n\n如果指定的 id 不存在，失败。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction displayBindingType() {\n    Office.context.document.bindings.getByIdAsync('MyBinding', function (asyncResult) {\n        write('Retrieved binding with type: ' + asyncResult.value.type + ' and id: ' + asyncResult.value.id);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: getByIdAsync(id, callback)
+  fullName: getByIdAsync(id, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getByIdAsync(id: string, callback?: (result: AsyncResult<Binding>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: id
+      description: 指定的 binding 对象的唯一名称。 必需。
+      type:
+      - string
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`属性的结果是通过调用中的 id 指定的 Binding 对象。
+      type:
+      - '(result: AsyncResult<Binding>) => void'
 - uid: office.Office.Bindings.releaseByIdAsync
   summary: 从文档中删除绑定
-  remarks: "<table><tr><td>要求集</td><td>MatrixBindings, TableBindings, TextBindings</td></tr></table>\n\n如果指定的 id 不存在，失败。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOffice.context.document.bindings.releaseByIdAsync(\"MyBinding\", function (asyncResult) { \n    write(\"Released MyBinding!\"); \n}); \n// Function that writes to a div with id='message' on the page. \nfunction write(message){ \n    document.getElementById('message').innerText += message;  \n}\n```"
+  remarks: >-
+    <table><tr><td>要求集</td><td>MatrixBindings, TableBindings, TextBindings</td></tr></table>
+
+
+    如果指定的 id 不存在，失败。
+
+
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> 是 </td><td> 是 </td><td> 是 </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> 是 </td><td> 是 </td><td> 是 </td><td> Y </td></tr> </table>
   name: releaseByIdAsync(id, options, callback)
-  fullName: releaseByIdAsync
+  fullName: releaseByIdAsync(id, options, callback)
   langs:
   - typeScript
   type: method
@@ -207,3 +416,49 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
       type:
       - '(result: AsyncResult<void>) => void'
+- uid: office.Office.Bindings.releaseByIdAsync_1
+  summary: 从文档中删除绑定
+  remarks: "<table><tr><td>要求集</td><td>MatrixBindings, TableBindings, TextBindings</td></tr></table>\n\n如果指定的 id 不存在，失败。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> 是 </td><td> 是 </td><td> 是 </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> 是 </td><td> 是 </td><td> 是 </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOffice.context.document.bindings.releaseByIdAsync(\"MyBinding\", function (asyncResult) { \n    write(\"Released MyBinding!\"); \n}); \n// Function that writes to a div with id='message' on the page. \nfunction write(message){ \n    document.getElementById('message').innerText += message;  \n}\n```"
+  name: releaseByIdAsync(id, callback)
+  fullName: releaseByIdAsync(id, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'releaseByIdAsync(id: string, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: id
+      description: 指定要用于标识绑定对象的唯一名称。必需。
+      type:
+      - string
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: office.Office.Bindings.document
+  summary: 获取一个[Office.Document](xref:office.Office.Document)对象，表示与此组绑定关联的文档。
+  remarks: >-
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此属性。空的单元格表示相应的 Office 主机应用程序不支持此属性。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> 是 </td><td> 是 </td><td> 是 </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> 是 </td><td> 是 </td><td> 是 </td><td> Y </td></tr> </table>
+  name: document
+  fullName: document
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'document: Document;'
+    return:
+      type:
+      - Document

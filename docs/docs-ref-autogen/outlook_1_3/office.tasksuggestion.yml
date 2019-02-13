@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: dfbf93452ccfffb66f127d60e98f84333d6d3a07
-ms.sourcegitcommit: b05ee546d9dfbc914c8d1c594d9b206b04780bbc
+ms.openlocfilehash: 23d6c0ddca524eb59160312251df2626d8239f45
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/22/2018
-ms.locfileid: "26645409"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29980266"
 items:
 - uid: Outlook_1_3.Office.TaskSuggestion
   summary: >-
@@ -20,6 +20,26 @@ items:
 
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>阅读</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    var item = Office.context.mailbox.item;
+
+    // Get an array of strings that represent task suggestions in the current item's body.
+
+    var taskSuggestions = item.getEntitiesByType(Office.MailboxEnums.EntityType.TaskSuggestion);
+
+    console.log("There are " + taskSuggestions.length + " task suggestions.")
+
+    taskSuggestions.forEach(function (taskSuggestion) {
+        console.log("Assignees: " + JSON.stringify(taskSuggestion.assignees));
+        console.log("Task: " + JSON.stringify(taskSuggestion.taskString));
+    });
+
+    ```
   name: Office.TaskSuggestion
   fullName: Office.TaskSuggestion
   langs:

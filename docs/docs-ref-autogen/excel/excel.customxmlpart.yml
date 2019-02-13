@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 76b1a31c920babfd2c2fd2bf8b69a5de07144824
-ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
+ms.openlocfilehash: c7da02361497bb7690e090e954d050a6da862d66
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "28724988"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29974232"
 items:
 - uid: excel.Excel.CustomXmlPart
   summary: >-
@@ -26,6 +26,8 @@ items:
   - excel.Excel.CustomXmlPart.getXml
   - excel.Excel.CustomXmlPart.id
   - excel.Excel.CustomXmlPart.load
+  - excel.Excel.CustomXmlPart.load_1
+  - excel.Excel.CustomXmlPart.load_2
   - excel.Excel.CustomXmlPart.namespaceUri
   - excel.Excel.CustomXmlPart.setXml
   - excel.Excel.CustomXmlPart.toJSON
@@ -48,7 +50,7 @@ items:
 
     \[[API 集： ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: delete()
-  fullName: delete
+  fullName: delete()
   langs:
   - typeScript
   type: method
@@ -65,7 +67,7 @@ items:
 
     \[[API 集： ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getXml()
-  fullName: getXml
+  fullName: getXml()
   langs:
   - typeScript
   type: method
@@ -98,26 +100,65 @@ items:
     除了此签名，此方法具有以下签名：
 
 
+    `load(option?: string | string[]): Excel.CustomXmlPart`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。
+
+
     `load(option?: { select?: string; expand?: string; }): Excel.CustomXmlPart`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
 
 
     `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.CustomXmlPart`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.CustomXmlPart;'
+    content: 'load(option?: Excel.Interfaces.CustomXmlPartLoadOptions): Excel.CustomXmlPart;'
     return:
       type:
       - excel.Excel.CustomXmlPart
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.CustomXmlPartLoadOptions
+- uid: excel.Excel.CustomXmlPart.load_1
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.CustomXmlPart;'
+    return:
+      type:
+      - excel.Excel.CustomXmlPart
+      description: ''
+    parameters:
+    - id: propertyNames
       description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
       type:
       - string | string[]
+- uid: excel.Excel.CustomXmlPart.load_2
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.CustomXmlPart;'
+    return:
+      type:
+      - excel.Excel.CustomXmlPart
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中 propertyNamesAndPaths.select 是一个以逗号分隔的字符串，指定要加载的属性，propertyNamesAndPaths.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.CustomXmlPart.namespaceUri
   summary: >-
     自定义 XML 部件的命名空间 URI。只读。
@@ -141,7 +182,7 @@ items:
 
     \[[API 集： ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: setXml(xml)
-  fullName: setXml
+  fullName: setXml(xml)
   langs:
   - typeScript
   type: method
@@ -159,7 +200,7 @@ items:
 - uid: excel.Excel.CustomXmlPart.toJSON
   summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.CustomXmlPart 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.CustomXmlPartData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

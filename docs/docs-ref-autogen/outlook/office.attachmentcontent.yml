@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 2ffe894c01387dfcc5583185e3d5829e4924bd3c
-ms.sourcegitcommit: a68606173477c7fb4069880eea941766c7d8c50d
+ms.openlocfilehash: 42fe97363078120d9715b3091764fcd5626d2c6e
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/01/2019
-ms.locfileid: "29703055"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29980063"
 items:
 - uid: outlook.Office.AttachmentContent
   summary: >-
@@ -66,3 +66,4 @@ items:
     return:
       type:
       - MailboxEnums.AttachmentContentFormat
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar listOfAttachments = [];\nitem.getAttachmentsAsync(callback);\n\nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var options = {asyncContext: {type: result.value[i].attachmentType}};\n            getAttachmentContentAsync(result.value[i].id, options, handleAttachmentsCallback);\n        }\n    }\n}\n\nfunction handleAttachmentsCallback(result) {\n    // parse string to be a url, an .eml file, a base64-encoded string, or an .icalendar file\n    if (result.format === Office.MailboxEnums.AttachmentContentFormat.Base64) {\n        // handle file attachment\n    } else if (result.format === Office.MailboxEnums.AttachmentContentFormat.Eml) {\n        // handle email item attachment\n    } else if (result.format === Office.MailboxEnums.AttachmentContentFormat.ICalendar) {\n        // handle .icalender attachment\n    } else if (result.format === Office.MailboxEnums.AttachmentContentFormat.Url) {\n        // handle cloud attachment\n    } else {\n        // handle attachment formats that are not supported\n    }\n}\n```"

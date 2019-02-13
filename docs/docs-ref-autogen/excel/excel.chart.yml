@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: dcb1d7a8a8793c9d1e2c4fc6648309b0796660ae
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: 4d30b17694b88916e7a36360f3e631d96242d255
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29769867"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29974595"
 items:
 - uid: excel.Excel.Chart
   summary: >-
@@ -30,11 +30,14 @@ items:
   - excel.Excel.Chart.displayBlanksAs
   - excel.Excel.Chart.format
   - excel.Excel.Chart.getImage
+  - excel.Excel.Chart.getImage_1
   - excel.Excel.Chart.height
   - excel.Excel.Chart.id
   - excel.Excel.Chart.left
   - excel.Excel.Chart.legend
   - excel.Excel.Chart.load
+  - excel.Excel.Chart.load_1
+  - excel.Excel.Chart.load_2
   - excel.Excel.Chart.name
   - excel.Excel.Chart.onActivated
   - excel.Excel.Chart.onDeactivated
@@ -44,7 +47,9 @@ items:
   - excel.Excel.Chart.series
   - excel.Excel.Chart.seriesNameLevel
   - excel.Excel.Chart.set
+  - excel.Excel.Chart.set_1
   - excel.Excel.Chart.setData
+  - excel.Excel.Chart.setData_1
   - excel.Excel.Chart.setPosition
   - excel.Excel.Chart.showAllFieldButtons
   - excel.Excel.Chart.showDataLabelsOverMaximum
@@ -137,7 +142,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: delete()
-  fullName: delete
+  fullName: delete()
   langs:
   - typeScript
   type: method
@@ -186,7 +191,7 @@ items:
 
     \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getImage(width, height, fittingMode)
-  fullName: getImage
+  fullName: getImage(width, height, fittingMode)
   langs:
   - typeScript
   type: method
@@ -209,6 +214,36 @@ items:
       description: （可选）用于扩展到指定为指定的尺寸图表 （如果设置高度和宽度） 的方法。
       type:
       - excel.Excel.ImageFittingMode
+- uid: excel.Excel.Chart.getImage_1
+  summary: >-
+    通过缩放图表以适应指定的尺寸，将图表呈现为 base64 编码的图像。 调整大小的一部分保留纵横比。
+
+
+    \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getImage(width, height, fittingModeString)
+  fullName: getImage(width, height, fittingModeString)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getImage(width?: number, height?: number, fittingModeString?: "Fit" | "FitAndCenter" | "Fill"): OfficeExtension.ClientResult<string>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<string>
+      description: ''
+    parameters:
+    - id: width
+      description: （可选）所需结果图像的宽度。
+      type:
+      - number
+    - id: height
+      description: （可选）所需结果图像的高度。
+      type:
+      - number
+    - id: fittingModeString
+      description: （可选）用于扩展到指定为指定的尺寸图表 （如果设置高度和宽度） 的方法。
+      type:
+      - "\"Fit\" | \"FitAndCenter\" | \"Fill\""
 - uid: excel.Excel.Chart.height
   summary: >-
     表示 chart 对象的高度，以磅值表示。
@@ -275,23 +310,69 @@ items:
       - excel.Excel.ChartLegend
 - uid: excel.Excel.Chart.load
   summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
-  remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): Excel.Chart`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Chart`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Get a chart named \"Chart1\"\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n    chart.load('name');\n    return ctx.sync().then(function() {\n            console.log(chart.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  remarks: >-
+    除了此签名，此方法具有以下签名：
+
+
+    `load(option?: string | string[]): Excel.Chart`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.Chart`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Chart`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.Chart;'
+    content: 'load(option?: Excel.Interfaces.ChartLoadOptions): Excel.Chart;'
     return:
       type:
       - excel.Excel.Chart
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.ChartLoadOptions
+- uid: excel.Excel.Chart.load_1
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.Chart;'
+    return:
+      type:
+      - excel.Excel.Chart
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Get a chart named \"Chart1\"\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n    chart.load('name');\n    return ctx.sync().then(function() {\n            console.log(chart.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: propertyNames
       description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
       type:
       - string | string[]
+- uid: excel.Excel.Chart.load_2
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.Chart;'
+    return:
+      type:
+      - excel.Excel.Chart
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中 propertyNamesAndPaths.select 是一个以逗号分隔的字符串，指定要加载的属性，propertyNamesAndPaths.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.Chart.name
   summary: >-
     表示 chart 对象的名称。
@@ -431,7 +512,7 @@ items:
 
     `set(properties: Excel.Chart): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -450,6 +531,24 @@ items:
       description: 提供一个选项以取消显示错误，如果属性对象会尝试设置任何只读属性。
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: excel.Excel.Chart.set_1
+  summary: 在基于现有加载对象的同一时间对象上设置多个属性。
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Excel.Chart): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - excel.Excel.Chart
 - uid: excel.Excel.Chart.setData
   summary: >-
     重置图表的源数据。
@@ -457,7 +556,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: setData(sourceData, seriesBy)
-  fullName: setData
+  fullName: setData(sourceData, seriesBy)
   langs:
   - typeScript
   type: method
@@ -466,7 +565,7 @@ items:
     return:
       type:
       - void
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Set the sourceData to be \"A1:B4\" and seriesBy to be \"Columns\"\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n    var sourceData = \"A1:B4\";\n    chart.setData(sourceData, \"Columns\");\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: ''
     parameters:
     - id: sourceData
       description: 对应于源数据的 range 对象。
@@ -476,6 +575,32 @@ items:
       description: 指定的方式列或行用作图表上的数据系列。 可以是下列选项之一： 自动 （默认）、 行和列。 有关详细信息，请参阅 Excel.ChartSeriesBy。
       type:
       - excel.Excel.ChartSeriesBy
+- uid: excel.Excel.Chart.setData_1
+  summary: >-
+    重置图表的源数据。
+
+
+    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: setData(sourceData, seriesByString)
+  fullName: setData(sourceData, seriesByString)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setData(sourceData: Range, seriesByString?: "Auto" | "Columns" | "Rows"): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Set the sourceData to be \"A1:B4\" and seriesBy to be \"Columns\"\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n    var sourceData = \"A1:B4\";\n    chart.setData(sourceData, \"Columns\");\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: sourceData
+      description: 对应于源数据的 range 对象。
+      type:
+      - Range
+    - id: seriesByString
+      description: 指定的方式列或行用作图表上的数据系列。 可以是下列选项之一： 自动 （默认）、 行和列。 有关详细信息，请参阅 Excel.ChartSeriesBy。
+      type:
+      - "\"Auto\" | \"Columns\" | \"Rows\""
 - uid: excel.Excel.Chart.setPosition
   summary: >-
     相对于工作表上的单元格放置图表。
@@ -483,7 +608,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: setPosition(startCell, endCell)
-  fullName: setPosition
+  fullName: setPosition(startCell, endCell)
   langs:
   - typeScript
   type: method
@@ -569,7 +694,7 @@ items:
 - uid: excel.Excel.Chart.toJSON
   summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始视图对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.ChartData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
