@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: ab1d05fb69b05906f33c9d72d372e8af192ec2f3
-ms.sourcegitcommit: a68606173477c7fb4069880eea941766c7d8c50d
+ms.openlocfilehash: 66a142ae14b802f81fb8793a6e3012fa517ab786
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/01/2019
-ms.locfileid: "29703475"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29982480"
 items:
 - uid: outlook.Office.RecurrenceTimeZone
   summary: >-
@@ -17,6 +17,45 @@ items:
 
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    // This example gets the Recurrence object of an appointment item.
+
+    Office.context.mailbox.item.recurrence.getAsync(callback);
+
+
+    function callback(asyncResult) {
+        var context = asyncResult.context;
+        var recurrence = asyncResult.value;
+        if (!recurrence) {
+        //if (recurrence == null) {
+            console.log("One-time appointment or meeting");
+        } else {
+            console.log(JSON.stringify(recurrence));
+        }
+    }
+
+
+    // The following example shows the results of the getAsync call that retrieves the recurrence for a series.
+
+    // NOTE: In this example, seriesTimeObject is a placeholder for the JSON representing the
+
+    // recurrence.seriesTime property. You should use the SeriesTime object's methods to get the
+
+    // recurrence date and time properties.
+
+    Recurrence = {
+        "recurrenceType": "weekly",
+        "recurrenceProperties": {"interval": 2, "days": ["mon","thu","fri"], "firstDayOfWeek": "sun"},
+        "seriesTime": {seriesTimeObject},
+        "recurrenceTimeZone": {"name": "Pacific Standard Time", "offset": -480}
+    }
+
+    ```
   name: Office.RecurrenceTimeZone
   fullName: Office.RecurrenceTimeZone
   langs:

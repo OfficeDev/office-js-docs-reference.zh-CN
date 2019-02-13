@@ -1,14 +1,14 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 64635fffca761e9647d4c1ce6cc5eb35b64ec9a4
-ms.sourcegitcommit: a68606173477c7fb4069880eea941766c7d8c50d
+ms.openlocfilehash: ada899b965aca6ae5d08fc061ae7c4aea1418199
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/01/2019
-ms.locfileid: "29704560"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29982627"
 items:
 - uid: office.Office.Document
   summary: 表示与外接程序交互的文档的抽象类。
-  remarks: <table><tr><td>Hosts</td><td>Access、Excel、PowerPoint、Project、Word</td></tr></table>
+  remarks: <table><tr><td>主机</td><td>Access、Excel、PowerPoint、Project、Word</td></tr></table>
   name: Office.Document
   fullName: Office.Document
   langs:
@@ -17,37 +17,75 @@ items:
   package: office
   children:
   - office.Office.Document.addHandlerAsync
+  - office.Office.Document.addHandlerAsync_1
+  - office.Office.Document.getActiveViewAsync
+  - office.Office.Document.getActiveViewAsync_1
+  - office.Office.Document.getFileAsync
+  - office.Office.Document.getFileAsync_1
+  - office.Office.Document.getFilePropertiesAsync
+  - office.Office.Document.getFilePropertiesAsync_1
+  - office.Office.Document.getMaxResourceIndexAsync
+  - office.Office.Document.getMaxResourceIndexAsync_1
+  - office.Office.Document.getMaxTaskIndexAsync
+  - office.Office.Document.getMaxTaskIndexAsync_1
+  - office.Office.Document.getProjectFieldAsync
+  - office.Office.Document.getProjectFieldAsync_1
+  - office.Office.Document.getResourceByIndexAsync
+  - office.Office.Document.getResourceByIndexAsync_1
+  - office.Office.Document.getResourceFieldAsync
+  - office.Office.Document.getResourceFieldAsync_1
+  - office.Office.Document.getSelectedDataAsync
+  - office.Office.Document.getSelectedDataAsync_1
+  - office.Office.Document.getSelectedResourceAsync
+  - office.Office.Document.getSelectedResourceAsync_1
+  - office.Office.Document.getSelectedTaskAsync
+  - office.Office.Document.getSelectedTaskAsync_1
+  - office.Office.Document.getSelectedViewAsync
+  - office.Office.Document.getSelectedViewAsync_1
+  - office.Office.Document.getTaskAsync
+  - office.Office.Document.getTaskAsync_1
+  - office.Office.Document.getTaskByIndexAsync
+  - office.Office.Document.getTaskByIndexAsync_1
+  - office.Office.Document.getTaskFieldAsync
+  - office.Office.Document.getTaskFieldAsync_1
+  - office.Office.Document.getWSSUrlAsync
+  - office.Office.Document.getWSSUrlAsync_1
+  - office.Office.Document.goToByIdAsync
+  - office.Office.Document.goToByIdAsync_1
+  - office.Office.Document.removeHandlerAsync
+  - office.Office.Document.removeHandlerAsync_1
+  - office.Office.Document.setResourceFieldAsync
+  - office.Office.Document.setResourceFieldAsync_1
+  - office.Office.Document.setSelectedDataAsync
+  - office.Office.Document.setSelectedDataAsync_1
+  - office.Office.Document.setTaskFieldAsync
+  - office.Office.Document.setTaskFieldAsync_1
   - office.Office.Document.bindings
   - office.Office.Document.customXmlParts
-  - office.Office.Document.getActiveViewAsync
-  - office.Office.Document.getFileAsync
-  - office.Office.Document.getFilePropertiesAsync
-  - office.Office.Document.getMaxResourceIndexAsync
-  - office.Office.Document.getMaxTaskIndexAsync
-  - office.Office.Document.getProjectFieldAsync
-  - office.Office.Document.getResourceByIndexAsync
-  - office.Office.Document.getResourceFieldAsync
-  - office.Office.Document.getSelectedDataAsync
-  - office.Office.Document.getSelectedResourceAsync
-  - office.Office.Document.getSelectedTaskAsync
-  - office.Office.Document.getSelectedViewAsync
-  - office.Office.Document.getTaskAsync
-  - office.Office.Document.getTaskByIndexAsync
-  - office.Office.Document.getTaskFieldAsync
-  - office.Office.Document.getWSSUrlAsync
-  - office.Office.Document.goToByIdAsync
   - office.Office.Document.mode
-  - office.Office.Document.removeHandlerAsync
-  - office.Office.Document.setResourceFieldAsync
-  - office.Office.Document.setSelectedDataAsync
-  - office.Office.Document.setTaskFieldAsync
   - office.Office.Document.settings
   - office.Office.Document.url
 - uid: office.Office.Document.addHandlerAsync
   summary: 添加 Document 对象事件的事件处理程序。
-  remarks: "<table><tr><td>要求集</td><td>DocumentEvents</td></tr></table>\n\n只要每个事件处理程序函数的名称是唯一的您可以添加为指定的 eventType 的多个事件处理程序。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>OneNote</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following example adds an event handler for the SelectionChanged event of a document\nfunction addSelectionChangedEventHandler() {\n    Office.context.document.addHandlerAsync(Office.EventType.DocumentSelectionChanged, MyHandler);\n}\n\nfunction MyHandler(eventArgs) {\n    write('Event raised: ' + eventArgs.type);\n    doSomethingWithDocument(eventArgs.document);\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```\n```javascript\n// The following code example adds a handler for the ResourceSelectionChanged event.\n// When the resource selection changes in the document, it gets the GUID of the selected resource.\n// The example assumes your add-in has a reference to the jQuery library and that the\n// following page control is defined in the content div in the page body:\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // After the DOM is loaded, add-in-specific code can run.\n            Office.context.document.addHandlerAsync(\n                Office.EventType.ResourceSelectionChanged,\n                getResourceGuid);\n        });\n    };\n\n    // Get the GUID of the selected resource and display it in the add-in.\n    function getResourceGuid() {\n        Office.context.document.getSelectedResourceAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    $('#message').html(result.value);\n                }\n            }\n        );\n    }\n\n    function onError(error) {\n        $('#message').html(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n\n// For a complete code sample that shows how to use a ResourceSelectionChanged\n// event handler in a Project add-in, see \"Create your first task pane add-in\n// for Project 2013 by using a text editor.\"\n// https://docs.microsoft.com/office/dev/add-ins/project/create-your-first-task-pane-add-in-for-project-by-using-a-text-editor\n```\n```javascript\n// The following code example adds a handler for the TaskSelectionChanged event.\n// When the task selection changes in the document, it gets the GUID of the\n// selected task.\n// The example assumes your add-in has a reference to the jQuery library and that\n// the following page control is defined in the content div in the page body:\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // After the DOM is loaded, add-in-specific code can run.\n            Office.context.document.addHandlerAsync(\n                Office.EventType.TaskSelectionChanged,\n                getTaskGuid);\n            getTaskGuid();\n        });\n    };\n\n    // Get the GUID of the selected task and display it in the add-in.\n    function getTaskGuid() {\n        Office.context.document.getSelectedTaskAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    $('#message').html(result.value);\n                }\n            }\n        );\n    }\n\n    function onError(error) {\n        $('#message').html(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n```\n```javascript\n// The following code example adds a handler for the ViewSelectionChanged\n// event. When the active view changes, it gets the name and type of the active view.\n// The example assumes your add-in has a reference to the jQuery library and that\n// the following page control is defined in the content div in the page body:\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // After the DOM is loaded, add-in-specific code can run.\n            Office.context.document.addHandlerAsync(\n                Office.EventType.ViewSelectionChanged,\n                getActiveView);\n            getActiveView();\n        });\n    };\n\n    // Get the name and type of the active view and display it in the add-in.\n    function getActiveView() {\n        Office.context.document.getSelectedViewAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    var output = String.format(\n                        'View name: {0}<br/>View type: {1}',\n                        result.value.viewName, result.value.viewType);\n                    $('#message').html(output);\n                }\n            }\n        );\n    }\n\n    function onError(error) {\n        $('#message').html(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n\n// For an example that shows how to use a ViewSelectionChanged event handler in a\n// Project add-in, see \"Create your first task pane add-in for Project 2013 by\n// using a text editor.\"\n// https://docs.microsoft.com/office/dev/add-ins/project/create-your-first-task-pane-add-in-for-project-by-using-a-text-editor\n```\n```javascript\n// The following code example uses addHandlerAsync to add an event handler for the ViewSelectionChanged event.\n// When the active view changes, the handler checks the view type. It enables a button if the view is a resource\n// view and disables the button if it isn't a resource view. Choosing the button gets the GUID of the selected\n// resource and displays it in the add-in.\n// The example assumes that your add-in has a reference to the jQuery library and that the following page controls\n// are defined in the content div in the page body:\n// <input id=\"get-info\" type=\"button\" value=\"Get info\" disabled=\"disabled\" /><br />\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // After the DOM is loaded, add-in-specific code can run.\n            // Add a ViewSelectionChanged event handler.\n            Office.context.document.addHandlerAsync(\n                Office.EventType.ViewSelectionChanged,\n                getActiveView);\n            $('#get-info').click(getResourceGuid);\n\n            // This example calls the handler on page load to get the active view\n            // of the default page.\n            getActiveView();\n        });\n    };\n\n    // Activate the button based on the active view type of the document.\n    // This is the ViewSelectionChanged event handler.\n    function getActiveView() {\n        Office.context.document.getSelectedViewAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    var viewType = result.value.viewType;\n                    if (viewType == 6 ||   // ResourceForm\n                        viewType == 7 ||   // ResourceSheet\n                        viewType == 8 ||   // ResourceGraph\n                        viewType == 15) {  // ResourceUsage\n                        $('#get-info').removeAttr('disabled');\n                    }\n                    else {\n                        $('#get-info').attr('disabled', 'disabled');\n                    }\n                    var output = String.format(\n                        'View name: {0}<br/>View type: {1}',\n                        result.value.viewName, viewType);\n                    $('#message').html(output);\n                }\n            }\n        );\n    }\n\n    // Get the GUID of the currently selected resource and display it in the add-in.\n    function getResourceGuid() {\n        Office.context.document.getSelectedResourceAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    $('#message').html('Resource GUID: ' + result.value);\n                }\n            }\n        );\n    }\n\n    function onError(error) {\n        $('#message').html(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n\n// For a complete code sample that shows how to use a ViewSelectionChanged event handler in a Project add-in,\n// see \"Create your first task pane add-in for Project by using a text editor.\"\n// https://docs.microsoft.com/office/dev/add-ins/project/create-your-first-task-pane-add-in-for-project-by-using-a-text-editor\n```"
+  remarks: >-
+    <table><tr><td>要求集</td><td>DocumentEvents</td></tr></table>
+
+
+    只要每个事件处理程序函数的名称是唯一的您可以添加为指定的 eventType 的多个事件处理程序。
+
+
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>OneNote</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
   name: addHandlerAsync(eventType, handler, options, callback)
-  fullName: addHandlerAsync
+  fullName: addHandlerAsync(eventType, handler, options, callback)
   langs:
   - typeScript
   type: method
@@ -74,33 +112,73 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
       type:
       - '(result: AsyncResult<void>) => void'
-- uid: office.Office.Document.bindings
-  summary: 获取提供对文档中定义的绑定的访问的对象。
-  remarks: "您不直接在脚本中实例化 Document 对象。 要呼叫的 Document 对象的成员与当前文档或工作表进行交互，请使用`Office.context.document`在脚本中。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此属性。空的单元格表示相应的 Office 主机应用程序不支持此属性。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction displayAllBindings() {\n    Office.context.document.bindings.getAllAsync(function (asyncResult) {\n        var bindingString = '';\n        for (var i in asyncResult.value) {\n            bindingString += asyncResult.value[i].id + '\\n';\n        }\n        write('Existing bindings: ' + bindingString);\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: bindings
-  fullName: bindings
+- uid: office.Office.Document.addHandlerAsync_1
+  summary: 添加 Document 对象事件的事件处理程序。
+  remarks: "<table><tr><td>要求集</td><td>DocumentEvents</td></tr></table>\n\n只要每个事件处理程序函数的名称是唯一的您可以添加为指定的 eventType 的多个事件处理程序。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>OneNote</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following example adds an event handler for the SelectionChanged event of a document\nfunction addSelectionChangedEventHandler() {\n    Office.context.document.addHandlerAsync(Office.EventType.DocumentSelectionChanged, MyHandler);\n}\n\nfunction MyHandler(eventArgs) {\n    write('Event raised: ' + eventArgs.type);\n    doSomethingWithDocument(eventArgs.document);\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```\n```javascript\n// The following code example adds a handler for the ResourceSelectionChanged event.\n// When the resource selection changes in the document, it gets the GUID of the selected resource.\n// The example assumes your add-in has a reference to the jQuery library and that the\n// following page control is defined in the content div in the page body:\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // After the DOM is loaded, add-in-specific code can run.\n            Office.context.document.addHandlerAsync(\n                Office.EventType.ResourceSelectionChanged,\n                getResourceGuid);\n        });\n    };\n\n    // Get the GUID of the selected resource and display it in the add-in.\n    function getResourceGuid() {\n        Office.context.document.getSelectedResourceAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    $('#message').html(result.value);\n                }\n            }\n        );\n    }\n\n    function onError(error) {\n        $('#message').html(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n\n// For a complete code sample that shows how to use a ResourceSelectionChanged\n// event handler in a Project add-in, see \"Create your first task pane add-in\n// for Project 2013 by using a text editor.\"\n// https://docs.microsoft.com/office/dev/add-ins/project/create-your-first-task-pane-add-in-for-project-by-using-a-text-editor\n```\n```javascript\n// The following code example adds a handler for the TaskSelectionChanged event.\n// When the task selection changes in the document, it gets the GUID of the\n// selected task.\n// The example assumes your add-in has a reference to the jQuery library and that\n// the following page control is defined in the content div in the page body:\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // After the DOM is loaded, add-in-specific code can run.\n            Office.context.document.addHandlerAsync(\n                Office.EventType.TaskSelectionChanged,\n                getTaskGuid);\n            getTaskGuid();\n        });\n    };\n\n    // Get the GUID of the selected task and display it in the add-in.\n    function getTaskGuid() {\n        Office.context.document.getSelectedTaskAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    $('#message').html(result.value);\n                }\n            }\n        );\n    }\n\n    function onError(error) {\n        $('#message').html(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n```\n```javascript\n// The following code example adds a handler for the ViewSelectionChanged\n// event. When the active view changes, it gets the name and type of the active view.\n// The example assumes your add-in has a reference to the jQuery library and that\n// the following page control is defined in the content div in the page body:\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // After the DOM is loaded, add-in-specific code can run.\n            Office.context.document.addHandlerAsync(\n                Office.EventType.ViewSelectionChanged,\n                getActiveView);\n            getActiveView();\n        });\n    };\n\n    // Get the name and type of the active view and display it in the add-in.\n    function getActiveView() {\n        Office.context.document.getSelectedViewAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    var output = String.format(\n                        'View name: {0}<br/>View type: {1}',\n                        result.value.viewName, result.value.viewType);\n                    $('#message').html(output);\n                }\n            }\n        );\n    }\n\n    function onError(error) {\n        $('#message').html(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n\n// For an example that shows how to use a ViewSelectionChanged event handler in a\n// Project add-in, see \"Create your first task pane add-in for Project 2013 by\n// using a text editor.\"\n// https://docs.microsoft.com/office/dev/add-ins/project/create-your-first-task-pane-add-in-for-project-by-using-a-text-editor\n```\n```javascript\n// The following code example uses addHandlerAsync to add an event handler for the ViewSelectionChanged event.\n// When the active view changes, the handler checks the view type. It enables a button if the view is a resource\n// view and disables the button if it isn't a resource view. Choosing the button gets the GUID of the selected\n// resource and displays it in the add-in.\n// The example assumes that your add-in has a reference to the jQuery library and that the following page controls\n// are defined in the content div in the page body:\n// <input id=\"get-info\" type=\"button\" value=\"Get info\" disabled=\"disabled\" /><br />\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // After the DOM is loaded, add-in-specific code can run.\n            // Add a ViewSelectionChanged event handler.\n            Office.context.document.addHandlerAsync(\n                Office.EventType.ViewSelectionChanged,\n                getActiveView);\n            $('#get-info').click(getResourceGuid);\n\n            // This example calls the handler on page load to get the active view\n            // of the default page.\n            getActiveView();\n        });\n    };\n\n    // Activate the button based on the active view type of the document.\n    // This is the ViewSelectionChanged event handler.\n    function getActiveView() {\n        Office.context.document.getSelectedViewAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    var viewType = result.value.viewType;\n                    if (viewType == 6 ||   // ResourceForm\n                        viewType == 7 ||   // ResourceSheet\n                        viewType == 8 ||   // ResourceGraph\n                        viewType == 15) {  // ResourceUsage\n                        $('#get-info').removeAttr('disabled');\n                    }\n                    else {\n                        $('#get-info').attr('disabled', 'disabled');\n                    }\n                    var output = String.format(\n                        'View name: {0}<br/>View type: {1}',\n                        result.value.viewName, viewType);\n                    $('#message').html(output);\n                }\n            }\n        );\n    }\n\n    // Get the GUID of the currently selected resource and display it in the add-in.\n    function getResourceGuid() {\n        Office.context.document.getSelectedResourceAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    $('#message').html('Resource GUID: ' + result.value);\n                }\n            }\n        );\n    }\n\n    function onError(error) {\n        $('#message').html(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n\n// For a complete code sample that shows how to use a ViewSelectionChanged event handler in a Project add-in,\n// see \"Create your first task pane add-in for Project by using a text editor.\"\n// https://docs.microsoft.com/office/dev/add-ins/project/create-your-first-task-pane-add-in-for-project-by-using-a-text-editor\n```"
+  name: addHandlerAsync(eventType, handler, callback)
+  fullName: addHandlerAsync(eventType, handler, callback)
   langs:
   - typeScript
-  type: property
+  type: method
   syntax:
-    content: 'bindings: Bindings;'
+    content: 'addHandlerAsync(eventType: Office.EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;'
     return:
       type:
-      - office.Office.Bindings
-- uid: office.Office.Document.customXmlParts
-  summary: 获取文档中表示自定义 XML 部件的对象。
-  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此属性。空的单元格表示相应的 Office 主机应用程序不支持此属性。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction getCustomXmlParts(){\n    Office.context.document.customXmlParts.getByNamespaceAsync('http://tempuri.org', function (asyncResult) {\n        write('Retrieved ' + asyncResult.value.length + ' custom XML parts');\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: customXmlParts
-  fullName: customXmlParts
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'customXmlParts: CustomXmlParts;'
-    return:
+      - void
+      description: ''
+    parameters:
+    - id: eventType
+      description: 对于 Document 对象事件，eventType 参数可以指定为`Office.EventType.Document.SelectionChanged`或`Office.EventType.Document.ActiveViewChanged` <!-- -->，或此枚举的对应文本值。
       type:
-      - office.Office.CustomXmlParts
+      - Office.EventType
+    - id: handler
+      description: 事件处理程序函数添加，其唯一参数是类型[Office.DocumentSelectionChangedEventArgs](xref:office.Office.DocumentSelectionChangedEventArgs)的<!-- -->。 必需。
+      type:
+      - any
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
+      type:
+      - '(result: AsyncResult<void>) => void'
 - uid: office.Office.Document.getActiveViewAsync
+  summary: 返回演示文稿（编辑或读取）的当前视图的状态。
+  remarks: >-
+    <table><tr><td>要求集</td><td>ActiveView</td></tr></table>
+
+
+    当视图更改时可以触发事件。
+
+
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
+  name: getActiveViewAsync(options, callback)
+  fullName: getActiveViewAsync(options, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getActiveViewAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<"edit" | "read">) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是演示文稿的当前视图的状态。 可以在"编辑"读取"，则返回的值。 "编辑"对应于任何可在其中编辑幻灯片，如普通或大纲视图的视图。 "读取"对应于幻灯片放映或阅读视图。
+      type:
+      - '(result: AsyncResult<"edit" | "read">) => void'
+- uid: office.Office.Document.getActiveViewAsync_1
   summary: 返回演示文稿（编辑或读取）的当前视图的状态。
   remarks: >-
     <table><tr><td>要求集</td><td>ActiveView</td></tr></table>
@@ -138,22 +216,18 @@ items:
     }
 
     ```
-  name: getActiveViewAsync(options, callback)
-  fullName: getActiveViewAsync
+  name: getActiveViewAsync(callback)
+  fullName: getActiveViewAsync(callback)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'getActiveViewAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<"edit" | "read">) => void): void;'
+    content: 'getActiveViewAsync(callback?: (result: AsyncResult<"edit" | "read">) => void): void;'
     return:
       type:
       - void
       description: ''
     parameters:
-    - id: options
-      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
-      type:
-      - office.Office.AsyncContextOptions
     - id: callback
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是演示文稿的当前视图的状态。 可以在"编辑"读取"，则返回的值。 "编辑"对应于任何可在其中编辑幻灯片，如普通或大纲视图的视图。 "读取"对应于幻灯片放映或阅读视图。
       type:
@@ -162,7 +236,7 @@ items:
   summary: 以高达 4194304 字节 (4 MB) 的切片形式返回整个文档文件。 对于 iOS 加载项而言，支持高达 65536 (64 KB) 的文件切片。 请注意，如果指定文件切片的大小上限超出允许限制，则会导致一个“内部错误”故障。
   remarks: "<table><tr><td>要求集</td><td>File</td></tr></table>\n\n加载项运行的 Office 主机应用程序之外 Office iOS getFileAsync 方法支持获取文件切块达 4194304 字节 (4 MB)。 对于运行在 Office for iOS 应用中的加载项，getFileAsync 方法支持以切片形式获取至多 65536 (64 KB) 的文件。\n\nFileType 参数可以指定使用[Office.FileType](xref:office.Office.FileType)枚举或文本值。 但的可能值随主机：\n\nExcel for Windows 桌面、 iPad 和 Excel Online:`Office.FileType.Compressed`\n\nExcel for Mac: `Office.FileType.Compressed` <!-- -->，`Office.FileType.Pdf`\n\nPowerPoint 的 Windows 桌面、 Mac、 iPad 和 PowerPoint Online: `Office.FileType.Compressed` <!-- -->，`Office.FileType.Pdf`\n\nWord for Windows 桌面、 Mac、 iPad 和 Word Online: `Office.FileType.Compressed` <!-- -->， `Office.FileType.Pdf` <!-- -->，`Office.FileType.Text`\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following example gets the document in Office Open XML (\"compressed\") format in 65536 bytes (64 KB) slices.\n// Note: The implementation of app.showNotification in this example is from the Visual Studio template for Office Add-ins.\nfunction getDocumentAsCompressed() {\n    Office.context.document.getFileAsync(Office.FileType.Compressed, { sliceSize: 65536 /*64 KB*/ }, \n        function (result) {\n            if (result.status == \"succeeded\") {\n            // If the getFileAsync call succeeded, then\n            // result.value will return a valid File Object.\n            var myFile = result.value;\n            var sliceCount = myFile.sliceCount;\n            var slicesReceived = 0, gotAllSlices = true, docdataSlices = [];\n            app.showNotification(\"File size:\" + myFile.size + \" #Slices: \" + sliceCount);\n\n            // Get the file slices.\n            getSliceAsync(myFile, 0, sliceCount, gotAllSlices, docdataSlices, slicesReceived);\n            }\n            else {\n            app.showNotification(\"Error:\", result.error.message);\n            }\n    });\n}\n\nfunction getSliceAsync(file, nextSlice, sliceCount, gotAllSlices, docdataSlices, slicesReceived) {\n    file.getSliceAsync(nextSlice, function (sliceResult) {\n        if (sliceResult.status == \"succeeded\") {\n            if (!gotAllSlices) { // Failed to get all slices, no need to continue.\n                return;\n            }\n\n            // Got one slice, store it in a temporary array.\n            // (Or you can do something else, such as\n            // send it to a third-party server.)\n            docdataSlices[sliceResult.value.index] = sliceResult.value.data;\n            if (++slicesReceived == sliceCount) {\n              // All slices have been received.\n              file.closeAsync();\n              onGotAllSlices(docdataSlices);\n            }\n            else {\n                getSliceAsync(file, ++nextSlice, sliceCount, gotAllSlices, docdataSlices, slicesReceived);\n            }\n        }\n            else {\n                gotAllSlices = false;\n                file.closeAsync();\n                app.showNotification(\"getSliceAsync Error:\", sliceResult.error.message);\n            }\n    });\n}\n\nfunction onGotAllSlices(docdataSlices) {\n    var docdata = [];\n    for (var i = 0; i < docdataSlices.length; i++) {\n        docdata = docdata.concat(docdataSlices[i]);\n    }\n\n    var fileContent = new String();\n    for (var j = 0; j < docdata.length; j++) {\n        fileContent += String.fromCharCode(docdata[j]);\n    }\n\n    // Now all the file content is stored in 'fileContent' variable,\n    // you can do something with it, such as print, fax...\n}\n\n// The following example gets the document in PDF format.\nOffice.context.document.getFileAsync(Office.FileType.Pdf,\n    function(result) {\n        if (result.status == \"succeeded\") {\n            var myFile = result.value;\n            var sliceCount = myFile.sliceCount;\n            app.showNotification(\"File size:\" + myFile.size + \" #Slices: \" + sliceCount);\n            // Now, you can call getSliceAsync to download the files,\n            // as described in the previous code segment (compressed format).\n            \n            myFile.closeAsync();\n        }\n        else {\n            app.showNotification(\"Error:\", result.error.message);\n        }\n}\n);\n```"
   name: getFileAsync(fileType, options, callback)
-  fullName: getFileAsync
+  fullName: getFileAsync(fileType, options, callback)
   langs:
   - typeScript
   type: method
@@ -185,7 +259,100 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`属性的结果是 File 对象。
       type:
       - '(result: AsyncResult<Office.File>) => void'
+- uid: office.Office.Document.getFileAsync_1
+  summary: 以高达 4194304 字节 (4 MB) 的切片形式返回整个文档文件。 对于 iOS 加载项而言，支持高达 65536 (64 KB) 的文件切片。 请注意，如果指定文件切片的大小上限超出允许限制，则会导致一个“内部错误”故障。
+  remarks: >-
+    <table><tr><td>要求集</td><td>File</td></tr></table>
+
+
+    加载项运行的 Office 主机应用程序之外 Office iOS getFileAsync 方法支持获取文件切块达 4194304 字节 (4 MB)。 对于运行在 Office for iOS 应用中的加载项，getFileAsync 方法支持以切片形式获取至多 65536 (64 KB) 的文件。
+
+
+    FileType 参数可以指定使用[Office.FileType](xref:office.Office.FileType)枚举或文本值。 但的可能值随主机：
+
+
+    Excel for Windows 桌面、 iPad 和 Excel Online:`Office.FileType.Compressed`
+
+
+    Excel for Mac: `Office.FileType.Compressed` <!-- -->，`Office.FileType.Pdf`
+
+
+    PowerPoint 的 Windows 桌面、 Mac、 iPad 和 PowerPoint Online: `Office.FileType.Compressed` <!-- -->，`Office.FileType.Pdf`
+
+
+    Word for Windows 桌面、 Mac、 iPad 和 Word Online: `Office.FileType.Compressed` <!-- -->， `Office.FileType.Pdf` <!-- -->，`Office.FileType.Text`
+
+
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
+  name: getFileAsync(fileType, callback)
+  fullName: getFileAsync(fileType, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getFileAsync(fileType: FileType, callback?: (result: AsyncResult<Office.File>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: fileType
+      description: 将在其中返回文件的格式
+      type:
+      - office.Office.FileType
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`属性的结果是 File 对象。
+      type:
+      - '(result: AsyncResult<Office.File>) => void'
 - uid: office.Office.Document.getFilePropertiesAsync
+  summary: 获取当前文档的文件属性。
+  remarks: >-
+    <table><tr><td>要求集</td><td>不在集合中</td></tr></table>
+
+
+    获取与 url 属性的文件的 URL `asyncResult.value.url` <!-- -->。
+
+
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
+  name: getFilePropertiesAsync(options, callback)
+  fullName: getFilePropertiesAsync(options, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getFilePropertiesAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<Office.FileProperties>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是文件的属性 (在以下位置找到的 url `asyncResult.value.url` <!-- -->)。
+      type:
+      - '(result: AsyncResult<Office.FileProperties>) => void'
+- uid: office.Office.Document.getFilePropertiesAsync_1
   summary: 获取当前文档的文件属性。
   remarks: >-
     <table><tr><td>要求集</td><td>不在集合中</td></tr></table>
@@ -234,22 +401,18 @@ items:
     }
 
     ```
-  name: getFilePropertiesAsync(options, callback)
-  fullName: getFilePropertiesAsync
+  name: getFilePropertiesAsync(callback)
+  fullName: getFilePropertiesAsync(callback)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'getFilePropertiesAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<Office.FileProperties>) => void): void;'
+    content: 'getFilePropertiesAsync(callback?: (result: AsyncResult<Office.FileProperties>) => void): void;'
     return:
       type:
       - void
       description: ''
     parameters:
-    - id: options
-      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
-      type:
-      - office.Office.AsyncContextOptions
     - id: callback
       description: 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是文件的属性 (在以下位置找到的 url `asyncResult.value.url` <!-- -->)。
       type:
@@ -259,10 +422,20 @@ items:
     仅项目文档。 获取当前项目中的最大资源的集合的索引。
 
 
-    重要说明：此 API 仅可在 Windows 桌面上的 Project 2016 中运行。
-  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following code example calls getResourceTaskIndexAsync to get the maximum index of the collection \n// of resources in the current project. Then it uses the returned value and the getResourceByIndexAsync\n// method to get each resource GUID. The example assumes that your add-in has a reference to the \n// jQuery library and that the following page controls are defined in the content div in the page body:\n// <input id=\"get-info\" type=\"button\" value=\"Get info\" /><br />\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n    var resourceGuids = ;\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // After the DOM is loaded, add-in-specific code can run.\n            app.initialize();\n            $('#get-info').click(getResourceInfo);\n        });\n    };\n\n    // Get the maximum resource index, and then get the resource GUIDs.\n    function getResourceInfo() {\n        getMaxResourceIndex().then(\n            function (data) {\n                getResourceGuids(data);\n            }\n        );\n    }\n\n    // Get the maximum index of the resources for the current project.\n    function getMaxResourceIndex() {\n        var defer = $.Deferred();\n        Office.context.document.getMaxResourceIndexAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    defer.resolve(result.value);\n                }\n            }\n        );\n        return defer.promise();\n    }\n\n    // Get each resource GUID, and then display the GUIDs in the add-in.\n    // There is no 0 index for resources, so start with index 1.\n    function getResourceGuids(maxResourceIndex) {\n        var defer = $.Deferred();\n        for (var i = 1; i <= maxResourceIndex; i++) {\n            getResourceGuid(i);\n        }\n        return defer.promise();\n        function getResourceGuid(index) {\n            Office.context.document.getResourceByIndexAsync(index,\n                function (result) {\n                    if (result.status === Office.AsyncResultStatus.Succeeded) {\n                        resourceGuids.push(result.value);\n                        if (index == maxResourceIndex) {\n                            defer.resolve();\n                            $('#message').html(resourceGuids.toString());\n                        }\n                    }\n                    else {\n                        onError(result.error);\n                    }\n                }\n            );\n        }\n    }\n    function onError(error) {\n        app.showNotification(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n```"
+    **重要说明**： 此 API 仅在 Windows 桌面上的项目 2016年中有效。
+  remarks: >-
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>
   name: getMaxResourceIndexAsync(options, callback)
-  fullName: getMaxResourceIndexAsync
+  fullName: getMaxResourceIndexAsync(options, callback)
   langs:
   - typeScript
   type: method
@@ -281,12 +454,72 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是当前项目的资源集合中的最高的索引号。
       type:
       - '(result: AsyncResult<number>) => void'
+- uid: office.Office.Document.getMaxResourceIndexAsync_1
+  summary: >-
+    仅项目文档。 获取当前项目中的最大资源的集合的索引。
+
+
+    **重要说明**： 此 API 仅在 Windows 桌面上的项目 2016年中有效。
+  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following code example calls getResourceTaskIndexAsync to get the maximum index of the collection \n// of resources in the current project. Then it uses the returned value and the getResourceByIndexAsync\n// method to get each resource GUID. The example assumes that your add-in has a reference to the \n// jQuery library and that the following page controls are defined in the content div in the page body:\n// <input id=\"get-info\" type=\"button\" value=\"Get info\" /><br />\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n    var resourceGuids = ;\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // After the DOM is loaded, add-in-specific code can run.\n            app.initialize();\n            $('#get-info').click(getResourceInfo);\n        });\n    };\n\n    // Get the maximum resource index, and then get the resource GUIDs.\n    function getResourceInfo() {\n        getMaxResourceIndex().then(\n            function (data) {\n                getResourceGuids(data);\n            }\n        );\n    }\n\n    // Get the maximum index of the resources for the current project.\n    function getMaxResourceIndex() {\n        var defer = $.Deferred();\n        Office.context.document.getMaxResourceIndexAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    defer.resolve(result.value);\n                }\n            }\n        );\n        return defer.promise();\n    }\n\n    // Get each resource GUID, and then display the GUIDs in the add-in.\n    // There is no 0 index for resources, so start with index 1.\n    function getResourceGuids(maxResourceIndex) {\n        var defer = $.Deferred();\n        for (var i = 1; i <= maxResourceIndex; i++) {\n            getResourceGuid(i);\n        }\n        return defer.promise();\n        function getResourceGuid(index) {\n            Office.context.document.getResourceByIndexAsync(index,\n                function (result) {\n                    if (result.status === Office.AsyncResultStatus.Succeeded) {\n                        resourceGuids.push(result.value);\n                        if (index == maxResourceIndex) {\n                            defer.resolve();\n                            $('#message').html(resourceGuids.toString());\n                        }\n                    }\n                    else {\n                        onError(result.error);\n                    }\n                }\n            );\n        }\n    }\n    function onError(error) {\n        app.showNotification(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n```"
+  name: getMaxResourceIndexAsync(callback)
+  fullName: getMaxResourceIndexAsync(callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getMaxResourceIndexAsync(callback?: (result: AsyncResult<number>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是当前项目的资源集合中的最高的索引号。
+      type:
+      - '(result: AsyncResult<number>) => void'
 - uid: office.Office.Document.getMaxTaskIndexAsync
   summary: >-
     仅项目文档。 获取当前项目中任务的集合的最大索引。
 
 
-    重要说明：此 API 仅可在 Windows 桌面上的 Project 2016 中运行。
+    **重要说明**： 此 API 仅在 Windows 桌面上的项目 2016年中有效。
+  remarks: >-
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>
+  name: getMaxTaskIndexAsync(options, callback)
+  fullName: getMaxTaskIndexAsync(options, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getMaxTaskIndexAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<number>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是当前项目的任务集合中的最高的索引号。
+      type:
+      - '(result: AsyncResult<number>) => void'
+- uid: office.Office.Document.getMaxTaskIndexAsync_1
+  summary: >-
+    仅项目文档。 获取当前项目中任务的集合的最大索引。
+
+
+    **重要说明**： 此 API 仅在 Windows 桌面上的项目 2016年中有效。
   remarks: >-
     **支持详细信息**
 
@@ -388,31 +621,37 @@ items:
     })();
 
     ```
-  name: getMaxTaskIndexAsync(options, callback)
-  fullName: getMaxTaskIndexAsync
+  name: getMaxTaskIndexAsync(callback)
+  fullName: getMaxTaskIndexAsync(callback)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'getMaxTaskIndexAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<number>) => void): void;'
+    content: 'getMaxTaskIndexAsync(callback?: (result: AsyncResult<number>) => void): void;'
     return:
       type:
       - void
       description: ''
     parameters:
-    - id: options
-      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
-      type:
-      - office.Office.AsyncContextOptions
     - id: callback
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是当前项目的任务集合中的最高的索引号。
       type:
       - '(result: AsyncResult<number>) => void'
 - uid: office.Office.Document.getProjectFieldAsync
   summary: 仅项目文档。 获取项目字段 （例如 ProjectWebAccessURL)。
-  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following code example gets the values of three specified fields for the active project, \n// and then displays the values in the add-in.\n// The example calls getProjectFieldAsync recursively, after the previous call returns successfully.\n// It also tracks the calls to determine when all calls are sent.\n// The example assumes your add-in has a reference to the jQuery library and that the \n// following page control is defined in the content div in the page body:\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // Get information for the active project.\n            getProjectInformation();\n        });\n    };\n\n    // Get the specified fields for the active project.\n    function getProjectInformation() {\n        var fields =\n            [Office.ProjectProjectFields.Start, \n             Office.ProjectProjectFields.Finish, \n             Office.ProjectProjectFields.GUID];\n        var fieldValues = ['Start: ', 'Finish: ', 'GUID: '];\n        var index = 0; \n        getField();\n\n        // Get each field, and then display the field values in the add-in.\n        function getField() {\n            if (index == fields.length) {\n                var output = '';\n                for (var i = 0; i < fieldValues.length; i++) {\n                    output += fieldValues[i] + '<br />';\n                }\n                $('#message').html(output);\n            }\n            else {\n                Office.context.document.getProjectFieldAsync(\n                    fields[index],\n                    function (result) {\n\n                        // If the call is successful, get the field value and then get the next field.\n                        if (result.status === Office.AsyncResultStatus.Succeeded) {\n                            fieldValues[index] += result.value.fieldValue;\n                            getField(index++);\n                        }\n                        else {\n                            onError(result.error);\n                        }\n                    }\n                );\n            }\n        }\n    }\n\n    function onError(error) {\n        $('#message').html(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n```"
+  remarks: >-
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>
   name: getProjectFieldAsync(fieldId, options, callback)
-  fullName: getProjectFieldAsync
+  fullName: getProjectFieldAsync(fieldId, options, callback)
   langs:
   - typeScript
   type: method
@@ -435,15 +674,48 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`属性结果包含`fieldValue`属性，它代表指定字段的值。
       type:
       - '(result: AsyncResult<any>) => void'
+- uid: office.Office.Document.getProjectFieldAsync_1
+  summary: 仅项目文档。 获取项目字段 （例如 ProjectWebAccessURL)。
+  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following code example gets the values of three specified fields for the active project, \n// and then displays the values in the add-in.\n// The example calls getProjectFieldAsync recursively, after the previous call returns successfully.\n// It also tracks the calls to determine when all calls are sent.\n// The example assumes your add-in has a reference to the jQuery library and that the \n// following page control is defined in the content div in the page body:\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // Get information for the active project.\n            getProjectInformation();\n        });\n    };\n\n    // Get the specified fields for the active project.\n    function getProjectInformation() {\n        var fields =\n            [Office.ProjectProjectFields.Start, \n             Office.ProjectProjectFields.Finish, \n             Office.ProjectProjectFields.GUID];\n        var fieldValues = ['Start: ', 'Finish: ', 'GUID: '];\n        var index = 0; \n        getField();\n\n        // Get each field, and then display the field values in the add-in.\n        function getField() {\n            if (index == fields.length) {\n                var output = '';\n                for (var i = 0; i < fieldValues.length; i++) {\n                    output += fieldValues[i] + '<br />';\n                }\n                $('#message').html(output);\n            }\n            else {\n                Office.context.document.getProjectFieldAsync(\n                    fields[index],\n                    function (result) {\n\n                        // If the call is successful, get the field value and then get the next field.\n                        if (result.status === Office.AsyncResultStatus.Succeeded) {\n                            fieldValues[index] += result.value.fieldValue;\n                            getField(index++);\n                        }\n                        else {\n                            onError(result.error);\n                        }\n                    }\n                );\n            }\n        }\n    }\n\n    function onError(error) {\n        $('#message').html(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n```"
+  name: getProjectFieldAsync(fieldId, callback)
+  fullName: getProjectFieldAsync(fieldId, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getProjectFieldAsync(fieldId: number, callback?: (result: AsyncResult<any>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: fieldId
+      description: 项目级别的域。
+      type:
+      - number
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`属性结果包含`fieldValue`属性，它代表指定字段的值。
+      type:
+      - '(result: AsyncResult<any>) => void'
 - uid: office.Office.Document.getResourceByIndexAsync
   summary: >-
     仅项目文档。 获取具有指定的索引资源集合中的资源的 GUID。
 
 
-    重要说明：此 API 仅可在 Windows 桌面上的 Project 2016 中运行。
-  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following code example calls getMaxResourceIndexAsync to get the maximum index in the project's resource\n// collection, and then calls getResourceByIndexAsync to get the GUID for each resource.\n// The example assumes that your add-in has a reference to the jQuery library and that the following \n// page controls are defined in the content div in the page body:\n// <input id=\"get-info\" type=\"button\" value=\"Get info\" /><br />\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n    var resourceGuids = ;\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // After the DOM is loaded, add-in-specific code can run.\n            app.initialize();\n            $('#get-info').click(getResourceInfo);\n        });\n    };\n\n    // Get the maximum resource index, and then get the resource GUIDs.\n    function getResourceInfo() {\n        getMaxResourceIndex().then(\n            function (data) {\n                getResourceGuids(data);\n            }\n        );\n    }\n\n    // Get the maximum index of the resources for the current project.\n    function getMaxResourceIndex() {\n        var defer = $.Deferred();\n        Office.context.document.getMaxResourceIndexAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    defer.resolve(result.value);\n                }\n            }\n        );\n        return defer.promise();\n    }\n\n    // Get each resource GUID, and then display the GUIDs in the add-in.\n    // There is no 0 index for resources, so start with index 1.\n    function getResourceGuids(maxResourceIndex) {\n        var defer = $.Deferred();\n        for (var i = 1; i <= maxResourceIndex; i++) {\n            getResourceGuid(i);\n        }\n        return defer.promise();\n        function getResourceGuid(index) {\n            Office.context.document.getResourceByIndexAsync(index,\n                function (result) {\n                    if (result.status === Office.AsyncResultStatus.Succeeded) {\n                        resourceGuids.push(result.value);\n                        if (index == maxResourceIndex) {\n                            defer.resolve();\n                            $('#message').html(resourceGuids.toString());\n                        }\n                    }\n                    else {\n                        onError(result.error);\n                    }\n                }\n            );\n        }\n    }\n    function onError(error) {\n        app.showNotification(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n```"
+    **重要说明**： 此 API 仅在 Windows 桌面上的项目 2016年中有效。
+  remarks: >-
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>
   name: getResourceByIndexAsync(resourceIndex, options, callback)
-  fullName: getResourceByIndexAsync
+  fullName: getResourceByIndexAsync(resourceIndex, options, callback)
   langs:
   - typeScript
   type: method
@@ -466,11 +738,48 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是字符串形式的资源的 GUID。
       type:
       - '(result: AsyncResult<string>) => void'
+- uid: office.Office.Document.getResourceByIndexAsync_1
+  summary: >-
+    仅项目文档。 获取具有指定的索引资源集合中的资源的 GUID。
+
+
+    **重要说明**： 此 API 仅在 Windows 桌面上的项目 2016年中有效。
+  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following code example calls getMaxResourceIndexAsync to get the maximum index in the project's resource\n// collection, and then calls getResourceByIndexAsync to get the GUID for each resource.\n// The example assumes that your add-in has a reference to the jQuery library and that the following \n// page controls are defined in the content div in the page body:\n// <input id=\"get-info\" type=\"button\" value=\"Get info\" /><br />\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n    var resourceGuids = ;\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // After the DOM is loaded, add-in-specific code can run.\n            app.initialize();\n            $('#get-info').click(getResourceInfo);\n        });\n    };\n\n    // Get the maximum resource index, and then get the resource GUIDs.\n    function getResourceInfo() {\n        getMaxResourceIndex().then(\n            function (data) {\n                getResourceGuids(data);\n            }\n        );\n    }\n\n    // Get the maximum index of the resources for the current project.\n    function getMaxResourceIndex() {\n        var defer = $.Deferred();\n        Office.context.document.getMaxResourceIndexAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    defer.resolve(result.value);\n                }\n            }\n        );\n        return defer.promise();\n    }\n\n    // Get each resource GUID, and then display the GUIDs in the add-in.\n    // There is no 0 index for resources, so start with index 1.\n    function getResourceGuids(maxResourceIndex) {\n        var defer = $.Deferred();\n        for (var i = 1; i <= maxResourceIndex; i++) {\n            getResourceGuid(i);\n        }\n        return defer.promise();\n        function getResourceGuid(index) {\n            Office.context.document.getResourceByIndexAsync(index,\n                function (result) {\n                    if (result.status === Office.AsyncResultStatus.Succeeded) {\n                        resourceGuids.push(result.value);\n                        if (index == maxResourceIndex) {\n                            defer.resolve();\n                            $('#message').html(resourceGuids.toString());\n                        }\n                    }\n                    else {\n                        onError(result.error);\n                    }\n                }\n            );\n        }\n    }\n    function onError(error) {\n        app.showNotification(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n```"
+  name: getResourceByIndexAsync(resourceIndex, callback)
+  fullName: getResourceByIndexAsync(resourceIndex, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getResourceByIndexAsync(resourceIndex: number, callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: resourceIndex
+      description: 项目的资源集合中的资源索引。
+      type:
+      - number
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是字符串形式的资源的 GUID。
+      type:
+      - '(result: AsyncResult<string>) => void'
 - uid: office.Office.Document.getResourceFieldAsync
   summary: 仅项目文档。 资源域获得提供的资源 id (Ex.ResourceName)。
-  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following code example calls getSelectedResourceAsync to get the GUID of the resource\n// that's currently selected in a resource view. Then it gets three resource field values by calling \n// getResourceFieldAsync recursively.\n// The example assumes your add-in has a reference to the jQuery library and that the following \n// page controls are defined in the content div in the page body:\n// <input id=\"get-info\" type=\"button\" value=\"Get info\" /><br />\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // After the DOM is loaded, add-in-specific code can run.\n            $('#get-info').click(getResourceInfo);\n        });\n    };\n\n    // Get the GUID of the resource and then get the resource fields.\n    function getResourceInfo() {\n        getResourceGuid().then(\n            function (data) {\n                getResourceFields(data);\n            }\n        );\n    }\n\n    // Get the GUID of the selected resource.\n    function getResourceGuid() {\n        var defer = $.Deferred();\n        Office.context.document.getSelectedResourceAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    defer.resolve(result.value);\n                }\n            }\n        );\n        return defer.promise();\n    }\n\n    // Get the specified fields for the selected resource.\n    function getResourceFields(resourceGuid) {\n        var targetFields =\n            [Office.ProjectResourceFields.Name,\n             Office.ProjectResourceFields.Units, \n             Office.ProjectResourceFields.BaseCalendar];\n        var fieldValues = ['Name: ', 'Units: ', 'Base calendar: '];\n        var index = 0; \n        getField();\n\n        // Get each field, and then display the field values in the add-in.\n        function getField() {\n            if (index == targetFields.length) {\n                var output = '';\n                for (var i = 0; i < fieldValues.length; i++) {\n                    output += fieldValues[i] + '<br />';\n                }\n                $('#message').html(output);\n            }\n\n            // If the call is successful, get the field value and then get the next field.\n            else {\n                Office.context.document.getResourceFieldAsync(\n                    resourceGuid,\n                    targetFields[index],\n                    function (result) {\n                        if (result.status === Office.AsyncResultStatus.Succeeded) {\n                            fieldValues[index] += result.value.fieldValue;\n                            getField(index++);\n                        }\n                        else {\n                            onError(result.error);\n                        }\n                    }\n                );\n            }\n        }\n    }\n\n    function onError(error) {\n        $('#message').html(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n```"
+  remarks: >-
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>
   name: getResourceFieldAsync(resourceId, fieldId, options, callback)
-  fullName: getResourceFieldAsync
+  fullName: getResourceFieldAsync(resourceId, fieldId, options, callback)
   langs:
   - typeScript
   type: method
@@ -497,11 +806,38 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是字符串形式的资源的 GUID。
       type:
       - '(result: AsyncResult<string>) => void'
+- uid: office.Office.Document.getResourceFieldAsync_1
+  summary: 仅项目文档。 资源域获得提供的资源 id (Ex.ResourceName)。
+  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following code example calls getSelectedResourceAsync to get the GUID of the resource\n// that's currently selected in a resource view. Then it gets three resource field values by calling \n// getResourceFieldAsync recursively.\n// The example assumes your add-in has a reference to the jQuery library and that the following \n// page controls are defined in the content div in the page body:\n// <input id=\"get-info\" type=\"button\" value=\"Get info\" /><br />\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // After the DOM is loaded, add-in-specific code can run.\n            $('#get-info').click(getResourceInfo);\n        });\n    };\n\n    // Get the GUID of the resource and then get the resource fields.\n    function getResourceInfo() {\n        getResourceGuid().then(\n            function (data) {\n                getResourceFields(data);\n            }\n        );\n    }\n\n    // Get the GUID of the selected resource.\n    function getResourceGuid() {\n        var defer = $.Deferred();\n        Office.context.document.getSelectedResourceAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    defer.resolve(result.value);\n                }\n            }\n        );\n        return defer.promise();\n    }\n\n    // Get the specified fields for the selected resource.\n    function getResourceFields(resourceGuid) {\n        var targetFields =\n            [Office.ProjectResourceFields.Name,\n             Office.ProjectResourceFields.Units, \n             Office.ProjectResourceFields.BaseCalendar];\n        var fieldValues = ['Name: ', 'Units: ', 'Base calendar: '];\n        var index = 0; \n        getField();\n\n        // Get each field, and then display the field values in the add-in.\n        function getField() {\n            if (index == targetFields.length) {\n                var output = '';\n                for (var i = 0; i < fieldValues.length; i++) {\n                    output += fieldValues[i] + '<br />';\n                }\n                $('#message').html(output);\n            }\n\n            // If the call is successful, get the field value and then get the next field.\n            else {\n                Office.context.document.getResourceFieldAsync(\n                    resourceGuid,\n                    targetFields[index],\n                    function (result) {\n                        if (result.status === Office.AsyncResultStatus.Succeeded) {\n                            fieldValues[index] += result.value.fieldValue;\n                            getField(index++);\n                        }\n                        else {\n                            onError(result.error);\n                        }\n                    }\n                );\n            }\n        }\n    }\n\n    function onError(error) {\n        $('#message').html(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n```"
+  name: getResourceFieldAsync(resourceId, fieldId, callback)
+  fullName: getResourceFieldAsync(resourceId, fieldId, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getResourceFieldAsync(resourceId: string, fieldId: number, callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: resourceId
+      description: 字符串或资源 id 值。
+      type:
+      - string
+    - id: fieldId
+      description: 资源字段。
+      type:
+      - number
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是字符串形式的资源的 GUID。
+      type:
+      - '(result: AsyncResult<string>) => void'
 - uid: office.Office.Document.getSelectedDataAsync
   summary: 读取包含在文档的当前选择中的数据。
   remarks: "<table><tr><td>要求集</td><td>Selection</td></tr></table>\n\n在传递给 getSelectedDataAsync 方法的回调函数，您可以使用 AsyncResult 对象的属性返回以下信息。\n\n<table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回 undefined，因为没有要检索数据或对象。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>\n\n[Office.CoercionType](xref:office.Office.CoercionType)参数的可能值随主机。\n\n<table> <tr> <th>Host</th> <th>支持的 coercionType</th> </tr> <tr> <td>Excel、 PowerPoint、 Project 和 Word</td> <td>`Office.CoercionType.Text`（字符串）</td> </tr> <tr> <td>Excel 和 Word</td> <td>`Office.CoercionType.Matrix`（数组的数组）</td> </tr> <tr> <td>Access、 Excel 和 Word</td> <td>`Office.CoercionType.Table`（TableData 对象）</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint 和 PowerPoint Online</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel、 PowerPoint 和 Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following example uses the getSelectedDataAsync method of the Document object to retrieve the\n// user's current selection as text, and then display it in the add-in's page.\n\n// Display the user's current selection.\nfunction showSelection() {\n    Office.context.document.getSelectedDataAsync(\n        \"text\",                        // coercionType\n        {valueFormat: \"unformatted\",   // valueFormat\n        filterType: \"all\"},            // filterType\n        function (result) {            // callback\n            var dataValue; \n            dataValue = result.value;\n            write('Selected data is: ' + dataValue);\n        });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```\n```javascript\n// To read the value of the current selection, you need to write a callback function that reads the selection.\n// The following example shows how to:\n// 1. Pass an anonymous callback function that reads the value of the current selection\n//    to the callback parameter of the getSelectedDataAsync method.\n// 2. Read the selection as text, unformatted, and not filtered.\n// 3. Display the value on the add-in's page.\nfunction getText() {\n    Office.context.document.getSelectedDataAsync(Office.CoercionType.Text, \n        { valueFormat: \"unformatted\", filterType: \"all\" },\n        function (asyncResult) {\n            var error = asyncResult.error;\n            if (asyncResult.status === Office.AsyncResultStatus.Failed) {\n                write(error.name + \": \" + error.message);\n            } \n            else {\n                // Get selected data.\n                var dataValue = asyncResult.value; \n                write('Selected data is ' + dataValue);\n            }            \n        });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```\n```javascript\n// The following code example gets the values of the selected cells. It uses the optional\n// asyncContext parameter to pass some text to the callback function.\n// The example assumes your add-in has a reference to the jQuery library and that the\n// following page controls are defined in the content div in the page body:\n// <input id=\"get-info\" type=\"button\" value=\"Get info\" /><br />\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // After the DOM is loaded, add-in-specific code can run.\n            $('#get-info').click(getSelectedText);\n        });\n    };\n\n    // Get the text from the selected cells in the document, and display it in the add-in.\n    function getSelectedText() {\n        Office.context.document.getSelectedDataAsync(\n            Office.CoercionType.Text,\n            {asyncContext: 'Some related info'},\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    var output = String.format(\n                        'Selected text: {0}<br/>Passed info: {1}',\n                        result.value, result.asyncContext);\n                    $('#message').html(output);\n                }\n            }\n        );\n    }\n\n    function onError(error) {\n        $('#message').html(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n```"
   name: getSelectedDataAsync(coercionType, options, callback)
-  fullName: getSelectedDataAsync
+  fullName: getSelectedDataAsync(coercionType, options, callback)
   langs:
   - typeScript
   type: method
@@ -524,11 +860,69 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是当前选定内容中的数据。 这返回的数据结构或使用 coercionType 参数指定的格式。 （请参阅备注，了解有关数据强制的详细信息。）
       type:
       - '(result: AsyncResult<T>) => void'
+- uid: office.Office.Document.getSelectedDataAsync_1
+  summary: 读取包含在文档的当前选择中的数据。
+  remarks: >-
+    <table><tr><td>要求集</td><td>Selection</td></tr></table>
+
+
+    在传递给 getSelectedDataAsync 方法的回调函数，您可以使用 AsyncResult 对象的属性返回以下信息。
+
+
+    <table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回 undefined，因为没有要检索数据或对象。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>
+
+
+    [Office.CoercionType](xref:office.Office.CoercionType)参数的可能值随主机。
+
+
+    <table> <tr> <th>Host</th> <th>支持的 coercionType</th> </tr> <tr> <td>Excel、 PowerPoint、 Project 和 Word</td> <td>`Office.CoercionType.Text`（字符串）</td> </tr> <tr> <td>Excel 和 Word</td> <td>`Office.CoercionType.Matrix`（数组的数组）</td> </tr> <tr> <td>Access、 Excel 和 Word</td> <td>`Office.CoercionType.Table`（TableData 对象）</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint 和 PowerPoint Online</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel、 PowerPoint 和 Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
+
+
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
+  name: getSelectedDataAsync(coercionType, callback)
+  fullName: getSelectedDataAsync(coercionType, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getSelectedDataAsync<T>(coercionType: Office.CoercionType, callback?: (result: AsyncResult<T>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: coercionType
+      description: 要返回的数据结构的类型。 请参阅备注部分中的每个主机的受支持的强制类型。
+      type:
+      - office.Office.CoercionType
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是当前选定内容中的数据。 这返回的数据结构或使用 coercionType 参数指定的格式。 （请参阅备注，了解有关数据强制的详细信息。）
+      type:
+      - '(result: AsyncResult<T>) => void'
 - uid: office.Office.Document.getSelectedResourceAsync
   summary: 仅项目文档。 获取当前所选的资源的 id。
-  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following code example calls getSelectedResourceAsync to get the GUID of the resource that's \n// currently selected in a resource view. Then it gets three resource field values by calling \n// getResourceFieldAsync recursively.\n// The example assumes your add-in has a reference to the jQuery library and that the following page controls are\n// defined in the content div in the page body:\n// <input id=\"get-info\" type=\"button\" value=\"Get info\" /><br />\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // After the DOM is loaded, add-in-specific code can run.\n            $('#get-info').click(getResourceInfo);\n        });\n    };\n\n    // Get the GUID of the resource and then get the resource fields.\n    function getResourceInfo() {\n        getResourceGuid().then(\n            function (data) {\n                getResourceFields(data);\n            }\n        );\n    }\n\n    // Get the GUID of the selected resource.\n    function getResourceGuid() {\n        var defer = $.Deferred();\n        Office.context.document.getSelectedResourceAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    defer.resolve(result.value);\n                }\n            }\n        );\n        return defer.promise();\n    }\n\n    // Get the specified fields for the selected resource.\n    function getResourceFields(resourceGuid) {\n        var targetFields =\n            [Office.ProjectResourceFields.Name,\n             Office.ProjectResourceFields.Units, \n             Office.ProjectResourceFields.BaseCalendar];\n        var fieldValues = ['Name: ', 'Units: ', 'Base calendar: '];\n        var index = 0; \n        getField();\n\n        // Get each field, and then display the field values in the add-in.\n        function getField() {\n            if (index == targetFields.length) {\n                var output = '';\n                for (var i = 0; i < fieldValues.length; i++) {\n                    output += fieldValues[i] + '<br />';\n                }\n                $('#message').html(output);\n            }\n\n            // If the call is successful, get the field value and then get the next field.\n            else {\n                Office.context.document.getResourceFieldAsync(\n                    resourceGuid,\n                    targetFields[index],\n                    function (result) {\n                        if (result.status === Office.AsyncResultStatus.Succeeded) {\n                            fieldValues[index] += result.value.fieldValue;\n                            getField(index++);\n                        }\n                        else {\n                            onError(result.error);\n                        }\n                    }\n                );\n            }\n        }\n    }\n\n    function onError(error) {\n        $('#message').html(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n```"
+  remarks: >-
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>
   name: getSelectedResourceAsync(options, callback)
-  fullName: getSelectedResourceAsync
+  fullName: getSelectedResourceAsync(options, callback)
   langs:
   - typeScript
   type: method
@@ -547,7 +941,59 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是字符串形式的资源的 GUID。
       type:
       - '(result: AsyncResult<string>) => void'
+- uid: office.Office.Document.getSelectedResourceAsync_1
+  summary: 仅项目文档。 获取当前所选的资源的 id。
+  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following code example calls getSelectedResourceAsync to get the GUID of the resource that's \n// currently selected in a resource view. Then it gets three resource field values by calling \n// getResourceFieldAsync recursively.\n// The example assumes your add-in has a reference to the jQuery library and that the following page controls are\n// defined in the content div in the page body:\n// <input id=\"get-info\" type=\"button\" value=\"Get info\" /><br />\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // After the DOM is loaded, add-in-specific code can run.\n            $('#get-info').click(getResourceInfo);\n        });\n    };\n\n    // Get the GUID of the resource and then get the resource fields.\n    function getResourceInfo() {\n        getResourceGuid().then(\n            function (data) {\n                getResourceFields(data);\n            }\n        );\n    }\n\n    // Get the GUID of the selected resource.\n    function getResourceGuid() {\n        var defer = $.Deferred();\n        Office.context.document.getSelectedResourceAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    defer.resolve(result.value);\n                }\n            }\n        );\n        return defer.promise();\n    }\n\n    // Get the specified fields for the selected resource.\n    function getResourceFields(resourceGuid) {\n        var targetFields =\n            [Office.ProjectResourceFields.Name,\n             Office.ProjectResourceFields.Units, \n             Office.ProjectResourceFields.BaseCalendar];\n        var fieldValues = ['Name: ', 'Units: ', 'Base calendar: '];\n        var index = 0; \n        getField();\n\n        // Get each field, and then display the field values in the add-in.\n        function getField() {\n            if (index == targetFields.length) {\n                var output = '';\n                for (var i = 0; i < fieldValues.length; i++) {\n                    output += fieldValues[i] + '<br />';\n                }\n                $('#message').html(output);\n            }\n\n            // If the call is successful, get the field value and then get the next field.\n            else {\n                Office.context.document.getResourceFieldAsync(\n                    resourceGuid,\n                    targetFields[index],\n                    function (result) {\n                        if (result.status === Office.AsyncResultStatus.Succeeded) {\n                            fieldValues[index] += result.value.fieldValue;\n                            getField(index++);\n                        }\n                        else {\n                            onError(result.error);\n                        }\n                    }\n                );\n            }\n        }\n    }\n\n    function onError(error) {\n        $('#message').html(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n```"
+  name: getSelectedResourceAsync(callback)
+  fullName: getSelectedResourceAsync(callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getSelectedResourceAsync(callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是字符串形式的资源的 GUID。
+      type:
+      - '(result: AsyncResult<string>) => void'
 - uid: office.Office.Document.getSelectedTaskAsync
+  summary: 仅项目文档。 获取当前所选的任务的 id。
+  remarks: >-
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>
+  name: getSelectedTaskAsync(options, callback)
+  fullName: getSelectedTaskAsync(options, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getSelectedTaskAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是字符串形式的资源的 GUID。
+      type:
+      - '(result: AsyncResult<string>) => void'
+- uid: office.Office.Document.getSelectedTaskAsync_1
   summary: 仅项目文档。 获取当前所选的任务的 id。
   remarks: >-
     **支持详细信息**
@@ -641,13 +1087,42 @@ items:
     })();
 
     ```
-  name: getSelectedTaskAsync(options, callback)
-  fullName: getSelectedTaskAsync
+  name: getSelectedTaskAsync(callback)
+  fullName: getSelectedTaskAsync(callback)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'getSelectedTaskAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    content: 'getSelectedTaskAsync(callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是字符串形式的资源的 GUID。
+      type:
+      - '(result: AsyncResult<string>) => void'
+- uid: office.Office.Document.getSelectedViewAsync
+  summary: 仅项目文档。 获取当前所选的视图类型 （例如 甘特条形） 和查看名称。
+  remarks: >-
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>
+  name: getSelectedViewAsync(options, callback)
+  fullName: getSelectedViewAsync(options, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getSelectedViewAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<any>) => void): void;'
     return:
       type:
       - void
@@ -658,10 +1133,10 @@ items:
       type:
       - office.Office.AsyncContextOptions
     - id: callback
-      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是字符串形式的资源的 GUID。
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性包含以下属性： `viewName` -视图，作为 ProjectViewTypes 常量的名称。 `viewType`-视图，作为整数值的 ProjectViewTypes 常量的类型。
       type:
-      - '(result: AsyncResult<string>) => void'
-- uid: office.Office.Document.getSelectedViewAsync
+      - '(result: AsyncResult<any>) => void'
+- uid: office.Office.Document.getSelectedViewAsync_1
   summary: 仅项目文档。 获取当前所选的视图类型 （例如 甘特条形） 和查看名称。
   remarks: >-
     **支持详细信息**
@@ -729,27 +1204,60 @@ items:
     })();
 
     ```
-  name: getSelectedViewAsync(options, callback)
-  fullName: getSelectedViewAsync
+  name: getSelectedViewAsync(callback)
+  fullName: getSelectedViewAsync(callback)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'getSelectedViewAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<any>) => void): void;'
+    content: 'getSelectedViewAsync(callback?: (result: AsyncResult<any>) => void): void;'
     return:
       type:
       - void
       description: ''
     parameters:
-    - id: options
-      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
-      type:
-      - office.Office.AsyncContextOptions
     - id: callback
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性包含以下属性： `viewName` -视图，作为 ProjectViewTypes 常量的名称。 `viewType`-视图，作为整数值的 ProjectViewTypes 常量的类型。
       type:
       - '(result: AsyncResult<any>) => void'
 - uid: office.Office.Document.getTaskAsync
+  summary: 仅项目文档。 获取任务名称、 WSS 任务 Id 和 ResourceNames 的给定 taskId。
+  remarks: >-
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>
+  name: getTaskAsync(taskId, options, callback)
+  fullName: getTaskAsync(taskId, options, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getTaskAsync(taskId: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<any>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: taskId
+      description: 字符串或任务 id 值。
+      type:
+      - string
+    - id: options
+      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性包含以下属性： `taskName` -任务的名称。 `wssTaskId`的同步 SharePoint 任务列表中的任务 ID。 如果项目未与 SharePoint 任务列表同步，则值为 0。 `resourceNames`-逗号分隔的分配给任务的资源的名称列表。
+      type:
+      - '(result: AsyncResult<any>) => void'
+- uid: office.Office.Document.getTaskAsync_1
   summary: 仅项目文档。 获取任务名称、 WSS 任务 Id 和 ResourceNames 的给定 taskId。
   remarks: >-
     **支持详细信息**
@@ -845,13 +1353,13 @@ items:
     })();
 
     ```
-  name: getTaskAsync(taskId, options, callback)
-  fullName: getTaskAsync
+  name: getTaskAsync(taskId, callback)
+  fullName: getTaskAsync(taskId, callback)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'getTaskAsync(taskId: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<any>) => void): void;'
+    content: 'getTaskAsync(taskId: string, callback?: (result: AsyncResult<any>) => void): void;'
     return:
       type:
       - void
@@ -861,10 +1369,6 @@ items:
       description: 字符串或任务 id 值。
       type:
       - string
-    - id: options
-      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
-      type:
-      - office.Office.AsyncContextOptions
     - id: callback
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性包含以下属性： `taskName` -任务的名称。 `wssTaskId`的同步 SharePoint 任务列表中的任务 ID。 如果项目未与 SharePoint 任务列表同步，则值为 0。 `resourceNames`-逗号分隔的分配给任务的资源的名称列表。
       type:
@@ -874,7 +1378,48 @@ items:
     仅项目文档。 获取具有指定的索引任务集合中的任务的 GUID。
 
 
-    重要说明：此 API 仅可在 Windows 桌面上的 Project 2016 中运行。
+    **重要说明**： 此 API 仅在 Windows 桌面上的项目 2016年中有效。
+  remarks: >-
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>
+  name: getTaskByIndexAsync(taskIndex, options, callback)
+  fullName: getTaskByIndexAsync(taskIndex, options, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getTaskByIndexAsync(taskIndex: number, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: taskIndex
+      description: 项目的任务集合中的任务索引。
+      type:
+      - number
+    - id: options
+      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是字符串形式的任务的 GUID。
+      type:
+      - '(result: AsyncResult<string>) => void'
+- uid: office.Office.Document.getTaskByIndexAsync_1
+  summary: >-
+    仅项目文档。 获取具有指定的索引任务集合中的任务的 GUID。
+
+
+    **重要说明**： 此 API 仅在 Windows 桌面上的项目 2016年中有效。
   remarks: >-
     **支持详细信息**
 
@@ -978,13 +1523,13 @@ items:
     })();
 
     ```
-  name: getTaskByIndexAsync(taskIndex, options, callback)
-  fullName: getTaskByIndexAsync
+  name: getTaskByIndexAsync(taskIndex, callback)
+  fullName: getTaskByIndexAsync(taskIndex, callback)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'getTaskByIndexAsync(taskIndex: number, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    content: 'getTaskByIndexAsync(taskIndex: number, callback?: (result: AsyncResult<string>) => void): void;'
     return:
       type:
       - void
@@ -994,19 +1539,25 @@ items:
       description: 项目的任务集合中的任务索引。
       type:
       - number
-    - id: options
-      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
-      type:
-      - office.Office.AsyncContextOptions
     - id: callback
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是字符串形式的任务的 GUID。
       type:
       - '(result: AsyncResult<string>) => void'
 - uid: office.Office.Document.getTaskFieldAsync
   summary: 仅项目文档。 任务域获得提供的任务 id （例如。 StartDate)。
-  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following code example calls getSelectedTaskAsync to get the GUID of the task that's currently\n// selected in a task view. Then it gets two task field values by calling getTaskFieldAsync recursively.\n// The example assumes your add-in has a reference to the jQuery library and that the following page\n// controls are defined in the content div in the page body:\n// <input id=\"get-info\" type=\"button\" value=\"Get info\" /><br />\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n            \n            // After the DOM is loaded, add-in-specific code can run.\n            $('#get-info').click(getTaskInfo);\n        });\n    };\n\n    // Get the GUID of the task, and then get the task fields.\n    function getTaskInfo() {\n        getTaskGuid().then(\n            function (data) {\n                getTaskFields(data);\n            }\n        );\n    }\n\n    // Get the GUID of the selected task.\n    function getTaskGuid() {\n        var defer = $.Deferred();\n        Office.context.document.getSelectedTaskAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    defer.resolve(result.value);\n                }\n            }\n        );\n        return defer.promise();\n    }\n\n    // Get the specified fields for the selected task.\n    function getTaskFields(taskGuid) {\n        var output = '';\n        var targetFields = [Office.ProjectTaskFields.Priority, Office.ProjectTaskFields.PercentComplete];\n        var fieldValues = ['Priority: ', '% Complete: '];\n        var index = 0;\n        getField();\n\n        // Get each field, and then display the field values in the add-in.\n        function getField() {\n            if (index == targetFields.length) {\n                for (var i = 0; i < fieldValues.length; i++) {\n                    output += fieldValues[i] + '<br />';\n                }\n                $('#message').html(output);\n            }\n\n            // Get the field value. If the call is successful, then get the next field.\n            else {\n                Office.context.document.getTaskFieldAsync(\n                    taskGuid,\n                    targetFields[index],\n                    function (result) {\n                        if (result.status === Office.AsyncResultStatus.Succeeded) {\n                            fieldValues[index] += result.value.fieldValue;\n                            getField(index++);\n                        }\n                        else {\n                            onError(result.error);\n                        }\n                    }\n                );\n            }\n        }\n    }\n\n    function onError(error) {\n        $('#message').html(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n```"
+  remarks: >-
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>
   name: getTaskFieldAsync(taskId, fieldId, options, callback)
-  fullName: getTaskFieldAsync
+  fullName: getTaskFieldAsync(taskId, fieldId, options, callback)
   langs:
   - typeScript
   type: method
@@ -1033,6 +1584,33 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`属性结果包含`fieldValue`属性，它代表指定字段的值。
       type:
       - '(result: AsyncResult<any>) => void'
+- uid: office.Office.Document.getTaskFieldAsync_1
+  summary: 仅项目文档。 任务域获得提供的任务 id （例如。 StartDate)。
+  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following code example calls getSelectedTaskAsync to get the GUID of the task that's currently\n// selected in a task view. Then it gets two task field values by calling getTaskFieldAsync recursively.\n// The example assumes your add-in has a reference to the jQuery library and that the following page\n// controls are defined in the content div in the page body:\n// <input id=\"get-info\" type=\"button\" value=\"Get info\" /><br />\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n            \n            // After the DOM is loaded, add-in-specific code can run.\n            $('#get-info').click(getTaskInfo);\n        });\n    };\n\n    // Get the GUID of the task, and then get the task fields.\n    function getTaskInfo() {\n        getTaskGuid().then(\n            function (data) {\n                getTaskFields(data);\n            }\n        );\n    }\n\n    // Get the GUID of the selected task.\n    function getTaskGuid() {\n        var defer = $.Deferred();\n        Office.context.document.getSelectedTaskAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    defer.resolve(result.value);\n                }\n            }\n        );\n        return defer.promise();\n    }\n\n    // Get the specified fields for the selected task.\n    function getTaskFields(taskGuid) {\n        var output = '';\n        var targetFields = [Office.ProjectTaskFields.Priority, Office.ProjectTaskFields.PercentComplete];\n        var fieldValues = ['Priority: ', '% Complete: '];\n        var index = 0;\n        getField();\n\n        // Get each field, and then display the field values in the add-in.\n        function getField() {\n            if (index == targetFields.length) {\n                for (var i = 0; i < fieldValues.length; i++) {\n                    output += fieldValues[i] + '<br />';\n                }\n                $('#message').html(output);\n            }\n\n            // Get the field value. If the call is successful, then get the next field.\n            else {\n                Office.context.document.getTaskFieldAsync(\n                    taskGuid,\n                    targetFields[index],\n                    function (result) {\n                        if (result.status === Office.AsyncResultStatus.Succeeded) {\n                            fieldValues[index] += result.value.fieldValue;\n                            getField(index++);\n                        }\n                        else {\n                            onError(result.error);\n                        }\n                    }\n                );\n            }\n        }\n    }\n\n    function onError(error) {\n        $('#message').html(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n```"
+  name: getTaskFieldAsync(taskId, fieldId, callback)
+  fullName: getTaskFieldAsync(taskId, fieldId, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getTaskFieldAsync(taskId: string, fieldId: number, callback?: (result: AsyncResult<any>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: taskId
+      description: 字符串或任务 id 值。
+      type:
+      - string
+    - id: fieldId
+      description: 任务域。
+      type:
+      - number
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`属性结果包含`fieldValue`属性，它代表指定字段的值。
+      type:
+      - '(result: AsyncResult<any>) => void'
 - uid: office.Office.Document.getWSSUrlAsync
   summary: 仅项目文档。 获取任务列表的 WSS Url 和列表名称，MPP 太同步。
   remarks: >-
@@ -1047,7 +1625,7 @@ items:
 
     *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>
   name: getWSSUrlAsync(options, callback)
-  fullName: getWSSUrlAsync
+  fullName: getWSSUrlAsync(options, callback)
   langs:
   - typeScript
   type: method
@@ -1066,7 +1644,95 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性包含以下属性： `listName` -同步 SharePoint 任务列表的名称。 `serverUrl`-同步 SharePoint 任务列表的 URL。
       type:
       - '(result: AsyncResult<any>) => void'
+- uid: office.Office.Document.getWSSUrlAsync_1
+  summary: 仅项目文档。 获取任务列表的 WSS Url 和列表名称，MPP 太同步。
+  remarks: >-
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>
+  name: getWSSUrlAsync(callback)
+  fullName: getWSSUrlAsync(callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getWSSUrlAsync(callback?: (result: AsyncResult<any>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性包含以下属性： `listName` -同步 SharePoint 任务列表的名称。 `serverUrl`-同步 SharePoint 任务列表的 URL。
+      type:
+      - '(result: AsyncResult<any>) => void'
 - uid: office.Office.Document.goToByIdAsync
+  summary: 转到文档中指定的对象或位置。
+  remarks: >-
+    <table><tr><td>要求集</td><td>不在集合中</td></tr></table>
+
+
+    PowerPoint 不支持母版视图中的 goToByIdAsync 方法。
+
+
+    导致 selectionMode 选项的行为随主机：
+
+
+    在 Excel:`Office.SelectionMode.Selected`选择中的绑定或命名项的所有内容。 Office.SelectionMode.None 对于文本绑定，选择单元格；对于矩阵绑定、表绑定和已命名的项目，选择第一个数据单元格（不是表格标题行中的第一个单元格）。
+
+
+    在 PowerPoint 中：`Office.SelectionMode.Selected`选定的幻灯片标题或第一张幻灯片上的 textbox。 `Office.SelectionMode.None`不能选择任何内容。
+
+
+    在 Word:`Office.SelectionMode.Selected`绑定中选择的所有内容。 Office.SelectionMode.None 对于文本绑定，将光标移到文本开头；对于矩阵绑定和表绑定，选择第一个数据单元格（不是表格标题行中的第一个单元格）。
+
+
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> </td><td> Y </td><td> Y </td></tr> </table>
+  name: goToByIdAsync(id, goToType, options, callback)
+  fullName: goToByIdAsync(id, goToType, options, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'goToByIdAsync(id: string | number, goToType: GoToType, options?: GoToByIdOptions, callback?: (result: AsyncResult<any>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: id
+      description: 转到的位置的标识符。
+      type:
+      - string | number
+    - id: goToType
+      description: 转到的位置的类型。
+      type:
+      - office.Office.GoToType
+    - id: options
+      description: 提供选项是否选择导航到的位置。
+      type:
+      - office.Office.GoToByIdOptions
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是当前视图。
+      type:
+      - '(result: AsyncResult<any>) => void'
+- uid: office.Office.Document.goToByIdAsync_1
   summary: 转到文档中指定的对象或位置。
   remarks: >-
     <table><tr><td>要求集</td><td>不在集合中</td></tr></table>
@@ -1234,13 +1900,13 @@ items:
     }
 
     ```
-  name: goToByIdAsync(id, goToType, options, callback)
-  fullName: goToByIdAsync
+  name: goToByIdAsync(id, goToType, callback)
+  fullName: goToByIdAsync(id, goToType, callback)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'goToByIdAsync(id: string | number, goToType: GoToType, options?: GoToByIdOptions, callback?: (result: AsyncResult<any>) => void): void;'
+    content: 'goToByIdAsync(id: string | number, goToType: GoToType, callback?: (result: AsyncResult<any>) => void): void;'
     return:
       type:
       - void
@@ -1254,28 +1920,51 @@ items:
       description: 转到的位置的类型。
       type:
       - office.Office.GoToType
-    - id: options
-      description: 提供选项是否选择导航到的位置。
-      type:
-      - office.Office.GoToByIdOptions
     - id: callback
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是当前视图。
       type:
       - '(result: AsyncResult<any>) => void'
-- uid: office.Office.Document.mode
-  summary: 获取文档所处的模式。
-  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此属性。空的单元格表示相应的 Office 主机应用程序不支持此属性。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction displayDocumentMode() {\n    write(Office.context.document.mode);\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```\n```javascript\n// The following example initializes the add-in and then gets properties of the\n// Document object that are available in the context of a Project document.\n// A Project document is the opened, active project. To access members of the\n// ProjectDocument object, use the Office.context.document object as shown in\n// the code examples for ProjectDocument methods and events.\n// The example assumes your add-in has a reference to the jQuery library and\n// that the following page control is defined in the content div in the page body:\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // Get information about the document.\n            showDocumentProperties();\n        });\n    };\n\n    // Get the document mode and the URL of the active project.\n    function showDocumentProperties() {\n        var output = String.format(\n            'The document mode is {0}.<br/>The URL of the active project is {1}.',\n            Office.context.document.mode,\n            Office.context.document.url);\n        $('#message').html(output);\n    }\n})();\n```"
-  name: mode
-  fullName: mode
+- uid: office.Office.Document.removeHandlerAsync
+  summary: 移除指定的事件类型的事件处理程序。
+  remarks: >-
+    <table><tr><td>要求集</td><td>DocumentEvents</td></tr></table>
+
+
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>OneNote</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
+  name: removeHandlerAsync(eventType, options, callback)
+  fullName: removeHandlerAsync(eventType, options, callback)
   langs:
   - typeScript
-  type: property
+  type: method
   syntax:
-    content: 'mode: DocumentMode;'
+    content: 'removeHandlerAsync(eventType: Office.EventType, options?: RemoveHandlerOptions, callback?: (result: AsyncResult<void>) => void): void;'
     return:
       type:
-      - office.Office.DocumentMode
-- uid: office.Office.Document.removeHandlerAsync
+      - void
+      description: ''
+    parameters:
+    - id: eventType
+      description: 事件类型。 对于文档可以是 Document.SelectionChanged 或 Document.ActiveViewChanged。
+      type:
+      - Office.EventType
+    - id: options
+      description: 提供选项以确定哪些事件处理程序或处理程序将删除。
+      type:
+      - office.Office.RemoveHandlerOptions
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: office.Office.Document.removeHandlerAsync_1
   summary: 移除指定的事件类型的事件处理程序。
   remarks: >-
     <table><tr><td>要求集</td><td>DocumentEvents</td></tr></table>
@@ -1382,13 +2071,13 @@ items:
     })();
 
     ```
-  name: removeHandlerAsync(eventType, options, callback)
-  fullName: removeHandlerAsync
+  name: removeHandlerAsync(eventType, callback)
+  fullName: removeHandlerAsync(eventType, callback)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'removeHandlerAsync(eventType: Office.EventType, options?: RemoveHandlerOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'removeHandlerAsync(eventType: Office.EventType, callback?: (result: AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -1398,10 +2087,6 @@ items:
       description: 事件类型。 对于文档可以是 Document.SelectionChanged 或 Document.ActiveViewChanged。
       type:
       - Office.EventType
-    - id: options
-      description: 提供选项以确定哪些事件处理程序或处理程序将删除。
-      type:
-      - office.Office.RemoveHandlerOptions
     - id: callback
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
       type:
@@ -1411,7 +2096,56 @@ items:
     仅项目文档。 设置资源域的指定资源 id。
 
 
-    重要说明：此 API 仅可在 Windows 桌面上的 Project 2016 中运行。
+    **重要说明**： 此 API 仅在 Windows 桌面上的项目 2016年中有效。
+  remarks: >-
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>
+  name: setResourceFieldAsync(resourceId, fieldId, fieldValue, options, callback)
+  fullName: setResourceFieldAsync(resourceId, fieldId, fieldValue, options, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setResourceFieldAsync(resourceId: string, fieldId: number, fieldValue: string | number | boolean | object, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: resourceId
+      description: 字符串或资源 id 值。
+      type:
+      - string
+    - id: fieldId
+      description: 资源字段。
+      type:
+      - number
+    - id: fieldValue
+      description: 目标字段值。
+      type:
+      - string | number | boolean | object
+    - id: options
+      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: office.Office.Document.setResourceFieldAsync_1
+  summary: >-
+    仅项目文档。 设置资源域的指定资源 id。
+
+
+    **重要说明**： 此 API 仅在 Windows 桌面上的项目 2016年中有效。
   remarks: >-
     **支持详细信息**
 
@@ -1518,13 +2252,13 @@ items:
     })();
 
     ```
-  name: setResourceFieldAsync(resourceId, fieldId, fieldValue, options, callback)
-  fullName: setResourceFieldAsync
+  name: setResourceFieldAsync(resourceId, fieldId, fieldValue, callback)
+  fullName: setResourceFieldAsync(resourceId, fieldId, fieldValue, callback)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'setResourceFieldAsync(resourceId: string, fieldId: number, fieldValue: string | number | boolean | object, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'setResourceFieldAsync(resourceId: string, fieldId: number, fieldValue: string | number | boolean | object, callback?: (result: AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -1542,19 +2276,15 @@ items:
       description: 目标字段值。
       type:
       - string | number | boolean | object
-    - id: options
-      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
-      type:
-      - office.Office.AsyncContextOptions
     - id: callback
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
       type:
       - '(result: AsyncResult<void>) => void'
 - uid: office.Office.Document.setSelectedDataAsync
   summary: 当前选定内容中写入指定的数据。
-  remarks: "<table><tr><td>要求集</td><td>Selection</td></tr></table>\n\n**特定于应用程序的行为**\n\n以下特定于应用程序的操作应用到选定内容中写入数据时。\n\n<table> <tr><td>Word</td><td>如果不存在选择且插入点位于一个有效的位置，指定`data`在插入点插入</td><td>如果`data`是一个字符串，则插入指定的文本。</td></tr> <tr><td></td><td></td><td>如果`data`是数组的数组 （\"矩阵\"） 或 TableData 对象，新的 Word 表中插入。</td></tr> <tr><td></td><td></td><td>如果`data`是 HTML，则插入指定的 HTML。 (重要： 如果的任何 HTML 插入无效，Word 不会引发错误。 Word 将插入尽可能多的 html，它可以并忽略任何无效的数据）。</td></tr> <tr><td></td><td></td><td>如果`data`是 Office Open XML，插入指定的 XML。</td></tr> <tr><td></td><td></td><td>如果`data`是 base64 编码的图像流、 插入指定的图像。</td></tr></td></tr> <tr><td></td><td>如果选定内容</td><td>将替换它具有指定`data`遵循规则与上述相同。</td></tr> <tr><td></td><td>插入图像</td><td>插入的图像位于内嵌。 ImageLeft 和 imageTop 参数将被忽略。 图像的纵横比始终被锁定。 如果只给定 imageWidth 参数或只给定 imageHeight 参数，则另一个值将自动扩展以保留原始纵横比。</td></tr>\n\n<tr><td>Excel</td><td>如果选中的单个单元格</td><td>如果`data`是一个字符串，指定的文本将作为当前单元格的值插入。</td></tr> <tr><td></td><td></td><td>如果`data`是数组的数组 （\"矩阵\"） 指定的行集和插入列，如果会不覆盖周围单元格中的任何其他数据。</td></tr> <tr><td></td><td></td><td>如果`data`是 TableData 对象，具有一组指定的行的新 Excel 表并插入标头，如果会不覆盖周围单元格中的任何其他数据。</td></tr> <tr><td></td><td>如果选择了多个单元格</td><td>如果形状不匹配的形状`data` <!-- -->，则返回一个错误。</td></tr> <tr><td></td><td></td><td>如果所选内容的形状完全匹配的形状`data` <!-- -->，所选单元格的值更新中的值基于`data` <!-- -->。</td></tr> <tr><td></td><td>插入图像</td><td>插入的图像为浮动图像。 imageLeft 和 imageTop 位置参数是相对于当前选定的单元格而言的。 允许 imageLeft 和 imageTop 的值为负数，将由 Excel 重新调整在工作表内放置的图像位置。 除非 imageWidth 和 imageHeight 参数均已提供，否则将锁定图像的纵横比。 如果只给定 imageWidth 参数或只给定 imageHeight 参数，则另一个值将自动扩展以保留原始纵横比。</td></tr> <tr><td></td><td>其他所有情况下</td><td>将返回错误。</td></tr>\n\n<tr><td>Excel Online</td><td>除了 for Excel 上面所述的行为，这些限制适用时在 Excel Online 中写入数据</td><td>您可以写入与工作表的单元格的总数目`data`参数不能超过 20000 中单个调用此方法。</td></tr> <tr><td></td><td></td><td>格式的组的数目传递给`cellFormat`参数不能超过 100。 单个格式组包括一组应用于特定单元格范围的格式。</td></tr>\n\n<tr><td>PowerPoint</td><td>插入图像</td><td>插入的图像为浮动图像。 在位置 imageLeft 和 imageTop 参数是可选的但如果提供，应同时存在。 如果提供单个值，则它将被忽略。 允许 imageLeft 和 imageTop 的值为负数，且可以将图像放置在幻灯片的外部。 如果未给定任何可选参数，并且幻灯片有一个占位符，则图像将替换幻灯片中的占位符。 除非 imageWidth和 imageHeight 参数均已提供，否则将锁定图像纵横比。 如果只给定 imageWidth 参数或只给定 imageHeight 参数，则另一个值将自动扩展以保留原始纵横比。</td></tr> </table>\n\n[Office.CoercionType](xref:office.Office.CoercionType)参数的可能值随主机。\n\n<table> <tr> <th>Host</th> <th>支持的 coercionType</th> </tr> <tr> <td>Excel、 PowerPoint、 Project 和 Word</td> <td>`Office.CoercionType.Text`（字符串）</td> </tr> <tr> <td>Excel 和 Word</td> <td>`Office.CoercionType.Matrix`（数组的数组）</td> </tr> <tr> <td>Access、 Excel 和 Word</td> <td>`Office.CoercionType.Table`（TableData 对象）</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint 和 PowerPoint Online</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel、 PowerPoint 和 Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following example sets the selected text or cell to \"Hello World!\", \n// and if that fails, displays the value of the error.message property.\nfunction writeText() {\n    Office.context.document.setSelectedDataAsync(\"Hello World!\",\n        function (asyncResult) {\n            var error = asyncResult.error;\n            if (asyncResult.status === Office.AsyncResultStatus.Failed){\n                write(error.name + \": \" + error.message);\n            }\n        });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// Specifying the optional coercionType parameter lets you specify the kind of data you want to write\n// to a selection. The following example writes data as an array of three rows of two columns, \n// specifying the coercionType as `Matrix` for that data structure, and if that fails, \n// displays the value of the error.message property.\nfunction writeMatrix() {\n    Office.context.document.setSelectedDataAsync(\n        [[\"Red\", \"Rojo\"], [\"Green\", \"Verde\"], [\"Blue\", \"Azul\"]],\n        {coercionType: Office.CoercionType.Matrix}\n        function (asyncResult) {\n            var error = asyncResult.error;\n            if (asyncResult.status === Office.AsyncResultStatus.Failed){\n                write(error.name + \": \" + error.message);\n            }\n        });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// The following example writes data as a one column table with a header and four rows, \n// specifying the coercionType as `Table` for that data structure, and if that fails, \n// displays the value of the error.message property.\nfunction writeTable() {\n    // Build table.\n    var myTable = new Office.TableData();\n    myTable.headers = [[\"Cities\"]];\n    myTable.rows = [['Berlin'], ['Roma'], ['Tokyo'], ['Seattle']];\n\n    // Write table.\n    Office.context.document.setSelectedDataAsync(myTable, {coercionType: Office.CoercionType.Table},\n        function (result) {\n            var error = result.error\n            if (result.status === Office.AsyncResultStatus.Failed) {\n                write(error.name + \": \" + error.message);\n            }\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// In Word if you want to write HTML to the selection, you can specify the coercionType parameter as `Html`\n// as shown in the following example, which uses HTML <b> tags to make \"Hello\" bold.\nfunction writeHtmlData() {\n    Office.context.document.setSelectedDataAsync(\n        \"<b>Hello</b> World!\", {coercionType: Office.CoercionType.Html}, function (asyncResult) {\n            if (asyncResult.status === Office.AsyncResultStatus.Failed) {\n                write('Error: ' + asyncResult.error.message);\n            }\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// In Word, PowerPoint, or Excel, if you want to write an image to the selection, you can specify the coercionType\n// parameter as `Image` as shown in the following example. Note that imageLeft and imageTop are ignored by Word.\nfunction insertPictureAtSelection(base64EncodedImageStr) {\n\n    Office.context.document.setSelectedDataAsync(base64EncodedImageStr, {\n        coercionType: Office.CoercionType.Image,\n        imageLeft: 50,\n        imageTop: 50,\n        imageWidth: 100,\n        imageHeight: 100\n    },\n    function (asyncResult) {\n        if (asyncResult.status === Office.AsyncResultStatus.Failed) {\n            console.log(\"Action failed with error: \" + asyncResult.error.message);\n        }\n    });\n}\n\n// In Word, PowerPoint, or Excel, if you want to write an scalable vector graphic (SVG) to the selection, you can specify the \n// coercionType parameter as `XmlSvg` as shown in the following example. Note that imageLeft and imageTop are ignored by Word.\nfunction insertSvgAtSelection(base64EncodedImageStr) {\n    Office.context.document.setSelectedDataAsync(getImageAsBase64String(), {\n        coercionType: Office.CoercionType.XmlSvg,\n        imageLeft: 50,\n        imageTop: 50,\n        imageWidth: 400\n    },\n        function (asyncResult) {\n            if (asyncResult.status === Office.AsyncResultStatus.Failed) {\n                console.log(asyncResult.error.message);\n            }\n        });\n}\n```"
+  remarks: "<table><tr><td>要求集</td><td>Selection</td></tr></table>\n\n**特定于应用程序的行为**\n\n以下特定于应用程序的操作应用到选定内容中写入数据时。\n\n<table> <tr><td>Word</td><td>如果不存在选择且插入点位于一个有效的位置，指定`data`在插入点插入</td><td>如果`data`是一个字符串，则插入指定的文本。</td></tr> <tr><td></td><td></td><td>如果`data`是数组的数组 （\"矩阵\"） 或 TableData 对象，新的 Word 表中插入。</td></tr> <tr><td></td><td></td><td>如果`data`是 HTML，则插入指定的 HTML。 (**重要说明**： 如果的任何 HTML 插入无效，Word 不会引发错误。 Word 将插入尽可能多的 html，它可以并忽略任何无效的数据）。</td></tr> <tr><td></td><td></td><td>如果`data`是 Office Open XML，插入指定的 XML。</td></tr> <tr><td></td><td></td><td>如果`data`是 base64 编码的图像流、 插入指定的图像。</td></tr></td></tr> <tr><td></td><td>如果选定内容</td><td>将替换它具有指定`data`遵循规则与上述相同。</td></tr> <tr><td></td><td>插入图像</td><td>插入的图像位于内嵌。 ImageLeft 和 imageTop 参数将被忽略。 图像的纵横比始终被锁定。 如果只给定 imageWidth 参数或只给定 imageHeight 参数，则另一个值将自动扩展以保留原始纵横比。</td></tr>\n\n<tr><td>Excel</td><td>如果选中的单个单元格</td><td>如果`data`是一个字符串，指定的文本将作为当前单元格的值插入。</td></tr> <tr><td></td><td></td><td>如果`data`是数组的数组 （\"矩阵\"） 指定的行集和插入列，如果会不覆盖周围单元格中的任何其他数据。</td></tr> <tr><td></td><td></td><td>如果`data`是 TableData 对象，具有一组指定的行的新 Excel 表并插入标头，如果会不覆盖周围单元格中的任何其他数据。</td></tr> <tr><td></td><td>如果选择了多个单元格</td><td>如果形状不匹配的形状`data` <!-- -->，则返回一个错误。</td></tr> <tr><td></td><td></td><td>如果所选内容的形状完全匹配的形状`data` <!-- -->，所选单元格的值更新中的值基于`data` <!-- -->。</td></tr> <tr><td></td><td>插入图像</td><td>插入的图像为浮动图像。 imageLeft 和 imageTop 位置参数是相对于当前选定的单元格而言的。 允许 imageLeft 和 imageTop 的值为负数，将由 Excel 重新调整在工作表内放置的图像位置。 除非 imageWidth 和 imageHeight 参数均已提供，否则将锁定图像的纵横比。 如果只给定 imageWidth 参数或只给定 imageHeight 参数，则另一个值将自动扩展以保留原始纵横比。</td></tr> <tr><td></td><td>其他所有情况下</td><td>将返回错误。</td></tr>\n\n<tr><td>Excel Online</td><td>除了 for Excel 上面所述的行为，这些限制适用时在 Excel Online 中写入数据</td><td>您可以写入与工作表的单元格的总数目`data`参数不能超过 20000 中单个调用此方法。</td></tr> <tr><td></td><td></td><td>格式的组的数目传递给`cellFormat`参数不能超过 100。 单个格式组包括一组应用于特定单元格范围的格式。</td></tr>\n\n<tr><td>PowerPoint</td><td>插入图像</td><td>插入的图像为浮动图像。 在位置 imageLeft 和 imageTop 参数是可选的但如果提供，应同时存在。 如果提供单个值，则它将被忽略。 允许 imageLeft 和 imageTop 的值为负数，且可以将图像放置在幻灯片的外部。 如果未给定任何可选参数，并且幻灯片有一个占位符，则图像将替换幻灯片中的占位符。 除非 imageWidth和 imageHeight 参数均已提供，否则将锁定图像纵横比。 如果只给定 imageWidth 参数或只给定 imageHeight 参数，则另一个值将自动扩展以保留原始纵横比。</td></tr> </table>\n\n[Office.CoercionType](xref:office.Office.CoercionType)参数的可能值随主机。\n\n<table> <tr> <th>Host</th> <th>支持的 coercionType</th> </tr> <tr> <td>Excel、 PowerPoint、 Project 和 Word</td> <td>`Office.CoercionType.Text`（字符串）</td> </tr> <tr> <td>Excel 和 Word</td> <td>`Office.CoercionType.Matrix`（数组的数组）</td> </tr> <tr> <td>Access、 Excel 和 Word</td> <td>`Office.CoercionType.Table`（TableData 对象）</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint 和 PowerPoint Online</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel、 PowerPoint 和 Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following example sets the selected text or cell to \"Hello World!\", \n// and if that fails, displays the value of the error.message property.\nfunction writeText() {\n    Office.context.document.setSelectedDataAsync(\"Hello World!\",\n        function (asyncResult) {\n            var error = asyncResult.error;\n            if (asyncResult.status === Office.AsyncResultStatus.Failed){\n                write(error.name + \": \" + error.message);\n            }\n        });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// Specifying the optional coercionType parameter lets you specify the kind of data you want to write\n// to a selection. The following example writes data as an array of three rows of two columns, \n// specifying the coercionType as `Matrix` for that data structure, and if that fails, \n// displays the value of the error.message property.\nfunction writeMatrix() {\n    Office.context.document.setSelectedDataAsync(\n        [[\"Red\", \"Rojo\"], [\"Green\", \"Verde\"], [\"Blue\", \"Azul\"]],\n        {coercionType: Office.CoercionType.Matrix}\n        function (asyncResult) {\n            var error = asyncResult.error;\n            if (asyncResult.status === Office.AsyncResultStatus.Failed){\n                write(error.name + \": \" + error.message);\n            }\n        });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// The following example writes data as a one column table with a header and four rows, \n// specifying the coercionType as `Table` for that data structure, and if that fails, \n// displays the value of the error.message property.\nfunction writeTable() {\n    // Build table.\n    var myTable = new Office.TableData();\n    myTable.headers = [[\"Cities\"]];\n    myTable.rows = [['Berlin'], ['Roma'], ['Tokyo'], ['Seattle']];\n\n    // Write table.\n    Office.context.document.setSelectedDataAsync(myTable, {coercionType: Office.CoercionType.Table},\n        function (result) {\n            var error = result.error\n            if (result.status === Office.AsyncResultStatus.Failed) {\n                write(error.name + \": \" + error.message);\n            }\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// In Word if you want to write HTML to the selection, you can specify the coercionType parameter as `Html`\n// as shown in the following example, which uses HTML <b> tags to make \"Hello\" bold.\nfunction writeHtmlData() {\n    Office.context.document.setSelectedDataAsync(\n        \"<b>Hello</b> World!\", {coercionType: Office.CoercionType.Html}, function (asyncResult) {\n            if (asyncResult.status === Office.AsyncResultStatus.Failed) {\n                write('Error: ' + asyncResult.error.message);\n            }\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// In Word, PowerPoint, or Excel, if you want to write an image to the selection, you can specify the coercionType\n// parameter as `Image` as shown in the following example. Note that imageLeft and imageTop are ignored by Word.\nfunction insertPictureAtSelection(base64EncodedImageStr) {\n\n    Office.context.document.setSelectedDataAsync(base64EncodedImageStr, {\n        coercionType: Office.CoercionType.Image,\n        imageLeft: 50,\n        imageTop: 50,\n        imageWidth: 100,\n        imageHeight: 100\n    },\n    function (asyncResult) {\n        if (asyncResult.status === Office.AsyncResultStatus.Failed) {\n            console.log(\"Action failed with error: \" + asyncResult.error.message);\n        }\n    });\n}\n\n// In Word, PowerPoint, or Excel, if you want to write an scalable vector graphic (SVG) to the selection, you can specify the \n// coercionType parameter as `XmlSvg` as shown in the following example. Note that imageLeft and imageTop are ignored by Word.\nfunction insertSvgAtSelection(base64EncodedImageStr) {\n    Office.context.document.setSelectedDataAsync(getImageAsBase64String(), {\n        coercionType: Office.CoercionType.XmlSvg,\n        imageLeft: 50,\n        imageTop: 50,\n        imageWidth: 400\n    },\n        function (asyncResult) {\n            if (asyncResult.status === Office.AsyncResultStatus.Failed) {\n                console.log(asyncResult.error.message);\n            }\n        });\n}\n```"
   name: setSelectedDataAsync(data, options, callback)
-  fullName: setSelectedDataAsync
+  fullName: setSelectedDataAsync(data, options, callback)
   langs:
   - typeScript
   type: method
@@ -1593,15 +2323,101 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 AsyncResult.value 属性始终返回 undefined，因为没有要检索数据或对象。
       type:
       - '(result: AsyncResult<void>) => void'
+- uid: office.Office.Document.setSelectedDataAsync_1
+  summary: 当前选定内容中写入指定的数据。
+  remarks: >-
+    <table><tr><td>要求集</td><td>Selection</td></tr></table>
+
+
+    **特定于应用程序的行为**
+
+
+    以下特定于应用程序的操作应用到选定内容中写入数据时。
+
+
+    <table> <tr><td>Word</td><td>如果不存在选择且插入点位于一个有效的位置，指定`data`在插入点插入</td><td>如果`data`是一个字符串，则插入指定的文本。</td></tr> <tr><td></td><td></td><td>如果`data`是数组的数组 （"矩阵"） 或 TableData 对象，新的 Word 表中插入。</td></tr> <tr><td></td><td></td><td>如果`data`是 HTML，则插入指定的 HTML。 (**重要说明**： 如果的任何 HTML 插入无效，Word 不会引发错误。 Word 将插入尽可能多的 html，它可以并忽略任何无效的数据）。</td></tr> <tr><td></td><td></td><td>如果`data`是 Office Open XML，插入指定的 XML。</td></tr> <tr><td></td><td></td><td>如果`data`是 base64 编码的图像流、 插入指定的图像。</td></tr></td></tr> <tr><td></td><td>如果选定内容</td><td>将替换它具有指定`data`遵循规则与上述相同。</td></tr> <tr><td></td><td>插入图像</td><td>插入的图像位于内嵌。 ImageLeft 和 imageTop 参数将被忽略。 图像的纵横比始终被锁定。 如果只给定 imageWidth 参数或只给定 imageHeight 参数，则另一个值将自动扩展以保留原始纵横比。</td></tr>
+
+
+    <tr><td>Excel</td><td>如果选中的单个单元格</td><td>如果`data`是一个字符串，指定的文本将作为当前单元格的值插入。</td></tr> <tr><td></td><td></td><td>如果`data`是数组的数组 （"矩阵"） 指定的行集和插入列，如果会不覆盖周围单元格中的任何其他数据。</td></tr> <tr><td></td><td></td><td>如果`data`是 TableData 对象，具有一组指定的行的新 Excel 表并插入标头，如果会不覆盖周围单元格中的任何其他数据。</td></tr> <tr><td></td><td>如果选择了多个单元格</td><td>如果形状不匹配的形状`data` <!-- -->，则返回一个错误。</td></tr> <tr><td></td><td></td><td>如果所选内容的形状完全匹配的形状`data` <!-- -->，所选单元格的值更新中的值基于`data` <!-- -->。</td></tr> <tr><td></td><td>插入图像</td><td>插入的图像为浮动图像。 imageLeft 和 imageTop 位置参数是相对于当前选定的单元格而言的。 允许 imageLeft 和 imageTop 的值为负数，将由 Excel 重新调整在工作表内放置的图像位置。 除非 imageWidth 和 imageHeight 参数均已提供，否则将锁定图像的纵横比。 如果只给定 imageWidth 参数或只给定 imageHeight 参数，则另一个值将自动扩展以保留原始纵横比。</td></tr> <tr><td></td><td>其他所有情况下</td><td>将返回错误。</td></tr>
+
+
+    <tr><td>Excel Online</td><td>除了 for Excel 上面所述的行为，这些限制适用时在 Excel Online 中写入数据</td><td>您可以写入与工作表的单元格的总数目`data`参数不能超过 20000 中单个调用此方法。</td></tr> <tr><td></td><td></td><td>格式的组的数目传递给`cellFormat`参数不能超过 100。 单个格式组包括一组应用于特定单元格范围的格式。</td></tr>
+
+
+    <tr><td>PowerPoint</td><td>插入图像</td><td>插入的图像为浮动图像。 在位置 imageLeft 和 imageTop 参数是可选的但如果提供，应同时存在。 如果提供单个值，则它将被忽略。 允许 imageLeft 和 imageTop 的值为负数，且可以将图像放置在幻灯片的外部。 如果未给定任何可选参数，并且幻灯片有一个占位符，则图像将替换幻灯片中的占位符。 除非 imageWidth和 imageHeight 参数均已提供，否则将锁定图像纵横比。 如果只给定 imageWidth 参数或只给定 imageHeight 参数，则另一个值将自动扩展以保留原始纵横比。</td></tr> </table>
+
+
+    [Office.CoercionType](xref:office.Office.CoercionType)参数的可能值随主机。
+
+
+    <table> <tr> <th>Host</th> <th>支持的 coercionType</th> </tr> <tr> <td>Excel、 PowerPoint、 Project 和 Word</td> <td>`Office.CoercionType.Text`（字符串）</td> </tr> <tr> <td>Excel 和 Word</td> <td>`Office.CoercionType.Matrix`（数组的数组）</td> </tr> <tr> <td>Access、 Excel 和 Word</td> <td>`Office.CoercionType.Table`（TableData 对象）</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint 和 PowerPoint Online</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel、 PowerPoint 和 Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
+
+
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
+  name: setSelectedDataAsync(data, callback)
+  fullName: setSelectedDataAsync(data, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setSelectedDataAsync(data: string | TableData | any[][], callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: data
+      description: >-
+        要设置的数据。 接受字符串或[Office.CoercionType](xref:office.Office.CoercionType)值、 二维数组或 TableData 对象。
+
+
+        如果值传递的`data`是：
+
+
+        - 一个字符串：将插入可以强制为 string 的纯文本或任何文本。 在 Excel 中，还可以将 data 指定为有效公式，将该公式添加到选定的单元格。 例如，设置为"= SUM(A1:A5)"的数据将总指定范围中的值。 但是，当你在绑定单元格中设置公式时，设置后将无法从绑定单元格读取添加的公式（或任何已有公式）。 如果你在选定的单元格上调用 Document.getSelectedDataAsync 方法以读取其数据，方法可能仅返回在单元格中显示的数据（即公式的结果）。
+
+
+        - 数组的数组（“矩阵”）：将插入不带标题的表数据。 例如，将数据写入三行两列中，可以传递类似如下的数组： \[ \["R1C1"、"R1C2"\]， \["R2C1"、"R2C2"\]， \["R3C1"、"R3C2"\]\]。 若要写入一列的三行，传递类似如下的数组： \[ \["R1C1"\]， \["R2C1"\]， \["R3C1"\]\]
+
+
+        在 Excel 中，还可以将 data 指定为数组的数组，其中包含有效公式以将其添加到选定单元格。 例如，如果没有其他数据将被覆盖，将数据设置为\[ \["= SUM(A1:A5)","=AVERAGE(A1:A5)"\] \]将添加到选定内容的这些两个公式。 与在单个单元格上将公式设置为“text”一样，设置后你将无法读取添加的公式（或任何已有公式），只能读取公式的结果。
+
+
+        - TableData 对象：将插入带标题的表格。 在 Excel 中，如果您指定的 data 形参，传递 TableData 对象中的公式您可能无法获得由于 Excel 自动复制公式的列内的"计算的列"功能预期的结果。 若要变通解决此问题时要编写`data`，其中包含所选表格公式、 尝试指定数据作为数组的数组 （而不是 TableData 对象），并指定的 coercionType 为 Microsoft.Office.Matrix 或"matrix"。
+      type:
+      - string | TableData | any[][]
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 AsyncResult.value 属性始终返回 undefined，因为没有要检索数据或对象。
+      type:
+      - '(result: AsyncResult<void>) => void'
 - uid: office.Office.Document.setTaskFieldAsync
   summary: >-
     仅项目文档。 设置任务域的指定任务 id。
 
 
-    重要说明：此 API 仅可在 Windows 桌面上的 Project 2016 中运行。
-  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following code example calls getSelectedTaskAsync to get the GUID of the task that's\n// currently selected in a task view. Then it sets two task field values by calling\n// setTaskFieldAsync recursively.\n// The getSelectedTaskAsync method used in the example requires that a task view\n// (for example, Task Usage) is the active view and that a task is selected. See the\n// addHandlerAsync method for an example that activates a button based on the active view type.\n// The example assumes your add-in has a reference to the jQuery library and that the\n// following page controls are defined in the content div in the page body:\n// <input id=\"set-info\" type=\"button\" value=\"Set info\" /><br />\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n            \n            // After the DOM is loaded, add-in-specific code can run.\n            app.initialize();\n            $('#set-info').click(setTaskInfo);\n        });\n    };\n\n    // Get the GUID of the task, and then get the task fields.\n    function setTaskInfo() {\n        getTaskGuid().then(\n            function (data) {\n                setTaskFields(data);\n            }\n        );\n    }\n\n    // Get the GUID of the selected task.\n    function getTaskGuid() {\n        var defer = $.Deferred();\n        Office.context.document.getSelectedTaskAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    defer.resolve(result.value);\n                }\n            }\n        );\n        return defer.promise();\n    }\n\n    // Set the specified fields for the selected task.\n    function setTaskFields(taskGuid) {\n        var targetFields = [Office.ProjectTaskFields.Active, Office.ProjectTaskFields.Notes];\n        var fieldValues = [true, 'Notes for the task.'];\n\n        // Set the field value. If the call is successful, set the next field.\n        for (var i = 0; i < targetFields.length; i++) {\n            Office.context.document.setTaskFieldAsync(\n                taskGuid,\n                targetFields[i],\n                fieldValues[i],\n                function (result) {\n                    if (result.status === Office.AsyncResultStatus.Succeeded) {\n                        i++;\n                    }\n                    else {\n                        onError(result.error);\n                    }\n                }\n            );\n        }\n        $('#message').html('Field values set');\n    }\n\n    function onError(error) {\n        app.showNotification(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n```"
+    **重要说明**： 此 API 仅在 Windows 桌面上的项目 2016年中有效。
+  remarks: >-
+    **支持详细信息**
+
+
+    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+
+
+    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+
+
+    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>
   name: setTaskFieldAsync(taskId, fieldId, fieldValue, options, callback)
-  fullName: setTaskFieldAsync
+  fullName: setTaskFieldAsync(taskId, fieldId, fieldValue, options, callback)
   langs:
   - typeScript
   type: method
@@ -1632,6 +2448,80 @@ items:
       description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
       type:
       - '(result: AsyncResult<void>) => void'
+- uid: office.Office.Document.setTaskFieldAsync_1
+  summary: >-
+    仅项目文档。 设置任务域的指定任务 id。
+
+
+    **重要说明**： 此 API 仅在 Windows 桌面上的项目 2016年中有效。
+  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中）</th></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following code example calls getSelectedTaskAsync to get the GUID of the task that's\n// currently selected in a task view. Then it sets two task field values by calling\n// setTaskFieldAsync recursively.\n// The getSelectedTaskAsync method used in the example requires that a task view\n// (for example, Task Usage) is the active view and that a task is selected. See the\n// addHandlerAsync method for an example that activates a button based on the active view type.\n// The example assumes your add-in has a reference to the jQuery library and that the\n// following page controls are defined in the content div in the page body:\n// <input id=\"set-info\" type=\"button\" value=\"Set info\" /><br />\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n            \n            // After the DOM is loaded, add-in-specific code can run.\n            app.initialize();\n            $('#set-info').click(setTaskInfo);\n        });\n    };\n\n    // Get the GUID of the task, and then get the task fields.\n    function setTaskInfo() {\n        getTaskGuid().then(\n            function (data) {\n                setTaskFields(data);\n            }\n        );\n    }\n\n    // Get the GUID of the selected task.\n    function getTaskGuid() {\n        var defer = $.Deferred();\n        Office.context.document.getSelectedTaskAsync(\n            function (result) {\n                if (result.status === Office.AsyncResultStatus.Failed) {\n                    onError(result.error);\n                }\n                else {\n                    defer.resolve(result.value);\n                }\n            }\n        );\n        return defer.promise();\n    }\n\n    // Set the specified fields for the selected task.\n    function setTaskFields(taskGuid) {\n        var targetFields = [Office.ProjectTaskFields.Active, Office.ProjectTaskFields.Notes];\n        var fieldValues = [true, 'Notes for the task.'];\n\n        // Set the field value. If the call is successful, set the next field.\n        for (var i = 0; i < targetFields.length; i++) {\n            Office.context.document.setTaskFieldAsync(\n                taskGuid,\n                targetFields[i],\n                fieldValues[i],\n                function (result) {\n                    if (result.status === Office.AsyncResultStatus.Succeeded) {\n                        i++;\n                    }\n                    else {\n                        onError(result.error);\n                    }\n                }\n            );\n        }\n        $('#message').html('Field values set');\n    }\n\n    function onError(error) {\n        app.showNotification(error.name + ' ' + error.code + ': ' + error.message);\n    }\n})();\n```"
+  name: setTaskFieldAsync(taskId, fieldId, fieldValue, callback)
+  fullName: setTaskFieldAsync(taskId, fieldId, fieldValue, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setTaskFieldAsync(taskId: string, fieldId: number, fieldValue: string | number | boolean | object, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: taskId
+      description: 字符串或任务 id 值。
+      type:
+      - string
+    - id: fieldId
+      description: 任务域。
+      type:
+      - number
+    - id: fieldValue
+      description: 目标字段值。
+      type:
+      - string | number | boolean | object
+    - id: callback
+      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: office.Office.Document.bindings
+  summary: 获取提供对文档中定义的绑定的访问的对象。
+  remarks: "您不直接在脚本中实例化 Document 对象。 要呼叫的 Document 对象的成员与当前文档或工作表进行交互，请使用`Office.context.document`在脚本中。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此属性。空的单元格表示相应的 Office 主机应用程序不支持此属性。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction displayAllBindings() {\n    Office.context.document.bindings.getAllAsync(function (asyncResult) {\n        var bindingString = '';\n        for (var i in asyncResult.value) {\n            bindingString += asyncResult.value[i].id + '\\n';\n        }\n        write('Existing bindings: ' + bindingString);\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: bindings
+  fullName: bindings
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'bindings: Bindings;'
+    return:
+      type:
+      - office.Office.Bindings
+- uid: office.Office.Document.customXmlParts
+  summary: 获取文档中表示自定义 XML 部件的对象。
+  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此属性。空的单元格表示相应的 Office 主机应用程序不支持此属性。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction getCustomXmlParts(){\n    Office.context.document.customXmlParts.getByNamespaceAsync('http://tempuri.org', function (asyncResult) {\n        write('Retrieved ' + asyncResult.value.length + ' custom XML parts');\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: customXmlParts
+  fullName: customXmlParts
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'customXmlParts: CustomXmlParts;'
+    return:
+      type:
+      - office.Office.CustomXmlParts
+- uid: office.Office.Document.mode
+  summary: 获取文档所处的模式。
+  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此属性。空的单元格表示相应的 Office 主机应用程序不支持此属性。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction displayDocumentMode() {\n    write(Office.context.document.mode);\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```\n```javascript\n// The following example initializes the add-in and then gets properties of the\n// Document object that are available in the context of a Project document.\n// A Project document is the opened, active project. To access members of the\n// ProjectDocument object, use the Office.context.document object as shown in\n// the code examples for ProjectDocument methods and events.\n// The example assumes your add-in has a reference to the jQuery library and\n// that the following page control is defined in the content div in the page body:\n// <span id=\"message\"></span>\n\n(function () {\n    \"use strict\";\n\n    // The initialize function must be run each time a new page is loaded.\n    Office.initialize = function (reason) {\n        $(document).ready(function () {\n\n            // Get information about the document.\n            showDocumentProperties();\n        });\n    };\n\n    // Get the document mode and the URL of the active project.\n    function showDocumentProperties() {\n        var output = String.format(\n            'The document mode is {0}.<br/>The URL of the active project is {1}.',\n            Office.context.document.mode,\n            Office.context.document.url);\n        $('#message').html(output);\n    }\n})();\n```"
+  name: mode
+  fullName: mode
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'mode: DocumentMode;'
+    return:
+      type:
+      - office.Office.DocumentMode
 - uid: office.Office.Document.settings
   summary: 获取用于表示当前文档的内容或任务窗格应用程序的已保存自定义设置的对象。
   remarks: >-
