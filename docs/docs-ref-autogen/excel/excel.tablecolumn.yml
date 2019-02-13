@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: f6eeef15582d0866e446d22bc223fe586f0dc6e7
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: 349d30eecd68a1a82995ac63f8264884ef80c6ff
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29769881"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29973231"
 items:
 - uid: excel.Excel.TableColumn
   summary: >-
@@ -31,8 +31,11 @@ items:
   - excel.Excel.TableColumn.id
   - excel.Excel.TableColumn.index
   - excel.Excel.TableColumn.load
+  - excel.Excel.TableColumn.load_1
+  - excel.Excel.TableColumn.load_2
   - excel.Excel.TableColumn.name
   - excel.Excel.TableColumn.set
+  - excel.Excel.TableColumn.set_1
   - excel.Excel.TableColumn.toJSON
   - excel.Excel.TableColumn.values
 - uid: excel.Excel.TableColumn.context
@@ -54,7 +57,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: delete()
-  fullName: delete
+  fullName: delete()
   langs:
   - typeScript
   type: method
@@ -87,7 +90,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getDataBodyRange()
-  fullName: getDataBodyRange
+  fullName: getDataBodyRange()
   langs:
   - typeScript
   type: method
@@ -104,7 +107,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getHeaderRowRange()
-  fullName: getHeaderRowRange
+  fullName: getHeaderRowRange()
   langs:
   - typeScript
   type: method
@@ -121,7 +124,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getRange()
-  fullName: getRange
+  fullName: getRange()
   langs:
   - typeScript
   type: method
@@ -138,7 +141,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getTotalRowRange()
-  fullName: getTotalRowRange
+  fullName: getTotalRowRange()
   langs:
   - typeScript
   type: method
@@ -182,23 +185,69 @@ items:
       - number
 - uid: excel.Excel.TableColumn.load
   summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
-  remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): Excel.TableColumn`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TableColumn`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var column = ctx.workbook.tables.getItem(tableName).columns.getItem(0);\n    column.load('index');\n    return ctx.sync().then(function() {\n        console.log(column.index);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var tables = ctx.workbook.tables;\n    var newValues = [[\"New\"], [\"Values\"], [\"For\"], [\"New\"], [\"Column\"]];\n    var column = ctx.workbook.tables.getItem(tableName).columns.getItemAt(2);\n    column.values = newValues;\n    column.load('values');\n    return ctx.sync().then(function() {\n        console.log(column.values);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  remarks: >-
+    除了此签名，此方法具有以下签名：
+
+
+    `load(option?: string | string[]): Excel.TableColumn`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.TableColumn`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TableColumn`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.TableColumn;'
+    content: 'load(option?: Excel.Interfaces.TableColumnLoadOptions): Excel.TableColumn;'
     return:
       type:
       - excel.Excel.TableColumn
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.TableColumnLoadOptions
+- uid: excel.Excel.TableColumn.load_1
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.TableColumn;'
+    return:
+      type:
+      - excel.Excel.TableColumn
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var column = ctx.workbook.tables.getItem(tableName).columns.getItem(0);\n    column.load('index');\n    return ctx.sync().then(function() {\n        console.log(column.index);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var tables = ctx.workbook.tables;\n    var newValues = [[\"New\"], [\"Values\"], [\"For\"], [\"New\"], [\"Column\"]];\n    var column = ctx.workbook.tables.getItem(tableName).columns.getItemAt(2);\n    column.values = newValues;\n    column.load('values');\n    return ctx.sync().then(function() {\n        console.log(column.values);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: propertyNames
       description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
       type:
       - string | string[]
+- uid: excel.Excel.TableColumn.load_2
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.TableColumn;'
+    return:
+      type:
+      - excel.Excel.TableColumn
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中 propertyNamesAndPaths.select 是一个以逗号分隔的字符串，指定要加载的属性，propertyNamesAndPaths.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.TableColumn.name
   summary: >-
     表示表列的名称。
@@ -223,7 +272,7 @@ items:
 
     `set(properties: Excel.TableColumn): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -242,10 +291,28 @@ items:
       description: 提供一个选项以取消显示错误，如果属性对象会尝试设置任何只读属性。
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: excel.Excel.TableColumn.set_1
+  summary: 在基于现有加载对象的同一时间对象上设置多个属性。
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Excel.TableColumn): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - excel.Excel.TableColumn
 - uid: excel.Excel.TableColumn.toJSON
   summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.TableColumn 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.TableColumnData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

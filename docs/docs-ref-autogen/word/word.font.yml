@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: dfc39fb50e8995e3f3cc3264217f9c941bf69792
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: 05df45105511d3a919adbd23bd14a6a1c0b5fb3b
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29769776"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29973252"
 items:
 - uid: word.Word.Font
   summary: >-
@@ -28,8 +28,11 @@ items:
   - word.Word.Font.highlightColor
   - word.Word.Font.italic
   - word.Word.Font.load
+  - word.Word.Font.load_1
+  - word.Word.Font.load_2
   - word.Word.Font.name
   - word.Word.Font.set
+  - word.Word.Font.set_1
   - word.Word.Font.size
   - word.Word.Font.strikeThrough
   - word.Word.Font.subscript
@@ -134,6 +137,9 @@ items:
   summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
   remarks: >-
     除了此签名，此方法具有以下签名：
+
+
+    `load(option?: string | string[]): Word.Font`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。
 
 
     `load(option?: { select?: string; expand?: string; }): Word.Font`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
@@ -354,21 +360,57 @@ items:
 
     ```
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Word.Font;'
+    content: 'load(option?: Word.Interfaces.FontLoadOptions): Word.Font;'
     return:
       type:
       - word.Word.Font
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - word.Word.Interfaces.FontLoadOptions
+- uid: word.Word.Font.load_1
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Word.Font;'
+    return:
+      type:
+      - word.Word.Font
+      description: ''
+    parameters:
+    - id: propertyNames
       description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
       type:
       - string | string[]
+- uid: word.Word.Font.load_2
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Word.Font;'
+    return:
+      type:
+      - word.Word.Font
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中 propertyNamesAndPaths.select 是一个以逗号分隔的字符串，指定要加载的属性，propertyNamesAndPaths.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: word.Word.Font.name
   summary: >-
     获取或设置表示字体名称的值。
@@ -393,7 +435,7 @@ items:
 
     `set(properties: Word.Font): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -412,6 +454,24 @@ items:
       description: 提供一个选项以取消显示错误，如果属性对象会尝试设置任何只读属性。
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: word.Word.Font.set_1
+  summary: 在基于现有加载对象的同一时间对象上设置多个属性。
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Word.Font): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - word.Word.Font
 - uid: word.Word.Font.size
   summary: >-
     获取或设置表示字体大小（以磅值表示）的值。
@@ -478,7 +538,7 @@ items:
       - boolean
 - uid: word.Word.Font.toJSON
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
@@ -491,7 +551,7 @@ items:
 - uid: word.Word.Font.track
   summary: 跟踪自动调整根据周围的文档中的更改的对象。 此呼叫是 context.trackedObjects.add(thisObject) 简写。 如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。
   name: track()
-  fullName: track
+  fullName: track()
   langs:
   - typeScript
   type: method
@@ -520,7 +580,7 @@ items:
 - uid: word.Word.Font.untrack
   summary: 发行版与此对象，如果以前跟踪关联的内存。 此呼叫是简写 context.trackedObjects.remove(thisObject)。 具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。 您将需要的内存版本生效前调用"context.sync()"。
   name: untrack()
-  fullName: untrack
+  fullName: untrack()
   langs:
   - typeScript
   type: method

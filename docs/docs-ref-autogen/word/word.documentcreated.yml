@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: ad7754baca2e2ce29aaeaeacb8e560c069e56886
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: be4d968f5ee4dfd96479518d78851a4c2c76962b
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29769517"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29975569"
 items:
 - uid: word.Word.DocumentCreated
   summary: >-
@@ -25,12 +25,15 @@ items:
   - word.Word.DocumentCreated.contentControls
   - word.Word.DocumentCreated.context
   - word.Word.DocumentCreated.load
+  - word.Word.DocumentCreated.load_1
+  - word.Word.DocumentCreated.load_2
   - word.Word.DocumentCreated.open
   - word.Word.DocumentCreated.properties
   - word.Word.DocumentCreated.save
   - word.Word.DocumentCreated.saved
   - word.Word.DocumentCreated.sections
   - word.Word.DocumentCreated.set
+  - word.Word.DocumentCreated.set_1
   - word.Word.DocumentCreated.toJSON
   - word.Word.DocumentCreated.track
   - word.Word.DocumentCreated.untrack
@@ -84,26 +87,65 @@ items:
     除了此签名，此方法具有以下签名：
 
 
+    `load(option?: string | string[]): Word.DocumentCreated`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。
+
+
     `load(option?: { select?: string; expand?: string; }): Word.DocumentCreated`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
 
 
     `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.DocumentCreated`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Word.DocumentCreated;'
+    content: 'load(option?: Word.Interfaces.DocumentCreatedLoadOptions): Word.DocumentCreated;'
     return:
       type:
       - word.Word.DocumentCreated
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - word.Word.Interfaces.DocumentCreatedLoadOptions
+- uid: word.Word.DocumentCreated.load_1
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Word.DocumentCreated;'
+    return:
+      type:
+      - word.Word.DocumentCreated
+      description: ''
+    parameters:
+    - id: propertyNames
       description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
       type:
       - string | string[]
+- uid: word.Word.DocumentCreated.load_2
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Word.DocumentCreated;'
+    return:
+      type:
+      - word.Word.DocumentCreated
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中 propertyNamesAndPaths.select 是一个以逗号分隔的字符串，指定要加载的属性，propertyNamesAndPaths.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: word.Word.DocumentCreated.open
   summary: >-
     打开文档。
@@ -111,7 +153,7 @@ items:
 
     \[[API 集： WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: open()
-  fullName: open
+  fullName: open()
   langs:
   - typeScript
   type: method
@@ -144,7 +186,7 @@ items:
 
     \[[API 集： WordApiHiddenDocument 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: save()
-  fullName: save
+  fullName: save()
   langs:
   - typeScript
   type: method
@@ -194,7 +236,7 @@ items:
 
     `set(properties: Word.DocumentCreated): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -213,9 +255,27 @@ items:
       description: 提供一个选项以取消显示错误，如果属性对象会尝试设置任何只读属性。
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: word.Word.DocumentCreated.set_1
+  summary: 在基于现有加载对象的同一时间对象上设置多个属性。
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Word.DocumentCreated): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - word.Word.DocumentCreated
 - uid: word.Word.DocumentCreated.toJSON
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
@@ -228,7 +288,7 @@ items:
 - uid: word.Word.DocumentCreated.track
   summary: 跟踪自动调整根据周围的文档中的更改的对象。 此呼叫是 context.trackedObjects.add(thisObject) 简写。 如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。
   name: track()
-  fullName: track
+  fullName: track()
   langs:
   - typeScript
   type: method
@@ -241,7 +301,7 @@ items:
 - uid: word.Word.DocumentCreated.untrack
   summary: 发行版与此对象，如果以前跟踪关联的内存。 此呼叫是简写 context.trackedObjects.remove(thisObject)。 具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。 您将需要的内存版本生效前调用"context.sync()"。
   name: untrack()
-  fullName: untrack
+  fullName: untrack()
   langs:
   - typeScript
   type: method

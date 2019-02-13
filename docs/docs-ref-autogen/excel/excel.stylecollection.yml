@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 18842230d95c439045d58b999c70fe8a008a7fa0
-ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
+ms.openlocfilehash: e1aeb311af13a575bdc735e6fe2601d9cfe7a3e4
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "28725366"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29975191"
 items:
 - uid: excel.Excel.StyleCollection
   summary: >-
@@ -26,6 +26,8 @@ items:
   - excel.Excel.StyleCollection.getItem
   - excel.Excel.StyleCollection.items
   - excel.Excel.StyleCollection.load
+  - excel.Excel.StyleCollection.load_1
+  - excel.Excel.StyleCollection.load_2
   - excel.Excel.StyleCollection.toJSON
 - uid: excel.Excel.StyleCollection.add
   summary: >-
@@ -34,7 +36,7 @@ items:
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: add(name)
-  fullName: add
+  fullName: add(name)
   langs:
   - typeScript
   type: method
@@ -68,7 +70,7 @@ items:
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItem(name)
-  fullName: getItem
+  fullName: getItem(name)
   langs:
   - typeScript
   type: method
@@ -98,12 +100,12 @@ items:
 - uid: excel.Excel.StyleCollection.load
   summary: 警告： StyleCollection 项数组从集合中加载项时具有的已知的问题。 不要使用`StyleCollection.items` <!-- -->，任何`load()`方法，以及`toJSON()`方法。
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.StyleCollection;'
+    content: 'load(option?: Excel.Interfaces.StyleCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.StyleCollection;'
     return:
       type:
       - excel.Excel.StyleCollection
@@ -112,11 +114,46 @@ items:
     - id: option
       description: ''
       type:
+      - Excel.Interfaces.StyleCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
+- uid: excel.Excel.StyleCollection.load_1
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.StyleCollection;'
+    return:
+      type:
+      - excel.Excel.StyleCollection
+      description: ''
+    parameters:
+    - id: propertyNames
+      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      type:
       - string | string[]
+- uid: excel.Excel.StyleCollection.load_2
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: OfficeExtension.LoadOption): Excel.StyleCollection;'
+    return:
+      type:
+      - excel.Excel.StyleCollection
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - office.OfficeExtension.LoadOption
 - uid: excel.Excel.StyleCollection.toJSON
   summary: 警告： StyleCollection 项数组从集合中加载项时具有的已知的问题。 不要使用`StyleCollection.items` <!-- -->，任何`load()`方法，以及`toJSON()`方法。
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

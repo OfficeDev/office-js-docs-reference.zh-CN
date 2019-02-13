@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: d86760f9309fd0434f09bafafe0d233777756e87
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: 9b472c0d78bde3f45b5197690f833bb836f150aa
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26994756"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29976395"
 items:
 - uid: visio.Visio.Selection
   summary: >-
@@ -22,34 +22,45 @@ items:
   package: visio
   children:
   - visio.Visio.Selection.load
+  - visio.Visio.Selection.load_1
   - visio.Visio.Selection.shapes
   - visio.Visio.Selection.toJSON
 - uid: visio.Visio.Selection.load
-  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
-  remarks: >-
-    除了此签名，此方法具有以下签名：
-
-
-    `load(option?: { select?: string; expand?: string; }): Visio.Selection`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
-
-
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.Selection`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
-  name: load(option)
-  fullName: load
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Visio.Selection;'
+    content: 'load(propertyNames?: string | string[]): Visio.Selection;'
     return:
       type:
       - visio.Visio.Selection
       description: ''
     parameters:
-    - id: option
+    - id: propertyNames
       description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
       type:
       - string | string[]
+- uid: visio.Visio.Selection.load_1
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Visio.Selection;'
+    return:
+      type:
+      - visio.Visio.Selection
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中 propertyNamesAndPaths.select 是一个以逗号分隔的字符串，指定要加载的属性，propertyNamesAndPaths.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: visio.Visio.Selection.shapes
   summary: >-
     获取所选内容的形状。 只读。
@@ -68,7 +79,7 @@ items:
       - visio.Visio.ShapeCollection
 - uid: visio.Visio.Selection.toJSON
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

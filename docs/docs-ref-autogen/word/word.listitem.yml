@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: b087d0fd310a949ee62701db97c8a0aac149be8d
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: ce16b4094906d9aeef2947bd45b529e914378b0c
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29769384"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29972916"
 items:
 - uid: word.Word.ListItem
   summary: >-
@@ -28,7 +28,10 @@ items:
   - word.Word.ListItem.level
   - word.Word.ListItem.listString
   - word.Word.ListItem.load
+  - word.Word.ListItem.load_1
+  - word.Word.ListItem.load_2
   - word.Word.ListItem.set
+  - word.Word.ListItem.set_1
   - word.Word.ListItem.siblingIndex
   - word.Word.ListItem.toJSON
   - word.Word.ListItem.track
@@ -52,7 +55,7 @@ items:
 
     \[[API 集： WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: getAncestor(parentOnly)
-  fullName: getAncestor
+  fullName: getAncestor(parentOnly)
   langs:
   - typeScript
   type: method
@@ -74,7 +77,7 @@ items:
 
     \[[API 集： WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: getAncestorOrNullObject(parentOnly)
-  fullName: getAncestorOrNullObject
+  fullName: getAncestorOrNullObject(parentOnly)
   langs:
   - typeScript
   type: method
@@ -96,7 +99,7 @@ items:
 
     \[[API 集： WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: getDescendants(directChildrenOnly)
-  fullName: getDescendants
+  fullName: getDescendants(directChildrenOnly)
   langs:
   - typeScript
   type: method
@@ -149,26 +152,65 @@ items:
     除了此签名，此方法具有以下签名：
 
 
+    `load(option?: string | string[]): Word.ListItem`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。
+
+
     `load(option?: { select?: string; expand?: string; }): Word.ListItem`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
 
 
     `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.ListItem`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Word.ListItem;'
+    content: 'load(option?: Word.Interfaces.ListItemLoadOptions): Word.ListItem;'
     return:
       type:
       - word.Word.ListItem
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - word.Word.Interfaces.ListItemLoadOptions
+- uid: word.Word.ListItem.load_1
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Word.ListItem;'
+    return:
+      type:
+      - word.Word.ListItem
+      description: ''
+    parameters:
+    - id: propertyNames
       description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
       type:
       - string | string[]
+- uid: word.Word.ListItem.load_2
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Word.ListItem;'
+    return:
+      type:
+      - word.Word.ListItem
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中 propertyNamesAndPaths.select 是一个以逗号分隔的字符串，指定要加载的属性，propertyNamesAndPaths.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: word.Word.ListItem.set
   summary: 在同一时间设置对象的多个的属性。 您可以传递具有的相应属性的普通对象或相同类型的另一个 API 对象。
   remarks: >-
@@ -177,7 +219,7 @@ items:
 
     `set(properties: Word.ListItem): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -196,6 +238,24 @@ items:
       description: 提供一个选项以取消显示错误，如果属性对象会尝试设置任何只读属性。
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: word.Word.ListItem.set_1
+  summary: 在基于现有加载对象的同一时间对象上设置多个属性。
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Word.ListItem): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - word.Word.ListItem
 - uid: word.Word.ListItem.siblingIndex
   summary: >-
     获取 listItem 相对于同级元素的序号。只读。
@@ -214,7 +274,7 @@ items:
       - number
 - uid: word.Word.ListItem.toJSON
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
@@ -227,7 +287,7 @@ items:
 - uid: word.Word.ListItem.track
   summary: 跟踪自动调整根据周围的文档中的更改的对象。 此呼叫是 context.trackedObjects.add(thisObject) 简写。 如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。
   name: track()
-  fullName: track
+  fullName: track()
   langs:
   - typeScript
   type: method
@@ -240,7 +300,7 @@ items:
 - uid: word.Word.ListItem.untrack
   summary: 发行版与此对象，如果以前跟踪关联的内存。 此呼叫是简写 context.trackedObjects.remove(thisObject)。 具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。 您将需要的内存版本生效前调用"context.sync()"。
   name: untrack()
-  fullName: untrack
+  fullName: untrack()
   langs:
   - typeScript
   type: method

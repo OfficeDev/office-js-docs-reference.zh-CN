@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 62f6266b0a021d748242a959fa235e0bcc865b15
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: 4a338cd307dd8ffe16ebe5a4d2cc663a182bcb6e
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26994455"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29976381"
 items:
 - uid: visio.Visio.ShapeDataItemCollection
   summary: >-
@@ -25,6 +25,8 @@ items:
   - visio.Visio.ShapeDataItemCollection.getItem
   - visio.Visio.ShapeDataItemCollection.items
   - visio.Visio.ShapeDataItemCollection.load
+  - visio.Visio.ShapeDataItemCollection.load_1
+  - visio.Visio.ShapeDataItemCollection.load_2
   - visio.Visio.ShapeDataItemCollection.toJSON
 - uid: visio.Visio.ShapeDataItemCollection.getCount
   summary: >-
@@ -33,7 +35,7 @@ items:
 
     \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
   name: getCount()
-  fullName: getCount
+  fullName: getCount()
   langs:
   - typeScript
   type: method
@@ -50,7 +52,7 @@ items:
 
     \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
   name: getItem(key)
-  fullName: getItem
+  fullName: getItem(key)
   langs:
   - typeScript
   type: method
@@ -81,6 +83,9 @@ items:
   summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
   remarks: >-
     除了此签名，此方法具有以下签名：
+
+
+    `load(option?: string | string[]): Visio.ShapeDataItemCollection`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。
 
 
     `load(option?: { select?: string; expand?: string; }): Visio.ShapeDataItemCollection`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
@@ -114,24 +119,59 @@ items:
 
     ```
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Visio.ShapeDataItemCollection;'
+    content: 'load(option?: Visio.Interfaces.ShapeDataItemCollectionLoadOptions & Visio.Interfaces.CollectionLoadOptions): Visio.ShapeDataItemCollection;'
     return:
       type:
       - visio.Visio.ShapeDataItemCollection
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - Visio.Interfaces.ShapeDataItemCollectionLoadOptions & Visio.Interfaces.CollectionLoadOptions
+- uid: visio.Visio.ShapeDataItemCollection.load_1
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Visio.ShapeDataItemCollection;'
+    return:
+      type:
+      - visio.Visio.ShapeDataItemCollection
+      description: ''
+    parameters:
+    - id: propertyNames
       description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
       type:
       - string | string[]
+- uid: visio.Visio.ShapeDataItemCollection.load_2
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: OfficeExtension.LoadOption): Visio.ShapeDataItemCollection;'
+    return:
+      type:
+      - visio.Visio.ShapeDataItemCollection
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - office.OfficeExtension.LoadOption
 - uid: visio.Visio.ShapeDataItemCollection.toJSON
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

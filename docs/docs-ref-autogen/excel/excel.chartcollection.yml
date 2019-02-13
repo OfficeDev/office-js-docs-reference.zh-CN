@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: a125d56d35ff65d0de1b12f91361965bc2f045f5
-ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
+ms.openlocfilehash: 01787d7321900681b201e15b4204837c19e57d11
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "29385691"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29974351"
 items:
 - uid: excel.Excel.ChartCollection
   summary: >-
@@ -22,6 +22,7 @@ items:
   package: excel
   children:
   - excel.Excel.ChartCollection.add
+  - excel.Excel.ChartCollection.add_1
   - excel.Excel.ChartCollection.context
   - excel.Excel.ChartCollection.count
   - excel.Excel.ChartCollection.getCount
@@ -30,6 +31,8 @@ items:
   - excel.Excel.ChartCollection.getItemOrNullObject
   - excel.Excel.ChartCollection.items
   - excel.Excel.ChartCollection.load
+  - excel.Excel.ChartCollection.load_1
+  - excel.Excel.ChartCollection.load_2
   - excel.Excel.ChartCollection.onActivated
   - excel.Excel.ChartCollection.onAdded
   - excel.Excel.ChartCollection.onDeactivated
@@ -42,7 +45,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: add(type, sourceData, seriesBy)
-  fullName: add
+  fullName: add(type, sourceData, seriesBy)
   langs:
   - typeScript
   type: method
@@ -51,7 +54,7 @@ items:
     return:
       type:
       - excel.Excel.Chart
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Add a chart of chartType \"ColumnClustered\" on worksheet \"Charts\" \n// with sourceData from Range \"A1:B4\" and seriresBy is set to be \"auto\".\nExcel.run(function (ctx) { \n    var rangeSelection = \"A1:B4\";\n    var range = ctx.workbook.worksheets.getItem(sheetName)\n        .getRange(rangeSelection);\n    var chart = ctx.workbook.worksheets.getItem(sheetName)\n        .charts.add(\"ColumnClustered\", range, \"auto\");    return ctx.sync().then(function() {\n            console.log(\"New Chart Added\");\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: ''
     parameters:
     - id: type
       description: 代表图表的类型。 有关详细信息，请参阅 Excel.ChartType。
@@ -65,6 +68,36 @@ items:
       description: 可选。 指定的方式列或行用作图表上的数据系列。 有关详细信息，请参阅 Excel.ChartSeriesBy。
       type:
       - excel.Excel.ChartSeriesBy
+- uid: excel.Excel.ChartCollection.add_1
+  summary: >-
+    创建新图表。
+
+
+    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: add(typeString, sourceData, seriesBy)
+  fullName: add(typeString, sourceData, seriesBy)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'add(typeString: "Invalid" | "ColumnClustered" | "ColumnStacked" | "ColumnStacked100" | "3DColumnClustered" | "3DColumnStacked" | "3DColumnStacked100" | "BarClustered" | "BarStacked" | "BarStacked100" | "3DBarClustered" | "3DBarStacked" | "3DBarStacked100" | "LineStacked" | "LineStacked100" | "LineMarkers" | "LineMarkersStacked" | "LineMarkersStacked100" | "PieOfPie" | "PieExploded" | "3DPieExploded" | "BarOfPie" | "XYScatterSmooth" | "XYScatterSmoothNoMarkers" | "XYScatterLines" | "XYScatterLinesNoMarkers" | "AreaStacked" | "AreaStacked100" | "3DAreaStacked" | "3DAreaStacked100" | "DoughnutExploded" | "RadarMarkers" | "RadarFilled" | "Surface" | "SurfaceWireframe" | "SurfaceTopView" | "SurfaceTopViewWireframe" | "Bubble" | "Bubble3DEffect" | "StockHLC" | "StockOHLC" | "StockVHLC" | "StockVOHLC" | "CylinderColClustered" | "CylinderColStacked" | "CylinderColStacked100" | "CylinderBarClustered" | "CylinderBarStacked" | "CylinderBarStacked100" | "CylinderCol" | "ConeColClustered" | "ConeColStacked" | "ConeColStacked100" | "ConeBarClustered" | "ConeBarStacked" | "ConeBarStacked100" | "ConeCol" | "PyramidColClustered" | "PyramidColStacked" | "PyramidColStacked100" | "PyramidBarClustered" | "PyramidBarStacked" | "PyramidBarStacked100" | "PyramidCol" | "3DColumn" | "Line" | "3DLine" | "3DPie" | "Pie" | "XYScatter" | "3DArea" | "Area" | "Doughnut" | "Radar" | "Histogram" | "Boxwhisker" | "Pareto" | "RegionMap" | "Treemap" | "Waterfall" | "Sunburst" | "Funnel", sourceData: Range, seriesBy?: "Auto" | "Columns" | "Rows"): Excel.Chart;'
+    return:
+      type:
+      - excel.Excel.Chart
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Add a chart of chartType \"ColumnClustered\" on worksheet \"Charts\" \n// with sourceData from Range \"A1:B4\" and seriresBy is set to be \"auto\".\nExcel.run(function (ctx) { \n    var rangeSelection = \"A1:B4\";\n    var range = ctx.workbook.worksheets.getItem(sheetName)\n        .getRange(rangeSelection);\n    var chart = ctx.workbook.worksheets.getItem(sheetName)\n        .charts.add(\"ColumnClustered\", range, \"auto\");    return ctx.sync().then(function() {\n            console.log(\"New Chart Added\");\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: typeString
+      description: 代表图表的类型。 有关详细信息，请参阅 Excel.ChartType。
+      type:
+      - "\"Invalid\" | \"ColumnClustered\" | \"ColumnStacked\" | \"ColumnStacked100\" | \"3DColumnClustered\" | \"3DColumnStacked\" | \"3DColumnStacked100\" | \"BarClustered\" | \"BarStacked\" | \"BarStacked100\" | \"3DBarClustered\" | \"3DBarStacked\" | \"3DBarStacked100\" | \"LineStacked\" | \"LineStacked100\" | \"LineMarkers\" | \"LineMarkersStacked\" | \"LineMarkersStacked100\" | \"PieOfPie\" | \"PieExploded\" | \"3DPieExploded\" | \"BarOfPie\" | \"XYScatterSmooth\" | \"XYScatterSmoothNoMarkers\" | \"XYScatterLines\" | \"XYScatterLinesNoMarkers\" | \"AreaStacked\" | \"AreaStacked100\" | \"3DAreaStacked\" | \"3DAreaStacked100\" | \"DoughnutExploded\" | \"RadarMarkers\" | \"RadarFilled\" | \"Surface\" | \"SurfaceWireframe\" | \"SurfaceTopView\" | \"SurfaceTopViewWireframe\" | \"Bubble\" | \"Bubble3DEffect\" | \"StockHLC\" | \"StockOHLC\" | \"StockVHLC\" | \"StockVOHLC\" | \"CylinderColClustered\" | \"CylinderColStacked\" | \"CylinderColStacked100\" | \"CylinderBarClustered\" | \"CylinderBarStacked\" | \"CylinderBarStacked100\" | \"CylinderCol\" | \"ConeColClustered\" | \"ConeColStacked\" | \"ConeColStacked100\" | \"ConeBarClustered\" | \"ConeBarStacked\" | \"ConeBarStacked100\" | \"ConeCol\" | \"PyramidColClustered\" | \"PyramidColStacked\" | \"PyramidColStacked100\" | \"PyramidBarClustered\" | \"PyramidBarStacked\" | \"PyramidBarStacked100\" | \"PyramidCol\" | \"3DColumn\" | \"Line\" | \"3DLine\" | \"3DPie\" | \"Pie\" | \"XYScatter\" | \"3DArea\" | \"Area\" | \"Doughnut\" | \"Radar\" | \"Histogram\" | \"Boxwhisker\" | \"Pareto\" | \"RegionMap\" | \"Treemap\" | \"Waterfall\" | \"Sunburst\" | \"Funnel\""
+    - id: sourceData
+      description: 对应于源数据的 Range 对象。
+      type:
+      - Range
+    - id: seriesBy
+      description: 可选。 指定的方式列或行用作图表上的数据系列。 有关详细信息，请参阅 Excel.ChartSeriesBy。
+      type:
+      - "\"Auto\" | \"Columns\" | \"Rows\""
 - uid: excel.Excel.ChartCollection.context
   summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
   name: context
@@ -100,7 +133,7 @@ items:
 
     \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getCount()
-  fullName: getCount
+  fullName: getCount()
   langs:
   - typeScript
   type: method
@@ -117,7 +150,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItem(name)
-  fullName: getItem
+  fullName: getItem(name)
   langs:
   - typeScript
   type: method
@@ -126,7 +159,7 @@ items:
     return:
       type:
       - excel.Excel.Chart
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var chartname = 'Chart1';\n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(chartname);\n    return ctx.sync().then(function() {\n            console.log(chart.height);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nExcel.run(function (ctx) { \n    var chartId = 'SamplChartId';\n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(chartId);\n    return ctx.sync().then(function() {\n            console.log(chart.height);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nExcel.run(function (ctx) { \n    var lastPosition = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.count - 1;\n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItemAt(lastPosition);\n    return ctx.sync().then(function() {\n            console.log(chart.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var chartname = 'Chart1';\n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(chartname);\n    return ctx.sync().then(function() {\n            console.log(chart.height);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nExcel.run(function (ctx) { \n    var chartId = 'SampleChartId';\n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(chartId);\n    return ctx.sync().then(function() {\n            console.log(chart.height);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nExcel.run(function (ctx) { \n    var lastPosition = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.count - 1;\n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItemAt(lastPosition);\n    return ctx.sync().then(function() {\n            console.log(chart.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: name
       description: 要检索的图表的名称。
@@ -139,7 +172,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItemAt(index)
-  fullName: getItemAt
+  fullName: getItemAt(index)
   langs:
   - typeScript
   type: method
@@ -161,7 +194,7 @@ items:
 
     \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItemOrNullObject(name)
-  fullName: getItemOrNullObject
+  fullName: getItemOrNullObject(name)
   langs:
   - typeScript
   type: method
@@ -190,23 +223,68 @@ items:
       - Excel.Chart[]
 - uid: excel.Excel.ChartCollection.load
   summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
-  remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): Excel.ChartCollection`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartCollection`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var charts = ctx.workbook.worksheets.getItem(\"Sheet1\").charts;\n    charts.load('items');\n    return ctx.sync().then(function() {\n        for (var i = 0; i < charts.items.length; i++)\n        {\n            console.log(charts.items[i].name);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Get the number of charts\nExcel.run(function (ctx) { \n    var charts = ctx.workbook.worksheets.getItem(\"Sheet1\").charts;\n    charts.load('count');\n    return ctx.sync().then(function() {\n        console.log(\"charts: Count= \" + charts.count);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  remarks: >-
+    除了此签名，此方法具有以下签名：
+
+
+    `load(option?: string | string[]): Excel.ChartCollection`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.ChartCollection`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartCollection`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.ChartCollection;'
+    content: 'load(option?: Excel.Interfaces.ChartCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.ChartCollection;'
     return:
       type:
       - excel.Excel.ChartCollection
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - Excel.Interfaces.ChartCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
+- uid: excel.Excel.ChartCollection.load_1
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.ChartCollection;'
+    return:
+      type:
+      - excel.Excel.ChartCollection
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var charts = ctx.workbook.worksheets.getItem(\"Sheet1\").charts;\n    charts.load('items');\n    return ctx.sync().then(function() {\n        for (var i = 0; i < charts.items.length; i++)\n        {\n            console.log(charts.items[i].name);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Get the number of charts\nExcel.run(function (ctx) { \n    var charts = ctx.workbook.worksheets.getItem(\"Sheet1\").charts;\n    charts.load('count');\n    return ctx.sync().then(function() {\n        console.log(\"charts: Count= \" + charts.count);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: propertyNames
       description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
       type:
       - string | string[]
+- uid: excel.Excel.ChartCollection.load_2
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: OfficeExtension.LoadOption): Excel.ChartCollection;'
+    return:
+      type:
+      - excel.Excel.ChartCollection
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - office.OfficeExtension.LoadOption
 - uid: excel.Excel.ChartCollection.onActivated
   summary: >-
     激活图表时发生。
@@ -278,7 +356,7 @@ items:
 - uid: excel.Excel.ChartCollection.toJSON
   summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)而原始`Excel.ChartCollection`对象是 API 对象，`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.ChartCollectionData` <!-- -->)，其中包含数组"项目"的任何加载属性集的项目的浅表副本。
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

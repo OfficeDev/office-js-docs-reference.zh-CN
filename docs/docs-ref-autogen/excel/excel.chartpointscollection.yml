@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: b9b5a92b5becde95489a9e7233c772216903f6a8
-ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
+ms.openlocfilehash: 9c54dfd6c76216f940c1f8cc2744b248614c7a98
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "28724148"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29977732"
 items:
 - uid: excel.Excel.ChartPointsCollection
   summary: >-
@@ -27,6 +27,8 @@ items:
   - excel.Excel.ChartPointsCollection.getItemAt
   - excel.Excel.ChartPointsCollection.items
   - excel.Excel.ChartPointsCollection.load
+  - excel.Excel.ChartPointsCollection.load_1
+  - excel.Excel.ChartPointsCollection.load_2
   - excel.Excel.ChartPointsCollection.toJSON
 - uid: excel.Excel.ChartPointsCollection.context
   summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
@@ -63,7 +65,7 @@ items:
 
     \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getCount()
-  fullName: getCount
+  fullName: getCount()
   langs:
   - typeScript
   type: method
@@ -80,7 +82,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItemAt(index)
-  fullName: getItemAt
+  fullName: getItemAt(index)
   langs:
   - typeScript
   type: method
@@ -109,27 +111,72 @@ items:
       - Excel.ChartPoint[]
 - uid: excel.Excel.ChartPointsCollection.load
   summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
-  remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): Excel.ChartPointsCollection`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartPointsCollection`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Get the names of points in the points collection\nExcel.run(function (ctx) { \n    var pointsCollection = \n        ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\").series.getItemAt(0).points;\n    pointsCollection.load('items');\n    return ctx.sync().then(function() {\n        console.log(\"Points Collection loaded\");\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Get the number of points\nExcel.run(function (ctx) { \n    var pointsCollection = \n        ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\").series.getItemAt(0).points;\n    pointsCollection.load('count');\n    return ctx.sync().then(function() {\n        console.log(\"points: Count= \" + pointsCollection.count);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  remarks: >-
+    除了此签名，此方法具有以下签名：
+
+
+    `load(option?: string | string[]): Excel.ChartPointsCollection`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.ChartPointsCollection`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartPointsCollection`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.ChartPointsCollection;'
+    content: 'load(option?: Excel.Interfaces.ChartPointsCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.ChartPointsCollection;'
     return:
       type:
       - excel.Excel.ChartPointsCollection
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - Excel.Interfaces.ChartPointsCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
+- uid: excel.Excel.ChartPointsCollection.load_1
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.ChartPointsCollection;'
+    return:
+      type:
+      - excel.Excel.ChartPointsCollection
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Get the names of points in the points collection\nExcel.run(function (ctx) { \n    var pointsCollection = \n        ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\").series.getItemAt(0).points;\n    pointsCollection.load('items');\n    return ctx.sync().then(function() {\n        console.log(\"Points Collection loaded\");\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Get the number of points\nExcel.run(function (ctx) { \n    var pointsCollection = \n        ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\").series.getItemAt(0).points;\n    pointsCollection.load('count');\n    return ctx.sync().then(function() {\n        console.log(\"points: Count= \" + pointsCollection.count);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: propertyNames
       description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
       type:
       - string | string[]
+- uid: excel.Excel.ChartPointsCollection.load_2
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: OfficeExtension.LoadOption): Excel.ChartPointsCollection;'
+    return:
+      type:
+      - excel.Excel.ChartPointsCollection
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - office.OfficeExtension.LoadOption
 - uid: excel.Excel.ChartPointsCollection.toJSON
   summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)而原始`Excel.ChartPointsCollection`对象是 API 对象，`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.ChartPointsCollectionData` <!-- -->)，其中包含数组"项目"的任何加载属性集的项目的浅表副本。
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

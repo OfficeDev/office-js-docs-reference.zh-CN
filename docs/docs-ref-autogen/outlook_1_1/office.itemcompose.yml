@@ -1,29 +1,38 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 1ea6d58686522aa469695dd1801145534dd98fb9
-ms.sourcegitcommit: a68606173477c7fb4069880eea941766c7d8c50d
+ms.openlocfilehash: a9118c5b3d6f11024574c85a57a9f42c64d9ffd1
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/01/2019
-ms.locfileid: "29704231"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29973826"
 items:
 - uid: Outlook_1_1.Office.ItemCompose
   summary: >-
     [Office.context.mailbox.item](xref:Outlook_1_1.Office.Item)的撰写模式<!-- -->。
 
 
-    重要说明： 这是一个内部的 Outlook 对象，不能直接通过现有接口公开。 应将此视为模式`Office.context.mailbox.item` <!-- -->。 引用的对象模型的详细信息页。
+    **重要说明**： 这是一个内部的 Outlook 对象，不能直接通过现有接口公开。 您应将此视为 Office.context.mailbox.item 模式。 请参阅[模型](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.1/office.context.mailbox.item)页上的详细信息。
   name: Office.ItemCompose
   fullName: Office.ItemCompose
   langs:
   - typeScript
   type: interface
   extends:
-  - Item
+  - 'Item '
   package: Outlook_1_1
   children:
   - Outlook_1_1.Office.ItemCompose.addFileAttachmentAsync
+  - Outlook_1_1.Office.ItemCompose.addFileAttachmentAsync_1
+  - Outlook_1_1.Office.ItemCompose.addFileAttachmentAsync_2
+  - Outlook_1_1.Office.ItemCompose.addFileAttachmentAsync_3
   - Outlook_1_1.Office.ItemCompose.addItemAttachmentAsync
+  - Outlook_1_1.Office.ItemCompose.addItemAttachmentAsync_1
+  - Outlook_1_1.Office.ItemCompose.addItemAttachmentAsync_2
+  - Outlook_1_1.Office.ItemCompose.addItemAttachmentAsync_3
   - Outlook_1_1.Office.ItemCompose.removeAttachmentAsync
+  - Outlook_1_1.Office.ItemCompose.removeAttachmentAsync_1
+  - Outlook_1_1.Office.ItemCompose.removeAttachmentAsync_2
+  - Outlook_1_1.Office.ItemCompose.removeAttachmentAsync_3
   - Outlook_1_1.Office.ItemCompose.subject
 - uid: Outlook_1_1.Office.ItemCompose.addFileAttachmentAsync
   summary: >-
@@ -58,7 +67,7 @@ items:
 
     `addFileAttachmentAsync(uri: string, attachmentName: string, callback: (result: Office.AsyncResult<string>) => void): void;`
   name: addFileAttachmentAsync(uri, attachmentName, options, callback)
-  fullName: addFileAttachmentAsync
+  fullName: addFileAttachmentAsync(uri, attachmentName, options, callback)
   langs:
   - typeScript
   type: method
@@ -80,7 +89,135 @@ items:
     - id: options
       description: 可选。 包含一个或多个以下属性的对象文本。 asyncContext： 开发人员可以提供他们希望在回调方法访问任何对象。 isInline： 如果为 true，指示附件将显示嵌入在邮件正文中，并且不应在附件列表中显示。
       type:
-      - office.Office.AsyncContextOptions
+      - Office.AsyncContextOptions
+    - id: callback
+      description: 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 成功，将 asyncResult.value 属性中提供的附件标识符。 如果上传附件失败，asyncResult 对象将包含一个 Error 对象，提供错误描述。
+      type:
+      - '(result: Office.AsyncResult<string>) => void'
+- uid: Outlook_1_1.Office.ItemCompose.addFileAttachmentAsync_1
+  summary: >-
+    将文件作为附件添加到邮件或约会。
+
+
+    addFileAttachmentAsync 方法在指定的 URI 上载文件并将其附加到撰写窗体中的项目。
+
+
+    您随后可以将该标识符与 removeAttachmentAsync 方法一同使用，以删除同一个会话中的附件。
+
+
+    \[[API 集： 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr>
+
+
+    <tr><td>错误</td><td>AttachmentSizeExceeded-附件大于所允许。</td></tr><tr><td></td><td>FileTypeNotSupported-附件具有未允许的扩展名。</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded-的邮件或约会的附件太多。</td></tr></table>
+  name: addFileAttachmentAsync(uri, attachmentName)
+  fullName: addFileAttachmentAsync(uri, attachmentName)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addFileAttachmentAsync(uri: string, attachmentName: string): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: uri
+      description: 提供附加到邮件或约会的文件的位置的 URI。最大长度为 2048 个字符。
+      type:
+      - string
+    - id: attachmentName
+      description: 在附件上载过程中显示的附件名称。最大长度为 255 个字符。
+      type:
+      - string
+- uid: Outlook_1_1.Office.ItemCompose.addFileAttachmentAsync_2
+  summary: >-
+    将文件作为附件添加到邮件或约会。
+
+
+    addFileAttachmentAsync 方法在指定的 URI 上载文件并将其附加到撰写窗体中的项目。
+
+
+    您随后可以将该标识符与 removeAttachmentAsync 方法一同使用，以删除同一个会话中的附件。
+
+
+    \[[API 集： 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr>
+
+
+    <tr><td>错误</td><td>AttachmentSizeExceeded-附件大于所允许。</td></tr><tr><td></td><td>FileTypeNotSupported-附件具有未允许的扩展名。</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded-的邮件或约会的附件太多。</td></tr></table>
+  name: addFileAttachmentAsync(uri, attachmentName, options)
+  fullName: addFileAttachmentAsync(uri, attachmentName, options)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addFileAttachmentAsync(uri: string, attachmentName: string, options: Office.AsyncContextOptions): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: uri
+      description: 提供附加到邮件或约会的文件的位置的 URI。最大长度为 2048 个字符。
+      type:
+      - string
+    - id: attachmentName
+      description: 在附件上载过程中显示的附件名称。最大长度为 255 个字符。
+      type:
+      - string
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 asyncContext： 开发人员可以提供他们希望在回调方法访问任何对象。 isInline： 如果为 true，指示附件将显示嵌入在邮件正文中，并且不应在附件列表中显示。
+      type:
+      - Office.AsyncContextOptions
+- uid: Outlook_1_1.Office.ItemCompose.addFileAttachmentAsync_3
+  summary: >-
+    将文件作为附件添加到邮件或约会。
+
+
+    addFileAttachmentAsync 方法在指定的 URI 上载文件并将其附加到撰写窗体中的项目。
+
+
+    您随后可以将该标识符与 removeAttachmentAsync 方法一同使用，以删除同一个会话中的附件。
+
+
+    \[[API 集： 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr>
+
+
+    <tr><td>错误</td><td>AttachmentSizeExceeded-附件大于所允许。</td></tr><tr><td></td><td>FileTypeNotSupported-附件具有未允许的扩展名。</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded-的邮件或约会的附件太多。</td></tr></table>
+  name: addFileAttachmentAsync(uri, attachmentName, callback)
+  fullName: addFileAttachmentAsync(uri, attachmentName, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addFileAttachmentAsync(uri: string, attachmentName: string, callback: (result: Office.AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: uri
+      description: 提供附加到邮件或约会的文件的位置的 URI。最大长度为 2048 个字符。
+      type:
+      - string
+    - id: attachmentName
+      description: 在附件上载过程中显示的附件名称。最大长度为 255 个字符。
+      type:
+      - string
     - id: callback
       description: 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 成功，将 asyncResult.value 属性中提供的附件标识符。 如果上传附件失败，asyncResult 对象将包含一个 Error 对象，提供错误描述。
       type:
@@ -121,7 +258,7 @@ items:
 
     `addItemAttachmentAsync(itemId: any, attachmentName: string, callback: (result: Office.AsyncResult<string>) => void): void;`
   name: addItemAttachmentAsync(itemId, attachmentName, options, callback)
-  fullName: addItemAttachmentAsync
+  fullName: addItemAttachmentAsync(itemId, attachmentName, options, callback)
   langs:
   - typeScript
   type: method
@@ -143,7 +280,144 @@ items:
     - id: options
       description: 包含一个或多个以下属性的对象文本。 asyncContext： 开发人员可以提供他们希望在回调方法访问任何对象。
       type:
-      - office.Office.AsyncContextOptions
+      - Office.AsyncContextOptions
+    - id: callback
+      description: 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 成功，将 asyncResult.value 属性中提供的附件标识符。 如果添加附件失败，asyncResult 对象将包含一个 Error 对象，提供错误描述。
+      type:
+      - '(result: Office.AsyncResult<string>) => void'
+- uid: Outlook_1_1.Office.ItemCompose.addItemAttachmentAsync_1
+  summary: >-
+    将 Exchange 项目（如邮件）作为附件添加到邮件或约会。
+
+
+    addItemAttachmentAsync 方法将包含指定 Exchange 标识符的项目附加到撰写窗体中的项目。如果您指定一个回调方法，此方法使用一个 asyncResult 参数调用，该参数包含一个附件标识符或代码，指示附加项目过程中出现的任何错误。您可以使用 options 参数将状态信息传递给回调方法（如果需要）。
+
+
+    您随后可以将该标识符与 removeAttachmentAsync 方法一同使用，以删除同一个会话中的附件。
+
+
+    如果 Office 外接程序在 Outlook Web App 中运行，则 addItemAttachmentAsync 方法可以将项目添加到项目（正在编辑的项目除外）中；然而，不支持也不建议这样做。
+
+
+    \[[API 集： 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr>
+
+
+    <tr><td>错误</td><td>NumberOfAttachmentsExceeded-的邮件或约会的附件太多。</td></tr></table>
+  name: addItemAttachmentAsync(itemId, attachmentName)
+  fullName: addItemAttachmentAsync(itemId, attachmentName)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addItemAttachmentAsync(itemId: any, attachmentName: string): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: itemId
+      description: 要附加的项目的 Exchange 标识符。最大长度为 100 个字符。
+      type:
+      - any
+    - id: attachmentName
+      description: 在附件上载过程中显示的附件名称。最大长度为 255 个字符。
+      type:
+      - string
+- uid: Outlook_1_1.Office.ItemCompose.addItemAttachmentAsync_2
+  summary: >-
+    将 Exchange 项目（如邮件）作为附件添加到邮件或约会。
+
+
+    addItemAttachmentAsync 方法将包含指定 Exchange 标识符的项目附加到撰写窗体中的项目。如果您指定一个回调方法，此方法使用一个 asyncResult 参数调用，该参数包含一个附件标识符或代码，指示附加项目过程中出现的任何错误。您可以使用 options 参数将状态信息传递给回调方法（如果需要）。
+
+
+    您随后可以将该标识符与 removeAttachmentAsync 方法一同使用，以删除同一个会话中的附件。
+
+
+    如果 Office 外接程序在 Outlook Web App 中运行，则 addItemAttachmentAsync 方法可以将项目添加到项目（正在编辑的项目除外）中；然而，不支持也不建议这样做。
+
+
+    \[[API 集： 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr>
+
+
+    <tr><td>错误</td><td>NumberOfAttachmentsExceeded-的邮件或约会的附件太多。</td></tr></table>
+  name: addItemAttachmentAsync(itemId, attachmentName, options)
+  fullName: addItemAttachmentAsync(itemId, attachmentName, options)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addItemAttachmentAsync(itemId: any, attachmentName: string, options: Office.AsyncContextOptions): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: itemId
+      description: 要附加的项目的 Exchange 标识符。最大长度为 100 个字符。
+      type:
+      - any
+    - id: attachmentName
+      description: 在附件上载过程中显示的附件名称。最大长度为 255 个字符。
+      type:
+      - string
+    - id: options
+      description: 包含一个或多个以下属性的对象文本。 asyncContext： 开发人员可以提供他们希望在回调方法访问任何对象。
+      type:
+      - Office.AsyncContextOptions
+- uid: Outlook_1_1.Office.ItemCompose.addItemAttachmentAsync_3
+  summary: >-
+    将 Exchange 项目（如邮件）作为附件添加到邮件或约会。
+
+
+    addItemAttachmentAsync 方法将包含指定 Exchange 标识符的项目附加到撰写窗体中的项目。如果您指定一个回调方法，此方法使用一个 asyncResult 参数调用，该参数包含一个附件标识符或代码，指示附加项目过程中出现的任何错误。您可以使用 options 参数将状态信息传递给回调方法（如果需要）。
+
+
+    您随后可以将该标识符与 removeAttachmentAsync 方法一同使用，以删除同一个会话中的附件。
+
+
+    如果 Office 外接程序在 Outlook Web App 中运行，则 addItemAttachmentAsync 方法可以将项目添加到项目（正在编辑的项目除外）中；然而，不支持也不建议这样做。
+
+
+    \[[API 集： 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr>
+
+
+    <tr><td>错误</td><td>NumberOfAttachmentsExceeded-的邮件或约会的附件太多。</td></tr></table>
+  name: addItemAttachmentAsync(itemId, attachmentName, callback)
+  fullName: addItemAttachmentAsync(itemId, attachmentName, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addItemAttachmentAsync(itemId: any, attachmentName: string, callback: (result: Office.AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: itemId
+      description: 要附加的项目的 Exchange 标识符。最大长度为 100 个字符。
+      type:
+      - any
+    - id: attachmentName
+      description: 在附件上载过程中显示的附件名称。最大长度为 255 个字符。
+      type:
+      - string
     - id: callback
       description: 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 成功，将 asyncResult.value 属性中提供的附件标识符。 如果添加附件失败，asyncResult 对象将包含一个 Error 对象，提供错误描述。
       type:
@@ -178,7 +452,7 @@ items:
 
     `removeAttachmentAsync(attachmentId: string, callback: (result: Office.AsyncResult<void>) => void): void;`
   name: removeAttachmentAsync(attachmentId, options, callback)
-  fullName: removeAttachmentAsync
+  fullName: removeAttachmentAsync(attachmentId, options, callback)
   langs:
   - typeScript
   type: method
@@ -196,7 +470,114 @@ items:
     - id: options
       description: 可选。 包含一个或多个以下属性的对象文本。 asyncContext： 开发人员可以提供他们希望在回调方法访问任何对象。
       type:
-      - office.Office.AsyncContextOptions
+      - Office.AsyncContextOptions
+    - id: callback
+      description: 可选。 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 如果删除附件失败，则 asyncResult.error 属性将包含错误代码与失败的原因。
+      type:
+      - '(result: Office.AsyncResult<void>) => void'
+- uid: Outlook_1_1.Office.ItemCompose.removeAttachmentAsync_1
+  summary: >-
+    将附件从邮件或约会中删除。
+
+
+    RemoveAttachmentAsync 方法从项目中删除具有指定标识符的附件。 最佳做法是，仅当同一个邮件应用程序在同一会话中添加了一个附件时，你才应使用该附件标识符来删除该附件。 在 Outlook Web App 和适用于设备的 OWA 中，附件标识符只在同一个会话中才有效。 当用户关闭应用，或者如果用户开始在内嵌窗体中撰写，则随后弹出的窗体中继续在单独的窗口撰写时，会话即结束。
+
+
+    \[[API 集： 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr>
+
+
+    <tr><td>错误</td><td>InvalidAttachmentId-附件标识符不存在。</td></tr></table>
+  name: removeAttachmentAsync(attachmentId)
+  fullName: removeAttachmentAsync(attachmentId)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'removeAttachmentAsync(attachmentId: string): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: attachmentId
+      description: 要删除的附件的标识符。
+      type:
+      - string
+- uid: Outlook_1_1.Office.ItemCompose.removeAttachmentAsync_2
+  summary: >-
+    将附件从邮件或约会中删除。
+
+
+    RemoveAttachmentAsync 方法从项目中删除具有指定标识符的附件。 最佳做法是，仅当同一个邮件应用程序在同一会话中添加了一个附件时，你才应使用该附件标识符来删除该附件。 在 Outlook Web App 和适用于设备的 OWA 中，附件标识符只在同一个会话中才有效。 当用户关闭应用，或者如果用户开始在内嵌窗体中撰写，则随后弹出的窗体中继续在单独的窗口撰写时，会话即结束。
+
+
+    \[[API 集： 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr>
+
+
+    <tr><td>错误</td><td>InvalidAttachmentId-附件标识符不存在。</td></tr></table>
+  name: removeAttachmentAsync(attachmentId, options)
+  fullName: removeAttachmentAsync(attachmentId, options)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'removeAttachmentAsync(attachmentId: string, options: Office.AsyncContextOptions): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: attachmentId
+      description: 要删除的附件的标识符。
+      type:
+      - string
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 asyncContext： 开发人员可以提供他们希望在回调方法访问任何对象。
+      type:
+      - Office.AsyncContextOptions
+- uid: Outlook_1_1.Office.ItemCompose.removeAttachmentAsync_3
+  summary: >-
+    将附件从邮件或约会中删除。
+
+
+    RemoveAttachmentAsync 方法从项目中删除具有指定标识符的附件。 最佳做法是，仅当同一个邮件应用程序在同一会话中添加了一个附件时，你才应使用该附件标识符来删除该附件。 在 Outlook Web App 和适用于设备的 OWA 中，附件标识符只在同一个会话中才有效。 当用户关闭应用，或者如果用户开始在内嵌窗体中撰写，则随后弹出的窗体中继续在单独的窗口撰写时，会话即结束。
+
+
+    \[[API 集： 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr>
+
+
+    <tr><td>错误</td><td>InvalidAttachmentId-附件标识符不存在。</td></tr></table>
+  name: removeAttachmentAsync(attachmentId, callback)
+  fullName: removeAttachmentAsync(attachmentId, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'removeAttachmentAsync(attachmentId: string, callback: (result: Office.AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: attachmentId
+      description: 要删除的附件的标识符。
+      type:
+      - string
     - id: callback
       description: 可选。 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。 如果删除附件失败，则 asyncResult.error 属性将包含错误代码与失败的原因。
       type:

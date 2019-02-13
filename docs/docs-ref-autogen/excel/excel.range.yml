@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: e75a1a6dbfd743a5873588cb7c2a24fa48339bf8
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: a36be2c78ae8b0e4342adc2b75ab6f0b6ee723ff
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29769888"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29973287"
 items:
 - uid: excel.Excel.Range
   summary: >-
@@ -26,6 +26,7 @@ items:
   - excel.Excel.Range.calculate
   - excel.Excel.Range.cellCount
   - excel.Excel.Range.clear
+  - excel.Excel.Range.clear_1
   - excel.Excel.Range.columnCount
   - excel.Excel.Range.columnHidden
   - excel.Excel.Range.columnIndex
@@ -33,6 +34,7 @@ items:
   - excel.Excel.Range.context
   - excel.Excel.Range.dataValidation
   - excel.Excel.Range.delete
+  - excel.Excel.Range.delete_1
   - excel.Excel.Range.format
   - excel.Excel.Range.formulas
   - excel.Excel.Range.formulasLocal
@@ -63,9 +65,12 @@ items:
   - excel.Excel.Range.hidden
   - excel.Excel.Range.hyperlink
   - excel.Excel.Range.insert
+  - excel.Excel.Range.insert_1
   - excel.Excel.Range.isEntireColumn
   - excel.Excel.Range.isEntireRow
   - excel.Excel.Range.load
+  - excel.Excel.Range.load_1
+  - excel.Excel.Range.load_2
   - excel.Excel.Range.merge
   - excel.Excel.Range.numberFormat
   - excel.Excel.Range.numberFormatLocal
@@ -74,6 +79,7 @@ items:
   - excel.Excel.Range.rowIndex
   - excel.Excel.Range.select
   - excel.Excel.Range.set
+  - excel.Excel.Range.set_1
   - excel.Excel.Range.showCard
   - excel.Excel.Range.sort
   - excel.Excel.Range.style
@@ -124,7 +130,7 @@ items:
 
     \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: calculate()
-  fullName: calculate
+  fullName: calculate()
   langs:
   - typeScript
   type: method
@@ -157,7 +163,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: clear(applyTo)
-  fullName: clear
+  fullName: clear(applyTo)
   langs:
   - typeScript
   type: method
@@ -172,6 +178,28 @@ items:
       description: 可选。 确定清除操作的类型。 有关详细信息，请参阅 Excel.ClearApplyTo。
       type:
       - excel.Excel.ClearApplyTo
+- uid: excel.Excel.Range.clear_1
+  summary: >-
+    清除区域值、格式、填充、边框等。
+
+
+    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: clear(applyToString)
+  fullName: clear(applyToString)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'clear(applyToString?: "All" | "Formats" | "Contents" | "Hyperlinks" | "RemoveHyperlinks"): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: applyToString
+      description: 可选。 确定清除操作的类型。 有关详细信息，请参阅 Excel.ClearApplyTo。
+      type:
+      - "\"All\" | \"Formats\" | \"Contents\" | \"Hyperlinks\" | \"RemoveHyperlinks\""
 - uid: excel.Excel.Range.columnCount
   summary: >-
     表示区域中的列总数。只读。
@@ -271,7 +299,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: delete(shift)
-  fullName: delete
+  fullName: delete(shift)
   langs:
   - typeScript
   type: method
@@ -280,12 +308,34 @@ items:
     return:
       type:
       - void
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"D:F\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.delete(\"Left\");\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: ''
     parameters:
     - id: shift
       description: 指定移动单元格的方式。 有关详细信息，请参阅 Excel.DeleteShiftDirection。
       type:
       - excel.Excel.DeleteShiftDirection
+- uid: excel.Excel.Range.delete_1
+  summary: >-
+    删除与区域相关的单元格。
+
+
+    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: delete(shiftString)
+  fullName: delete(shiftString)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'delete(shiftString: "Up" | "Left"): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"D:F\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.delete(\"Left\");\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: shiftString
+      description: 指定移动单元格的方式。 有关详细信息，请参阅 Excel.DeleteShiftDirection。
+      type:
+      - "\"Up\" | \"Left\""
 - uid: excel.Excel.Range.format
   summary: >-
     返回一个格式对象，其中封装了区域的字体、填充、边框、对齐方式和其他属性。只读。
@@ -357,7 +407,7 @@ items:
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getAbsoluteResizedRange(numRows, numColumns)
-  fullName: getAbsoluteResizedRange
+  fullName: getAbsoluteResizedRange(numRows, numColumns)
   langs:
   - typeScript
   type: method
@@ -383,7 +433,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getBoundingRect(anotherRange)
-  fullName: getBoundingRect
+  fullName: getBoundingRect(anotherRange)
   langs:
   - typeScript
   type: method
@@ -405,7 +455,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getCell(row, column)
-  fullName: getCell
+  fullName: getCell(row, column)
   langs:
   - typeScript
   type: method
@@ -431,7 +481,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getColumn(column)
-  fullName: getColumn
+  fullName: getColumn(column)
   langs:
   - typeScript
   type: method
@@ -453,7 +503,7 @@ items:
 
     \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getColumnsAfter(count)
-  fullName: getColumnsAfter
+  fullName: getColumnsAfter(count)
   langs:
   - typeScript
   type: method
@@ -475,7 +525,7 @@ items:
 
     \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getColumnsBefore(count)
-  fullName: getColumnsBefore
+  fullName: getColumnsBefore(count)
   langs:
   - typeScript
   type: method
@@ -497,7 +547,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getEntireColumn()
-  fullName: getEntireColumn
+  fullName: getEntireColumn()
   langs:
   - typeScript
   type: method
@@ -514,7 +564,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getEntireRow()
-  fullName: getEntireRow
+  fullName: getEntireRow()
   langs:
   - typeScript
   type: method
@@ -531,7 +581,7 @@ items:
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getImage()
-  fullName: getImage
+  fullName: getImage()
   langs:
   - typeScript
   type: method
@@ -548,7 +598,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getIntersection(anotherRange)
-  fullName: getIntersection
+  fullName: getIntersection(anotherRange)
   langs:
   - typeScript
   type: method
@@ -570,7 +620,7 @@ items:
 
     \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getIntersectionOrNullObject(anotherRange)
-  fullName: getIntersectionOrNullObject
+  fullName: getIntersectionOrNullObject(anotherRange)
   langs:
   - typeScript
   type: method
@@ -592,7 +642,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getLastCell()
-  fullName: getLastCell
+  fullName: getLastCell()
   langs:
   - typeScript
   type: method
@@ -609,7 +659,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getLastColumn()
-  fullName: getLastColumn
+  fullName: getLastColumn()
   langs:
   - typeScript
   type: method
@@ -626,7 +676,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getLastRow()
-  fullName: getLastRow
+  fullName: getLastRow()
   langs:
   - typeScript
   type: method
@@ -643,7 +693,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getOffsetRange(rowOffset, columnOffset)
-  fullName: getOffsetRange
+  fullName: getOffsetRange(rowOffset, columnOffset)
   langs:
   - typeScript
   type: method
@@ -669,7 +719,7 @@ items:
 
     \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getResizedRange(deltaRows, deltaColumns)
-  fullName: getResizedRange
+  fullName: getResizedRange(deltaRows, deltaColumns)
   langs:
   - typeScript
   type: method
@@ -695,7 +745,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getRow(row)
-  fullName: getRow
+  fullName: getRow(row)
   langs:
   - typeScript
   type: method
@@ -717,7 +767,7 @@ items:
 
     \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getRowsAbove(count)
-  fullName: getRowsAbove
+  fullName: getRowsAbove(count)
   langs:
   - typeScript
   type: method
@@ -739,7 +789,7 @@ items:
 
     \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getRowsBelow(count)
-  fullName: getRowsBelow
+  fullName: getRowsBelow(count)
   langs:
   - typeScript
   type: method
@@ -761,7 +811,7 @@ items:
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getSurroundingRegion()
-  fullName: getSurroundingRegion
+  fullName: getSurroundingRegion()
   langs:
   - typeScript
   type: method
@@ -778,7 +828,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getUsedRange(valuesOnly)
-  fullName: getUsedRange
+  fullName: getUsedRange(valuesOnly)
   langs:
   - typeScript
   type: method
@@ -800,7 +850,7 @@ items:
 
     \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getUsedRangeOrNullObject(valuesOnly)
-  fullName: getUsedRangeOrNullObject
+  fullName: getUsedRangeOrNullObject(valuesOnly)
   langs:
   - typeScript
   type: method
@@ -822,7 +872,7 @@ items:
 
     \[[API 集： ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getVisibleView()
-  fullName: getVisibleView
+  fullName: getVisibleView()
   langs:
   - typeScript
   type: method
@@ -872,7 +922,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: insert(shift)
-  fullName: insert
+  fullName: insert(shift)
   langs:
   - typeScript
   type: method
@@ -887,6 +937,28 @@ items:
       description: 指定移动单元格的方式。 有关详细信息，请参阅 Excel.InsertShiftDirection。
       type:
       - excel.Excel.InsertShiftDirection
+- uid: excel.Excel.Range.insert_1
+  summary: >-
+    将单个单元格或一系列单元格插入到工作表中取代此区域，并移动其他单元格以留出空间。在现在空白的空间返回新的 Range 对象。
+
+
+    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: insert(shiftString)
+  fullName: insert(shiftString)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'insert(shiftString: "Down" | "Right"): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: ''
+    parameters:
+    - id: shiftString
+      description: 指定移动单元格的方式。 有关详细信息，请参阅 Excel.InsertShiftDirection。
+      type:
+      - "\"Down\" | \"Right\""
 - uid: excel.Excel.Range.isEntireColumn
   summary: >-
     表示当前区域是否为整列。 只读。
@@ -921,23 +993,69 @@ items:
       - boolean
 - uid: excel.Excel.Range.load
   summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
-  remarks: "除了此签名，此方法具有以下签名：\n\n`load(option?: { select?: string; expand?: string; }): Excel.Range`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Range`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Below example uses range address to get the range object.\nExcel.run(function (ctx) {\n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:F8\"; \n    var worksheet = ctx.workbook.worksheets.getItem(sheetName);\n    var range = worksheet.getRange(rangeAddress);\n    range.load('cellCount');\n    return ctx.sync().then(function() {\n        console.log(range.cellCount);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Below example uses a named-range to get the range object.\nExcel.run(function (ctx) { \n    var rangeName = 'MyRange';\n    var range = ctx.workbook.names.getItem(rangeName).range;\n    range.load('cellCount');\n    return ctx.sync().then(function() {\n        console.log(range.cellCount);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// The example below sets number-format, values and formulas on a grid that contains 2x3 grid.\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"F5:G7\";\n    var numberFormat = [[null, \"d-mmm\"], [null, \"d-mmm\"], [null, null]]\n    var values = [[\"Today\", 42147], [\"Tomorrow\", \"5/24\"], [\"Difference in days\", null]];\n    var formulas = [[null,null], [null,null], [null,\"=G6-G5\"]];\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.numberFormat = numberFormat;\n    range.values = values;\n    range.formulas= formulas;\n    range.load('text');\n    return ctx.sync().then(function() {\n        console.log(range.text);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  remarks: >-
+    除了此签名，此方法具有以下签名：
+
+
+    `load(option?: string | string[]): Excel.Range`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.Range`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Range`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.Range;'
+    content: 'load(option?: Excel.Interfaces.RangeLoadOptions): Excel.Range;'
     return:
       type:
       - excel.Excel.Range
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.RangeLoadOptions
+- uid: excel.Excel.Range.load_1
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Below example uses range address to get the range object.\nExcel.run(function (ctx) {\n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:F8\"; \n    var worksheet = ctx.workbook.worksheets.getItem(sheetName);\n    var range = worksheet.getRange(rangeAddress);\n    range.load('cellCount');\n    return ctx.sync().then(function() {\n        console.log(range.cellCount);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Below example uses a named-range to get the range object.\nExcel.run(function (ctx) { \n    var rangeName = 'MyRange';\n    var range = ctx.workbook.names.getItem(rangeName).range;\n    range.load('cellCount');\n    return ctx.sync().then(function() {\n        console.log(range.cellCount);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// The example below sets number-format, values and formulas on a grid that contains 2x3 grid.\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"F5:G7\";\n    var numberFormat = [[null, \"d-mmm\"], [null, \"d-mmm\"], [null, null]]\n    var values = [[\"Today\", 42147], [\"Tomorrow\", \"5/24\"], [\"Difference in days\", null]];\n    var formulas = [[null,null], [null,null], [null,\"=G6-G5\"]];\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.numberFormat = numberFormat;\n    range.values = values;\n    range.formulas= formulas;\n    range.load('text');\n    return ctx.sync().then(function() {\n        console.log(range.text);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: propertyNames
       description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
       type:
       - string | string[]
+- uid: excel.Excel.Range.load_2
+  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中 propertyNamesAndPaths.select 是一个以逗号分隔的字符串，指定要加载的属性，propertyNamesAndPaths.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.Range.merge
   summary: >-
     将范围单元格合并到工作表的一个区域内。
@@ -945,7 +1063,7 @@ items:
 
     \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: merge(across)
-  fullName: merge
+  fullName: merge(across)
   langs:
   - typeScript
   type: method
@@ -1047,7 +1165,7 @@ items:
 
     \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: select()
-  fullName: select
+  fullName: select()
   langs:
   - typeScript
   type: method
@@ -1061,7 +1179,7 @@ items:
   summary: 在同一时间设置对象的多个的属性。 您可以传递具有的相应属性的普通对象或相同类型的另一个 API 对象。
   remarks: "此方法具有以下其他签名：\n\n`set(properties: Excel.Range): void`\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    const range = sheet.getRange(\"B2:E2\");\n    range.set({\n        format: {\n            fill: {\n                color: \"#4472C4\"\n            },\n            font: {\n                name: \"Verdana\",\n                color: \"white\"\n            }\n        }\n    })\n    range.format.autofitColumns();\n    await context.sync();\n});\n```\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    const sourceRange = sheet.getRange(\"B2:E2\");\n    sourceRange.load(\"format/fill/color, format/font/name, format/font/color\");\n    await context.sync();\n\n    // Set properties based on the loaded and synced \n    // source range.\n    const targetRange = sheet.getRange(\"B7:E7\");\n    targetRange.set(sourceRange); \n    targetRange.format.autofitColumns();\n    await context.sync();\n});\n```"
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -1080,6 +1198,24 @@ items:
       description: 提供一个选项以取消显示错误，如果属性对象会尝试设置任何只读属性。
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: excel.Excel.Range.set_1
+  summary: 在基于现有加载对象的同一时间对象上设置多个属性。
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Excel.Range): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - excel.Excel.Range
 - uid: excel.Excel.Range.showCard
   summary: >-
     显示活动单元格的卡片（如果该单元格具有富值内容）。
@@ -1087,7 +1223,7 @@ items:
 
     \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: showCard()
-  fullName: showCard
+  fullName: showCard()
   langs:
   - typeScript
   type: method
@@ -1149,7 +1285,7 @@ items:
 - uid: excel.Excel.Range.toJSON
   summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.Range 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.RangeData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
@@ -1162,7 +1298,7 @@ items:
 - uid: excel.Excel.Range.track
   summary: 跟踪自动调整根据周围的文档中的更改的对象。 此呼叫是 context.trackedObjects.add(thisObject) 简写。 如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。
   name: track()
-  fullName: track
+  fullName: track()
   langs:
   - typeScript
   type: method
@@ -1179,7 +1315,7 @@ items:
 
     \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: unmerge()
-  fullName: unmerge
+  fullName: unmerge()
   langs:
   - typeScript
   type: method
@@ -1192,7 +1328,7 @@ items:
 - uid: excel.Excel.Range.untrack
   summary: 发行版与此对象，如果以前跟踪关联的内存。 此呼叫是简写 context.trackedObjects.remove(thisObject)。 具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。 您将需要的内存版本生效前调用"context.sync()"。
   name: untrack()
-  fullName: untrack
+  fullName: untrack()
   langs:
   - typeScript
   type: method

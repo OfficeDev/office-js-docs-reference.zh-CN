@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 7895a874d9ffd8708f13a3234eb36b6cb49e675e
-ms.sourcegitcommit: a68606173477c7fb4069880eea941766c7d8c50d
+ms.openlocfilehash: 11ed1a8c73b51f1b3e1614723d2a8c76fdfef665
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/01/2019
-ms.locfileid: "29705071"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29973924"
 items:
 - uid: Outlook_1_7.Office.Item
   summary: >-
@@ -25,14 +25,13 @@ items:
   package: Outlook_1_7
   children:
   - Outlook_1_7.Office.Item.addHandlerAsync
-  - Outlook_1_7.Office.Item.body
-  - Outlook_1_7.Office.Item.dateTimeCreated
-  - Outlook_1_7.Office.Item.dateTimeModified
-  - Outlook_1_7.Office.Item.itemType
+  - Outlook_1_7.Office.Item.addHandlerAsync_1
   - Outlook_1_7.Office.Item.loadCustomPropertiesAsync
-  - Outlook_1_7.Office.Item.notificationMessages
-  - Outlook_1_7.Office.Item.recurrence
   - Outlook_1_7.Office.Item.removeHandlerAsync
+  - Outlook_1_7.Office.Item.removeHandlerAsync_1
+  - Outlook_1_7.Office.Item.body
+  - Outlook_1_7.Office.Item.itemType
+  - Outlook_1_7.Office.Item.notificationMessages
   - Outlook_1_7.Office.Item.seriesId
 - uid: Outlook_1_7.Office.Item.addHandlerAsync
   summary: >-
@@ -55,7 +54,7 @@ items:
 
     `addHandlerAsync(eventType: Office.EventType, handler: any, callback?: (result: Office.AsyncResult<void>) => void): void;`
   name: addHandlerAsync(eventType, handler, options, callback)
-  fullName: addHandlerAsync
+  fullName: addHandlerAsync(eventType, handler, options, callback)
   langs:
   - typeScript
   type: method
@@ -82,96 +81,62 @@ items:
       description: 可选。 该方法完成后，使用一个参数 asyncResult，即 Office.AsyncResult 对象调用中的 callback 参数传递的函数。
       type:
       - '(result: Office.AsyncResult<void>) => void'
-- uid: Outlook_1_7.Office.Item.body
+- uid: Outlook_1_7.Office.Item.addHandlerAsync_1
   summary: >-
-    获取一个提供用于处理项目正文的方法的对象。
+    添加支持事件的事件处理程序。
 
 
-    \[[API 集： 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    当前受支持的事件类型的`Office.EventType.AppointmentTimeChanged` <!-- -->， `Office.EventType.RecipientsChanged` <!-- -->，和`Office.EventType.RecurrenceChanged` <!-- -->。
+
+
+    \[[API 集： 邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
 
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
-  name: body
-  fullName: body
+
+    ####示例
+
+
+    ```javascript
+
+    function myHandlerFunction(eventarg) {
+        if (eventarg.attachmentStatus === Office.MailboxEnums.AttachmentStatus.Added) {
+            var attachment = eventarg.attachmentDetails;
+            console.log("Event Fired and Attachment Added!");
+            getAttachmentContentAsync(attachment.id, options, callback);
+        }
+    }
+
+
+    Office.context.mailbox.item.addHandlerAsync(Office.EventType.AttachmentsChanged, myHandlerFunction, myCallback);
+
+    ```
+  name: addHandlerAsync(eventType, handler, callback)
+  fullName: addHandlerAsync(eventType, handler, callback)
   langs:
   - typeScript
-  type: property
+  type: method
   syntax:
-    content: 'body: Body;'
+    content: 'addHandlerAsync(eventType: Office.EventType, handler: any, callback?: (result: Office.AsyncResult<void>) => void): void;'
     return:
       type:
-      - Body
-- uid: Outlook_1_7.Office.Item.dateTimeCreated
-  summary: >-
-    获取项目创建的日期和时间。仅限阅读模式。
-
-
-    \[[API 集： 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>阅读</td></tr></table>
-  name: dateTimeCreated
-  fullName: dateTimeCreated
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'dateTimeCreated: Date;'
-    return:
+      - void
+      description: ''
+    parameters:
+    - id: eventType
+      description: 应调用处理程序的事件。
       type:
-      - Date
-- uid: Outlook_1_7.Office.Item.dateTimeModified
-  summary: >-
-    获取项目最近一次修改的日期和时间。仅限阅读模式。
-
-
-    \[[API 集： 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>阅读</td></tr></table>
-
-
-    注意：在 Outlook for iOS 或 Outlook for Android 中不支持此成员。
-  name: dateTimeModified
-  fullName: dateTimeModified
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'dateTimeModified: Date;'
-    return:
+      - Office.EventType
+    - id: handler
+      description: 要处理的事件的函数。 函数必须接受一个参数，即对象文本。 参数的类型属性将匹配 eventType 参数传递给 addHandlerAsync。
       type:
-      - Date
-- uid: Outlook_1_7.Office.Item.itemType
-  summary: >-
-    获取实例表示的项的类型。
-
-
-    itemType 属性返回其中一个 ItemType 枚举值，指示 item 对象实例是邮件还是约会。
-
-
-    \[[API 集： 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
-  name: itemType
-  fullName: itemType
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'itemType: MailboxEnums.ItemType;'
-    return:
+      - any
+    - id: callback
+      description: 可选。 该方法完成后，使用一个参数 asyncResult，即 Office.AsyncResult 对象调用中的 callback 参数传递的函数。
       type:
-      - MailboxEnums.ItemType
+      - '(result: Office.AsyncResult<void>) => void'
 - uid: Outlook_1_7.Office.Item.loadCustomPropertiesAsync
   summary: >-
     异步加载所选项目上此外接程序的自定义属性。
@@ -189,8 +154,52 @@ items:
 
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    // The following example shows how to use the loadCustomPropertiesAsync method
+
+    // to asynchronously load custom properties that are specific to the current item.
+
+    // The example also shows how to use the saveAsync method to save these properties
+
+    // back to the server. After loading the custom properties, the example uses the
+
+    // get method to read the custom property myProp, the set method to write the
+
+    // custom property otherProp, and then finally calls the saveAsync method to save
+
+    // the custom properties.
+
+    Office.initialize = function () {
+        // Checks for the DOM to load using the jQuery ready function.
+        $(document).ready(function () {
+            // After the DOM is loaded, add-in-specific code can run.
+            var mailbox = Office.context.mailbox;
+            mailbox.item.loadCustomPropertiesAsync(customPropsCallback);
+        });
+    };
+
+
+    function customPropsCallback(asyncResult) {
+        var customProps = asyncResult.value;
+        var myProp = customProps.get("myProp");
+
+        customProps.set("otherProp", "value");
+        customProps.saveAsync(saveCallback);
+    }
+
+
+    function saveCallback(asyncResult) {
+
+    }
+
+    ```
   name: loadCustomPropertiesAsync(callback, userContext)
-  fullName: loadCustomPropertiesAsync
+  fullName: loadCustomPropertiesAsync(callback, userContext)
   langs:
   - typeScript
   type: method
@@ -209,57 +218,6 @@ items:
       description: 可选。 开发人员可以提供他们想要在回调函数中访问的任何对象。 AsyncResult.asyncContext 属性的回调函数中，可以访问此对象。
       type:
       - any
-- uid: Outlook_1_7.Office.Item.notificationMessages
-  summary: >-
-    获取项目的通知邮件。
-
-
-    \[[API 集： 邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
-  name: notificationMessages
-  fullName: notificationMessages
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'notificationMessages: NotificationMessages;'
-    return:
-      type:
-      - NotificationMessages
-- uid: Outlook_1_7.Office.Item.recurrence
-  summary: >-
-    获取或设置约会的定期模式。 获取或设置会议请求的定期模式。 阅读撰写约会项目的模式。 会议请求项目的阅读模式。
-
-
-    如果项目为一系列或一系列中的实例的定期属性返回定期约会或会议请求的定期的对象。 针对单个约会和单个约会的会议请求返回 `null`。 针对非会议请求的邮件返回 `undefined`。
-
-
-    注意： 会议请求具有 IPM itemClass 的值。Schedule.Meeting.Request。
-
-
-    注意： 如果定期对象为 null，则表示对象是一个约会或会议请求的一个约会，不属于一系列。
-
-
-    \[[API 集： 邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
-  name: recurrence
-  fullName: recurrence
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'recurrence: Recurrence;'
-    return:
-      type:
-      - Recurrence
 - uid: Outlook_1_7.Office.Item.removeHandlerAsync
   summary: >-
     删除受支持事件类型的事件处理程序。
@@ -281,7 +239,7 @@ items:
 
     `removeHandlerAsync(eventType: Office.EventType, callback?: (result: Office.AsyncResult<void>) => void): void;`
   name: removeHandlerAsync(eventType, options, callback)
-  fullName: removeHandlerAsync
+  fullName: removeHandlerAsync(eventType, options, callback)
   langs:
   - typeScript
   type: method
@@ -304,6 +262,158 @@ items:
       description: 可选。 该方法完成后，使用一个参数 asyncResult，即 Office.AsyncResult 对象调用中的 callback 参数传递的函数。
       type:
       - '(result: Office.AsyncResult<void>) => void'
+- uid: Outlook_1_7.Office.Item.removeHandlerAsync_1
+  summary: >-
+    删除受支持事件类型的事件处理程序。
+
+
+    当前受支持的事件类型的`Office.EventType.AppointmentTimeChanged` <!-- -->， `Office.EventType.RecipientsChanged` <!-- -->，和`Office.EventType.RecurrenceChanged` <!-- -->。
+
+
+    \[[API 集： 邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+  name: removeHandlerAsync(eventType, callback)
+  fullName: removeHandlerAsync(eventType, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'removeHandlerAsync(eventType: Office.EventType, callback?: (result: Office.AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: eventType
+      description: 应撤销处理程序的事件。
+      type:
+      - Office.EventType
+    - id: callback
+      description: 可选。 该方法完成后，使用一个参数 asyncResult，即 Office.AsyncResult 对象调用中的 callback 参数传递的函数。
+      type:
+      - '(result: Office.AsyncResult<void>) => void'
+- uid: Outlook_1_7.Office.Item.body
+  summary: >-
+    获取一个提供用于处理项目正文的方法的对象。
+
+
+    \[[API 集： 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    // This example gets the body of the message in plain text.
+
+    Office.context.mailbox.item.body.getAsync(
+        "text",
+        { asyncContext: "This is passed to the callback" },
+        function callback(result) {
+            // Do something with the result
+        });
+
+    // The following is an example of the result parameter passed to the callback function.
+
+    {
+        "value": "TEXT of whole body (including threads below)",
+        "status": "succeeded",
+        "asyncContext": "This is passed to the callback"
+    }
+
+    ```
+  name: body
+  fullName: body
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'body: Body;'
+    return:
+      type:
+      - Body
+- uid: Outlook_1_7.Office.Item.itemType
+  summary: >-
+    获取实例表示的项的类型。
+
+
+    itemType 属性返回其中一个 ItemType 枚举值，指示 item 对象实例是邮件还是约会。
+
+
+    \[[API 集： 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    if (Office.context.mailbox.item.itemType === Office.MailboxEnums.ItemType.Message) {
+        // do something
+    } else {
+        // do something else
+    }
+
+    ```
+  name: itemType
+  fullName: itemType
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'itemType: MailboxEnums.ItemType;'
+    return:
+      type:
+      - MailboxEnums.ItemType
+- uid: Outlook_1_7.Office.Item.notificationMessages
+  summary: >-
+    获取项目的通知邮件。
+
+
+    \[[API 集： 邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    // Get all notifications
+
+    Office.context.mailbox.item.notificationMessages.getAllAsync(
+        function (asyncResult) {
+            console.log(JSON.stringify(asyncResult));
+        }
+    );
+
+    ```
+  name: notificationMessages
+  fullName: notificationMessages
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'notificationMessages: NotificationMessages;'
+    return:
+      type:
+      - NotificationMessages
 - uid: Outlook_1_7.Office.Item.seriesId
   summary: >-
     获取实例所属的系列的 ID。
@@ -312,7 +422,7 @@ items:
     在 OWA 和 Outlook 中，可能指向返回此项目所属的父 （系列） 项的 Exchange Web Services (EWS) ID。 但是，在 iOS 和 Android，可能指向返回父项的 REST ID。
 
 
-    注意： 可能指向属性返回的标识符是 Exchange Web 服务的项标识符相同。 可能指向属性不是与 Outlook Id 使用 Outlook REST API 相同的。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关详细信息，请参阅[使用 Outlook REST Api 从 Outlook 外接程序](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->。
+    **注意**： 可能指向属性返回的标识符是 Exchange Web 服务的项标识符相同。 可能指向属性不是与 Outlook Id 使用 Outlook REST API 相同的。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关详细信息，请参阅[使用 Outlook REST Api 从 Outlook 外接程序](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->。
 
 
     可能指向属性返回 null 没有父项目，如单个约会系列项目的项目或会议请求，并返回 undefined 不是会议请求的其他任何项。
@@ -324,6 +434,28 @@ items:
 
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+
+    ####示例
+
+
+    ```javascript
+
+    var seriesId = Office.context.mailbox.item.seriesId;
+
+
+    // The seriesId property returns null for items that do
+
+    // not have parent items (such as single appointments,
+
+    // series items, or meeting requests) and returns
+
+    // undefined for messages that are not meeting requests.
+
+    var isSeriesInstance = (seriesId != null);
+
+    console.log("SeriesId is " + seriesId + " and isSeriesInstance is " + isSeriesInstance);
+
+    ```
   name: seriesId
   fullName: seriesId
   langs:
