@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: b333c9798a99cc3924133ff1c3bcc4782ad16242
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: 07804de2bdc061f844636d79d35fefcdcde96c0b
+ms.sourcegitcommit: b0b614f5315ab2e5c1e0ea51c687498f87684a07
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29979825"
+ms.lasthandoff: 02/15/2019
+ms.locfileid: "30055288"
 items:
 - uid: Outlook_1_2.Office.RoamingSettings
   summary: >-
@@ -20,30 +20,30 @@ items:
     可通过 Office.context 命名空间中的 roamingSettings 属性访问 RoamingSettings 对象。
 
 
-    **重要说明**： 仅在首次加载的加载项时从持久存储初始化 RoamingSettings 对象。 对于任务窗格，这意味着，它仅初始化任务窗格中首次打开时。 如果任务窗格中导航到另一个页面或重新加载当前页，在内存中的对象是重置为其初始的值，即使加载项已保存的更改。 持久化的更改将不可用，直到关闭并重新打开任务窗格。
+    **重要说明**: 只有在首次加载加载项时, 才会从持久化存储初始化 RoamingSettings 对象。 对于任务窗格, 这意味着仅在第一次打开任务窗格时才会对其进行初始化。 如果任务窗格导航到另一个页面或重新加载当前页面, 则内存中的对象将重置为其初始值, 即使您的外接程序具有持续的更改也是如此。 在关闭并重新打开任务窗格之前, 保留的更改将不可用。
 
 
-    \[[API 集： 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr>
 
 
     <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
 
-    ####示例
+    ####说明
 
 
     ```javascript
 
-    // Get the current value of the 'myKey' setting
+    // Get the current value of the 'myKey' setting.
 
     var value = Office.context.roamingSettings.get('myKey');
 
-    // Update the value of the 'myKey' setting
+    // Update the value of the 'myKey' setting.
 
     Office.context.roamingSettings.set('myKey', 'Hello World!');
 
-    // Persist the change
+    // Persist the change.
 
     Office.context.roamingSettings.saveAsync();
 
@@ -64,7 +64,7 @@ items:
     检索指定设置。
 
 
-    \[[API 集： 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr>
 
@@ -80,7 +80,7 @@ items:
     return:
       type:
       - any
-      description: 类型： String\|号码\|布尔\|对象\|数组
+      description: '类型: String \| Number \| Boolean \|对象\|数组'
     parameters:
     - id: name
       description: 要检索的设置的区分大小写的名称。
@@ -91,7 +91,7 @@ items:
     删除指定的设置
 
 
-    \[[API 集： 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr>
 
@@ -121,7 +121,7 @@ items:
     外接程序初始化时会加载之前保存的所有设置，因此，在会话的生存期内，您只能通过 set 和 get 方法使用设置属性包的内存副本。如果希望保留该设置以便可在下次使用外接程序时使用这些设置，请使用 saveAsync 方法。
 
 
-    \[[API 集： 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr>
 
@@ -140,7 +140,7 @@ items:
       description: ''
     parameters:
     - id: callback
-      description: 可选。 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。
+      description: 可选。 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。
       type:
       - '(result: Office.AsyncResult<void>) => void'
 - uid: Outlook_1_2.Office.RoamingSettings.set
@@ -151,13 +151,13 @@ items:
     set 方法创建指定名称的新设置（如果该设置尚不存在），或者设置指定名称的现有设置。该值在文档中存储为其数据类型的序列化 JSON 表示形式。
 
 
-    32 KB 最大值是可用于每个加载项的设置。
+    每个加载项的设置最多可使用32KB。
 
 
     在调用 saveAsync 函数之前，使用 set 函数对设置所做的所有更改将不会保存到服务器。
 
 
-    \[[API 集： 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr>
 

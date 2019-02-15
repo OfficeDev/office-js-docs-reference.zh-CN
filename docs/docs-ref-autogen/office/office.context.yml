@@ -1,13 +1,13 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: d074d0e317a513e4af3eb2d76856fae406003115
-ms.sourcegitcommit: 31847d2ea6be78b8f473dfbfb0a575fdecd877be
+ms.openlocfilehash: 8e6466bb6dfda6abd3e0eb6a79501046c9d540d8
+ms.sourcegitcommit: b0b614f5315ab2e5c1e0ea51c687498f87684a07
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "26298412"
+ms.lasthandoff: 02/15/2019
+ms.locfileid: "30054763"
 items:
 - uid: office.Office.Context
-  summary: 表示外接程序的运行时环境，并提供对 API 的关键对象的访问。 当前上下文存在作为 Office 的属性。 使用访问`Office.context` <!-- -->。
+  summary: 表示外接程序的运行时环境，并提供对 API 的关键对象的访问。 当前上下文作为 Office 的属性存在。 使用`Office.context` <!-- -->访问它。
   remarks: <table><tr><td>主机</td><td>Access、Excel、Outlook、PowerPoint、Project、Word </td></tr></table>
   name: Office.Context
   fullName: Office.Context
@@ -31,18 +31,18 @@ items:
   - office.Office.Context.touchEnabled
   - office.Office.Context.ui
 - uid: office.Office.Context.commerceAllowed
-  summary: 为 true，如果当前平台允许外接程序以用于销售或升级; 显示用户界面否则返回 False。
+  summary: 如果当前平台允许外接程序显示用于销售或升级的 UI, 则为 True; 否则为 false。否则, 返回 False。
   remarks: >-
-    IOS 应用程序商店不支持应用程序使用提供了指向其他付款系统的外接程序。 但是，在浏览器中运行在 Windows 桌面上或 Office Online 的 Office 加载项允许这样的链接。 如果您希望加载项的 UI 在 iOS 之外的平台上提供到外部付款系统的链接，您可以使用 commerceAllowed 属性控制时显示的链接。
+    iOS 应用商店不支持具有外接程序的应用程序, 这些应用程序提供了指向其他付款系统的链接。 但是, 在浏览器中运行的 office 外接程序或 office Online 在浏览器中确实允许这样的链接。 如果您希望外接程序的 UI 在非 iOS 平台上提供到外部付款系统的链接, 则可以使用 commerceAllowed 属性来控制该链接的显示时间。
 
 
     **支持详细信息**
 
 
-    在以下矩阵大写 Y 表示相应的 Office 主机应用程序中支持此属性。 空单元格指示 Office 主机应用程序不支持此枚举。
+    下表中的大写 Y 表示相应的 Office 主机应用程序支持此属性。 空单元格指示 Office 主机应用程序不支持此枚举。
 
 
-    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+    有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。
 
 
     *支持的主机（按平台）* <table> <tr><th> </th><th> Office for iPad </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td></tr> </table>
@@ -58,7 +58,7 @@ items:
       - boolean
 - uid: office.Office.Context.contentLanguage
   summary: 获取用户指定的区域设置（语言）以编辑文档或项目。
-  remarks: "`contentLanguage`值反映与指定的**编辑语言**设置**文件&gt;选项&gt;语言**Office 中承载应用程序。\n\n访问 web 应用程序的内容加载项中`contentLanguage`属性获取外接程序区域性 (例如，\"EN-GB\")。\n\n**支持详细信息**\n\n在以下矩阵大写 Y 表示相应的 Office 主机应用程序中支持此属性。 空单元格指示 Office 主机应用程序不支持此枚举。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> 适用于设备的 OWA </th><th> Office for Mac </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> Y </td><td> Y </td><td> </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction sayHelloWithContentLanguage() {\n    var myContentLanguage = Office.context.contentLanguage;\n    switch (myContentLanguage) {\n        case 'en-US':\n            write('Hello!');\n            break;\n        case 'en-NZ':\n            write('G\\'day mate!');\n            break;\n    }\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  remarks: "值反映在 Office 主机应用程序中使用**文件&gt;选项&gt;语言**指定的**编辑语言**设置。 `contentLanguage`\n\n在 Access web 应用程序的内容外接程序中`contentLanguage` , 该属性获取外接程序区域性 (例如, \"en-GB\")。\n\n**支持详细信息**\n\n下表中的大写 Y 表示相应的 Office 主机应用程序支持此属性。 空单元格指示 Office 主机应用程序不支持此枚举。\n\n有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> 适用于设备的 OWA </th><th> Office for Mac </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> Y </td><td> Y </td><td> </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction sayHelloWithContentLanguage() {\n    var myContentLanguage = Office.context.contentLanguage;\n    switch (myContentLanguage) {\n        case 'en-US':\n            write('Hello!');\n            break;\n        case 'en-NZ':\n            write('G\\'day mate!');\n            break;\n    }\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: contentLanguage
   fullName: contentLanguage
   langs:
@@ -70,7 +70,7 @@ items:
       type:
       - string
 - uid: office.Office.Context.diagnostics
-  summary: 获取有关在运行外接程序环境的信息。
+  summary: 获取有关加载项在其中运行的环境的信息。
   name: diagnostics
   fullName: diagnostics
   langs:
@@ -83,7 +83,7 @@ items:
       - office.Office.ContextInformation
 - uid: office.Office.Context.displayLanguage
   summary: 获取用户针对 Office 主机应用程序的 UI 指定的区域设置（语言）。
-  remarks: "返回的值是一个字符串 RFC 1766 语言标记格式，如 EN-US。\n\n`displayLanguage`值反映与指定的当前**显示语言**设置**文件&gt;选项&gt;语言**Office 中承载应用程序。\n\n访问 web 应用程序的内容加载项中`displayLanguage property`获取外接程序语言 (例如，\"EN-US\")。\n\n在 Outlook 中使用时, 适用的模式撰写或阅读。\n\n**支持详细信息**\n\n在以下矩阵大写 Y 表示相应的 Office 主机应用程序中支持此属性。 空单元格指示 Office 主机应用程序不支持此枚举。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> 适用于设备的 OWA </th><th> Office for Mac </th></tr> <tr><td><strong>访问</strong></td><td> Y </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> Y </td><td> Y </td><td> </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> </td><td> Y </td><td> </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction sayHelloWithDisplayLanguage() {\n    var myDisplayLanguage = Office.context.displayLanguage;\n    switch (myDisplayLanguage) {\n        case 'en-US':\n            write('Hello!');\n            break;\n        case 'en-NZ':\n            write('G\\'day mate!');\n            break;\n    }\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  remarks: "返回的值是 RFC 1766 语言标记格式的字符串, 如 en-us。\n\n此`displayLanguage`值反映了在 Office 主机应用程序中**使用&gt;文件&gt;选项语言**指定的当前**显示语言**设置。\n\n在 Access web 应用程序的内容外接程序中`displayLanguage property` , 获取外接程序语言 (例如, \"en-us\")。\n\n在 Outlook 中使用时, 适用的模式为 \"撰写\" 或 \"已读\"。\n\n**支持详细信息**\n\n下表中的大写 Y 表示相应的 Office 主机应用程序支持此属性。 空单元格指示 Office 主机应用程序不支持此枚举。\n\n有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> 适用于设备的 OWA </th><th> Office for Mac </th></tr> <tr><td><strong>访问</strong></td><td> Y </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> Y </td><td> Y </td><td> </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> </td><td> Y </td><td> </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction sayHelloWithDisplayLanguage() {\n    var myDisplayLanguage = Office.context.displayLanguage;\n    switch (myDisplayLanguage) {\n        case 'en-US':\n            write('Hello!');\n            break;\n        case 'en-NZ':\n            write('G\\'day mate!');\n            break;\n    }\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: displayLanguage
   fullName: displayLanguage
   langs:
@@ -100,10 +100,10 @@ items:
     **支持详细信息**
 
 
-    在以下矩阵大写 Y 表示相应的 Office 主机应用程序中支持此属性。 空单元格指示 Office 主机应用程序不支持此枚举。
+    下表中的大写 Y 表示相应的 Office 主机应用程序支持此属性。 空单元格指示 Office 主机应用程序不支持此枚举。
 
 
-    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+    有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。
 
 
     *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
@@ -141,7 +141,7 @@ items:
       type:
       - office.Office.Document
 - uid: office.Office.Context.host
-  summary: 包含在其中运行外接程序的 Office 应用程序主机。
+  summary: 包含运行外接程序的 Office 应用程序主机。
   name: host
   fullName: host
   langs:
@@ -169,7 +169,7 @@ items:
     为 Microsoft Outlook 和 Microsoft Outlook 网页版提供对 Outlook 外接程序对象模型的访问权限。
 
 
-    命名空间：
+    命名
 
 
     - diagnostics：将诊断信息提供给 Outlook 外接程序。
@@ -181,14 +181,11 @@ items:
     - userProfile：提供有关 Outlook 外接程序中的用户的信息。
 
 
-    \[[API 集： 邮箱 1.0](/office/dev/add-ins/reference/javascript-api-for-office)\]
+    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/javascript-api-for-office)\]
   remarks: >-
-    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr>
+    <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
 
-
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
-
-    ####示例
+    ####说明
 
 
     ```javascript
@@ -207,9 +204,9 @@ items:
     content: 'mailbox: Office.Mailbox;'
     return:
       type:
-      - outlook.Office.Mailbox
+      - Office.Mailbox
 - uid: office.Office.Context.officeTheme
-  summary: 提供了访问 Office 主题颜色的属性。
+  summary: 提供对 Office 主题颜色的属性的访问权限。
   name: officeTheme
   fullName: officeTheme
   langs:
@@ -222,7 +219,7 @@ items:
       - office.Office.OfficeTheme
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction applyOfficeTheme(){\n    // Get office theme colors.\n    var bodyBackgroundColor = Office.context.officeTheme.bodyBackgroundColor;\n    var bodyForegroundColor = Office.context.officeTheme.bodyForegroundColor;\n    var controlBackgroundColor = Office.context.officeTheme.controlBackgroundColor\n    var controlForegroundColor = Office.context.officeTheme.controlForegroundColor;\n\n    // Apply body background color to a CSS class.\n    $('.body').css('background-color', bodyBackgroundColor);\n}\n```"
 - uid: office.Office.Context.platform
-  summary: 提供在其运行外接程序的平台。
+  summary: 提供在其上运行外接的平台。
   name: platform
   fullName: platform
   langs:
@@ -234,7 +231,7 @@ items:
       type:
       - office.Office.PlatformType
 - uid: office.Office.Context.requirements
-  summary: 提供用于确定哪些要求集支持的当前主机和平台的方法。
+  summary: 提供用于确定当前主机和平台上支持的要求集的方法。
   name: requirements
   fullName: requirements
   langs:
@@ -253,12 +250,8 @@ items:
     RoamingSettings 对象允许您存储和访问用户邮箱中存储的邮件外接程序的数据，以便从用于访问该邮箱的任何主机客户端应用程序中运行该外接程序时，该外接程序可以使用该数据。
 
 
-    \[[API 集： 邮箱 1.0](/office/dev/add-ins/reference/javascript-api-for-office)\]
-  remarks: >-
-    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr>
-
-
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/javascript-api-for-office)\]
+  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
   name: roamingSettings
   fullName: roamingSettings
   langs:
@@ -268,20 +261,20 @@ items:
     content: 'roamingSettings: Office.RoamingSettings;'
     return:
       type:
-      - outlook.Office.RoamingSettings
+      - Office.RoamingSettings
 - uid: office.Office.Context.touchEnabled
-  summary: 指定平台和设备是否允许触摸交互。 外接程序上运行触摸设备，如 iPad; 如果为 truefalse 否则为。
+  summary: 指定平台和设备是否允许触摸交互。 如果外接程序在触摸设备 (如 iPad) 上运行, 则为 True;否则为 false。
   remarks: >-
-    TouchEnabled 属性用于确定您的加载项运行时触摸设备上，并有必要，调整的控件，以及大小和适应触摸交互外接程序的 UI 中的元素的间距的类型。
+    使用 context.touchenabled 属性可确定外接程序何时在触摸设备上运行, 并在必要时调整控件的种类, 以及外接程序 UI 中的元素的大小和间距, 以适应触摸交互。
 
 
     **支持详细信息**
 
 
-    在以下矩阵大写 Y 表示相应的 Office 主机应用程序中支持此属性。 空单元格指示 Office 主机应用程序不支持此枚举。
+    下表中的大写 Y 表示相应的 Office 主机应用程序支持此属性。 空单元格指示 Office 主机应用程序不支持此枚举。
 
 
-    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+    有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。
 
 
     *支持的主机（按平台）* <table> <tr><th> </th><th> Office for iPad </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td></tr> </table>
