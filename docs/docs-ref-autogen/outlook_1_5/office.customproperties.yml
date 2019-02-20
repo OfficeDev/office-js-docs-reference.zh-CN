@@ -1,25 +1,21 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 1dbe73f521f12fca480b640b2300abcbae512e54
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: cc1eb7b646879448b805714de003b1c4224ff975
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29978152"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30098423"
 items:
 - uid: Outlook_1_5.Office.CustomProperties
   summary: >-
     CustomProperties 对象表示特定于特定项目和特定于 Outlook 邮件外接程序的自定义属性。例如，邮件外接程序可能有必要保存一些特定于激活应用程序的当前电子邮件的数据。如果用户以后再次访问相同的消息，并再次激活邮件外接程序，应用程序将能够检索作为自定义属性保存的数据。
 
 
-    Outlook for Mac 不缓存自定义属性，如果用户的网络不可用，因为邮件外接程序无法访问其自定义属性。
+    由于 Outlook for Mac 不缓存自定义属性, 因此如果用户的网络出现故障, 邮件外接程序将无法访问其自定义属性。
 
 
-    \[[API 集： 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
   name: Office.CustomProperties
   fullName: Office.CustomProperties
   langs:
@@ -30,14 +26,12 @@ items:
   - Outlook_1_5.Office.CustomProperties.get
   - Outlook_1_5.Office.CustomProperties.remove
   - Outlook_1_5.Office.CustomProperties.saveAsync
+  - Outlook_1_5.Office.CustomProperties.saveAsync_1
+  - Outlook_1_5.Office.CustomProperties.saveAsync_2
   - Outlook_1_5.Office.CustomProperties.set
 - uid: Outlook_1_5.Office.CustomProperties.get
   summary: 返回指定自定义属性的值。
-  remarks: >-
-    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
   name: get(name)
   fullName: get(name)
   langs:
@@ -52,7 +46,7 @@ items:
         指定的自定义属性的值。
 
 
-        \[Api 集： 邮箱 1.0\]
+        \[Api 集: 邮箱1。0\]
     parameters:
     - id: name
       description: 要返回的自定义属性的名称。
@@ -64,11 +58,7 @@ items:
 
 
     若要永久移除属性，必须调用 CustomProperties 对象的 saveAsync 方法。
-  remarks: >-
-    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
   name: remove(name)
   fullName: remove(name)
   langs:
@@ -86,7 +76,7 @@ items:
         要移除的属性的名称。
 
 
-        \[Api 集： 邮箱 1.0\]
+        \[Api 集: 邮箱1。0\]
       type:
       - string
 - uid: Outlook_1_5.Office.CustomProperties.saveAsync
@@ -97,14 +87,45 @@ items:
     您必须调用 saveAsync 方法来保留使用 CustomProperties 对象的 set 方法或 remove 方法所做的任何更改。保存操作是异步操作。
 
 
-    最好具有回调函数中检查和处理从 saveAsync 错误。 尤其要注意的是，当用户在阅读窗体中处于连接状态时，可以激活阅读外接程序，随后用户将断开连接。 如果加载项调用 saveAsync 在断开连接的状态，saveAsync 将返回错误。 你的回调方法应该会相应地处理此错误。
+    最好让回调函数检查并处理 saveAsync 中的错误。 尤其要注意的是，当用户在阅读窗体中处于连接状态时，可以激活阅读外接程序，随后用户将断开连接。 如果外接程序在处于断开连接状态时调用 saveAsync, saveAsync 将返回错误。 你的回调方法应该会相应地处理此错误。
+  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
+  name: saveAsync(callback, asyncContext)
+  fullName: saveAsync(callback, asyncContext)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'saveAsync(callback?: (result: Office.AsyncResult<void>) => void, asyncContext?: any): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: 可选。 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。
+      type:
+      - '(result: Office.AsyncResult<void>) => void'
+    - id: asyncContext
+      description: >-
+        可选。 传递给回调方法的任何状态数据。
+
+
+        \[Api 集: 邮箱1。0\]
+      type:
+      - any
+- uid: Outlook_1_5.Office.CustomProperties.saveAsync_1
+  summary: >-
+    将特定于项目的自定义属性保存到服务器。
+
+
+    您必须调用 saveAsync 方法来保留使用 CustomProperties 对象的 set 方法或 remove 方法所做的任何更改。保存操作是异步操作。
+
+
+    最好让回调函数检查并处理 saveAsync 中的错误。 尤其要注意的是，当用户在阅读窗体中处于连接状态时，可以激活阅读外接程序，随后用户将断开连接。 如果外接程序在处于断开连接状态时调用 saveAsync, saveAsync 将返回错误。 你的回调方法应该会相应地处理此错误。
   remarks: >-
-    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+    <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
 
-
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
-
-    ####示例
+    ####说明
 
 
     ```javascript
@@ -163,30 +184,50 @@ items:
     }
 
     ```
-  name: saveAsync(callback, asyncContext)
-  fullName: saveAsync(callback, asyncContext)
+  name: saveAsync(callback)
+  fullName: saveAsync(callback)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'saveAsync(callback?: (result: Office.AsyncResult<void>) => void, asyncContext?: any): void;'
+    content: 'saveAsync(callback?: (result: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
       description: ''
     parameters:
     - id: callback
-      description: 可选。 该方法完成后，使用类型 Office.AsyncResult 的单个参数调用中的 callback 参数传递的函数。
+      description: >-
+        可选。 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。
+
+
+        \[Api 集: 邮箱1。0\]
       type:
       - '(result: Office.AsyncResult<void>) => void'
-    - id: asyncContext
-      description: >-
-        可选。 传递给回调方法的任何状态数据。
+- uid: Outlook_1_5.Office.CustomProperties.saveAsync_2
+  summary: >-
+    将特定于项目的自定义属性保存到服务器。
 
 
-        \[Api 集： 邮箱 1.0\]
+    您必须调用 saveAsync 方法来保留使用 CustomProperties 对象的 set 方法或 remove 方法所做的任何更改。保存操作是异步操作。
+
+
+    最好让回调函数检查并处理 saveAsync 中的错误。 尤其要注意的是，当用户在阅读窗体中处于连接状态时，可以激活阅读外接程序，随后用户将断开连接。 如果外接程序在处于断开连接状态时调用 saveAsync, saveAsync 将返回错误。 你的回调方法应该会相应地处理此错误。
+
+
+    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
+  name: saveAsync()
+  fullName: saveAsync()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'saveAsync(): void;'
+    return:
       type:
-      - any
+      - void
+      description: ''
 - uid: Outlook_1_5.Office.CustomProperties.set
   summary: >-
     将指定属性设置为指定值。
@@ -198,12 +239,8 @@ items:
     如果尚不存在指定属性，set 方法将创建一个新的属性；否则现有值将替换为新值。value 参数可以是任何类型；但是始终作为字符串传递给服务器。
 
 
-    \[[API 集： 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
   name: set(name, value)
   fullName: set(name, value)
   langs:

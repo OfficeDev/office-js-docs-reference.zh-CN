@@ -1,17 +1,17 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 988122a0fe59cbd87fe14236450e6b3981f10cb8
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: 3d69325801545906c9b7935094684f4902bd6999
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29982550"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30096477"
 items:
 - uid: excel.Excel.ChartFill
   summary: >-
     表示图表元素的填充格式。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: Excel.ChartFill
   fullName: Excel.ChartFill
   langs:
@@ -31,7 +31,7 @@ items:
     清除图表元素的填充颜色。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: clear()
   fullName: clear()
   langs:
@@ -44,7 +44,7 @@ items:
       - void
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Clear the line format of the major Gridlines on value axis of the Chart named \"Chart1\"\nExcel.run(function (ctx) { \n    var gridlines = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\").axes.valueAxis.majorGridlines;\n    gridlines.format.line.clear();\n    return ctx.sync().then(function() {\n            console.log(\"Chart Major Gridlines Format Cleared\");\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
 - uid: excel.Excel.ChartFill.context
-  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
   name: context
   fullName: context
   langs:
@@ -56,7 +56,7 @@ items:
       type:
       - RequestContext
 - uid: excel.Excel.ChartFill.load
-  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性之前, 必须先调用 "context, sync ()"。
   name: load(option)
   fullName: load(option)
   langs:
@@ -78,7 +78,7 @@ items:
     将图表元素的填充格式设置为统一颜色。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: setSolidColor(color)
   fullName: setSolidColor(color)
   langs:
@@ -92,11 +92,11 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n\n    chart.format.fill.setSolidColor(\"#FF0000\");\n\n    return ctx.sync().then(function() {\n            console.log(\"Chart1 Background Color Changed.\");\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    let pointsCollection = sheet.charts.getItemAt(0).series.getItemAt(0).points;\n    let point = pointsCollection.getItemAt(2);\n\n    // Set color for chart point.\n    point.format.fill.setSolidColor('red');\n\n    await context.sync();        \n});\n```"
     parameters:
     - id: color
-      description: HTML 表示的窗体的背景颜色的颜色代码\#RRGGBB (例如"FFA500") 或为已命名的 HTML 颜色 （例如"橙色"）。
+      description: 代表\#RRGGBB (例如 "FFA500") 或命名的 HTML 颜色 (例如 "橙色") 的边框线条颜色的 HTML 颜色代码。
       type:
       - string
 - uid: excel.Excel.ChartFill.toJSON
-  summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.ChartFill 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.ChartFillData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
+  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到`JSON.stringify()` <!-- -->时提供更有用的输出。 (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。)尽管原始 ChartFill 对象是 API 对象, 但该`toJSON`方法返回一个纯 JavaScript 对象 (类型为`Excel.Interfaces.ChartFillData` <!-- -->), 其中包含原始对象中任何已加载的子属性的浅表副本。
   name: toJSON()
   fullName: toJSON()
   langs:
