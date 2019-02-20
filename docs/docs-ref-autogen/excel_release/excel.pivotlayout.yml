@@ -1,0 +1,323 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 2b8430fe5999a52ef42600ade810bb497ddd1401
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30109491"
+items:
+- uid: excel_release.Excel.PivotLayout
+  summary: >-
+    表示数据透视表的可视化布局。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.PivotLayout
+  fullName: Excel.PivotLayout
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - office.OfficeExtension.ClientObject
+  package: excel_release
+  children:
+  - excel_release.Excel.PivotLayout.context
+  - excel_release.Excel.PivotLayout.getColumnLabelRange
+  - excel_release.Excel.PivotLayout.getDataBodyRange
+  - excel_release.Excel.PivotLayout.getFilterAxisRange
+  - excel_release.Excel.PivotLayout.getRange
+  - excel_release.Excel.PivotLayout.getRowLabelRange
+  - excel_release.Excel.PivotLayout.layoutType
+  - excel_release.Excel.PivotLayout.load
+  - excel_release.Excel.PivotLayout.load_1
+  - excel_release.Excel.PivotLayout.load_2
+  - excel_release.Excel.PivotLayout.set
+  - excel_release.Excel.PivotLayout.set_1
+  - excel_release.Excel.PivotLayout.showColumnGrandTotals
+  - excel_release.Excel.PivotLayout.showRowGrandTotals
+  - excel_release.Excel.PivotLayout.subtotalLocation
+  - excel_release.Excel.PivotLayout.toJSON
+- uid: excel_release.Excel.PivotLayout.context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
+- uid: excel_release.Excel.PivotLayout.getColumnLabelRange
+  summary: >-
+    返回数据透视表列标签所在位置的区域。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getColumnLabelRange()
+  fullName: getColumnLabelRange()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getColumnLabelRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: ''
+- uid: excel_release.Excel.PivotLayout.getDataBodyRange
+  summary: >-
+    返回数据透视表数据值所在位置的区域。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getDataBodyRange()
+  fullName: getDataBodyRange()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getDataBodyRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n\n    // the layout controls the ranges used by the PivotTable\n    const range = pivotTable.layout.getDataBodyRange();\n\n    // get all the data hierarchy totals\n    const grandTotalRange = range.getLastRow();\n    grandTotalRange.load(\"address\");\n    await context.sync();\n    \n    // use the wholesale and farm sale totals to make a final sum\n    const masterTotalRange = context.workbook.worksheets.getActiveWorksheet().getRange(\"B27:C27\");\n    masterTotalRange.formulas = [[\"All Crates\", \"=SUM(\" + grandTotalRange.address + \")\"]];\n    await context.sync();\n});\n```"
+- uid: excel_release.Excel.PivotLayout.getFilterAxisRange
+  summary: >-
+    返回数据透视表筛选区的区域。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getFilterAxisRange()
+  fullName: getFilterAxisRange()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getFilterAxisRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: ''
+- uid: excel_release.Excel.PivotLayout.getRange
+  summary: >-
+    返回存在数据透视表的区域，不包括筛选区。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getRange()
+  fullName: getRange()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: ''
+- uid: excel_release.Excel.PivotLayout.getRowLabelRange
+  summary: >-
+    返回数据透视表行标签所在位置的区域。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getRowLabelRange()
+  fullName: getRowLabelRange()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getRowLabelRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: ''
+- uid: excel_release.Excel.PivotLayout.layoutType
+  summary: >-
+    此属性指示数据透视表上的所有字段的 PivotLayoutType。 如果字段状态不同，则为 null。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: layoutType
+  fullName: layoutType
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'layoutType: Excel.PivotLayoutType | "Compact" | "Tabular" | "Outline";'
+    return:
+      type:
+      - Excel.PivotLayoutType | "Compact" | "Tabular" | "Outline"
+- uid: excel_release.Excel.PivotLayout.load
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性之前, 必须先调用 "context, sync ()"。
+  remarks: >-
+    除了此签名之外, 此方法还具有以下签名:
+
+
+    `load(option?: string | string[]): Excel.PivotLayout`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.PivotLayout`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.PivotLayout`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: Excel.Interfaces.PivotLayoutLoadOptions): Excel.PivotLayout;'
+    return:
+      type:
+      - excel.Excel.PivotLayout
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.PivotLayoutLoadOptions
+- uid: excel_release.Excel.PivotLayout.load_1
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.PivotLayout;'
+    return:
+      type:
+      - excel.Excel.PivotLayout
+      description: ''
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。
+      type:
+      - string | string[]
+- uid: excel_release.Excel.PivotLayout.load_2
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.PivotLayout;'
+    return:
+      type:
+      - excel.Excel.PivotLayout
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+      type:
+      - '{ select?: string; expand?: string; }'
+- uid: excel_release.Excel.PivotLayout.set
+  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+  remarks: >-
+    此方法具有以下附加签名:
+
+
+    `set(properties: Excel.PivotLayout): void`
+  name: set(properties, options)
+  fullName: set(properties, options)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Interfaces.PivotLayoutUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: 一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。
+      type:
+      - Interfaces.PivotLayoutUpdateData
+    - id: options
+      description: 提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。
+      type:
+      - office.OfficeExtension.UpdateOptions
+- uid: excel_release.Excel.PivotLayout.set_1
+  summary: 基于现有加载的对象同时设置该对象的多个属性。
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Excel.PivotLayout): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - excel.Excel.PivotLayout
+- uid: excel_release.Excel.PivotLayout.showColumnGrandTotals
+  summary: >-
+    如果数据透视表显示列总计，则为 True。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: showColumnGrandTotals
+  fullName: showColumnGrandTotals
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'showColumnGrandTotals: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel_release.Excel.PivotLayout.showRowGrandTotals
+  summary: >-
+    如果数据透视表显示行总计，则为 True。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: showRowGrandTotals
+  fullName: showRowGrandTotals
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'showRowGrandTotals: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel_release.Excel.PivotLayout.subtotalLocation
+  summary: >-
+    此属性指示数据透视表上的所有字段的 SubtotalLocationType。 如果字段状态不同，则为 null。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: subtotalLocation
+  fullName: subtotalLocation
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'subtotalLocation: Excel.SubtotalLocationType | "AtTop" | "AtBottom" | "Off";'
+    return:
+      type:
+      - Excel.SubtotalLocationType | "AtTop" | "AtBottom" | "Off"
+- uid: excel_release.Excel.PivotLayout.toJSON
+  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到`JSON.stringify()` <!-- -->时提供更有用的输出。 (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。)尽管原始 PivotLayout 对象是 API 对象, 但该`toJSON`方法返回一个纯 JavaScript 对象 (类型为`Excel.Interfaces.PivotLayoutData` <!-- -->), 其中包含原始对象中任何已加载的子属性的浅表副本。
+  name: toJSON()
+  fullName: toJSON()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.PivotLayoutData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.PivotLayoutData
+      description: ''

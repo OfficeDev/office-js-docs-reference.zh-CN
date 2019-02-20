@@ -1,0 +1,286 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 444b0ae7e43f55652f5557bd47e42b8567545dd7
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30110296"
+items:
+- uid: excel_release.Excel.DataValidation
+  summary: >-
+    表示应用于当前范围的数据验证。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.DataValidation
+  fullName: Excel.DataValidation
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - office.OfficeExtension.ClientObject
+  package: excel_release
+  children:
+  - excel_release.Excel.DataValidation.clear
+  - excel_release.Excel.DataValidation.context
+  - excel_release.Excel.DataValidation.errorAlert
+  - excel_release.Excel.DataValidation.ignoreBlanks
+  - excel_release.Excel.DataValidation.load
+  - excel_release.Excel.DataValidation.load_1
+  - excel_release.Excel.DataValidation.load_2
+  - excel_release.Excel.DataValidation.prompt
+  - excel_release.Excel.DataValidation.rule
+  - excel_release.Excel.DataValidation.set
+  - excel_release.Excel.DataValidation.set_1
+  - excel_release.Excel.DataValidation.toJSON
+  - excel_release.Excel.DataValidation.type
+  - excel_release.Excel.DataValidation.valid
+- uid: excel_release.Excel.DataValidation.clear
+  summary: >-
+    清除当前区域中的数据有效性。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: clear()
+  fullName: clear()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'clear(): void;'
+    return:
+      type:
+      - void
+      description: ''
+- uid: excel_release.Excel.DataValidation.context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
+- uid: excel_release.Excel.DataValidation.errorAlert
+  summary: >-
+    用户输入无效数据时，出现错误警报。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: errorAlert
+  fullName: errorAlert
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'errorAlert: Excel.DataValidationErrorAlert;'
+    return:
+      type:
+      - excel.Excel.DataValidationErrorAlert
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Decision\");\n    const commentsRange = \n        sheet.tables.getItem(\"NameOptionsTable\").columns.getItem(\"Comments\").getDataBodyRange();\n\n    // When you are developing, it is a good practice to\n    // clear the dataValidation object with each run of your code.\n    commentsRange.dataValidation.clear();   \n\n    // If the value of A2 is contained in the value of C2, then \n    // SEARCH(A2,C2) returns the number where it begins. Otherwise,\n    // it does not return a number.\n    let redundantStringRule = {\n        custom: {\n            formula: \"=NOT(ISNUMBER(SEARCH(A2,C2)))\"\n        }\n    };\n    commentsRange.dataValidation.rule = redundantStringRule;\n    commentsRange.dataValidation.errorAlert = {\n        message: \"It is redundant to include the baby name in the comment.\",\n        showAlert: true,\n        style: \"Information\",\n        title: \"Baby Name in Comment\"\n    };\n\n    await context.sync();\n});\n```"
+- uid: excel_release.Excel.DataValidation.ignoreBlanks
+  summary: >-
+    忽略空白：不会对空白单元格执行数据严重，默认为 true。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: ignoreBlanks
+  fullName: ignoreBlanks
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'ignoreBlanks: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel_release.Excel.DataValidation.load
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性之前, 必须先调用 "context, sync ()"。
+  remarks: >-
+    除了此签名之外, 此方法还具有以下签名:
+
+
+    `load(option?: string | string[]): Excel.DataValidation`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.DataValidation`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.DataValidation`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: Excel.Interfaces.DataValidationLoadOptions): Excel.DataValidation;'
+    return:
+      type:
+      - excel.Excel.DataValidation
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.DataValidationLoadOptions
+- uid: excel_release.Excel.DataValidation.load_1
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.DataValidation;'
+    return:
+      type:
+      - excel.Excel.DataValidation
+      description: ''
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。
+      type:
+      - string | string[]
+- uid: excel_release.Excel.DataValidation.load_2
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.DataValidation;'
+    return:
+      type:
+      - excel.Excel.DataValidation
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+      type:
+      - '{ select?: string; expand?: string; }'
+- uid: excel_release.Excel.DataValidation.prompt
+  summary: >-
+    当用户选择单元格时提示。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: prompt
+  fullName: prompt
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'prompt: Excel.DataValidationPrompt;'
+    return:
+      type:
+      - excel.Excel.DataValidationPrompt
+- uid: excel_release.Excel.DataValidation.rule
+  summary: >-
+    包含不同类型的数据验证条件的数据有效性规则。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: rule
+  fullName: rule
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'rule: Excel.DataValidationRule;'
+    return:
+      type:
+      - excel.Excel.DataValidationRule
+- uid: excel_release.Excel.DataValidation.set
+  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+  remarks: >-
+    此方法具有以下附加签名:
+
+
+    `set(properties: Excel.DataValidation): void`
+  name: set(properties, options)
+  fullName: set(properties, options)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Interfaces.DataValidationUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: 一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。
+      type:
+      - Interfaces.DataValidationUpdateData
+    - id: options
+      description: 提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。
+      type:
+      - office.OfficeExtension.UpdateOptions
+- uid: excel_release.Excel.DataValidation.set_1
+  summary: 基于现有加载的对象同时设置该对象的多个属性。
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Excel.DataValidation): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - excel.Excel.DataValidation
+- uid: excel_release.Excel.DataValidation.toJSON
+  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到`JSON.stringify()` <!-- -->时提供更有用的输出。 (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。)尽管原始 DataValidation 对象是 API 对象, 但该`toJSON`方法返回一个纯 JavaScript 对象 (类型为`Excel.Interfaces.DataValidationData` <!-- -->), 其中包含原始对象中任何已加载的子属性的浅表副本。
+  name: toJSON()
+  fullName: toJSON()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.DataValidationData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.DataValidationData
+      description: ''
+- uid: excel_release.Excel.DataValidation.type
+  summary: >-
+    数据有效性类型，有关详细信息，请参阅 Excel.DataValidationType。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: type
+  fullName: type
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly type: Excel.DataValidationType | "None" | "WholeNumber" | "Decimal" | "List" | "Date" | "Time" | "TextLength" | "Custom" | "Inconsistent" | "MixedCriteria";'
+    return:
+      type:
+      - Excel.DataValidationType | "None" | "WholeNumber" | "Decimal" | "List" | "Date" | "Time" | "TextLength" | "Custom" | "Inconsistent" | "MixedCriteria"
+- uid: excel_release.Excel.DataValidation.valid
+  summary: >-
+    表示所有单元格值根据数据有效性规则是否全部有效。 如果所有单元格的值都有效, 则返回 true; 如果所有单元格值无效, 则返回 false。 如果区域中存在有效和无效的单元格值, 则返回 null。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: valid
+  fullName: valid
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly valid: boolean;'
+    return:
+      type:
+      - boolean

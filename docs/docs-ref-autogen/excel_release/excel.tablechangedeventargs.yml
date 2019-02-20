@@ -1,0 +1,171 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: f7cca62440e85d955712a636bccd3e219ba8c2ef
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30109435"
+items:
+- uid: excel_release.Excel.TableChangedEventArgs
+  summary: >-
+    提供有关引发 Changed 事件的表的信息。
+
+
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.TableChangedEventArgs
+  fullName: Excel.TableChangedEventArgs
+  langs:
+  - typeScript
+  type: interface
+  package: excel_release
+  children:
+  - excel_release.Excel.TableChangedEventArgs.getRange
+  - excel_release.Excel.TableChangedEventArgs.getRangeOrNullObject
+  - excel_release.Excel.TableChangedEventArgs.address
+  - excel_release.Excel.TableChangedEventArgs.changeType
+  - excel_release.Excel.TableChangedEventArgs.source
+  - excel_release.Excel.TableChangedEventArgs.tableId
+  - excel_release.Excel.TableChangedEventArgs.type
+  - excel_release.Excel.TableChangedEventArgs.worksheetId
+- uid: excel_release.Excel.TableChangedEventArgs.getRange
+  summary: >-
+    获取表示特定工作表上的表的更改区域的范围。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getRange(ctx)
+  fullName: getRange(ctx)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getRange(ctx: Excel.RequestContext): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: ''
+    parameters:
+    - id: ctx
+      description: ''
+      type:
+      - excel.Excel.RequestContext
+- uid: excel_release.Excel.TableChangedEventArgs.getRangeOrNullObject
+  summary: >-
+    获取表示特定工作表上的表的更改区域的范围。 它可能返回 null 对象。
+
+
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getRangeOrNullObject(ctx)
+  fullName: getRangeOrNullObject(ctx)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getRangeOrNullObject(ctx: Excel.RequestContext): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: ''
+    parameters:
+    - id: ctx
+      description: ''
+      type:
+      - excel.Excel.RequestContext
+- uid: excel_release.Excel.TableChangedEventArgs.address
+  summary: >-
+    获取地址，该地址表示特定工作表上的表格的更改区域。
+
+
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: address
+  fullName: address
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'address: string;'
+    return:
+      type:
+      - string
+- uid: excel_release.Excel.TableChangedEventArgs.changeType
+  summary: >-
+    获取更改类型，该类型表示 Changed 事件的触发方式。 有关详细信息, 请参阅 DataChangeType。
+
+
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: changeType
+  fullName: changeType
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'changeType: Excel.DataChangeType | "Unknown" | "RangeEdited" | "RowInserted" | "RowDeleted" | "ColumnInserted" | "ColumnDeleted" | "CellInserted" | "CellDeleted";'
+    return:
+      type:
+      - Excel.DataChangeType | "Unknown" | "RangeEdited" | "RowInserted" | "RowDeleted" | "ColumnInserted" | "ColumnDeleted" | "CellInserted" | "CellDeleted"
+- uid: excel_release.Excel.TableChangedEventArgs.source
+  summary: >-
+    获取事件源。 有关详细信息, 请参阅 "Excel. EventSource"。
+
+
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: source
+  fullName: source
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'source: Excel.EventSource | "Local" | "Remote";'
+    return:
+      type:
+      - Excel.EventSource | "Local" | "Remote"
+- uid: excel_release.Excel.TableChangedEventArgs.tableId
+  summary: >-
+    获取其中的数据发生更改的表格的 ID。
+
+
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: tableId
+  fullName: tableId
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'tableId: string;'
+    return:
+      type:
+      - string
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nasync function onChange(event) {\n    await Excel.run(async (context) => {\n        let table = context.workbook.tables.getItem(event.tableId);\n        let worksheet = context.workbook.worksheets.getItem(event.worksheetId);\n        worksheet.load(\"name\");\n\n        await context.sync();\n\n        console.log(\"Handler for table collection onChanged event has been triggered. Data changed address: \" + event.address);\n        console.log(\"Table Id : \" + event.tableId);\n        console.log(\"Worksheet Id : \" + worksheet.name);\n    });\n}\n```"
+- uid: excel_release.Excel.TableChangedEventArgs.type
+  summary: >-
+    获取事件的类型。 有关详细信息, 请参阅 "Excel. 事件"。
+
+
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: type
+  fullName: type
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'type: "TableChanged";'
+    return:
+      type:
+      - "\"TableChanged\""
+- uid: excel_release.Excel.TableChangedEventArgs.worksheetId
+  summary: >-
+    获取其中的数据发生更改的工作表的 ID。
+
+
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: worksheetId
+  fullName: worksheetId
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'worksheetId: string;'
+    return:
+      type:
+      - string
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nasync function onChange(event) {\n    await Excel.run(async (context) => {\n        let table = context.workbook.tables.getItem(event.tableId);\n        let worksheet = context.workbook.worksheets.getItem(event.worksheetId);\n        worksheet.load(\"name\");\n\n        await context.sync();\n\n        console.log(\"Handler for table collection onChanged event has been triggered. Data changed address: \" + event.address);\n        console.log(\"Table Id : \" + event.tableId);\n        console.log(\"Worksheet Id : \" + worksheet.name);\n    });\n}\n```"

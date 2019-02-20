@@ -1,0 +1,224 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 041dc1d0ec672224ed1f69908b0f28083eec0070
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30110429"
+items:
+- uid: excel_release.Excel.TableRowCollection
+  summary: >-
+    表示属于表的所有行的集合。
+
+
+    请注意, 与在添加新行/列之前的区域或列不同, TableRow 对象表示表行的物理位置, 而不是数据。 也就是说, 如果对数据进行排序或添加新行, 则表行将继续指向为其创建该索引的索引。
+
+
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.TableRowCollection
+  fullName: Excel.TableRowCollection
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - office.OfficeExtension.ClientObject
+  package: excel_release
+  children:
+  - excel_release.Excel.TableRowCollection.add
+  - excel_release.Excel.TableRowCollection.context
+  - excel_release.Excel.TableRowCollection.count
+  - excel_release.Excel.TableRowCollection.getCount
+  - excel_release.Excel.TableRowCollection.getItemAt
+  - excel_release.Excel.TableRowCollection.items
+  - excel_release.Excel.TableRowCollection.load
+  - excel_release.Excel.TableRowCollection.load_1
+  - excel_release.Excel.TableRowCollection.load_2
+  - excel_release.Excel.TableRowCollection.toJSON
+- uid: excel_release.Excel.TableRowCollection.add
+  summary: >-
+    向表中添加一行或多行。返回对象是新添加的首行。
+
+
+    请注意, 与在添加新行/列之前的区域或列不同, TableRow 对象表示表行的物理位置, 而不是数据。 也就是说, 如果对数据进行排序或添加新行, 则表行将继续指向为其创建该索引的索引。
+
+
+    \[[API 集: 用于添加单个行的 ExcelApi 1.1; 1.4 允许添加多个行。](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
+  name: add(index, values)
+  fullName: add(index, values)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'add(index?: number, values?: Array<Array<boolean | string | number>> | boolean | string | number): Excel.TableRow;'
+    return:
+      type:
+      - excel.Excel.TableRow
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tables = ctx.workbook.tables;\n    var values = [[\"Sample\", \"Values\", \"For\", \"New\", \"Row\"]];\n    var row = tables.getItem(\"Table1\").rows.add(null, values);\n    row.load('index');\n    return ctx.sync().then(function() {\n        console.log(row.index);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: index
+      description: 可选。指定新行的相对位置。如果为 NULL 或 -1，将在末尾进行添加。插入的行下方的所有行都会向下移动。从零开始编制索引。
+      type:
+      - number
+    - id: values
+      description: 可选。未设置格式的表行值的二维数组。
+      type:
+      - Array<Array<boolean | string | number>> | boolean | string | number
+- uid: excel_release.Excel.TableRowCollection.context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
+- uid: excel_release.Excel.TableRowCollection.count
+  summary: >-
+    返回表中的行数。只读。
+
+
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: count
+  fullName: count
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly count: number;'
+    return:
+      type:
+      - number
+- uid: excel_release.Excel.TableRowCollection.getCount
+  summary: >-
+    获取表格中的行数。
+
+
+    \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getCount()
+  fullName: getCount()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getCount(): OfficeExtension.ClientResult<number>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<number>
+      description: ''
+- uid: excel_release.Excel.TableRowCollection.getItemAt
+  summary: >-
+    根据其在集合中的位置获取行。
+
+
+    请注意, 与在添加新行/列之前的区域或列不同, TableRow 对象表示表行的物理位置, 而不是数据。 也就是说, 如果对数据进行排序或添加新行, 则表行将继续指向为其创建该索引的索引。
+
+
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getItemAt(index)
+  fullName: getItemAt(index)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItemAt(index: number): Excel.TableRow;'
+    return:
+      type:
+      - excel.Excel.TableRow
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tablerow = ctx.workbook.tables.getItem('Table1').rows.getItemAt(0);\n    tablerow.load('name');\n    return ctx.sync().then(function() {\n            console.log(tablerow.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: index
+      description: 要检索的对象的索引值。从零开始编制索引。
+      type:
+      - number
+- uid: excel_release.Excel.TableRowCollection.items
+  summary: 获取此集合中的已加载子项目。
+  name: items
+  fullName: items
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly items: Excel.TableRow[];'
+    return:
+      type:
+      - Excel.TableRow[]
+- uid: excel_release.Excel.TableRowCollection.load
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性之前, 必须先调用 "context, sync ()"。
+  remarks: >-
+    除了此签名之外, 此方法还具有以下签名:
+
+
+    `load(option?: string | string[]): Excel.TableRowCollection`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.TableRowCollection`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TableRowCollection`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: Excel.Interfaces.TableRowCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.TableRowCollection;'
+    return:
+      type:
+      - excel.Excel.TableRowCollection
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - Excel.Interfaces.TableRowCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
+- uid: excel_release.Excel.TableRowCollection.load_1
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.TableRowCollection;'
+    return:
+      type:
+      - excel.Excel.TableRowCollection
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tablerows = ctx.workbook.tables.getItem('Table1').rows;\n    tablerows.load('items');\n    return ctx.sync().then(function() {\n        console.log(\"tablerows Count: \" + tablerows.count);\n        for (var i = 0; i < tablerows.items.length; i++)\n        {\n            console.log(tablerows.items[i].index);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// In the example, we'll select the top 100 rows of the table.\nExcel.run(function (ctx) { \n    var table = ctx.workbook.tables.getItem(\"Table1\");\n    var tableRows = table.rows.load({\"select\" : \"index, values\",\"top\": 100, \"skip\": 0 })\n    return ctx.sync().then(function() {\n        for (var i = 0; i < tableRows.items.length; i++)\n        {\n            console.log(tableRows.items[i].index);\n            console.log(tableRows.items[i].values);\n        }\n    });\n}).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n});\n```"
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。
+      type:
+      - string | string[]
+- uid: excel_release.Excel.TableRowCollection.load_2
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: OfficeExtension.LoadOption): Excel.TableRowCollection;'
+    return:
+      type:
+      - excel.Excel.TableRowCollection
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - office.OfficeExtension.LoadOption
+- uid: excel_release.Excel.TableRowCollection.toJSON
+  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到`JSON.stringify()` <!-- -->时提供更有用的输出。 (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。)虽然原始`Excel.TableRowCollection`对象是 API 对象, 但该`toJSON`方法返回一个纯 JavaScript 对象 (类型为`Excel.Interfaces.TableRowCollectionData` <!-- -->), 其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。
+  name: toJSON()
+  fullName: toJSON()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.TableRowCollectionData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.TableRowCollectionData
+      description: ''
