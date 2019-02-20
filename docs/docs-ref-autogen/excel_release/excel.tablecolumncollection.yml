@@ -1,0 +1,265 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: fba1f8bad39a41fcef6c4852701605bb4c86e20e
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30116729"
+items:
+- uid: excel_release.Excel.TableColumnCollection
+  summary: >-
+    表示属于表的所有列的集合。
+
+
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.TableColumnCollection
+  fullName: Excel.TableColumnCollection
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - office.OfficeExtension.ClientObject
+  package: excel_release
+  children:
+  - excel_release.Excel.TableColumnCollection.add
+  - excel_release.Excel.TableColumnCollection.context
+  - excel_release.Excel.TableColumnCollection.count
+  - excel_release.Excel.TableColumnCollection.getCount
+  - excel_release.Excel.TableColumnCollection.getItem
+  - excel_release.Excel.TableColumnCollection.getItemAt
+  - excel_release.Excel.TableColumnCollection.getItemOrNullObject
+  - excel_release.Excel.TableColumnCollection.items
+  - excel_release.Excel.TableColumnCollection.load
+  - excel_release.Excel.TableColumnCollection.load_1
+  - excel_release.Excel.TableColumnCollection.load_2
+  - excel_release.Excel.TableColumnCollection.toJSON
+- uid: excel_release.Excel.TableColumnCollection.add
+  summary: >-
+    向表中添加新列。
+
+
+    \[[API 集: ExcelApi 1.1 要求索引小于总列数; 1.4 允许索引为可选 (null 或-1), 并将在末尾追加一列; 1.4 在创建时允许 name 参数。](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
+  name: add(index, values, name)
+  fullName: add(index, values, name)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'add(index?: number, values?: Array<Array<boolean | string | number>> | boolean | string | number, name?: string): Excel.TableColumn;'
+    return:
+      type:
+      - excel.Excel.TableColumn
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tables = ctx.workbook.tables;\n    var values = [[\"Sample\"], [\"Values\"], [\"For\"], [\"New\"], [\"Column\"]];\n    var column = tables.getItem(\"Table1\").columns.add(null, values);\n    column.load('name');\n    return ctx.sync().then(function() {\n        console.log(column.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: index
+      description: 可选。指定新列的相对位置。如果为 NULL 或 -1，将在末尾进行添加。索引更高的列将被移到一侧。从零开始编制索引。
+      type:
+      - number
+    - id: values
+      description: 可选。未设置格式的表列值的二维数组。
+      type:
+      - Array<Array<boolean | string | number>> | boolean | string | number
+    - id: name
+      description: 可选。指定新列的名称。如果为 Null，将使用默认名称。
+      type:
+      - string
+- uid: excel_release.Excel.TableColumnCollection.context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
+- uid: excel_release.Excel.TableColumnCollection.count
+  summary: >-
+    返回表中的列数。只读。
+
+
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: count
+  fullName: count
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly count: number;'
+    return:
+      type:
+      - number
+- uid: excel_release.Excel.TableColumnCollection.getCount
+  summary: >-
+    获取表中的列数。
+
+
+    \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getCount()
+  fullName: getCount()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getCount(): OfficeExtension.ClientResult<number>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<number>
+      description: ''
+- uid: excel_release.Excel.TableColumnCollection.getItem
+  summary: >-
+    按名称或 ID 获取 column 对象。
+
+
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getItem(key)
+  fullName: getItem(key)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItem(key: number | string): Excel.TableColumn;'
+    return:
+      type:
+      - excel.Excel.TableColumn
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tablecolumn = ctx.workbook.tables.getItem('Table1').columns.getItem(0);\n    tablecolumn.load('name');\n    return ctx.sync().then(function() {\n            console.log(tablecolumn.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: key
+      description: 列名称或 ID。
+      type:
+      - number | string
+- uid: excel_release.Excel.TableColumnCollection.getItemAt
+  summary: >-
+    根据其在集合中的位置获取列。
+
+
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getItemAt(index)
+  fullName: getItemAt(index)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItemAt(index: number): Excel.TableColumn;'
+    return:
+      type:
+      - excel.Excel.TableColumn
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tablecolumn = ctx.workbook.tables.getItem['Table1'].columns.getItemAt(0);\n    tablecolumn.load('name');\n    return ctx.sync().then(function() {\n            console.log(tablecolumn.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: index
+      description: 要检索的对象的索引值。从零开始编制索引。
+      type:
+      - number
+- uid: excel_release.Excel.TableColumnCollection.getItemOrNullObject
+  summary: >-
+    按名称或 ID 获取 column 对象。如果没有 column 对象，将返回 NULL 对象。
+
+
+    \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getItemOrNullObject(key)
+  fullName: getItemOrNullObject(key)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItemOrNullObject(key: number | string): Excel.TableColumn;'
+    return:
+      type:
+      - excel.Excel.TableColumn
+      description: ''
+    parameters:
+    - id: key
+      description: 列名称或 ID。
+      type:
+      - number | string
+- uid: excel_release.Excel.TableColumnCollection.items
+  summary: 获取此集合中的已加载子项目。
+  name: items
+  fullName: items
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly items: Excel.TableColumn[];'
+    return:
+      type:
+      - Excel.TableColumn[]
+- uid: excel_release.Excel.TableColumnCollection.load
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性之前, 必须先调用 "context, sync ()"。
+  remarks: >-
+    除了此签名之外, 此方法还具有以下签名:
+
+
+    `load(option?: string | string[]): Excel.TableColumnCollection`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.TableColumnCollection`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TableColumnCollection`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: Excel.Interfaces.TableColumnCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.TableColumnCollection;'
+    return:
+      type:
+      - excel.Excel.TableColumnCollection
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - Excel.Interfaces.TableColumnCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
+- uid: excel_release.Excel.TableColumnCollection.load_1
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.TableColumnCollection;'
+    return:
+      type:
+      - excel.Excel.TableColumnCollection
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tablecolumns = ctx.workbook.tables.getItem('Table1').columns;\n    tablecolumns.load('items');\n    return ctx.sync().then(function() {\n        console.log(\"tablecolumns Count: \" + tablecolumns.count);\n        for (var i = 0; i < tablecolumns.items.length; i++) {\n            console.log(tablecolumns.items[i].name);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。
+      type:
+      - string | string[]
+- uid: excel_release.Excel.TableColumnCollection.load_2
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: OfficeExtension.LoadOption): Excel.TableColumnCollection;'
+    return:
+      type:
+      - excel.Excel.TableColumnCollection
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - office.OfficeExtension.LoadOption
+- uid: excel_release.Excel.TableColumnCollection.toJSON
+  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到`JSON.stringify()` <!-- -->时提供更有用的输出。 (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。)虽然原始`Excel.TableColumnCollection`对象是 API 对象, 但该`toJSON`方法返回一个纯 JavaScript 对象 (类型为`Excel.Interfaces.TableColumnCollectionData` <!-- -->), 其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。
+  name: toJSON()
+  fullName: toJSON()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.TableColumnCollectionData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.TableColumnCollectionData
+      description: ''
