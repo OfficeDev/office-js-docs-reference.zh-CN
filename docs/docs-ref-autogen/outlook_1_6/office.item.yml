@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 0531f62796f983650ca3e33d915dc3e8471b9e82
-ms.sourcegitcommit: b0b614f5315ab2e5c1e0ea51c687498f87684a07
+ms.openlocfilehash: 1a738bedccc06a4c60c2ce2692a8b4c3dbdc5735
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/15/2019
-ms.locfileid: "30055008"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30094517"
 items:
 - uid: Outlook_1_6.Office.Item
   summary: >-
@@ -12,11 +12,7 @@ items:
 
 
     \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr>
-
-
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
   name: Office.Item
   fullName: Office.Item
   langs:
@@ -25,6 +21,7 @@ items:
   package: Outlook_1_6
   children:
   - Outlook_1_6.Office.Item.loadCustomPropertiesAsync
+  - Outlook_1_6.Office.Item.loadCustomPropertiesAsync_1
   - Outlook_1_6.Office.Item.body
   - Outlook_1_6.Office.Item.itemType
   - Outlook_1_6.Office.Item.notificationMessages
@@ -40,11 +37,41 @@ items:
 
 
     \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
+  name: loadCustomPropertiesAsync(callback, userContext)
+  fullName: loadCustomPropertiesAsync(callback, userContext)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'loadCustomPropertiesAsync(callback: (result: Office.AsyncResult<CustomProperties>) => void, userContext?: any): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。
+      type:
+      - '(result: Office.AsyncResult<CustomProperties>) => void'
+    - id: userContext
+      description: 可选。 开发人员可以提供他们想要在回调函数中访问的任何对象。 此对象可以通过回调函数中的 asyncContext 属性来访问。
+      type:
+      - any
+- uid: Outlook_1_6.Office.Item.loadCustomPropertiesAsync_1
+  summary: >-
+    异步加载所选项目上此外接程序的自定义属性。
+
+
+    自定义属性基于每个应用、每个项目存储为键/值对。此方法在回调中返回 CustomProperties，该回调提供访问特定于当前项目和当前外接程序的自定义属性的方法。自定义属性未在项目上加密，因此这不应用作安全存储。
+
+
+    自定义属性作为 asyncResult.value 属性中的 CustomProperties 对象提供。此对象可用于获取、设置以及从项目中删除自定义属性，并将自定义属性集的更改重新保存到服务器。
+
+
+    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+    <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
 
     ####说明
 
@@ -89,13 +116,13 @@ items:
     }
 
     ```
-  name: loadCustomPropertiesAsync(callback, userContext)
-  fullName: loadCustomPropertiesAsync(callback, userContext)
+  name: loadCustomPropertiesAsync(callback)
+  fullName: loadCustomPropertiesAsync(callback)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'loadCustomPropertiesAsync(callback: (result: Office.AsyncResult<CustomProperties>) => void, userContext?: any): void;'
+    content: 'loadCustomPropertiesAsync(callback: (result: Office.AsyncResult<CustomProperties>) => void): void;'
     return:
       type:
       - void
@@ -105,10 +132,6 @@ items:
       description: 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。
       type:
       - '(result: Office.AsyncResult<CustomProperties>) => void'
-    - id: userContext
-      description: 可选。 开发人员可以提供他们想要在回调函数中访问的任何对象。 此对象可以通过回调函数中的 asyncContext 属性来访问。
-      type:
-      - any
 - uid: Outlook_1_6.Office.Item.body
   summary: >-
     获取一个提供用于处理项目正文的方法的对象。
@@ -116,10 +139,7 @@ items:
 
     \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+    <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
 
     ####说明
 
@@ -164,10 +184,7 @@ items:
 
     \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+    <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
 
     ####说明
 
@@ -198,10 +215,7 @@ items:
 
     \[[API 集: 邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    <table><tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr></table>
+    <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
 
     ####说明
 

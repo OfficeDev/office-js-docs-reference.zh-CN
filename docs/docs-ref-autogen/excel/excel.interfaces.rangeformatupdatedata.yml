@@ -1,13 +1,13 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: a4b795a1d287a2cf5a2eb76d8204fae72dbaeed8
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: fe2a85e0ae48e562dfd31a5c48b73058d52e694a
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29976010"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30093173"
 items:
 - uid: excel.Excel.Interfaces.RangeFormatUpdateData
-  summary: 更新对 RangeFormat 对象，用于数据接口"rangeFormat.set (<!-- -->{...}<!-- -->)".
+  summary: 用于更新 RangeFormat 对象上的数据的接口, 用于在 "RangeFormat" 中使用 (<!-- -->{...}<!-- -->)".
   name: Excel.Interfaces.RangeFormatUpdateData
   fullName: Excel.Interfaces.RangeFormatUpdateData
   langs:
@@ -15,23 +15,61 @@ items:
   type: interface
   package: excel
   children:
+  - excel.Excel.Interfaces.RangeFormatUpdateData.autoIndent
+  - excel.Excel.Interfaces.RangeFormatUpdateData.borders
   - excel.Excel.Interfaces.RangeFormatUpdateData.columnWidth
   - excel.Excel.Interfaces.RangeFormatUpdateData.fill
   - excel.Excel.Interfaces.RangeFormatUpdateData.font
   - excel.Excel.Interfaces.RangeFormatUpdateData.horizontalAlignment
+  - excel.Excel.Interfaces.RangeFormatUpdateData.indentLevel
   - excel.Excel.Interfaces.RangeFormatUpdateData.protection
+  - excel.Excel.Interfaces.RangeFormatUpdateData.readingOrder
   - excel.Excel.Interfaces.RangeFormatUpdateData.rowHeight
+  - excel.Excel.Interfaces.RangeFormatUpdateData.shrinkToFit
   - excel.Excel.Interfaces.RangeFormatUpdateData.textOrientation
   - excel.Excel.Interfaces.RangeFormatUpdateData.useStandardHeight
   - excel.Excel.Interfaces.RangeFormatUpdateData.useStandardWidth
   - excel.Excel.Interfaces.RangeFormatUpdateData.verticalAlignment
   - excel.Excel.Interfaces.RangeFormatUpdateData.wrapText
+- uid: excel.Excel.Interfaces.RangeFormatUpdateData.autoIndent
+  summary: >-
+    指示当文本对齐方式设置为相等分布时, 文本是否自动缩进。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: autoIndent
+  fullName: autoIndent
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'autoIndent?: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.Interfaces.RangeFormatUpdateData.borders
+  summary: >-
+    应用于整个范围的 border 对象的集合。
+
+
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: borders
+  fullName: borders
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'borders?: Excel.Interfaces.RangeBorderCollectionUpdateData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.RangeBorderCollectionUpdateData
 - uid: excel.Excel.Interfaces.RangeFormatUpdateData.columnWidth
   summary: >-
     获取或设置区域内的所有列的宽度。如果列宽不统一，则返回 NULL。
 
 
-    \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: columnWidth
   fullName: columnWidth
   langs:
@@ -44,10 +82,10 @@ items:
       - number
 - uid: excel.Excel.Interfaces.RangeFormatUpdateData.fill
   summary: >-
-    返回的总体范围上定义的填充对象。
+    返回在整体范围定义的填充对象。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: fill
   fullName: fill
   langs:
@@ -60,10 +98,10 @@ items:
       - excel.Excel.Interfaces.RangeFillUpdateData
 - uid: excel.Excel.Interfaces.RangeFormatUpdateData.font
   summary: >-
-    返回的总体范围上定义的 font 对象。
+    返回在整体范围定义的 font 对象。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: font
   fullName: font
   langs:
@@ -76,10 +114,10 @@ items:
       - excel.Excel.Interfaces.RangeFontUpdateData
 - uid: excel.Excel.Interfaces.RangeFormatUpdateData.horizontalAlignment
   summary: >-
-    代表指定对象的水平对齐方式。 有关详细信息，请参阅 Excel.HorizontalAlignment。
+    代表指定对象的水平对齐方式。 有关详细信息, 请参阅 HorizontalAlignment。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: horizontalAlignment
   fullName: horizontalAlignment
   langs:
@@ -90,12 +128,29 @@ items:
     return:
       type:
       - Excel.HorizontalAlignment | "General" | "Left" | "Center" | "Right" | "Fill" | "Justify" | "CenterAcrossSelection" | "Distributed"
+- uid: excel.Excel.Interfaces.RangeFormatUpdateData.indentLevel
+  summary: >-
+    0到250之间的一个整数, 它指示缩进级别。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: indentLevel
+  fullName: indentLevel
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'indentLevel?: number;'
+    return:
+      type:
+      - number
 - uid: excel.Excel.Interfaces.RangeFormatUpdateData.protection
   summary: >-
-    返回范围的格式 protection 对象。
+    返回区域的格式保护对象。
 
 
-    \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: protection
   fullName: protection
   langs:
@@ -106,12 +161,29 @@ items:
     return:
       type:
       - excel.Excel.Interfaces.FormatProtectionUpdateData
+- uid: excel.Excel.Interfaces.RangeFormatUpdateData.readingOrder
+  summary: >-
+    区域的阅读顺序。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: readingOrder
+  fullName: readingOrder
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readingOrder?: Excel.ReadingOrder | "Context" | "LeftToRight" | "RightToLeft";'
+    return:
+      type:
+      - Excel.ReadingOrder | "Context" | "LeftToRight" | "RightToLeft"
 - uid: excel.Excel.Interfaces.RangeFormatUpdateData.rowHeight
   summary: >-
-    获取或设置范围中的所有行的高度。 如果行高不是统一的则将返回 null。
+    获取或设置区域中所有行的高度。 如果行高不一致, 则将返回 null。
 
 
-    \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: rowHeight
   fullName: rowHeight
   langs:
@@ -122,12 +194,29 @@ items:
     return:
       type:
       - number
+- uid: excel.Excel.Interfaces.RangeFormatUpdateData.shrinkToFit
+  summary: >-
+    指示文本是否自动缩小以适合可用列宽。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: shrinkToFit
+  fullName: shrinkToFit
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'shrinkToFit?: boolean;'
+    return:
+      type:
+      - boolean
 - uid: excel.Excel.Interfaces.RangeFormatUpdateData.textOrientation
   summary: >-
-    获取或设置区域内的所有单元格的文本方向。 文本方向应为整数从-90 至 90 或 180 纵向文本。 如果不统一范围内的方向，则将返回 null。
+    获取或设置区域内的所有单元格的文本方向。 文本方向应为-90 到90之间的整数, 或者为180垂直方向的文本。 如果区域中的方向不一致, 则将返回 null。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: textOrientation
   fullName: textOrientation
   langs:
@@ -140,10 +229,10 @@ items:
       - number
 - uid: excel.Excel.Interfaces.RangeFormatUpdateData.useStandardHeight
   summary: >-
-    确定 Range 对象的行高是否等于工作表的标准行高。 如果 Range 对象的行高等于工作表的标准高度，则返回 True。 如果区域包含多个行，并且不是行的高度相同，则返回 Null。 否则返回 False。
+    确定 Range 对象的行高是否等于工作表的标准行高。 如果 Range 对象的行高等于工作表的标准高度, 则返回 True。 如果区域包含多行, 并且行不是都具有相同的高度, 则返回 Null。 否则返回 False。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: useStandardHeight
   fullName: useStandardHeight
   langs:
@@ -156,10 +245,10 @@ items:
       - boolean
 - uid: excel.Excel.Interfaces.RangeFormatUpdateData.useStandardWidth
   summary: >-
-    指示是否 Range 对象的列宽等于的工作表的标准列宽。 如果 Range 对象的列宽等于的工作表的标准列宽，则返回 True。 如果该区域包含多个列并且列不是高度相同，则返回 Null。 否则返回 False。
+    指示 Range 对象的列宽是否等于工作表的标准宽度。 如果 Range 对象的列宽等于工作表的标准宽度, 则返回 True。 如果区域中包含多个列, 并且各列的高度不相同, 则返回 Null。 否则返回 False。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: useStandardWidth
   fullName: useStandardWidth
   langs:
@@ -172,10 +261,10 @@ items:
       - boolean
 - uid: excel.Excel.Interfaces.RangeFormatUpdateData.verticalAlignment
   summary: >-
-    代表指定对象的垂直对齐方式。 有关详细信息，请参阅 Excel.VerticalAlignment。
+    表示指定对象的垂直对齐方式。 有关详细信息, 请参阅 VerticalAlignment。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: verticalAlignment
   fullName: verticalAlignment
   langs:
@@ -191,7 +280,7 @@ items:
     指示 Excel 是否将对象中的文本换行。指示整个区域不具有统一换行设置的空值
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: wrapText
   fullName: wrapText
   langs:

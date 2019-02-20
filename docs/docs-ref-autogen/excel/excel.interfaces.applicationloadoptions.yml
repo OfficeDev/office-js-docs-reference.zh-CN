@@ -1,17 +1,17 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: cc728d51e25ef67e1aa4dd1abae54552446ea120
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: 4f616d452c3cac272425117a6090c6e2ec4ed685
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29984966"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30094734"
 items:
 - uid: excel.Excel.Interfaces.ApplicationLoadOptions
   summary: >-
     表示用于管理工作簿的 Excel 应用程序。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: Excel.Interfaces.ApplicationLoadOptions
   fullName: Excel.Interfaces.ApplicationLoadOptions
   langs:
@@ -20,7 +20,10 @@ items:
   package: excel
   children:
   - excel.Excel.Interfaces.ApplicationLoadOptions.$all
+  - excel.Excel.Interfaces.ApplicationLoadOptions.calculationEngineVersion
   - excel.Excel.Interfaces.ApplicationLoadOptions.calculationMode
+  - excel.Excel.Interfaces.ApplicationLoadOptions.calculationState
+  - excel.Excel.Interfaces.ApplicationLoadOptions.iterativeCalculation
 - uid: excel.Excel.Interfaces.ApplicationLoadOptions.$all
   name: $all
   fullName: $all
@@ -32,12 +35,29 @@ items:
     return:
       type:
       - boolean
+- uid: excel.Excel.Interfaces.ApplicationLoadOptions.calculationEngineVersion
+  summary: >-
+    返回有关上次对工作簿进行完全重新计算的 Excel 计算引擎版本的数字。 只读。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: calculationEngineVersion
+  fullName: calculationEngineVersion
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'calculationEngineVersion?: boolean;'
+    return:
+      type:
+      - boolean
 - uid: excel.Excel.Interfaces.ApplicationLoadOptions.calculationMode
   summary: >-
-    定义的 Excel.CalculationMode 中的常量，则返回工作簿中使用的计算模式。 可能的值为： `Automatic` <!-- -->，其中，Excel 控制重新计算;`AutomaticExceptTables` <!-- -->，其中，Excel 控制重新计算，但忽略表; 中的更改`Manual` <!-- -->，其中时进行计算用户请求。
+    返回工作簿中使用的计算模式, 如 CalculationMode 中的常量所定义。 可能的值为`Automatic` <!-- -->:, Excel 控制重新计算的位置。`AutomaticExceptTables`, Excel 在其中控制重新计算, 但忽略表中的<!-- -->更改。`Manual`, 在用户请求计算时完成<!-- -->计算。
 
 
-    \[[API 集： 用于获取、 设置为 1.8 ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1 for get, 1.8 (用于设置)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: calculationMode
   fullName: calculationMode
   langs:
@@ -48,3 +68,37 @@ items:
     return:
       type:
       - boolean
+- uid: excel.Excel.Interfaces.ApplicationLoadOptions.calculationState
+  summary: >-
+    返回一个指示应用程序的计算状态的 CalculationState。 有关详细信息, 请参阅 CalculationState。 只读。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: calculationState
+  fullName: calculationState
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'calculationState?: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.Interfaces.ApplicationLoadOptions.iterativeCalculation
+  summary: >-
+    返回迭代计算设置。 在 excel for Windows 和 excel for Mac 上, 这些设置将应用于 excel 应用程序。 在 excel Online 和 excel 中, 对于其他平台, 这些设置将应用于活动工作簿。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: iterativeCalculation
+  fullName: iterativeCalculation
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'iterativeCalculation?: Excel.Interfaces.IterativeCalculationLoadOptions;'
+    return:
+      type:
+      - excel.Excel.Interfaces.IterativeCalculationLoadOptions

@@ -1,17 +1,17 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: b497ed4356fd389b20f3f9a3a7a29dcf18a306a9
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: a3efae33e400954ea270e85c640f6f139cda2004
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29981099"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30095735"
 items:
 - uid: excel.Excel.Worksheet
   summary: >-
     Excel 工作表是由单元格组成的网格。它可以包含数据、表、图表等。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: Excel.Worksheet
   fullName: Excel.Worksheet
   langs:
@@ -22,12 +22,17 @@ items:
   package: excel
   children:
   - excel.Excel.Worksheet.activate
+  - excel.Excel.Worksheet.autoFilter
   - excel.Excel.Worksheet.calculate
   - excel.Excel.Worksheet.charts
+  - excel.Excel.Worksheet.comments
   - excel.Excel.Worksheet.context
   - excel.Excel.Worksheet.copy
   - excel.Excel.Worksheet.copy_1
   - excel.Excel.Worksheet.delete
+  - excel.Excel.Worksheet.enableCalculation
+  - excel.Excel.Worksheet.findAll
+  - excel.Excel.Worksheet.findAllOrNullObject
   - excel.Excel.Worksheet.freezePanes
   - excel.Excel.Worksheet.getCell
   - excel.Excel.Worksheet.getNext
@@ -36,8 +41,10 @@ items:
   - excel.Excel.Worksheet.getPreviousOrNullObject
   - excel.Excel.Worksheet.getRange
   - excel.Excel.Worksheet.getRangeByIndexes
+  - excel.Excel.Worksheet.getRanges
   - excel.Excel.Worksheet.getUsedRange
   - excel.Excel.Worksheet.getUsedRangeOrNullObject
+  - excel.Excel.Worksheet.horizontalPageBreaks
   - excel.Excel.Worksheet.id
   - excel.Excel.Worksheet.load
   - excel.Excel.Worksheet.load_1
@@ -48,26 +55,33 @@ items:
   - excel.Excel.Worksheet.onCalculated
   - excel.Excel.Worksheet.onChanged
   - excel.Excel.Worksheet.onDeactivated
+  - excel.Excel.Worksheet.onFiltered
+  - excel.Excel.Worksheet.onFormatChanged
   - excel.Excel.Worksheet.onSelectionChanged
+  - excel.Excel.Worksheet.pageLayout
   - excel.Excel.Worksheet.pivotTables
   - excel.Excel.Worksheet.position
   - excel.Excel.Worksheet.protection
+  - excel.Excel.Worksheet.replaceAll
   - excel.Excel.Worksheet.set
   - excel.Excel.Worksheet.set_1
+  - excel.Excel.Worksheet.shapes
   - excel.Excel.Worksheet.showGridlines
   - excel.Excel.Worksheet.showHeadings
+  - excel.Excel.Worksheet.slicers
   - excel.Excel.Worksheet.standardHeight
   - excel.Excel.Worksheet.standardWidth
   - excel.Excel.Worksheet.tabColor
   - excel.Excel.Worksheet.tables
   - excel.Excel.Worksheet.toJSON
+  - excel.Excel.Worksheet.verticalPageBreaks
   - excel.Excel.Worksheet.visibility
 - uid: excel.Excel.Worksheet.activate
   summary: >-
     在 Excel UI 中激活工作表。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: activate()
   fullName: activate()
   langs:
@@ -79,12 +93,29 @@ items:
       type:
       - void
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var wSheetName = 'Sheet1';\n    var worksheet = ctx.workbook.worksheets.getItem(wSheetName);\n    worksheet.activate();\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.Worksheet.autoFilter
+  summary: >-
+    代表工作表的自动筛选对象。 只读。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: autoFilter
+  fullName: autoFilter
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly autoFilter: Excel.AutoFilter;'
+    return:
+      type:
+      - excel.Excel.AutoFilter
 - uid: excel.Excel.Worksheet.calculate
   summary: >-
     计算工作表上的所有单元格。
 
 
-    \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: calculate(markAllDirty)
   fullName: calculate(markAllDirty)
   langs:
@@ -98,7 +129,7 @@ items:
       description: ''
     parameters:
     - id: markAllDirty
-      description: 为 true，则所有为带有脏数据标记。
+      description: 如果为 True, 则将全部标记为已更新。
       type:
       - boolean
 - uid: excel.Excel.Worksheet.charts
@@ -106,7 +137,7 @@ items:
     返回属于工作表的图表的集合。只读。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: charts
   fullName: charts
   langs:
@@ -117,8 +148,25 @@ items:
     return:
       type:
       - excel.Excel.ChartCollection
+- uid: excel.Excel.Worksheet.comments
+  summary: >-
+    返回工作表上的所有注释对象的集合。 只读。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: comments
+  fullName: comments
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly comments: Excel.CommentCollection;'
+    return:
+      type:
+      - excel.Excel.CommentCollection
 - uid: excel.Excel.Worksheet.context
-  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
   name: context
   fullName: context
   langs:
@@ -134,7 +182,7 @@ items:
     复制工作表并将其置于指定位置。 返回复制的工作表。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: copy(positionType, relativeTo)
   fullName: copy(positionType, relativeTo)
   langs:
@@ -160,7 +208,7 @@ items:
     复制工作表并将其置于指定位置。 返回复制的工作表。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: copy(positionTypeString, relativeTo)
   fullName: copy(positionTypeString, relativeTo)
   langs:
@@ -183,10 +231,10 @@ items:
       - excel.Excel.Worksheet
 - uid: excel.Excel.Worksheet.delete
   summary: >-
-    从工作簿中删除工作表。
+    从工作簿中删除工作表。 请注意, 如果工作表的可见性设置为 "VeryHidden", 则删除操作将失败, 并出现 GeneralException。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: delete()
   fullName: delete()
   langs:
@@ -198,12 +246,83 @@ items:
       type:
       - void
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var wSheetName = 'Sheet1';\n    var worksheet = ctx.workbook.worksheets.getItem(wSheetName);\n    worksheet.delete();\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.Worksheet.enableCalculation
+  summary: >-
+    获取或设置工作表的 enableCalculation 属性。 如此如果 Excel 根据需要重新计算工作表。 假如果 Excel 不重新计算工作表。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: enableCalculation
+  fullName: enableCalculation
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'enableCalculation: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.Worksheet.findAll
+  summary: >-
+    根据指定的条件查找给定字符串的所有匹配项, 并将它们作为 RangeAreas 对象返回, 由一个或多个矩形区域组成。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: findAll(text, criteria)
+  fullName: findAll(text, criteria)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'findAll(text: string, criteria: Excel.WorksheetSearchCriteria): Excel.RangeAreas;'
+    return:
+      type:
+      - excel.Excel.RangeAreas
+      description: 一个 RangeArea 对象, 其中包含一个或多个与搜索条件相匹配的矩形区域。 如果没有满足此条件的单元格, 则将引发 ItemNotFound 错误。
+    parameters:
+    - id: text
+      description: 要查找的字符串。
+      type:
+      - string
+    - id: criteria
+      description: 其他条件。
+      type:
+      - excel.Excel.WorksheetSearchCriteria
+- uid: excel.Excel.Worksheet.findAllOrNullObject
+  summary: >-
+    根据指定的条件查找给定字符串的所有匹配项, 并将它们作为 RangeAreas 对象返回, 由一个或多个矩形区域组成。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: findAllOrNullObject(text, criteria)
+  fullName: findAllOrNullObject(text, criteria)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'findAllOrNullObject(text: string, criteria: Excel.WorksheetSearchCriteria): Excel.RangeAreas;'
+    return:
+      type:
+      - excel.Excel.RangeAreas
+      description: 一个 RangeArea 对象, 其中包含一个或多个与搜索条件相匹配的矩形区域。 如果没有匹配项, 则此函数将返回一个 null 对象。
+    parameters:
+    - id: text
+      description: 要查找的字符串。
+      type:
+      - string
+    - id: criteria
+      description: 其他条件。
+      type:
+      - excel.Excel.WorksheetSearchCriteria
 - uid: excel.Excel.Worksheet.freezePanes
   summary: >-
-    获取一个对象，可用来操作工作表上的冻结的窗格。 只读。
+    获取一个对象, 该对象可用于操作工作表上的冻结窗格。 只读。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: freezePanes
   fullName: freezePanes
   langs:
@@ -219,7 +338,7 @@ items:
     根据行和列编号获取包含单个单元格的 range 对象。单元格可以位于父区域外部，只要其保持在工作表网格内即可。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getCell(row, column)
   fullName: getCell(row, column)
   langs:
@@ -245,7 +364,7 @@ items:
     获取该工作表之后的工作表。如果该工作表后没有工作表，此方法将引发错误。
 
 
-    \[[API 集： ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getNext(visibleOnly)
   fullName: getNext(visibleOnly)
   langs:
@@ -267,7 +386,7 @@ items:
     获取该工作表之后的工作表。如果该工作表后没有工作表，此方法将返回 null 值。
 
 
-    \[[API 集： ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getNextOrNullObject(visibleOnly)
   fullName: getNextOrNullObject(visibleOnly)
   langs:
@@ -289,7 +408,7 @@ items:
     获取该工作表之前的工作表。如果该工作表前没有工作表，此方法将引发错误。
 
 
-    \[[API 集： ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getPrevious(visibleOnly)
   fullName: getPrevious(visibleOnly)
   langs:
@@ -311,7 +430,7 @@ items:
     获取该工作表之前的工作表。如果该工作表前没有工作表，此方法将返回 null 值。
 
 
-    \[[API 集： ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getPreviousOrNullObject(visibleOnly)
   fullName: getPreviousOrNullObject(visibleOnly)
   langs:
@@ -330,10 +449,10 @@ items:
       - boolean
 - uid: excel.Excel.Worksheet.getRange
   summary: >-
-    获取 range 对象，代表指定的地址或名称的单元格的单个矩形块。
+    获取一个 range 对象, 该对象代表由地址或名称指定的单个矩形单元格块。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getRange(address)
   fullName: getRange(address)
   langs:
@@ -347,7 +466,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Below example uses range address to get the range object.\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:F8\";\n    var worksheet = ctx.workbook.worksheets.getItem(sheetName);\n    var range = worksheet.getRange(rangeAddress);\n    range.load('cellCount');\n    return ctx.sync().then(function() {\n        console.log(range.cellCount);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Below example uses a named-range to get the range object.\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeName = 'MyRange';\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeName);\n    range.load('address');\n    return ctx.sync().then(function() {\n        console.log(range.address);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: address
-      description: '可选。 表示的地址或范围的名称的字符串。 例如，"a1: b2"。 如果未指定，则返回的整个工作表区域。'
+      description: '可选。 表示地址或范围名称的字符串。 例如, "A1: B2"。 如果未指定, 则返回整个工作表区域。'
       type:
       - string
 - uid: excel.Excel.Worksheet.getRangeByIndexes
@@ -355,7 +474,7 @@ items:
     获取以特定行索引和列索引开始并跨越了一定数量的行和列的 range 对象。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getRangeByIndexes(startRow, startColumn, rowCount, columnCount)
   fullName: getRangeByIndexes(startRow, startColumn, rowCount, columnCount)
   langs:
@@ -369,27 +488,50 @@ items:
       description: ''
     parameters:
     - id: startRow
-      description: 启动行 （从 0 开始编制索引）。
+      description: 起始行 (零编制索引)。
       type:
       - number
     - id: startColumn
-      description: 启动列 （从 0 开始编制索引）。
+      description: Start 列 (零个索引)。
       type:
       - number
     - id: rowCount
-      description: 范围中包含的行数。
+      description: 要包含在范围中的行数。
       type:
       - number
     - id: columnCount
-      description: 要在范围中包括的列数。
+      description: 要包含在范围中的列数。
       type:
       - number
+- uid: excel.Excel.Worksheet.getRanges
+  summary: >-
+    获取 RangeAreas 对象, 该对象代表由地址或名称指定的一个或多个矩形区域块。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getRanges(address)
+  fullName: getRanges(address)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getRanges(address?: string): Excel.RangeAreas;'
+    return:
+      type:
+      - excel.Excel.RangeAreas
+      description: ''
+    parameters:
+    - id: address
+      description: '可选。 一个包含以逗号分隔的地址或各个区域的名称的字符串。 例如, "A1: B2, A5: B5"。 如果未指定, 则返回整个工作表的 RangeArea 对象。'
+      type:
+      - string
 - uid: excel.Excel.Worksheet.getUsedRange
   summary: >-
-    已用的区域包括任何单元格的值的最小范围或格式分配给它们。 如果整个工作表为空，该函数将返回左上角的单元 (即，它将*引发错误*)。
+    使用的范围是包含为其分配了值或格式的所有单元格的最小区域。 如果整个工作表为空, 则此函数将返回左上角单元格 (即, 它*不*会引发错误)。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getUsedRange(valuesOnly)
   fullName: getUsedRange(valuesOnly)
   langs:
@@ -403,7 +545,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var wSheetName = 'Sheet1';\n    var worksheet = ctx.workbook.worksheets.getItem(wSheetName);\n    var usedRange = worksheet.getUsedRange();\n    usedRange.load('address');\n    return ctx.sync().then(function() {\n            console.log(usedRange.address);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: valuesOnly
-      description: 可选。 如果为 true，将仅单元格的值视为使用单元格 （忽略格式）。 \[Api 集： ExcelApi 1.2\]
+      description: '可选。 如果为 true, 则仅考虑值为已使用单元格的单元格 (忽略格式设置)。 \[Api 集: ExcelApi 1。2\]'
       type:
       - boolean
 - uid: excel.Excel.Worksheet.getUsedRangeOrNullObject
@@ -411,7 +553,7 @@ items:
     使用的区域是包含分配了值或格式的任意单元格的最小区域。如果整个工作表为空，此函数将返回 NULL 对象。
 
 
-    \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getUsedRangeOrNullObject(valuesOnly)
   fullName: getUsedRangeOrNullObject(valuesOnly)
   langs:
@@ -428,12 +570,29 @@ items:
       description: 可选。仅将有值的单元格视为已使用的单元格。
       type:
       - boolean
+- uid: excel.Excel.Worksheet.horizontalPageBreaks
+  summary: >-
+    获取工作表的水平分页符集合。 此集合仅包含手动分页符。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: horizontalPageBreaks
+  fullName: horizontalPageBreaks
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly horizontalPageBreaks: Excel.PageBreakCollection;'
+    return:
+      type:
+      - excel.Excel.PageBreakCollection
 - uid: excel.Excel.Worksheet.id
   summary: >-
     返回用于唯一标识指定工作簿中工作表的值。即使工作表被重命名或移动，标识符的值仍然相同。只读。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: id
   fullName: id
   langs:
@@ -445,18 +604,18 @@ items:
       type:
       - string
 - uid: excel.Excel.Worksheet.load
-  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性之前, 必须先调用 "context, sync ()"。
   remarks: >-
-    除了此签名，此方法具有以下签名：
+    除了此签名之外, 此方法还具有以下签名:
 
 
-    `load(option?: string | string[]): Excel.Worksheet`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。
+    `load(option?: string | string[]): Excel.Worksheet`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
 
 
-    `load(option?: { select?: string; expand?: string; }): Excel.Worksheet`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+    `load(option?: { select?: string; expand?: string; }): Excel.Worksheet`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
 
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Worksheet`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Worksheet`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
   name: load(option)
   fullName: load(option)
   langs:
@@ -474,7 +633,7 @@ items:
       type:
       - excel.Excel.Interfaces.WorksheetLoadOptions
 - uid: excel.Excel.Worksheet.load_1
-  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
   name: load(propertyNames)
   fullName: load(propertyNames)
   langs:
@@ -488,11 +647,11 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Get worksheet properties based on sheet name.\nExcel.run(function (ctx) { \n    var wSheetName = 'Sheet1';\n    var worksheet = ctx.workbook.worksheets.getItem(wSheetName);\n    worksheet.load('position')\n    return ctx.sync().then(function() {\n            console.log(worksheet.position);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Set worksheet position. \nExcel.run(function (ctx) { \n    var wSheetName = 'Sheet1';\n    var worksheet = ctx.workbook.worksheets.getItem(wSheetName);\n    worksheet.position = 2;\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: propertyNames
-      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      description: 一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。
       type:
       - string | string[]
 - uid: excel.Excel.Worksheet.load_2
-  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
   name: load(propertyNamesAndPaths)
   fullName: load(propertyNamesAndPaths)
   langs:
@@ -506,7 +665,7 @@ items:
       description: ''
     parameters:
     - id: propertyNamesAndPaths
-      description: 其中 propertyNamesAndPaths.select 是一个以逗号分隔的字符串，指定要加载的属性，propertyNamesAndPaths.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+      description: 其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
       type:
       - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.Worksheet.name
@@ -514,7 +673,7 @@ items:
     工作表的显示名称。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: name
   fullName: name
   langs:
@@ -530,7 +689,7 @@ items:
     一组范围限定到当前工作表的名称。只读。
 
 
-    \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: names
   fullName: names
   langs:
@@ -543,10 +702,10 @@ items:
       - excel.Excel.NamedItemCollection
 - uid: excel.Excel.Worksheet.onActivated
   summary: >-
-    激活工作表时发生此事件。
+    当激活工作表时发生此事件。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: onActivated
   fullName: onActivated
   langs:
@@ -560,10 +719,10 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (context) {\n    var sheet = context.workbook.worksheets.getItem(\"Sample\");\n    sheet.onActivated.add(function (event) {\n        return Excel.run((context) => {\n            console.log(\"The activated worksheet ID is: \" + event.worksheetId);\n            return context.sync();\n        });\n    });\n    return context.sync();\n});\n```"
 - uid: excel.Excel.Worksheet.onCalculated
   summary: >-
-    计算工作表时发生此事件。
+    在计算工作表时发生。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: onCalculated
   fullName: onCalculated
   langs:
@@ -577,10 +736,10 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (context) {\n    var sheet = context.workbook.worksheets.getItem(\"Sample\");\n    sheet.onCalculated.add(function (event) {\n        return Excel.run((context) => {\n            console.log(\"The worksheet has recalculated.\");\n            return context.sync();\n        });\n    });\n    return context.sync();\n});\n```"
 - uid: excel.Excel.Worksheet.onChanged
   summary: >-
-    特定工作表上的数据更改时发生。
+    当指定的工作表上的数据发生更改时发生。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: onChanged
   fullName: onChanged
   langs:
@@ -597,7 +756,7 @@ items:
     停用工作表时发生此事件。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: onDeactivated
   fullName: onDeactivated
   langs:
@@ -609,12 +768,46 @@ items:
       type:
       - OfficeExtension.EventHandlers<Excel.WorksheetDeactivatedEventArgs>
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (context) {\n    var sheet = context.workbook.worksheets.getItem(\"Sample\");\n    sheet.onDeactivated.add(function (event) {\n        return Excel.run((context) => {\n            console.log(\"The deactivated worksheet is: \" + event.worksheetId);\n            return context.sync();\n        });\n    });\n    return context.sync();\n});\n```"
+- uid: excel.Excel.Worksheet.onFiltered
+  summary: >-
+    在特定工作表上应用筛选时, 发生此事件。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: onFiltered
+  fullName: onFiltered
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onFiltered: OfficeExtension.EventHandlers<Excel.WorksheetFilteredEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.WorksheetFilteredEventArgs>
+- uid: excel.Excel.Worksheet.onFormatChanged
+  summary: >-
+    当指定的工作表上的格式更改时发生。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: onFormatChanged
+  fullName: onFormatChanged
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onFormatChanged: OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>
 - uid: excel.Excel.Worksheet.onSelectionChanged
   summary: >-
-    特定工作表上的选定内容更改时发生。
+    当指定的工作表上的所选内容更改时发生。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: onSelectionChanged
   fullName: onSelectionChanged
   langs:
@@ -626,12 +819,29 @@ items:
       type:
       - OfficeExtension.EventHandlers<Excel.WorksheetSelectionChangedEventArgs>
       description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (context) {\n    var sheet = context.workbook.worksheets.getItem(\"Sample\");\n    sheet.onSelectionChanged.add(function (event) {\n        return Excel.run((context) => {\n            console.log(\"The selected range has changed to: \" + event.address);\n            return context.sync();\n        });\n    });\n    return context.sync();\n});\n```"
+- uid: excel.Excel.Worksheet.pageLayout
+  summary: >-
+    获取工作表的页面布局对象。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: pageLayout
+  fullName: pageLayout
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly pageLayout: Excel.PageLayout;'
+    return:
+      type:
+      - excel.Excel.PageLayout
 - uid: excel.Excel.Worksheet.pivotTables
   summary: >-
     一组属于 worksheet 的 PivotTable 对象。只读。
 
 
-    \[[API 集： ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: pivotTables
   fullName: pivotTables
   langs:
@@ -647,7 +857,7 @@ items:
     工作表在工作簿中的位置，从零开始。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: position
   fullName: position
   langs:
@@ -663,7 +873,7 @@ items:
     返回表工作表的工作表保护对象。只读。
 
 
-    \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: protection
   fullName: protection
   langs:
@@ -674,10 +884,41 @@ items:
     return:
       type:
       - excel.Excel.WorksheetProtection
+- uid: excel.Excel.Worksheet.replaceAll
+  summary: >-
+    根据当前工作表中指定的条件查找和替换给定的字符串。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: replaceAll(text, replacement, criteria)
+  fullName: replaceAll(text, replacement, criteria)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'replaceAll(text: string, replacement: string, criteria: Excel.ReplaceCriteria): OfficeExtension.ClientResult<number>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<number>
+      description: 执行的替换的次数。
+    parameters:
+    - id: text
+      description: 要查找的字符串。
+      type:
+      - string
+    - id: replacement
+      description: 要将原始替换为的字符串。
+      type:
+      - string
+    - id: criteria
+      description: 其他替换条件。
+      type:
+      - excel.Excel.ReplaceCriteria
 - uid: excel.Excel.Worksheet.set
-  summary: 在同一时间设置对象的多个的属性。 您可以传递具有的相应属性的普通对象或相同类型的另一个 API 对象。
+  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
   remarks: >-
-    此方法具有以下其他签名：
+    此方法具有以下附加签名:
 
 
     `set(properties: Excel.Worksheet): void`
@@ -694,15 +935,15 @@ items:
       description: ''
     parameters:
     - id: properties
-      description: 具有对属性的对象调用 isomorphically 结构化的属性的 JavaScript 对象。
+      description: 一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。
       type:
       - Interfaces.WorksheetUpdateData
     - id: options
-      description: 提供一个选项以取消显示错误，如果属性对象会尝试设置任何只读属性。
+      description: 提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。
       type:
       - office.OfficeExtension.UpdateOptions
 - uid: excel.Excel.Worksheet.set_1
-  summary: 在基于现有加载对象的同一时间对象上设置多个属性。
+  summary: 基于现有加载的对象同时设置该对象的多个属性。
   name: set(properties)
   fullName: set(properties)
   langs:
@@ -719,12 +960,29 @@ items:
       description: ''
       type:
       - excel.Excel.Worksheet
+- uid: excel.Excel.Worksheet.shapes
+  summary: >-
+    返回工作表上的所有 Shape 对象的集合。 只读。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: shapes
+  fullName: shapes
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly shapes: Excel.ShapeCollection;'
+    return:
+      type:
+      - excel.Excel.ShapeCollection
 - uid: excel.Excel.Worksheet.showGridlines
   summary: >-
-    获取或设置工作表的网格线标志。 此标志确定是否向用户显示的网格线。
+    获取或设置工作表的网格线标志。 此标志确定是否对用户显示网格线。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: showGridlines
   fullName: showGridlines
   langs:
@@ -738,10 +996,10 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    sheet.showGridlines = true;\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Worksheet.showHeadings
   summary: >-
-    获取或设置工作表的标题标志。 此标志确定是否向用户显示的标题。
+    获取或设置工作表的标题标志。 此标志确定是否对用户显示标题。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: showHeadings
   fullName: showHeadings
   langs:
@@ -752,12 +1010,29 @@ items:
     return:
       type:
       - boolean
+- uid: excel.Excel.Worksheet.slicers
+  summary: >-
+    返回作为工作表一部分的切片器的集合。 只读。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: slicers
+  fullName: slicers
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly slicers: Excel.SlicerCollection;'
+    return:
+      type:
+      - excel.Excel.SlicerCollection
 - uid: excel.Excel.Worksheet.standardHeight
   summary: >-
     返回工作表中所有行的标准（默认）行高，以磅为单位。 只读。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: standardHeight
   fullName: standardHeight
   langs:
@@ -773,7 +1048,7 @@ items:
     返回或设置工作表中所有列的标准（默认）列宽。 一个列宽单位等于正文样式中一个字符的宽度。 对于比例字体，会使用字符 0（零）的宽度。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: standardWidth
   fullName: standardWidth
   langs:
@@ -786,10 +1061,10 @@ items:
       - number
 - uid: excel.Excel.Worksheet.tabColor
   summary: >-
-    获取或设置工作表标签颜色。 检索时的选项卡颜色，如果工作表不可见，则值将为 null。 如果在工作表可见，但是选项卡的颜色设置为自动，将返回空字符串。 否则的属性将设置为一种颜色，窗体中"\#123456" 设置颜色时, 使用为空字符串否则设置"自动"颜色或真实的颜色。
+    获取或设置工作表标签颜色。 检索选项卡颜色时, 如果工作表不可见, 则值将为 null。 如果工作表可见但选项卡颜色设置为自动, 将返回一个空字符串。 否则, 在设置颜色时, 属性将设置为颜色, 格式为\#"123456", 则使用空字符串设置 "自动" 颜色, 或使用实际颜色。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: tabColor
   fullName: tabColor
   langs:
@@ -806,7 +1081,7 @@ items:
     属于工作表的表的集合。只读。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: tables
   fullName: tables
   langs:
@@ -818,7 +1093,7 @@ items:
       type:
       - excel.Excel.TableCollection
 - uid: excel.Excel.Worksheet.toJSON
-  summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.Worksheet 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.WorksheetData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
+  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到`JSON.stringify()` <!-- -->时提供更有用的输出。 (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。)尽管原始的 Excel 工作表对象是一个 API 对象, 但`toJSON`该方法返回一个简单的 JavaScript 对象 ( `Excel.Interfaces.WorksheetData` <!-- -->类型为), 其中包含原始对象中任何已加载的子属性的浅表副本。
   name: toJSON()
   fullName: toJSON()
   langs:
@@ -830,12 +1105,29 @@ items:
       type:
       - excel.Excel.Interfaces.WorksheetData
       description: ''
+- uid: excel.Excel.Worksheet.verticalPageBreaks
+  summary: >-
+    获取工作表的垂直分页符集合。 此集合仅包含手动分页符。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: verticalPageBreaks
+  fullName: verticalPageBreaks
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly verticalPageBreaks: Excel.PageBreakCollection;'
+    return:
+      type:
+      - excel.Excel.PageBreakCollection
 - uid: excel.Excel.Worksheet.visibility
   summary: >-
-    在工作表的可见性。
+    工作表的可见性。
 
 
-    \[[API 集： 用于读取可见性; ExcelApi 1.1 1.2 设置它。](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
+    \[[API 集: ExcelApi 1.1 用于读取可见性; 1.2 用于设置。](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
   name: visibility
   fullName: visibility
   langs:

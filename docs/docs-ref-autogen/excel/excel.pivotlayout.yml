@@ -1,17 +1,17 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: c62a352c3a8f6c5f0da6526defd0bf4137251184
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: f75ef1f55d423ee130694bf500e9b6c2127b6b44
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29981771"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30095728"
 items:
 - uid: excel.Excel.PivotLayout
   summary: >-
-    代表数据透视表的可视布局。
+    表示数据透视表的可视化布局。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: Excel.PivotLayout
   fullName: Excel.PivotLayout
   langs:
@@ -21,24 +21,50 @@ items:
   - office.OfficeExtension.ClientObject
   package: excel
   children:
+  - excel.Excel.PivotLayout.autoFormat
   - excel.Excel.PivotLayout.context
+  - excel.Excel.PivotLayout.enableFieldList
+  - excel.Excel.PivotLayout.getCell
   - excel.Excel.PivotLayout.getColumnLabelRange
   - excel.Excel.PivotLayout.getDataBodyRange
+  - excel.Excel.PivotLayout.getDataHierarchy
   - excel.Excel.PivotLayout.getFilterAxisRange
+  - excel.Excel.PivotLayout.getPivotItems
+  - excel.Excel.PivotLayout.getPivotItems_1
   - excel.Excel.PivotLayout.getRange
   - excel.Excel.PivotLayout.getRowLabelRange
   - excel.Excel.PivotLayout.layoutType
   - excel.Excel.PivotLayout.load
   - excel.Excel.PivotLayout.load_1
   - excel.Excel.PivotLayout.load_2
+  - excel.Excel.PivotLayout.preserveFormatting
   - excel.Excel.PivotLayout.set
   - excel.Excel.PivotLayout.set_1
+  - excel.Excel.PivotLayout.setAutosortOnCell
+  - excel.Excel.PivotLayout.setAutosortOnCell_1
   - excel.Excel.PivotLayout.showColumnGrandTotals
   - excel.Excel.PivotLayout.showRowGrandTotals
   - excel.Excel.PivotLayout.subtotalLocation
   - excel.Excel.PivotLayout.toJSON
+- uid: excel.Excel.PivotLayout.autoFormat
+  summary: >-
+    如果在刷新或移动域时自动设置格式设置的格式, 则为 True。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: autoFormat
+  fullName: autoFormat
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'autoFormat: boolean;'
+    return:
+      type:
+      - boolean
 - uid: excel.Excel.PivotLayout.context
-  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
   name: context
   fullName: context
   langs:
@@ -49,12 +75,60 @@ items:
     return:
       type:
       - RequestContext
+- uid: excel.Excel.PivotLayout.enableFieldList
+  summary: >-
+    如此如果应在 UI 中显示或隐藏字段列表。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: enableFieldList
+  fullName: enableFieldList
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'enableFieldList: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.PivotLayout.getCell
+  summary: >-
+    获取数据透视表的数据正文中的单元格, 其中包含指定的 dataHierarchy、rowItems 和 columnItems 的交集的值。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getCell(dataHierarchy, rowItems, columnItems)
+  fullName: getCell(dataHierarchy, rowItems, columnItems)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getCell(dataHierarchy: DataPivotHierarchy | string, rowItems: Array<PivotItem | string>, columnItems: Array<PivotItem | string>): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: 指定包含指定值的单个单元格的范围。
+    parameters:
+    - id: dataHierarchy
+      description: 提供要查找的数据项的 dataHierarchy。
+      type:
+      - DataPivotHierarchy | string
+    - id: rowItems
+      description: 行轴中的 PivotItems, 这些行轴构成要查找的值。
+      type:
+      - Array<PivotItem | string>
+    - id: columnItems
+      description: 由列坐标轴构成的 PivotItems, 这些值构成要查找的值。
+      type:
+      - Array<PivotItem | string>
 - uid: excel.Excel.PivotLayout.getColumnLabelRange
   summary: >-
     返回数据透视表列标签所在位置的区域。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getColumnLabelRange()
   fullName: getColumnLabelRange()
   langs:
@@ -71,7 +145,7 @@ items:
     返回数据透视表数据值所在位置的区域。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getDataBodyRange()
   fullName: getDataBodyRange()
   langs:
@@ -83,12 +157,35 @@ items:
       type:
       - excel.Excel.Range
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n\n    // the layout controls the ranges used by the PivotTable\n    const range = pivotTable.layout.getDataBodyRange();\n\n    // get all the data hierarchy totals\n    const grandTotalRange = range.getLastRow();\n    grandTotalRange.load(\"address\");\n    await context.sync();\n    \n    // use the wholesale and farm sale totals to make a final sum\n    const masterTotalRange = context.workbook.worksheets.getActiveWorksheet().getRange(\"B27:C27\");\n    masterTotalRange.formulas = [[\"All Crates\", \"=SUM(\" + grandTotalRange.address + \")\"]];\n    await context.sync();\n});\n```"
+- uid: excel.Excel.PivotLayout.getDataHierarchy
+  summary: >-
+    获取用于计算数据透视表内指定区域中的值的 DataHierarchy。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getDataHierarchy(cell)
+  fullName: getDataHierarchy(cell)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getDataHierarchy(cell: Range | string): Excel.DataPivotHierarchy;'
+    return:
+      type:
+      - excel.Excel.DataPivotHierarchy
+      description: 用于计算指定单元格中的值的 DataPivotHierarchy 对象。
+    parameters:
+    - id: cell
+      description: 要为其获取数据 hieararchy 的数据透视表数据正文中的单个单元格。
+      type:
+      - Range | string
 - uid: excel.Excel.PivotLayout.getFilterAxisRange
   summary: >-
     返回数据透视表筛选区的区域。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getFilterAxisRange()
   fullName: getFilterAxisRange()
   langs:
@@ -100,12 +197,66 @@ items:
       type:
       - excel.Excel.Range
       description: ''
+- uid: excel.Excel.PivotLayout.getPivotItems
+  summary: >-
+    从构成数据透视表中指定区域的值的轴中获取 PivotItems。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getPivotItems(axis, cell)
+  fullName: getPivotItems(axis, cell)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getPivotItems(axis: Excel.PivotAxis, cell: Range | string): OfficeExtension.ClientResult<Excel.PivotItem[]>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<Excel.PivotItem[]>
+      description: 用于计算指定行中的值的 PivotItems 的集合。
+    parameters:
+    - id: axis
+      description: 从中获取 PivotItems 的轴。 必须是 "行" 或 "列"。
+      type:
+      - excel.Excel.PivotAxis
+    - id: cell
+      description: 要获取其 PivotItems 的数据透视表的数据正文中的单个单元格。
+      type:
+      - Range | string
+- uid: excel.Excel.PivotLayout.getPivotItems_1
+  summary: >-
+    从构成数据透视表中指定区域的值的轴中获取 PivotItems。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getPivotItems(axisString, cell)
+  fullName: getPivotItems(axisString, cell)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getPivotItems(axisString: "Unknown" | "Row" | "Column" | "Data" | "Filter", cell: Range | string): OfficeExtension.ClientResult<Excel.PivotItem[]>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<Excel.PivotItem[]>
+      description: 用于计算指定行中的值的 PivotItems 的集合。
+    parameters:
+    - id: axisString
+      description: 从中获取 PivotItems 的轴。 必须是 "行" 或 "列"。
+      type:
+      - "\"Unknown\" | \"Row\" | \"Column\" | \"Data\" | \"Filter\""
+    - id: cell
+      description: 要获取其 PivotItems 的数据透视表的数据正文中的单个单元格。
+      type:
+      - Range | string
 - uid: excel.Excel.PivotLayout.getRange
   summary: >-
     返回存在数据透视表的区域，不包括筛选区。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getRange()
   fullName: getRange()
   langs:
@@ -122,7 +273,7 @@ items:
     返回数据透视表行标签所在位置的区域。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getRowLabelRange()
   fullName: getRowLabelRange()
   langs:
@@ -139,7 +290,7 @@ items:
     此属性指示数据透视表上的所有字段的 PivotLayoutType。 如果字段状态不同，则为 null。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: layoutType
   fullName: layoutType
   langs:
@@ -151,18 +302,18 @@ items:
       type:
       - Excel.PivotLayoutType | "Compact" | "Tabular" | "Outline"
 - uid: excel.Excel.PivotLayout.load
-  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性之前, 必须先调用 "context, sync ()"。
   remarks: >-
-    除了此签名，此方法具有以下签名：
+    除了此签名之外, 此方法还具有以下签名:
 
 
-    `load(option?: string | string[]): Excel.PivotLayout`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。
+    `load(option?: string | string[]): Excel.PivotLayout`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
 
 
-    `load(option?: { select?: string; expand?: string; }): Excel.PivotLayout`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+    `load(option?: { select?: string; expand?: string; }): Excel.PivotLayout`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
 
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.PivotLayout`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.PivotLayout`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
   name: load(option)
   fullName: load(option)
   langs:
@@ -180,7 +331,7 @@ items:
       type:
       - excel.Excel.Interfaces.PivotLayoutLoadOptions
 - uid: excel.Excel.PivotLayout.load_1
-  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
   name: load(propertyNames)
   fullName: load(propertyNames)
   langs:
@@ -194,11 +345,11 @@ items:
       description: ''
     parameters:
     - id: propertyNames
-      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
+      description: 一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。
       type:
       - string | string[]
 - uid: excel.Excel.PivotLayout.load_2
-  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
   name: load(propertyNamesAndPaths)
   fullName: load(propertyNamesAndPaths)
   langs:
@@ -212,13 +363,30 @@ items:
       description: ''
     parameters:
     - id: propertyNamesAndPaths
-      description: 其中 propertyNamesAndPaths.select 是一个以逗号分隔的字符串，指定要加载的属性，propertyNamesAndPaths.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
+      description: 其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
       type:
       - '{ select?: string; expand?: string; }'
+- uid: excel.Excel.PivotLayout.preserveFormatting
+  summary: >-
+    如此如果通过透视、排序或更改页字段项等操作刷新或重新计算报表时保留格式。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: preserveFormatting
+  fullName: preserveFormatting
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'preserveFormatting: boolean;'
+    return:
+      type:
+      - boolean
 - uid: excel.Excel.PivotLayout.set
-  summary: 在同一时间设置对象的多个的属性。 您可以传递具有的相应属性的普通对象或相同类型的另一个 API 对象。
+  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
   remarks: >-
-    此方法具有以下其他签名：
+    此方法具有以下附加签名:
 
 
     `set(properties: Excel.PivotLayout): void`
@@ -235,15 +403,15 @@ items:
       description: ''
     parameters:
     - id: properties
-      description: 具有对属性的对象调用 isomorphically 结构化的属性的 JavaScript 对象。
+      description: 一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。
       type:
       - Interfaces.PivotLayoutUpdateData
     - id: options
-      description: 提供一个选项以取消显示错误，如果属性对象会尝试设置任何只读属性。
+      description: 提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。
       type:
       - office.OfficeExtension.UpdateOptions
 - uid: excel.Excel.PivotLayout.set_1
-  summary: 在基于现有加载对象的同一时间对象上设置多个属性。
+  summary: 基于现有加载的对象同时设置该对象的多个属性。
   name: set(properties)
   fullName: set(properties)
   langs:
@@ -260,12 +428,66 @@ items:
       description: ''
       type:
       - excel.Excel.PivotLayout
+- uid: excel.Excel.PivotLayout.setAutosortOnCell
+  summary: >-
+    设置使用指定单元格自动选择排序的所有条件和上下文的自动排序。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: setAutosortOnCell(cell, sortby)
+  fullName: setAutosortOnCell(cell, sortby)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setAutosortOnCell(cell: Range | string, sortby: Excel.SortBy): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: cell
+      description: 要使用的单个单元格获取应用自动排序的条件。
+      type:
+      - Range | string
+    - id: sortby
+      description: 排序的方向。
+      type:
+      - excel.Excel.SortBy
+- uid: excel.Excel.PivotLayout.setAutosortOnCell_1
+  summary: >-
+    设置使用指定单元格自动选择排序的所有条件和上下文的自动排序。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: setAutosortOnCell(cell, sortbyString)
+  fullName: setAutosortOnCell(cell, sortbyString)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setAutosortOnCell(cell: Range | string, sortbyString: "Ascending" | "Descending"): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: cell
+      description: 要使用的单个单元格获取应用自动排序的条件。
+      type:
+      - Range | string
+    - id: sortbyString
+      description: 排序的方向。
+      type:
+      - "\"Ascending\" | \"Descending\""
 - uid: excel.Excel.PivotLayout.showColumnGrandTotals
   summary: >-
     如果数据透视表显示列总计，则为 True。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: showColumnGrandTotals
   fullName: showColumnGrandTotals
   langs:
@@ -281,7 +503,7 @@ items:
     如果数据透视表显示行总计，则为 True。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: showRowGrandTotals
   fullName: showRowGrandTotals
   langs:
@@ -297,7 +519,7 @@ items:
     此属性指示数据透视表上的所有字段的 SubtotalLocationType。 如果字段状态不同，则为 null。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: subtotalLocation
   fullName: subtotalLocation
   langs:
@@ -309,7 +531,7 @@ items:
       type:
       - Excel.SubtotalLocationType | "AtTop" | "AtBottom" | "Off"
 - uid: excel.Excel.PivotLayout.toJSON
-  summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 Excel.PivotLayout 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.PivotLayoutData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。
+  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到`JSON.stringify()` <!-- -->时提供更有用的输出。 (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。)尽管原始 PivotLayout 对象是 API 对象, 但该`toJSON`方法返回一个纯 JavaScript 对象 (类型为`Excel.Interfaces.PivotLayoutData` <!-- -->), 其中包含原始对象中任何已加载的子属性的浅表副本。
   name: toJSON()
   fullName: toJSON()
   langs:
