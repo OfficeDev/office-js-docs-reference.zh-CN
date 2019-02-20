@@ -1,0 +1,212 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: b9420bad9229b84588315e3bf95650b7493504b5
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.translationtype: MT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30115875"
+items:
+- uid: excel_release.Excel.CustomXmlPart
+  summary: >-
+    表示工作簿中的自定义 XML 部件对象。
+
+
+    \[[API 集: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.CustomXmlPart
+  fullName: Excel.CustomXmlPart
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - office.OfficeExtension.ClientObject
+  package: excel_release
+  children:
+  - excel_release.Excel.CustomXmlPart.context
+  - excel_release.Excel.CustomXmlPart.delete
+  - excel_release.Excel.CustomXmlPart.getXml
+  - excel_release.Excel.CustomXmlPart.id
+  - excel_release.Excel.CustomXmlPart.load
+  - excel_release.Excel.CustomXmlPart.load_1
+  - excel_release.Excel.CustomXmlPart.load_2
+  - excel_release.Excel.CustomXmlPart.namespaceUri
+  - excel_release.Excel.CustomXmlPart.setXml
+  - excel_release.Excel.CustomXmlPart.toJSON
+- uid: excel_release.Excel.CustomXmlPart.context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
+- uid: excel_release.Excel.CustomXmlPart.delete
+  summary: >-
+    删除自定义 XML 部件。
+
+
+    \[[API 集: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: delete()
+  fullName: delete()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'delete(): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const settings = context.workbook.settings;\n    const xmlPartIDSetting = settings.getItemOrNullObject(\"ContosoReviewXmlPartId\").load(\"value\");\n    await context.sync();\n\n    if (xmlPartIDSetting.value) {   \n        let customXmlPart = context.workbook.customXmlParts.getItem(xmlPartIDSetting.value);\n        const xmlBlob = customXmlPart.getXml();\n        customXmlPart.delete();\n        customXmlPart = context.workbook.customXmlParts.getItemOrNullObject(xmlPartIDSetting.value);\n\n        await context.sync();\n\n        if (customXmlPart.isNullObject) {\n            $(\"#display-xml\").text(`The XML part with the id ${xmlPartIDSetting.value} has been deleted.`);\n\n            // Delete the unneeded setting too.\n            xmlPartIDSetting.delete();            \n        } else {\n            const readableXml = addLineBreaksToXML(xmlBlob.value);\n            const strangeMessage = `This is strange. The XML part with the id ${xmlPartIDSetting.value} has not been deleted:\\n${readableXml}`\n            $(\"#display-xml\").text(strangeMessage);\n        }\n\n        await context.sync();\n    }\n});\n```"
+- uid: excel_release.Excel.CustomXmlPart.getXml
+  summary: >-
+    获取自定义 XML 部件的完整 XML 内容。
+
+
+    \[[API 集: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getXml()
+  fullName: getXml()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getXml(): OfficeExtension.ClientResult<string>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<string>
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    // You must have the xmlns attribute to populate the \n    // CustomXml.namespaceUri property.\n    const originalXml = \"<Reviewers xmlns='http://schemas.contoso.com/review/1.0'><Reviewer>Juan</Reviewer><Reviewer>Hong</Reviewer><Reviewer>Sally</Reviewer></Reviewers>\";\n    const customXmlPart = context.workbook.customXmlParts.add(originalXml);\n    customXmlPart.load(\"id\");\n    const xmlBlob = customXmlPart.getXml();\n\n    await context.sync();\n\n    const readableXml = addLineBreaksToXML(xmlBlob.value);\n    $(\"#display-xml\").text(readableXml);\n\n    // Store the XML part's ID in a setting.\n    const settings = context.workbook.settings;\n    settings.add(\"ContosoReviewXmlPartId\", customXmlPart.id);\n\n    await context.sync();\n});\n```"
+- uid: excel_release.Excel.CustomXmlPart.id
+  summary: >-
+    自定义 XML 部件的 ID。只读。
+
+
+    \[[API 集: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: id
+  fullName: id
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly id: string;'
+    return:
+      type:
+      - string
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    // You must have the xmlns attribute to populate the \n    // CustomXml.namespaceUri property.\n    const originalXml = \"<Reviewers xmlns='http://schemas.contoso.com/review/1.0'><Reviewer>Juan</Reviewer><Reviewer>Hong</Reviewer><Reviewer>Sally</Reviewer></Reviewers>\";\n    const customXmlPart = context.workbook.customXmlParts.add(originalXml);\n    customXmlPart.load(\"id\");\n    const xmlBlob = customXmlPart.getXml();\n\n    await context.sync();\n\n    const readableXml = addLineBreaksToXML(xmlBlob.value);\n    $(\"#display-xml\").text(readableXml);\n\n    // Store the XML part's ID in a setting.\n    const settings = context.workbook.settings;\n    settings.add(\"ContosoReviewXmlPartId\", customXmlPart.id);\n\n    await context.sync();\n});\n```"
+- uid: excel_release.Excel.CustomXmlPart.load
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性之前, 必须先调用 "context, sync ()"。
+  remarks: >-
+    除了此签名之外, 此方法还具有以下签名:
+
+
+    `load(option?: string | string[]): Excel.CustomXmlPart`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.CustomXmlPart`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.CustomXmlPart`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: Excel.Interfaces.CustomXmlPartLoadOptions): Excel.CustomXmlPart;'
+    return:
+      type:
+      - excel.Excel.CustomXmlPart
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.CustomXmlPartLoadOptions
+- uid: excel_release.Excel.CustomXmlPart.load_1
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.CustomXmlPart;'
+    return:
+      type:
+      - excel.Excel.CustomXmlPart
+      description: ''
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。
+      type:
+      - string | string[]
+- uid: excel_release.Excel.CustomXmlPart.load_2
+  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.CustomXmlPart;'
+    return:
+      type:
+      - excel.Excel.CustomXmlPart
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+      type:
+      - '{ select?: string; expand?: string; }'
+- uid: excel_release.Excel.CustomXmlPart.namespaceUri
+  summary: >-
+    自定义 XML 部件的命名空间 URI。只读。
+
+
+    \[[API 集: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: namespaceUri
+  fullName: namespaceUri
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly namespaceUri: string;'
+    return:
+      type:
+      - string
+- uid: excel_release.Excel.CustomXmlPart.setXml
+  summary: >-
+    设置自定义 XML 部件的完整 XML 内容。
+
+
+    \[[API 集: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: setXml(xml)
+  fullName: setXml(xml)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setXml(xml: string): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const settings = context.workbook.settings;\n    const xmlPartIDSetting = settings.getItemOrNullObject(\"ContosoReviewXmlPartId\").load(\"value\");\n    await context.sync();\n\n    if (xmlPartIDSetting.value) {   \n        const customXmlPart = context.workbook.customXmlParts.getItem(xmlPartIDSetting.value);\n\n        // The setXml method does a whole-for-whole replacement \n        // of the entire XML.\n        customXmlPart.setXml(\"<Reviewers xmlns='http://schemas.contoso.com/review/1.0'><Reviewer>John</Reviewer><Reviewer>Hitomi</Reviewer></Reviewers>\");\n        const xmlBlob = customXmlPart.getXml();\n        await context.sync();\n\n        const readableXml = addLineBreaksToXML(xmlBlob.value);\n        $(\"#display-xml\").text(readableXml);\n        await context.sync();\n    }\n});\n```"
+    parameters:
+    - id: xml
+      description: 部件的 XML 内容。
+      type:
+      - string
+- uid: excel_release.Excel.CustomXmlPart.toJSON
+  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到`JSON.stringify()` <!-- -->时提供更有用的输出。 (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。)尽管原始 CustomXmlPart 对象是 API 对象, 但该`toJSON`方法返回一个纯 JavaScript 对象 (类型为`Excel.Interfaces.CustomXmlPartData` <!-- -->), 其中包含原始对象中任何已加载的子属性的浅表副本。
+  name: toJSON()
+  fullName: toJSON()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.CustomXmlPartData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.CustomXmlPartData
+      description: ''
