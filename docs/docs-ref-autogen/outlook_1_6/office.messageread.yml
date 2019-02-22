@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 0a13bf0eaa4ac19474ae029423e6400e1ee60a7d
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: 2761d7e408b402f087a016723dd9941ed3551ba2
+ms.sourcegitcommit: 6c48441b8be51d3a9d7dc836e386230a155feceb
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30104966"
+ms.lasthandoff: 02/22/2019
+ms.locfileid: "30198702"
 items:
 - uid: Outlook_1_6.Office.MessageRead
   summary: >-
@@ -23,9 +23,7 @@ items:
   package: Outlook_1_6
   children:
   - Outlook_1_6.Office.MessageRead.displayReplyAllForm
-  - Outlook_1_6.Office.MessageRead.displayReplyAllForm_1
   - Outlook_1_6.Office.MessageRead.displayReplyForm
-  - Outlook_1_6.Office.MessageRead.displayReplyForm_1
   - Outlook_1_6.Office.MessageRead.getEntities
   - Outlook_1_6.Office.MessageRead.getEntitiesByType
   - Outlook_1_6.Office.MessageRead.getFilteredEntitiesByName
@@ -34,7 +32,6 @@ items:
   - Outlook_1_6.Office.MessageRead.getSelectedEntities
   - Outlook_1_6.Office.MessageRead.getSelectedRegExMatches
   - Outlook_1_6.Office.MessageRead.loadCustomPropertiesAsync
-  - Outlook_1_6.Office.MessageRead.loadCustomPropertiesAsync_1
   - Outlook_1_6.Office.MessageRead.attachments
   - Outlook_1_6.Office.MessageRead.body
   - Outlook_1_6.Office.MessageRead.cc
@@ -52,78 +49,6 @@ items:
   - Outlook_1_6.Office.MessageRead.subject
   - Outlook_1_6.Office.MessageRead.to
 - uid: Outlook_1_6.Office.MessageRead.displayReplyAllForm
-  summary: >-
-    显示答复窗体，其中包括所选邮件的发件人和所有收件人或所选约会的组织者和所有与会者。
-
-
-    在 Outlook Web App 中，答复窗体显示为包含 3 列视图的弹出式窗体以及包含 2 列或 1 列视图的弹出式窗体。
-
-
-    如果任意字符串参数超出其限制，displayReplyAllForm 将引发异常。
-
-
-    当在 formData.attachments 参数中指定附件时，Outlook 和 Outlook Web App 尝试下载所有附件并将其附加到答复窗体。如果无法添加任何附件，则在窗体 UI 中显示错误。如果这不可能，则不引发错误消息。
-
-
-    **注意**: outlook for iOS 或 outlook for Android 中不支持此方法。
-
-
-    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件阅读</td></tr> </table>
-
-    ####说明
-
-
-    ```javascript
-
-    // Reply with a body, file attachment, item attachment, and a callback.
-
-    Office.context.mailbox.item.displayReplyAllForm(
-
-    {
-        'htmlBody' : 'hi',
-        'attachments' :
-        [
-            {
-                'type' : Office.MailboxEnums.AttachmentType.File,
-                'name' : 'squirrel.png',
-                'url' : 'http://i.imgur.com/sRgTlGR.jpg'
-            },
-            {
-                'type' : 'item',
-                'name' : 'rand',
-                'itemId' : Office.context.mailbox.item.itemId
-            }
-        ],
-        'callback' : function(asyncResult)
-        {
-            console.log(asyncResult.value);
-        }
-    });
-
-    ```
-  name: displayReplyAllForm(formData, callback)
-  fullName: displayReplyAllForm(formData, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'displayReplyAllForm(formData: string | ReplyFormData, callback?: (result: Office.AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: formData
-      description: 一个包含文本和 HTML 且表示答复窗体的正文的字符串。 该字符串限制为 32 KB 或一个[ReplyFormData](xref:Outlook_1_6.Office.ReplyFormData)对象, 其中包含正文或附件数据以及回调函数。
-      type:
-      - string | ReplyFormData
-    - id: callback
-      description: 可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 asyncresult 对象的参数。
-      type:
-      - '(result: Office.AsyncResult<void>) => void'
-- uid: Outlook_1_6.Office.MessageRead.displayReplyAllForm_1
   summary: >-
     显示答复窗体，其中包括所选邮件的发件人和所有收件人或所选约会的组织者和所有与会者。
 
@@ -205,52 +130,10 @@ items:
         ]
     });
 
-    ```
-  name: displayReplyAllForm(formData)
-  fullName: displayReplyAllForm(formData)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'displayReplyAllForm(formData: string | ReplyFormData): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: formData
-      description: 一个包含文本和 HTML 且表示答复窗体的正文的字符串。 该字符串限制为 32 KB 或一个[ReplyFormData](xref:Outlook_1_6.Office.ReplyFormData)对象, 其中包含正文或附件数据以及回调函数。
-      type:
-      - string | ReplyFormData
-- uid: Outlook_1_6.Office.MessageRead.displayReplyForm
-  summary: >-
-    显示答复窗体，其中仅包括所选邮件的发件人或所选约会的组织者。
-
-
-    在 Outlook Web App 中，答复窗体显示为包含 3 列视图的弹出式窗体以及包含 2 列或 1 列视图的弹出式窗体。
-
-
-    如果任意字符串参数超出其限制，displayReplyForm 将引发异常。
-
-
-    当在 formData.attachments 参数中指定附件时，Outlook 和 Outlook Web App 尝试下载所有附件并将其附加到答复窗体。如果无法添加任何附件，则在窗体 UI 中显示错误。如果这不可能，则不引发错误消息。
-
-
-    **注意**: outlook for iOS 或 outlook for Android 中不支持此方法。
-
-
-    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件阅读</td></tr> </table>
-
-    ####说明
-
-
-    ```javascript
 
     // Reply with a body, file attachment, item attachment, and a callback.
 
-    Office.context.mailbox.item.displayReplyForm(
+    Office.context.mailbox.item.displayReplyAllForm(
 
     {
         'htmlBody' : 'hi',
@@ -274,13 +157,13 @@ items:
     });
 
     ```
-  name: displayReplyForm(formData, callback)
-  fullName: displayReplyForm(formData, callback)
+  name: displayReplyAllForm(formData, callback)
+  fullName: displayReplyAllForm(formData, callback)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'displayReplyForm(formData: string | ReplyFormData, callback?: (result: Office.AsyncResult<void>) => void): void;'
+    content: 'displayReplyAllForm(formData: string | ReplyFormData, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -293,8 +176,8 @@ items:
     - id: callback
       description: 可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 asyncresult 对象的参数。
       type:
-      - '(result: Office.AsyncResult<void>) => void'
-- uid: Outlook_1_6.Office.MessageRead.displayReplyForm_1
+      - '(asyncResult: Office.AsyncResult<void>) => void'
+- uid: Outlook_1_6.Office.MessageRead.displayReplyForm
   summary: >-
     显示答复窗体，其中仅包括所选邮件的发件人或所选约会的组织者。
 
@@ -374,14 +257,40 @@ items:
         ]
     });
 
+
+    // Reply with a body, file attachment, item attachment, and a callback.
+
+    Office.context.mailbox.item.displayReplyForm(
+
+    {
+        'htmlBody' : 'hi',
+        'attachments' :
+        [
+            {
+                'type' : Office.MailboxEnums.AttachmentType.File,
+                'name' : 'squirrel.png',
+                'url' : 'http://i.imgur.com/sRgTlGR.jpg'
+            },
+            {
+                'type' : 'item',
+                'name' : 'rand',
+                'itemId' : Office.context.mailbox.item.itemId
+            }
+        ],
+        'callback' : function(asyncResult)
+        {
+            console.log(asyncResult.value);
+        }
+    });
+
     ```
-  name: displayReplyForm(formData)
-  fullName: displayReplyForm(formData)
+  name: displayReplyForm(formData, callback)
+  fullName: displayReplyForm(formData, callback)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'displayReplyForm(formData: string | ReplyFormData): void;'
+    content: 'displayReplyForm(formData: string | ReplyFormData, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -391,6 +300,10 @@ items:
       description: 一个包含文本和 HTML 且表示答复窗体的正文的字符串。 该字符串限制为 32 KB 或一个[ReplyFormData](xref:Outlook_1_6.Office.ReplyFormData)对象, 其中包含正文或附件数据以及回调函数。
       type:
       - string | ReplyFormData
+    - id: callback
+      description: 可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 asyncresult 对象的参数。
+      type:
+      - '(asyncResult: Office.AsyncResult<void>) => void'
 - uid: Outlook_1_6.Office.MessageRead.getEntities
   summary: >-
     获取在所选项目的正文中找到的实体。
@@ -788,7 +701,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'loadCustomPropertiesAsync(callback: (result: Office.AsyncResult<CustomProperties>) => void, userContext?: any): void;'
+    content: 'loadCustomPropertiesAsync(callback: (asyncResult: Office.AsyncResult<CustomProperties>) => void, userContext?: any): void;'
     return:
       type:
       - void
@@ -797,40 +710,11 @@ items:
     - id: callback
       description: 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。
       type:
-      - '(result: Office.AsyncResult<CustomProperties>) => void'
+      - '(asyncResult: Office.AsyncResult<CustomProperties>) => void'
     - id: userContext
       description: 可选。 开发人员可以提供他们想要在回调函数中访问的任何对象。 此对象可以通过回调函数中的 asyncContext 属性来访问。
       type:
       - any
-- uid: Outlook_1_6.Office.MessageRead.loadCustomPropertiesAsync_1
-  summary: >-
-    异步加载所选项目上此外接程序的自定义属性。
-
-
-    自定义属性基于每个应用、每个项目存储为键/值对。此方法在回调中返回 CustomProperties，该回调提供访问特定于当前项目和当前外接程序的自定义属性的方法。自定义属性未在项目上加密，因此这不应用作安全存储。
-
-
-    自定义属性作为 asyncResult.value 属性中的 CustomProperties 对象提供。此对象可用于获取、设置以及从项目中删除自定义属性，并将自定义属性集的更改重新保存到服务器。
-
-
-    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>邮件阅读</td></tr> </table>
-  name: loadCustomPropertiesAsync(callback)
-  fullName: loadCustomPropertiesAsync(callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'loadCustomPropertiesAsync(callback: (result: Office.AsyncResult<CustomProperties>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: callback
-      description: 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。
-      type:
-      - '(result: Office.AsyncResult<CustomProperties>) => void'
 - uid: Outlook_1_6.Office.MessageRead.attachments
   summary: >-
     获取项目的附件作为数组。
