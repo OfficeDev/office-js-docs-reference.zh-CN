@@ -1,17 +1,17 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: da34fd80d62a1f712348d13da2af01295c997434
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: 53da1fab6e6bcad84b8b6ea2deda89d6023649ae
+ms.sourcegitcommit: fd03ef72d6a546b0e4dbe0cc9e75d2a7cf9341a1
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29981540"
+ms.lasthandoff: 02/27/2019
+ms.locfileid: "30303065"
 items:
 - uid: excel.Excel.TableChangedEventArgs
   summary: >-
     提供有关引发 Changed 事件的表的信息。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: Excel.TableChangedEventArgs
   fullName: Excel.TableChangedEventArgs
   langs:
@@ -23,16 +23,17 @@ items:
   - excel.Excel.TableChangedEventArgs.getRangeOrNullObject
   - excel.Excel.TableChangedEventArgs.address
   - excel.Excel.TableChangedEventArgs.changeType
+  - excel.Excel.TableChangedEventArgs.details
   - excel.Excel.TableChangedEventArgs.source
   - excel.Excel.TableChangedEventArgs.tableId
   - excel.Excel.TableChangedEventArgs.type
   - excel.Excel.TableChangedEventArgs.worksheetId
 - uid: excel.Excel.TableChangedEventArgs.getRange
   summary: >-
-    获取代表特定工作表的表的更改的区域的区域。
+    获取表示特定工作表上的表的更改区域的范围。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getRange(ctx)
   fullName: getRange(ctx)
   langs:
@@ -51,10 +52,10 @@ items:
       - excel.Excel.RequestContext
 - uid: excel.Excel.TableChangedEventArgs.getRangeOrNullObject
   summary: >-
-    获取代表特定工作表的表的更改的区域的区域。 它可能会返回 null 对象。
+    获取表示特定工作表上的表的更改区域的范围。 它可能返回 null 对象。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getRangeOrNullObject(ctx)
   fullName: getRangeOrNullObject(ctx)
   langs:
@@ -76,7 +77,7 @@ items:
     获取地址，该地址表示特定工作表上的表格的更改区域。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: address
   fullName: address
   langs:
@@ -89,10 +90,10 @@ items:
       - string
 - uid: excel.Excel.TableChangedEventArgs.changeType
   summary: >-
-    获取更改类型，该类型表示 Changed 事件的触发方式。 有关详细信息，请参阅 Excel.DataChangeType。
+    获取更改类型，该类型表示 Changed 事件的触发方式。 有关详细信息, 请参阅 DataChangeType。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: changeType
   fullName: changeType
   langs:
@@ -103,12 +104,28 @@ items:
     return:
       type:
       - Excel.DataChangeType | "Unknown" | "RangeEdited" | "RowInserted" | "RowDeleted" | "ColumnInserted" | "ColumnDeleted" | "CellInserted" | "CellDeleted"
+- uid: excel.Excel.TableChangedEventArgs.details
+  summary: >-
+    代表有关更改详细信息的信息
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: details
+  fullName: details
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'details: Excel.ChangedEventDetail;'
+    return:
+      type:
+      - excel.Excel.ChangedEventDetail
 - uid: excel.Excel.TableChangedEventArgs.source
   summary: >-
-    获取事件源。 有关详细信息，请参阅 Excel.EventSource。
+    获取事件源。 有关详细信息, 请参阅 "Excel. EventSource"。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: source
   fullName: source
   langs:
@@ -124,7 +141,7 @@ items:
     获取其中的数据发生更改的表格的 ID。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: tableId
   fullName: tableId
   langs:
@@ -138,10 +155,10 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nasync function onChange(event) {\n    await Excel.run(async (context) => {\n        let table = context.workbook.tables.getItem(event.tableId);\n        let worksheet = context.workbook.worksheets.getItem(event.worksheetId);\n        worksheet.load(\"name\");\n\n        await context.sync();\n\n        console.log(\"Handler for table collection onChanged event has been triggered. Data changed address: \" + event.address);\n        console.log(\"Table Id : \" + event.tableId);\n        console.log(\"Worksheet Id : \" + worksheet.name);\n    });\n}\n```"
 - uid: excel.Excel.TableChangedEventArgs.type
   summary: >-
-    获取事件的类型。 有关详细信息，请参阅 Excel.EventType。
+    获取事件的类型。 有关详细信息, 请参阅 "Excel. 事件"。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: type
   fullName: type
   langs:
@@ -157,7 +174,7 @@ items:
     获取其中的数据发生更改的工作表的 ID。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: worksheetId
   fullName: worksheetId
   langs:

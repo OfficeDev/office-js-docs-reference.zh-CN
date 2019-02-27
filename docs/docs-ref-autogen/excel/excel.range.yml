@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: f6bded89e879a7d81ce6a638b6e7ddd606e91be4
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: 1936cfc035f5b7face1d797d176892a6ce3d449f
+ms.sourcegitcommit: fd03ef72d6a546b0e4dbe0cc9e75d2a7cf9341a1
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30096232"
+ms.lasthandoff: 02/27/2019
+ms.locfileid: "30303359"
 items:
 - uid: excel.Excel.Range
   summary: >-
@@ -43,6 +43,7 @@ items:
   - excel.Excel.Range.delete_1
   - excel.Excel.Range.find
   - excel.Excel.Range.findOrNullObject
+  - excel.Excel.Range.flashFill
   - excel.Excel.Range.format
   - excel.Excel.Range.formulas
   - excel.Excel.Range.formulasLocal
@@ -150,6 +151,12 @@ items:
       type:
       - string
 - uid: excel.Excel.Range.autoFill
+  summary: >-
+    将当前区域的范围填充为目标区域。 目标区域必须水平或垂直扩展源。 不支持不连续的区域。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
   name: autoFill(destinationRange, autoFillType)
   fullName: autoFill(destinationRange, autoFillType)
   langs:
@@ -163,14 +170,20 @@ items:
       description: ''
     parameters:
     - id: destinationRange
-      description: ''
+      description: 要自动填充的目标区域。
       type:
       - Range | string
     - id: autoFillType
-      description: ''
+      description: 自动填充的类型。 根据当前区域的内容, 指定目标区域的填充方式。 默认值为 "FillDefault"。
       type:
       - excel.Excel.AutoFillType
 - uid: excel.Excel.Range.autoFill_1
+  summary: >-
+    将当前区域的范围填充为目标区域。 目标区域必须水平或垂直扩展源。 不支持不连续的区域。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
   name: autoFill(destinationRange, autoFillTypeString)
   fullName: autoFill(destinationRange, autoFillTypeString)
   langs:
@@ -184,11 +197,11 @@ items:
       description: ''
     parameters:
     - id: destinationRange
-      description: ''
+      description: 要自动填充的目标区域。
       type:
       - Range | string
     - id: autoFillTypeString
-      description: ''
+      description: 自动填充的类型。 根据当前区域的内容, 指定目标区域的填充方式。 默认值为 "FillDefault"。
       type:
       - "\"FillDefault\" | \"FillCopy\" | \"FillSeries\" | \"FillFormats\" | \"FillValues\" | \"FillDays\" | \"FillWeekdays\" | \"FillMonths\" | \"FillYears\" | \"LinearTrend\" | \"GrowthTrend\" | \"FlashFill\""
 - uid: excel.Excel.Range.calculate
@@ -406,7 +419,7 @@ items:
     return:
       type:
       - void
-      description: ''
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    sheet.getRange(\"F2\").values = [[\"Copied Formula\"]];\n    sheet.getRange(\"F2\").format.autofitColumns();\n\n    // copy a range preserving the formulas\n    // note: non-formula values are copied over as is\n    sheet.getRange(\"G2\").copyFrom(\"A1:E1\", Excel.RangeCopyType.formulas);\n    await context.sync();\n});\n```"
     parameters:
     - id: sourceRange
       description: 要从其复制的源区域或 RangeAreas。 当源 RangeAreas 有多个区域时, 它必须在大纲形式中, 可以通过删除矩形区域中的完整行或列来创建。
@@ -536,7 +549,7 @@ items:
     return:
       type:
       - excel.Excel.Range
-      description: 与搜索条件匹配的范围。
+      description: "与搜索条件匹配的范围。\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const table = sheet.tables.getItem(\"ExpensesTable\");\n    const searchRange = table.getRange();\n\n    // NOTE: If no match is found, an ItemNotFound error\n    // is thrown when Range.find is evaluated.\n    const foundRange = searchRange.find($(\"#searchText\").text(), {\n        completeMatch: completeMatch,\n        matchCase: matchCase,\n        searchDirection: searchDirection\n    });\n    \n    foundRange.load(\"address\");\n    await context.sync();\n\n\n    console.log(foundRange.address);\n});\n```"
     parameters:
     - id: text
       description: 要查找的字符串。
@@ -563,7 +576,7 @@ items:
     return:
       type:
       - excel.Excel.Range
-      description: 与搜索条件匹配的范围。
+      description: "与搜索条件匹配的范围。\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const table = sheet.tables.getItem(\"ExpensesTable\");\n    const searchRange = table.getRange();\n    const foundRange = searchRange.findOrNullObject($(\"#searchText\").text(), {\n        completeMatch: completeMatch,\n        matchCase: matchCase,\n        searchDirection: searchDirection\n    });\n    \n    foundRange.load(\"address\");\n    await context.sync();\n\n    if (foundRange.isNullObject) {\n        console.log(\"Text not found\");\n    } else {\n        console.log(foundRange.address);\n    }\n});\n```"
     parameters:
     - id: text
       description: 要查找的字符串。
@@ -573,6 +586,24 @@ items:
       description: 其他条件。
       type:
       - excel.Excel.SearchCriteria
+- uid: excel.Excel.Range.flashFill
+  summary: >-
+    对当前区域不 FlashFill。 快速填充将在检测到模式时自动填充数据, 因此该范围必须是单列区域, 并且具有数据, 才能找到模式。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: flashFill()
+  fullName: flashFill()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'flashFill(): void;'
+    return:
+      type:
+      - void
+      description: ''
 - uid: excel.Excel.Range.format
   summary: >-
     返回一个格式对象，其中封装了区域的字体、填充、边框、对齐方式和其他属性。只读。
@@ -1127,7 +1158,7 @@ items:
     return:
       type:
       - excel.Excel.RangeAreas
-      description: ''
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    const usedRange = sheet.getUsedRange();\n\n    // Find the ranges with either text or logical (boolean)\n    // values\n    const formulaRanges = usedRange.getSpecialCells(\"Constants\", \"LogicalText\");\n    formulaRanges.format.fill.color = \"orange\";\n\n    return context.sync();\n});\n```"
     parameters:
     - id: cellType
       description: 要包含的单元格的类型。
@@ -1150,7 +1181,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getSpecialCells(cellTypeString: "ConditionalFormats" | "DataValidations" | "Blanks" | "Comments" | "Constants" | "Formulas" | "SameConditionalFormat" | "SameDataValidation" | "Visible", cellValueType?: "All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"): Excel.RangeAreas;'
+    content: 'getSpecialCells(cellTypeString: "ConditionalFormats" | "DataValidations" | "Blanks" | "Constants" | "Formulas" | "SameConditionalFormat" | "SameDataValidation" | "Visible", cellValueType?: "All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"): Excel.RangeAreas;'
     return:
       type:
       - excel.Excel.RangeAreas
@@ -1159,7 +1190,7 @@ items:
     - id: cellTypeString
       description: 要包含的单元格的类型。
       type:
-      - "\"ConditionalFormats\" | \"DataValidations\" | \"Blanks\" | \"Comments\" | \"Constants\" | \"Formulas\" | \"SameConditionalFormat\" | \"SameDataValidation\" | \"Visible\""
+      - "\"ConditionalFormats\" | \"DataValidations\" | \"Blanks\" | \"Constants\" | \"Formulas\" | \"SameConditionalFormat\" | \"SameDataValidation\" | \"Visible\""
     - id: cellValueType
       description: 如果 cellType 为常量或公式, 则此参数用于确定要在结果中包含哪些类型的单元格。 可以将这些值组合在一起, 以返回多个类型。 默认情况下，将选择所有常量或公式，无论类型如何。
       type:
@@ -1204,7 +1235,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getSpecialCellsOrNullObject(cellTypeString: "ConditionalFormats" | "DataValidations" | "Blanks" | "Comments" | "Constants" | "Formulas" | "SameConditionalFormat" | "SameDataValidation" | "Visible", cellValueType?: "All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"): Excel.RangeAreas;'
+    content: 'getSpecialCellsOrNullObject(cellTypeString: "ConditionalFormats" | "DataValidations" | "Blanks" | "Constants" | "Formulas" | "SameConditionalFormat" | "SameDataValidation" | "Visible", cellValueType?: "All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"): Excel.RangeAreas;'
     return:
       type:
       - excel.Excel.RangeAreas
@@ -1213,7 +1244,7 @@ items:
     - id: cellTypeString
       description: 要包含的单元格的类型。
       type:
-      - "\"ConditionalFormats\" | \"DataValidations\" | \"Blanks\" | \"Comments\" | \"Constants\" | \"Formulas\" | \"SameConditionalFormat\" | \"SameDataValidation\" | \"Visible\""
+      - "\"ConditionalFormats\" | \"DataValidations\" | \"Blanks\" | \"Constants\" | \"Formulas\" | \"SameConditionalFormat\" | \"SameDataValidation\" | \"Visible\""
     - id: cellValueType
       description: 如果 cellType 为常量或公式, 则此参数用于确定要在结果中包含哪些类型的单元格。 可以将这些值组合在一起, 以返回多个类型。 默认情况下，将选择所有常量或公式，无论类型如何。
       type:
@@ -1634,7 +1665,7 @@ items:
     return:
       type:
       - excel.Excel.RemoveDuplicatesResult
-      description: 生成的对象, 其中包含已删除的行数和剩余的唯一行数。
+      description: "生成的对象, 其中包含已删除的行数和剩余的唯一行数。\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B2:D11\");\n\n    const deleteResult = range.removeDuplicates([0],true);    \n    deleteResult.load();    \n    await context.sync();\n\n    console.log(deleteResult.removed + \" entries with duplicate names removed.\");\n    console.log(deleteResult.uniqueRemaining + \" entries with unique names remain in the range.\");\n});\n```"
     parameters:
     - id: columns
       description: 区域中可能包含重复项的列。 至少需要指定一个列。 零编制索引。

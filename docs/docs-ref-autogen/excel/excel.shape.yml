@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 6ee2491ed2571cd9e34670b0778164ba9452c9bf
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: 92c35f5db99c5a152a3b1a23d7f0c058df15bbe1
+ms.sourcegitcommit: fd03ef72d6a546b0e4dbe0cc9e75d2a7cf9341a1
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30108105"
+ms.lasthandoff: 02/27/2019
+ms.locfileid: "30303037"
 items:
 - uid: excel.Excel.Shape
   summary: >-
@@ -24,6 +24,7 @@ items:
   children:
   - excel.Excel.Shape.altTextDescription
   - excel.Excel.Shape.altTextTitle
+  - excel.Excel.Shape.connectionSiteCount
   - excel.Excel.Shape.context
   - excel.Excel.Shape.delete
   - excel.Excel.Shape.fill
@@ -101,6 +102,23 @@ items:
     return:
       type:
       - string
+- uid: excel.Excel.Shape.connectionSiteCount
+  summary: >-
+    返回指定形状中的连结点的数量。只读。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: connectionSiteCount
+  fullName: connectionSiteCount
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly connectionSiteCount: number;'
+    return:
+      type:
+      - number
 - uid: excel.Excel.Shape.context
   summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
   isPreview: true
@@ -131,7 +149,7 @@ items:
     return:
       type:
       - void
-      description: ''
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shapes = sheet.shapes;\n\n    // load all the shapes in the collection without loading their properties\n    shapes.load(\"items/$none\");\n    await context.sync();\n\n    shapes.items.forEach((shape) => shape.delete());\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Shape.fill
   summary: >-
     返回 shape 对象的填充格式。 只读。
@@ -149,6 +167,7 @@ items:
     return:
       type:
       - excel.Excel.ShapeFill
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.addGeometricShape(Excel.GeometricShapeType.smileyFace);\n    shape.left = 300;\n    shape.top = 100;\n    shape.height = 100;\n    shape.width = 100;\n    shape.fill.foreColor = \"yellow\"\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Shape.geometricShape
   summary: >-
     返回 shape 对象的几何形状。 如果 shape 对象是其他形状类型 (如图像、SmartArt 等) 而不是 GeometricShape, 则会引发错误。
@@ -268,7 +287,7 @@ items:
     return:
       type:
       - void
-      description: ''
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.getItem(\"Square\")\n    shape.incrementLeft(-25);\n    await context.sync();\n});\n```"
     parameters:
     - id: increment
       description: 以点为单位指定形状水平移动的距离。 正值表示将形状向右移动，负值表示将形状向左移动。 如果工作表为 RTL, 则 IncrementLeft 为正值应将形状向左移动 (而不是向右移动)。
@@ -291,7 +310,7 @@ items:
     return:
       type:
       - void
-      description: ''
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.getItem(\"Image\");\n    shape.incrementRotation(180);\n    await context.sync();\n});\n```"
     parameters:
     - id: increment
       description: 以度为单位指定形状的水平旋转量。正值表示使形状按顺时针方向旋转；负值表示使形状按逆时针方向旋转。
@@ -314,7 +333,7 @@ items:
     return:
       type:
       - void
-      description: ''
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.getItem(\"Pentagon\")\n    shape.incrementTop(25);\n    await context.sync();\n});\n```"
     parameters:
     - id: increment
       description: 以磅为单位指定形状的垂直移动距离。正值表示将形状向下移动，负值表示将形状向上移动。
@@ -575,6 +594,7 @@ items:
     return:
       type:
       - number
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.addGeometricShape(Excel.GeometricShapeType.triangle);\n    shape.left = 100;\n    shape.top = 300;\n    shape.height = 150;\n    shape.width = 200;\n    shape.rotation = 45;\n    shape.fill.clear();\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Shape.saveAsPicture
   summary: >-
     将形状另存为图片并以 base64 编码字符串的形式返回图片, 并将 DPI 集使用96。 仅支持将 PictureFormat 保存为 excel. PictureFormat、PictureFormat 和和和和 PictureFormat。
@@ -638,7 +658,7 @@ items:
     return:
       type:
       - void
-      description: ''
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.getItem(\"Octagon\")\n    shape.scaleHeight(1.25, Excel.ShapeScaleType.currentSize);\n    shape.scaleWidth(1.25, Excel.ShapeScaleType.currentSize);\n    await context.sync();\n});\n```"
     parameters:
     - id: scaleFactor
       description: 指定形状调整后的高度与当前或原始高度的比例。
@@ -700,7 +720,7 @@ items:
     return:
       type:
       - void
-      description: ''
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.getItem(\"Octagon\")\n    shape.scaleHeight(1.25, Excel.ShapeScaleType.currentSize);\n    shape.scaleWidth(1.25, Excel.ShapeScaleType.currentSize);\n    await context.sync();\n});\n```"
     parameters:
     - id: scaleFactor
       description: 指定形状调整后的宽度与当前或原始宽度的比例。
@@ -809,7 +829,7 @@ items:
     return:
       type:
       - void
-      description: ''
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.getItem(\"Octagon\")\n    shape.setZOrder(Excel.ShapeZOrder.sendBackward);\n    await context.sync();\n});\n```"
     parameters:
     - id: value
       description: 相对于其他形状将指定形状移动到的位置。 有关详细信息, 请参阅 ShapeZOrder。

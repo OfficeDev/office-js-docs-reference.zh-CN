@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 7e0343beef42d8949e87a83a9f4f5d4ae2877883
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: a787d67b1da6d65f43dd93aa48c4baa5e4a8a6d5
+ms.sourcegitcommit: fd03ef72d6a546b0e4dbe0cc9e75d2a7cf9341a1
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30096029"
+ms.lasthandoff: 02/27/2019
+ms.locfileid: "30302995"
 items:
 - uid: excel.Excel.Application
   summary: >-
@@ -303,7 +303,7 @@ items:
     return:
       type:
       - void
-      description: ''
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    const rowCount = 500;\n    const columnCount = 20;\n\n    const startTime = Date.now();\n    console.log(\"Starting...\");\n\n    if (pauseScreenPainting) {\n        context.application.suspendScreenUpdatingUntilNextSync();\n    }\n\n    for (let i = 0; i < rowCount; i++) {\n        for (let j = 0; j < columnCount; j++) {\n            let cell = sheet.getCell(i, j);\n            cell.values = [[i * j * Math.random()]];\n            if (untrack) {\n                cell.untrack();\n            }\n        }\n    }\n\n    await context.sync();\n\n    console.log(`Ending. Adding ${rowCount * columnCount} cells took ${Date.now() - startTime} milliseconds`);\n});\n```"
 - uid: excel.Excel.Application.toJSON
   summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到`JSON.stringify()` <!-- -->时提供更有用的输出。 (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。)尽管原始的 Excel 应用程序对象是 API 对象, 但该`toJSON`方法将返回一个纯 JavaScript 对象 (类型`Excel.Interfaces.ApplicationData` <!-- -->为), 其中包含原始对象中任何已加载的子属性的浅表副本。
   name: toJSON()

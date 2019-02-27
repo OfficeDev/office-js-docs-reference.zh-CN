@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 0cc0db56f3778fc9cef827cc4541bed17a5f34c2
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: c827b346f429c90b6637cbaefe26dfa1c8677bb0
+ms.sourcegitcommit: fd03ef72d6a546b0e4dbe0cc9e75d2a7cf9341a1
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30096113"
+ms.lasthandoff: 02/27/2019
+ms.locfileid: "30303114"
 items:
 - uid: excel.Excel.WorksheetCollection
   summary: >-
@@ -84,7 +84,7 @@ items:
     return:
       type:
       - OfficeExtension.ClientResult<string[]>
-      description: 一个数组, 其中每个项代表新插入的工作表的 Id。
+      description: "一个数组, 其中每个项代表新插入的工作表的 Id。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nconst myFile = <HTMLInputElement>document.getElementById(\"file\");\nconst reader = new FileReader();\n\nreader.onload = (event) => {\n    Excel.run((context) => {\n        // strip off the metadata before the base64-encoded string\n        const startIndex = (<string>(<FileReader>event.target).result).indexOf(\"base64,\");\n        const workbookContents = (<string>(<FileReader>event.target).result).substr(startIndex + 7);\n\n        const sheets = context.workbook.worksheets;\n        sheets.addFromBase64(\n            workbookContents,\n            null, // get all the worksheets \n            Excel.WorksheetPositionType.end // insert them after the current workbook's worksheets\n            );\n        return context.sync();\n    });\n};\n\n// read in the file as a data URL so we can parse the base64-encoded string\nreader.readAsDataURL(myFile.files[0]);\n```"
     parameters:
     - id: base64File
       description: 必需。 代表源工作簿的 Base64 字符串。

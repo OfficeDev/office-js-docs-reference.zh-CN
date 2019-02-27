@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: a3efae33e400954ea270e85c640f6f139cda2004
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: 8e825405e1f328ca931354e2d4138476887d2e8d
+ms.sourcegitcommit: fd03ef72d6a546b0e4dbe0cc9e75d2a7cf9341a1
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30095735"
+ms.lasthandoff: 02/27/2019
+ms.locfileid: "30303240"
 items:
 - uid: excel.Excel.Worksheet
   summary: >-
@@ -307,7 +307,31 @@ items:
     return:
       type:
       - excel.Excel.RangeAreas
-      description: 一个 RangeArea 对象, 其中包含一个或多个与搜索条件相匹配的矩形区域。 如果没有匹配项, 则此函数将返回一个 null 对象。
+      description: >-
+        一个 RangeArea 对象, 其中包含一个或多个与搜索条件相匹配的矩形区域。 如果没有匹配项, 则此函数将返回一个 null 对象。
+
+        #### <a name="examples"></a>示例
+
+
+        ```typescript
+
+        await Excel.run(async (context) => {
+            const sheet = context.workbook.worksheets.getItem("Sample");
+            const foundRanges = sheet.findAllOrNullObject("Complete", {
+                completeMatch: true,
+                matchCase: false
+            });
+
+            await context.sync();
+
+            if (foundRanges.isNullObject) {
+                console.log("No complete projects");
+            } else {
+                foundRanges.format.fill.color = "green"
+            }
+        });
+
+        ```
     parameters:
     - id: text
       description: 要查找的字符串。
@@ -520,7 +544,7 @@ items:
     return:
       type:
       - excel.Excel.RangeAreas
-      description: ''
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    const specifiedRanges = sheet.getRanges(\"D3:D5, G3:G5\");\n    specifiedRanges.format.fill.color = \"pink\";\n\n    await context.sync();\n})\n```"
     parameters:
     - id: address
       description: '可选。 一个包含以逗号分隔的地址或各个区域的名称的字符串。 例如, "A1: B2, A5: B5"。 如果未指定, 则返回整个工作表的 RangeArea 对象。'
