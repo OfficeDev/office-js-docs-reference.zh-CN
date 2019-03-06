@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: cf53d2f1b4be020686b4df6de8468a6c9bda276a
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: 5f9aebbab6f3c0ec1756cf2a6c5419d6db6ca08a
+ms.sourcegitcommit: 788ab9c595c9143f8b8f4822a170e8b90d72ee1d
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30107678"
+ms.lasthandoff: 03/06/2019
+ms.locfileid: "30413845"
 items:
 - uid: excel.Excel.RemoveDuplicatesResult
   summary: >-
@@ -43,7 +43,7 @@ items:
       type:
       - RequestContext
 - uid: excel.Excel.RemoveDuplicatesResult.load
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性之前, 必须先调用 "context, sync ()"。
+  summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
   remarks: >-
     除了此签名之外, 此方法还具有以下签名:
 
@@ -73,7 +73,7 @@ items:
       type:
       - excel.Excel.Interfaces.RemoveDuplicatesResultLoadOptions
 - uid: excel.Excel.RemoveDuplicatesResult.load_1
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
+  summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
   isPreview: true
   name: load(propertyNames)
   fullName: load(propertyNames)
@@ -92,7 +92,7 @@ items:
       type:
       - string | string[]
 - uid: excel.Excel.RemoveDuplicatesResult.load_2
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
+  summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
   isPreview: true
   name: load(propertyNamesAndPaths)
   fullName: load(propertyNamesAndPaths)
@@ -112,7 +112,7 @@ items:
       - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.RemoveDuplicatesResult.removed
   summary: >-
-    由操作删除的重复行的数目。
+    由操作删除的重复行数。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -143,7 +143,7 @@ items:
       description: ''
 - uid: excel.Excel.RemoveDuplicatesResult.uniqueRemaining
   summary: >-
-    结果范围中出现的剩余唯一行数。
+    所生成的区域中存在的剩余唯一行数。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -158,3 +158,4 @@ items:
     return:
       type:
       - number
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B2:D11\");\n\n    const deleteResult = range.removeDuplicates([0],true);    \n    deleteResult.load();    \n    await context.sync();\n\n    console.log(deleteResult.removed + \" entries with duplicate names removed.\");\n    console.log(deleteResult.uniqueRemaining + \" entries with unique names remain in the range.\");\n});\n```"
