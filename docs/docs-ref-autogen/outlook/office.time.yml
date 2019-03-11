@@ -1,14 +1,14 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 3b5c78e61b1ec1b335b9bbda117a895f334461fc
-ms.sourcegitcommit: b0b614f5315ab2e5c1e0ea51c687498f87684a07
+ms.openlocfilehash: c947c53c37971a97842ad62a151238110e1c7c2c
+ms.sourcegitcommit: 6c48441b8be51d3a9d7dc836e386230a155feceb
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/15/2019
-ms.locfileid: "30056149"
+ms.lasthandoff: 02/22/2019
+ms.locfileid: "30199038"
 items:
 - uid: outlook.Office.Time
   summary: >-
-    Time 对象作为撰写模式中约会的 start 或 end 属性返回。
+    在撰写模式下, Time 对象以约会的开始或结束属性的形式返回。
 
 
     \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -24,13 +24,12 @@ items:
   - outlook.Office.Time.getAsync_1
   - outlook.Office.Time.setAsync
   - outlook.Office.Time.setAsync_1
-  - outlook.Office.Time.setAsync_2
 - uid: outlook.Office.Time.getAsync
   summary: >-
     获取约会的开始或结束时间。
 
 
-    日期和时间作为 asyncResult.value 属性中的 Date 对象提供。该值以协调世界时 (UTC) 表示。您可以使用 convertToLocalClientTime 方法将 UTC 时间转换为本地客户端时间。
+    日期和时间作为 asyncResult 属性中的 date 对象提供。 该值以协调世界时 (UTC) 表示。 您可以使用 convertToLocalClientTime 方法将 UTC 时间转换为本地客户端时间。
 
 
     \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -41,7 +40,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getAsync(options: Office.AsyncContextOptions, callback: (result: Office.AsyncResult<Date>) => void): void;'
+    content: 'getAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<Date>) => void): void;'
     return:
       type:
       - void
@@ -54,13 +53,13 @@ items:
     - id: callback
       description: 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 结果`value`的属性是 Date 对象。
       type:
-      - '(result: Office.AsyncResult<Date>) => void'
+      - '(asyncResult: Office.AsyncResult<Date>) => void'
 - uid: outlook.Office.Time.getAsync_1
   summary: >-
     获取约会的开始或结束时间。
 
 
-    日期和时间作为 asyncResult.value 属性中的 Date 对象提供。该值以协调世界时 (UTC) 表示。您可以使用 convertToLocalClientTime 方法将 UTC 时间转换为本地客户端时间。
+    日期和时间作为 asyncResult 属性中的 date 对象提供。 该值以协调世界时 (UTC) 表示。 您可以使用 convertToLocalClientTime 方法将 UTC 时间转换为本地客户端时间。
 
 
     \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -88,7 +87,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getAsync(callback: (result: Office.AsyncResult<Date>) => void): void;'
+    content: 'getAsync(callback: (asyncResult: Office.AsyncResult<Date>) => void): void;'
     return:
       type:
       - void
@@ -97,16 +96,16 @@ items:
     - id: callback
       description: 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 结果`value`的属性是 Date 对象。
       type:
-      - '(result: Office.AsyncResult<Date>) => void'
+      - '(asyncResult: Office.AsyncResult<Date>) => void'
 - uid: outlook.Office.Time.setAsync
   summary: >-
     设置约会的开始或结束时间。
 
 
-    如果对 start 属性调用了 setAsync 方法，end 属性将会调整为维持约会持续时间（同之前的设置一样）。如果对 end 属性调用了setAsync 方法，则约会的持续时间将延长到新的结束时间。
+    如果在 start 属性上调用 setAsync 方法, 则 end 属性将调整为保持约会的持续时间为以前设置的持续时间。 如果对 end 属性调用 setAsync 方法, 则约会的持续时间将延长到新的结束时间。
 
 
-    时间必须以 UTC 格式表示；您可以使用 convertToUtcClientTime 方法获取正确的 UTC 时间。
+    时间必须采用 UTC 格式;您可以使用 convertToUtcClientTime 方法获取正确的 UTC 时间。
 
 
     \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -141,7 +140,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'setAsync(dateTime: Date, options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<void>) => void): void;'
+    content: 'setAsync(dateTime: Date, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -152,51 +151,22 @@ items:
       type:
       - Date
     - id: options
-      description: '包含一个或多个以下属性的对象文本。 asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。'
+      description: '可选。 包含一个或多个以下属性的对象文本。 asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。'
       type:
       - Office.AsyncContextOptions
     - id: callback
-      description: 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果设置日期和时间失败, asyncResult 属性将包含一个错误代码。
+      description: 可选。 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果设置日期和时间失败, asyncResult 属性将包含一个错误代码。
       type:
-      - '(result: Office.AsyncResult<void>) => void'
+      - '(asyncResult: Office.AsyncResult<void>) => void'
 - uid: outlook.Office.Time.setAsync_1
   summary: >-
     设置约会的开始或结束时间。
 
 
-    如果对 start 属性调用了 setAsync 方法，end 属性将会调整为维持约会持续时间（同之前的设置一样）。如果对 end 属性调用了setAsync 方法，则约会的持续时间将延长到新的结束时间。
+    如果在 start 属性上调用 setAsync 方法, 则 end 属性将调整为保持约会的持续时间为以前设置的持续时间。 如果对 end 属性调用 setAsync 方法, 则约会的持续时间将延长到新的结束时间。
 
 
-    时间必须以 UTC 格式表示；您可以使用 convertToUtcClientTime 方法获取正确的 UTC 时间。
-
-
-    \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr> <tr><td>错误</td><td>InvalidEndTime-约会结束时间早在约会开始时间之前。</td></tr> </table>
-  name: setAsync(dateTime)
-  fullName: setAsync(dateTime)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'setAsync(dateTime: Date): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: dateTime
-      description: 以协调通用时间 (UTC) 表示的日期时间对象。
-      type:
-      - Date
-- uid: outlook.Office.Time.setAsync_2
-  summary: >-
-    设置约会的开始或结束时间。
-
-
-    如果对 start 属性调用了 setAsync 方法，end 属性将会调整为维持约会持续时间（同之前的设置一样）。如果对 end 属性调用了setAsync 方法，则约会的持续时间将延长到新的结束时间。
-
-
-    时间必须以 UTC 格式表示；您可以使用 convertToUtcClientTime 方法获取正确的 UTC 时间。
+    时间必须采用 UTC 格式;您可以使用 convertToUtcClientTime 方法获取正确的 UTC 时间。
 
 
     \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -207,7 +177,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'setAsync(dateTime: Date, callback: (result: Office.AsyncResult<void>) => void): void;'
+    content: 'setAsync(dateTime: Date, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -218,6 +188,6 @@ items:
       type:
       - Date
     - id: callback
-      description: 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果设置日期和时间失败, asyncResult 属性将包含一个错误代码。
+      description: 可选。 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果设置日期和时间失败, asyncResult 属性将包含一个错误代码。
       type:
-      - '(result: Office.AsyncResult<void>) => void'
+      - '(asyncResult: Office.AsyncResult<void>) => void'

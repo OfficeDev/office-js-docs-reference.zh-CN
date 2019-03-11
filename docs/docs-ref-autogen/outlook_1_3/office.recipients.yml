@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 0ff9ca85f23d76d7221a66485adde2742083f05c
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: eea3c8c944a37b8662cb9a19bc19270290a006c8
+ms.sourcegitcommit: 6c48441b8be51d3a9d7dc836e386230a155feceb
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30097100"
+ms.lasthandoff: 02/22/2019
+ms.locfileid: "30198296"
 items:
 - uid: Outlook_1_3.Office.Recipients
   summary: '\[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]'
@@ -18,24 +18,22 @@ items:
   children:
   - Outlook_1_3.Office.Recipients.addAsync
   - Outlook_1_3.Office.Recipients.addAsync_1
-  - Outlook_1_3.Office.Recipients.addAsync_2
   - Outlook_1_3.Office.Recipients.getAsync
   - Outlook_1_3.Office.Recipients.getAsync_1
   - Outlook_1_3.Office.Recipients.setAsync
   - Outlook_1_3.Office.Recipients.setAsync_1
-  - Outlook_1_3.Office.Recipients.setAsync_2
 - uid: Outlook_1_3.Office.Recipients.addAsync
   summary: >-
     将收件人列表添加到约会或邮件的现有收件人中。
 
 
-    recipients 参数可以是以下任何一个数组：
+    收件人参数可以是以下项之一的数组:
 
 
     - 包含 SMTP 电子邮件地址的字符串
 
 
-    - EmailUser 对象
+    - emailuser.displayname 对象
 
 
     - EmailAddressDetails 对象
@@ -49,7 +47,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'addAsync(recipients: (string | EmailUser | EmailAddressDetails)[], options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<void>) => void): void;'
+    content: 'addAsync(recipients: (string | EmailUser | EmailAddressDetails)[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -66,48 +64,13 @@ items:
     - id: callback
       description: 可选。 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果添加收件人失败, asyncResult 属性将包含一个错误代码。
       type:
-      - '(result: Office.AsyncResult<void>) => void'
+      - '(asyncResult: Office.AsyncResult<void>) => void'
 - uid: Outlook_1_3.Office.Recipients.addAsync_1
   summary: >-
     将收件人列表添加到约会或邮件的现有收件人中。
 
 
-    recipients 参数可以是以下任何一个数组：
-
-
-    - 包含 SMTP 电子邮件地址的字符串
-
-
-    - EmailUser 对象
-
-
-    - EmailAddressDetails 对象
-
-
-    \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr> <tr><td>错误</td><td>NumberOfRecipientsExceeded-超出100个条目的收件人数。</td></tr> </table>
-  name: addAsync(recipients)
-  fullName: addAsync(recipients)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'addAsync(recipients: (string | EmailUser | EmailAddressDetails)[]): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: recipients
-      description: 要添加到收件人列表中的收件人。
-      type:
-      - (string | EmailUser | EmailAddressDetails)[]
-- uid: Outlook_1_3.Office.Recipients.addAsync_2
-  summary: >-
-    将收件人列表添加到约会或邮件的现有收件人中。
-
-
-    recipients 参数可以是以下任何一个数组：
+    收件人参数可以是以下项之一的数组:
 
 
     - 包含 SMTP 电子邮件地址的字符串
@@ -159,7 +122,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'addAsync(recipients: (string | EmailUser | EmailAddressDetails)[], callback: (result: Office.AsyncResult<void>) => void): void;'
+    content: 'addAsync(recipients: (string | EmailUser | EmailAddressDetails)[], callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -172,7 +135,7 @@ items:
     - id: callback
       description: 可选。 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果添加收件人失败, asyncResult 属性将包含一个错误代码。
       type:
-      - '(result: Office.AsyncResult<void>) => void'
+      - '(asyncResult: Office.AsyncResult<void>) => void'
 - uid: Outlook_1_3.Office.Recipients.getAsync
   summary: >-
     获取约会或邮件的收件人列表。
@@ -189,7 +152,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getAsync(options: Office.AsyncContextOptions, callback: (result: Office.AsyncResult<EmailAddressDetails[]>) => void): void;'
+    content: 'getAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<EmailAddressDetails[]>) => void): void;'
     return:
       type:
       - void
@@ -202,7 +165,7 @@ items:
     - id: callback
       description: 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 结果`value`的属性是 EmailAddressDetails 对象的数组。
       type:
-      - '(result: Office.AsyncResult<EmailAddressDetails[]>) => void'
+      - '(asyncResult: Office.AsyncResult<EmailAddressDetails[]>) => void'
 - uid: Outlook_1_3.Office.Recipients.getAsync_1
   summary: >-
     获取约会或邮件的收件人列表。
@@ -241,7 +204,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getAsync(callback: (result: Office.AsyncResult<EmailAddressDetails[]>) => void): void;'
+    content: 'getAsync(callback: (asyncResult: Office.AsyncResult<EmailAddressDetails[]>) => void): void;'
     return:
       type:
       - void
@@ -250,7 +213,7 @@ items:
     - id: callback
       description: 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 结果`value`的属性是 EmailAddressDetails 对象的数组。
       type:
-      - '(result: Office.AsyncResult<EmailAddressDetails[]>) => void'
+      - '(asyncResult: Office.AsyncResult<EmailAddressDetails[]>) => void'
 - uid: Outlook_1_3.Office.Recipients.setAsync
   summary: >-
     设置约会或邮件的收件人列表。
@@ -259,7 +222,7 @@ items:
     setAsync 方法将覆盖当前收件人列表。
 
 
-    recipients 参数可以是以下任何一个数组：
+    收件人参数可以是以下项之一的数组:
 
 
     - 包含 SMTP 电子邮件地址的字符串
@@ -279,7 +242,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'setAsync(recipients: (string | EmailUser | EmailAddressDetails)[], options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<void>) => void): void;'
+    content: 'setAsync(recipients: (string | EmailUser | EmailAddressDetails)[], options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -290,13 +253,13 @@ items:
       type:
       - (string | EmailUser | EmailAddressDetails)[]
     - id: options
-      description: '可选。 包含一个或多个以下属性的对象文本。 asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。'
+      description: '包含一个或多个以下属性的对象文本。 asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。'
       type:
       - Office.AsyncContextOptions
     - id: callback
-      description: 可选。 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果设置收件人失败, 则 asyncResult 属性将包含指示在添加数据时出现的任何错误的代码。
+      description: 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果设置收件人失败, 则 asyncResult 属性将包含指示在添加数据时出现的任何错误的代码。
       type:
-      - '(result: Office.AsyncResult<void>) => void'
+      - '(asyncResult: Office.AsyncResult<void>) => void'
 - uid: Outlook_1_3.Office.Recipients.setAsync_1
   summary: >-
     设置约会或邮件的收件人列表。
@@ -305,45 +268,7 @@ items:
     setAsync 方法将覆盖当前收件人列表。
 
 
-    recipients 参数可以是以下任何一个数组：
-
-
-    - 包含 SMTP 电子邮件地址的字符串
-
-
-    - [emailuser.displayname](xref:Outlook_1_3.Office.EmailUser)对象
-
-
-    - [EmailAddressDetails](xref:Outlook_1_3.Office.EmailAddressDetails)对象
-
-
-    \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr> <tr><td>错误</td><td>NumberOfRecipientsExceeded-超出100个条目的收件人数。</td></tr> </table>
-  name: setAsync(recipients)
-  fullName: setAsync(recipients)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'setAsync(recipients: (string | EmailUser | EmailAddressDetails)[]): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: recipients
-      description: 要添加到收件人列表中的收件人。
-      type:
-      - (string | EmailUser | EmailAddressDetails)[]
-- uid: Outlook_1_3.Office.Recipients.setAsync_2
-  summary: >-
-    设置约会或邮件的收件人列表。
-
-
-    setAsync 方法将覆盖当前收件人列表。
-
-
-    recipients 参数可以是以下任何一个数组：
+    收件人参数可以是以下项之一的数组:
 
 
     - 包含 SMTP 电子邮件地址的字符串
@@ -395,7 +320,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'setAsync(recipients: (string | EmailUser | EmailAddressDetails)[], callback: (result: Office.AsyncResult<void>) => void): void;'
+    content: 'setAsync(recipients: (string | EmailUser | EmailAddressDetails)[], callback: (asyncResult: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -406,6 +331,6 @@ items:
       type:
       - (string | EmailUser | EmailAddressDetails)[]
     - id: callback
-      description: 可选。 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果设置收件人失败, 则 asyncResult 属性将包含指示在添加数据时出现的任何错误的代码。
+      description: 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果设置收件人失败, 则 asyncResult 属性将包含指示在添加数据时出现的任何错误的代码。
       type:
-      - '(result: Office.AsyncResult<void>) => void'
+      - '(asyncResult: Office.AsyncResult<void>) => void'
