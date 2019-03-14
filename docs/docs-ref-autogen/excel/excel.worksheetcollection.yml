@@ -1,14 +1,14 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: c827b346f429c90b6637cbaefe26dfa1c8677bb0
-ms.sourcegitcommit: fd03ef72d6a546b0e4dbe0cc9e75d2a7cf9341a1
+ms.openlocfilehash: e6a2dd64fbef5ae636f64d3e17a129fb476fdd71
+ms.sourcegitcommit: 5e31602ed9cbddfcff2768b7ed69dd4821440b90
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/27/2019
-ms.locfileid: "30303114"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "30575674"
 items:
 - uid: excel.Excel.WorksheetCollection
   summary: >-
-    表示属于工作簿的 Worksheet 对象的集合。
+    表示属于工作簿的 worksheet 对象的集合。
 
 
     \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -69,7 +69,7 @@ items:
       - string
 - uid: excel.Excel.WorksheetCollection.addFromBase64
   summary: >-
-    将工作簿的指定工作表插入到当前工作簿中。
+    将工作簿的指定工作表插入当前工作簿。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -84,27 +84,27 @@ items:
     return:
       type:
       - OfficeExtension.ClientResult<string[]>
-      description: "一个数组, 其中每个项代表新插入的工作表的 Id。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nconst myFile = <HTMLInputElement>document.getElementById(\"file\");\nconst reader = new FileReader();\n\nreader.onload = (event) => {\n    Excel.run((context) => {\n        // strip off the metadata before the base64-encoded string\n        const startIndex = (<string>(<FileReader>event.target).result).indexOf(\"base64,\");\n        const workbookContents = (<string>(<FileReader>event.target).result).substr(startIndex + 7);\n\n        const sheets = context.workbook.worksheets;\n        sheets.addFromBase64(\n            workbookContents,\n            null, // get all the worksheets \n            Excel.WorksheetPositionType.end // insert them after the current workbook's worksheets\n            );\n        return context.sync();\n    });\n};\n\n// read in the file as a data URL so we can parse the base64-encoded string\nreader.readAsDataURL(myFile.files[0]);\n```"
+      description: "与每个新插入的工作表对应的 id 的数组。\n#### <a name=\"examples\"></a>示例\n\n```javascript\nconst myFile = <HTMLInputElement>document.getElementById(\"file\");\nconst reader = new FileReader();\n\nreader.onload = (event) => {\n    Excel.run((context) => {\n        // strip off the metadata before the base64-encoded string\n        const startIndex = (<string>(<FileReader>event.target).result).indexOf(\"base64,\");\n        const workbookContents = (<string>(<FileReader>event.target).result).substr(startIndex + 7);\n\n        const sheets = context.workbook.worksheets;\n        sheets.addFromBase64(\n            workbookContents,\n            null, // get all the worksheets \n            Excel.WorksheetPositionType.end // insert them after the current workbook's worksheets\n            );\n        return context.sync();\n    });\n};\n\n// read in the file as a data URL so we can parse the base64-encoded string\nreader.readAsDataURL(myFile.files[0]);\n```"
     parameters:
     - id: base64File
-      description: 必需。 代表源工作簿的 Base64 字符串。
+      description: 必需。 代表源工作簿文件的 base64 编码的字符串。
       type:
       - string
     - id: sheetNamesToInsert
-      description: 可选。 要插入的 speified 工作表名称。 默认情况下, 它将从源工作簿中插入所有工作表。
+      description: 可选。 要插入的单个工作表的名称。 默认情况下, 会插入源工作簿中的所有工作表。
       type:
       - string[]
     - id: positionType
-      description: 可选。 插入位置类型的详细信息, 请参阅 WorksheetPositionType。 默认值为 "Start"。
+      description: 可选。 将在当前工作簿中插入新工作表的位置。 有关详细信息, 请参阅 WorksheetPositionType。 默认值为 "Start"。
       type:
       - excel.Excel.WorksheetPositionType
     - id: relativeTo
-      description: 可选。 当前工作簿中引用的工作表对象或工作表名称/id。 默认值为 null 并基于 postionType 参数, 它将在当前工作簿的开始或结尾插入工作表。
+      description: 可选。 为 positionType 参数引用的当前工作簿中的工作表。 默认值为 null, 并且基于 positionType, 它将在当前工作簿的开始或末尾插入工作表。
       type:
       - Worksheet | string
 - uid: excel.Excel.WorksheetCollection.addFromBase64_1
   summary: >-
-    将工作簿的指定工作表插入到当前工作簿中。
+    将工作簿的指定工作表插入当前工作簿。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -119,22 +119,22 @@ items:
     return:
       type:
       - OfficeExtension.ClientResult<string[]>
-      description: 一个数组, 其中每个项代表新插入的工作表的 Id。
+      description: 与每个新插入的工作表对应的 id 的数组。
     parameters:
     - id: base64File
-      description: 必需。 代表源工作簿的 Base64 字符串。
+      description: 必需。 代表源工作簿文件的 base64 编码的字符串。
       type:
       - string
     - id: sheetNamesToInsert
-      description: 可选。 要插入的 speified 工作表名称。 默认情况下, 它将从源工作簿中插入所有工作表。
+      description: 可选。 要插入的单个工作表的名称。 默认情况下, 会插入源工作簿中的所有工作表。
       type:
       - string[]
     - id: positionTypeString
-      description: 可选。 插入位置类型的详细信息, 请参阅 WorksheetPositionType。 默认值为 "Start"。
+      description: 可选。 将在当前工作簿中插入新工作表的位置。 有关详细信息, 请参阅 WorksheetPositionType。 默认值为 "Start"。
       type:
       - "\"None\" | \"Before\" | \"After\" | \"Beginning\" | \"End\""
     - id: relativeTo
-      description: 可选。 当前工作簿中引用的工作表对象或工作表名称/id。 默认值为 null 并基于 postionType 参数, 它将在当前工作簿的开始或结尾插入工作表。
+      description: 可选。 为 positionType 参数引用的当前工作簿中的工作表。 默认值为 null, 并且基于 positionType, 它将在当前工作簿的开始或末尾插入工作表。
       type:
       - Worksheet | string
 - uid: excel.Excel.WorksheetCollection.context
@@ -185,7 +185,7 @@ items:
       description: ''
     parameters:
     - id: visibleOnly
-      description: 可选。如果为 true，则仅考虑可见的工作表，跳过任意隐藏的工作表。
+      description: 可选。 如果为 true, 则只考虑可见的工作表, 跳过任何隐藏的工作表。
       type:
       - boolean
 - uid: excel.Excel.WorksheetCollection.getFirst
@@ -207,12 +207,12 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheets = context.workbook.worksheets;\n\n    // We don't want to include the default worksheet that was created\n    // when the workbook was created, so our \"firstSheet\" will be the one\n    // after the literal first. Note chaining of navigation methods.\n    const firstSheet = sheets.getFirst().getNext();\n    const lastSheet = sheets.getLast();\n    const firstTaxRateRange = firstSheet.getRange(\"B2\");\n    const lastTaxRateRange = lastSheet.getRange(\"B2\");\n\n    firstSheet.load(\"name\");\n    lastSheet.load(\"name\");\n    firstTaxRateRange.load(\"text\");\n    lastTaxRateRange.load(\"text\");\n\n    await context.sync();\n\n    let firstYear = firstSheet.name.substr(5, 4);\n    let lastYear = lastSheet.name.substr(5, 4);\n    console.log(`Tax Rate change from ${firstYear} to ${lastYear}`, `Tax rate for ${firstYear}: ${firstTaxRateRange.text[0][0]}\\nTax rate for ${lastYear}: ${lastTaxRateRange.text[0][0]}`)\n\n    await context.sync();\n});\n```"
     parameters:
     - id: visibleOnly
-      description: 可选。如果为 true，则仅考虑可见的工作表，跳过任意隐藏的工作表。
+      description: 可选。 如果为 true, 则只考虑可见的工作表, 跳过任何隐藏的工作表。
       type:
       - boolean
 - uid: excel.Excel.WorksheetCollection.getItem
   summary: >-
-    使用其名称或 ID 获取 worksheet 对象。
+    按 Worksheet 对象的名称或 ID 获取此对象。
 
 
     \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -234,7 +234,7 @@ items:
       - string
 - uid: excel.Excel.WorksheetCollection.getItemOrNullObject
   summary: >-
-    按 Worksheet 对象的名称或 ID 获取此对象。如果没有 Worksheet 对象，将返回 NULL 对象。
+    按 Worksheet 对象的名称或 ID 获取此对象。 如果没有 Worksheet 对象，将返回 NULL 对象。
 
 
     \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -273,11 +273,11 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheets = context.workbook.worksheets;\n\n    // We don't want to include the default worksheet that was created\n    // when the workbook was created, so our \"firstSheet\" will be the one\n    // after the literal first. Note chaining of navigation methods.\n    const firstSheet = sheets.getFirst().getNext();\n    const lastSheet = sheets.getLast();\n    const firstTaxRateRange = firstSheet.getRange(\"B2\");\n    const lastTaxRateRange = lastSheet.getRange(\"B2\");\n\n    firstSheet.load(\"name\");\n    lastSheet.load(\"name\");\n    firstTaxRateRange.load(\"text\");\n    lastTaxRateRange.load(\"text\");\n\n    await context.sync();\n\n    let firstYear = firstSheet.name.substr(5, 4);\n    let lastYear = lastSheet.name.substr(5, 4);\n    console.log(`Tax Rate change from ${firstYear} to ${lastYear}`, `Tax rate for ${firstYear}: ${firstTaxRateRange.text[0][0]}\\nTax rate for ${lastYear}: ${lastTaxRateRange.text[0][0]}`)\n\n    await context.sync();\n});\n```"
     parameters:
     - id: visibleOnly
-      description: 可选。如果为 true，则仅考虑可见的工作表，跳过任意隐藏的工作表。
+      description: 可选。 如果为 true, 则只考虑可见的工作表, 跳过任何隐藏的工作表。
       type:
       - boolean
 - uid: excel.Excel.WorksheetCollection.items
-  summary: 获取此集合中的已加载子项目。
+  summary: 获取此集合中已加载的子项。
   name: items
   fullName: items
   langs:
@@ -289,7 +289,7 @@ items:
       type:
       - Excel.Worksheet[]
 - uid: excel.Excel.WorksheetCollection.load
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性之前, 必须先调用 "context, sync ()"。
+  summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
   remarks: >-
     除了此签名之外, 此方法还具有以下签名:
 
@@ -318,7 +318,7 @@ items:
       type:
       - Excel.Interfaces.WorksheetCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
 - uid: excel.Excel.WorksheetCollection.load_1
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
+  summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
   name: load(propertyNames)
   fullName: load(propertyNames)
   langs:
@@ -404,7 +404,7 @@ items:
       - OfficeExtension.EventHandlers<Excel.WorksheetCalculatedEventArgs>
 - uid: excel.Excel.WorksheetCollection.onChanged
   summary: >-
-    在工作簿中的任何工作表发生更改时发生。
+    在更改工作簿中的任何工作表时发生。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -471,7 +471,7 @@ items:
       - OfficeExtension.EventHandlers<Excel.WorksheetFilteredEventArgs>
 - uid: excel.Excel.WorksheetCollection.onFormatChanged
   summary: >-
-    当工作簿中的任何工作表的格式更改时发生。
+    在更改工作簿中的任何工作表的格式时发生。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -488,7 +488,7 @@ items:
       - OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>
 - uid: excel.Excel.WorksheetCollection.onSelectionChanged
   summary: >-
-    在任何工作表上的所选内容更改时发生。
+    在任何工作表上更改选择时发生。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -504,7 +504,7 @@ items:
       type:
       - OfficeExtension.EventHandlers<Excel.WorksheetSelectionChangedEventArgs>
 - uid: excel.Excel.WorksheetCollection.toJSON
-  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到`JSON.stringify()` <!-- -->时提供更有用的输出。 (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。)虽然原始`Excel.WorksheetCollection`对象是 API 对象, 但该`toJSON`方法返回一个纯 JavaScript 对象 (类型为`Excel.Interfaces.WorksheetCollectionData` <!-- -->), 其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。
+  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始`Excel.WorksheetCollection`对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Excel.Interfaces.WorksheetCollectionData`<!-- -->), 其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。
   name: toJSON()
   fullName: toJSON()
   langs:

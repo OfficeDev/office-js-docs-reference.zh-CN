@@ -1,13 +1,17 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 8a4669fc1d872fd67cced0c9423ab0abf6c4ae66
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: f8cf30790ef3a9d2a990843eb8425fc8bdd2a60a
+ms.sourcegitcommit: 5e31602ed9cbddfcff2768b7ed69dd4821440b90
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30108301"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "30575653"
 items:
 - uid: excel.Excel.TextRange
-  summary: '\[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]'
+  summary: >-
+    包含附加到形状上的文本，以及用于操作文本的属性和方法。
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   isPreview: true
   name: Excel.TextRange
   fullName: Excel.TextRange
@@ -20,7 +24,7 @@ items:
   children:
   - excel.Excel.TextRange.context
   - excel.Excel.TextRange.font
-  - excel.Excel.TextRange.getCharacters
+  - excel.Excel.TextRange.getSubstring
   - excel.Excel.TextRange.load
   - excel.Excel.TextRange.load_1
   - excel.Excel.TextRange.load_2
@@ -43,7 +47,7 @@ items:
       - RequestContext
 - uid: excel.Excel.TextRange.font
   summary: >-
-    返回一个 ShapeFont 对象, 该对象代表文字范围的字体属性。 只读。
+    返回一个 ShapeFont 对象，该对象表示文本范围的字体属性。 只读。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -58,35 +62,35 @@ items:
     return:
       type:
       - excel.Excel.ShapeFont
-- uid: excel.Excel.TextRange.getCharacters
+- uid: excel.Excel.TextRange.getSubstring
   summary: >-
-    返回一个 TextRange 对象, 该对象表示指定区域中的字符。
+    为给定范围内的子字符串返回 TextRange 对象。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   isPreview: true
-  name: getCharacters(start, length)
-  fullName: getCharacters(start, length)
+  name: getSubstring(start, length)
+  fullName: getSubstring(start, length)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'getCharacters(start: number, length?: number): Excel.TextRange;'
+    content: 'getSubstring(start: number, length?: number): Excel.TextRange;'
     return:
       type:
       - excel.Excel.TextRange
       description: ''
     parameters:
     - id: start
-      description: 返回的范围中的第一个字符的位置。
+      description: 从文本范围中获取的第一个字符的从零开始的索引。
       type:
       - number
     - id: length
-      description: 可选。 要返回的字符数。 如果省略, 则表示从 TextRange 的最后一段的末尾开始的字符数。
+      description: 可选。 要在新文本范围中返回的字符数。 如果省略 length, 则将返回从文本范围的最后一段的最后一段的末尾开始的所有字符。
       type:
       - number
 - uid: excel.Excel.TextRange.load
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性之前, 必须先调用 "context, sync ()"。
+  summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
   remarks: >-
     除了此签名之外, 此方法还具有以下签名:
 
@@ -116,7 +120,7 @@ items:
       type:
       - excel.Excel.Interfaces.TextRangeLoadOptions
 - uid: excel.Excel.TextRange.load_1
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
+  summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
   isPreview: true
   name: load(propertyNames)
   fullName: load(propertyNames)
@@ -135,7 +139,7 @@ items:
       type:
       - string | string[]
 - uid: excel.Excel.TextRange.load_2
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
+  summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
   isPreview: true
   name: load(propertyNamesAndPaths)
   fullName: load(propertyNamesAndPaths)
@@ -202,7 +206,7 @@ items:
       - excel.Excel.TextRange
 - uid: excel.Excel.TextRange.text
   summary: >-
-    代表文本范围的纯文本内容。
+    表示文本范围的纯文本内容。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -218,7 +222,7 @@ items:
       type:
       - string
 - uid: excel.Excel.TextRange.toJSON
-  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到`JSON.stringify()` <!-- -->时提供更有用的输出。 (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。)原始的 Excel. TextRange 对象是一个 API 对象, 而该`toJSON`方法返回一个纯 JavaScript 对象 (类型为`Excel.Interfaces.TextRangeData` <!-- -->), 其中包含原始对象中任何已加载的子属性的浅表副本。
+  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始的 Excel. TextRange 对象是一个 API 对象, 但`toJSON`该方法返回一个简单的 JavaScript 对象 (类型为`Excel.Interfaces.TextRangeData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。
   isPreview: true
   name: toJSON()
   fullName: toJSON()

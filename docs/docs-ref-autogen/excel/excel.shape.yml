@@ -1,14 +1,14 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 4438c2b727e8957db232766dbffb6b4f9e5670d1
-ms.sourcegitcommit: 788ab9c595c9143f8b8f4822a170e8b90d72ee1d
+ms.openlocfilehash: 67621ae13426a756364e0cd8e317a2635a1bc17e
+ms.sourcegitcommit: 5e31602ed9cbddfcff2768b7ed69dd4821440b90
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/06/2019
-ms.locfileid: "30413859"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "30575681"
 items:
 - uid: excel.Excel.Shape
   summary: >-
-    代表工作表中的一个通用 shape 对象。
+    代表工作表中的一个通用 shape 对象。 一个形状可以是一个几何形状、一条线、一组形状, 等等。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -30,6 +30,8 @@ items:
   - excel.Excel.Shape.fill
   - excel.Excel.Shape.geometricShape
   - excel.Excel.Shape.geometricShapeType
+  - excel.Excel.Shape.getAsImage
+  - excel.Excel.Shape.getAsImage_1
   - excel.Excel.Shape.group
   - excel.Excel.Shape.height
   - excel.Excel.Shape.id
@@ -51,8 +53,6 @@ items:
   - excel.Excel.Shape.parentGroup
   - excel.Excel.Shape.placement
   - excel.Excel.Shape.rotation
-  - excel.Excel.Shape.saveAsPicture
-  - excel.Excel.Shape.saveAsPicture_1
   - excel.Excel.Shape.scaleHeight
   - excel.Excel.Shape.scaleHeight_1
   - excel.Excel.Shape.scaleWidth
@@ -70,7 +70,7 @@ items:
   - excel.Excel.Shape.zorderPosition
 - uid: excel.Excel.Shape.altTextDescription
   summary: >-
-    返回或设置当 Shape 对象保存为网页时，该对象的可选描述性文本字符串。
+    返回或设置 Shape 对象的替代说明文本。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -87,7 +87,7 @@ items:
       - string
 - uid: excel.Excel.Shape.altTextTitle
   summary: >-
-    返回或设置当 Shape 对象保存为网页时，该对象的可选标题文本字符串。
+    返回或设置 Shape 对象的可选标题文本。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -104,7 +104,7 @@ items:
       - string
 - uid: excel.Excel.Shape.connectionSiteCount
   summary: >-
-    返回指定形状中的连结点的数量。 只读。
+    返回此形状上的连接网站数。 只读。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -134,7 +134,7 @@ items:
       - RequestContext
 - uid: excel.Excel.Shape.delete
   summary: >-
-    删除形状
+    从工作表中删除该形状。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -152,7 +152,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shapes = sheet.shapes;\n\n    // load all the shapes in the collection without loading their properties\n    shapes.load(\"items/$none\");\n    await context.sync();\n\n    shapes.items.forEach((shape) => shape.delete());\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Shape.fill
   summary: >-
-    返回 Shape 对象的填充格式。 只读的。
+    返回此形状的填充格式。 只读。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -167,10 +167,10 @@ items:
     return:
       type:
       - excel.Excel.ShapeFill
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.addGeometricShape(Excel.GeometricShapeType.smileyFace);\n    shape.left = 300;\n    shape.top = 100;\n    shape.height = 100;\n    shape.width = 100;\n    shape.fill.foreColor = \"yellow\"\n    await context.sync();\n});\n```"
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.addGeometricShape(Excel.GeometricShapeType.smileyFace);\n    shape.left = 300;\n    shape.top = 100;\n    shape.height = 100;\n    shape.width = 100;\n    shape.fill.foregroundColor = \"yellow\"\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Shape.geometricShape
   summary: >-
-    返回 Shape 对象的几何形状。 如果 Shape 对象是其他形状类型（如图像、SmartArt 等）而不是 GeometricShape，则会引发错误。
+    返回与形状相关联的几何形状。 如果形状类型不是 "GeometricShape", 则会引发错误。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -187,7 +187,7 @@ items:
       - excel.Excel.GeometricShape
 - uid: excel.Excel.Shape.geometricShapeType
   summary: >-
-    表示指定形状的几何形状类型。 有关详细信息，请参阅 Excel.GeometricShapeType。 如果不是几何形状，则返回 null，例如获取线条或图表的 GeometricShapeType 将返回 null。
+    表示此几何形状的几何形状类型。 有关详细信息, 请参阅 GeometricShapeType。 如果形状类型不是 "GeometricShape", 则返回 null。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -202,9 +202,55 @@ items:
     return:
       type:
       - Excel.GeometricShapeType | "LineInverse" | "Triangle" | "RightTriangle" | "Rectangle" | "Diamond" | "Parallelogram" | "Trapezoid" | "NonIsoscelesTrapezoid" | "Pentagon" | "Hexagon" | "Heptagon" | "Octagon" | "Decagon" | "Dodecagon" | "Star4" | "Star5" | "Star6" | "Star7" | "Star8" | "Star10" | "Star12" | "Star16" | "Star24" | "Star32" | "RoundRectangle" | "Round1Rectangle" | "Round2SameRectangle" | "Round2DiagonalRectangle" | "SnipRoundRectangle" | "Snip1Rectangle" | "Snip2SameRectangle" | "Snip2DiagonalRectangle" | "Plaque" | "Ellipse" | "Teardrop" | "HomePlate" | "Chevron" | "PieWedge" | "Pie" | "BlockArc" | "Donut" | "NoSmoking" | "RightArrow" | "LeftArrow" | "UpArrow" | "DownArrow" | "StripedRightArrow" | "NotchedRightArrow" | "BentUpArrow" | "LeftRightArrow" | "UpDownArrow" | "LeftUpArrow" | "LeftRightUpArrow" | "QuadArrow" | "LeftArrowCallout" | "RightArrowCallout" | "UpArrowCallout" | "DownArrowCallout" | "LeftRightArrowCallout" | "UpDownArrowCallout" | "QuadArrowCallout" | "BentArrow" | "UturnArrow" | "CircularArrow" | "LeftCircularArrow" | "LeftRightCircularArrow" | "CurvedRightArrow" | "CurvedLeftArrow" | "CurvedUpArrow" | "CurvedDownArrow" | "SwooshArrow" | "Cube" | "Can" | "LightningBolt" | "Heart" | "Sun" | "Moon" | "SmileyFace" | "IrregularSeal1" | "IrregularSeal2" | "FoldedCorner" | "Bevel" | "Frame" | "HalfFrame" | "Corner" | "DiagonalStripe" | "Chord" | "Arc" | "LeftBracket" | "RightBracket" | "LeftBrace" | "RightBrace" | "BracketPair" | "BracePair" | "Callout1" | "Callout2" | "Callout3" | "AccentCallout1" | "AccentCallout2" | "AccentCallout3" | "BorderCallout1" | "BorderCallout2" | "BorderCallout3" | "AccentBorderCallout1" | "AccentBorderCallout2" | "AccentBorderCallout3" | "WedgeRectCallout" | "WedgeRRectCallout" | "WedgeEllipseCallout" | "CloudCallout" | "Cloud" | "Ribbon" | "Ribbon2" | "EllipseRibbon" | "EllipseRibbon2" | "LeftRightRibbon" | "VerticalScroll" | "HorizontalScroll" | "Wave" | "DoubleWave" | "Plus" | "FlowChartProcess" | "FlowChartDecision" | "FlowChartInputOutput" | "FlowChartPredefinedProcess" | "FlowChartInternalStorage" | "FlowChartDocument" | "FlowChartMultidocument" | "FlowChartTerminator" | "FlowChartPreparation" | "FlowChartManualInput" | "FlowChartManualOperation" | "FlowChartConnector" | "FlowChartPunchedCard" | "FlowChartPunchedTape" | "FlowChartSummingJunction" | "FlowChartOr" | "FlowChartCollate" | "FlowChartSort" | "FlowChartExtract" | "FlowChartMerge" | "FlowChartOfflineStorage" | "FlowChartOnlineStorage" | "FlowChartMagneticTape" | "FlowChartMagneticDisk" | "FlowChartMagneticDrum" | "FlowChartDisplay" | "FlowChartDelay" | "FlowChartAlternateProcess" | "FlowChartOffpageConnector" | "ActionButtonBlank" | "ActionButtonHome" | "ActionButtonHelp" | "ActionButtonInformation" | "ActionButtonForwardNext" | "ActionButtonBackPrevious" | "ActionButtonEnd" | "ActionButtonBeginning" | "ActionButtonReturn" | "ActionButtonDocument" | "ActionButtonSound" | "ActionButtonMovie" | "Gear6" | "Gear9" | "Funnel" | "MathPlus" | "MathMinus" | "MathMultiply" | "MathDivide" | "MathEqual" | "MathNotEqual" | "CornerTabs" | "SquareTabs" | "PlaqueTabs" | "ChartX" | "ChartStar" | "ChartPlus"
+- uid: excel.Excel.Shape.getAsImage
+  summary: >-
+    将形状转换为图像, 并以 base64 编码的字符串的形式返回图像。 DPI 为96。 唯一受支持的格式是`Excel.PictureFormat.BMP`<!-- -->, `Excel.PictureFormat.PNG`<!-- -->, `Excel.PictureFormat.JPEG`<!-- -->, 并`Excel.PictureFormat.GIF`<!-- -->.
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getAsImage(format)
+  fullName: getAsImage(format)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAsImage(format: Excel.PictureFormat): OfficeExtension.ClientResult<string>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<string>
+      description: ''
+    parameters:
+    - id: format
+      description: 指定图像的格式。
+      type:
+      - excel.Excel.PictureFormat
+- uid: excel.Excel.Shape.getAsImage_1
+  summary: >-
+    将形状转换为图像, 并以 base64 编码的字符串的形式返回图像。 DPI 为96。 唯一受支持的格式是`Excel.PictureFormat.BMP`<!-- -->, `Excel.PictureFormat.PNG`<!-- -->, `Excel.PictureFormat.JPEG`<!-- -->, 并`Excel.PictureFormat.GIF`<!-- -->.
+
+
+    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getAsImage(formatString)
+  fullName: getAsImage(formatString)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAsImage(formatString: "UNKNOWN" | "BMP" | "JPEG" | "GIF" | "PNG" | "SVG"): OfficeExtension.ClientResult<string>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<string>
+      description: ''
+    parameters:
+    - id: formatString
+      description: 指定图像的格式。
+      type:
+      - "\"UNKNOWN\" | \"BMP\" | \"JPEG\" | \"GIF\" | \"PNG\" | \"SVG\""
 - uid: excel.Excel.Shape.group
   summary: >-
-    返回 Shape 对象的形状组。 如果 Shape 对象是其他形状类型（如图像、SmartArt 等）而不是 GroupShape，则会引发错误。
+    返回与形状关联的形状组。 如果形状类型不是 "GroupShape", 则会引发错误。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -219,6 +265,7 @@ items:
     return:
       type:
       - excel.Excel.ShapeGroup
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n\n    const shapeGroup = sheet.shapes.getItem(\"Group\").group;\n    shapeGroup.ungroup();\n    console.log(\"Shapes ungrouped\");\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Shape.height
   summary: >-
     表示形状的高度（以磅为单位）。 当设置为负值或零作为输入时, 将引发无效参数异常。
@@ -255,7 +302,7 @@ items:
       - string
 - uid: excel.Excel.Shape.image
   summary: >-
-    返回 Shape 对象的图像。 如果 Shape 对象是其他形状类型（如 GeometricShape、SmartArt 等）而不是图像，则会引发错误。
+    返回与形状相关联的图像。 如果形状类型不是 "Image", 则会引发错误。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -290,12 +337,12 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.getItem(\"Square\")\n    shape.incrementLeft(-25);\n    await context.sync();\n});\n```"
     parameters:
     - id: increment
-      description: 指定形状水平移动的距离，以磅为单位。 为正值时将形状右移；为负值时将形状左移。 如果工作表为 RTL, 则 IncrementLeft 为正值应将形状向左移动 (而不是向右移动)。
+      description: '以磅为单位的增量, 形状将水平移动。 正值表示将形状向右移动, 值为负值时将形状向左移动。 如果工作表是从右到左方向的, 则将其反转: 正值将形状向左移动, 负值表示将形状向右移动。'
       type:
       - number
 - uid: excel.Excel.Shape.incrementRotation
   summary: >-
-    更改形状围绕 z 轴旋转的特定度数。 使用旋转 属性来设置形状的绝对旋转。
+    将形状围绕 z 轴顺时针旋转指定的角度。 使用`rotation`属性可设置形状的绝对旋转量。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -313,7 +360,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.getItem(\"Image\");\n    shape.incrementRotation(180);\n    await context.sync();\n});\n```"
     parameters:
     - id: increment
-      description: 指定形状的水平旋转量，以度为单位。为正值时顺时针旋转形状，为负值时逆时针旋转形状。
+      description: 形状将旋转多少度。 为正值时顺时针旋转形状，为负值时逆时针旋转形状。
       type:
       - number
 - uid: excel.Excel.Shape.incrementTop
@@ -336,12 +383,12 @@ items:
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.getItem(\"Pentagon\")\n    shape.incrementTop(25);\n    await context.sync();\n});\n```"
     parameters:
     - id: increment
-      description: 以磅为单位指定形状的垂直移动距离。正值表示将形状向下移动，负值表示将形状向上移动。
+      description: 以磅为单位的增量, 形状将垂直移动。 以磅为单位。 正值表示将形状向下移动, 负值表示将形状上移。
       type:
       - number
 - uid: excel.Excel.Shape.left
   summary: >-
-    从形状左侧到工作表左侧的距离（以磅为单位）。 当设置为负值作为输入时引发无效参数异常。
+    从形状左侧到工作表左侧的距离 (以磅为单位)。 当设置为负值作为输入时, 将引发无效参数异常。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -358,7 +405,7 @@ items:
       - number
 - uid: excel.Excel.Shape.level
   summary: >-
-    表示指定形状的级别。 级别 0 表示形状不是任何组的一部分，级别 1 表示形状是顶级组的一部分等等。
+    表示指定形状的级别。 例如, 级别0表示该形状不是任何组的一部分, 级别1表示该形状是顶级组的一部分, 而级别为2表示该形状是顶层的子组的一部分。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -375,7 +422,7 @@ items:
       - number
 - uid: excel.Excel.Shape.line
   summary: >-
-    返回 Shape 对象的 Line 对象。 如果 Shape 对象是其他形状类型（如 GeometricShape、SmartArt 等）而不是图像，则会引发错误。
+    返回与形状相关联的线条。 如果形状类型不是 "Line", 则会引发错误。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -390,10 +437,10 @@ items:
     return:
       type:
       - excel.Excel.Line
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const shapes = context.workbook.worksheets.getItem(\"Shapes\").shapes;\n    const line = shapes.getItem(\"StraightLine\").line;\n    line.beginArrowHeadLength = Excel.ArrowHeadLength.long;\n    line.beginArrowHeadWidth = Excel.ArrowHeadWidth.wide;\n    line.beginArrowHeadStyle = Excel.ArrowHeadStyle.oval;\n\n    line.endArrowHeadLength = Excel.ArrowHeadLength.long;\n    line.endArrowHeadWidth = Excel.ArrowHeadWidth.wide;\n    line.endArrowHeadStyle = Excel.ArrowHeadStyle.triangle;\n\n    await context.sync();\n});\n```"
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const shapes = context.workbook.worksheets.getItem(\"Shapes\").shapes;\n    const line = shapes.getItem(\"StraightLine\").line;\n    line.beginArrowheadLength = Excel.ArrowheadLength.long;\n    line.beginArrowheadWidth = Excel.ArrowheadWidth.wide;\n    line.beginArrowheadStyle = Excel.ArrowheadStyle.oval;\n\n    line.endArrowheadLength = Excel.ArrowheadLength.long;\n    line.endArrowheadWidth = Excel.ArrowheadWidth.wide;\n    line.endArrowheadStyle = Excel.ArrowheadStyle.triangle;\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Shape.lineFormat
   summary: >-
-    返回 Shape 对象的线条格式。 只读。
+    返回此形状的线条格式。 只读。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -478,7 +525,7 @@ items:
       - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.Shape.lockAspectRatio
   summary: >-
-    表示是否以布尔值锁定形状的纵横比。
+    指定是否锁定此形状的纵横比。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -529,7 +576,7 @@ items:
       - OfficeExtension.EventHandlers<Excel.ShapeActivatedEventArgs>
 - uid: excel.Excel.Shape.onDeactivated
   summary: >-
-    当激活形状时发生此事件。
+    停用形状时发生。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -546,7 +593,7 @@ items:
       - OfficeExtension.EventHandlers<Excel.ShapeDeactivatedEventArgs>
 - uid: excel.Excel.Shape.parentGroup
   summary: >-
-    表示指定形状的父组。
+    表示此形状的父组。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -563,7 +610,7 @@ items:
       - excel.Excel.Shape
 - uid: excel.Excel.Shape.placement
   summary: >-
-    表示 Placement 值，它代表对象附加到对象下面的单元格的方式。
+    表示对象附加到其下的单元格的方式。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -596,55 +643,9 @@ items:
       type:
       - number
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.addGeometricShape(Excel.GeometricShapeType.triangle);\n    shape.left = 100;\n    shape.top = 300;\n    shape.height = 150;\n    shape.width = 200;\n    shape.rotation = 45;\n    shape.fill.clear();\n    await context.sync();\n});\n```"
-- uid: excel.Excel.Shape.saveAsPicture
-  summary: >-
-    将形状另存为图片，通过将 DPI 设置为 96，以 base64 编码的字符串形式返回图片。 仅支持另存为 Excel.PictureFormat.BMP、Excel.PictureFormat.PNG、Excel.PictureFormat.JPEG 和 Excel.PictureFormat.GIF。
-
-
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: saveAsPicture(format)
-  fullName: saveAsPicture(format)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'saveAsPicture(format: Excel.PictureFormat): OfficeExtension.ClientResult<string>;'
-    return:
-      type:
-      - OfficeExtension.ClientResult<string>
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.getItem(\"Image\");\n    const result = shape.saveAsPicture(Excel.PictureFormat.png);\n    await context.sync();\n\n    const imageString = result.value;\n    // Your add-in would save this string as a .png file.\n    console.log(\"The image's base64-encoded string: \" + imageString);\n});\n```"
-    parameters:
-    - id: format
-      description: ''
-      type:
-      - excel.Excel.PictureFormat
-- uid: excel.Excel.Shape.saveAsPicture_1
-  summary: >-
-    将形状另存为图片，通过将 DPI 设置为 96，以 base64 编码的字符串形式返回图片。 仅支持另存为 Excel.PictureFormat.BMP、Excel.PictureFormat.PNG、Excel.PictureFormat.JPEG 和 Excel.PictureFormat.GIF。
-
-
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: saveAsPicture(formatString)
-  fullName: saveAsPicture(formatString)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'saveAsPicture(formatString: "UNKNOWN" | "BMP" | "JPEG" | "GIF" | "PNG" | "SVG"): OfficeExtension.ClientResult<string>;'
-    return:
-      type:
-      - OfficeExtension.ClientResult<string>
-      description: ''
-    parameters:
-    - id: formatString
-      description: ''
-      type:
-      - "\"UNKNOWN\" | \"BMP\" | \"JPEG\" | \"GIF\" | \"PNG\" | \"SVG\""
 - uid: excel.Excel.Shape.scaleHeight
   summary: >-
-    按指定因子缩放形状的高度。 对于图片，你可以说明是相对于原始尺寸还是当前尺寸缩放形状。 对于除图片以外的其他形状来说，缩放总是相对于其当前高度而言。
+    按指定因子缩放形状的高度。 对于图像, 可以指示是相对于原始尺寸还是当前尺寸缩放形状。 对于除图片以外的其他形状来说，缩放总是相对于其当前高度而言。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -666,16 +667,16 @@ items:
       type:
       - number
     - id: scaleType
-      description: x-ms-exchange-organization-originalsize 相对于其原始尺寸缩放形状。 CurrentSize 相对于其当前大小进行缩放。 仅当指定的形状是图片时, 才能指定此参数的 x-ms-exchange-organization-originalsize。
+      description: 指定是相对于形状的原始尺寸还是当前尺寸来对其进行缩放。 原始大小缩放选项仅适用于图像。
       type:
       - excel.Excel.ShapeScaleType
     - id: scaleFrom
-      description: 可选。 ShapeScaleFrom 的常量之一, 指定缩放形状时, 该形状的哪一部分将保留其位置。 如果省略, 则表示形状的左上角将保留其位置。
+      description: 可选。 指定在缩放形状时，该形状的哪一部分将保持在原有的位置。 如果省略, 则表示形状的左上角将保留其位置。
       type:
       - excel.Excel.ShapeScaleFrom
 - uid: excel.Excel.Shape.scaleHeight_1
   summary: >-
-    按指定因子缩放形状的高度。 对于图片，你可以说明是相对于原始尺寸还是当前尺寸缩放形状。 对于除图片以外的其他形状来说，缩放总是相对于其当前高度而言。
+    按指定因子缩放形状的高度。 对于图像, 可以指示是相对于原始尺寸还是当前尺寸缩放形状。 对于除图片以外的其他形状来说，缩放总是相对于其当前高度而言。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -697,16 +698,16 @@ items:
       type:
       - number
     - id: scaleTypeString
-      description: x-ms-exchange-organization-originalsize 相对于其原始尺寸缩放形状。 CurrentSize 相对于其当前大小进行缩放。 仅当指定的形状是图片时, 才能指定此参数的 x-ms-exchange-organization-originalsize。
+      description: 指定是相对于形状的原始尺寸还是当前尺寸来对其进行缩放。 原始大小缩放选项仅适用于图像。
       type:
       - "\"CurrentSize\" | \"OriginalSize\""
     - id: scaleFrom
-      description: 可选。 ShapeScaleFrom 的常量之一, 指定缩放形状时, 该形状的哪一部分将保留其位置。 如果省略, 则表示形状的左上角将保留其位置。
+      description: 可选。 指定在缩放形状时，该形状的哪一部分将保持在原有的位置。 如果省略, 则表示形状的左上角将保留其位置。
       type:
       - "\"ScaleFromTopLeft\" | \"ScaleFromMiddle\" | \"ScaleFromBottomRight\""
 - uid: excel.Excel.Shape.scaleWidth
   summary: >-
-    按指定因子缩放形状的宽度。 对于图片，你可以说明是相对于原始尺寸还是当前尺寸缩放形状。 对于除图片以外的其他形状来说，缩放总是相对于其当前宽度而言。
+    按指定因子缩放形状的宽度。 对于图像, 可以指示是相对于原始尺寸还是当前尺寸缩放形状。 对于除图片以外的其他形状来说，缩放总是相对于其当前宽度而言。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -728,16 +729,16 @@ items:
       type:
       - number
     - id: scaleType
-      description: x-ms-exchange-organization-originalsize 相对于其原始尺寸缩放形状。 CurrentSize 相对于其当前大小进行缩放。 仅当指定的形状是图片时, 才能指定此参数的 x-ms-exchange-organization-originalsize。
+      description: 指定是相对于形状的原始尺寸还是当前尺寸来对其进行缩放。 原始大小缩放选项仅适用于图像。
       type:
       - excel.Excel.ShapeScaleType
     - id: scaleFrom
-      description: 可选。 ShapeScaleFrom 的常量之一, 指定缩放形状时, 该形状的哪一部分将保留其位置。 如果省略, 则表示形状的左上角将保留其位置。
+      description: 可选。 指定在缩放形状时，该形状的哪一部分将保持在原有的位置。 如果省略, 则表示形状的左上角将保留其位置。
       type:
       - excel.Excel.ShapeScaleFrom
 - uid: excel.Excel.Shape.scaleWidth_1
   summary: >-
-    按指定因子缩放形状的宽度。 对于图片，你可以说明是相对于原始尺寸还是当前尺寸缩放形状。 对于除图片以外的其他形状来说，缩放总是相对于其当前宽度而言。
+    按指定因子缩放形状的宽度。 对于图像, 可以指示是相对于原始尺寸还是当前尺寸缩放形状。 对于除图片以外的其他形状来说，缩放总是相对于其当前宽度而言。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -759,11 +760,11 @@ items:
       type:
       - number
     - id: scaleTypeString
-      description: x-ms-exchange-organization-originalsize 相对于其原始尺寸缩放形状。 CurrentSize 相对于其当前大小进行缩放。 仅当指定的形状是图片时, 才能指定此参数的 x-ms-exchange-organization-originalsize。
+      description: 指定是相对于形状的原始尺寸还是当前尺寸来对其进行缩放。 原始大小缩放选项仅适用于图像。
       type:
       - "\"CurrentSize\" | \"OriginalSize\""
     - id: scaleFrom
-      description: 可选。 ShapeScaleFrom 的常量之一, 指定缩放形状时, 该形状的哪一部分将保留其位置。 如果省略, 则表示形状的左上角将保留其位置。
+      description: 可选。 指定在缩放形状时，该形状的哪一部分将保持在原有的位置。 如果省略, 则表示形状的左上角将保留其位置。
       type:
       - "\"ScaleFromTopLeft\" | \"ScaleFromMiddle\" | \"ScaleFromBottomRight\""
 - uid: excel.Excel.Shape.set
@@ -815,53 +816,53 @@ items:
       - excel.Excel.Shape
 - uid: excel.Excel.Shape.setZOrder
   summary: >-
-    将指定形状移动到集合中的其他形状的前面或后面（即更改 z 顺序中的形状位置）。
+    将指定的形状在集合的 z-顺序中上移或下移, 这会将其移到其他形状的前面或后面。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   isPreview: true
-  name: setZOrder(value)
-  fullName: setZOrder(value)
+  name: setZOrder(position)
+  fullName: setZOrder(position)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'setZOrder(value: Excel.ShapeZOrder): void;'
+    content: 'setZOrder(position: Excel.ShapeZOrder): void;'
     return:
       type:
       - void
       description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.getItem(\"Octagon\")\n    shape.setZOrder(Excel.ShapeZOrder.sendBackward);\n    await context.sync();\n});\n```"
     parameters:
-    - id: value
-      description: 相对于其他形状将指定形状移动到的位置。 有关详细信息, 请参阅 ShapeZOrder。
+    - id: position
+      description: 相对于其他形状在 z-顺序堆栈中移动形状的位置。 有关详细信息, 请参阅 ShapeZOrder。
       type:
       - excel.Excel.ShapeZOrder
 - uid: excel.Excel.Shape.setZOrder_1
   summary: >-
-    将指定形状移动到集合中的其他形状的前面或后面（即更改 z 顺序中的形状位置）。
+    将指定的形状在集合的 z-顺序中上移或下移, 这会将其移到其他形状的前面或后面。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   isPreview: true
-  name: setZOrder(valueString)
-  fullName: setZOrder(valueString)
+  name: setZOrder(positionString)
+  fullName: setZOrder(positionString)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'setZOrder(valueString: "BringToFront" | "BringForward" | "SendToBack" | "SendBackward"): void;'
+    content: 'setZOrder(positionString: "BringToFront" | "BringForward" | "SendToBack" | "SendBackward"): void;'
     return:
       type:
       - void
       description: ''
     parameters:
-    - id: valueString
-      description: 相对于其他形状将指定形状移动到的位置。 有关详细信息, 请参阅 ShapeZOrder。
+    - id: positionString
+      description: 相对于其他形状在 z-顺序堆栈中移动形状的位置。 有关详细信息, 请参阅 ShapeZOrder。
       type:
       - "\"BringToFront\" | \"BringForward\" | \"SendToBack\" | \"SendBackward\""
 - uid: excel.Excel.Shape.textFrame
   summary: >-
-    返回形状的 textFrame 对象。 只读。
+    返回此形状的文本框架对象。 只读。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -877,7 +878,7 @@ items:
       type:
       - excel.Excel.TextFrame
 - uid: excel.Excel.Shape.toJSON
-  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到`JSON.stringify()` <!-- -->时提供更有用的输出。 (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。)尽管原始的 Excel. Shape 对象是 API 对象, 但该`toJSON`方法返回一个纯 JavaScript 对象 (类型为`Excel.Interfaces.ShapeData` <!-- -->), 其中包含原始对象中任何已加载的子属性的浅表副本。
+  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始的 Excel. Shape 对象是 API 对象, 但`toJSON`方法返回一个简单的 JavaScript 对象 (类型为`Excel.Interfaces.ShapeData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。
   isPreview: true
   name: toJSON()
   fullName: toJSON()
@@ -892,7 +893,7 @@ items:
       description: ''
 - uid: excel.Excel.Shape.top
   summary: >-
-    从形状上边缘到工作表顶部之间的距离（以磅为单位）。 当设置为负值作为输入时引发无效参数异常。
+    从形状的上边缘到工作表的上边缘之间的距离 (以磅为单位)。 当设置为负值作为输入时, 将引发无效参数异常。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -909,7 +910,7 @@ items:
       - number
 - uid: excel.Excel.Shape.type
   summary: >-
-    返回指定形状的类型。 只读。 有关详细信息，请参阅 Excel.ShapeType。
+    返回此形状的类型。 有关详细信息, 请参阅 ShapeType。 只读。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -920,13 +921,13 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'readonly type: Excel.ShapeType | "Unknown" | "Image" | "GeometricShape" | "Group" | "Line";'
+    content: 'readonly type: Excel.ShapeType | "Unsupported" | "Image" | "GeometricShape" | "Group" | "Line";'
     return:
       type:
-      - Excel.ShapeType | "Unknown" | "Image" | "GeometricShape" | "Group" | "Line"
+      - Excel.ShapeType | "Unsupported" | "Image" | "GeometricShape" | "Group" | "Line"
 - uid: excel.Excel.Shape.visible
   summary: >-
-    表示指定形状的可见性（以布尔值表示）。
+    表示此形状的可见性。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -960,7 +961,7 @@ items:
       - number
 - uid: excel.Excel.Shape.zorderPosition
   summary: >-
-    返回指定形状在 z 顺序中的位置，最底部形状的 z 顺序值为 0。 只读。
+    返回指定的形状在 z-顺序中的位置, 0 表示顺序栈的底部。 只读。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
