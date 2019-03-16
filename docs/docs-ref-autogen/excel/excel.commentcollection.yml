@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 71a84e47e98cb3808076adf1ea05fdcfe4882a96
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: 156142752005a80d29c7ba9a3e61dc9f8a548e7d
+ms.sourcegitcommit: 2ef4b6e6f2f27ecb9abf01fefa4cffd9498ad5dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30106887"
+ms.lasthandoff: 03/16/2019
+ms.locfileid: "30656792"
 items:
 - uid: excel.Excel.CommentCollection
   summary: >-
@@ -37,7 +37,7 @@ items:
   - excel.Excel.CommentCollection.toJSON
 - uid: excel.Excel.CommentCollection.add
   summary: >-
-    根据单元格的位置和内容创建新的注释 (注释线索)。 如果位置大于一个单元格, 则将引发无效参数。
+    根据单元格位置和内容创建新批注（批注线程）。 如果位置大于一个单元格，则引发无效参数。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -52,14 +52,14 @@ items:
     return:
       type:
       - excel.Excel.Comment
-      description: ''
+      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Comments\");\n    sheet.comments.add(\"TODO: add data.\", \"A2\");\n    await context.sync();\n});\n```"
     parameters:
     - id: content
       description: 注释内容。
       type:
       - string
     - id: cellAddress
-      description: 要插入批注的单元格。 可以是 Excel 区域对象, 也可以是字符串。 如果为 string, 则必须包含完整的地址, 包括工作表名称
+      description: 要插入批注的单元格。 可以是 Excel 范围对象，也可以是字符串。 如果是字符串，必须包含完整地址，包括工作表名称
       type:
       - Range | string
     - id: contentType
@@ -68,7 +68,7 @@ items:
       - excel.Excel.ContentType
 - uid: excel.Excel.CommentCollection.add_1
   summary: >-
-    根据单元格的位置和内容创建新的注释 (注释线索)。 如果位置大于一个单元格, 则将引发无效参数。
+    根据单元格位置和内容创建新批注（批注线程）。 如果位置大于一个单元格，则引发无效参数。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -90,7 +90,7 @@ items:
       type:
       - string
     - id: cellAddress
-      description: 要插入批注的单元格。 可以是 Excel 区域对象, 也可以是字符串。 如果为 string, 则必须包含完整的地址, 包括工作表名称
+      description: 要插入批注的单元格。 可以是 Excel 范围对象，也可以是字符串。 如果是字符串，必须包含完整地址，包括工作表名称
       type:
       - Range | string
     - id: contentTypeString
@@ -112,7 +112,7 @@ items:
       - RequestContext
 - uid: excel.Excel.CommentCollection.getCount
   summary: >-
-    获取集合中的注释数。
+    获取集合中的批注数量。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -130,7 +130,7 @@ items:
       description: ''
 - uid: excel.Excel.CommentCollection.getItem
   summary: >-
-    返回由其 ID 标识的注释。 只读。
+    返回由其 ID 标识的批注。 只读。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -171,12 +171,12 @@ items:
       description: ''
     parameters:
     - id: index
-      description: 要检索的对象的索引值。从零开始编制索引。
+      description: 要检索的对象的索引值。 从零开始编制索引。
       type:
       - number
 - uid: excel.Excel.CommentCollection.getItemByCell
   summary: >-
-    获取集合中特定单元格的注释。
+    获取有关集合中特定单元格的批注。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -194,12 +194,12 @@ items:
       description: ''
     parameters:
     - id: cellAddress
-      description: 批注所在的单元格。 可以是 Excel 区域对象, 也可以是字符串。 如果为 string, 则必须包含完整的地址, 包括工作表名称
+      description: 批注所在的单元格。 可以是 Excel 范围对象，也可以是字符串。 如果是字符串，必须包含完整地址，包括工作表名称
       type:
       - Range | string
 - uid: excel.Excel.CommentCollection.getItemByReplyId
   summary: >-
-    获取与集合中的答复 ID 相关的注释。
+    获取与集合中的回复 ID 相关的批注。
 
 
     \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -221,7 +221,7 @@ items:
       type:
       - string
 - uid: excel.Excel.CommentCollection.items
-  summary: 获取此集合中的已加载子项目。
+  summary: 获取此集合中已加载的子项。
   isPreview: true
   name: items
   fullName: items
@@ -234,7 +234,7 @@ items:
       type:
       - Excel.Comment[]
 - uid: excel.Excel.CommentCollection.load
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性之前, 必须先调用 "context, sync ()"。
+  summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
   remarks: >-
     除了此签名之外, 此方法还具有以下签名:
 
@@ -264,7 +264,7 @@ items:
       type:
       - Excel.Interfaces.CommentCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
 - uid: excel.Excel.CommentCollection.load_1
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
+  summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
   isPreview: true
   name: load(propertyNames)
   fullName: load(propertyNames)
@@ -301,7 +301,7 @@ items:
       type:
       - office.OfficeExtension.LoadOption
 - uid: excel.Excel.CommentCollection.toJSON
-  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到`JSON.stringify()` <!-- -->时提供更有用的输出。 (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。)虽然原始`Excel.CommentCollection`对象是 API 对象, 但该`toJSON`方法返回一个纯 JavaScript 对象 (类型为`Excel.Interfaces.CommentCollectionData` <!-- -->), 其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。
+  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始`Excel.CommentCollection`对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Excel.Interfaces.CommentCollectionData`<!-- -->), 其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。
   isPreview: true
   name: toJSON()
   fullName: toJSON()

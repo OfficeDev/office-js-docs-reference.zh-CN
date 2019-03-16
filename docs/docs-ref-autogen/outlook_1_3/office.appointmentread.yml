@@ -1,13 +1,13 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: e285684ce9ba2f4708d0e467ffc88b349dcc1043
-ms.sourcegitcommit: 6c48441b8be51d3a9d7dc836e386230a155feceb
+ms.openlocfilehash: 24208ef7b0d07c2a13b40e96d1bd046f8442de55
+ms.sourcegitcommit: 2ef4b6e6f2f27ecb9abf01fefa4cffd9498ad5dc
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/22/2019
-ms.locfileid: "30198450"
+ms.lasthandoff: 03/16/2019
+ms.locfileid: "30656694"
 items:
 - uid: Outlook_1_3.Office.AppointmentRead
-  summary: "\" [context.subname](xref:Outlook_1_3.Office.Item)<!-- -->\" 的约会与会者模式。\n\n**重要说明**: 这是一个内部 Outlook 对象, 而不是直接通过现有接口公开。 应将其视为 \"context.subname\" 模式。 有关详细信息, 请参阅[对象模型](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.3/office.context.mailbox.item)页。"
+  summary: "\"Office\" 的约会与会者模式: \"邮箱\"。[项目](xref:Outlook_1_3.Office.Item)<!-- -->.\n\n**重要说明**: 这是一个内部 Outlook 对象, 而不是直接通过现有接口公开。 应将其视为 \"context.subname\" 模式。 有关详细信息, 请参阅[对象模型](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.3/office.context.mailbox.item)页。"
   name: Office.AppointmentRead
   fullName: Office.AppointmentRead
   langs:
@@ -348,7 +348,7 @@ items:
     当使用此方法的最低权限级别受限时，某些实体类型需要 ReadItem 才能进行访问，如下表中所指定。
 
 
-    <table> <tr> <th>entityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需权限级别</th> </tr> <tr> <td>地址</td> <td>String</td> <td>受限</td> </tr> <tr> <td>联系人</td> <td>联系人</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>String</td> <td>受限</td> </tr> </table>
+    <table> <tr> <th>entityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需权限级别</th> </tr> <tr> <td>地址</td> <td>字符串</td> <td>受限</td> </tr> <tr> <td>联系人</td> <td>联系人</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>字符串</td> <td>受限</td> </tr> </table>
 
     #### 示例
 
@@ -609,7 +609,7 @@ items:
     <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>约会与会者</td></tr> </table>
 
 
-    **注意**: 由于潜在的安全问题, Outlook 阻止了某些类型的文件, 因此不会返回这些文件。 有关详细信息, 请参阅<!-- --> [Outlook 中的阻止附件](https://support.office.com/article/Blocked-attachments-in-Outlook-434752E1-02D3-4E90-9124-8B81E49A8519)。
+    **注意**: 由于潜在的安全问题, Outlook 阻止了某些类型的文件, 因此不会返回这些文件。 有关详细信息, 请参阅[Outlook 中阻止的附件](https://support.office.com/article/Blocked-attachments-in-Outlook-434752E1-02D3-4E90-9124-8B81E49A8519)<!-- -->.
 
     #### <a name="examples"></a>示例
 
@@ -664,7 +664,7 @@ items:
 
     ```javascript
 
-    // This example gets the body of the message in plain text.
+    // This example gets the body of the item as plain text.
 
     Office.context.mailbox.item.body.getAsync(
         "text",
@@ -834,7 +834,7 @@ items:
     itemId 属性在撰写模式中不可用。 如果需要项目标识符, 则可以使用 saveAsync 方法将项目保存到存储区, 这将在回调函数的 asyncResult 参数中返回项目标识符。
 
 
-    **注意**: itemId 属性返回的标识符与 Exchange Web 服务项目标识符相同。 itemId 属性与 outlook 条目 ID 或 outlook REST API 使用的 id 不相同。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关更多详细信息, 请参阅使用 outlook 外接<!-- -->[程序中的 outlook REST api](https://docs.microsoft.com/outlook/add-ins/use-rest-api#get-the-item-id)。
+    **注意**: itemId 属性返回的标识符与 Exchange Web 服务项目标识符相同。 itemId 属性与 outlook 条目 ID 或 outlook REST API 使用的 id 不相同。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关更多详细信息, 请参阅[使用 outlook 外接程序中的 outlook REST api](https://docs.microsoft.com/outlook/add-ins/use-rest-api#get-the-item-id)<!-- -->.
 
 
     \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
