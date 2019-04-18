@@ -1,107 +1,202 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 39fdd8b8e52890a772525d768c2a5af756339bf9
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29974568"
 items:
-- uid: office.Office.AsyncResult
-  summary: <span data-ttu-id="8ea5d-101">用于封装异步请求的结果的对象，包括状态和错误信息（如果请求失败）。</span><span class="sxs-lookup"><span data-stu-id="8ea5d-101">An object which encapsulates the result of an asynchronous request, including status and error information if the request failed.</span></span>
-  remarks: "<table><tr><td><span data-ttu-id=\"8ea5d-102\">主机</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-102\">Hosts</span></span></td><td><span data-ttu-id=\"8ea5d-103\">Access、Excel、Outlook、PowerPoint、Project、Word</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-103\">Access, Excel, Outlook, PowerPoint, Project, Word</span></span></td></tr></table>\n\n<span data-ttu-id=\"8ea5d-104\">当函数传递给`callback`\"Async\"方法的参数执行时，它会接收您可以从访问的 AsyncResult 对象`callback`函数的唯一参数。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-104\">When the function you pass to the `callback` parameter of an \"Async\" method executes, it receives an AsyncResult object that you can access from the `callback` function's only parameter.</span></span>\n#### <a name=\"examples\"></a><span data-ttu-id=\"8ea5d-105\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-105\">Examples</span></span>\n\n```javascript\n// The following is an example applicable to content and task pane add-ins.\n// The example shows a call to the getSelectedDataAsync method of the Document object.\nOffice.context.document.getSelectedDataAsync(\"text\", {\n        valueFormat: \"unformatted\",\n        filterType: \"all\"\n    },\n    function (result) {\n        if (result.status === \"success\") {\n            var dataValue = result.value; // Get selected data.\n            console.log('Selected data is ' + dataValue);\n        } else {\n            var err = result.error;\n            console.log(err.name + \": \" + err.message);\n        }\n    });\n// The anonymous function passed as the callback argument ( function (result){...}) has a single \n// parameter named result that provides access to an AsyncResult object when the function executes.\n// When the call to the getSelectedDataAsync method completes, the callback function executes, \n// and the following line of code accesses the value property of the AsyncResult object to \n// return the data selected in the document:\nvar dataValue = result.value;\n// Note that other lines of code in the function use the result parameter of the callback function \n// to access the status and error properties of the AsyncResult object.\n```"
-  name: Office.AsyncResult
-  fullName: Office.AsyncResult
-  langs:
-  - typeScript
-  type: interface
-  package: office
-  children:
-  - office.Office.AsyncResult.asyncContext
-  - office.Office.AsyncResult.diagnostics
-  - office.Office.AsyncResult.error
-  - office.Office.AsyncResult.status
-  - office.Office.AsyncResult.value
-- uid: office.Office.AsyncResult.asyncContext
-  summary: "<span data-ttu-id=\"8ea5d-106\">获取用户定义项传递给可选`asyncContext`传入时状态相同调用方法的参数。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-106\">Gets the user-defined item passed to the optional `asyncContext` parameter of the invoked method in the same state as it was passed in.</span></span> <span data-ttu-id=\"8ea5d-107\">这将返回用户定义项 (这可能的任何 JavaScript 类型： 字符串、 数量、 Boolean、 对象、 数组、 Null、 或 Undefined) 传递给可选`asyncContext`调用方法的参数。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-107\">This returns the user-defined item (which can be of any JavaScript type: String, Number, Boolean, Object, Array, Null, or Undefined) passed to the optional `asyncContext` parameter of the invoked method.</span></span> <span data-ttu-id=\"8ea5d-108\">如果未向 asyncContext 参数传递任何内容，则返回 Undefined。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-108\">Returns Undefined, if you didn't pass anything to the asyncContext parameter.</span></span>"
-  remarks: "<span data-ttu-id=\"8ea5d-109\">**支持详细信息**</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-109\">**Support details**</span></span>\n\n<span data-ttu-id=\"8ea5d-110\">在以下矩阵大写 Y 表示相应的 Office 主机应用程序中支持此属性。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-110\">A capital Y in the following matrix indicates that this property is supported in the corresponding Office host application.</span></span> <span data-ttu-id=\"8ea5d-111\">空单元格指示 Office 主机应用程序不支持此枚举。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-111\">An empty cell indicates that the Office host application doesn't support this enumeration.</span></span>\n\n<span data-ttu-id=\"8ea5d-112\">有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-112\">For more information about Office host application and server requirements, see [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.</span></span>\n\n<span data-ttu-id=\"8ea5d-113\">*支持的主机（按平台）*</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-113\">*Supported hosts, by platform*</span></span> <table> <tr><th> </th><th> <span data-ttu-id=\"8ea5d-114\">Office for Windows Desktop</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-114\">Office for Windows desktop</span></span> </th><th> <span data-ttu-id=\"8ea5d-115\">Office Online（在浏览器中）</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-115\">Office Online (in browser)</span></span> </th><th> <span data-ttu-id=\"8ea5d-116\">Office for iPad</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-116\">Office for iPad</span></span> </th><th> <span data-ttu-id=\"8ea5d-117\">适用于设备的 OWA</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-117\">OWA for Devices</span></span> </th><th> <span data-ttu-id=\"8ea5d-118\">Office for Mac</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-118\">Office for Mac</span></span> </th></tr> <tr><td><span data-ttu-id=\"8ea5d-119\"><strong>访问</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-119\"><strong> Access </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-120\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-120\">Y</span></span> </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-121\"><strong>Excel</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-121\"><strong> Excel </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-122\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-122\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-123\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-123\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-124\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-124\">Y</span></span> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-125\"><strong>Outlook</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-125\"><strong> Outlook </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-126\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-126\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-127\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-127\">Y</span></span> </td><td> </td><td> <span data-ttu-id=\"8ea5d-128\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-128\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-129\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-129\">Y</span></span> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-130\"><strong>PowerPoint</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-130\"><strong> PowerPoint </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-131\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-131\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-132\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-132\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-133\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-133\">Y</span></span> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-134\"><strong>项目</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-134\"><strong> Project </strong></span></span></td><td> </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-135\"><strong>Word</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-135\"><strong> Word </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-136\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-136\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-137\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-137\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-138\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-138\">Y</span></span> </td><td> </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a><span data-ttu-id=\"8ea5d-139\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-139\">Examples</span></span>\n\n```javascript\nfunction getDataWithContext() {\n    var format = \"Your data: \";\n    Office.context.document.getSelectedDataAsync(\n        Office.CoercionType.Text, \n        { asyncContext: format }, \n        showDataWithContext);\n}\n\nfunction showDataWithContext(asyncResult) {\n    write(asyncResult.asyncContext + asyncResult.value);\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: asyncContext
-  fullName: asyncContext
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'asyncContext: any;'
-    return:
-      type:
-      - any
-- uid: office.Office.AsyncResult.diagnostics
-  summary: <span data-ttu-id="8ea5d-140">获取一个对象，可能会提供其他信息，如果出现错误。</span><span class="sxs-lookup"><span data-stu-id="8ea5d-140">Gets an object that may provide additional information if an error occurred.</span></span>
-  remarks: >-
-    <span data-ttu-id="8ea5d-141">**支持详细信息**</span><span class="sxs-lookup"><span data-stu-id="8ea5d-141">**Support details**</span></span>
+  - uid: office.Office.AsyncResult
+    summary: |-
+      <span data-ttu-id="1a332-101">用于封装异步请求的结果的对象，包括状态和错误信息（如果请求失败）。</span><span class="sxs-lookup"><span data-stu-id="1a332-101">An object which encapsulates the result of an asynchronous request, including status and error information if the request failed.</span></span>
+
+      <span data-ttu-id="1a332-102">当您传递给 "Async" `callback`方法的参数的函数执行时, 它会接收您可以从该`callback`函数的唯一参数访问的 AsyncResult 对象。</span><span class="sxs-lookup"><span data-stu-id="1a332-102">When the function you pass to the `callback` parameter of an "Async" method executes, it receives an AsyncResult object that you can access from the `callback` function's only parameter.</span></span>
+    name: Office.AsyncResult
+    fullName: Office.AsyncResult
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    remarks: |-
 
 
-    <span data-ttu-id="8ea5d-142">在以下矩阵大写 Y 表示相应的 Office 主机应用程序中支持此属性。</span><span class="sxs-lookup"><span data-stu-id="8ea5d-142">A capital Y in the following matrix indicates that this property is supported in the corresponding Office host application.</span></span> <span data-ttu-id="8ea5d-143">空单元格指示 Office 主机应用程序不支持此枚举。</span><span class="sxs-lookup"><span data-stu-id="8ea5d-143">An empty cell indicates that the Office host application doesn't support this enumeration.</span></span>
+      #### <a name="examples"></a><span data-ttu-id="1a332-103">示例</span><span class="sxs-lookup"><span data-stu-id="1a332-103">Examples</span></span>
+
+      ```javascript
+      // The following is an example applicable to content and task pane add-ins.
+      // The example shows a call to the getSelectedDataAsync method of the Document object.
+      Office.context.document.getSelectedDataAsync("text", {
+              valueFormat: "unformatted",
+              filterType: "all"
+          },
+          function (result) {
+              if (result.status === "success") {
+                  var dataValue = result.value; // Get selected data.
+                  console.log('Selected data is ' + dataValue);
+              } else {
+                  var err = result.error;
+                  console.log(err.name + ": " + err.message);
+              }
+          });
+      // The anonymous function passed as the callback argument ( function (result){...}) has a single 
+      // parameter named result that provides access to an AsyncResult object when the function executes.
+      // When the call to the getSelectedDataAsync method completes, the callback function executes, 
+      // and the following line of code accesses the value property of the AsyncResult object to 
+      // return the data selected in the document:
+      var dataValue = result.value;
+      // Note that other lines of code in the function use the result parameter of the callback function 
+      // to access the status and error properties of the AsyncResult object.
+      ```
+    children:
+      - office.Office.AsyncResult.asyncContext
+      - office.Office.AsyncResult.diagnostics
+      - office.Office.AsyncResult.error
+      - office.Office.AsyncResult.status
+      - office.Office.AsyncResult.value
+  - uid: office.Office.AsyncResult.asyncContext
+    summary: '<span data-ttu-id="1a332-104">获取与传入时状态相同的传递给调用`asyncContext`方法的可选参数的用户定义项。</span><span class="sxs-lookup"><span data-stu-id="1a332-104">Gets the user-defined item passed to the optional `asyncContext` parameter of the invoked method in the same state as it was passed in.</span></span> <span data-ttu-id="1a332-105">这将返回传递给调用方法的可选`asyncContext`参数的用户定义的项 (可以是任何 JavaScript 类型: String、Number、Boolean、Object、Array、Null 或未定义)。</span><span class="sxs-lookup"><span data-stu-id="1a332-105">This returns the user-defined item (which can be of any JavaScript type: String, Number, Boolean, Object, Array, Null, or Undefined) passed to the optional `asyncContext` parameter of the invoked method.</span></span> <span data-ttu-id="1a332-106">如果您未向  asyncContext 参数传递任何东西，则返回 Undefined 。</span><span class="sxs-lookup"><span data-stu-id="1a332-106">Returns Undefined, if you didn''t pass anything to the asyncContext parameter.</span></span>'
+    name: asyncContext
+    fullName: asyncContext
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'asyncContext: any;'
+      return:
+        type:
+          - any
+        description: |-
 
 
-    <span data-ttu-id="8ea5d-144">有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。</span><span class="sxs-lookup"><span data-stu-id="8ea5d-144">For more information about Office host application and server requirements, see [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.</span></span>
+          #### <a name="examples"></a><span data-ttu-id="1a332-107">示例</span><span class="sxs-lookup"><span data-stu-id="1a332-107">Examples</span></span>
+
+          ```javascript
+          function getDataWithContext() {
+              var format = "Your data: ";
+              Office.context.document.getSelectedDataAsync(
+                  Office.CoercionType.Text, 
+                  { asyncContext: format }, 
+                  showDataWithContext);
+          }
+
+          function showDataWithContext(asyncResult) {
+              write(asyncResult.asyncContext + asyncResult.value);
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.AsyncResult.diagnostics
+    summary: '<span data-ttu-id="1a332-108">如果发生错误, 则获取可能提供其他信息的对象。</span><span class="sxs-lookup"><span data-stu-id="1a332-108">Gets an object that may provide additional information if an error occurred.</span></span>'
+    remarks: |-
+      <span data-ttu-id="1a332-109">*支持的 api*</span><span class="sxs-lookup"><span data-stu-id="1a332-109">*Supported APIs*</span></span>
+
+      `Office.context.mailbox.item.getCallbackTokenAsync`<!-- --><span data-ttu-id="1a332-110">, `Office.context.mailbox.item.getUserIdentityTokenAsync`</span><span class="sxs-lookup"><span data-stu-id="1a332-110"></span></span>
+
+      <span data-ttu-id="1a332-111">*支持的错误*</span><span class="sxs-lookup"><span data-stu-id="1a332-111">*Supported errors*</span></span> <table> <tr><th>`AsyncResult.error.name` </th><th>`AsyncResult.error.message` </th><th><span data-ttu-id="1a332-112">返回的诊断对象的说明</span><span class="sxs-lookup"><span data-stu-id="1a332-112">Description of diagnostics object returned</span></span> </th></tr> <tr><td><span data-ttu-id="1a332-113"><strong>HTTPRequestFailure</strong></span><span class="sxs-lookup"><span data-stu-id="1a332-113"><strong>HTTPRequestFailure</strong></span></span> </td><td><span data-ttu-id="1a332-114">请求失败。</span><span class="sxs-lookup"><span data-stu-id="1a332-114">The request has failed.</span></span> <span data-ttu-id="1a332-115">请查看 HTTP 错误代码的 diagnostics 对象。</span><span class="sxs-lookup"><span data-stu-id="1a332-115">Please look at the diagnostics object for the HTTP error code.</span></span> </td><td><span data-ttu-id="1a332-116">JSON 对象中的 HTTP 错误代码, 例如,`{"HTTPCode":"401"}`</span><span class="sxs-lookup"><span data-stu-id="1a332-116">The HTTP error code in a JSON object e.g., `{"HTTPCode":"401"}`</span></span> </td></tr> <tr><td><span data-ttu-id="1a332-117"><strong>InternalServerError</strong></span><span class="sxs-lookup"><span data-stu-id="1a332-117"><strong>InternalServerError</strong></span></span></td><td><span data-ttu-id="1a332-118">Exchange 服务器返回错误。</span><span class="sxs-lookup"><span data-stu-id="1a332-118">The Exchange server returned an error.</span></span> <span data-ttu-id="1a332-119">有关详细信息, 请参阅 diagnostics 对象。</span><span class="sxs-lookup"><span data-stu-id="1a332-119">Please look at the diagnostics object for more information.</span></span></td><td><span data-ttu-id="1a332-120">JSON 对象中来自 Exchange 服务器的错误消息, 例如,`{"ErrorText": "The mailbox database is temporarily unavailable"}`</span><span class="sxs-lookup"><span data-stu-id="1a332-120">The error message from the Exchange server in a JSON object e.g., `{"ErrorText": "The mailbox database is temporarily unavailable"}`</span></span></td></tr> </table>
+    name: diagnostics
+    fullName: diagnostics
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'diagnostics: any;'
+      return:
+        type:
+          - any
+  - uid: office.Office.AsyncResult.error
+    summary: '<span data-ttu-id="1a332-121">如果出现任何错误, 则获取一个提供错误说明的 " [Office." 错误](xref:office.Office.Error)对象。</span><span class="sxs-lookup"><span data-stu-id="1a332-121">Gets an [Office.Error](xref:office.Office.Error) object that provides a description of the error, if any error occurred.</span></span>'
+    name: error
+    fullName: error
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'error: Office.Error;'
+      return:
+        type:
+          - office.Office.Error
+        description: |-
 
 
-    <span data-ttu-id="8ea5d-145">*支持的主机（按平台）*</span><span class="sxs-lookup"><span data-stu-id="8ea5d-145">*Supported hosts, by platform*</span></span> <table> <tr><th> </th><th> <span data-ttu-id="8ea5d-146">Office for Windows Desktop</span><span class="sxs-lookup"><span data-stu-id="8ea5d-146">Office for Windows desktop</span></span> </th><th> <span data-ttu-id="8ea5d-147">Office Online（在浏览器中）</span><span class="sxs-lookup"><span data-stu-id="8ea5d-147">Office Online (in browser)</span></span> </th><th> <span data-ttu-id="8ea5d-148">Office for iPad</span><span class="sxs-lookup"><span data-stu-id="8ea5d-148">Office for iPad</span></span> </th><th> <span data-ttu-id="8ea5d-149">适用于设备的 OWA</span><span class="sxs-lookup"><span data-stu-id="8ea5d-149">OWA for Devices</span></span> </th><th> <span data-ttu-id="8ea5d-150">Office for Mac</span><span class="sxs-lookup"><span data-stu-id="8ea5d-150">Office for Mac</span></span> </th></tr> <tr><td><span data-ttu-id="8ea5d-151"><strong>Outlook</strong></span><span class="sxs-lookup"><span data-stu-id="8ea5d-151"><strong>Outlook</strong></span></span></td><td> <span data-ttu-id="8ea5d-152">Y （邮箱预览）</span><span class="sxs-lookup"><span data-stu-id="8ea5d-152">Y (Mailbox Preview)</span></span> </td><td> </td><td> </td><td> </td><td> </td></tr> </table>
+          #### <a name="examples"></a><span data-ttu-id="1a332-122">示例</span><span class="sxs-lookup"><span data-stu-id="1a332-122">Examples</span></span>
+
+          ```javascript
+          function getData() {
+              Office.context.document.getSelectedDataAsync(Office.CoercionType.Table, function(asyncResult) {
+                  if (asyncResult.status == Office.AsyncResultStatus.Failed) {
+                      write(asyncResult.error.message);
+                  }
+                  else {
+                      write(asyncResult.value);
+                  }
+              });
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.AsyncResult.status
+    summary: '<span data-ttu-id="1a332-123">获取异步操作的[AsyncResultStatus](xref:office.Office.AsyncResultStatus) 。</span><span class="sxs-lookup"><span data-stu-id="1a332-123">Gets the [Office.AsyncResultStatus](xref:office.Office.AsyncResultStatus) of the asynchronous operation.</span></span>'
+    name: status
+    fullName: status
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'status: AsyncResultStatus;'
+      return:
+        type:
+          - office.Office.AsyncResultStatus
+        description: |-
 
 
-    <span data-ttu-id="8ea5d-153">*受支持的 Api*</span><span class="sxs-lookup"><span data-stu-id="8ea5d-153">*Supported APIs*</span></span>
+          #### <a name="examples"></a><span data-ttu-id="1a332-124">示例</span><span class="sxs-lookup"><span data-stu-id="1a332-124">Examples</span></span>
 
+          ```javascript
+          function getData() {
+              Office.context.document.getSelectedDataAsync(Office.CoercionType.Table, function(asyncResult) {
+                  if (asyncResult.status == Office.AsyncResultStatus.Failed) {
+                      write(asyncResult.error.message);
+                  }
+                  else {
+                      write(asyncResult.value);
+                  }
+              });
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.AsyncResult.value
+    summary: '<span data-ttu-id="1a332-125">获取此异步操作的负载或内容（如有）。</span><span class="sxs-lookup"><span data-stu-id="1a332-125">Gets the payload or content of this asynchronous operation, if any.</span></span>'
+    remarks: |-
+      <span data-ttu-id="1a332-126">可以在作为参数传递给 "Async" 方法的 callback 参数的函数中访问 AsyncResult 对象, 如`getSelectedDataAsync` [Document](xref:office.Office.Document)对象的和`setSelectedDataAsync`方法。</span><span class="sxs-lookup"><span data-stu-id="1a332-126">You access the AsyncResult object in the function passed as the argument to the callback parameter of an "Async" method, such as the `getSelectedDataAsync` and `setSelectedDataAsync` methods of the [Document](xref:office.Office.Document) object.</span></span>
 
-    <span data-ttu-id="8ea5d-154">`Office.context.mailbox.item.getCallbackTokenAsync`<!-- -->, `Office.context.mailbox.item.getUserIdentityTokenAsync`</span><span class="sxs-lookup"><span data-stu-id="8ea5d-154"></span></span>
+      <span data-ttu-id="1a332-127">**注意**: 对于特定的 "Async" 方法, value 属性的返回值取决于该方法的用途和上下文。</span><span class="sxs-lookup"><span data-stu-id="1a332-127">**Note**: What the value property returns for a particular "Async" method varies depending on the purpose and context of that method.</span></span> <span data-ttu-id="1a332-128">若要确定 value 属性为 "Async" 方法返回了什么内容，请参阅该方法主题的“回调值”部分。</span><span class="sxs-lookup"><span data-stu-id="1a332-128">To determine what is returned by the value property for an "Async" method, refer to the "Callback value" section of the method's topic.</span></span>
 
+      #### <a name="examples"></a><span data-ttu-id="1a332-129">示例</span><span class="sxs-lookup"><span data-stu-id="1a332-129">Examples</span></span>
 
-    <span data-ttu-id="8ea5d-155">*支持的错误*</span><span class="sxs-lookup"><span data-stu-id="8ea5d-155">*Supported errors*</span></span> <table> <tr><th>`AsyncResult.error.name` </th><th>`AsyncResult.error.message` </th><th><span data-ttu-id="8ea5d-156">Diagnostics 对象返回的说明</span><span class="sxs-lookup"><span data-stu-id="8ea5d-156">Description of diagnostics object returned</span></span> </th></tr> <tr><td><span data-ttu-id="8ea5d-157"><strong>HTTPRequestFailure</strong></span><span class="sxs-lookup"><span data-stu-id="8ea5d-157"><strong>HTTPRequestFailure</strong></span></span> </td><td><span data-ttu-id="8ea5d-158">请求失败。</span><span class="sxs-lookup"><span data-stu-id="8ea5d-158">The request has failed.</span></span> <span data-ttu-id="8ea5d-159">请看 HTTP 错误代码的诊断对象。</span><span class="sxs-lookup"><span data-stu-id="8ea5d-159">Please look at the diagnostics object for the HTTP error code.</span></span> </td><td><span data-ttu-id="8ea5d-160">例如，对象以 json 格式的 HTTP 错误代码`{"HTTPCode":"401"}`</span><span class="sxs-lookup"><span data-stu-id="8ea5d-160">The HTTP error code in a JSON object e.g., `{"HTTPCode":"401"}`</span></span> </td></tr> <tr><td><span data-ttu-id="8ea5d-161"><strong>InternalServerError</strong></span><span class="sxs-lookup"><span data-stu-id="8ea5d-161"><strong>InternalServerError</strong></span></span></td><td><span data-ttu-id="8ea5d-162">Exchange 服务器返回错误。</span><span class="sxs-lookup"><span data-stu-id="8ea5d-162">The Exchange server returned an error.</span></span> <span data-ttu-id="8ea5d-163">请查看诊断对象的详细信息。</span><span class="sxs-lookup"><span data-stu-id="8ea5d-163">Please look at the diagnostics object for more information.</span></span></td><td><span data-ttu-id="8ea5d-164">例如，从 Exchange 服务器以 json 格式的错误消息对象`{"ErrorText": "The mailbox database is temporarily unavailable"}`</span><span class="sxs-lookup"><span data-stu-id="8ea5d-164">The error message from the Exchange server in a JSON object e.g., `{"ErrorText": "The mailbox database is temporarily unavailable"}`</span></span></td></tr> </table>
-  name: diagnostics
-  fullName: diagnostics
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'diagnostics: any;'
-    return:
-      type:
-      - any
-- uid: office.Office.AsyncResult.error
-  summary: <span data-ttu-id="8ea5d-165">如果出现任何错误，请获取[Office.Error](xref:office.Office.Error)对象，提供错误描述。</span><span class="sxs-lookup"><span data-stu-id="8ea5d-165">Gets an [Office.Error](xref:office.Office.Error) object that provides a description of the error, if any error occurred.</span></span>
-  remarks: "<span data-ttu-id=\"8ea5d-166\">**支持详细信息**</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-166\">**Support details**</span></span>\n\n<span data-ttu-id=\"8ea5d-167\">在以下矩阵大写 Y 表示相应的 Office 主机应用程序中支持此属性。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-167\">A capital Y in the following matrix indicates that this property is supported in the corresponding Office host application.</span></span> <span data-ttu-id=\"8ea5d-168\">空单元格指示 Office 主机应用程序不支持此枚举。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-168\">An empty cell indicates that the Office host application doesn't support this enumeration.</span></span>\n\n<span data-ttu-id=\"8ea5d-169\">有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-169\">For more information about Office host application and server requirements, see [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.</span></span>\n\n<span data-ttu-id=\"8ea5d-170\">*支持的主机（按平台）*</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-170\">*Supported hosts, by platform*</span></span> <table> <tr><th> </th><th> <span data-ttu-id=\"8ea5d-171\">Office for Windows Desktop</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-171\">Office for Windows desktop</span></span> </th><th> <span data-ttu-id=\"8ea5d-172\">Office Online（在浏览器中）</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-172\">Office Online (in browser)</span></span> </th><th> <span data-ttu-id=\"8ea5d-173\">Office for iPad</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-173\">Office for iPad</span></span> </th><th> <span data-ttu-id=\"8ea5d-174\">适用于设备的 OWA</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-174\">OWA for Devices</span></span> </th><th> <span data-ttu-id=\"8ea5d-175\">Office for Mac</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-175\">Office for Mac</span></span> </th></tr> <tr><td><span data-ttu-id=\"8ea5d-176\"><strong>访问</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-176\"><strong> Access </strong></span></span></td><td> </td><td> <span data-ttu-id=\"8ea5d-177\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-177\">Y</span></span> </td><td> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-178\"><strong>Excel</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-178\"><strong> Excel </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-179\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-179\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-180\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-180\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-181\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-181\">Y</span></span> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-182\"><strong>Outlook</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-182\"><strong> Outlook </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-183\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-183\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-184\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-184\">Y</span></span> </td><td> </td><td> <span data-ttu-id=\"8ea5d-185\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-185\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-186\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-186\">Y</span></span> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-187\"><strong>PowerPoint</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-187\"><strong> PowerPoint </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-188\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-188\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-189\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-189\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-190\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-190\">Y</span></span> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-191\"><strong>项目</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-191\"><strong> Project </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-192\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-192\">Y</span></span> </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-193\"><strong>Word</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-193\"><strong> Word </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-194\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-194\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-195\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-195\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-196\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-196\">Y</span></span> </td><td> </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a><span data-ttu-id=\"8ea5d-197\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-197\">Examples</span></span>\n\n```javascript\nfunction getData() {\n    Office.context.document.getSelectedDataAsync(Office.CoercionType.Table, function(asyncResult) {\n        if (asyncResult.status == Office.AsyncResultStatus.Failed) {\n            write(asyncResult.error.message);\n        }\n        else {\n            write(asyncResult.value);\n        }\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: error
-  fullName: error
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'error: Office.Error;'
-    return:
-      type:
-      - office.Office.Error
-- uid: office.Office.AsyncResult.status
-  summary: <span data-ttu-id="8ea5d-198">获取异步操作[Office.AsyncResultStatus](xref:office.Office.AsyncResultStatus) 。</span><span class="sxs-lookup"><span data-stu-id="8ea5d-198">Gets the [Office.AsyncResultStatus](xref:office.Office.AsyncResultStatus) of the asynchronous operation.</span></span>
-  remarks: "<span data-ttu-id=\"8ea5d-199\">**支持详细信息**</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-199\">**Support details**</span></span>\n\n<span data-ttu-id=\"8ea5d-200\">在以下矩阵大写 Y 表示相应的 Office 主机应用程序中支持此属性。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-200\">A capital Y in the following matrix indicates that this property is supported in the corresponding Office host application.</span></span> <span data-ttu-id=\"8ea5d-201\">空单元格指示 Office 主机应用程序不支持此枚举。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-201\">An empty cell indicates that the Office host application doesn't support this enumeration.</span></span>\n\n<span data-ttu-id=\"8ea5d-202\">有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-202\">For more information about Office host application and server requirements, see [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.</span></span>\n\n<span data-ttu-id=\"8ea5d-203\">*支持的主机（按平台）*</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-203\">*Supported hosts, by platform*</span></span> <table> <tr><th> </th><th> <span data-ttu-id=\"8ea5d-204\">Office for Windows Desktop</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-204\">Office for Windows desktop</span></span> </th><th> <span data-ttu-id=\"8ea5d-205\">Office Online（在浏览器中）</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-205\">Office Online (in browser)</span></span> </th><th> <span data-ttu-id=\"8ea5d-206\">Office for iPad</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-206\">Office for iPad</span></span> </th><th> <span data-ttu-id=\"8ea5d-207\">适用于设备的 OWA</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-207\">OWA for Devices</span></span> </th><th> <span data-ttu-id=\"8ea5d-208\">Office for Mac</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-208\">Office for Mac</span></span> </th></tr> <tr><td><span data-ttu-id=\"8ea5d-209\"><strong>访问</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-209\"><strong> Access </strong></span></span></td><td> </td><td> <span data-ttu-id=\"8ea5d-210\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-210\">Y</span></span> </td><td> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-211\"><strong>Excel</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-211\"><strong> Excel </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-212\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-212\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-213\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-213\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-214\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-214\">Y</span></span> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-215\"><strong>Outlook</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-215\"><strong> Outlook </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-216\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-216\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-217\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-217\">Y</span></span> </td><td> </td><td> <span data-ttu-id=\"8ea5d-218\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-218\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-219\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-219\">Y</span></span> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-220\"><strong>PowerPoint</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-220\"><strong> PowerPoint </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-221\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-221\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-222\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-222\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-223\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-223\">Y</span></span> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-224\"><strong>项目</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-224\"><strong> Project </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-225\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-225\">Y</span></span> </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-226\"><strong>Word</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-226\"><strong> Word </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-227\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-227\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-228\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-228\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-229\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-229\">Y</span></span> </td><td> </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a><span data-ttu-id=\"8ea5d-230\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-230\">Examples</span></span>\n\n```javascript\nfunction getData() {\n    Office.context.document.getSelectedDataAsync(Office.CoercionType.Table, function(asyncResult) {\n        if (asyncResult.status == Office.AsyncResultStatus.Failed) {\n            write(asyncResult.error.message);\n        }\n        else {\n            write(asyncResult.value);\n        }\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: status
-  fullName: status
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'status: AsyncResultStatus;'
-    return:
-      type:
-      - office.Office.AsyncResultStatus
-- uid: office.Office.AsyncResult.value
-  summary: <span data-ttu-id="8ea5d-231">获取此异步操作的负载或内容（如有）。</span><span class="sxs-lookup"><span data-stu-id="8ea5d-231">Gets the payload or content of this asynchronous operation, if any.</span></span>
-  remarks: "<span data-ttu-id=\"8ea5d-232\">访问 AsyncResult 对象作为参数传递给\"Async\"方法的 callback 参数如函数中`getSelectedDataAsync`和`setSelectedDataAsync` [Document](xref:office.Office.Document)对象的方法。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-232\">You access the AsyncResult object in the function passed as the argument to the callback parameter of an \"Async\" method, such as the `getSelectedDataAsync` and `setSelectedDataAsync` methods of the [Document](xref:office.Office.Document) object.</span></span>\n\n<span data-ttu-id=\"8ea5d-233\">**注意**： value 属性返回特定\"Async\"方法的而异的用途和该方法的上下文。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-233\">**Note**: What the value property returns for a particular \"Async\" method varies depending on the purpose and context of that method.</span></span> <span data-ttu-id=\"8ea5d-234\">若要确定返回\"Async\"方法的 value 属性的内容，请参阅该方法的主题的\"回调值\"部分。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-234\">To determine what is returned by the value property for an \"Async\" method, refer to the \"Callback value\" section of the method's topic.</span></span>\n\n<span data-ttu-id=\"8ea5d-235\">**支持详细信息**</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-235\">**Support details**</span></span>\n\n<span data-ttu-id=\"8ea5d-236\">在以下矩阵大写 Y 表示相应的 Office 主机应用程序中支持此属性。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-236\">A capital Y in the following matrix indicates that this property is supported in the corresponding Office host application.</span></span> <span data-ttu-id=\"8ea5d-237\">空单元格指示 Office 主机应用程序不支持此枚举。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-237\">An empty cell indicates that the Office host application doesn't support this enumeration.</span></span>\n\n<span data-ttu-id=\"8ea5d-238\">有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-238\">For more information about Office host application and server requirements, see [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.</span></span>\n\n<span data-ttu-id=\"8ea5d-239\">*支持的主机（按平台）*</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-239\">*Supported hosts, by platform*</span></span> <table> <tr><th> </th><th> <span data-ttu-id=\"8ea5d-240\">Office for Windows Desktop</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-240\">Office for Windows desktop</span></span> </th><th> <span data-ttu-id=\"8ea5d-241\">Office Online（在浏览器中）</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-241\">Office Online (in browser)</span></span> </th><th> <span data-ttu-id=\"8ea5d-242\">Office for iPad</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-242\">Office for iPad</span></span> </th><th> <span data-ttu-id=\"8ea5d-243\">适用于设备的 OWA</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-243\">OWA for Devices</span></span> </th><th> <span data-ttu-id=\"8ea5d-244\">Office for Mac</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-244\">Office for Mac</span></span> </th></tr> <tr><td><span data-ttu-id=\"8ea5d-245\"><strong>访问</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-245\"><strong> Access </strong></span></span></td><td> </td><td> <span data-ttu-id=\"8ea5d-246\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-246\">Y</span></span> </td><td> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-247\"><strong>Excel</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-247\"><strong> Excel </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-248\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-248\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-249\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-249\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-250\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-250\">Y</span></span> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-251\"><strong>Outlook</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-251\"><strong> Outlook </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-252\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-252\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-253\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-253\">Y</span></span> </td><td> </td><td> <span data-ttu-id=\"8ea5d-254\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-254\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-255\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-255\">Y</span></span> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-256\"><strong>PowerPoint</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-256\"><strong> PowerPoint </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-257\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-257\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-258\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-258\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-259\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-259\">Y</span></span> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-260\"><strong>项目</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-260\"><strong> Project </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-261\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-261\">Y</span></span> </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id=\"8ea5d-262\"><strong>Word</strong></span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-262\"><strong> Word </strong></span></span></td><td> <span data-ttu-id=\"8ea5d-263\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-263\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-264\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-264\">Y</span></span> </td><td> <span data-ttu-id=\"8ea5d-265\">Y</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-265\">Y</span></span> </td><td> </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a><span data-ttu-id=\"8ea5d-266\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"8ea5d-266\">Examples</span></span>\n\n```javascript\nfunction getData() {\n    Office.context.document.getSelectedDataAsync(Office.CoercionType.Table, function(asyncResult) {\n        if (asyncResult.status == Office.AsyncResultStatus.Failed) {\n            write(asyncResult.error.message);\n        }\n        else {\n            write(asyncResult.value);\n        }\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: value
-  fullName: value
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'value: T;'
-    return:
-      type:
-      - T
+      ```javascript
+      function getData() {
+          Office.context.document.getSelectedDataAsync(Office.CoercionType.Table, function(asyncResult) {
+              if (asyncResult.status == Office.AsyncResultStatus.Failed) {
+                  write(asyncResult.error.message);
+              }
+              else {
+                  write(asyncResult.value);
+              }
+          });
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: value
+    fullName: value
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'value: T;'
+      return:
+        type:
+          - T

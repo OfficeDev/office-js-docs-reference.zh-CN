@@ -1,224 +1,286 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 73c84fbb6898246c63eb3f172ccdad1706650b6c
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29972930"
 items:
-- uid: excel.Excel.TableRowCollection
-  summary: >-
-    <span data-ttu-id="9f26f-101">表示属于表的所有行的集合。</span><span class="sxs-lookup"><span data-stu-id="9f26f-101">Represents a collection of all the rows that are part of the table.</span></span>
+  - uid: excel.Excel.TableRowCollection
+    summary: |-
+      <span data-ttu-id="79996-101">表示属于表的所有行的集合。</span><span class="sxs-lookup"><span data-stu-id="79996-101">Represents a collection of all the rows that are part of the table.</span></span>
+
+      <span data-ttu-id="79996-102">请注意, 与在添加新行/列之前的区域或列不同, TableRow 对象表示表行的物理位置, 而不是数据。</span><span class="sxs-lookup"><span data-stu-id="79996-102">Note that unlike Ranges or Columns, which will adjust if new rows/columns are added before them, a TableRow object represent the physical location of the table row, but not the data.</span></span> <span data-ttu-id="79996-103">也就是说, 如果对数据进行排序或添加新行, 则表行将继续指向为其创建该索引的索引。</span><span class="sxs-lookup"><span data-stu-id="79996-103">That is, if the data is sorted or if new rows are added, a table row will continue to point at the index for which it was created.</span></span>
+
+      <span data-ttu-id="79996-104">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="79996-104">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: Excel.TableRowCollection
+    fullName: Excel.TableRowCollection
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: excel
+    children:
+      - excel.Excel.TableRowCollection.add
+      - excel.Excel.TableRowCollection.context
+      - excel.Excel.TableRowCollection.count
+      - excel.Excel.TableRowCollection.getCount
+      - excel.Excel.TableRowCollection.getItemAt
+      - excel.Excel.TableRowCollection.items
+      - excel.Excel.TableRowCollection.load
+      - excel.Excel.TableRowCollection.load_1
+      - excel.Excel.TableRowCollection.load_2
+      - excel.Excel.TableRowCollection.toJSON
+  - uid: excel.Excel.TableRowCollection.add
+    summary: |-
+      <span data-ttu-id="79996-105">向表中添加一行或多行。</span><span class="sxs-lookup"><span data-stu-id="79996-105">Adds one or more rows to the table.</span></span> <span data-ttu-id="79996-106">返回对象是新添加的首行。</span><span class="sxs-lookup"><span data-stu-id="79996-106">The return object will be the top of the newly added row(s).</span></span>
+
+      <span data-ttu-id="79996-107">请注意, 与在添加新行/列之前的区域或列不同, TableRow 对象表示表行的物理位置, 而不是数据。</span><span class="sxs-lookup"><span data-stu-id="79996-107">Note that unlike Ranges or Columns, which will adjust if new rows/columns are added before them, a TableRow object represent the physical location of the table row, but not the data.</span></span> <span data-ttu-id="79996-108">也就是说, 如果对数据进行排序或添加新行, 则表行将继续指向为其创建该索引的索引。</span><span class="sxs-lookup"><span data-stu-id="79996-108">That is, if the data is sorted or if new rows are added, a table row will continue to point at the index for which it was created.</span></span>
+
+      <span data-ttu-id="79996-109">\[[API 集: 用于添加单个行的 ExcelApi 1.1; 1.4 允许添加多个行。](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)</span><span class="sxs-lookup"><span data-stu-id="79996-109">\[ [API set: ExcelApi 1.1 for adding a single row; 1.4 allows adding of multiple rows.](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)</span></span> <span data-ttu-id="79996-110">\]</span><span class="sxs-lookup"><span data-stu-id="79996-110"></span></span>
+    name: 'add(index, values)'
+    fullName: 'add(index, values)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'add(index?: number, values?: Array<Array<boolean | string | number>> | boolean | string | number): Excel.TableRow;'
+      return:
+        type:
+          - excel.Excel.TableRow
+        description: |-
 
 
-    <span data-ttu-id="9f26f-102">请注意，与不同区域或列，如果在其之前添加新行/列将调整，TableRow 对象表示的表格行中，但不是数据的物理位置。</span><span class="sxs-lookup"><span data-stu-id="9f26f-102">Note that unlike Ranges or Columns, which will adjust if new rows/columns are added before them, a TableRow object represent the physical location of the table row, but not the data.</span></span> <span data-ttu-id="9f26f-103">也就是说，如果对数据进行排序，或者添加新行，将继续表格行指向创建它的索引处。</span><span class="sxs-lookup"><span data-stu-id="9f26f-103">That is, if the data is sorted or if new rows are added, a table row will continue to point at the index for which it was created.</span></span>
+          #### <a name="examples"></a><span data-ttu-id="79996-111">示例</span><span class="sxs-lookup"><span data-stu-id="79996-111">Examples</span></span>
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var tables = ctx.workbook.tables;
+              var values = [["Sample", "Values", "For", "New", "Row"]];
+              var row = tables.getItem("Table1").rows.add(null, values);
+              row.load('index');
+              return ctx.sync().then(function() {
+                  console.log(row.index);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: index
+          description: '<span data-ttu-id="79996-p105">可选。指定新行的相对位置。如果为 NULL 或 -1，将在末尾进行添加。插入的行下方的所有行都会向下移动。从零开始编制索引。</span><span class="sxs-lookup"><span data-stu-id="79996-p105">Optional. Specifies the relative position of the new row. If null or -1, the addition happens at the end. Any rows below the inserted row are shifted downwards. Zero-indexed.</span></span>'
+          type:
+            - number
+        - id: values
+          description: <span data-ttu-id="79996-117">可选。</span><span class="sxs-lookup"><span data-stu-id="79996-117">Optional.</span></span> <span data-ttu-id="79996-118">未设置格式的表行值的二维数组。</span><span class="sxs-lookup"><span data-stu-id="79996-118">A 2-dimensional array of unformatted values of the table row.</span></span>
+          type:
+            - Array<Array<boolean | string | number>> | boolean | string | number
+  - uid: excel.Excel.TableRowCollection.context
+    summary: <span data-ttu-id="79996-119">与该对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="79996-119">The request context associated with the object.</span></span> <span data-ttu-id="79996-120">这会将加载项的进程连接到 Office 主机应用程序的进程。</span><span class="sxs-lookup"><span data-stu-id="79996-120">This connects the add-in's process to the Office host application's process.</span></span>
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - RequestContext
+  - uid: excel.Excel.TableRowCollection.count
+    summary: |-
+      <span data-ttu-id="79996-121">返回表中的行数。</span><span class="sxs-lookup"><span data-stu-id="79996-121">Returns the number of rows in the table.</span></span> <span data-ttu-id="79996-122">只读。</span><span class="sxs-lookup"><span data-stu-id="79996-122">Read-only.</span></span>
+
+      <span data-ttu-id="79996-123">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="79996-123">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: count
+    fullName: count
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly count: number;'
+      return:
+        type:
+          - number
+  - uid: excel.Excel.TableRowCollection.getCount
+    summary: |-
+      <span data-ttu-id="79996-124">获取表格中的行数。</span><span class="sxs-lookup"><span data-stu-id="79996-124">Gets the number of rows in the table.</span></span>
+
+      <span data-ttu-id="79996-125">\[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="79996-125">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getCount()
+    fullName: getCount()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getCount(): OfficeExtension.ClientResult<number>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<number>
+        description: ''
+  - uid: excel.Excel.TableRowCollection.getItemAt
+    summary: |-
+      <span data-ttu-id="79996-126">根据其在集合中的位置获取行。</span><span class="sxs-lookup"><span data-stu-id="79996-126">Gets a row based on its position in the collection.</span></span>
+
+      <span data-ttu-id="79996-127">请注意, 与在添加新行/列之前的区域或列不同, TableRow 对象表示表行的物理位置, 而不是数据。</span><span class="sxs-lookup"><span data-stu-id="79996-127">Note that unlike Ranges or Columns, which will adjust if new rows/columns are added before them, a TableRow object represent the physical location of the table row, but not the data.</span></span> <span data-ttu-id="79996-128">也就是说, 如果对数据进行排序或添加新行, 则表行将继续指向为其创建该索引的索引。</span><span class="sxs-lookup"><span data-stu-id="79996-128">That is, if the data is sorted or if new rows are added, a table row will continue to point at the index for which it was created.</span></span>
+
+      <span data-ttu-id="79996-129">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="79996-129">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getItemAt(index)
+    fullName: getItemAt(index)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItemAt(index: number): Excel.TableRow;'
+      return:
+        type:
+          - excel.Excel.TableRow
+        description: |-
 
 
-    <span data-ttu-id="9f26f-104">\[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f26f-104">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
-  name: Excel.TableRowCollection
-  fullName: Excel.TableRowCollection
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: excel
-  children:
-  - excel.Excel.TableRowCollection.add
-  - excel.Excel.TableRowCollection.context
-  - excel.Excel.TableRowCollection.count
-  - excel.Excel.TableRowCollection.getCount
-  - excel.Excel.TableRowCollection.getItemAt
-  - excel.Excel.TableRowCollection.items
-  - excel.Excel.TableRowCollection.load
-  - excel.Excel.TableRowCollection.load_1
-  - excel.Excel.TableRowCollection.load_2
-  - excel.Excel.TableRowCollection.toJSON
-- uid: excel.Excel.TableRowCollection.add
-  summary: >-
-    <span data-ttu-id="9f26f-p102">向表中添加一行或多行。返回对象是新添加的首行。</span><span class="sxs-lookup"><span data-stu-id="9f26f-p102">Adds one or more rows to the table. The return object will be the top of the newly added row(s).</span></span>
+          #### <a name="examples"></a><span data-ttu-id="79996-130">示例</span><span class="sxs-lookup"><span data-stu-id="79996-130">Examples</span></span>
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var tablerow = ctx.workbook.tables.getItem('Table1').rows.getItemAt(0);
+              tablerow.load('name');
+              return ctx.sync().then(function() {
+                      console.log(tablerow.name);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: index
+          description: <span data-ttu-id="79996-131">要检索的对象的索引值。</span><span class="sxs-lookup"><span data-stu-id="79996-131">Index value of the object to be retrieved.</span></span> <span data-ttu-id="79996-132">从零开始编制索引。</span><span class="sxs-lookup"><span data-stu-id="79996-132">Zero-indexed.</span></span>
+          type:
+            - number
+  - uid: excel.Excel.TableRowCollection.items
+    summary: <span data-ttu-id="79996-133">获取此集合中已加载的子项。</span><span class="sxs-lookup"><span data-stu-id="79996-133">Gets the loaded child items in this collection.</span></span>
+    name: items
+    fullName: items
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly items: Excel.TableRow[];'
+      return:
+        type:
+          - 'Excel.TableRow[]'
+  - uid: excel.Excel.TableRowCollection.load
+    summary: <span data-ttu-id="79996-134">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="79996-134">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="79996-135">在读取属性之前，你必须调用“context.sync()”。</span><span class="sxs-lookup"><span data-stu-id="79996-135">You must call "context.sync()" before reading the properties.</span></span>
+    remarks: |-
+      <span data-ttu-id="79996-136">除了此签名之外, 此方法还具有以下签名:</span><span class="sxs-lookup"><span data-stu-id="79996-136">In addition to this signature, this method has the following signatures:</span></span>
+
+      <span data-ttu-id="79996-137">`load(option?: string | string[]): Excel.TableRowCollection`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="79996-137">`load(option?: string | string[]): Excel.TableRowCollection` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
+
+      <span data-ttu-id="79996-138">`load(option?: { select?: string; expand?: string; }): Excel.TableRowCollection`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="79996-138">`load(option?: { select?: string; expand?: string; }): Excel.TableRowCollection` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+
+      <span data-ttu-id="79996-139">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TableRowCollection`-仅适用于集合类型。</span><span class="sxs-lookup"><span data-stu-id="79996-139">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TableRowCollection` - Only available on collection types.</span></span> <span data-ttu-id="79996-140">它类似于前面的签名。</span><span class="sxs-lookup"><span data-stu-id="79996-140">It is similar to the preceding signature.</span></span> <span data-ttu-id="79996-141">top 指定结果中可包含的集合项的最大数量。</span><span class="sxs-lookup"><span data-stu-id="79996-141">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="79996-142">选项。 skip 指定要跳过且不包含在结果中的项目数。</span><span class="sxs-lookup"><span data-stu-id="79996-142">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="79996-143">如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。</span><span class="sxs-lookup"><span data-stu-id="79996-143">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.TableRowCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.TableRowCollection;'
+      return:
+        type:
+          - excel.Excel.TableRowCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - Excel.Interfaces.TableRowCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
+  - uid: excel.Excel.TableRowCollection.load_1
+    summary: '<span data-ttu-id="79996-144">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="79996-144">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="79996-145">在读取属性`context.sync()`之前, 必须先调用。</span><span class="sxs-lookup"><span data-stu-id="79996-145">You must call `context.sync()` before reading the properties.</span></span>'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.TableRowCollection;'
+      return:
+        type:
+          - excel.Excel.TableRowCollection
+        description: |-
 
 
-    <span data-ttu-id="9f26f-107">请注意，与不同区域或列，如果在其之前添加新行/列将调整，TableRow 对象表示的表格行中，但不是数据的物理位置。</span><span class="sxs-lookup"><span data-stu-id="9f26f-107">Note that unlike Ranges or Columns, which will adjust if new rows/columns are added before them, a TableRow object represent the physical location of the table row, but not the data.</span></span> <span data-ttu-id="9f26f-108">也就是说，如果对数据进行排序，或者添加新行，将继续表格行指向创建它的索引处。</span><span class="sxs-lookup"><span data-stu-id="9f26f-108">That is, if the data is sorted or if new rows are added, a table row will continue to point at the index for which it was created.</span></span>
+          #### <a name="examples"></a><span data-ttu-id="79996-146">示例</span><span class="sxs-lookup"><span data-stu-id="79996-146">Examples</span></span>
 
-
-    <span data-ttu-id="9f26f-109">\[[API 集： ExcelApi 1.1 添加单行; 1.4 允许添加的多个行。](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)</span><span class="sxs-lookup"><span data-stu-id="9f26f-109">\[ [API set: ExcelApi 1.1 for adding a single row; 1.4 allows adding of multiple rows.](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)</span></span> <span data-ttu-id="9f26f-110">\]</span><span class="sxs-lookup"><span data-stu-id="9f26f-110"></span></span>
-  name: add(index, values)
-  fullName: add(index, values)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'add(index?: number, values?: Array<Array<boolean | string | number>> | boolean | string | number): Excel.TableRow;'
-    return:
-      type:
-      - excel.Excel.TableRow
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"9f26f-111\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"9f26f-111\">Examples</span></span>\n\n```javascript\nExcel.run(function (ctx) { \n    var tables = ctx.workbook.tables;\n    var values = [[\"Sample\", \"Values\", \"For\", \"New\", \"Row\"]];\n    var row = tables.getItem(\"Table1\").rows.add(null, values);\n    row.load('index');\n    return ctx.sync().then(function() {\n        console.log(row.index);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-    parameters:
-    - id: index
-      description: <span data-ttu-id="9f26f-p105">可选。指定新行的相对位置。如果为 NULL 或 -1，将在末尾进行添加。插入的行下方的所有行都会向下移动。从零开始编制索引。</span><span class="sxs-lookup"><span data-stu-id="9f26f-p105">Optional. Specifies the relative position of the new row. If null or -1, the addition happens at the end. Any rows below the inserted row are shifted downwards. Zero-indexed.</span></span>
-      type:
-      - number
-    - id: values
-      description: <span data-ttu-id="9f26f-p106">可选。未设置格式的表行值的二维数组。</span><span class="sxs-lookup"><span data-stu-id="9f26f-p106">Optional. A 2-dimensional array of unformatted values of the table row.</span></span>
-      type:
-      - Array<Array<boolean | string | number>> | boolean | string | number
-- uid: excel.Excel.TableRowCollection.context
-  summary: <span data-ttu-id="9f26f-119">与对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="9f26f-119">The request context associated with the object.</span></span> <span data-ttu-id="9f26f-120">这将连接到 Office 主机应用程序的过程外接程序的过程。</span><span class="sxs-lookup"><span data-stu-id="9f26f-120">This connects the add-in's process to the Office host application's process.</span></span>
-  name: context
-  fullName: context
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'context: RequestContext;'
-    return:
-      type:
-      - RequestContext
-- uid: excel.Excel.TableRowCollection.count
-  summary: >-
-    <span data-ttu-id="9f26f-p108">返回表中的行数。只读。</span><span class="sxs-lookup"><span data-stu-id="9f26f-p108">Returns the number of rows in the table. Read-only.</span></span>
-
-
-    <span data-ttu-id="9f26f-123">\[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f26f-123">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
-  name: count
-  fullName: count
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly count: number;'
-    return:
-      type:
-      - number
-- uid: excel.Excel.TableRowCollection.getCount
-  summary: >-
-    <span data-ttu-id="9f26f-124">获取表格中的行数。</span><span class="sxs-lookup"><span data-stu-id="9f26f-124">Gets the number of rows in the table.</span></span>
-
-
-    <span data-ttu-id="9f26f-125">\[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f26f-125">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
-  name: getCount()
-  fullName: getCount()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getCount(): OfficeExtension.ClientResult<number>;'
-    return:
-      type:
-      - OfficeExtension.ClientResult<number>
-      description: ''
-- uid: excel.Excel.TableRowCollection.getItemAt
-  summary: >-
-    <span data-ttu-id="9f26f-126">根据其在集合中的位置获取行。</span><span class="sxs-lookup"><span data-stu-id="9f26f-126">Gets a row based on its position in the collection.</span></span>
-
-
-    <span data-ttu-id="9f26f-127">请注意，与不同区域或列，如果在其之前添加新行/列将调整，TableRow 对象表示的表格行中，但不是数据的物理位置。</span><span class="sxs-lookup"><span data-stu-id="9f26f-127">Note that unlike Ranges or Columns, which will adjust if new rows/columns are added before them, a TableRow object represent the physical location of the table row, but not the data.</span></span> <span data-ttu-id="9f26f-128">也就是说，如果对数据进行排序，或者添加新行，将继续表格行指向创建它的索引处。</span><span class="sxs-lookup"><span data-stu-id="9f26f-128">That is, if the data is sorted or if new rows are added, a table row will continue to point at the index for which it was created.</span></span>
-
-
-    <span data-ttu-id="9f26f-129">\[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9f26f-129">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
-  name: getItemAt(index)
-  fullName: getItemAt(index)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getItemAt(index: number): Excel.TableRow;'
-    return:
-      type:
-      - excel.Excel.TableRow
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"9f26f-130\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"9f26f-130\">Examples</span></span>\n\n```javascript\nExcel.run(function (ctx) { \n    var tablerow = ctx.workbook.tables.getItem('Table1').rows.getItemAt(0);\n    tablerow.load('name');\n    return ctx.sync().then(function() {\n            console.log(tablerow.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-    parameters:
-    - id: index
-      description: <span data-ttu-id="9f26f-p110">要检索的对象的索引值。从零开始编制索引。</span><span class="sxs-lookup"><span data-stu-id="9f26f-p110">Index value of the object to be retrieved. Zero-indexed.</span></span>
-      type:
-      - number
-- uid: excel.Excel.TableRowCollection.items
-  summary: <span data-ttu-id="9f26f-133">获取此集合中的加载的子项目。</span><span class="sxs-lookup"><span data-stu-id="9f26f-133">Gets the loaded child items in this collection.</span></span>
-  name: items
-  fullName: items
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly items: Excel.TableRow[];'
-    return:
-      type:
-      - Excel.TableRow[]
-- uid: excel.Excel.TableRowCollection.load
-  summary: <span data-ttu-id="9f26f-134">队列设置命令加载指定的对象的属性。</span><span class="sxs-lookup"><span data-stu-id="9f26f-134">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="9f26f-135">读取属性之前，必须调用"context.sync()"。</span><span class="sxs-lookup"><span data-stu-id="9f26f-135">You must call "context.sync()" before reading the properties.</span></span>
-  remarks: >-
-    <span data-ttu-id="9f26f-136">除了此签名，此方法具有以下签名：</span><span class="sxs-lookup"><span data-stu-id="9f26f-136">In addition to this signature, this method has the following signatures:</span></span>
-
-
-    <span data-ttu-id="9f26f-137">`load(option?: string | string[]): Excel.TableRowCollection`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。</span><span class="sxs-lookup"><span data-stu-id="9f26f-137">`load(option?: string | string[]): Excel.TableRowCollection` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
-
-
-    <span data-ttu-id="9f26f-138">`load(option?: { select?: string; expand?: string; }): Excel.TableRowCollection`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="9f26f-138">`load(option?: { select?: string; expand?: string; }): Excel.TableRowCollection` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
-
-
-    <span data-ttu-id="9f26f-139">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TableRowCollection`-仅可对集合的类型。</span><span class="sxs-lookup"><span data-stu-id="9f26f-139">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TableRowCollection` - Only available on collection types.</span></span> <span data-ttu-id="9f26f-140">它是类似于前一个签名。</span><span class="sxs-lookup"><span data-stu-id="9f26f-140">It is similar to the preceding signature.</span></span> <span data-ttu-id="9f26f-141">Option.top 指定集合项可在结果中包含的最大数目。</span><span class="sxs-lookup"><span data-stu-id="9f26f-141">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="9f26f-142">Option.skip 指定要跳过和结果中不包含的项的数目。</span><span class="sxs-lookup"><span data-stu-id="9f26f-142">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="9f26f-143">如果指定 option.top，则将跳过指定的数目的项后启动结果集。</span><span class="sxs-lookup"><span data-stu-id="9f26f-143">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: Excel.Interfaces.TableRowCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.TableRowCollection;'
-    return:
-      type:
-      - excel.Excel.TableRowCollection
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - Excel.Interfaces.TableRowCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
-- uid: excel.Excel.TableRowCollection.load_1
-  summary: <span data-ttu-id="9f26f-144">队列设置命令加载指定的对象的属性。</span><span class="sxs-lookup"><span data-stu-id="9f26f-144">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="9f26f-145">您必须调用`context.sync()`阅读属性之前。</span><span class="sxs-lookup"><span data-stu-id="9f26f-145">You must call `context.sync()` before reading the properties.</span></span>
-  name: load(propertyNames)
-  fullName: load(propertyNames)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNames?: string | string[]): Excel.TableRowCollection;'
-    return:
-      type:
-      - excel.Excel.TableRowCollection
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"9f26f-146\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"9f26f-146\">Examples</span></span>\n\n```javascript\nExcel.run(function (ctx) { \n    var tablerows = ctx.workbook.tables.getItem('Table1').rows;\n    tablerows.load('items');\n    return ctx.sync().then(function() {\n        console.log(\"tablerows Count: \" + tablerows.count);\n        for (var i = 0; i < tablerows.items.length; i++)\n        {\n            console.log(tablerows.items[i].index);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// In the example, we'll select the top 100 rows of the table.\nExcel.run(function (ctx) { \n    var table = ctx.workbook.tables.getItem(\"Table1\");\n    var tableRows = table.rows.load({\"select\" : \"index, values\",\"top\": 100, \"skip\": 0 })\n    return ctx.sync().then(function() {\n        for (var i = 0; i < tableRows.items.length; i++)\n        {\n            console.log(tableRows.items[i].index);\n            console.log(tableRows.items[i].values);\n        }\n    });\n}).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n});\n```"
-    parameters:
-    - id: propertyNames
-      description: <span data-ttu-id="9f26f-147">以逗号分隔字符串或一个指定要加载的属性的字符串数组。</span><span class="sxs-lookup"><span data-stu-id="9f26f-147">A comma-delimited string or an array of strings that specify the properties to load.</span></span>
-      type:
-      - string | string[]
-- uid: excel.Excel.TableRowCollection.load_2
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: OfficeExtension.LoadOption): Excel.TableRowCollection;'
-    return:
-      type:
-      - excel.Excel.TableRowCollection
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - office.OfficeExtension.LoadOption
-- uid: excel.Excel.TableRowCollection.toJSON
-  summary: <span data-ttu-id="9f26f-148">重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。</span><span class="sxs-lookup"><span data-stu-id="9f26f-148">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`<!-- -->.</span></span> <span data-ttu-id="9f26f-149">(`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)而原始`Excel.TableRowCollection`对象是 API 对象，`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`Excel.Interfaces.TableRowCollectionData` <!-- -->)，其中包含数组"项目"的任何加载属性集的项目的浅表副本。</span><span class="sxs-lookup"><span data-stu-id="9f26f-149">(`JSON.stringify`<!-- -->, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original `Excel.TableRowCollection` object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Excel.Interfaces.TableRowCollectionData`<!-- -->) that contains an "items" array with shallow copies of any loaded properties from the collection's items.</span></span>
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'toJSON(): Excel.Interfaces.TableRowCollectionData;'
-    return:
-      type:
-      - excel.Excel.Interfaces.TableRowCollectionData
-      description: ''
+          ```javascript
+          Excel.run(function (ctx) { 
+              var tablerows = ctx.workbook.tables.getItem('Table1').rows;
+              tablerows.load('items');
+              return ctx.sync().then(function() {
+                  console.log("tablerows Count: " + tablerows.count);
+                  for (var i = 0; i < tablerows.items.length; i++)
+                  {
+                      console.log(tablerows.items[i].index);
+                  }
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          // In the example, we'll select the top 100 rows of the table.
+          Excel.run(function (ctx) { 
+              var table = ctx.workbook.tables.getItem("Table1");
+              var tableRows = table.rows.load({"select" : "index, values","top": 100, "skip": 0 })
+              return ctx.sync().then(function() {
+                  for (var i = 0; i < tableRows.items.length; i++)
+                  {
+                      console.log(tableRows.items[i].index);
+                      console.log(tableRows.items[i].values);
+                  }
+              });
+          }).catch(function(error) {
+                  console.log("Error: " + error);
+                  if (error instanceof OfficeExtension.Error) {
+                      console.log("Debug info: " + JSON.stringify(error.debugInfo));
+                  }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: '<span data-ttu-id="79996-147">一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="79996-147">A comma-delimited string or an array of strings that specify the properties to load.</span></span>'
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.TableRowCollection.load_2
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OfficeExtension.LoadOption): Excel.TableRowCollection;'
+      return:
+        type:
+          - excel.Excel.TableRowCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - office.OfficeExtension.LoadOption
+  - uid: excel.Excel.TableRowCollection.toJSON
+    summary: '<span data-ttu-id="79996-148">重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`</span><span class="sxs-lookup"><span data-stu-id="79996-148">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`</span></span><!-- --><span data-ttu-id="79996-149">.</span><span class="sxs-lookup"><span data-stu-id="79996-149"></span></span> <span data-ttu-id="79996-150">(`JSON.stringify`</span><span class="sxs-lookup"><span data-stu-id="79996-150"></span></span><!-- --><span data-ttu-id="79996-151">反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始`Excel.TableRowCollection`对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Excel.Interfaces.TableRowCollectionData`</span><span class="sxs-lookup"><span data-stu-id="79996-151">, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original `Excel.TableRowCollection` object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Excel.Interfaces.TableRowCollectionData`</span></span><!-- --><span data-ttu-id="79996-152">), 其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。</span><span class="sxs-lookup"><span data-stu-id="79996-152">) that contains an "items" array with shallow copies of any loaded properties from the collection''s items.</span></span>'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.TableRowCollectionData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.TableRowCollectionData
+        description: ''
