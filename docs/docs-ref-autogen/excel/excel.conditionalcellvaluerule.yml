@@ -1,74 +1,96 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 0ef3a9ac679b3d8b4e00bccb6f0b20aa9529bcef
-ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "26227315"
 items:
-- uid: excel.Excel.ConditionalCellValueRule
-  summary: >-
-    代表单元格值条件格式规则。
+  - uid: excel.Excel.ConditionalCellValueRule
+    summary: |-
+      表示单元格值条件格式规则。
+
+      \[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.ConditionalCellValueRule
+    fullName: Excel.ConditionalCellValueRule
+    langs:
+      - typeScript
+    type: interface
+    package: excel
+    children:
+      - excel.Excel.ConditionalCellValueRule.formula1
+      - excel.Excel.ConditionalCellValueRule.formula2
+      - excel.Excel.ConditionalCellValueRule.operator
+  - uid: excel.Excel.ConditionalCellValueRule.formula1
+    summary: |-
+      如果需要，公式可对条件格式规则进行求值。
+
+      \[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: formula1
+    fullName: formula1
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'formula1: string;'
+      return:
+        type:
+          - string
+        description: |-
 
 
-    \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: Excel.ConditionalCellValueRule
-  fullName: Excel.ConditionalCellValueRule
-  langs:
-  - typeScript
-  type: interface
-  package: excel
-  children:
-  - excel.Excel.ConditionalCellValueRule.formula1
-  - excel.Excel.ConditionalCellValueRule.formula2
-  - excel.Excel.ConditionalCellValueRule.operator
-- uid: excel.Excel.ConditionalCellValueRule.formula1
-  summary: >-
-    如果需要，公式可对条件格式规则进行求值。
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const range = sheet.getRange("B21:E23");
+              const conditionalFormat = range.conditionalFormats
+                  .add(Excel.ConditionalFormatType.cellValue);
+              conditionalFormat.cellValue.format.font.color = "red";
+              conditionalFormat.cellValue.rule = { formula1: "=0", operator: "LessThan" };
+
+              await context.sync();
+          });
+          ```
+  - uid: excel.Excel.ConditionalCellValueRule.formula2
+    summary: |-
+      如果需要，公式可对条件格式规则进行求值。
+
+      \[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: formula2
+    fullName: formula2
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'formula2?: string;'
+      return:
+        type:
+          - string
+  - uid: excel.Excel.ConditionalCellValueRule.operator
+    summary: |-
+      文本条件格式的运算符。
+
+      \[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: operator
+    fullName: operator
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'operator: Excel.ConditionalCellValueOperator | "Invalid" | "Between" | "NotBetween" | "EqualTo" | "NotEqualTo" | "GreaterThan" | "LessThan" | "GreaterThanOrEqual" | "LessThanOrEqual";'
+      return:
+        type:
+          - Excel.ConditionalCellValueOperator | "Invalid" | "Between" | "NotBetween" | "EqualTo" | "NotEqualTo" | "GreaterThan" | "LessThan" | "GreaterThanOrEqual" | "LessThanOrEqual"
+        description: |-
 
 
-    \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: formula1
-  fullName: formula1
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'formula1: string;'
-    return:
-      type:
-      - string
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B21:E23\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.cellValue);\n    conditionalFormat.cellValue.format.font.color = \"red\";\n    conditionalFormat.cellValue.rule = { formula1: \"=0\", operator: \"LessThan\" };\n\n    await context.sync();\n});\n```"
-- uid: excel.Excel.ConditionalCellValueRule.formula2
-  summary: >-
-    如果需要，公式可对条件格式规则进行求值。
+          #### <a name="examples"></a>示例
 
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const range = sheet.getRange("B21:E23");
+              const conditionalFormat = range.conditionalFormats
+                  .add(Excel.ConditionalFormatType.cellValue);
+              conditionalFormat.cellValue.format.font.color = "red";
+              conditionalFormat.cellValue.rule = { formula1: "=0", operator: "LessThan" };
 
-    \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: formula2
-  fullName: formula2
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'formula2?: string;'
-    return:
-      type:
-      - string
-- uid: excel.Excel.ConditionalCellValueRule.operator
-  summary: >-
-    文本条件格式的运算符。
-
-
-    \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: operator
-  fullName: operator
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'operator: Excel.ConditionalCellValueOperator | "Invalid" | "Between" | "NotBetween" | "EqualTo" | "NotEqualTo" | "GreaterThan" | "LessThan" | "GreaterThanOrEqual" | "LessThanOrEqual";'
-    return:
-      type:
-      - Excel.ConditionalCellValueOperator | "Invalid" | "Between" | "NotBetween" | "EqualTo" | "NotEqualTo" | "GreaterThan" | "LessThan" | "GreaterThanOrEqual" | "LessThanOrEqual"
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B21:E23\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.cellValue);\n    conditionalFormat.cellValue.format.font.color = \"red\";\n    conditionalFormat.cellValue.rule = { formula1: \"=0\", operator: \"LessThan\" };\n\n    await context.sync();\n});\n```"
+              await context.sync();
+          });
+          ```

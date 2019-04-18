@@ -1,426 +1,413 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 0fda11e4df94b0f72ab6747ce0a617854d24bc69
-ms.sourcegitcommit: 5e31602ed9cbddfcff2768b7ed69dd4821440b90
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 03/14/2019
-ms.locfileid: "30575639"
 items:
-- uid: excel.Excel.TextFrame
-  summary: >-
-    代表 shape 对象的文本框架。
+  - uid: excel.Excel.TextFrame
+    summary: |-
+      代表 shape 对象的文本框架。
+
+      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: Excel.TextFrame
+    fullName: Excel.TextFrame
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: excel
+    children:
+      - excel.Excel.TextFrame.autoSizeSetting
+      - excel.Excel.TextFrame.bottomMargin
+      - excel.Excel.TextFrame.context
+      - excel.Excel.TextFrame.deleteText
+      - excel.Excel.TextFrame.hasText
+      - excel.Excel.TextFrame.horizontalAlignment
+      - excel.Excel.TextFrame.horizontalOverflow
+      - excel.Excel.TextFrame.leftMargin
+      - excel.Excel.TextFrame.load
+      - excel.Excel.TextFrame.load_1
+      - excel.Excel.TextFrame.load_2
+      - excel.Excel.TextFrame.orientation
+      - excel.Excel.TextFrame.readingOrder
+      - excel.Excel.TextFrame.rightMargin
+      - excel.Excel.TextFrame.set
+      - excel.Excel.TextFrame.set_1
+      - excel.Excel.TextFrame.textRange
+      - excel.Excel.TextFrame.toJSON
+      - excel.Excel.TextFrame.topMargin
+      - excel.Excel.TextFrame.verticalAlignment
+      - excel.Excel.TextFrame.verticalOverflow
+  - uid: excel.Excel.TextFrame.autoSizeSetting
+    summary: |-
+      获取或设置文本框的自动调整大小设置。 可以将文本框设置为自动调整文本大小以适应文本框，或自动调整文本框大小以适应文本，或者不使用自动调整大小设置。
+
+      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: autoSizeSetting
+    fullName: autoSizeSetting
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'autoSizeSetting: Excel.ShapeAutoSize | "AutoSizeNone" | "AutoSizeTextToFitShape" | "AutoSizeShapeToFitText" | "AutoSizeMixed";'
+      return:
+        type:
+          - Excel.ShapeAutoSize | "AutoSizeNone" | "AutoSizeTextToFitShape" | "AutoSizeShapeToFitText" | "AutoSizeMixed"
+  - uid: excel.Excel.TextFrame.bottomMargin
+    summary: |-
+      表示文本框的下边距（以磅为单位）。
+
+      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: bottomMargin
+    fullName: bottomMargin
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'bottomMargin: number;'
+      return:
+        type:
+          - number
+  - uid: excel.Excel.TextFrame.context
+    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+    isPreview: true
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - RequestContext
+  - uid: excel.Excel.TextFrame.deleteText
+    summary: |-
+      删除文本框中的所有文本。
+
+      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: deleteText()
+    fullName: deleteText()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'deleteText(): void;'
+      return:
+        type:
+          - void
+        description: |-
 
 
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: Excel.TextFrame
-  fullName: Excel.TextFrame
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: excel
-  children:
-  - excel.Excel.TextFrame.autoSizeSetting
-  - excel.Excel.TextFrame.bottomMargin
-  - excel.Excel.TextFrame.context
-  - excel.Excel.TextFrame.deleteText
-  - excel.Excel.TextFrame.hasText
-  - excel.Excel.TextFrame.horizontalAlignment
-  - excel.Excel.TextFrame.horizontalOverflow
-  - excel.Excel.TextFrame.leftMargin
-  - excel.Excel.TextFrame.load
-  - excel.Excel.TextFrame.load_1
-  - excel.Excel.TextFrame.load_2
-  - excel.Excel.TextFrame.orientation
-  - excel.Excel.TextFrame.readingOrder
-  - excel.Excel.TextFrame.rightMargin
-  - excel.Excel.TextFrame.set
-  - excel.Excel.TextFrame.set_1
-  - excel.Excel.TextFrame.textRange
-  - excel.Excel.TextFrame.toJSON
-  - excel.Excel.TextFrame.topMargin
-  - excel.Excel.TextFrame.verticalAlignment
-  - excel.Excel.TextFrame.verticalOverflow
-- uid: excel.Excel.TextFrame.autoSizeSetting
-  summary: >-
-    获取或设置文本框架的自动调整大小设置。 可以将文本框架设置为自动调整文本框架的文本, 以自动将文本框架调整到文本, 或者不执行任何自动调整大小调整。
+          #### <a name="examples"></a>示例
 
+          ```typescript
+          await Excel.run(async (context) => {
+              const shapes = context.workbook.worksheets.getItem("Shapes").shapes;
+              const textbox = shapes.getItem("Textbox");
+              textbox.textFrame.deleteText();
+              await context.sync();
+          });
+          ```
+  - uid: excel.Excel.TextFrame.hasText
+    summary: |-
+      指定文本框是否包含文本。
 
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: autoSizeSetting
-  fullName: autoSizeSetting
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'autoSizeSetting: Excel.ShapeAutoSize | "AutoSizeNone" | "AutoSizeTextToFitShape" | "AutoSizeShapeToFitText" | "AutoSizeMixed";'
-    return:
-      type:
-      - Excel.ShapeAutoSize | "AutoSizeNone" | "AutoSizeTextToFitShape" | "AutoSizeShapeToFitText" | "AutoSizeMixed"
-- uid: excel.Excel.TextFrame.bottomMargin
-  summary: >-
-    表示文本框的下边距（以磅为单位）。
+      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: hasText
+    fullName: hasText
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly hasText: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel.Excel.TextFrame.horizontalAlignment
+    summary: |-
+      表示文本框的水平对齐方式。 有关详细信息，请参阅 Excel.ShapeTextHorizontalAlignment。
 
+      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: horizontalAlignment
+    fullName: horizontalAlignment
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'horizontalAlignment: Excel.ShapeTextHorizontalAlignment | "Left" | "Center" | "Right" | "Justify" | "JustifyLow" | "Distributed" | "ThaiDistributed";'
+      return:
+        type:
+          - Excel.ShapeTextHorizontalAlignment | "Left" | "Center" | "Right" | "Justify" | "JustifyLow" | "Distributed" | "ThaiDistributed"
+  - uid: excel.Excel.TextFrame.horizontalOverflow
+    summary: |-
+      表示文本框的水平溢出行为。 有关详细信息，请参阅 Excel.ShapeTextHorizontalOverflow。
 
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: bottomMargin
-  fullName: bottomMargin
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'bottomMargin: number;'
-    return:
-      type:
-      - number
-- uid: excel.Excel.TextFrame.context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-  isPreview: true
-  name: context
-  fullName: context
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'context: RequestContext;'
-    return:
-      type:
-      - RequestContext
-- uid: excel.Excel.TextFrame.deleteText
-  summary: >-
-    删除文本框架中的所有文本。
+      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: horizontalOverflow
+    fullName: horizontalOverflow
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'horizontalOverflow: Excel.ShapeTextHorizontalOverflow | "Overflow" | "Clip";'
+      return:
+        type:
+          - Excel.ShapeTextHorizontalOverflow | "Overflow" | "Clip"
+  - uid: excel.Excel.TextFrame.leftMargin
+    summary: |-
+      表示文本框的左边距（以磅为单位）。
 
+      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: leftMargin
+    fullName: leftMargin
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'leftMargin: number;'
+      return:
+        type:
+          - number
+  - uid: excel.Excel.TextFrame.load
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+    remarks: |-
+      除了此签名之外, 此方法还具有以下签名:
 
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: deleteText()
-  fullName: deleteText()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'deleteText(): void;'
-    return:
-      type:
-      - void
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const shapes = context.workbook.worksheets.getItem(\"Shapes\").shapes;\n    const textbox = shapes.getItem(\"Textbox\");\n    textbox.textFrame.deleteText();\n    await context.sync();\n});\n```"
-- uid: excel.Excel.TextFrame.hasText
-  summary: >-
-    指定文本框架是否包含文本。
+      `load(option?: string | string[]): Excel.TextFrame`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
 
+      `load(option?: { select?: string; expand?: string; }): Excel.TextFrame`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: hasText
-  fullName: hasText
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly hasText: boolean;'
-    return:
-      type:
-      - boolean
-- uid: excel.Excel.TextFrame.horizontalAlignment
-  summary: >-
-    表示文本框的水平对齐方式。 有关详细信息, 请参阅 ShapeTextHorizontalAlignment。
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TextFrame`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+    isPreview: true
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.TextFrameLoadOptions): Excel.TextFrame;'
+      return:
+        type:
+          - excel.Excel.TextFrame
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - excel.Excel.Interfaces.TextFrameLoadOptions
+  - uid: excel.Excel.TextFrame.load_1
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    isPreview: true
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.TextFrame;'
+      return:
+        type:
+          - excel.Excel.TextFrame
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: '一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。'
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.TextFrame.load_2
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    isPreview: true
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.TextFrame;'
+      return:
+        type:
+          - excel.Excel.TextFrame
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: excel.Excel.TextFrame.orientation
+    summary: |-
+      表示文本框的文本方向。 有关详细信息，请参阅 Excel.ShapeTextOrientation。
 
+      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: orientation
+    fullName: orientation
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'orientation: Excel.ShapeTextOrientation | "Horizontal" | "Vertical" | "Vertical270" | "WordArtVertical" | "EastAsianVertical" | "MongolianVertical" | "WordArtVerticalRTL";'
+      return:
+        type:
+          - Excel.ShapeTextOrientation | "Horizontal" | "Vertical" | "Vertical270" | "WordArtVertical" | "EastAsianVertical" | "MongolianVertical" | "WordArtVerticalRTL"
+  - uid: excel.Excel.TextFrame.readingOrder
+    summary: |-
+      表示文本框从左到右或从右到左的读取顺序。 有关详细信息，请参阅 Excel.ShapeTextReadingOrder。
 
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: horizontalAlignment
-  fullName: horizontalAlignment
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'horizontalAlignment: Excel.ShapeTextHorizontalAlignment | "Left" | "Center" | "Right" | "Justify" | "JustifyLow" | "Distributed" | "ThaiDistributed";'
-    return:
-      type:
-      - Excel.ShapeTextHorizontalAlignment | "Left" | "Center" | "Right" | "Justify" | "JustifyLow" | "Distributed" | "ThaiDistributed"
-- uid: excel.Excel.TextFrame.horizontalOverflow
-  summary: >-
-    表示文本框架的水平溢出行为。 有关详细信息, 请参阅 ShapeTextHorizontalOverflow。
+      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: readingOrder
+    fullName: readingOrder
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readingOrder: Excel.ShapeTextReadingOrder | "LeftToRight" | "RightToLeft";'
+      return:
+        type:
+          - Excel.ShapeTextReadingOrder | "LeftToRight" | "RightToLeft"
+  - uid: excel.Excel.TextFrame.rightMargin
+    summary: |-
+      表示文本框的右边距（以磅为单位）。
 
+      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: rightMargin
+    fullName: rightMargin
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'rightMargin: number;'
+      return:
+        type:
+          - number
+  - uid: excel.Excel.TextFrame.set
+    summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+    remarks: |-
+      此方法具有以下附加签名:
 
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: horizontalOverflow
-  fullName: horizontalOverflow
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'horizontalOverflow: Excel.ShapeTextHorizontalOverflow | "Overflow" | "Clip";'
-    return:
-      type:
-      - Excel.ShapeTextHorizontalOverflow | "Overflow" | "Clip"
-- uid: excel.Excel.TextFrame.leftMargin
-  summary: >-
-    表示文本框的左边距（以磅为单位）。
+      `set(properties: Excel.TextFrame): void`
+    isPreview: true
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.TextFrameUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: '一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。'
+          type:
+            - Interfaces.TextFrameUpdateData
+        - id: options
+          description: '提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。'
+          type:
+            - office.OfficeExtension.UpdateOptions
+  - uid: excel.Excel.TextFrame.set_1
+    summary: 基于现有加载的对象同时设置该对象的多个属性。
+    isPreview: true
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Excel.TextFrame): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - excel.Excel.TextFrame
+  - uid: excel.Excel.TextFrame.textRange
+    summary: |-
+      表示附加到文本框中形状上的文本，以及用于操作文本的属性和方法。 有关详细信息，请参阅 Excel.TextRange。
 
+      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: textRange
+    fullName: textRange
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly textRange: Excel.TextRange;'
+      return:
+        type:
+          - excel.Excel.TextRange
+  - uid: excel.Excel.TextFrame.toJSON
+    summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始 TextFrame 对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Excel.Interfaces.TextFrameData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。'
+    isPreview: true
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.TextFrameData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.TextFrameData
+        description: ''
+  - uid: excel.Excel.TextFrame.topMargin
+    summary: |-
+      表示文本框的上边距（以磅为单位）。
 
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: leftMargin
-  fullName: leftMargin
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'leftMargin: number;'
-    return:
-      type:
-      - number
-- uid: excel.Excel.TextFrame.load
-  summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
-  remarks: >-
-    除了此签名之外, 此方法还具有以下签名:
+      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: topMargin
+    fullName: topMargin
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'topMargin: number;'
+      return:
+        type:
+          - number
+  - uid: excel.Excel.TextFrame.verticalAlignment
+    summary: |-
+      表示文本框的垂直对齐方式。 有关详细信息，请参阅 Excel.ShapeTextVerticalAlignment。
 
+      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: verticalAlignment
+    fullName: verticalAlignment
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'verticalAlignment: Excel.ShapeTextVerticalAlignment | "Top" | "Middle" | "Bottom" | "Justified" | "Distributed";'
+      return:
+        type:
+          - Excel.ShapeTextVerticalAlignment | "Top" | "Middle" | "Bottom" | "Justified" | "Distributed"
+  - uid: excel.Excel.TextFrame.verticalOverflow
+    summary: |-
+      表示文本框的垂直溢出行为。 有关详细信息，请参阅 Excel.ShapeTextVerticalOverflow。
 
-    `load(option?: string | string[]): Excel.TextFrame`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
-
-
-    `load(option?: { select?: string; expand?: string; }): Excel.TextFrame`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
-
-
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TextFrame`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
-  isPreview: true
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: Excel.Interfaces.TextFrameLoadOptions): Excel.TextFrame;'
-    return:
-      type:
-      - excel.Excel.TextFrame
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - excel.Excel.Interfaces.TextFrameLoadOptions
-- uid: excel.Excel.TextFrame.load_1
-  summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
-  isPreview: true
-  name: load(propertyNames)
-  fullName: load(propertyNames)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNames?: string | string[]): Excel.TextFrame;'
-    return:
-      type:
-      - excel.Excel.TextFrame
-      description: ''
-    parameters:
-    - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。
-      type:
-      - string | string[]
-- uid: excel.Excel.TextFrame.load_2
-  summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
-  isPreview: true
-  name: load(propertyNamesAndPaths)
-  fullName: load(propertyNamesAndPaths)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.TextFrame;'
-    return:
-      type:
-      - excel.Excel.TextFrame
-      description: ''
-    parameters:
-    - id: propertyNamesAndPaths
-      description: 其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
-      type:
-      - '{ select?: string; expand?: string; }'
-- uid: excel.Excel.TextFrame.orientation
-  summary: >-
-    表示文本框的文本方向。 有关详细信息, 请参阅 ShapeTextOrientation。
-
-
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: orientation
-  fullName: orientation
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'orientation: Excel.ShapeTextOrientation | "Horizontal" | "Vertical" | "Vertical270" | "WordArtVertical" | "EastAsianVertical" | "MongolianVertical" | "WordArtVerticalRTL";'
-    return:
-      type:
-      - Excel.ShapeTextOrientation | "Horizontal" | "Vertical" | "Vertical270" | "WordArtVertical" | "EastAsianVertical" | "MongolianVertical" | "WordArtVerticalRTL"
-- uid: excel.Excel.TextFrame.readingOrder
-  summary: >-
-    表示文本框架的阅读顺序, 可以从左到右或从右到左。 有关详细信息, 请参阅 ShapeTextReadingOrder。
-
-
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: readingOrder
-  fullName: readingOrder
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readingOrder: Excel.ShapeTextReadingOrder | "LeftToRight" | "RightToLeft";'
-    return:
-      type:
-      - Excel.ShapeTextReadingOrder | "LeftToRight" | "RightToLeft"
-- uid: excel.Excel.TextFrame.rightMargin
-  summary: >-
-    表示文本框的右边距（以磅为单位）。
-
-
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: rightMargin
-  fullName: rightMargin
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'rightMargin: number;'
-    return:
-      type:
-      - number
-- uid: excel.Excel.TextFrame.set
-  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
-  remarks: >-
-    此方法具有以下附加签名:
-
-
-    `set(properties: Excel.TextFrame): void`
-  isPreview: true
-  name: set(properties, options)
-  fullName: set(properties, options)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'set(properties: Interfaces.TextFrameUpdateData, options?: OfficeExtension.UpdateOptions): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: properties
-      description: 一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。
-      type:
-      - Interfaces.TextFrameUpdateData
-    - id: options
-      description: 提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。
-      type:
-      - office.OfficeExtension.UpdateOptions
-- uid: excel.Excel.TextFrame.set_1
-  summary: 基于现有加载的对象同时设置该对象的多个属性。
-  isPreview: true
-  name: set(properties)
-  fullName: set(properties)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'set(properties: Excel.TextFrame): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: properties
-      description: ''
-      type:
-      - excel.Excel.TextFrame
-- uid: excel.Excel.TextFrame.textRange
-  summary: >-
-    代表附加到文本框架中的形状的文本, 以及用于操作文本的属性和方法。 有关详细信息, 请参阅 "Excel. TextRange"。
-
-
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: textRange
-  fullName: textRange
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly textRange: Excel.TextRange;'
-    return:
-      type:
-      - excel.Excel.TextRange
-- uid: excel.Excel.TextFrame.toJSON
-  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始 TextFrame 对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Excel.Interfaces.TextFrameData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。
-  isPreview: true
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'toJSON(): Excel.Interfaces.TextFrameData;'
-    return:
-      type:
-      - excel.Excel.Interfaces.TextFrameData
-      description: ''
-- uid: excel.Excel.TextFrame.topMargin
-  summary: >-
-    表示文本框的上边距（以磅为单位）。
-
-
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: topMargin
-  fullName: topMargin
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'topMargin: number;'
-    return:
-      type:
-      - number
-- uid: excel.Excel.TextFrame.verticalAlignment
-  summary: >-
-    表示文本框的垂直对齐方式。 有关详细信息, 请参阅 ShapeTextVerticalAlignment。
-
-
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: verticalAlignment
-  fullName: verticalAlignment
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'verticalAlignment: Excel.ShapeTextVerticalAlignment | "Top" | "Middle" | "Bottom" | "Justified" | "Distributed";'
-    return:
-      type:
-      - Excel.ShapeTextVerticalAlignment | "Top" | "Middle" | "Bottom" | "Justified" | "Distributed"
-- uid: excel.Excel.TextFrame.verticalOverflow
-  summary: >-
-    表示文本框架的垂直溢出行为。 有关详细信息, 请参阅 ShapeTextVerticalOverflow。
-
-
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: verticalOverflow
-  fullName: verticalOverflow
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'verticalOverflow: Excel.ShapeTextVerticalOverflow | "Overflow" | "Ellipsis" | "Clip";'
-    return:
-      type:
-      - Excel.ShapeTextVerticalOverflow | "Overflow" | "Ellipsis" | "Clip"
+      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: verticalOverflow
+    fullName: verticalOverflow
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'verticalOverflow: Excel.ShapeTextVerticalOverflow | "Overflow" | "Ellipsis" | "Clip";'
+      return:
+        type:
+          - Excel.ShapeTextVerticalOverflow | "Overflow" | "Ellipsis" | "Clip"

@@ -1,107 +1,202 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 39fdd8b8e52890a772525d768c2a5af756339bf9
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29974568"
 items:
-- uid: office.Office.AsyncResult
-  summary: 用于封装异步请求的结果的对象，包括状态和错误信息（如果请求失败）。
-  remarks: "<table><tr><td>主机</td><td>Access、Excel、Outlook、PowerPoint、Project、Word</td></tr></table>\n\n当函数传递给`callback`\"Async\"方法的参数执行时，它会接收您可以从访问的 AsyncResult 对象`callback`函数的唯一参数。\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following is an example applicable to content and task pane add-ins.\n// The example shows a call to the getSelectedDataAsync method of the Document object.\nOffice.context.document.getSelectedDataAsync(\"text\", {\n        valueFormat: \"unformatted\",\n        filterType: \"all\"\n    },\n    function (result) {\n        if (result.status === \"success\") {\n            var dataValue = result.value; // Get selected data.\n            console.log('Selected data is ' + dataValue);\n        } else {\n            var err = result.error;\n            console.log(err.name + \": \" + err.message);\n        }\n    });\n// The anonymous function passed as the callback argument ( function (result){...}) has a single \n// parameter named result that provides access to an AsyncResult object when the function executes.\n// When the call to the getSelectedDataAsync method completes, the callback function executes, \n// and the following line of code accesses the value property of the AsyncResult object to \n// return the data selected in the document:\nvar dataValue = result.value;\n// Note that other lines of code in the function use the result parameter of the callback function \n// to access the status and error properties of the AsyncResult object.\n```"
-  name: Office.AsyncResult
-  fullName: Office.AsyncResult
-  langs:
-  - typeScript
-  type: interface
-  package: office
-  children:
-  - office.Office.AsyncResult.asyncContext
-  - office.Office.AsyncResult.diagnostics
-  - office.Office.AsyncResult.error
-  - office.Office.AsyncResult.status
-  - office.Office.AsyncResult.value
-- uid: office.Office.AsyncResult.asyncContext
-  summary: 获取用户定义项传递给可选`asyncContext`传入时状态相同调用方法的参数。 这将返回用户定义项 (这可能的任何 JavaScript 类型： 字符串、 数量、 Boolean、 对象、 数组、 Null、 或 Undefined) 传递给可选`asyncContext`调用方法的参数。 如果未向 asyncContext 参数传递任何内容，则返回 Undefined。
-  remarks: "**支持详细信息**\n\n在以下矩阵大写 Y 表示相应的 Office 主机应用程序中支持此属性。 空单元格指示 Office 主机应用程序不支持此枚举。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> 适用于设备的 OWA </th><th> Office for Mac </th></tr> <tr><td><strong>访问</strong></td><td> Y </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> Y </td><td> Y </td><td> </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>项目</strong></td><td> </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction getDataWithContext() {\n    var format = \"Your data: \";\n    Office.context.document.getSelectedDataAsync(\n        Office.CoercionType.Text, \n        { asyncContext: format }, \n        showDataWithContext);\n}\n\nfunction showDataWithContext(asyncResult) {\n    write(asyncResult.asyncContext + asyncResult.value);\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: asyncContext
-  fullName: asyncContext
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'asyncContext: any;'
-    return:
-      type:
-      - any
-- uid: office.Office.AsyncResult.diagnostics
-  summary: 获取一个对象，可能会提供其他信息，如果出现错误。
-  remarks: >-
-    **支持详细信息**
+  - uid: office.Office.AsyncResult
+    summary: |-
+      用于封装异步请求的结果的对象，包括状态和错误信息（如果请求失败）。
+
+      当您传递给 "Async" `callback`方法的参数的函数执行时, 它会接收您可以从该`callback`函数的唯一参数访问的 AsyncResult 对象。
+    name: Office.AsyncResult
+    fullName: Office.AsyncResult
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    remarks: |-
 
 
-    在以下矩阵大写 Y 表示相应的 Office 主机应用程序中支持此属性。 空单元格指示 Office 主机应用程序不支持此枚举。
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // The following is an example applicable to content and task pane add-ins.
+      // The example shows a call to the getSelectedDataAsync method of the Document object.
+      Office.context.document.getSelectedDataAsync("text", {
+              valueFormat: "unformatted",
+              filterType: "all"
+          },
+          function (result) {
+              if (result.status === "success") {
+                  var dataValue = result.value; // Get selected data.
+                  console.log('Selected data is ' + dataValue);
+              } else {
+                  var err = result.error;
+                  console.log(err.name + ": " + err.message);
+              }
+          });
+      // The anonymous function passed as the callback argument ( function (result){...}) has a single 
+      // parameter named result that provides access to an AsyncResult object when the function executes.
+      // When the call to the getSelectedDataAsync method completes, the callback function executes, 
+      // and the following line of code accesses the value property of the AsyncResult object to 
+      // return the data selected in the document:
+      var dataValue = result.value;
+      // Note that other lines of code in the function use the result parameter of the callback function 
+      // to access the status and error properties of the AsyncResult object.
+      ```
+    children:
+      - office.Office.AsyncResult.asyncContext
+      - office.Office.AsyncResult.diagnostics
+      - office.Office.AsyncResult.error
+      - office.Office.AsyncResult.status
+      - office.Office.AsyncResult.value
+  - uid: office.Office.AsyncResult.asyncContext
+    summary: '获取与传入时状态相同的传递给调用`asyncContext`方法的可选参数的用户定义项。 这将返回传递给调用方法的可选`asyncContext`参数的用户定义的项 (可以是任何 JavaScript 类型: String、Number、Boolean、Object、Array、Null 或未定义)。 如果您未向  asyncContext 参数传递任何东西，则返回 Undefined 。'
+    name: asyncContext
+    fullName: asyncContext
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'asyncContext: any;'
+      return:
+        type:
+          - any
+        description: |-
 
 
-    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          function getDataWithContext() {
+              var format = "Your data: ";
+              Office.context.document.getSelectedDataAsync(
+                  Office.CoercionType.Text, 
+                  { asyncContext: format }, 
+                  showDataWithContext);
+          }
+
+          function showDataWithContext(asyncResult) {
+              write(asyncResult.asyncContext + asyncResult.value);
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.AsyncResult.diagnostics
+    summary: '如果发生错误, 则获取可能提供其他信息的对象。'
+    remarks: |-
+      *支持的 api*
+
+      `Office.context.mailbox.item.getCallbackTokenAsync`<!-- -->, `Office.context.mailbox.item.getUserIdentityTokenAsync`
+
+      *支持的错误* <table> <tr><th>`AsyncResult.error.name` </th><th>`AsyncResult.error.message` </th><th>返回的诊断对象的说明 </th></tr> <tr><td><strong>HTTPRequestFailure</strong> </td><td>请求失败。 请查看 HTTP 错误代码的 diagnostics 对象。 </td><td>JSON 对象中的 HTTP 错误代码, 例如,`{"HTTPCode":"401"}` </td></tr> <tr><td><strong>InternalServerError</strong></td><td>Exchange 服务器返回错误。 有关详细信息, 请参阅 diagnostics 对象。</td><td>JSON 对象中来自 Exchange 服务器的错误消息, 例如,`{"ErrorText": "The mailbox database is temporarily unavailable"}`</td></tr> </table>
+    name: diagnostics
+    fullName: diagnostics
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'diagnostics: any;'
+      return:
+        type:
+          - any
+  - uid: office.Office.AsyncResult.error
+    summary: '如果出现任何错误, 则获取一个提供错误说明的 " [Office." 错误](xref:office.Office.Error)对象。'
+    name: error
+    fullName: error
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'error: Office.Error;'
+      return:
+        type:
+          - office.Office.Error
+        description: |-
 
 
-    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> 适用于设备的 OWA </th><th> Office for Mac </th></tr> <tr><td><strong>Outlook</strong></td><td> Y （邮箱预览） </td><td> </td><td> </td><td> </td><td> </td></tr> </table>
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          function getData() {
+              Office.context.document.getSelectedDataAsync(Office.CoercionType.Table, function(asyncResult) {
+                  if (asyncResult.status == Office.AsyncResultStatus.Failed) {
+                      write(asyncResult.error.message);
+                  }
+                  else {
+                      write(asyncResult.value);
+                  }
+              });
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.AsyncResult.status
+    summary: '获取异步操作的[AsyncResultStatus](xref:office.Office.AsyncResultStatus) 。'
+    name: status
+    fullName: status
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'status: AsyncResultStatus;'
+      return:
+        type:
+          - office.Office.AsyncResultStatus
+        description: |-
 
 
-    *受支持的 Api*
+          #### <a name="examples"></a>示例
 
+          ```javascript
+          function getData() {
+              Office.context.document.getSelectedDataAsync(Office.CoercionType.Table, function(asyncResult) {
+                  if (asyncResult.status == Office.AsyncResultStatus.Failed) {
+                      write(asyncResult.error.message);
+                  }
+                  else {
+                      write(asyncResult.value);
+                  }
+              });
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.AsyncResult.value
+    summary: 获取此异步操作的负载或内容（如有）。
+    remarks: |-
+      可以在作为参数传递给 "Async" 方法的 callback 参数的函数中访问 AsyncResult 对象, 如`getSelectedDataAsync` [Document](xref:office.Office.Document)对象的和`setSelectedDataAsync`方法。
 
-    `Office.context.mailbox.item.getCallbackTokenAsync`<!-- -->, `Office.context.mailbox.item.getUserIdentityTokenAsync`
+      **注意**: 对于特定的 "Async" 方法, value 属性的返回值取决于该方法的用途和上下文。 若要确定 value 属性为 "Async" 方法返回了什么内容，请参阅该方法主题的“回调值”部分。
 
+      #### <a name="examples"></a>示例
 
-    *支持的错误* <table> <tr><th>`AsyncResult.error.name` </th><th>`AsyncResult.error.message` </th><th>Diagnostics 对象返回的说明 </th></tr> <tr><td><strong>HTTPRequestFailure</strong> </td><td>请求失败。 请看 HTTP 错误代码的诊断对象。 </td><td>例如，对象以 json 格式的 HTTP 错误代码`{"HTTPCode":"401"}` </td></tr> <tr><td><strong>InternalServerError</strong></td><td>Exchange 服务器返回错误。 请查看诊断对象的详细信息。</td><td>例如，从 Exchange 服务器以 json 格式的错误消息对象`{"ErrorText": "The mailbox database is temporarily unavailable"}`</td></tr> </table>
-  name: diagnostics
-  fullName: diagnostics
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'diagnostics: any;'
-    return:
-      type:
-      - any
-- uid: office.Office.AsyncResult.error
-  summary: 如果出现任何错误，请获取[Office.Error](xref:office.Office.Error)对象，提供错误描述。
-  remarks: "**支持详细信息**\n\n在以下矩阵大写 Y 表示相应的 Office 主机应用程序中支持此属性。 空单元格指示 Office 主机应用程序不支持此枚举。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> 适用于设备的 OWA </th><th> Office for Mac </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> Y </td><td> Y </td><td> </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction getData() {\n    Office.context.document.getSelectedDataAsync(Office.CoercionType.Table, function(asyncResult) {\n        if (asyncResult.status == Office.AsyncResultStatus.Failed) {\n            write(asyncResult.error.message);\n        }\n        else {\n            write(asyncResult.value);\n        }\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: error
-  fullName: error
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'error: Office.Error;'
-    return:
-      type:
-      - office.Office.Error
-- uid: office.Office.AsyncResult.status
-  summary: 获取异步操作[Office.AsyncResultStatus](xref:office.Office.AsyncResultStatus) 。
-  remarks: "**支持详细信息**\n\n在以下矩阵大写 Y 表示相应的 Office 主机应用程序中支持此属性。 空单元格指示 Office 主机应用程序不支持此枚举。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> 适用于设备的 OWA </th><th> Office for Mac </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> Y </td><td> Y </td><td> </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction getData() {\n    Office.context.document.getSelectedDataAsync(Office.CoercionType.Table, function(asyncResult) {\n        if (asyncResult.status == Office.AsyncResultStatus.Failed) {\n            write(asyncResult.error.message);\n        }\n        else {\n            write(asyncResult.value);\n        }\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: status
-  fullName: status
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'status: AsyncResultStatus;'
-    return:
-      type:
-      - office.Office.AsyncResultStatus
-- uid: office.Office.AsyncResult.value
-  summary: 获取此异步操作的负载或内容（如有）。
-  remarks: "访问 AsyncResult 对象作为参数传递给\"Async\"方法的 callback 参数如函数中`getSelectedDataAsync`和`setSelectedDataAsync` [Document](xref:office.Office.Document)对象的方法。\n\n**注意**： value 属性返回特定\"Async\"方法的而异的用途和该方法的上下文。 若要确定返回\"Async\"方法的 value 属性的内容，请参阅该方法的主题的\"回调值\"部分。\n\n**支持详细信息**\n\n在以下矩阵大写 Y 表示相应的 Office 主机应用程序中支持此属性。 空单元格指示 Office 主机应用程序不支持此枚举。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> 适用于设备的 OWA </th><th> Office for Mac </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> Y </td><td> Y </td><td> </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>项目</strong></td><td> Y </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction getData() {\n    Office.context.document.getSelectedDataAsync(Office.CoercionType.Table, function(asyncResult) {\n        if (asyncResult.status == Office.AsyncResultStatus.Failed) {\n            write(asyncResult.error.message);\n        }\n        else {\n            write(asyncResult.value);\n        }\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: value
-  fullName: value
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'value: T;'
-    return:
-      type:
-      - T
+      ```javascript
+      function getData() {
+          Office.context.document.getSelectedDataAsync(Office.CoercionType.Table, function(asyncResult) {
+              if (asyncResult.status == Office.AsyncResultStatus.Failed) {
+                  write(asyncResult.error.message);
+              }
+              else {
+                  write(asyncResult.value);
+              }
+          });
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: value
+    fullName: value
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'value: T;'
+      return:
+        type:
+          - T

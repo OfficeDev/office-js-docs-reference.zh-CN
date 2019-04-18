@@ -1,166 +1,139 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 87836376ffdcf368ccd393a32f4b6d0894e56283
-ms.sourcegitcommit: 6c48441b8be51d3a9d7dc836e386230a155feceb
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/22/2019
-ms.locfileid: "30198142"
 items:
-- uid: Outlook_1_5.Office.RoamingSettings
-  summary: >-
-    通过使用 RoamingSettings 对象的方法创建的设置将按外接程序和按用户进行保存，即，这些设置仅供创建它们的外接程序使用，并且仅来自保存它们的用户邮箱。
+  - uid: Outlook_1_5.Office.RoamingSettings
+    summary: |-
+      使用 RoamingSettings 对象的方法创建的设置将按外接程序和每个用户进行保存。 即，这些设置仅供创建它们的外接程序使用，并且仅来自保存它们的用户邮箱。
 
+      虽然 Outlook 外接程序 API 仅允许创建它们的外接程序访问这些设置，但这些设置不应被视为安全存储。可以通过 Exchange Web 服务或扩展 MAPI 访问这些设置。它们不应用于存储敏感信息，如用户凭据或安全令牌。
 
-    虽然 Outlook 外接程序 API 仅允许创建它们的外接程序访问这些设置，但这些设置不应被视为安全存储。可以通过 Exchange Web 服务或扩展 MAPI 访问这些设置。它们不应用于存储敏感信息，如用户凭据或安全令牌。
+      设置的名称是一个字符串，而值可以是字符串、数字、布尔值、null 值、对象或数组。
 
+      RoamingSettings 对象可通过 RoamingSettings 属性在命名空间中进行访问。
 
-    设置的名称是一个字符串，而值可以是字符串、数字、布尔值、null 值、对象或数组。
+      **重要说明**: 只有在首次加载加载项时, 才会从持久化存储初始化 RoamingSettings 对象。 对于任务窗格, 这意味着仅在第一次打开任务窗格时才会对其进行初始化。 如果任务窗格导航到另一个页面或重新加载当前页面, 则内存中的对象将重置为其初始值, 即使您的外接程序具有持续的更改也是如此。 在关闭并重新打开任务窗格之前, 保留的更改将不可用。
 
+      \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
 
-    可通过 Office.context 命名空间中的 roamingSettings 属性访问 RoamingSettings 对象。
+      #### <a name="examples"></a>示例
 
+      ```javascript
+      // Get the current value of the 'myKey' setting.
+      var value = Office.context.roamingSettings.get('myKey');
+      // Update the value of the 'myKey' setting.
+      Office.context.roamingSettings.set('myKey', 'Hello World!');
+      // Persist the change.
+      Office.context.roamingSettings.saveAsync();
+      ```
+    name: Office.RoamingSettings
+    fullName: Office.RoamingSettings
+    langs:
+      - typeScript
+    type: interface
+    package: Outlook_1_5
+    children:
+      - Outlook_1_5.Office.RoamingSettings.get
+      - Outlook_1_5.Office.RoamingSettings.remove
+      - Outlook_1_5.Office.RoamingSettings.saveAsync
+      - Outlook_1_5.Office.RoamingSettings.set
+  - uid: Outlook_1_5.Office.RoamingSettings.get
+    summary: |-
+      检索指定设置。
 
-    **重要说明**: 只有在首次加载加载项时, 才会从持久化存储初始化 RoamingSettings 对象。 对于任务窗格, 这意味着仅在第一次打开任务窗格时才会对其进行初始化。 如果任务窗格导航到另一个页面或重新加载当前页面, 则内存中的对象将重置为其初始值, 即使您的外接程序具有持续的更改也是如此。 在关闭并重新打开任务窗格之前, 保留的更改将不可用。
+      \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: '<table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>'
+    name: get(name)
+    fullName: get(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'get(name: string): any;'
+      return:
+        type:
+          - any
+        description: '类型: String \| Number \| Boolean \|对象\|数组'
+      parameters:
+        - id: name
+          description: 要检索的设置的区分大小写的名称。
+          type:
+            - string
+  - uid: Outlook_1_5.Office.RoamingSettings.remove
+    summary: |-
+      删除指定的设置
 
+      \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: '<table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>'
+    name: remove(name)
+    fullName: remove(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'remove(name: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: name
+          description: 要移除的设置的区分大小写的名称。
+          type:
+            - string
+  - uid: Outlook_1_5.Office.RoamingSettings.saveAsync
+    summary: |-
+      保存设置。
 
-    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
+      加载项以前保存的任何设置都会在初始化时加载, 因此, 在会话的生存期期间, 可以只使用 set 和 get 方法来处理设置属性包的内存副本。 如果希望保留设置以便可在下次使用外接程序时使用这些设置，请使用 saveAsync 方法。
 
-    ####说明
+      \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: '<table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>'
+    name: saveAsync(callback)
+    fullName: saveAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'saveAsync(callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: '可选。 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。'
+          type:
+            - '(asyncResult: Office.AsyncResult<void>) => void'
+  - uid: Outlook_1_5.Office.RoamingSettings.set
+    summary: |-
+      设置或创建指定设置。
 
+      set 方法创建指定名称的新设置（如果该设置尚不存在），或者设置指定名称的现有设置。该值在文档中存储为其数据类型的序列化 JSON 表示形式。
 
-    ```javascript
+      每个加载项的设置最多可使用32KB。
 
-    // Get the current value of the 'myKey' setting.
+      在调用 saveAsync 函数之前, 使用 set 函数对设置所做的任何更改都不会保存到服务器。
 
-    var value = Office.context.roamingSettings.get('myKey');
-
-    // Update the value of the 'myKey' setting.
-
-    Office.context.roamingSettings.set('myKey', 'Hello World!');
-
-    // Persist the change.
-
-    Office.context.roamingSettings.saveAsync();
-
-    ```
-  name: Office.RoamingSettings
-  fullName: Office.RoamingSettings
-  langs:
-  - typeScript
-  type: interface
-  package: Outlook_1_5
-  children:
-  - Outlook_1_5.Office.RoamingSettings.get
-  - Outlook_1_5.Office.RoamingSettings.remove
-  - Outlook_1_5.Office.RoamingSettings.saveAsync
-  - Outlook_1_5.Office.RoamingSettings.set
-- uid: Outlook_1_5.Office.RoamingSettings.get
-  summary: >-
-    检索指定设置。
-
-
-    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
-  name: get(name)
-  fullName: get(name)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'get(name: string): any;'
-    return:
-      type:
-      - any
-      description: '类型: String \| Number \| Boolean \|对象\|数组'
-    parameters:
-    - id: name
-      description: 要检索的设置的区分大小写的名称。
-      type:
-      - string
-- uid: Outlook_1_5.Office.RoamingSettings.remove
-  summary: >-
-    删除指定的设置
-
-
-    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
-  name: remove(name)
-  fullName: remove(name)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'remove(name: string): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: name
-      description: 要移除的设置的区分大小写的名称。
-      type:
-      - string
-- uid: Outlook_1_5.Office.RoamingSettings.saveAsync
-  summary: >-
-    保存设置。
-
-
-    外接程序初始化时会加载之前保存的所有设置，因此，在会话的生存期内，您只能通过 set 和 get 方法使用设置属性包的内存副本。如果希望保留该设置以便可在下次使用外接程序时使用这些设置，请使用 saveAsync 方法。
-
-
-    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
-  name: saveAsync(callback)
-  fullName: saveAsync(callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'saveAsync(callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: callback
-      description: 可选。 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。
-      type:
-      - '(asyncResult: Office.AsyncResult<void>) => void'
-- uid: Outlook_1_5.Office.RoamingSettings.set
-  summary: >-
-    设置或创建指定设置。
-
-
-    set 方法创建指定名称的新设置（如果该设置尚不存在），或者设置指定名称的现有设置。该值在文档中存储为其数据类型的序列化 JSON 表示形式。
-
-
-    每个加载项的设置最多可使用32KB。
-
-
-    在调用 saveAsync 函数之前，使用 set 函数对设置所做的所有更改将不会保存到服务器。
-
-
-    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
-  name: set(name, value)
-  fullName: set(name, value)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'set(name: string, value: any): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: name
-      description: 要设置或创建的设置的名称（区分大小写）。
-      type:
-      - string
-    - id: value
-      description: 指定要存储的值。
-      type:
-      - any
+      \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: '<table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>'
+    name: 'set(name, value)'
+    fullName: 'set(name, value)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(name: string, value: any): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: name
+          description: 要设置或创建的设置的名称（区分大小写）。
+          type:
+            - string
+        - id: value
+          description: Specifies the value to be stored.
+          type:
+            - any

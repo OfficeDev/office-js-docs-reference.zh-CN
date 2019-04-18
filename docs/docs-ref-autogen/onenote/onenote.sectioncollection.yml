@@ -1,244 +1,304 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 88fbef979db0a3a940cbe0b25c22979ac33b3923
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29980938"
 items:
-- uid: onenote.OneNote.SectionCollection
-  summary: >-
-    表示一组分区。
+  - uid: onenote.OneNote.SectionCollection
+    summary: |-
+      表示分区的集合。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: OneNote.SectionCollection
+    fullName: OneNote.SectionCollection
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: onenote
+    children:
+      - onenote.OneNote.SectionCollection.context
+      - onenote.OneNote.SectionCollection.count
+      - onenote.OneNote.SectionCollection.getByName
+      - onenote.OneNote.SectionCollection.getItem
+      - onenote.OneNote.SectionCollection.getItemAt
+      - onenote.OneNote.SectionCollection.items
+      - onenote.OneNote.SectionCollection.load
+      - onenote.OneNote.SectionCollection.load_1
+      - onenote.OneNote.SectionCollection.load_2
+      - onenote.OneNote.SectionCollection.toJSON
+      - onenote.OneNote.SectionCollection.track
+      - onenote.OneNote.SectionCollection.untrack
+  - uid: onenote.OneNote.SectionCollection.context
+    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - RequestContext
+  - uid: onenote.OneNote.SectionCollection.count
+    summary: |-
+      返回集合中的分区数。 只读。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: count
+    fullName: count
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly count: number;'
+      return:
+        type:
+          - number
+  - uid: onenote.OneNote.SectionCollection.getByName
+    summary: |-
+      获取具有指定名称的分区的集合。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getByName(name)
+    fullName: getByName(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getByName(name: string): OneNote.SectionCollection;'
+      return:
+        type:
+          - onenote.OneNote.SectionCollection
+        description: |-
 
 
-    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  name: OneNote.SectionCollection
-  fullName: OneNote.SectionCollection
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: onenote
-  children:
-  - onenote.OneNote.SectionCollection.context
-  - onenote.OneNote.SectionCollection.count
-  - onenote.OneNote.SectionCollection.getByName
-  - onenote.OneNote.SectionCollection.getItem
-  - onenote.OneNote.SectionCollection.getItemAt
-  - onenote.OneNote.SectionCollection.items
-  - onenote.OneNote.SectionCollection.load
-  - onenote.OneNote.SectionCollection.load_1
-  - onenote.OneNote.SectionCollection.load_2
-  - onenote.OneNote.SectionCollection.toJSON
-  - onenote.OneNote.SectionCollection.track
-  - onenote.OneNote.SectionCollection.untrack
-- uid: onenote.OneNote.SectionCollection.context
-  summary: 与对象关联的请求上下文。 这将连接到 Office 主机应用程序的过程外接程序的过程。
-  name: context
-  fullName: context
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'context: RequestContext;'
-    return:
-      type:
-      - RequestContext
-- uid: onenote.OneNote.SectionCollection.count
-  summary: >-
-    返回集合中分区的数目。只读。
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          OneNote.run(function (context) {
+
+              // Get the sections in the current notebook.
+              var sections = context.application.getActiveNotebook().sections;
+
+              // Queue a command to load the sections. 
+              // For best performance, request specific properties.
+              sections.load("id"); 
+              
+              // Get the sections with the specified name.
+              var groceriesSections = sections.getByName("Groceries");
+              
+              // Queue a command to load the sections with the specified name.
+              groceriesSections.load("id,name");
+
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+
+                      // Iterate through the collection or access items individually by index.
+                      if (groceriesSections.items.length > 0) {
+                          console.log("Section name: " + groceriesSections.items[0].name);
+                          console.log("Section ID: " + groceriesSections.items[0].id);
+                      }
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: name
+          description: 节的名称。
+          type:
+            - string
+  - uid: onenote.OneNote.SectionCollection.getItem
+    summary: |-
+      按其在集合中的 ID 或索引获取分区。 只读。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getItem(index)
+    fullName: getItem(index)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItem(index: number | string): OneNote.Section;'
+      return:
+        type:
+          - onenote.OneNote.Section
+        description: ''
+      parameters:
+        - id: index
+          description: 分区组的 ID 或在集合中的分区的索引位置。
+          type:
+            - number | string
+  - uid: onenote.OneNote.SectionCollection.getItemAt
+    summary: |-
+      按其在集合中的位置获取分区。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getItemAt(index)
+    fullName: getItemAt(index)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItemAt(index: number): OneNote.Section;'
+      return:
+        type:
+          - onenote.OneNote.Section
+        description: ''
+      parameters:
+        - id: index
+          description: 要检索的对象的索引值。 从零开始编制索引。
+          type:
+            - number
+  - uid: onenote.OneNote.SectionCollection.items
+    summary: 获取此集合中已加载的子项。
+    name: items
+    fullName: items
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly items: OneNote.Section[];'
+      return:
+        type:
+          - 'OneNote.Section[]'
+  - uid: onenote.OneNote.SectionCollection.load
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+    remarks: |-
+      除了此签名之外, 此方法还具有以下签名:
+
+      `load(option?: string | string[]): OneNote.SectionCollection`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
+
+      `load(option?: { select?: string; expand?: string; }): OneNote.SectionCollection`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.SectionCollection`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OneNote.Interfaces.SectionCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions): OneNote.SectionCollection;'
+      return:
+        type:
+          - onenote.OneNote.SectionCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - OneNote.Interfaces.SectionCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions
+  - uid: onenote.OneNote.SectionCollection.load_1
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): OneNote.SectionCollection;'
+      return:
+        type:
+          - onenote.OneNote.SectionCollection
+        description: |-
 
 
-    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  name: count
-  fullName: count
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly count: number;'
-    return:
-      type:
-      - number
-- uid: onenote.OneNote.SectionCollection.getByName
-  summary: >-
-    获取具有指定名称的分区的集合。
+          #### <a name="examples"></a>示例
 
+          ```javascript
+          OneNote.run(function (context) {
 
-    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  name: getByName(name)
-  fullName: getByName(name)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getByName(name: string): OneNote.SectionCollection;'
-    return:
-      type:
-      - onenote.OneNote.SectionCollection
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the sections in the current notebook.\n    var sections = context.application.getActiveNotebook().sections;\n\n    // Queue a command to load the sections. \n    // For best performance, request specific properties.\n    sections.load(\"id\"); \n    \n    // Get the sections with the specified name.\n    var groceriesSections = sections.getByName(\"Groceries\");\n    \n    // Queue a command to load the sections with the specified name.\n    groceriesSections.load(\"id,name\");\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            // Iterate through the collection or access items individually by index.\n            if (groceriesSections.items.length > 0) {\n                console.log(\"Section name: \" + groceriesSections.items[0].name);\n                console.log(\"Section ID: \" + groceriesSections.items[0].id);\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-    parameters:
-    - id: name
-      description: 节的名称。
-      type:
-      - string
-- uid: onenote.OneNote.SectionCollection.getItem
-  summary: >-
-    按其在集合中的 ID 或索引获取分区。只读。
+              // Get the sections in the current notebook.
+              var sections = context.application.getActiveNotebook().sections;
 
+              // Queue a command to load the sections. 
+              // For best performance, request specific properties.
+              sections.load("name"); 
 
-    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  name: getItem(index)
-  fullName: getItem(index)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getItem(index: number | string): OneNote.Section;'
-    return:
-      type:
-      - onenote.OneNote.Section
-      description: ''
-    parameters:
-    - id: index
-      description: 分区组的 ID 或在集合中的分区的索引位置。
-      type:
-      - number | string
-- uid: onenote.OneNote.SectionCollection.getItemAt
-  summary: >-
-    按其在集合中的位置获取分区。
-
-
-    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  name: getItemAt(index)
-  fullName: getItemAt(index)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getItemAt(index: number): OneNote.Section;'
-    return:
-      type:
-      - onenote.OneNote.Section
-      description: ''
-    parameters:
-    - id: index
-      description: 要检索的对象的索引值。从零开始编制索引。
-      type:
-      - number
-- uid: onenote.OneNote.SectionCollection.items
-  summary: 获取此集合中的加载的子项目。
-  name: items
-  fullName: items
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly items: OneNote.Section[];'
-    return:
-      type:
-      - OneNote.Section[]
-- uid: onenote.OneNote.SectionCollection.load
-  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
-  remarks: >-
-    除了此签名，此方法具有以下签名：
-
-
-    `load(option?: string | string[]): OneNote.SectionCollection`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。
-
-
-    `load(option?: { select?: string; expand?: string; }): OneNote.SectionCollection`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
-
-
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.SectionCollection`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: OneNote.Interfaces.SectionCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions): OneNote.SectionCollection;'
-    return:
-      type:
-      - onenote.OneNote.SectionCollection
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - OneNote.Interfaces.SectionCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions
-- uid: onenote.OneNote.SectionCollection.load_1
-  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
-  name: load(propertyNames)
-  fullName: load(propertyNames)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNames?: string | string[]): OneNote.SectionCollection;'
-    return:
-      type:
-      - onenote.OneNote.SectionCollection
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the sections in the current notebook.\n    var sections = context.application.getActiveNotebook().sections;\n\n    // Queue a command to load the sections. \n    // For best performance, request specific properties.\n    sections.load(\"name\"); \n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            \n            // Iterate through the collection or access items individually by index, for example: sections.items[0]\n            $.each(sections.items, function(index, section) {\n                if (section.name === \"Homework\") {\n                    section.addPage(\"Biology\");\n                    section.addPage(\"Spanish\");\n                    section.addPage(\"Computer Science\");\n                }\n            });\n            return context.sync();\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-    parameters:
-    - id: propertyNames
-      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
-      type:
-      - string | string[]
-- uid: onenote.OneNote.SectionCollection.load_2
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: OfficeExtension.LoadOption): OneNote.SectionCollection;'
-    return:
-      type:
-      - onenote.OneNote.SectionCollection
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - office.OfficeExtension.LoadOption
-- uid: onenote.OneNote.SectionCollection.toJSON
-  summary: 重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。 (`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)而原始`OneNote.SectionCollection`对象是 API 对象，`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`OneNote.Interfaces.SectionCollectionData` <!-- -->)，其中包含数组"项目"的任何加载属性集的项目的浅表副本。
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'toJSON(): OneNote.Interfaces.SectionCollectionData;'
-    return:
-      type:
-      - onenote.OneNote.Interfaces.SectionCollectionData
-      description: ''
-- uid: onenote.OneNote.SectionCollection.track
-  summary: 跟踪自动调整根据周围的文档中的更改的对象。 此呼叫是 context.trackedObjects.add(thisObject) 简写。 如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。
-  name: track()
-  fullName: track()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'track(): OneNote.SectionCollection;'
-    return:
-      type:
-      - onenote.OneNote.SectionCollection
-      description: ''
-- uid: onenote.OneNote.SectionCollection.untrack
-  summary: 发行版与此对象，如果以前跟踪关联的内存。 此呼叫是简写 context.trackedObjects.remove(thisObject)。 具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。 您将需要的内存版本生效前调用"context.sync()"。
-  name: untrack()
-  fullName: untrack()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'untrack(): OneNote.SectionCollection;'
-    return:
-      type:
-      - onenote.OneNote.SectionCollection
-      description: ''
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                      
+                      // Iterate through the collection or access items individually by index, for example: sections.items[0]
+                      $.each(sections.items, function(index, section) {
+                          if (section.name === "Homework") {
+                              section.addPage("Biology");
+                              section.addPage("Spanish");
+                              section.addPage("Computer Science");
+                          }
+                      });
+                      return context.sync();
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: '一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。'
+          type:
+            - 'string | string[]'
+  - uid: onenote.OneNote.SectionCollection.load_2
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OfficeExtension.LoadOption): OneNote.SectionCollection;'
+      return:
+        type:
+          - onenote.OneNote.SectionCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - office.OfficeExtension.LoadOption
+  - uid: onenote.OneNote.SectionCollection.toJSON
+    summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始`OneNote.SectionCollection`对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`OneNote.Interfaces.SectionCollectionData`<!-- -->), 其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): OneNote.Interfaces.SectionCollectionData;'
+      return:
+        type:
+          - onenote.OneNote.Interfaces.SectionCollectionData
+        description: ''
+  - uid: onenote.OneNote.SectionCollection.track
+    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。
+    name: track()
+    fullName: track()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'track(): OneNote.SectionCollection;'
+      return:
+        type:
+          - onenote.OneNote.SectionCollection
+        description: ''
+  - uid: onenote.OneNote.SectionCollection.untrack
+    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前，你需要调用“context.sync()”。
+    name: untrack()
+    fullName: untrack()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'untrack(): OneNote.SectionCollection;'
+      return:
+        type:
+          - onenote.OneNote.SectionCollection
+        description: ''

@@ -1,39 +1,47 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: db7e9910ff725c1f961832cf451f2c522f18786d
-ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "26220364"
 items:
-- uid: excel.Excel.ConditionalPresetCriteriaRule
-  summary: >-
-    代表预设条件的条件格式规则
+  - uid: excel.Excel.ConditionalPresetCriteriaRule
+    summary: |-
+      代表 "预置条件" 条件格式规则
+
+      \[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.ConditionalPresetCriteriaRule
+    fullName: Excel.ConditionalPresetCriteriaRule
+    langs:
+      - typeScript
+    type: interface
+    package: excel
+    children:
+      - excel.Excel.ConditionalPresetCriteriaRule.criterion
+  - uid: excel.Excel.ConditionalPresetCriteriaRule.criterion
+    summary: |-
+      条件格式的条件。
+
+      \[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: criterion
+    fullName: criterion
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'criterion: Excel.ConditionalFormatPresetCriterion | "Invalid" | "Blanks" | "NonBlanks" | "Errors" | "NonErrors" | "Yesterday" | "Today" | "Tomorrow" | "LastSevenDays" | "LastWeek" | "ThisWeek" | "NextWeek" | "LastMonth" | "ThisMonth" | "NextMonth" | "AboveAverage" | "BelowAverage" | "EqualOrAboveAverage" | "EqualOrBelowAverage" | "OneStdDevAboveAverage" | "OneStdDevBelowAverage" | "TwoStdDevAboveAverage" | "TwoStdDevBelowAverage" | "ThreeStdDevAboveAverage" | "ThreeStdDevBelowAverage" | "UniqueValues" | "DuplicateValues";'
+      return:
+        type:
+          - Excel.ConditionalFormatPresetCriterion | "Invalid" | "Blanks" | "NonBlanks" | "Errors" | "NonErrors" | "Yesterday" | "Today" | "Tomorrow" | "LastSevenDays" | "LastWeek" | "ThisWeek" | "NextWeek" | "LastMonth" | "ThisMonth" | "NextMonth" | "AboveAverage" | "BelowAverage" | "EqualOrAboveAverage" | "EqualOrBelowAverage" | "OneStdDevAboveAverage" | "OneStdDevBelowAverage" | "TwoStdDevAboveAverage" | "TwoStdDevBelowAverage" | "ThreeStdDevAboveAverage" | "ThreeStdDevBelowAverage" | "UniqueValues" | "DuplicateValues"
+        description: |-
 
 
-    \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: Excel.ConditionalPresetCriteriaRule
-  fullName: Excel.ConditionalPresetCriteriaRule
-  langs:
-  - typeScript
-  type: interface
-  package: excel
-  children:
-  - excel.Excel.ConditionalPresetCriteriaRule.criterion
-- uid: excel.Excel.ConditionalPresetCriteriaRule.criterion
-  summary: >-
-    条件格式的条件。
+          #### <a name="examples"></a>示例
 
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const range = sheet.getRange("B2:M5");
+              const conditionalFormat = range.conditionalFormats
+                  .add(Excel.ConditionalFormatType.presetCriteria);
+              conditionalFormat.preset.format.font.color = "white";
+              conditionalFormat.preset.rule = { criterion: Excel.ConditionalFormatPresetCriterion.oneStdDevAboveAverage };
 
-    \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: criterion
-  fullName: criterion
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'criterion: Excel.ConditionalFormatPresetCriterion | "Invalid" | "Blanks" | "NonBlanks" | "Errors" | "NonErrors" | "Yesterday" | "Today" | "Tomorrow" | "LastSevenDays" | "LastWeek" | "ThisWeek" | "NextWeek" | "LastMonth" | "ThisMonth" | "NextMonth" | "AboveAverage" | "BelowAverage" | "EqualOrAboveAverage" | "EqualOrBelowAverage" | "OneStdDevAboveAverage" | "OneStdDevBelowAverage" | "TwoStdDevAboveAverage" | "TwoStdDevBelowAverage" | "ThreeStdDevAboveAverage" | "ThreeStdDevBelowAverage" | "UniqueValues" | "DuplicateValues";'
-    return:
-      type:
-      - Excel.ConditionalFormatPresetCriterion | "Invalid" | "Blanks" | "NonBlanks" | "Errors" | "NonErrors" | "Yesterday" | "Today" | "Tomorrow" | "LastSevenDays" | "LastWeek" | "ThisWeek" | "NextWeek" | "LastMonth" | "ThisMonth" | "NextMonth" | "AboveAverage" | "BelowAverage" | "EqualOrAboveAverage" | "EqualOrBelowAverage" | "OneStdDevAboveAverage" | "OneStdDevBelowAverage" | "TwoStdDevAboveAverage" | "TwoStdDevBelowAverage" | "ThreeStdDevAboveAverage" | "ThreeStdDevBelowAverage" | "UniqueValues" | "DuplicateValues"
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B2:M5\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.presetCriteria);\n    conditionalFormat.preset.format.font.color = \"white\";\n    conditionalFormat.preset.rule = { criterion: Excel.ConditionalFormatPresetCriterion.oneStdDevAboveAverage };\n\n    await context.sync();\n});\n```"
+              await context.sync();
+          });
+          ```

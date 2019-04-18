@@ -1,336 +1,288 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: de73a7ae4705607ee8b24057ed8a79a017ab2d5b
-ms.sourcegitcommit: 6c48441b8be51d3a9d7dc836e386230a155feceb
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/22/2019
-ms.locfileid: "30199318"
 items:
-- uid: Outlook_1_1.Office.Recipients
-  summary: '\[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]'
-  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr> </table>
-  name: Office.Recipients
-  fullName: Office.Recipients
-  langs:
-  - typeScript
-  type: interface
-  package: Outlook_1_1
-  children:
-  - Outlook_1_1.Office.Recipients.addAsync
-  - Outlook_1_1.Office.Recipients.addAsync_1
-  - Outlook_1_1.Office.Recipients.getAsync
-  - Outlook_1_1.Office.Recipients.getAsync_1
-  - Outlook_1_1.Office.Recipients.setAsync
-  - Outlook_1_1.Office.Recipients.setAsync_1
-- uid: Outlook_1_1.Office.Recipients.addAsync
-  summary: >-
-    将收件人列表添加到约会或邮件的现有收件人中。
-
-
-    recipients 参数可以是以下任何一个数组：
-
-
-    - 包含 SMTP 电子邮件地址的字符串
-
-
-    - EmailUser 对象
-
-
-    - EmailAddressDetails 对象
-
-
-    \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr> <tr><td>错误</td><td>NumberOfRecipientsExceeded-超出100个条目的收件人数。</td></tr> </table>
-  name: addAsync(recipients, options, callback)
-  fullName: addAsync(recipients, options, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'addAsync(recipients: (string | EmailUser | EmailAddressDetails)[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: recipients
-      description: 要添加到收件人列表中的收件人。
-      type:
-      - (string | EmailUser | EmailAddressDetails)[]
-    - id: options
-      description: '可选。 包含一个或多个以下属性的对象文本。 asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。'
-      type:
-      - Office.AsyncContextOptions
-    - id: callback
-      description: 可选。 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果添加收件人失败, asyncResult 属性将包含一个错误代码。
-      type:
-      - '(asyncResult: Office.AsyncResult<void>) => void'
-- uid: Outlook_1_1.Office.Recipients.addAsync_1
-  summary: >-
-    将收件人列表添加到约会或邮件的现有收件人中。
-
-
-    recipients 参数可以是以下任何一个数组：
-
-
-    - 包含 SMTP 电子邮件地址的字符串
-
-
-    - [emailuser.displayname](xref:Outlook_1_1.Office.EmailUser)对象
-
-
-    - [EmailAddressDetails](xref:Outlook_1_1.Office.EmailAddressDetails)对象
-
-
-    \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr> <tr><td>错误</td><td>NumberOfRecipientsExceeded-超出100个条目的收件人数。</td></tr> </table>
-
-    ####说明
-
-
-    ```javascript
-
-    // The following example creates an array of EmailUser objects
-
-    // and adds them to the To recipients of the message.
-
-    var newRecipients = [
-        {
-            "displayName": "Allie Bellew",
-            "emailAddress": "allieb@contoso.com"
-        },
-        {
-            "displayName": "Alex Darrow",
-            "emailAddress": "alexd@contoso.com"
-        }
-    ];
-
-
-    Office.context.mailbox.item.to.addAsync(newRecipients, function(result) {
-        if (result.error) {
-            console.log(result.error);
-        } else {
-            console.log("Recipients added");
-        }
-    });
-
-    ```
-  name: addAsync(recipients, callback)
-  fullName: addAsync(recipients, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'addAsync(recipients: (string | EmailUser | EmailAddressDetails)[], callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: recipients
-      description: 要添加到收件人列表中的收件人。
-      type:
-      - (string | EmailUser | EmailAddressDetails)[]
-    - id: callback
-      description: 可选。 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果添加收件人失败, asyncResult 属性将包含一个错误代码。
-      type:
-      - '(asyncResult: Office.AsyncResult<void>) => void'
-- uid: Outlook_1_1.Office.Recipients.getAsync
-  summary: >-
-    获取约会或邮件的收件人列表。
-
-
-    当调用完成时, asyncResult 属性将包含[EmailAddressDetails](xref:Outlook_1_1.Office.EmailAddressDetails)对象的数组。
-
-
-    \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr> </table>
-  name: getAsync(options, callback)
-  fullName: getAsync(options, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<EmailAddressDetails[]>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: options
-      description: '包含一个或多个以下属性的对象文本。 asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。'
-      type:
-      - Office.AsyncContextOptions
-    - id: callback
-      description: 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 结果`value`的属性是 EmailAddressDetails 对象的数组。
-      type:
-      - '(asyncResult: Office.AsyncResult<EmailAddressDetails[]>) => void'
-- uid: Outlook_1_1.Office.Recipients.getAsync_1
-  summary: >-
-    获取约会或邮件的收件人列表。
-
-
-    当调用完成时, asyncResult 属性将包含[EmailAddressDetails](xref:Outlook_1_1.Office.EmailAddressDetails)对象的数组。
-
-
-    \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr> </table>
-
-    ####说明
-
-
-    ```javascript
-
-    // The following example gets the optional attendees of a meeting.
-
-    Office.context.mailbox.item.optionalAttendees.getAsync(function(result) {
-        if (result.error) {
-            console.log(result.error);
-        } else {
-            var msg = "";
-            result.value.forEach(function(recip, index) {
-                msg = msg + recip.displayName + " (" + recip.emailAddress + ");";
-            });
-            console.log(msg);
-        }
-    });
-
-    ```
-  name: getAsync(callback)
-  fullName: getAsync(callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getAsync(callback: (asyncResult: Office.AsyncResult<EmailAddressDetails[]>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: callback
-      description: 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 结果`value`的属性是 EmailAddressDetails 对象的数组。
-      type:
-      - '(asyncResult: Office.AsyncResult<EmailAddressDetails[]>) => void'
-- uid: Outlook_1_1.Office.Recipients.setAsync
-  summary: >-
-    设置约会或邮件的收件人列表。
-
-
-    setAsync 方法将覆盖当前收件人列表。
-
-
-    recipients 参数可以是以下任何一个数组：
-
-
-    - 包含 SMTP 电子邮件地址的字符串
-
-
-    - [emailuser.displayname](xref:Outlook_1_1.Office.EmailUser)对象
-
-
-    - [EmailAddressDetails](xref:Outlook_1_1.Office.EmailAddressDetails)对象
-
-
-    \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr> <tr><td>错误</td><td>NumberOfRecipientsExceeded-超出100个条目的收件人数。</td></tr> </table>
-  name: setAsync(recipients, options, callback)
-  fullName: setAsync(recipients, options, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'setAsync(recipients: (string | EmailUser | EmailAddressDetails)[], options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: recipients
-      description: 要添加到收件人列表中的收件人。
-      type:
-      - (string | EmailUser | EmailAddressDetails)[]
-    - id: options
-      description: '包含一个或多个以下属性的对象文本。 asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。'
-      type:
-      - Office.AsyncContextOptions
-    - id: callback
-      description: 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果设置收件人失败, 则 asyncResult 属性将包含指示在添加数据时出现的任何错误的代码。
-      type:
-      - '(asyncResult: Office.AsyncResult<void>) => void'
-- uid: Outlook_1_1.Office.Recipients.setAsync_1
-  summary: >-
-    设置约会或邮件的收件人列表。
-
-
-    setAsync 方法将覆盖当前收件人列表。
-
-
-    recipients 参数可以是以下任何一个数组：
-
-
-    - 包含 SMTP 电子邮件地址的字符串
-
-
-    - [emailuser.displayname](xref:Outlook_1_1.Office.EmailUser)对象
-
-
-    - [EmailAddressDetails](xref:Outlook_1_1.Office.EmailAddressDetails)对象
-
-
-    \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr> <tr><td>错误</td><td>NumberOfRecipientsExceeded-超出100个条目的收件人数。</td></tr> </table>
-
-    ####说明
-
-
-    ```javascript
-
-    // The following example creates an array of EmailUser objects and
-
-    // replaces the CC recipients of the message with the array.
-
-    var newRecipients = [
-        {
-            "displayName": "Allie Bellew",
-            "emailAddress": "allieb@contoso.com"
-        },
-        {
-            "displayName": "Alex Darrow",
-            "emailAddress": "alexd@contoso.com"
-        }
-    ];
-
-
-    Office.context.mailbox.item.cc.setAsync(newRecipients, function(result) {
-        if (result.error) {
-            console.log(result.error);
-        } else {
-            console.log("Recipients overwritten");
-        }
-    });
-
-    ```
-  name: setAsync(recipients, callback)
-  fullName: setAsync(recipients, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'setAsync(recipients: (string | EmailUser | EmailAddressDetails)[], callback: (asyncResult: Office.AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: recipients
-      description: 要添加到收件人列表中的收件人。
-      type:
-      - (string | EmailUser | EmailAddressDetails)[]
-    - id: callback
-      description: 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果设置收件人失败, 则 asyncResult 属性将包含指示在添加数据时出现的任何错误的代码。
-      type:
-      - '(asyncResult: Office.AsyncResult<void>) => void'
+  - uid: Outlook_1_1.Office.Recipients
+    summary: '\[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]'
+    remarks: '<table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr> </table>'
+    name: Office.Recipients
+    fullName: Office.Recipients
+    langs:
+      - typeScript
+    type: interface
+    package: Outlook_1_1
+    children:
+      - Outlook_1_1.Office.Recipients.addAsync
+      - Outlook_1_1.Office.Recipients.addAsync_1
+      - Outlook_1_1.Office.Recipients.getAsync
+      - Outlook_1_1.Office.Recipients.getAsync_1
+      - Outlook_1_1.Office.Recipients.setAsync
+      - Outlook_1_1.Office.Recipients.setAsync_1
+  - uid: Outlook_1_1.Office.Recipients.addAsync
+    summary: |-
+      将收件人列表添加到约会或邮件的现有收件人中。
+
+      收件人参数可以是以下项之一的数组:
+
+      - 包含 SMTP 电子邮件地址的字符串
+
+      - emailuser.displayname 对象
+
+      - EmailAddressDetails 对象
+
+      \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: '<table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr> <tr><td>错误</td><td>NumberOfRecipientsExceeded-超出100个条目的收件人数。</td></tr> </table>'
+    name: 'addAsync(recipients, options, callback)'
+    fullName: 'addAsync(recipients, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addAsync(recipients: (string | EmailUser | EmailAddressDetails)[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: recipients
+          description: 要添加到收件人列表中的收件人。
+          type:
+            - '(string | EmailUser | EmailAddressDetails)[]'
+        - id: options
+          description: '可选。 包含一个或多个以下属性的对象文本。 asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。'
+          type:
+            - Office.AsyncContextOptions
+        - id: callback
+          description: '可选。 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果添加收件人失败, asyncResult 属性将包含一个错误代码。'
+          type:
+            - '(asyncResult: Office.AsyncResult<void>) => void'
+  - uid: Outlook_1_1.Office.Recipients.addAsync_1
+    summary: |-
+      将收件人列表添加到约会或邮件的现有收件人中。
+
+      收件人参数可以是以下项之一的数组:
+
+      - 包含 SMTP 电子邮件地址的字符串
+
+      - [emailuser.displayname](xref:Outlook_1_1.Office.EmailUser)对象
+
+      - [EmailAddressDetails](xref:Outlook_1_1.Office.EmailAddressDetails)对象
+
+      \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr> <tr><td>错误</td><td>NumberOfRecipientsExceeded-超出100个条目的收件人数。</td></tr> </table>
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // The following example creates an array of EmailUser objects
+      // and adds them to the To recipients of the message.
+      var newRecipients = [
+          {
+              "displayName": "Allie Bellew",
+              "emailAddress": "allieb@contoso.com"
+          },
+          {
+              "displayName": "Alex Darrow",
+              "emailAddress": "alexd@contoso.com"
+          }
+      ];
+
+      Office.context.mailbox.item.to.addAsync(newRecipients, function(result) {
+          if (result.error) {
+              console.log(result.error);
+          } else {
+              console.log("Recipients added");
+          }
+      });
+      ```
+    name: 'addAsync(recipients, callback)'
+    fullName: 'addAsync(recipients, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addAsync(recipients: (string | EmailUser | EmailAddressDetails)[], callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: recipients
+          description: 要添加到收件人列表中的收件人。
+          type:
+            - '(string | EmailUser | EmailAddressDetails)[]'
+        - id: callback
+          description: '可选。 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果添加收件人失败, asyncResult 属性将包含一个错误代码。'
+          type:
+            - '(asyncResult: Office.AsyncResult<void>) => void'
+  - uid: Outlook_1_1.Office.Recipients.getAsync
+    summary: |-
+      获取约会或邮件的收件人列表。
+
+      当调用完成时, asyncResult 属性将包含[EmailAddressDetails](xref:Outlook_1_1.Office.EmailAddressDetails)对象的数组。
+
+      \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: '<table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr> </table>'
+    name: 'getAsync(options, callback)'
+    fullName: 'getAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<EmailAddressDetails[]>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: '包含一个或多个以下属性的对象文本。 asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。'
+          type:
+            - Office.AsyncContextOptions
+        - id: callback
+          description: '方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 结果`value`的属性是 EmailAddressDetails 对象的数组。'
+          type:
+            - '(asyncResult: Office.AsyncResult<EmailAddressDetails[]>) => void'
+  - uid: Outlook_1_1.Office.Recipients.getAsync_1
+    summary: |-
+      获取约会或邮件的收件人列表。
+
+      当调用完成时, asyncResult 属性将包含[EmailAddressDetails](xref:Outlook_1_1.Office.EmailAddressDetails)对象的数组。
+
+      \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr> </table>
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // The following example gets the optional attendees of a meeting.
+      Office.context.mailbox.item.optionalAttendees.getAsync(function(result) {
+          if (result.error) {
+              console.log(result.error);
+          } else {
+              var msg = "";
+              result.value.forEach(function(recip, index) {
+                  msg = msg + recip.displayName + " (" + recip.emailAddress + ");";
+              });
+              console.log(msg);
+          }
+      });
+      ```
+    name: getAsync(callback)
+    fullName: getAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getAsync(callback: (asyncResult: Office.AsyncResult<EmailAddressDetails[]>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: '方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 结果`value`的属性是 EmailAddressDetails 对象的数组。'
+          type:
+            - '(asyncResult: Office.AsyncResult<EmailAddressDetails[]>) => void'
+  - uid: Outlook_1_1.Office.Recipients.setAsync
+    summary: |-
+      设置约会或邮件的收件人列表。
+
+      setAsync 方法将覆盖当前收件人列表。
+
+      收件人参数可以是以下项之一的数组:
+
+      - 包含 SMTP 电子邮件地址的字符串
+
+      - [emailuser.displayname](xref:Outlook_1_1.Office.EmailUser)对象
+
+      - [EmailAddressDetails](xref:Outlook_1_1.Office.EmailAddressDetails)对象
+
+      \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: '<table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr> <tr><td>错误</td><td>NumberOfRecipientsExceeded-超出100个条目的收件人数。</td></tr> </table>'
+    name: 'setAsync(recipients, options, callback)'
+    fullName: 'setAsync(recipients, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setAsync(recipients: (string | EmailUser | EmailAddressDetails)[], options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: recipients
+          description: 要添加到收件人列表中的收件人。
+          type:
+            - '(string | EmailUser | EmailAddressDetails)[]'
+        - id: options
+          description: '包含一个或多个以下属性的对象文本。 asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。'
+          type:
+            - Office.AsyncContextOptions
+        - id: callback
+          description: '方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果设置收件人失败, 则 asyncResult 属性将包含指示在添加数据时出现的任何错误的代码。'
+          type:
+            - '(asyncResult: Office.AsyncResult<void>) => void'
+  - uid: Outlook_1_1.Office.Recipients.setAsync_1
+    summary: |-
+      设置约会或邮件的收件人列表。
+
+      setAsync 方法将覆盖当前收件人列表。
+
+      收件人参数可以是以下项之一的数组:
+
+      - 包含 SMTP 电子邮件地址的字符串
+
+      - [emailuser.displayname](xref:Outlook_1_1.Office.EmailUser)对象
+
+      - [EmailAddressDetails](xref:Outlook_1_1.Office.EmailAddressDetails)对象
+
+      \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写</td></tr> <tr><td>错误</td><td>NumberOfRecipientsExceeded-超出100个条目的收件人数。</td></tr> </table>
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // The following example creates an array of EmailUser objects and
+      // replaces the CC recipients of the message with the array.
+      var newRecipients = [
+          {
+              "displayName": "Allie Bellew",
+              "emailAddress": "allieb@contoso.com"
+          },
+          {
+              "displayName": "Alex Darrow",
+              "emailAddress": "alexd@contoso.com"
+          }
+      ];
+
+      Office.context.mailbox.item.cc.setAsync(newRecipients, function(result) {
+          if (result.error) {
+              console.log(result.error);
+          } else {
+              console.log("Recipients overwritten");
+          }
+      });
+      ```
+    name: 'setAsync(recipients, callback)'
+    fullName: 'setAsync(recipients, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setAsync(recipients: (string | EmailUser | EmailAddressDetails)[], callback: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: recipients
+          description: 要添加到收件人列表中的收件人。
+          type:
+            - '(string | EmailUser | EmailAddressDetails)[]'
+        - id: callback
+          description: '方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 如果设置收件人失败, 则 asyncResult 属性将包含指示在添加数据时出现的任何错误的代码。'
+          type:
+            - '(asyncResult: Office.AsyncResult<void>) => void'

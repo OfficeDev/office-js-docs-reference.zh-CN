@@ -1,364 +1,411 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: b8cef1a9fb6b0a28a9c36743a8cc320cb0f260a6
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29973665"
 items:
-- uid: visio.Visio.Document
-  summary: >-
-    表示 Document 类。
+  - uid: visio.Visio.Document
+    summary: |-
+      表示 Document 类。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: Visio.Document
+    fullName: Visio.Document
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: visio
+    children:
+      - visio.Visio.Document.application
+      - visio.Visio.Document.getActivePage
+      - visio.Visio.Document.load
+      - visio.Visio.Document.load_1
+      - visio.Visio.Document.load_2
+      - visio.Visio.Document.onDataRefreshComplete
+      - visio.Visio.Document.onDocumentLoadComplete
+      - visio.Visio.Document.onPageLoadComplete
+      - visio.Visio.Document.onSelectionChanged
+      - visio.Visio.Document.onShapeMouseEnter
+      - visio.Visio.Document.onShapeMouseLeave
+      - visio.Visio.Document.pages
+      - visio.Visio.Document.set
+      - visio.Visio.Document.set_1
+      - visio.Visio.Document.setActivePage
+      - visio.Visio.Document.startDataRefresh
+      - visio.Visio.Document.toJSON
+      - visio.Visio.Document.view
+  - uid: visio.Visio.Document.application
+    summary: |-
+      表示包含此文档的 Visio 应用程序实例。 只读。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: application
+    fullName: application
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly application: Visio.Application;'
+      return:
+        type:
+          - Visio.Application
+  - uid: visio.Visio.Document.getActivePage
+    summary: |-
+      返回文档的活动页。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: getActivePage()
+    fullName: getActivePage()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActivePage(): Visio.Page;'
+      return:
+        type:
+          - Visio.Page
+        description: |-
 
 
-    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: Visio.Document
-  fullName: Visio.Document
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: visio
-  children:
-  - visio.Visio.Document.application
-  - visio.Visio.Document.getActivePage
-  - visio.Visio.Document.load
-  - visio.Visio.Document.load_1
-  - visio.Visio.Document.load_2
-  - visio.Visio.Document.onDataRefreshComplete
-  - visio.Visio.Document.onDocumentLoadComplete
-  - visio.Visio.Document.onPageLoadComplete
-  - visio.Visio.Document.onSelectionChanged
-  - visio.Visio.Document.onShapeMouseEnter
-  - visio.Visio.Document.onShapeMouseLeave
-  - visio.Visio.Document.pages
-  - visio.Visio.Document.set
-  - visio.Visio.Document.set_1
-  - visio.Visio.Document.setActivePage
-  - visio.Visio.Document.startDataRefresh
-  - visio.Visio.Document.toJSON
-  - visio.Visio.Document.view
-- uid: visio.Visio.Document.application
-  summary: >-
-    表示包含此文档的 Visio 应用程序实例。只读。
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Visio.run(session, function (ctx) {
+              var document = ctx.document;
+              var activePage = document.getActivePage();
+              activePage.load();
+              return ctx.sync().then(function () {
+                  console.log("pageName: " +activePage.name);
+              });   
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: visio.Visio.Document.load
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+    remarks: |-
+      除了此签名之外, 此方法还具有以下签名:
+
+      `load(option?: string | string[]): Visio.Document`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
+
+      `load(option?: { select?: string; expand?: string; }): Visio.Document`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.Document`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Visio.Interfaces.DocumentLoadOptions): Visio.Document;'
+      return:
+        type:
+          - Visio.Document
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - visio.Visio.Interfaces.DocumentLoadOptions
+  - uid: visio.Visio.Document.load_1
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Visio.Document;'
+      return:
+        type:
+          - Visio.Document
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: '一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。'
+          type:
+            - 'string | string[]'
+  - uid: visio.Visio.Document.load_2
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Visio.Document;'
+      return:
+        type:
+          - Visio.Document
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: visio.Visio.Document.onDataRefreshComplete
+    summary: |-
+      在图表中刷新数据时发生。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: onDataRefreshComplete
+    fullName: onDataRefreshComplete
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onDataRefreshComplete: OfficeExtension.EventHandlers<Visio.DataRefreshCompleteEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.DataRefreshCompleteEventArgs>
+  - uid: visio.Visio.Document.onDocumentLoadComplete
+    summary: |-
+      在加载、刷新或更改文档时发生。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: onDocumentLoadComplete
+    fullName: onDocumentLoadComplete
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onDocumentLoadComplete: OfficeExtension.EventHandlers<Visio.DocumentLoadCompleteEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.DocumentLoadCompleteEventArgs>
+  - uid: visio.Visio.Document.onPageLoadComplete
+    summary: |-
+      页面加载完成时发生。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: onPageLoadComplete
+    fullName: onPageLoadComplete
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onPageLoadComplete: OfficeExtension.EventHandlers<Visio.PageLoadCompleteEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.PageLoadCompleteEventArgs>
+  - uid: visio.Visio.Document.onSelectionChanged
+    summary: |-
+      在当前选定的形状发生变化时发生。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: onSelectionChanged
+    fullName: onSelectionChanged
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onSelectionChanged: OfficeExtension.EventHandlers<Visio.SelectionChangedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.SelectionChangedEventArgs>
+  - uid: visio.Visio.Document.onShapeMouseEnter
+    summary: |-
+      当用户将鼠标指针移到形状的边界框中时发生。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: onShapeMouseEnter
+    fullName: onShapeMouseEnter
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onShapeMouseEnter: OfficeExtension.EventHandlers<Visio.ShapeMouseEnterEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.ShapeMouseEnterEventArgs>
+  - uid: visio.Visio.Document.onShapeMouseLeave
+    summary: |-
+      当用户将鼠标移出形状的边界框时发生。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: onShapeMouseLeave
+    fullName: onShapeMouseLeave
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onShapeMouseLeave: OfficeExtension.EventHandlers<Visio.ShapeMouseLeaveEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.ShapeMouseLeaveEventArgs>
+  - uid: visio.Visio.Document.pages
+    summary: |-
+      表示一组与文档相关联的页面。 只读。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: pages
+    fullName: pages
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly pages: Visio.PageCollection;'
+      return:
+        type:
+          - Visio.PageCollection
+        description: |-
 
 
-    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: application
-  fullName: application
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly application: Visio.Application;'
-    return:
-      type:
-      - Visio.Application
-- uid: visio.Visio.Document.getActivePage
-  summary: >-
-    返回文档的活动页。
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Visio.run(session, function (ctx) {
+              var pages = ctx.document.pages;
+              var pageCount = pages.getCount();
+              return ctx.sync().then(function () {
+                  console.log("Pages Count: " +pageCount.value);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: visio.Visio.Document.set
+    summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+    remarks: |-
+      此方法具有以下附加签名:
+
+      `set(properties: Visio.Document): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.DocumentUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: '一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。'
+          type:
+            - Interfaces.DocumentUpdateData
+        - id: options
+          description: '提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。'
+          type:
+            - office.OfficeExtension.UpdateOptions
+  - uid: visio.Visio.Document.set_1
+    summary: 基于现有加载的对象同时设置该对象的多个属性。
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Visio.Document): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - Visio.Document
+  - uid: visio.Visio.Document.setActivePage
+    summary: |-
+      设置文档的活动页。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: setActivePage(PageName)
+    fullName: setActivePage(PageName)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setActivePage(PageName: string): void;'
+      return:
+        type:
+          - void
+        description: |-
 
 
-    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: getActivePage()
-  fullName: getActivePage()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getActivePage(): Visio.Page;'
-    return:
-      type:
-      - Visio.Page
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nVisio.run(session, function (ctx) {\n    var document = ctx.document;\n    var activePage = document.getActivePage();\n    activePage.load();\n    return ctx.sync().then(function () {\n        console.log(\"pageName: \" +activePage.name);\n    });   \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-- uid: visio.Visio.Document.load
-  summary: 队列设置命令加载指定的对象的属性。 读取属性之前，必须调用"context.sync()"。
-  remarks: >-
-    除了此签名，此方法具有以下签名：
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Visio.run(session, function (ctx) {
+              var document = ctx.document;
+              var pageName = "Page-1";
+              document.setActivePage(pageName);
+              return ctx.sync();
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: PageName
+          description: 页面的名称
+          type:
+            - string
+  - uid: visio.Visio.Document.startDataRefresh
+    summary: |-
+      触发刷新关系图中所有页面的数据。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: startDataRefresh()
+    fullName: startDataRefresh()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'startDataRefresh(): void;'
+      return:
+        type:
+          - void
+        description: |-
 
 
-    `load(option?: string | string[]): Visio.Document`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。
+          #### <a name="examples"></a>示例
 
+          ```javascript
+          Visio.run(session, function (ctx) {
+              var document = ctx.document;
+              document.startDataRefresh();
+              return ctx.sync();
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: visio.Visio.Document.toJSON
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Visio.Interfaces.DocumentData;'
+      return:
+        type:
+          - visio.Visio.Interfaces.DocumentData
+        description: ''
+  - uid: visio.Visio.Document.view
+    summary: |-
+      返回 DocumentView 对象。 只读。
 
-    `load(option?: { select?: string; expand?: string; }): Visio.Document`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
-
-
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.Document`-仅可对集合的类型。 它是类似于前一个签名。 Option.top 指定集合项可在结果中包含的最大数目。 Option.skip 指定要跳过和结果中不包含的项的数目。 如果指定 option.top，则将跳过指定的数目的项后启动结果集。
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: Visio.Interfaces.DocumentLoadOptions): Visio.Document;'
-    return:
-      type:
-      - Visio.Document
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - visio.Visio.Interfaces.DocumentLoadOptions
-- uid: visio.Visio.Document.load_1
-  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
-  name: load(propertyNames)
-  fullName: load(propertyNames)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNames?: string | string[]): Visio.Document;'
-    return:
-      type:
-      - Visio.Document
-      description: ''
-    parameters:
-    - id: propertyNames
-      description: 以逗号分隔字符串或一个指定要加载的属性的字符串数组。
-      type:
-      - string | string[]
-- uid: visio.Visio.Document.load_2
-  summary: 队列设置命令加载指定的对象的属性。 您必须调用`context.sync()`阅读属性之前。
-  name: load(propertyNamesAndPaths)
-  fullName: load(propertyNamesAndPaths)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Visio.Document;'
-    return:
-      type:
-      - Visio.Document
-      description: ''
-    parameters:
-    - id: propertyNamesAndPaths
-      description: 其中 propertyNamesAndPaths.select 是一个以逗号分隔的字符串，指定要加载的属性，propertyNamesAndPaths.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。
-      type:
-      - '{ select?: string; expand?: string; }'
-- uid: visio.Visio.Document.onDataRefreshComplete
-  summary: >-
-    图表中刷新数据时，发生此事件。
-
-
-    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: onDataRefreshComplete
-  fullName: onDataRefreshComplete
-  langs:
-  - typeScript
-  type: event
-  syntax:
-    content: 'readonly onDataRefreshComplete: OfficeExtension.EventHandlers<Visio.DataRefreshCompleteEventArgs>;'
-    return:
-      type:
-      - OfficeExtension.EventHandlers<Visio.DataRefreshCompleteEventArgs>
-- uid: visio.Visio.Document.onDocumentLoadComplete
-  summary: >-
-    加载、 刷新，或更改文档时，发生此事件。
-
-
-    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: onDocumentLoadComplete
-  fullName: onDocumentLoadComplete
-  langs:
-  - typeScript
-  type: event
-  syntax:
-    content: 'readonly onDocumentLoadComplete: OfficeExtension.EventHandlers<Visio.DocumentLoadCompleteEventArgs>;'
-    return:
-      type:
-      - OfficeExtension.EventHandlers<Visio.DocumentLoadCompleteEventArgs>
-- uid: visio.Visio.Document.onPageLoadComplete
-  summary: >-
-    在完成页加载。
-
-
-    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: onPageLoadComplete
-  fullName: onPageLoadComplete
-  langs:
-  - typeScript
-  type: event
-  syntax:
-    content: 'readonly onPageLoadComplete: OfficeExtension.EventHandlers<Visio.PageLoadCompleteEventArgs>;'
-    return:
-      type:
-      - OfficeExtension.EventHandlers<Visio.PageLoadCompleteEventArgs>
-- uid: visio.Visio.Document.onSelectionChanged
-  summary: >-
-    形状的当前所选内容更改时发生。
-
-
-    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: onSelectionChanged
-  fullName: onSelectionChanged
-  langs:
-  - typeScript
-  type: event
-  syntax:
-    content: 'readonly onSelectionChanged: OfficeExtension.EventHandlers<Visio.SelectionChangedEventArgs>;'
-    return:
-      type:
-      - OfficeExtension.EventHandlers<Visio.SelectionChangedEventArgs>
-- uid: visio.Visio.Document.onShapeMouseEnter
-  summary: >-
-    用户将鼠标指针移到形状的边界框时发生。
-
-
-    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: onShapeMouseEnter
-  fullName: onShapeMouseEnter
-  langs:
-  - typeScript
-  type: event
-  syntax:
-    content: 'readonly onShapeMouseEnter: OfficeExtension.EventHandlers<Visio.ShapeMouseEnterEventArgs>;'
-    return:
-      type:
-      - OfficeExtension.EventHandlers<Visio.ShapeMouseEnterEventArgs>
-- uid: visio.Visio.Document.onShapeMouseLeave
-  summary: >-
-    当用户移动鼠标超出形状的边界框时，发生此事件。
-
-
-    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: onShapeMouseLeave
-  fullName: onShapeMouseLeave
-  langs:
-  - typeScript
-  type: event
-  syntax:
-    content: 'readonly onShapeMouseLeave: OfficeExtension.EventHandlers<Visio.ShapeMouseLeaveEventArgs>;'
-    return:
-      type:
-      - OfficeExtension.EventHandlers<Visio.ShapeMouseLeaveEventArgs>
-- uid: visio.Visio.Document.pages
-  summary: >-
-    表示一组与文档相关联的页面。只读。
-
-
-    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: pages
-  fullName: pages
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly pages: Visio.PageCollection;'
-    return:
-      type:
-      - Visio.PageCollection
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nVisio.run(session, function (ctx) {\n    var pages = ctx.document.pages;\n    var pageCount = pages.getCount();\n    return ctx.sync().then(function () {\n        console.log(\"Pages Count: \" +pageCount.value);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-- uid: visio.Visio.Document.set
-  summary: 在同一时间设置对象的多个的属性。 您可以传递具有的相应属性的普通对象或相同类型的另一个 API 对象。
-  remarks: >-
-    此方法具有以下其他签名：
-
-
-    `set(properties: Visio.Document): void`
-  name: set(properties, options)
-  fullName: set(properties, options)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'set(properties: Interfaces.DocumentUpdateData, options?: OfficeExtension.UpdateOptions): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: properties
-      description: 具有对属性的对象调用 isomorphically 结构化的属性的 JavaScript 对象。
-      type:
-      - Interfaces.DocumentUpdateData
-    - id: options
-      description: 提供一个选项以取消显示错误，如果属性对象会尝试设置任何只读属性。
-      type:
-      - office.OfficeExtension.UpdateOptions
-- uid: visio.Visio.Document.set_1
-  summary: 在基于现有加载对象的同一时间对象上设置多个属性。
-  name: set(properties)
-  fullName: set(properties)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'set(properties: Visio.Document): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: properties
-      description: ''
-      type:
-      - Visio.Document
-- uid: visio.Visio.Document.setActivePage
-  summary: >-
-    设置文档的活动页。
-
-
-    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: setActivePage(PageName)
-  fullName: setActivePage(PageName)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'setActivePage(PageName: string): void;'
-    return:
-      type:
-      - void
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nVisio.run(session, function (ctx) {\n    var document = ctx.document;\n    var pageName = \"Page-1\";\n    document.setActivePage(pageName);\n    return ctx.sync();\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-    parameters:
-    - id: PageName
-      description: 页面的名称
-      type:
-      - string
-- uid: visio.Visio.Document.startDataRefresh
-  summary: >-
-    触发刷新关系图中所有页面的数据。
-
-
-    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: startDataRefresh()
-  fullName: startDataRefresh()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'startDataRefresh(): void;'
-    return:
-      type:
-      - void
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nVisio.run(session, function (ctx) {\n    var document = ctx.document;\n    document.startDataRefresh();\n    return ctx.sync();\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-- uid: visio.Visio.Document.toJSON
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'toJSON(): Visio.Interfaces.DocumentData;'
-    return:
-      type:
-      - visio.Visio.Interfaces.DocumentData
-      description: ''
-- uid: visio.Visio.Document.view
-  summary: >-
-    返回 DocumentView 对象。只读。
-
-
-    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: view
-  fullName: view
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly view: Visio.DocumentView;'
-    return:
-      type:
-      - visio.Visio.DocumentView
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: view
+    fullName: view
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly view: Visio.DocumentView;'
+      return:
+        type:
+          - visio.Visio.DocumentView
