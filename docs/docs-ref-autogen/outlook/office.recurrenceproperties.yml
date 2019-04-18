@@ -1,154 +1,137 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 302eef25bb6b05b3ce755a144bee343245e54266
-ms.sourcegitcommit: b0b614f5315ab2e5c1e0ea51c687498f87684a07
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/15/2019
-ms.locfileid: "30055897"
 items:
-- uid: outlook.Office.RecurrenceProperties
-  summary: >-
-    <span data-ttu-id="d5413-101">表示定期的属性。</span><span class="sxs-lookup"><span data-stu-id="d5413-101">Represents the properties of the recurrence.</span></span>
+  - uid: outlook.Office.RecurrenceProperties
+    summary: |-
+      <span data-ttu-id="a9b72-101">表示定期的属性。</span><span class="sxs-lookup"><span data-stu-id="a9b72-101">Represents the properties of the recurrence.</span></span>
 
+      <span data-ttu-id="a9b72-102">\[[API 集: 邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a9b72-102">\[ [API set: Mailbox 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+    remarks: |-
+      <span data-ttu-id="a9b72-103">**[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem</span><span class="sxs-lookup"><span data-stu-id="a9b72-103">**[Minimum permission level](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem</span></span>
 
-    <span data-ttu-id="d5413-102">\[[API 集: 邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="d5413-102">\[ [API set: Mailbox 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
-  remarks: >-
-    <table> <tr><td>[<span data-ttu-id="d5413-103">最低权限级别</span><span class="sxs-lookup"><span data-stu-id="d5413-103">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="d5413-104">ReadItem</span><span class="sxs-lookup"><span data-stu-id="d5413-104">ReadItem</span></span></td></tr> <tr><td>[<span data-ttu-id="d5413-105">适用的 Outlook 模式</span><span class="sxs-lookup"><span data-stu-id="d5413-105">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="d5413-106">撰写或阅读</span><span class="sxs-lookup"><span data-stu-id="d5413-106">Compose or Read</span></span></td></tr> </table><span data-ttu-id="d5413-107">
+      <span data-ttu-id="a9b72-104">**[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读</span><span class="sxs-lookup"><span data-stu-id="a9b72-104">**[Applicable Outlook mode](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Compose or Read</span></span>
 
-    ####说明</span><span class="sxs-lookup"><span data-stu-id="d5413-107">
+      #### <a name="examples"></a><span data-ttu-id="a9b72-105">示例</span><span class="sxs-lookup"><span data-stu-id="a9b72-105">Examples</span></span>
 
-    #### Examples</span></span>
+      ```javascript
+      // This example gets the Recurrence object of an appointment item.
+      Office.context.mailbox.item.recurrence.getAsync(callback);
 
+      function callback(asyncResult) {
+          var context = asyncResult.context;
+          var recurrence = asyncResult.value;
+          if (!recurrence) {
+              console.log("One-time appointment or meeting");
+          } else {
+              console.log(JSON.stringify(recurrence));
+          }
+      }
 
-    ```javascript
-
-    // This example gets the Recurrence object of an appointment item.
-
-    Office.context.mailbox.item.recurrence.getAsync(callback);
-
-
-    function callback(asyncResult) {
-        var context = asyncResult.context;
-        var recurrence = asyncResult.value;
-        if (!recurrence) {
-            console.log("One-time appointment or meeting");
-        } else {
-            console.log(JSON.stringify(recurrence));
-        }
-    }
-
-
-    // The following example shows the results of the getAsync call that retrieves the recurrence for a series.
-
-    // NOTE: In this example, seriesTimeObject is a placeholder for the JSON representing the
-
-    // recurrence.seriesTime property. You should use the SeriesTime object's methods to get the
-
-    // recurrence date and time properties.
-
-    Recurrence = {
-        "recurrenceType": "weekly",
-        "recurrenceProperties": {"interval": 2, "days": ["mon","thu","fri"], "firstDayOfWeek": "sun"},
-        "seriesTime": {seriesTimeObject},
-        "recurrenceTimeZone": {"name": "Pacific Standard Time", "offset": -480}
-    }
-
-    ```
-  name: Office.RecurrenceProperties
-  fullName: Office.RecurrenceProperties
-  langs:
-  - typeScript
-  type: interface
-  package: outlook
-  children:
-  - outlook.Office.RecurrenceProperties.dayOfMonth
-  - outlook.Office.RecurrenceProperties.dayOfWeek
-  - outlook.Office.RecurrenceProperties.days
-  - outlook.Office.RecurrenceProperties.firstDayOfWeek
-  - outlook.Office.RecurrenceProperties.interval
-  - outlook.Office.RecurrenceProperties.month
-  - outlook.Office.RecurrenceProperties.weekNumber
-- uid: outlook.Office.RecurrenceProperties.dayOfMonth
-  summary: <span data-ttu-id="d5413-108">表示月中的某一天。</span><span class="sxs-lookup"><span data-stu-id="d5413-108">Represents the day of the month.</span></span>
-  name: dayOfMonth
-  fullName: dayOfMonth
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'dayOfMonth: number;'
-    return:
-      type:
-      - number
-- uid: outlook.Office.RecurrenceProperties.dayOfWeek
-  summary: <span data-ttu-id="d5413-109">表示一周中的某一天或一天的类型 (例如, 周末和工作日)。</span><span class="sxs-lookup"><span data-stu-id="d5413-109">Represents the day of the week or type of day, for example, weekend day vs weekday.</span></span>
-  name: dayOfWeek
-  fullName: dayOfWeek
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'dayOfWeek: MailboxEnums.Days;'
-    return:
-      type:
-      - MailboxEnums.Days
-- uid: outlook.Office.RecurrenceProperties.days
-  summary: "<span data-ttu-id=\"d5413-110\">表示此定期事件的一组天数。</span><span class=\"sxs-lookup\"><span data-stu-id=\"d5413-110\">Represents the set of days for this recurrence.</span></span> <span data-ttu-id=\"d5413-111\">有效值为: \"周一\"、\"周二\"、\"周三\"、\"Thu\"、\"周五\"、\"Sat\" 和 \"周日\"。</span><span class=\"sxs-lookup\"><span data-stu-id=\"d5413-111\">Valid values are: 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', and 'Sun'.</span></span>"
-  name: days
-  fullName: days
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'days: MailboxEnums.Days[];'
-    return:
-      type:
-      - MailboxEnums.Days[]
-- uid: outlook.Office.RecurrenceProperties.firstDayOfWeek
-  summary: "<span data-ttu-id=\"d5413-112\">表示您选择的一周的第一天, 否则默认值为当前用户设置中的值。</span><span class=\"sxs-lookup\"><span data-stu-id=\"d5413-112\">Represents your chosen first day of the week otherwise the default is the value in the current user's settings.</span></span> <span data-ttu-id=\"d5413-113\">有效值为: \"周一\"、\"周二\"、\"周三\"、\"Thu\"、\"周五\"、\"Sat\" 和 \"周日\"。</span><span class=\"sxs-lookup\"><span data-stu-id=\"d5413-113\">Valid values are: 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', and 'Sun'.</span></span>"
-  name: firstDayOfWeek
-  fullName: firstDayOfWeek
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'firstDayOfWeek: MailboxEnums.Days;'
-    return:
-      type:
-      - MailboxEnums.Days
-- uid: outlook.Office.RecurrenceProperties.interval
-  summary: <span data-ttu-id="d5413-114">表示同一定期系列的两个实例之间的时间段。</span><span class="sxs-lookup"><span data-stu-id="d5413-114">Represents the period between instances of the same recurring series.</span></span>
-  name: interval
-  fullName: interval
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'interval: number;'
-    return:
-      type:
-      - number
-- uid: outlook.Office.RecurrenceProperties.month
-  summary: <span data-ttu-id="d5413-115">表示月。</span><span class="sxs-lookup"><span data-stu-id="d5413-115">Represents the month.</span></span>
-  name: month
-  fullName: month
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'month: MailboxEnums.Month;'
-    return:
-      type:
-      - MailboxEnums.Month
-- uid: outlook.Office.RecurrenceProperties.weekNumber
-  summary: <span data-ttu-id="d5413-116">表示所选月中的一周数, 例如, 月的第一周的 ' first '。</span><span class="sxs-lookup"><span data-stu-id="d5413-116">Represents the number of the week in the selected month e.g. 'first' for first week of the month.</span></span>
-  name: weekNumber
-  fullName: weekNumber
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'weekNumber: MailboxEnums.WeekNumber;'
-    return:
-      type:
-      - MailboxEnums.WeekNumber
+      // The following example shows the results of the getAsync call that retrieves the recurrence for a series.
+      // NOTE: In this example, seriesTimeObject is a placeholder for the JSON representing the
+      // recurrence.seriesTime property. You should use the SeriesTime object's methods to get the
+      // recurrence date and time properties.
+      Recurrence = {
+          "recurrenceType": "weekly",
+          "recurrenceProperties": {"interval": 2, "days": ["mon","thu","fri"], "firstDayOfWeek": "sun"},
+          "seriesTime": {seriesTimeObject},
+          "recurrenceTimeZone": {"name": "Pacific Standard Time", "offset": -480}
+      }
+      ```
+    name: Office.RecurrenceProperties
+    fullName: Office.RecurrenceProperties
+    langs:
+      - typeScript
+    type: interface
+    package: outlook
+    children:
+      - outlook.Office.RecurrenceProperties.dayOfMonth
+      - outlook.Office.RecurrenceProperties.dayOfWeek
+      - outlook.Office.RecurrenceProperties.days
+      - outlook.Office.RecurrenceProperties.firstDayOfWeek
+      - outlook.Office.RecurrenceProperties.interval
+      - outlook.Office.RecurrenceProperties.month
+      - outlook.Office.RecurrenceProperties.weekNumber
+  - uid: outlook.Office.RecurrenceProperties.dayOfMonth
+    summary: <span data-ttu-id="a9b72-106">表示月中的某一天。</span><span class="sxs-lookup"><span data-stu-id="a9b72-106">Represents the day of the month.</span></span>
+    name: dayOfMonth
+    fullName: dayOfMonth
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'dayOfMonth: number;'
+      return:
+        type:
+          - number
+  - uid: outlook.Office.RecurrenceProperties.dayOfWeek
+    summary: '<span data-ttu-id="a9b72-107">表示一周中的某一天或一天的类型 (例如, 周末和工作日)。</span><span class="sxs-lookup"><span data-stu-id="a9b72-107">Represents the day of the week or type of day, for example, weekend day vs weekday.</span></span>'
+    name: dayOfWeek
+    fullName: dayOfWeek
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'dayOfWeek: MailboxEnums.Days;'
+      return:
+        type:
+          - MailboxEnums.Days
+  - uid: outlook.Office.RecurrenceProperties.days
+    summary: '<span data-ttu-id="a9b72-108">表示此定期事件的一组天数。</span><span class="sxs-lookup"><span data-stu-id="a9b72-108">Represents the set of days for this recurrence.</span></span> <span data-ttu-id="a9b72-109">有效值为: "周一"、"周二"、"周三"、"Thu"、"周五"、"Sat" 和 "周日"。</span><span class="sxs-lookup"><span data-stu-id="a9b72-109">Valid values are: ''Mon'', ''Tue'', ''Wed'', ''Thu'', ''Fri'', ''Sat'', and ''Sun''.</span></span>'
+    name: days
+    fullName: days
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'days: MailboxEnums.Days[];'
+      return:
+        type:
+          - 'MailboxEnums.Days[]'
+  - uid: outlook.Office.RecurrenceProperties.firstDayOfWeek
+    summary: '<span data-ttu-id="a9b72-110">表示您选择的一周的第一天, 否则默认值为当前用户设置中的值。</span><span class="sxs-lookup"><span data-stu-id="a9b72-110">Represents your chosen first day of the week otherwise the default is the value in the current user''s settings.</span></span> <span data-ttu-id="a9b72-111">有效值为: "周一"、"周二"、"周三"、"Thu"、"周五"、"Sat" 和 "周日"。</span><span class="sxs-lookup"><span data-stu-id="a9b72-111">Valid values are: ''Mon'', ''Tue'', ''Wed'', ''Thu'', ''Fri'', ''Sat'', and ''Sun''.</span></span>'
+    name: firstDayOfWeek
+    fullName: firstDayOfWeek
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'firstDayOfWeek: MailboxEnums.Days;'
+      return:
+        type:
+          - MailboxEnums.Days
+  - uid: outlook.Office.RecurrenceProperties.interval
+    summary: <span data-ttu-id="a9b72-112">表示同一定期系列的两个实例之间的时间段。</span><span class="sxs-lookup"><span data-stu-id="a9b72-112">Represents the period between instances of the same recurring series.</span></span>
+    name: interval
+    fullName: interval
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'interval: number;'
+      return:
+        type:
+          - number
+  - uid: outlook.Office.RecurrenceProperties.month
+    summary: <span data-ttu-id="a9b72-113">表示月。</span><span class="sxs-lookup"><span data-stu-id="a9b72-113">Represents the month.</span></span>
+    name: month
+    fullName: month
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'month: MailboxEnums.Month;'
+      return:
+        type:
+          - MailboxEnums.Month
+  - uid: outlook.Office.RecurrenceProperties.weekNumber
+    summary: '<span data-ttu-id="a9b72-114">表示所选月中的一周数, 例如, 月的第一周的 '' first ''。</span><span class="sxs-lookup"><span data-stu-id="a9b72-114">Represents the number of the week in the selected month e.g. ''first'' for first week of the month.</span></span>'
+    name: weekNumber
+    fullName: weekNumber
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'weekNumber: MailboxEnums.WeekNumber;'
+      return:
+        type:
+          - MailboxEnums.WeekNumber

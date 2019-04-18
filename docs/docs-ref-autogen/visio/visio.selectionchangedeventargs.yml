@@ -1,56 +1,102 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: c040df06fe3c64372fbd2275c24644ea2a4180bf
-ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "26228080"
 items:
-- uid: visio.Visio.SelectionChangedEventArgs
-  summary: >-
-    <span data-ttu-id="e2234-101">提供有关引发了 SelectionChanged 事件的形状集合的信息。</span><span class="sxs-lookup"><span data-stu-id="e2234-101">Provides information about the shape collection that raised the SelectionChanged event.</span></span>
+  - uid: visio.Visio.SelectionChangedEventArgs
+    summary: |-
+      <span data-ttu-id="78a57-101">提供有关引发了 SelectionChanged 事件的形状集合的信息。</span><span class="sxs-lookup"><span data-stu-id="78a57-101">Provides information about the shape collection that raised the SelectionChanged event.</span></span>
+
+      <span data-ttu-id="78a57-102">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="78a57-102">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: Visio.SelectionChangedEventArgs
+    fullName: Visio.SelectionChangedEventArgs
+    langs:
+      - typeScript
+    type: interface
+    package: visio
+    remarks: |-
 
 
-    <span data-ttu-id="e2234-102">\[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="e2234-102">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
-  name: Visio.SelectionChangedEventArgs
-  fullName: Visio.SelectionChangedEventArgs
-  langs:
-  - typeScript
-  type: interface
-  package: visio
-  remarks: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"e2234-103\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"e2234-103\">Examples</span></span>\n\n```javascript\nvar eventResult; //Global Variable to store the EventHandlerResult returned on attaching handler.\n\nfunction AttachHandler()\n{\n    Visio.run(function(ctx)\n    {\n        var doc = ctx.document;\n        eventResult = doc.onSelectionChanged.add(\n            function (args) {\n                console.log(\"Selected Shape Name: \"+args.shapeNames[0]);\n            });\n        return ctx.sync().then(function(){\n            console.log(\"Handler attached\");\n        });\n    }).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n    });\n\n    function onSelectionChanged(args)\n    {\n        console.log(Date.now() + \"Selection Changes Event\" + JSON.stringify(args));\n    }\n}\n\nfunction RemoveHandler()\n{\n    if(!eventResult || !eventResult.context)\n    {\n        console.log(\"Handler has not been attached\");\n        return;\n    }\n\n    Visio.run(eventResult.context, function(ctx)\n    {\n        eventResult.remove();\n        return ctx.sync().then(function (){\n            eventResult = null;\n            console.log(\"Handler removed\");\n        });\n    }).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n    });\n}\n```"
-  children:
-  - visio.Visio.SelectionChangedEventArgs.pageName
-  - visio.Visio.SelectionChangedEventArgs.shapeNames
-- uid: visio.Visio.SelectionChangedEventArgs.pageName
-  summary: >-
-    <span data-ttu-id="e2234-104">获取页面名称，其中包含引发了 SelectionChanged 事件的 ShapeCollection 对象。</span><span class="sxs-lookup"><span data-stu-id="e2234-104">Gets the name of the page which has the ShapeCollection object that raised the SelectionChanged event.</span></span>
+      #### <a name="examples"></a><span data-ttu-id="78a57-103">示例</span><span class="sxs-lookup"><span data-stu-id="78a57-103">Examples</span></span>
 
+      ```javascript
+      var eventResult; //Global Variable to store the EventHandlerResult returned on attaching handler.
 
-    <span data-ttu-id="e2234-105">\[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="e2234-105">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
-  name: pageName
-  fullName: pageName
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'pageName: string;'
-    return:
-      type:
-      - string
-- uid: visio.Visio.SelectionChangedEventArgs.shapeNames
-  summary: >-
-    <span data-ttu-id="e2234-106">获取引发了 SelectionChanged 事件的形状名称数组。</span><span class="sxs-lookup"><span data-stu-id="e2234-106">Gets the array of shape names that raised the SelectionChanged event.</span></span>
+      function AttachHandler()
+      {
+          Visio.run(function(ctx)
+          {
+              var doc = ctx.document;
+              eventResult = doc.onSelectionChanged.add(
+                  function (args) {
+                      console.log("Selected Shape Name: "+args.shapeNames[0]);
+                  });
+              return ctx.sync().then(function(){
+                  console.log("Handler attached");
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
 
+          function onSelectionChanged(args)
+          {
+              console.log(Date.now() + "Selection Changes Event" + JSON.stringify(args));
+          }
+      }
 
-    <span data-ttu-id="e2234-107">\[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="e2234-107">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
-  name: shapeNames
-  fullName: shapeNames
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'shapeNames: string[];'
-    return:
-      type:
-      - string[]
+      function RemoveHandler()
+      {
+          if(!eventResult || !eventResult.context)
+          {
+              console.log("Handler has not been attached");
+              return;
+          }
+
+          Visio.run(eventResult.context, function(ctx)
+          {
+              eventResult.remove();
+              return ctx.sync().then(function (){
+                  eventResult = null;
+                  console.log("Handler removed");
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+      }
+      ```
+    children:
+      - visio.Visio.SelectionChangedEventArgs.pageName
+      - visio.Visio.SelectionChangedEventArgs.shapeNames
+  - uid: visio.Visio.SelectionChangedEventArgs.pageName
+    summary: |-
+      <span data-ttu-id="78a57-104">获取页面名称，其中包含引发了 SelectionChanged 事件的 ShapeCollection 对象。</span><span class="sxs-lookup"><span data-stu-id="78a57-104">Gets the name of the page which has the ShapeCollection object that raised the SelectionChanged event.</span></span>
+
+      <span data-ttu-id="78a57-105">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="78a57-105">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: pageName
+    fullName: pageName
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'pageName: string;'
+      return:
+        type:
+          - string
+  - uid: visio.Visio.SelectionChangedEventArgs.shapeNames
+    summary: |-
+      <span data-ttu-id="78a57-106">获取引发了 SelectionChanged 事件的形状名称数组。</span><span class="sxs-lookup"><span data-stu-id="78a57-106">Gets the array of shape names that raised the SelectionChanged event.</span></span>
+
+      <span data-ttu-id="78a57-107">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="78a57-107">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: shapeNames
+    fullName: shapeNames
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'shapeNames: string[];'
+      return:
+        type:
+          - 'string[]'

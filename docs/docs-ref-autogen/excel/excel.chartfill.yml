@@ -1,116 +1,159 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 3d69325801545906c9b7935094684f4902bd6999
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30096477"
 items:
-- uid: excel.Excel.ChartFill
-  summary: >-
-    <span data-ttu-id="2808f-101">表示图表元素的填充格式。</span><span class="sxs-lookup"><span data-stu-id="2808f-101">Represents the fill formatting for a chart element.</span></span>
+  - uid: excel.Excel.ChartFill
+    summary: |-
+      <span data-ttu-id="52336-101">表示图表元素的格式填充。</span><span class="sxs-lookup"><span data-stu-id="52336-101">Represents the fill formatting for a chart element.</span></span>
+
+      <span data-ttu-id="52336-102">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="52336-102">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: Excel.ChartFill
+    fullName: Excel.ChartFill
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: excel
+    children:
+      - excel.Excel.ChartFill.clear
+      - excel.Excel.ChartFill.context
+      - excel.Excel.ChartFill.load
+      - excel.Excel.ChartFill.setSolidColor
+      - excel.Excel.ChartFill.toJSON
+  - uid: excel.Excel.ChartFill.clear
+    summary: |-
+      <span data-ttu-id="52336-103">清除图表元素的填充颜色。</span><span class="sxs-lookup"><span data-stu-id="52336-103">Clear the fill color of a chart element.</span></span>
+
+      <span data-ttu-id="52336-104">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="52336-104">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: clear()
+    fullName: clear()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clear(): void;'
+      return:
+        type:
+          - void
+        description: |-
 
 
-    <span data-ttu-id="2808f-102">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="2808f-102">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
-  name: Excel.ChartFill
-  fullName: Excel.ChartFill
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: excel
-  children:
-  - excel.Excel.ChartFill.clear
-  - excel.Excel.ChartFill.context
-  - excel.Excel.ChartFill.load
-  - excel.Excel.ChartFill.setSolidColor
-  - excel.Excel.ChartFill.toJSON
-- uid: excel.Excel.ChartFill.clear
-  summary: >-
-    <span data-ttu-id="2808f-103">清除图表元素的填充颜色。</span><span class="sxs-lookup"><span data-stu-id="2808f-103">Clear the fill color of a chart element.</span></span>
+          #### <a name="examples"></a><span data-ttu-id="52336-105">示例</span><span class="sxs-lookup"><span data-stu-id="52336-105">Examples</span></span>
+
+          ```javascript
+          // Clear the line format of the major Gridlines on value axis of the Chart named "Chart1"
+          Excel.run(function (ctx) { 
+              var gridlines = ctx.workbook.worksheets.getItem("Sheet1").charts.getItem("Chart1").axes.valueAxis.majorGridlines;
+              gridlines.format.line.clear();
+              return ctx.sync().then(function() {
+                      console.log("Chart Major Gridlines Format Cleared");
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: excel.Excel.ChartFill.context
+    summary: <span data-ttu-id="52336-106">与该对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="52336-106">The request context associated with the object.</span></span> <span data-ttu-id="52336-107">这会将加载项的进程连接到 Office 主机应用程序的进程。</span><span class="sxs-lookup"><span data-stu-id="52336-107">This connects the add-in's process to the Office host application's process.</span></span>
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - RequestContext
+  - uid: excel.Excel.ChartFill.load
+    summary: <span data-ttu-id="52336-108">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="52336-108">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="52336-109">在读取属性之前，你必须调用“context.sync()”。</span><span class="sxs-lookup"><span data-stu-id="52336-109">You must call "context.sync()" before reading the properties.</span></span>
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: string | string[] | OfficeExtension.LoadOption): Excel.ChartFill;'
+      return:
+        type:
+          - excel.Excel.ChartFill
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - 'string | string[] | OfficeExtension.LoadOption'
+  - uid: excel.Excel.ChartFill.setSolidColor
+    summary: |-
+      <span data-ttu-id="52336-110">将图表元素的填充格式设置为统一颜色。</span><span class="sxs-lookup"><span data-stu-id="52336-110">Sets the fill formatting of a chart element to a uniform color.</span></span>
+
+      <span data-ttu-id="52336-111">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="52336-111">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: setSolidColor(color)
+    fullName: setSolidColor(color)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setSolidColor(color: string): void;'
+      return:
+        type:
+          - void
+        description: |-
 
 
-    <span data-ttu-id="2808f-104">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="2808f-104">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
-  name: clear()
-  fullName: clear()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'clear(): void;'
-    return:
-      type:
-      - void
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"2808f-105\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"2808f-105\">Examples</span></span>\n\n```javascript\n// Clear the line format of the major Gridlines on value axis of the Chart named \"Chart1\"\nExcel.run(function (ctx) { \n    var gridlines = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\").axes.valueAxis.majorGridlines;\n    gridlines.format.line.clear();\n    return ctx.sync().then(function() {\n            console.log(\"Chart Major Gridlines Format Cleared\");\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-- uid: excel.Excel.ChartFill.context
-  summary: <span data-ttu-id="2808f-106">与该对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="2808f-106">The request context associated with the object.</span></span> <span data-ttu-id="2808f-107">这会将加载项的进程连接到 Office 主机应用程序的进程。</span><span class="sxs-lookup"><span data-stu-id="2808f-107">This connects the add-in's process to the Office host application's process.</span></span>
-  name: context
-  fullName: context
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'context: RequestContext;'
-    return:
-      type:
-      - RequestContext
-- uid: excel.Excel.ChartFill.load
-  summary: <span data-ttu-id="2808f-108">对命令进行排队, 以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="2808f-108">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="2808f-109">在读取属性之前, 必须先调用 "context, sync ()"。</span><span class="sxs-lookup"><span data-stu-id="2808f-109">You must call "context.sync()" before reading the properties.</span></span>
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: string | string[] | OfficeExtension.LoadOption): Excel.ChartFill;'
-    return:
-      type:
-      - excel.Excel.ChartFill
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - string | string[] | OfficeExtension.LoadOption
-- uid: excel.Excel.ChartFill.setSolidColor
-  summary: >-
-    <span data-ttu-id="2808f-110">将图表元素的填充格式设置为统一颜色。</span><span class="sxs-lookup"><span data-stu-id="2808f-110">Sets the fill formatting of a chart element to a uniform color.</span></span>
+          #### <a name="examples"></a><span data-ttu-id="52336-112">示例</span><span class="sxs-lookup"><span data-stu-id="52336-112">Examples</span></span>
 
+          ```javascript
+          Excel.run(function (ctx) { 
+              var chart = ctx.workbook.worksheets.getItem("Sheet1").charts.getItem("Chart1");    
 
-    <span data-ttu-id="2808f-111">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="2808f-111">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
-  name: setSolidColor(color)
-  fullName: setSolidColor(color)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'setSolidColor(color: string): void;'
-    return:
-      type:
-      - void
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"2808f-112\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"2808f-112\">Examples</span></span>\n\n```javascript\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n\n    chart.format.fill.setSolidColor(\"#FF0000\");\n\n    return ctx.sync().then(function() {\n            console.log(\"Chart1 Background Color Changed.\");\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    let pointsCollection = sheet.charts.getItemAt(0).series.getItemAt(0).points;\n    let point = pointsCollection.getItemAt(2);\n\n    // Set color for chart point.\n    point.format.fill.setSolidColor('red');\n\n    await context.sync();        \n});\n```"
-    parameters:
-    - id: color
-      description: <span data-ttu-id="2808f-113">代表\#RRGGBB (例如 "FFA500") 或命名的 HTML 颜色 (例如 "橙色") 的边框线条颜色的 HTML 颜色代码。</span><span class="sxs-lookup"><span data-stu-id="2808f-113">HTML color code representing the color of the border line, of the form \#RRGGBB (e.g. "FFA500") or as a named HTML color (e.g. "orange").</span></span>
-      type:
-      - string
-- uid: excel.Excel.ChartFill.toJSON
-  summary: <span data-ttu-id="2808f-114">重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到`JSON.stringify()` <!-- -->时提供更有用的输出。</span><span class="sxs-lookup"><span data-stu-id="2808f-114">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`<!-- -->.</span></span> <span data-ttu-id="2808f-115">(`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。)尽管原始 ChartFill 对象是 API 对象, 但该`toJSON`方法返回一个纯 JavaScript 对象 (类型为`Excel.Interfaces.ChartFillData` <!-- -->), 其中包含原始对象中任何已加载的子属性的浅表副本。</span><span class="sxs-lookup"><span data-stu-id="2808f-115">(`JSON.stringify`<!-- -->, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original Excel.ChartFill object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Excel.Interfaces.ChartFillData`<!-- -->) that contains shallow copies of any loaded child properties from the original object.</span></span>
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: >-
-      toJSON(): {
-                  [key: string]: string;
-              };
-    return:
-      type:
-      - >-
-        {
+              chart.format.fill.setSolidColor("#FF0000");
+
+              return ctx.sync().then(function() {
+                      console.log("Chart1 Background Color Changed.");
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+
+              let pointsCollection = sheet.charts.getItemAt(0).series.getItemAt(0).points;
+              let point = pointsCollection.getItemAt(2);
+
+              // Set color for chart point.
+              point.format.fill.setSolidColor('red');
+
+              await context.sync();        
+          });
+          ```
+      parameters:
+        - id: color
+          description: '<span data-ttu-id="52336-113">代表\#RRGGBB (例如 "FFA500") 或命名的 HTML 颜色 (例如 "橙色") 的边框线条颜色的 HTML 颜色代码。</span><span class="sxs-lookup"><span data-stu-id="52336-113">HTML color code representing the color of the border line, of the form \#RRGGBB (e.g. "FFA500") or as a named HTML color (e.g. "orange").</span></span>'
+          type:
+            - string
+  - uid: excel.Excel.ChartFill.toJSON
+    summary: '<span data-ttu-id="52336-114">重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`</span><span class="sxs-lookup"><span data-stu-id="52336-114">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`</span></span><!-- --><span data-ttu-id="52336-115">.</span><span class="sxs-lookup"><span data-stu-id="52336-115"></span></span> <span data-ttu-id="52336-116">(`JSON.stringify`</span><span class="sxs-lookup"><span data-stu-id="52336-116"></span></span><!-- --><span data-ttu-id="52336-117">反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始 ChartFill 对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Excel.Interfaces.ChartFillData`</span><span class="sxs-lookup"><span data-stu-id="52336-117">, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original Excel.ChartFill object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Excel.Interfaces.ChartFillData`</span></span><!-- --><span data-ttu-id="52336-118">), 其中包含原始对象中所有已加载的子属性的浅表副本。</span><span class="sxs-lookup"><span data-stu-id="52336-118">) that contains shallow copies of any loaded child properties from the original object.</span></span>'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: |-
+        toJSON(): {
                     [key: string]: string;
-                }
-      description: ''
+                };
+      return:
+        type:
+          - |-
+            {
+                        [key: string]: string;
+                    }
+        description: ''

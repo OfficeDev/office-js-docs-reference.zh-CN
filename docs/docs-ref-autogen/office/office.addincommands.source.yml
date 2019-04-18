@@ -1,31 +1,77 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: b992404f414b65db29683671433c5dd976fce3a6
-ms.sourcegitcommit: b0b614f5315ab2e5c1e0ea51c687498f87684a07
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/15/2019
-ms.locfileid: "30055834"
 items:
-- uid: office.Office.AddinCommands.Source
-  summary: <span data-ttu-id="36e35-101">封装外接程序事件的源数据。</span><span class="sxs-lookup"><span data-stu-id="36e35-101">Encapsulates source data for add-in events.</span></span>
-  name: Office.AddinCommands.Source
-  fullName: Office.AddinCommands.Source
-  langs:
-  - typeScript
-  type: interface
-  package: office
-  children:
-  - office.Office.AddinCommands.Source.id
-- uid: office.Office.AddinCommands.Source.id
-  summary: <span data-ttu-id="36e35-102">触发调用此函数的控件的 id。</span><span class="sxs-lookup"><span data-stu-id="36e35-102">The id of the control that triggered calling this function.</span></span> <span data-ttu-id="36e35-103">该 id 来自清单, 是 Office 外接程序的唯一 id (GUID)。</span><span class="sxs-lookup"><span data-stu-id="36e35-103">The id comes from the manifest and is the unique ID of your Office Add-in as a GUID.</span></span>
-  name: id
-  fullName: id
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'id: string;'
-    return:
-      type:
-      - string
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"36e35-104\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"36e35-104\">Examples</span></span>\n\n```javascript\n// In this example, consider a button defined in an add-in manifest as follows:\n//<Control xsi:type=\"Button\" id=\"eventTestButton\">\n//    <Label resid=\"eventButtonLabel\" />\n//    <Tooltip resid=\"eventButtonTooltip\" />\n//    <Supertip>\n//        <Title resid=\"eventSuperTipTitle\" />\n//        <Description resid=\"eventSuperTipDescription\" />\n//    </Supertip>\n//    <Icon>\n//        <bt:Image size=\"16\" resid=\"blue-icon-16\" />\n//        <bt:Image size=\"32\" resid=\"blue-icon-32\" />\n//        <bt:Image size=\"80\" resid=\"blue-icon-80\" />\n//    </Icon>\n//    <Action xsi:type=\"ExecuteFunction\">\n//        <FunctionName>testEventObject</FunctionName>\n//    </Action>\n//</Control>\n\n// The button has an id attribute set to eventTestButton, and will invoke\n// the testEventObject function defined in the add-in.\n// That function looks like this:\nfunction testEventObject(event) {\n    // The event object implements the Event interface.\n\n    // This value will be \"eventTestButton\".\n    var buttonId = event.source.id;\n\n    // Signal to the host app that processing is complete.\n    event.completed();\n}\n```\n```javascript\n// Function is used by two buttons:\n// button1 and button2\nfunction multiButton (event) {\n    // Check which button was clicked.\n    var buttonId = event.source.id;\n\n    if (buttonId === 'button1') {\n        doButton1Action();\n    } else {\n        doButton2Action();\n    }\n\n    event.completed();\n}\n```"
+  - uid: office.Office.AddinCommands.Source
+    summary: <span data-ttu-id="8dda1-101">封装外接程序事件的源数据。</span><span class="sxs-lookup"><span data-stu-id="8dda1-101">Encapsulates source data for add-in events.</span></span>
+    name: Office.AddinCommands.Source
+    fullName: Office.AddinCommands.Source
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    children:
+      - office.Office.AddinCommands.Source.id
+  - uid: office.Office.AddinCommands.Source.id
+    summary: '<span data-ttu-id="8dda1-102">触发调用此函数的控件 ID。</span><span class="sxs-lookup"><span data-stu-id="8dda1-102">The id of the control that triggered calling this function.</span></span> <span data-ttu-id="8dda1-103">该 id 来自清单, 是 Office 外接程序的唯一 id (GUID)。</span><span class="sxs-lookup"><span data-stu-id="8dda1-103">The id comes from the manifest and is the unique ID of your Office Add-in as a GUID.</span></span>'
+    name: id
+    fullName: id
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'id: string;'
+      return:
+        type:
+          - string
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="8dda1-104">示例</span><span class="sxs-lookup"><span data-stu-id="8dda1-104">Examples</span></span>
+
+          ```javascript
+          // In this example, consider a button defined in an add-in manifest as follows:
+          //<Control xsi:type="Button" id="eventTestButton">
+          //    <Label resid="eventButtonLabel" />
+          //    <Tooltip resid="eventButtonTooltip" />
+          //    <Supertip>
+          //        <Title resid="eventSuperTipTitle" />
+          //        <Description resid="eventSuperTipDescription" />
+          //    </Supertip>
+          //    <Icon>
+          //        <bt:Image size="16" resid="blue-icon-16" />
+          //        <bt:Image size="32" resid="blue-icon-32" />
+          //        <bt:Image size="80" resid="blue-icon-80" />
+          //    </Icon>
+          //    <Action xsi:type="ExecuteFunction">
+          //        <FunctionName>testEventObject</FunctionName>
+          //    </Action>
+          //</Control>
+
+          // The button has an id attribute set to eventTestButton, and will invoke
+          // the testEventObject function defined in the add-in.
+          // That function looks like this:
+          function testEventObject(event) {
+              // The event object implements the Event interface.
+
+              // This value will be "eventTestButton".
+              var buttonId = event.source.id;
+
+              // Signal to the host app that processing is complete.
+              event.completed();
+          }
+          ```
+          ```javascript
+          // Function is used by two buttons:
+          // button1 and button2
+          function multiButton (event) {
+              // Check which button was clicked.
+              var buttonId = event.source.id;
+
+              if (buttonId === 'button1') {
+                  doButton1Action();
+              } else {
+                  doButton2Action();
+              }
+
+              event.completed();
+          }
+          ```

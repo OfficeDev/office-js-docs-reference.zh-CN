@@ -1,329 +1,517 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 89f4a77f2bfbc2d9ab381b8f3958facb52b1dc6a
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29981729"
 items:
-- uid: onenote.OneNote.Notebook
-  summary: >-
-    <span data-ttu-id="fc1e3-p101">表示 OneNote 笔记本。笔记本包含分区组和分区。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-p101">Represents a OneNote notebook. Notebooks contain section groups and sections.</span></span>
+  - uid: onenote.OneNote.Notebook
+    summary: |-
+      <span data-ttu-id="0854a-101">表示一个 OneNote 笔记本。</span><span class="sxs-lookup"><span data-stu-id="0854a-101">Represents a OneNote notebook.</span></span> <span data-ttu-id="0854a-102">笔记本包含分区组合和分区。</span><span class="sxs-lookup"><span data-stu-id="0854a-102">Notebooks contain section groups and sections.</span></span>
+
+      <span data-ttu-id="0854a-103">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0854a-103">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: OneNote.Notebook
+    fullName: OneNote.Notebook
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: onenote
+    children:
+      - onenote.OneNote.Notebook.addSection
+      - onenote.OneNote.Notebook.addSectionGroup
+      - onenote.OneNote.Notebook.baseUrl
+      - onenote.OneNote.Notebook.clientUrl
+      - onenote.OneNote.Notebook.context
+      - onenote.OneNote.Notebook.getRestApiId
+      - onenote.OneNote.Notebook.id
+      - onenote.OneNote.Notebook.isVirtual
+      - onenote.OneNote.Notebook.load
+      - onenote.OneNote.Notebook.load_1
+      - onenote.OneNote.Notebook.load_2
+      - onenote.OneNote.Notebook.name
+      - onenote.OneNote.Notebook.sectionGroups
+      - onenote.OneNote.Notebook.sections
+      - onenote.OneNote.Notebook.toJSON
+      - onenote.OneNote.Notebook.track
+      - onenote.OneNote.Notebook.untrack
+  - uid: onenote.OneNote.Notebook.addSection
+    summary: |-
+      <span data-ttu-id="0854a-104">添加新分区至笔记本结尾。</span><span class="sxs-lookup"><span data-stu-id="0854a-104">Adds a new section to the end of the notebook.</span></span>
+
+      <span data-ttu-id="0854a-105">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0854a-105">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: addSection(name)
+    fullName: addSection(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addSection(name: string): OneNote.Section;'
+      return:
+        type:
+          - onenote.OneNote.Section
+        description: |-
 
 
-    <span data-ttu-id="fc1e3-103">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="fc1e3-103">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: OneNote.Notebook
-  fullName: OneNote.Notebook
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: onenote
-  children:
-  - onenote.OneNote.Notebook.addSection
-  - onenote.OneNote.Notebook.addSectionGroup
-  - onenote.OneNote.Notebook.baseUrl
-  - onenote.OneNote.Notebook.clientUrl
-  - onenote.OneNote.Notebook.context
-  - onenote.OneNote.Notebook.getRestApiId
-  - onenote.OneNote.Notebook.id
-  - onenote.OneNote.Notebook.isVirtual
-  - onenote.OneNote.Notebook.load
-  - onenote.OneNote.Notebook.load_1
-  - onenote.OneNote.Notebook.load_2
-  - onenote.OneNote.Notebook.name
-  - onenote.OneNote.Notebook.sectionGroups
-  - onenote.OneNote.Notebook.sections
-  - onenote.OneNote.Notebook.toJSON
-  - onenote.OneNote.Notebook.track
-  - onenote.OneNote.Notebook.untrack
-- uid: onenote.OneNote.Notebook.addSection
-  summary: >-
-    <span data-ttu-id="fc1e3-104">添加新分区至笔记本结尾。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-104">Adds a new section to the end of the notebook.</span></span>
+          #### <a name="examples"></a><span data-ttu-id="0854a-106">示例</span><span class="sxs-lookup"><span data-stu-id="0854a-106">Examples</span></span>
+
+          ```javascript
+          OneNote.run(function (context) {
+
+              // Gets the active notebook.
+              var notebook = context.application.getActiveNotebook();
+
+              // Queue a command to add a new section. 
+              var section = notebook.addSection("Sample section");
+              
+              // Queue a command to load the new section. This example reads the name property later.
+              section.load("name");
+
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function() {
+                      console.log("New section name is " + section.name);
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          }); 
+          ```
+      parameters:
+        - id: name
+          description: <span data-ttu-id="0854a-107">新节的名称。</span><span class="sxs-lookup"><span data-stu-id="0854a-107">The name of the new section.</span></span>
+          type:
+            - string
+  - uid: onenote.OneNote.Notebook.addSectionGroup
+    summary: |-
+      <span data-ttu-id="0854a-108">将新的分区组添加到笔记本结尾。</span><span class="sxs-lookup"><span data-stu-id="0854a-108">Adds a new section group to the end of the notebook.</span></span>
+
+      <span data-ttu-id="0854a-109">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0854a-109">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: addSectionGroup(name)
+    fullName: addSectionGroup(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addSectionGroup(name: string): OneNote.SectionGroup;'
+      return:
+        type:
+          - onenote.OneNote.SectionGroup
+        description: |-
 
 
-    <span data-ttu-id="fc1e3-105">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="fc1e3-105">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: addSection(name)
-  fullName: addSection(name)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'addSection(name: string): OneNote.Section;'
-    return:
-      type:
-      - onenote.OneNote.Section
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"fc1e3-106\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"fc1e3-106\">Examples</span></span>\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active notebook.\n    var notebook = context.application.getActiveNotebook();\n\n    // Queue a command to add a new section. \n    var section = notebook.addSection(\"Sample section\");\n    \n    // Queue a command to load the new section. This example reads the name property later.\n    section.load(\"name\");\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            console.log(\"New section name is \" + section.name);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n}); \n```"
-    parameters:
-    - id: name
-      description: <span data-ttu-id="fc1e3-107">新节的名称。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-107">The name of the new section.</span></span>
-      type:
-      - string
-- uid: onenote.OneNote.Notebook.addSectionGroup
-  summary: >-
-    <span data-ttu-id="fc1e3-108">将新的分区组添加到笔记本结尾。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-108">Adds a new section group to the end of the notebook.</span></span>
+          #### <a name="examples"></a><span data-ttu-id="0854a-110">示例</span><span class="sxs-lookup"><span data-stu-id="0854a-110">Examples</span></span>
+
+          ```javascript
+          OneNote.run(function (context) {
+
+              // Gets the active notebook.
+              var notebook = context.application.getActiveNotebook();
+
+              // Queue a command to add a new section group.
+              var sectionGroup = notebook.addSectionGroup("Sample section group");
+
+              // Queue a command to load the new section group.
+              sectionGroup.load();
+
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function() {
+                      console.log("New section group name is " + sectionGroup.name);
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          }); 
+          ```
+      parameters:
+        - id: name
+          description: <span data-ttu-id="0854a-111">新节的名称。</span><span class="sxs-lookup"><span data-stu-id="0854a-111">The name of the new section.</span></span>
+          type:
+            - string
+  - uid: onenote.OneNote.Notebook.baseUrl
+    summary: |-
+      <span data-ttu-id="0854a-112">此笔记本所在网站的 url。</span><span class="sxs-lookup"><span data-stu-id="0854a-112">The url of the site that this notebook is located.</span></span> <span data-ttu-id="0854a-113">只读</span><span class="sxs-lookup"><span data-stu-id="0854a-113">Read only</span></span>
+
+      <span data-ttu-id="0854a-114">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0854a-114">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: baseUrl
+    fullName: baseUrl
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly baseUrl: string;'
+      return:
+        type:
+          - string
+  - uid: onenote.OneNote.Notebook.clientUrl
+    summary: |-
+      <span data-ttu-id="0854a-115">笔记本的客户端 url。</span><span class="sxs-lookup"><span data-stu-id="0854a-115">The client url of the notebook.</span></span> <span data-ttu-id="0854a-116">只读</span><span class="sxs-lookup"><span data-stu-id="0854a-116">Read only</span></span>
+
+      <span data-ttu-id="0854a-117">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0854a-117">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: clientUrl
+    fullName: clientUrl
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly clientUrl: string;'
+      return:
+        type:
+          - string
+  - uid: onenote.OneNote.Notebook.context
+    summary: <span data-ttu-id="0854a-118">与该对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="0854a-118">The request context associated with the object.</span></span> <span data-ttu-id="0854a-119">这会将加载项的进程连接到 Office 主机应用程序的进程。</span><span class="sxs-lookup"><span data-stu-id="0854a-119">This connects the add-in's process to the Office host application's process.</span></span>
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - RequestContext
+  - uid: onenote.OneNote.Notebook.getRestApiId
+    summary: |-
+      <span data-ttu-id="0854a-120">获取 REST API ID。</span><span class="sxs-lookup"><span data-stu-id="0854a-120">Gets the REST API ID.</span></span>
+
+      <span data-ttu-id="0854a-121">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0854a-121">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: getRestApiId()
+    fullName: getRestApiId()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getRestApiId(): OfficeExtension.ClientResult<string>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<string>
+        description: |-
 
 
-    <span data-ttu-id="fc1e3-109">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="fc1e3-109">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: addSectionGroup(name)
-  fullName: addSectionGroup(name)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'addSectionGroup(name: string): OneNote.SectionGroup;'
-    return:
-      type:
-      - onenote.OneNote.SectionGroup
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"fc1e3-110\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"fc1e3-110\">Examples</span></span>\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active notebook.\n    var notebook = context.application.getActiveNotebook();\n\n    // Queue a command to add a new section group.\n    var sectionGroup = notebook.addSectionGroup(\"Sample section group\");\n\n    // Queue a command to load the new section group.\n    sectionGroup.load();\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            console.log(\"New section group name is \" + sectionGroup.name);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n}); \n```"
-    parameters:
-    - id: name
-      description: <span data-ttu-id="fc1e3-111">新节的名称。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-111">The name of the new section.</span></span>
-      type:
-      - string
-- uid: onenote.OneNote.Notebook.baseUrl
-  summary: >-
-    <span data-ttu-id="fc1e3-112">此笔记本所在的网站的 url。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-112">The url of the site that this notebook is located.</span></span> <span data-ttu-id="fc1e3-113">只读</span><span class="sxs-lookup"><span data-stu-id="fc1e3-113">Read only</span></span>
+          #### <a name="examples"></a><span data-ttu-id="0854a-122">示例</span><span class="sxs-lookup"><span data-stu-id="0854a-122">Examples</span></span>
+
+          ```javascript
+          OneNote.run(function(ctx){
+              // Get the current notebook.         
+              var notebook = ctx.application.getActiveNotebook();
+              var restApiId = notebook.getRestApiId();
+
+              return ctx.sync().
+                  then(function(){
+                      console.log("The REST API ID is " + restApiId.value);
+                      // Note that the REST API ID isn't all you need to interact with the OneNote REST API. 
+                      // This is only required for SharePoint notebooks. baseUrl will be null for OneDrive notebooks.
+                      // For SharePoint notebooks, the notebook baseUrl should be used to talk to the OneNote REST API
+                      // according to the OneNote Development Blog.
+                      // https://blogs.msdn.microsoft.com/onenotedev/2015/06/11/and-sharepoint-makes-three/
+                  });
+          });
+          ```
+  - uid: onenote.OneNote.Notebook.id
+    summary: |-
+      <span data-ttu-id="0854a-123">获取笔记本的 ID。</span><span class="sxs-lookup"><span data-stu-id="0854a-123">Gets the ID of the notebook.</span></span> <span data-ttu-id="0854a-124">只读。</span><span class="sxs-lookup"><span data-stu-id="0854a-124">Read-only.</span></span>
+
+      <span data-ttu-id="0854a-125">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0854a-125">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: id
+    fullName: id
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly id: string;'
+      return:
+        type:
+          - string
+  - uid: onenote.OneNote.Notebook.isVirtual
+    summary: |-
+      <span data-ttu-id="0854a-126">如此如果该笔记本不是由用户创建 (即 "错放分区")。</span><span class="sxs-lookup"><span data-stu-id="0854a-126">True if the Notebook is not created by the user (i.e. 'Misplaced Sections').</span></span> <span data-ttu-id="0854a-127">只读</span><span class="sxs-lookup"><span data-stu-id="0854a-127">Read only</span></span>
+
+      <span data-ttu-id="0854a-128">\[[API 集: OneNoteApi 1.2](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0854a-128">\[ [API set: OneNoteApi 1.2](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: isVirtual
+    fullName: isVirtual
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly isVirtual: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: onenote.OneNote.Notebook.load
+    summary: <span data-ttu-id="0854a-129">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="0854a-129">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="0854a-130">在读取属性之前，你必须调用“context.sync()”。</span><span class="sxs-lookup"><span data-stu-id="0854a-130">You must call "context.sync()" before reading the properties.</span></span>
+    remarks: |-
+      <span data-ttu-id="0854a-131">除了此签名之外, 此方法还具有以下签名:</span><span class="sxs-lookup"><span data-stu-id="0854a-131">In addition to this signature, this method has the following signatures:</span></span>
+
+      <span data-ttu-id="0854a-132">`load(option?: string | string[]): OneNote.Notebook`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="0854a-132">`load(option?: string | string[]): OneNote.Notebook` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
+
+      <span data-ttu-id="0854a-133">`load(option?: { select?: string; expand?: string; }): OneNote.Notebook`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="0854a-133">`load(option?: { select?: string; expand?: string; }): OneNote.Notebook` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+
+      <span data-ttu-id="0854a-134">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Notebook`-仅适用于集合类型。</span><span class="sxs-lookup"><span data-stu-id="0854a-134">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Notebook` - Only available on collection types.</span></span> <span data-ttu-id="0854a-135">它类似于前面的签名。</span><span class="sxs-lookup"><span data-stu-id="0854a-135">It is similar to the preceding signature.</span></span> <span data-ttu-id="0854a-136">top 指定结果中可包含的集合项的最大数量。</span><span class="sxs-lookup"><span data-stu-id="0854a-136">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="0854a-137">选项。 skip 指定要跳过且不包含在结果中的项目数。</span><span class="sxs-lookup"><span data-stu-id="0854a-137">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="0854a-138">如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。</span><span class="sxs-lookup"><span data-stu-id="0854a-138">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OneNote.Interfaces.NotebookLoadOptions): OneNote.Notebook;'
+      return:
+        type:
+          - onenote.OneNote.Notebook
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - onenote.OneNote.Interfaces.NotebookLoadOptions
+  - uid: onenote.OneNote.Notebook.load_1
+    summary: '<span data-ttu-id="0854a-139">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="0854a-139">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="0854a-140">在读取属性`context.sync()`之前, 必须先调用。</span><span class="sxs-lookup"><span data-stu-id="0854a-140">You must call `context.sync()` before reading the properties.</span></span>'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): OneNote.Notebook;'
+      return:
+        type:
+          - onenote.OneNote.Notebook
+        description: |-
 
 
-    <span data-ttu-id="fc1e3-114">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="fc1e3-114">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: baseUrl
-  fullName: baseUrl
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly baseUrl: string;'
-    return:
-      type:
-      - string
-- uid: onenote.OneNote.Notebook.clientUrl
-  summary: >-
-    <span data-ttu-id="fc1e3-115">笔记本的客户端 url</span><span class="sxs-lookup"><span data-stu-id="fc1e3-115">The client url of the notebook.</span></span> <span data-ttu-id="fc1e3-116">只读</span><span class="sxs-lookup"><span data-stu-id="fc1e3-116">Read only</span></span>
+          #### <a name="examples"></a><span data-ttu-id="0854a-141">示例</span><span class="sxs-lookup"><span data-stu-id="0854a-141">Examples</span></span>
 
+          ```javascript
+          OneNote.run(function (context) {
+                  
+              // Get the current notebook.
+              var notebook = context.application.getActiveNotebook();
+                      
+              // Queue a command to load the notebook. 
+              // For best performance, request specific properties.           
+              notebook.load('baseUrl');
+                      
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                      console.log("Base url: " + notebook.baseUrl);
+                      // This is only required for SharePoint notebooks, and will be null for OneDrive notebooks.
+                      // This baseUrl should be used to talk to OneNote REST APIs according to the OneNote Development Blog.
+                      // https://blogs.msdn.microsoft.com/onenotedev/2015/06/11/and-sharepoint-makes-three/
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          OneNote.run(function (context) {
+                  
+              // Get the current notebook.
+              var notebook = context.application.getActiveNotebook();
+                      
+              // Queue a command to load the notebook. 
+              // For best performance, request specific properties.           
+              notebook.load('id');
+                      
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                      console.log("Notebook ID: " + notebook.id);
+                      
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          OneNote.run(function (context) {
+                  
+              // Get the current notebook.
+              var notebook = context.application.getActiveNotebook();
+                      
+              // Queue a command to load the notebook. 
+              // For best performance, request specific properties.           
+              notebook.load('name');
+                      
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                      console.log("Notebook name: " + notebook.name);
+                      
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          OneNote.run(function (context) {
 
-    <span data-ttu-id="fc1e3-117">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="fc1e3-117">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: clientUrl
-  fullName: clientUrl
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly clientUrl: string;'
-    return:
-      type:
-      - string
-- uid: onenote.OneNote.Notebook.context
-  summary: <span data-ttu-id="fc1e3-118">与对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-118">The request context associated with the object.</span></span> <span data-ttu-id="fc1e3-119">这将连接到 Office 主机应用程序的过程外接程序的过程。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-119">This connects the add-in's process to the Office host application's process.</span></span>
-  name: context
-  fullName: context
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'context: RequestContext;'
-    return:
-      type:
-      - RequestContext
-- uid: onenote.OneNote.Notebook.getRestApiId
-  summary: >-
-    <span data-ttu-id="fc1e3-120">获取 REST API id。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-120">Gets the REST API ID.</span></span>
+              // Get the section groups in the notebook. 
+              var sectionGroups = context.application.getActiveNotebook().sectionGroups;
 
+              // Queue a command to load the sectionGroups. 
+              sectionGroups.load("name");
 
-    <span data-ttu-id="fc1e3-121">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="fc1e3-121">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: getRestApiId()
-  fullName: getRestApiId()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getRestApiId(): OfficeExtension.ClientResult<string>;'
-    return:
-      type:
-      - OfficeExtension.ClientResult<string>
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"fc1e3-122\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"fc1e3-122\">Examples</span></span>\n\n```javascript\nOneNote.run(function(ctx){\n    // Get the current notebook.         \n    var notebook = ctx.application.getActiveNotebook();\n    var restApiId = notebook.getRestApiId();\n\n    return ctx.sync().\n        then(function(){\n            console.log(\"The REST API ID is \" + restApiId.value);\n            // Note that the REST API ID isn't all you need to interact with the OneNote REST API. \n            // This is only required for SharePoint notebooks. baseUrl will be null for OneDrive notebooks.\n            // For SharePoint notebooks, the notebook baseUrl should be used to talk to the OneNote REST API\n            // according to the OneNote Development Blog.\n            // https://blogs.msdn.microsoft.com/onenotedev/2015/06/11/and-sharepoint-makes-three/\n        });\n});\n```"
-- uid: onenote.OneNote.Notebook.id
-  summary: >-
-    <span data-ttu-id="fc1e3-p105">获取笔记本的 ID。只读。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-p105">Gets the ID of the notebook. Read-only.</span></span>
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function() {
+                      $.each(sectionGroups.items, function(index, sectionGroup) {
+                          console.log("Section group name: " + sectionGroup.name);
+                      });
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          OneNote.run(function (context) {
 
+              // Gets the active notebook.
+              var notebook = context.application.getActiveNotebook();
+              
+              // Queue a command to get immediate child sections of the notebook. 
+              var childSections = notebook.sections;
 
-    <span data-ttu-id="fc1e3-125">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="fc1e3-125">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: id
-  fullName: id
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly id: string;'
-    return:
-      type:
-      - string
-- uid: onenote.OneNote.Notebook.isVirtual
-  summary: >-
-    <span data-ttu-id="fc1e3-126">如果不由用户 （即错放的分区） 中创建笔记本，则为 true。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-126">True if the Notebook is not created by the user (i.e. 'Misplaced Sections').</span></span> <span data-ttu-id="fc1e3-127">只读</span><span class="sxs-lookup"><span data-stu-id="fc1e3-127">Read only</span></span>
+              // Queue a command to load the childSections. 
+              context.load(childSections);
 
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function() {
+                      $.each(childSections.items, function(index, childSection) {
+                          console.log("Immediate child section name: " + childSection.name);
+                      });            
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });   
+          ```
+      parameters:
+        - id: propertyNames
+          description: '<span data-ttu-id="0854a-142">一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="0854a-142">A comma-delimited string or an array of strings that specify the properties to load.</span></span>'
+          type:
+            - 'string | string[]'
+  - uid: onenote.OneNote.Notebook.load_2
+    summary: '<span data-ttu-id="0854a-143">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="0854a-143">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="0854a-144">在读取属性`context.sync()`之前, 必须先调用。</span><span class="sxs-lookup"><span data-stu-id="0854a-144">You must call `context.sync()` before reading the properties.</span></span>'
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.Notebook;'
+      return:
+        type:
+          - onenote.OneNote.Notebook
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '<span data-ttu-id="0854a-145">其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="0854a-145">Where propertyNamesAndPaths.select is a comma-delimited string that specifies the properties to load, and propertyNamesAndPaths.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: onenote.OneNote.Notebook.name
+    summary: |-
+      <span data-ttu-id="0854a-146">获取笔记本的名称。</span><span class="sxs-lookup"><span data-stu-id="0854a-146">Gets the name of the notebook.</span></span> <span data-ttu-id="0854a-147">只读。</span><span class="sxs-lookup"><span data-stu-id="0854a-147">Read-only.</span></span>
 
-    <span data-ttu-id="fc1e3-128">\[[API 集： OneNoteApi 1.2](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="fc1e3-128">\[ [API set: OneNoteApi 1.2](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: isVirtual
-  fullName: isVirtual
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly isVirtual: boolean;'
-    return:
-      type:
-      - boolean
-- uid: onenote.OneNote.Notebook.load
-  summary: <span data-ttu-id="fc1e3-129">队列设置命令加载指定的对象的属性。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-129">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="fc1e3-130">读取属性之前，必须调用"context.sync()"。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-130">You must call "context.sync()" before reading the properties.</span></span>
-  remarks: >-
-    <span data-ttu-id="fc1e3-131">除了此签名，此方法具有以下签名：</span><span class="sxs-lookup"><span data-stu-id="fc1e3-131">In addition to this signature, this method has the following signatures:</span></span>
+      <span data-ttu-id="0854a-148">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0854a-148">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: name
+    fullName: name
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly name: string;'
+      return:
+        type:
+          - string
+  - uid: onenote.OneNote.Notebook.sectionGroups
+    summary: |-
+      <span data-ttu-id="0854a-149">笔记本中的分区组。</span><span class="sxs-lookup"><span data-stu-id="0854a-149">The section groups in the notebook.</span></span> <span data-ttu-id="0854a-150">只读</span><span class="sxs-lookup"><span data-stu-id="0854a-150">Read only</span></span>
 
+      <span data-ttu-id="0854a-151">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0854a-151">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: sectionGroups
+    fullName: sectionGroups
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly sectionGroups: OneNote.SectionGroupCollection;'
+      return:
+        type:
+          - onenote.OneNote.SectionGroupCollection
+  - uid: onenote.OneNote.Notebook.sections
+    summary: |-
+      <span data-ttu-id="0854a-152">笔记本中的分区。</span><span class="sxs-lookup"><span data-stu-id="0854a-152">The the sections of the notebook.</span></span> <span data-ttu-id="0854a-153">只读</span><span class="sxs-lookup"><span data-stu-id="0854a-153">Read only</span></span>
 
-    <span data-ttu-id="fc1e3-132">`load(option?: string | string[]): OneNote.Notebook`-其中选项是一个以逗号分隔的字符串或一个指定要加载的属性的字符串数组。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-132">`load(option?: string | string[]): OneNote.Notebook` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
-
-
-    <span data-ttu-id="fc1e3-133">`load(option?: { select?: string; expand?: string; }): OneNote.Notebook`-其中 option.select 是一个以逗号分隔的字符串，指定要加载的属性，options.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-133">`load(option?: { select?: string; expand?: string; }): OneNote.Notebook` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
-
-
-    <span data-ttu-id="fc1e3-134">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Notebook`-仅可对集合的类型。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-134">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Notebook` - Only available on collection types.</span></span> <span data-ttu-id="fc1e3-135">它是类似于前一个签名。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-135">It is similar to the preceding signature.</span></span> <span data-ttu-id="fc1e3-136">Option.top 指定集合项可在结果中包含的最大数目。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-136">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="fc1e3-137">Option.skip 指定要跳过和结果中不包含的项的数目。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-137">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="fc1e3-138">如果指定 option.top，则将跳过指定的数目的项后启动结果集。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-138">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: OneNote.Interfaces.NotebookLoadOptions): OneNote.Notebook;'
-    return:
-      type:
-      - onenote.OneNote.Notebook
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - onenote.OneNote.Interfaces.NotebookLoadOptions
-- uid: onenote.OneNote.Notebook.load_1
-  summary: <span data-ttu-id="fc1e3-139">队列设置命令加载指定的对象的属性。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-139">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="fc1e3-140">您必须调用`context.sync()`阅读属性之前。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-140">You must call `context.sync()` before reading the properties.</span></span>
-  name: load(propertyNames)
-  fullName: load(propertyNames)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNames?: string | string[]): OneNote.Notebook;'
-    return:
-      type:
-      - onenote.OneNote.Notebook
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"fc1e3-141\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"fc1e3-141\">Examples</span></span>\n\n```javascript\nOneNote.run(function (context) {\n        \n    // Get the current notebook.\n    var notebook = context.application.getActiveNotebook();\n            \n    // Queue a command to load the notebook. \n    // For best performance, request specific properties.           \n    notebook.load('baseUrl');\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            console.log(\"Base url: \" + notebook.baseUrl);\n            // This is only required for SharePoint notebooks, and will be null for OneDrive notebooks.\n            // This baseUrl should be used to talk to OneNote REST APIs according to the OneNote Development Blog.\n            // https://blogs.msdn.microsoft.com/onenotedev/2015/06/11/and-sharepoint-makes-three/\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function (context) {\n        \n    // Get the current notebook.\n    var notebook = context.application.getActiveNotebook();\n            \n    // Queue a command to load the notebook. \n    // For best performance, request specific properties.           \n    notebook.load('id');\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            console.log(\"Notebook ID: \" + notebook.id);\n            \n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function (context) {\n        \n    // Get the current notebook.\n    var notebook = context.application.getActiveNotebook();\n            \n    // Queue a command to load the notebook. \n    // For best performance, request specific properties.           \n    notebook.load('name');\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            console.log(\"Notebook name: \" + notebook.name);\n            \n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function (context) {\n\n    // Get the section groups in the notebook. \n    var sectionGroups = context.application.getActiveNotebook().sectionGroups;\n\n    // Queue a command to load the sectionGroups. \n    sectionGroups.load(\"name\");\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            $.each(sectionGroups.items, function(index, sectionGroup) {\n                console.log(\"Section group name: \" + sectionGroup.name);\n            });\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active notebook.\n    var notebook = context.application.getActiveNotebook();\n    \n    // Queue a command to get immediate child sections of the notebook. \n    var childSections = notebook.sections;\n\n    // Queue a command to load the childSections. \n    context.load(childSections);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            $.each(childSections.items, function(index, childSection) {\n                console.log(\"Immediate child section name: \" + childSection.name);\n            });            \n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});   \n```"
-    parameters:
-    - id: propertyNames
-      description: <span data-ttu-id="fc1e3-142">以逗号分隔字符串或一个指定要加载的属性的字符串数组。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-142">A comma-delimited string or an array of strings that specify the properties to load.</span></span>
-      type:
-      - string | string[]
-- uid: onenote.OneNote.Notebook.load_2
-  summary: <span data-ttu-id="fc1e3-143">队列设置命令加载指定的对象的属性。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-143">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="fc1e3-144">您必须调用`context.sync()`阅读属性之前。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-144">You must call `context.sync()` before reading the properties.</span></span>
-  name: load(propertyNamesAndPaths)
-  fullName: load(propertyNamesAndPaths)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.Notebook;'
-    return:
-      type:
-      - onenote.OneNote.Notebook
-      description: ''
-    parameters:
-    - id: propertyNamesAndPaths
-      description: <span data-ttu-id="fc1e3-145">其中 propertyNamesAndPaths.select 是一个以逗号分隔的字符串，指定要加载的属性，propertyNamesAndPaths.expand 是一个以逗号分隔的字符串，指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-145">Where propertyNamesAndPaths.select is a comma-delimited string that specifies the properties to load, and propertyNamesAndPaths.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
-      type:
-      - '{ select?: string; expand?: string; }'
-- uid: onenote.OneNote.Notebook.name
-  summary: >-
-    <span data-ttu-id="fc1e3-p111">获取笔记本的名称。此为只读属性。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-p111">Gets the name of the notebook. Read-only.</span></span>
-
-
-    <span data-ttu-id="fc1e3-148">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="fc1e3-148">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: name
-  fullName: name
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly name: string;'
-    return:
-      type:
-      - string
-- uid: onenote.OneNote.Notebook.sectionGroups
-  summary: >-
-    <span data-ttu-id="fc1e3-149">笔记本中的分区组。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-149">The section groups in the notebook.</span></span> <span data-ttu-id="fc1e3-150">只读</span><span class="sxs-lookup"><span data-stu-id="fc1e3-150">Read only</span></span>
-
-
-    <span data-ttu-id="fc1e3-151">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="fc1e3-151">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: sectionGroups
-  fullName: sectionGroups
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly sectionGroups: OneNote.SectionGroupCollection;'
-    return:
-      type:
-      - onenote.OneNote.SectionGroupCollection
-- uid: onenote.OneNote.Notebook.sections
-  summary: >-
-    <span data-ttu-id="fc1e3-152">笔记本中的分区。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-152">The the sections of the notebook.</span></span> <span data-ttu-id="fc1e3-153">只读</span><span class="sxs-lookup"><span data-stu-id="fc1e3-153">Read only</span></span>
-
-
-    <span data-ttu-id="fc1e3-154">\[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="fc1e3-154">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: sections
-  fullName: sections
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly sections: OneNote.SectionCollection;'
-    return:
-      type:
-      - onenote.OneNote.SectionCollection
-- uid: onenote.OneNote.Notebook.toJSON
-  summary: <span data-ttu-id="fc1e3-155">重写 JavaScript`toJSON()`方法，为了提供更多有用的输出时 API 对象传递给`JSON.stringify()` <!-- -->。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-155">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`<!-- -->.</span></span> <span data-ttu-id="fc1e3-156">(`JSON.stringify`<!-- -->，反过来，调用`toJSON`对象传递给它的方法。)原始 OneNote.Notebook 对象是 API 对象，而`toJSON`方法返回一个普通的 JavaScript 对象 (类型为`OneNote.Interfaces.NotebookData` <!-- -->)，其中包含原始对象中的任何加载的子属性的浅表副本。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-156">(`JSON.stringify`<!-- -->, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original OneNote.Notebook object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `OneNote.Interfaces.NotebookData`<!-- -->) that contains shallow copies of any loaded child properties from the original object.</span></span>
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'toJSON(): OneNote.Interfaces.NotebookData;'
-    return:
-      type:
-      - onenote.OneNote.Interfaces.NotebookData
-      description: ''
-- uid: onenote.OneNote.Notebook.track
-  summary: <span data-ttu-id="fc1e3-157">跟踪自动调整根据周围的文档中的更改的对象。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-157">Track the object for automatic adjustment based on surrounding changes in the document.</span></span> <span data-ttu-id="fc1e3-158">此呼叫是 context.trackedObjects.add(thisObject) 简写。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-158">This call is a shorthand for context.trackedObjects.add(thisObject).</span></span> <span data-ttu-id="fc1e3-159">如果您正在使用此对象跨".sync"呼叫和外部".run"批处理和 get"InvalidObjectPath"错误的顺序执行设置属性时，或调用对象的方法，您需要具有将对象添加到跟踪对象首先创建对象集合。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-159">If you are using this object across ".sync" calls and outside the sequential execution of a ".run" batch, and get an "InvalidObjectPath" error when setting a property or invoking a method on the object, you needed to have added the object to the tracked object collection when the object was first created.</span></span>
-  name: track()
-  fullName: track()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'track(): OneNote.Notebook;'
-    return:
-      type:
-      - onenote.OneNote.Notebook
-      description: ''
-- uid: onenote.OneNote.Notebook.untrack
-  summary: <span data-ttu-id="fc1e3-160">发行版与此对象，如果以前跟踪关联的内存。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-160">Release the memory associated with this object, if it has previously been tracked.</span></span> <span data-ttu-id="fc1e3-161">此呼叫是简写 context.trackedObjects.remove(thisObject)。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-161">This call is shorthand for context.trackedObjects.remove(thisObject).</span></span> <span data-ttu-id="fc1e3-162">具有许多跟踪的对象速度减慢主机应用程序，因此请记住以释放添加在完成后的任何对象使用它们。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-162">Having many tracked objects slows down the host application, so please remember to free any objects you add, once you're done using them.</span></span> <span data-ttu-id="fc1e3-163">您将需要的内存版本生效前调用"context.sync()"。</span><span class="sxs-lookup"><span data-stu-id="fc1e3-163">You will need to call "context.sync()" before the memory release takes effect.</span></span>
-  name: untrack()
-  fullName: untrack()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'untrack(): OneNote.Notebook;'
-    return:
-      type:
-      - onenote.OneNote.Notebook
-      description: ''
+      <span data-ttu-id="0854a-154">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0854a-154">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: sections
+    fullName: sections
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly sections: OneNote.SectionCollection;'
+      return:
+        type:
+          - onenote.OneNote.SectionCollection
+  - uid: onenote.OneNote.Notebook.toJSON
+    summary: '<span data-ttu-id="0854a-155">重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`</span><span class="sxs-lookup"><span data-stu-id="0854a-155">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`</span></span><!-- --><span data-ttu-id="0854a-156">.</span><span class="sxs-lookup"><span data-stu-id="0854a-156"></span></span> <span data-ttu-id="0854a-157">(`JSON.stringify`</span><span class="sxs-lookup"><span data-stu-id="0854a-157"></span></span><!-- --><span data-ttu-id="0854a-158">反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始的 OneNote 笔记本对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`OneNote.Interfaces.NotebookData`</span><span class="sxs-lookup"><span data-stu-id="0854a-158">, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original OneNote.Notebook object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `OneNote.Interfaces.NotebookData`</span></span><!-- --><span data-ttu-id="0854a-159">), 其中包含原始对象中所有已加载的子属性的浅表副本。</span><span class="sxs-lookup"><span data-stu-id="0854a-159">) that contains shallow copies of any loaded child properties from the original object.</span></span>'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): OneNote.Interfaces.NotebookData;'
+      return:
+        type:
+          - onenote.OneNote.Interfaces.NotebookData
+        description: ''
+  - uid: onenote.OneNote.Notebook.track
+    summary: '<span data-ttu-id="0854a-160">根据文档中的相应更改来跟踪对象，以便进行自动调整。</span><span class="sxs-lookup"><span data-stu-id="0854a-160">Track the object for automatic adjustment based on surrounding changes in the document.</span></span> <span data-ttu-id="0854a-161">此调用是 context.trackedObjects.add(thisObject) 的缩写。</span><span class="sxs-lookup"><span data-stu-id="0854a-161">This call is a shorthand for context.trackedObjects.add(thisObject).</span></span> <span data-ttu-id="0854a-162">如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。</span><span class="sxs-lookup"><span data-stu-id="0854a-162">If you are using this object across ".sync" calls and outside the sequential execution of a ".run" batch, and get an "InvalidObjectPath" error when setting a property or invoking a method on the object, you needed to have added the object to the tracked object collection when the object was first created.</span></span>'
+    name: track()
+    fullName: track()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'track(): OneNote.Notebook;'
+      return:
+        type:
+          - onenote.OneNote.Notebook
+        description: ''
+  - uid: onenote.OneNote.Notebook.untrack
+    summary: '<span data-ttu-id="0854a-163">释放与此对象关联的内存（如果先前已跟踪过）。</span><span class="sxs-lookup"><span data-stu-id="0854a-163">Release the memory associated with this object, if it has previously been tracked.</span></span> <span data-ttu-id="0854a-164">此调用是 context.trackedObjects.add(thisObject) 的缩写。</span><span class="sxs-lookup"><span data-stu-id="0854a-164">This call is shorthand for context.trackedObjects.remove(thisObject).</span></span> <span data-ttu-id="0854a-165">拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。</span><span class="sxs-lookup"><span data-stu-id="0854a-165">Having many tracked objects slows down the host application, so please remember to free any objects you add, once you''re done using them.</span></span> <span data-ttu-id="0854a-166">在内存释放生效之前，你需要调用“context.sync()”。</span><span class="sxs-lookup"><span data-stu-id="0854a-166">You will need to call "context.sync()" before the memory release takes effect.</span></span>'
+    name: untrack()
+    fullName: untrack()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'untrack(): OneNote.Notebook;'
+      return:
+        type:
+          - onenote.OneNote.Notebook
+        description: ''

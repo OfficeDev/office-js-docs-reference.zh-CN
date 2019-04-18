@@ -1,56 +1,63 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: deac0f2518f59467935fc2082cce0cf545d3ae94
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30107349"
 items:
-- uid: excel_release.Excel.ConditionalTextComparisonRule
-  summary: >-
-    <span data-ttu-id="57aff-101">表示单元格值条件格式规则</span><span class="sxs-lookup"><span data-stu-id="57aff-101">Represents a Cell Value Conditional Format Rule</span></span>
+  - uid: excel_release.Excel.ConditionalTextComparisonRule
+    summary: |-
+      <span data-ttu-id="8d1ee-101">表示单元格值条件格式规则</span><span class="sxs-lookup"><span data-stu-id="8d1ee-101">Represents a Cell Value Conditional Format Rule</span></span>
+
+      <span data-ttu-id="8d1ee-102">\[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="8d1ee-102">\[ [API set: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: Excel.ConditionalTextComparisonRule
+    fullName: Excel.ConditionalTextComparisonRule
+    langs:
+      - typeScript
+    type: interface
+    package: excel_release
+    children:
+      - excel_release.Excel.ConditionalTextComparisonRule.operator
+      - excel_release.Excel.ConditionalTextComparisonRule.text
+  - uid: excel_release.Excel.ConditionalTextComparisonRule.operator
+    summary: |-
+      <span data-ttu-id="8d1ee-103">文本条件格式的运算符。</span><span class="sxs-lookup"><span data-stu-id="8d1ee-103">The operator of the text conditional format.</span></span>
+
+      <span data-ttu-id="8d1ee-104">\[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="8d1ee-104">\[ [API set: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: operator
+    fullName: operator
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'operator: Excel.ConditionalTextOperator | "Invalid" | "Contains" | "NotContains" | "BeginsWith" | "EndsWith";'
+      return:
+        type:
+          - Excel.ConditionalTextOperator | "Invalid" | "Contains" | "NotContains" | "BeginsWith" | "EndsWith"
+  - uid: excel_release.Excel.ConditionalTextComparisonRule.text
+    summary: |-
+      <span data-ttu-id="8d1ee-105">条件格式的文本值。</span><span class="sxs-lookup"><span data-stu-id="8d1ee-105">The Text value of conditional format.</span></span>
+
+      <span data-ttu-id="8d1ee-106">\[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="8d1ee-106">\[ [API set: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: text
+    fullName: text
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'text: string;'
+      return:
+        type:
+          - string
+        description: |-
 
 
-    <span data-ttu-id="57aff-102">\[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="57aff-102">\[ [API set: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
-  name: Excel.ConditionalTextComparisonRule
-  fullName: Excel.ConditionalTextComparisonRule
-  langs:
-  - typeScript
-  type: interface
-  package: excel_release
-  children:
-  - excel_release.Excel.ConditionalTextComparisonRule.operator
-  - excel_release.Excel.ConditionalTextComparisonRule.text
-- uid: excel_release.Excel.ConditionalTextComparisonRule.operator
-  summary: >-
-    <span data-ttu-id="57aff-103">文本条件格式的运算符。</span><span class="sxs-lookup"><span data-stu-id="57aff-103">The operator of the text conditional format.</span></span>
+          #### <a name="examples"></a><span data-ttu-id="8d1ee-107">示例</span><span class="sxs-lookup"><span data-stu-id="8d1ee-107">Examples</span></span>
 
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const range = sheet.getRange("B16:D18");
+              const conditionalFormat = range.conditionalFormats
+                  .add(Excel.ConditionalFormatType.containsText);
+              conditionalFormat.textComparison.format.font.color = "red";
+              conditionalFormat.textComparison.rule = { operator: Excel.ConditionalTextOperator.contains, text: "Delayed" };
 
-    <span data-ttu-id="57aff-104">\[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="57aff-104">\[ [API set: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
-  name: operator
-  fullName: operator
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'operator: Excel.ConditionalTextOperator | "Invalid" | "Contains" | "NotContains" | "BeginsWith" | "EndsWith";'
-    return:
-      type:
-      - Excel.ConditionalTextOperator | "Invalid" | "Contains" | "NotContains" | "BeginsWith" | "EndsWith"
-- uid: excel_release.Excel.ConditionalTextComparisonRule.text
-  summary: >-
-    <span data-ttu-id="57aff-105">条件格式的文本值。</span><span class="sxs-lookup"><span data-stu-id="57aff-105">The Text value of conditional format.</span></span>
-
-
-    <span data-ttu-id="57aff-106">\[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="57aff-106">\[ [API set: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
-  name: text
-  fullName: text
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'text: string;'
-    return:
-      type:
-      - string
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"57aff-107\">示例</span><span class=\"sxs-lookup\"><span data-stu-id=\"57aff-107\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B16:D18\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.containsText);\n    conditionalFormat.textComparison.format.font.color = \"red\";\n    conditionalFormat.textComparison.rule = { operator: Excel.ConditionalTextOperator.contains, text: \"Delayed\" };\n\n    await context.sync();\n});\n```"
+              await context.sync();
+          });
+          ```
