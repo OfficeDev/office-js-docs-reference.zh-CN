@@ -1,142 +1,192 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 6712e4c5006c9284312b16d55686c9b17c103a91
-ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "26220891"
 items:
-- uid: excel.Excel.DataValidationRule
-  summary: >-
-    数据验证规则包含不同类型的数据有效性。 您只能使用其中的一个根据 Excel.DataValidationType 一次。
+  - uid: excel.Excel.DataValidationRule
+    summary: |-
+      数据有效性规则包含不同类型的数据验证。 一次只能根据 DataValidationType 使用其中一种方法。
+
+      \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.DataValidationRule
+    fullName: Excel.DataValidationRule
+    langs:
+      - typeScript
+    type: interface
+    package: excel
+    children:
+      - excel.Excel.DataValidationRule.custom
+      - excel.Excel.DataValidationRule.date
+      - excel.Excel.DataValidationRule.decimal
+      - excel.Excel.DataValidationRule.list
+      - excel.Excel.DataValidationRule.textLength
+      - excel.Excel.DataValidationRule.time
+      - excel.Excel.DataValidationRule.wholeNumber
+  - uid: excel.Excel.DataValidationRule.custom
+    summary: |-
+      自定义数据有效性条件。
+
+      \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: custom
+    fullName: custom
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'custom?: Excel.CustomDataValidation;'
+      return:
+        type:
+          - excel.Excel.CustomDataValidation
+  - uid: excel.Excel.DataValidationRule.date
+    summary: |-
+      日期数据有效性条件。
+
+      \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: date
+    fullName: date
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'date?: Excel.DateTimeDataValidation;'
+      return:
+        type:
+          - excel.Excel.DateTimeDataValidation
+  - uid: excel.Excel.DataValidationRule.decimal
+    summary: |-
+      小数数据有效性条件。
+
+      \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: decimal
+    fullName: decimal
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'decimal?: Excel.BasicDataValidation;'
+      return:
+        type:
+          - excel.Excel.BasicDataValidation
+  - uid: excel.Excel.DataValidationRule.list
+    summary: |-
+      列表数据有效性条件。
+
+      \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: list
+    fullName: list
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'list?: Excel.ListDataValidation;'
+      return:
+        type:
+          - excel.Excel.ListDataValidation
+        description: |-
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: Excel.DataValidationRule
-  fullName: Excel.DataValidationRule
-  langs:
-  - typeScript
-  type: interface
-  package: excel
-  children:
-  - excel.Excel.DataValidationRule.custom
-  - excel.Excel.DataValidationRule.date
-  - excel.Excel.DataValidationRule.decimal
-  - excel.Excel.DataValidationRule.list
-  - excel.Excel.DataValidationRule.textLength
-  - excel.Excel.DataValidationRule.time
-  - excel.Excel.DataValidationRule.wholeNumber
-- uid: excel.Excel.DataValidationRule.custom
-  summary: >-
-    自定义数据验证条件。
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Decision");
+              const nameRange = 
+                  sheet.tables.getItem("NameOptionsTable").columns.getItem("Baby Name").getDataBodyRange();
+
+              // When you are developing, it is a good practice to
+              // clear the dataValidation object with each run of your code.
+              nameRange.dataValidation.clear();
+
+              const nameSourceRange = context.workbook.worksheets.getItem("Names").getRange("A1:A3");
+
+              let approvedListRule = {
+                  list: {
+                      inCellDropDown: true,
+                      source: '=Names!$A$1:$A$3'
+                  }
+              };
+              nameRange.dataValidation.rule = approvedListRule;
+
+              await context.sync();
+          });
+          ```
+  - uid: excel.Excel.DataValidationRule.textLength
+    summary: |-
+      TextLength 数据有效性条件。
+
+      \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: textLength
+    fullName: textLength
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'textLength?: Excel.BasicDataValidation;'
+      return:
+        type:
+          - excel.Excel.BasicDataValidation
+  - uid: excel.Excel.DataValidationRule.time
+    summary: |-
+      时间数据有效性条件。
+
+      \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: time
+    fullName: time
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'time?: Excel.DateTimeDataValidation;'
+      return:
+        type:
+          - excel.Excel.DateTimeDataValidation
+  - uid: excel.Excel.DataValidationRule.wholeNumber
+    summary: |-
+      WholeNumber 数据有效性条件。
+
+      \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: wholeNumber
+    fullName: wholeNumber
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'wholeNumber?: Excel.BasicDataValidation;'
+      return:
+        type:
+          - excel.Excel.BasicDataValidation
+        description: |-
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: custom
-  fullName: custom
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'custom?: Excel.CustomDataValidation;'
-    return:
-      type:
-      - excel.Excel.CustomDataValidation
-- uid: excel.Excel.DataValidationRule.date
-  summary: >-
-    日期数据验证条件。
+          #### <a name="examples"></a>示例
 
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Decision");
+              const rankingRange = sheet.tables.getItem("NameOptionsTable").columns.getItem("Ranking").getDataBodyRange();
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: date
-  fullName: date
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'date?: Excel.DateTimeDataValidation;'
-    return:
-      type:
-      - excel.Excel.DateTimeDataValidation
-- uid: excel.Excel.DataValidationRule.decimal
-  summary: >-
-    十进制数据验证条件。
+              // When you are developing, it is a good practice to
+              // clear the dataValidation object with each run of your code.
+              rankingRange.dataValidation.clear();
 
+              let greaterThanZeroRule = {
+                  wholeNumber: {
+                      formula1: 0,
+                      operator: Excel.DataValidationOperator.greaterThan
+                  }
+              };
+              rankingRange.dataValidation.rule = greaterThanZeroRule;
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: decimal
-  fullName: decimal
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'decimal?: Excel.BasicDataValidation;'
-    return:
-      type:
-      - excel.Excel.BasicDataValidation
-- uid: excel.Excel.DataValidationRule.list
-  summary: >-
-    列表数据验证条件。
+              rankingRange.dataValidation.prompt = {
+                  message: "Please enter a positive number.",
+                  showPrompt: true,
+                  title: "Positive numbers only."
+              };
 
+              rankingRange.dataValidation.errorAlert = {
+                  message: "Sorry, only positive numbers are allowed",
+                  showAlert: true,
+                  style: "Stop",
+                  title: "Negative Number Entered"
+              };
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: list
-  fullName: list
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'list?: Excel.ListDataValidation;'
-    return:
-      type:
-      - excel.Excel.ListDataValidation
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Decision\");\n    const nameRange = \n        sheet.tables.getItem(\"NameOptionsTable\").columns.getItem(\"Baby Name\").getDataBodyRange();\n\n    // When you are developing, it is a good practice to\n    // clear the dataValidation object with each run of your code.\n    nameRange.dataValidation.clear();\n\n    const nameSourceRange = context.workbook.worksheets.getItem(\"Names\").getRange(\"A1:A3\");\n\n    let approvedListRule = {\n        list: {\n            inCellDropDown: true,\n            source: '=Names!$A$1:$A$3'\n        }\n    };\n    nameRange.dataValidation.rule = approvedListRule;\n\n    await context.sync();\n});\n```"
-- uid: excel.Excel.DataValidationRule.textLength
-  summary: >-
-    TextLength 数据验证条件。
-
-
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: textLength
-  fullName: textLength
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'textLength?: Excel.BasicDataValidation;'
-    return:
-      type:
-      - excel.Excel.BasicDataValidation
-- uid: excel.Excel.DataValidationRule.time
-  summary: >-
-    时间数据验证条件。
-
-
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: time
-  fullName: time
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'time?: Excel.DateTimeDataValidation;'
-    return:
-      type:
-      - excel.Excel.DateTimeDataValidation
-- uid: excel.Excel.DataValidationRule.wholeNumber
-  summary: >-
-    WholeNumber 数据验证条件。
-
-
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: wholeNumber
-  fullName: wholeNumber
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'wholeNumber?: Excel.BasicDataValidation;'
-    return:
-      type:
-      - excel.Excel.BasicDataValidation
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Decision\");\n    const rankingRange = sheet.tables.getItem(\"NameOptionsTable\").columns.getItem(\"Ranking\").getDataBodyRange();\n\n    // When you are developing, it is a good practice to\n    // clear the dataValidation object with each run of your code.\n    rankingRange.dataValidation.clear();\n\n    let greaterThanZeroRule = {\n        wholeNumber: {\n            formula1: 0,\n            operator: Excel.DataValidationOperator.greaterThan\n        }\n    };\n    rankingRange.dataValidation.rule = greaterThanZeroRule;\n\n    rankingRange.dataValidation.prompt = {\n        message: \"Please enter a positive number.\",\n        showPrompt: true,\n        title: \"Positive numbers only.\"\n    };\n\n    rankingRange.dataValidation.errorAlert = {\n        message: \"Sorry, only positive numbers are allowed\",\n        showAlert: true,\n        style: \"Stop\",\n        title: \"Negative Number Entered\"\n    };\n\n    await context.sync();\n});\n```"
+              await context.sync();
+          });
+          ```

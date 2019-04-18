@@ -1,181 +1,231 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 97693514969a93ac094cb1917e2a95e048161f36
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29979300"
 items:
-- uid: office.Office.CustomXmlParts
-  summary: 表示 CustomXmlPart 对象的集合。
-  remarks: >-
-    <table><tr><td>要求集</td><td>CustomXmlParts</td></tr></table>
+  - uid: office.Office.CustomXmlParts
+    summary: 表示 CustomXmlPart 对象的集合。
+    remarks: '**主机**: Word'
+    name: Office.CustomXmlParts
+    fullName: Office.CustomXmlParts
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    children:
+      - office.Office.CustomXmlParts.addAsync
+      - office.Office.CustomXmlParts.addAsync_1
+      - office.Office.CustomXmlParts.getByIdAsync
+      - office.Office.CustomXmlParts.getByIdAsync_1
+      - office.Office.CustomXmlParts.getByNamespaceAsync
+      - office.Office.CustomXmlParts.getByNamespaceAsync_1
+  - uid: office.Office.CustomXmlParts.addAsync
+    summary: 将新的自定义 XML 部件异步添加到文件中。
+    remarks: '**要求集**: [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
+    name: 'addAsync(xml, options, callback)'
+    fullName: 'addAsync(xml, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addAsync(xml: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<CustomXmlPart>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: xml
+          description: 要添加到新创建的自定义 XML 部件的 XML。
+          type:
+            - string
+        - id: options
+          description: '提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。'
+          type:
+            - office.Office.AsyncContextOptions
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是新创建的 CustomXmlPart 对象。'
+          type:
+            - '(result: AsyncResult<CustomXmlPart>) => void'
+  - uid: office.Office.CustomXmlParts.addAsync_1
+    summary: 将新的自定义 XML 部件异步添加到文件中。
+    remarks: |-
+      **要求集**: [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)
 
+      #### <a name="examples"></a>示例
 
-    **支持详细信息**
+      ```javascript
+      function addXMLPart() {
+          Office.context.document.customXmlParts.addAsync(
+              '<root categoryId="1" xmlns="http://tempuri.org"><item name="Cheap Item" price="$193.95"/><item name="Expensive Item" price="$931.88"/></root>',
+              function (result) {});
+      }
 
+      function addXMLPartandHandler() {
+          Office.context.document.customXmlParts.addAsync(
+              "<testns:book xmlns:testns='http://testns.com'><testns:page number='1'>Hello</testns:page><testns:page number='2'>world!</testns:page></testns:book>",
+              function(r) { r.value.addHandlerAsync(Office.EventType.DataNodeDeleted,
+                  function(a) {write(a.type)
+                  },
+                      function(s) {write(s.status)
+                      });
+              });
+      }
 
-    在以下矩阵大写 Y 表示此接口支持在相应的 Office 主机应用程序。 空单元格指示 Office 主机应用程序不支持此接口。
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message;
+      }
+      ```
+    name: 'addAsync(xml, callback)'
+    fullName: 'addAsync(xml, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addAsync(xml: string, callback?: (result: AsyncResult<CustomXmlPart>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: xml
+          description: 要添加到新创建的自定义 XML 部件的 XML。
+          type:
+            - string
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是新创建的 CustomXmlPart 对象。'
+          type:
+            - '(result: AsyncResult<CustomXmlPart>) => void'
+  - uid: office.Office.CustomXmlParts.getByIdAsync
+    summary: 以异步方式获取指定的自定义 XML 部件的 id。
+    remarks: |-
+      **要求集**: [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)
 
+      #### <a name="examples"></a>示例
 
-    有关 Office 主机应用程序和服务器要求的详细信息，请参阅[Requirements for Office 加载项运行](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->。
+      ```javascript
+      function showXMLPartInnerXML() {
+          Office.context.document.customXmlParts.getByIdAsync(
+              "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
+              var xmlPart = result.value;
+              xmlPart.getXmlAsync({}, function (eventArgs) {
+                  write(eventArgs.value);
+              });
+          });
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: 'getByIdAsync(id, options, callback)'
+    fullName: 'getByIdAsync(id, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getByIdAsync(id: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<CustomXmlPart>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: id
+          description: 自定义 XML 部件的 GUID（包括前后括号）。
+          type:
+            - string
+        - id: options
+          description: '提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。'
+          type:
+            - office.Office.AsyncContextOptions
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是一个 CustomXmlPart 对象, 该对象表示指定的自定义 XML 部件。 如果没有具有指定 id 的自定义 XML 部件, 该方法将返回 null。'
+          type:
+            - '(result: AsyncResult<CustomXmlPart>) => void'
+  - uid: office.Office.CustomXmlParts.getByIdAsync_1
+    summary: 以异步方式获取指定的自定义 XML 部件的 id。
+    remarks: '**要求集**: [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
+    name: 'getByIdAsync(id, callback)'
+    fullName: 'getByIdAsync(id, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getByIdAsync(id: string, callback?: (result: AsyncResult<CustomXmlPart>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: id
+          description: 自定义 XML 部件的 GUID（包括前后括号）。
+          type:
+            - string
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是一个 CustomXmlPart 对象, 该对象表示指定的自定义 XML 部件。 如果没有具有指定 id 的自定义 XML 部件, 该方法将返回 null。'
+          type:
+            - '(result: AsyncResult<CustomXmlPart>) => void'
+  - uid: office.Office.CustomXmlParts.getByNamespaceAsync
+    summary: 以异步方式获取指定的自定义 XML 部件的命名空间。
+    remarks: '**要求集**: [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
+    name: 'getByNamespaceAsync(ns, options, callback)'
+    fullName: 'getByNamespaceAsync(ns, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getByNamespaceAsync(ns: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<CustomXmlPart[]>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: ns
+          description: 命名空间 URI。
+          type:
+            - string
+        - id: options
+          description: '提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。'
+          type:
+            - office.Office.AsyncContextOptions
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是与指定的命名空间匹配的 CustomXmlPart 对象的数组。'
+          type:
+            - '(result: AsyncResult<CustomXmlPart[]>) => void'
+  - uid: office.Office.CustomXmlParts.getByNamespaceAsync_1
+    summary: 以异步方式获取指定的自定义 XML 部件的命名空间。
+    remarks: |-
+      **要求集**: [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)
 
+      #### <a name="examples"></a>示例
 
-    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> </td><td> Y </td><td> Y </td></tr> </table>
-  name: Office.CustomXmlParts
-  fullName: Office.CustomXmlParts
-  langs:
-  - typeScript
-  type: interface
-  package: office
-  children:
-  - office.Office.CustomXmlParts.addAsync
-  - office.Office.CustomXmlParts.addAsync_1
-  - office.Office.CustomXmlParts.getByIdAsync
-  - office.Office.CustomXmlParts.getByIdAsync_1
-  - office.Office.CustomXmlParts.getByNamespaceAsync
-  - office.Office.CustomXmlParts.getByNamespaceAsync_1
-- uid: office.Office.CustomXmlParts.addAsync
-  summary: 将新的自定义 XML 部件异步添加到文件中。
-  name: addAsync(xml, options, callback)
-  fullName: addAsync(xml, options, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'addAsync(xml: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<CustomXmlPart>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: xml
-      description: 要将添加到新创建的自定义 XML 部件的 XML。
-      type:
-      - string
-    - id: options
-      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
-      type:
-      - office.Office.AsyncContextOptions
-    - id: callback
-      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是新创建的 CustomXmlPart 对象。
-      type:
-      - '(result: AsyncResult<CustomXmlPart>) => void'
-- uid: office.Office.CustomXmlParts.addAsync_1
-  summary: 将新的自定义 XML 部件异步添加到文件中。
-  name: addAsync(xml, callback)
-  fullName: addAsync(xml, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'addAsync(xml: string, callback?: (result: AsyncResult<CustomXmlPart>) => void): void;'
-    return:
-      type:
-      - void
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction addXMLPart() {\n    Office.context.document.customXmlParts.addAsync(\n        '<root categoryId=\"1\" xmlns=\"http://tempuri.org\"><item name=\"Cheap Item\" price=\"$193.95\"/><item name=\"Expensive Item\" price=\"$931.88\"/></root>',\n        function (result) {});\n}\n\nfunction addXMLPartandHandler() {\n    Office.context.document.customXmlParts.addAsync(\n        \"<testns:book xmlns:testns='http://testns.com'><testns:page number='1'>Hello</testns:page><testns:page number='2'>world!</testns:page></testns:book>\",\n        function(r) { r.value.addHandlerAsync(Office.EventType.DataNodeDeleted,\n            function(a) {write(a.type)\n            },\n                function(s) {write(s.status)\n                });\n        });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message;\n}\n```"
-    parameters:
-    - id: xml
-      description: 要将添加到新创建的自定义 XML 部件的 XML。
-      type:
-      - string
-    - id: callback
-      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是新创建的 CustomXmlPart 对象。
-      type:
-      - '(result: AsyncResult<CustomXmlPart>) => void'
-- uid: office.Office.CustomXmlParts.getByIdAsync
-  summary: 由其 id 异步获取指定的自定义 XML 部件。
-  name: getByIdAsync(id, options, callback)
-  fullName: getByIdAsync(id, options, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getByIdAsync(id: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<CustomXmlPart>) => void): void;'
-    return:
-      type:
-      - void
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction showXMLPartInnerXML() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getXmlAsync({}, function (eventArgs) {\n            write(eventArgs.value);\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-    parameters:
-    - id: id
-      description: 自定义 XML 部件，包括括号和右括号的 GUID。
-      type:
-      - string
-    - id: options
-      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
-      type:
-      - office.Office.AsyncContextOptions
-    - id: callback
-      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是一个值，该值代表指定的自定义 XML 部件的 CustomXmlPart 对象。 如果不没有具有指定 id 的任何自定义 XML 部件，该方法返回 null。
-      type:
-      - '(result: AsyncResult<CustomXmlPart>) => void'
-- uid: office.Office.CustomXmlParts.getByIdAsync_1
-  summary: 由其 id 异步获取指定的自定义 XML 部件。
-  name: getByIdAsync(id, callback)
-  fullName: getByIdAsync(id, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getByIdAsync(id: string, callback?: (result: AsyncResult<CustomXmlPart>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: id
-      description: 自定义 XML 部件，包括括号和右括号的 GUID。
-      type:
-      - string
-    - id: callback
-      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`结果属性是一个值，该值代表指定的自定义 XML 部件的 CustomXmlPart 对象。 如果不没有具有指定 id 的任何自定义 XML 部件，该方法返回 null。
-      type:
-      - '(result: AsyncResult<CustomXmlPart>) => void'
-- uid: office.Office.CustomXmlParts.getByNamespaceAsync
-  summary: 异步获取指定的自定义 XML 部件由其命名空间。
-  name: getByNamespaceAsync(ns, options, callback)
-  fullName: getByNamespaceAsync(ns, options, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getByNamespaceAsync(ns: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<CustomXmlPart[]>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: ns
-      description: 命名空间 URI。
-      type:
-      - string
-    - id: options
-      description: 提供用于保留不变，用于在回调中的任何类型的上下文数据的选项。
-      type:
-      - office.Office.AsyncContextOptions
-    - id: callback
-      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`属性的结果是匹配指定命名空间的 CustomXmlPart 对象的数组。
-      type:
-      - '(result: AsyncResult<CustomXmlPart[]>) => void'
-- uid: office.Office.CustomXmlParts.getByNamespaceAsync_1
-  summary: 异步获取指定的自定义 XML 部件由其命名空间。
-  name: getByNamespaceAsync(ns, callback)
-  fullName: getByNamespaceAsync(ns, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getByNamespaceAsync(ns: string, callback?: (result: AsyncResult<CustomXmlPart[]>) => void): void;'
-    return:
-      type:
-      - void
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction showXMLPartsInNamespace() {\n    Office.context.document.customXmlParts.getByNamespaceAsync(\n        \"http://tempuri.org\", \n        function (eventArgs) {\n            write(\"Found \" + eventArgs.value.length + \" parts with this namespace\");\n    }); \n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-    parameters:
-    - id: ns
-      description: 命名空间 URI。
-      type:
-      - string
-    - id: callback
-      description: 可选。 在回调返回时调用的其唯一参数的类型[Office.AsyncResult](xref:office.Office.AsyncResult)函数<!-- -->。 `value`属性的结果是匹配指定命名空间的 CustomXmlPart 对象的数组。
-      type:
-      - '(result: AsyncResult<CustomXmlPart[]>) => void'
+      ```javascript
+      function showXMLPartsInNamespace() {
+          Office.context.document.customXmlParts.getByNamespaceAsync(
+              "http://tempuri.org", 
+              function (eventArgs) {
+                  write("Found " + eventArgs.value.length + " parts with this namespace");
+          }); 
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: 'getByNamespaceAsync(ns, callback)'
+    fullName: 'getByNamespaceAsync(ns, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getByNamespaceAsync(ns: string, callback?: (result: AsyncResult<CustomXmlPart[]>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: ns
+          description: 命名空间 URI。
+          type:
+            - string
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是与指定的命名空间匹配的 CustomXmlPart 对象的数组。'
+          type:
+            - '(result: AsyncResult<CustomXmlPart[]>) => void'

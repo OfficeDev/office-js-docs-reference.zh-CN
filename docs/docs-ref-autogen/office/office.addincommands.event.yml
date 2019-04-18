@@ -1,123 +1,140 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 99b68a9c8525e05e27e381e43f1b31aa961d02a3
-ms.sourcegitcommit: a422a2c3b9ada79477a9f873276b3c00765f7072
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "30900403"
 items:
-- uid: office.Office.AddinCommands.Event
-  summary: 事件对象作为参数传递给由无 UI 调用的外接程序函数 (不小于命令按钮)。 该对象允许外接程序确定单击了哪个按钮，并向主机发出信号说明已完成处理。
-  remarks: <table> <tr><td>外接程序类型</td><td>内容、任务窗格、Outlook</td></tr> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
-  name: Office.AddinCommands.Event
-  fullName: Office.AddinCommands.Event
-  langs:
-  - typeScript
-  type: interface
-  package: office
-  children:
-  - office.Office.AddinCommands.Event.completed
-  - office.Office.AddinCommands.Event.source
-- uid: office.Office.AddinCommands.Event.completed
-  summary: >-
-    指示外接程序已完成由外接程序命令按钮或事件处理程序触发的处理。
+  - uid: office.Office.AddinCommands.Event
+    summary: 事件对象作为参数传递给由无 UI 调用的外接程序函数 (不小于命令按钮)。 该对象允许外接程序确定单击了哪个按钮，并向主机发出信号说明已完成处理。
+    remarks: |-
+      有关详细支持信息, 请参阅[外接程序命令要求集](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/add-in-commands-requirement-sets)。
 
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: 受限的**[适用 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读
+    name: Office.AddinCommands.Event
+    fullName: Office.AddinCommands.Event
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    children:
+      - office.Office.AddinCommands.Event.completed
+      - office.Office.AddinCommands.Event.source
+  - uid: office.Office.AddinCommands.Event.completed
+    summary: |-
+      指示外接程序已完成由外接程序命令按钮或事件处理程序触发的处理。
 
-    此方法必须在由外接程序命令 (由 xsi: type 属性设置为 ExecuteFunction 的 Action 元素定义) 调用的函数末尾调用。 调用此方法会向主机客户端发出信号，指示函数已完成并且它可以清理调用该函数所涉及的任何状态。 例如，如果用户在调用此方法之前关闭 Outlook，Outlook 将警告函数仍在执行。
+      此方法必须在由外接程序命令 (由 xsi: type 属性设置为 ExecuteFunction 的 Action 元素定义) 调用的函数末尾调用。 调用此方法会向主机客户端发出信号，指示函数已完成并且它可以清理调用该函数所涉及的任何状态。 例如，如果用户在调用此方法之前关闭 Outlook，Outlook 将警告函数仍在执行。
 
+      事件处理完成后，必须在由 Office.context.mailbox.addHandlerAsync 添加的事件处理程序中调用此方法。
 
-    事件处理完成后，必须在由 Office.context.mailbox.addHandlerAsync 添加的事件处理程序中调用此方法。
+      \[[API 集: 邮箱 1.3](/office/dev/add-ins/reference/javascript-api-for-office)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: 受限的**[适用 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读
 
+      邮箱1.3 不包含参数, `options`而邮箱预览不支持`options`参数)
 
-    \[[API 集: 邮箱 1.3](/office/dev/add-ins/reference/javascript-api-for-office)\]
-  remarks: >-
-    <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>受限</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
+      #### <a name="examples"></a>示例
 
+      ```javascript
+      function processItem (event) {
+          // Do some processing
 
-    **支持详细信息**
+          event.completed();
+      }
 
+      // In the following example, the checkMessage function has
+      // been registered as an event handler for ItemSend.
+      function checkMessage(event) {
+          // Get the item being sent
+          var outgoingMsg = Office.context.mailbox.item;
 
-    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
+          // Check if subject contains "BLOCK"
+          outgoingMsg.subject.getAsync(function (result) {
+              // Subject is in result.value
+              if (result.value.indexOf('BLOCK') != -1) {
+                  // Value is found, stop send
+                  event.completed({allowEvent = false});
+              } else {
+                  // Value wasn't found, allow send
+                  event.completed({allowEvent = true});
+              }
+          });
+      }
+      ```
+    name: completed(options)
+    fullName: completed(options)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'completed(options?: { allowEvent: boolean }): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: '可选。 包含一个或多个以下属性的对象文本。 allowEvent: 布尔值。 当使用完成的方法来使事件处理程序的完成信号时, 此值指示已处理事件应继续执行或被取消。 例如, 处理 ItemSend 事件的外接程序可以设置 allowEvent = false 以取消发送邮件。'
+          type:
+            - '{ allowEvent: boolean }'
+  - uid: office.Office.AddinCommands.Event.source
+    summary: 有关触发调用此函数的控件的信息。
+    remarks: |-
+      仅在[要求集](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)邮箱1.3 和更高版本中的 Outlook 中支持此属性。
 
+      #### <a name="examples"></a>示例
 
-    有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 加载项的要求](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
+      ```javascript
+      // In this example, consider a button defined in an add-in manifest as follows:
+      //<Control xsi:type="Button" id="eventTestButton">
+      //    <Label resid="eventButtonLabel" />
+      //    <Tooltip resid="eventButtonTooltip" />
+      //    <Supertip>
+      //        <Title resid="eventSuperTipTitle" />
+      //        <Description resid="eventSuperTipDescription" />
+      //    </Supertip>
+      //    <Icon>
+      //        <bt:Image size="16" resid="blue-icon-16" />
+      //        <bt:Image size="32" resid="blue-icon-32" />
+      //        <bt:Image size="80" resid="blue-icon-80" />
+      //    </Icon>
+      //    <Action xsi:type="ExecuteFunction">
+      //        <FunctionName>testEventObject</FunctionName>
+      //    </Action>
+      //</Control>
 
+      // The button has an id attribute set to eventTestButton, and will invoke
+      // the testEventObject function defined in the add-in.
+      // That function looks like this:
+      function testEventObject(event) {
+          // The event object implements the Event interface.
 
-    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Outlook</strong></td><td> Y (自邮箱 1.3: 不`options`带参数;<br>邮箱预览: 添加对参数`options`的支持)</td><td> </td><td> </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
+          // This value will be "eventTestButton".
+          var buttonId = event.source.id;
 
-    #### <a name="examples"></a>示例
+          // Signal to the host app that processing is complete.
+          event.completed();
+      }
+      ```
+      ```javascript
+      // Function is used by two buttons:
+      // button1 and button2
+      function multiButton (event) {
+          // Check which button was clicked.
+          var buttonId = event.source.id;
 
+          if (buttonId === 'button1') {
+              doButton1Action();
+          } else {
+              doButton2Action();
+          }
 
-    ```javascript
-
-    function processItem (event) {
-        // Do some processing
-
-        event.completed();
-    }
-
-
-    // In the following example, the checkMessage function has
-
-    // been registered as an event handler for ItemSend.
-
-    function checkMessage(event) {
-        // Get the item being sent
-        var outgoingMsg = Office.context.mailbox.item;
-
-        // Check if subject contains "BLOCK"
-        outgoingMsg.subject.getAsync(function (result) {
-            // Subject is in result.value
-            if (result.value.indexOf('BLOCK') != -1) {
-                // Value is found, stop send
-                event.completed({allowEvent = false});
-            } else {
-                // Value wasn't found, allow send
-                event.completed({allowEvent = true});
-            }
-        });
-    }
-
-    ```
-  name: completed(options)
-  fullName: completed(options)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'completed(options?: { allowEvent: boolean }): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: options
-      description: '可选。 包含一个或多个以下属性的对象文本。 allowEvent: 布尔值。 当使用完成的方法来使事件处理程序的完成信号时, 此值指示已处理事件应继续执行或被取消。 例如, 处理 ItemSend 事件的外接程序可以设置 allowEvent = false 以取消发送邮件。'
-      type:
-      - '{ allowEvent: boolean }'
-- uid: office.Office.AddinCommands.Event.source
-  summary: >-
-    有关触发调用此函数的控件的信息。
-
-
-    **支持详细信息**
-
-
-    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此属性。空的单元格表示相应的 Office 主机应用程序不支持此属性。
-
-
-    有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 加载项的要求](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
-
-
-    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th></tr> <tr><td><strong>Outlook</strong></td><td> Y (邮箱 1.3) </td><td> </td><td> </td></tr> </table>
-  name: source
-  fullName: source
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: source:Source;
-    return:
-      type:
-      - office.Office.AddinCommands.Source
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// In this example, consider a button defined in an add-in manifest as follows:\n//<Control xsi:type=\"Button\" id=\"eventTestButton\">\n//    <Label resid=\"eventButtonLabel\" />\n//    <Tooltip resid=\"eventButtonTooltip\" />\n//    <Supertip>\n//        <Title resid=\"eventSuperTipTitle\" />\n//        <Description resid=\"eventSuperTipDescription\" />\n//    </Supertip>\n//    <Icon>\n//        <bt:Image size=\"16\" resid=\"blue-icon-16\" />\n//        <bt:Image size=\"32\" resid=\"blue-icon-32\" />\n//        <bt:Image size=\"80\" resid=\"blue-icon-80\" />\n//    </Icon>\n//    <Action xsi:type=\"ExecuteFunction\">\n//        <FunctionName>testEventObject</FunctionName>\n//    </Action>\n//</Control>\n\n// The button has an id attribute set to eventTestButton, and will invoke\n// the testEventObject function defined in the add-in.\n// That function looks like this:\nfunction testEventObject(event) {\n    // The event object implements the Event interface.\n\n    // This value will be \"eventTestButton\".\n    var buttonId = event.source.id;\n\n    // Signal to the host app that processing is complete.\n    event.completed();\n}\n```\n```javascript\n// Function is used by two buttons:\n// button1 and button2\nfunction multiButton (event) {\n    // Check which button was clicked.\n    var buttonId = event.source.id;\n\n    if (buttonId === 'button1') {\n        doButton1Action();\n    } else {\n        doButton2Action();\n    }\n\n    event.completed();\n}\n```"
+          event.completed();
+      }
+      ```
+    name: source
+    fullName: source
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'source:Source;'
+      return:
+        type:
+          - office.Office.AddinCommands.Source

@@ -1,251 +1,281 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 3d3795489f41bcd98a4cb08fb303c8f771265608
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30096960"
 items:
-- uid: excel.Excel.RangeBorder
-  summary: >-
-    代表对象的边框。
+  - uid: excel.Excel.RangeBorder
+    summary: |-
+      代表对象的边框。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.RangeBorder
+    fullName: Excel.RangeBorder
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: excel
+    children:
+      - excel.Excel.RangeBorder.color
+      - excel.Excel.RangeBorder.context
+      - excel.Excel.RangeBorder.load
+      - excel.Excel.RangeBorder.load_1
+      - excel.Excel.RangeBorder.load_2
+      - excel.Excel.RangeBorder.set
+      - excel.Excel.RangeBorder.set_1
+      - excel.Excel.RangeBorder.sideIndex
+      - excel.Excel.RangeBorder.style
+      - excel.Excel.RangeBorder.tintAndShade
+      - excel.Excel.RangeBorder.toJSON
+      - excel.Excel.RangeBorder.weight
+  - uid: excel.Excel.RangeBorder.color
+    summary: |-
+      代表\#RRGGBB (例如 "FFA500") 或命名的 HTML 颜色 (例如 "橙色") 的边框线条颜色的 HTML 颜色代码。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: color
+    fullName: color
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'color: string;'
+      return:
+        type:
+          - string
+  - uid: excel.Excel.RangeBorder.context
+    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - RequestContext
+  - uid: excel.Excel.RangeBorder.load
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+    remarks: |-
+      除了此签名之外, 此方法还具有以下签名:
+
+      `load(option?: string | string[]): Excel.RangeBorder`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
+
+      `load(option?: { select?: string; expand?: string; }): Excel.RangeBorder`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.RangeBorder`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.RangeBorderLoadOptions): Excel.RangeBorder;'
+      return:
+        type:
+          - excel.Excel.RangeBorder
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - excel.Excel.Interfaces.RangeBorderLoadOptions
+  - uid: excel.Excel.RangeBorder.load_1
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.RangeBorder;'
+      return:
+        type:
+          - excel.Excel.RangeBorder
+        description: |-
 
 
-    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: Excel.RangeBorder
-  fullName: Excel.RangeBorder
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: excel
-  children:
-  - excel.Excel.RangeBorder.color
-  - excel.Excel.RangeBorder.context
-  - excel.Excel.RangeBorder.load
-  - excel.Excel.RangeBorder.load_1
-  - excel.Excel.RangeBorder.load_2
-  - excel.Excel.RangeBorder.set
-  - excel.Excel.RangeBorder.set_1
-  - excel.Excel.RangeBorder.sideIndex
-  - excel.Excel.RangeBorder.style
-  - excel.Excel.RangeBorder.tintAndShade
-  - excel.Excel.RangeBorder.toJSON
-  - excel.Excel.RangeBorder.weight
-- uid: excel.Excel.RangeBorder.color
-  summary: >-
-    代表\#RRGGBB (例如 "FFA500") 或命名的 HTML 颜色 (例如 "橙色") 的边框线条颜色的 HTML 颜色代码。
+          #### <a name="examples"></a>示例
 
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "A1:F8";
+              var worksheet = ctx.workbook.worksheets.getItem(sheetName);
+              var range = worksheet.getRange(rangeAddress);
+              var borders = range.format.borders;
+              borders.load('items');
+              return ctx.sync().then(function() {
+                  console.log(borders.count);
+                  for (var i = 0; i < borders.items.length; i++)
+                  {
+                      console.log(borders.items[i].sideIndex);
+                  }
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          // The example below adds grid border around the range.
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "A1:F8";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+              range.format.borders.getItem('InsideHorizontal').style = 'Continuous';
+              range.format.borders.getItem('InsideVertical').style = 'Continuous';
+              range.format.borders.getItem('EdgeBottom').style = 'Continuous';
+              range.format.borders.getItem('EdgeLeft').style = 'Continuous';
+              range.format.borders.getItem('EdgeRight').style = 'Continuous';
+              range.format.borders.getItem('EdgeTop').style = 'Continuous';
+              return ctx.sync(); 
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: '一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。'
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.RangeBorder.load_2
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.RangeBorder;'
+      return:
+        type:
+          - excel.Excel.RangeBorder
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: excel.Excel.RangeBorder.set
+    summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+    remarks: |-
+      此方法具有以下附加签名:
 
-    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: color
-  fullName: color
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'color: string;'
-    return:
-      type:
-      - string
-- uid: excel.Excel.RangeBorder.context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-  name: context
-  fullName: context
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'context: RequestContext;'
-    return:
-      type:
-      - RequestContext
-- uid: excel.Excel.RangeBorder.load
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性之前, 必须先调用 "context, sync ()"。
-  remarks: >-
-    除了此签名之外, 此方法还具有以下签名:
+      `set(properties: Excel.RangeBorder): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.RangeBorderUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: '一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。'
+          type:
+            - Interfaces.RangeBorderUpdateData
+        - id: options
+          description: '提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。'
+          type:
+            - office.OfficeExtension.UpdateOptions
+  - uid: excel.Excel.RangeBorder.set_1
+    summary: 基于现有加载的对象同时设置该对象的多个属性。
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Excel.RangeBorder): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - excel.Excel.RangeBorder
+  - uid: excel.Excel.RangeBorder.sideIndex
+    summary: |-
+      指示边框的特定边的常量值。 有关详细信息, 请参阅 BorderIndex。 只读。
 
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: sideIndex
+    fullName: sideIndex
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly sideIndex: Excel.BorderIndex | "EdgeTop" | "EdgeBottom" | "EdgeLeft" | "EdgeRight" | "InsideVertical" | "InsideHorizontal" | "DiagonalDown" | "DiagonalUp";'
+      return:
+        type:
+          - Excel.BorderIndex | "EdgeTop" | "EdgeBottom" | "EdgeLeft" | "EdgeRight" | "InsideVertical" | "InsideHorizontal" | "DiagonalDown" | "DiagonalUp"
+  - uid: excel.Excel.RangeBorder.style
+    summary: |-
+      线条样式的常量之一，指定边框的线条样式。 有关详细信息, 请参阅 BorderLineStyle。
 
-    `load(option?: string | string[]): Excel.RangeBorder`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: style
+    fullName: style
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'style: Excel.BorderLineStyle | "None" | "Continuous" | "Dash" | "DashDot" | "DashDotDot" | "Dot" | "Double" | "SlantDashDot";'
+      return:
+        type:
+          - Excel.BorderLineStyle | "None" | "Continuous" | "Dash" | "DashDot" | "DashDotDot" | "Dot" | "Double" | "SlantDashDot"
+  - uid: excel.Excel.RangeBorder.tintAndShade
+    summary: |-
+      返回或设置一个使区域边框的颜色变亮或变暗的双精度数值，该值介于 -1（最暗）与 1（最亮）之间，初始颜色为 0。 空值表示边框没有统一的 tintAndShade 设置。
 
+      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: tintAndShade
+    fullName: tintAndShade
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'tintAndShade: number;'
+      return:
+        type:
+          - number
+  - uid: excel.Excel.RangeBorder.toJSON
+    summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始 RangeBorder 对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Excel.Interfaces.RangeBorderData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.RangeBorderData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.RangeBorderData
+        description: ''
+  - uid: excel.Excel.RangeBorder.weight
+    summary: |-
+      指定区域周围的边框的粗细。 有关详细信息, 请参阅 BorderWeight。
 
-    `load(option?: { select?: string; expand?: string; }): Excel.RangeBorder`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
-
-
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.RangeBorder`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: Excel.Interfaces.RangeBorderLoadOptions): Excel.RangeBorder;'
-    return:
-      type:
-      - excel.Excel.RangeBorder
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - excel.Excel.Interfaces.RangeBorderLoadOptions
-- uid: excel.Excel.RangeBorder.load_1
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
-  name: load(propertyNames)
-  fullName: load(propertyNames)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNames?: string | string[]): Excel.RangeBorder;'
-    return:
-      type:
-      - excel.Excel.RangeBorder
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:F8\";\n    var worksheet = ctx.workbook.worksheets.getItem(sheetName);\n    var range = worksheet.getRange(rangeAddress);\n    var borders = range.format.borders;\n    borders.load('items');\n    return ctx.sync().then(function() {\n        console.log(borders.count);\n        for (var i = 0; i < borders.items.length; i++)\n        {\n            console.log(borders.items[i].sideIndex);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// The example below adds grid border around the range.\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:F8\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.format.borders.getItem('InsideHorizontal').style = 'Continuous';\n    range.format.borders.getItem('InsideVertical').style = 'Continuous';\n    range.format.borders.getItem('EdgeBottom').style = 'Continuous';\n    range.format.borders.getItem('EdgeLeft').style = 'Continuous';\n    range.format.borders.getItem('EdgeRight').style = 'Continuous';\n    range.format.borders.getItem('EdgeTop').style = 'Continuous';\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-    parameters:
-    - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。
-      type:
-      - string | string[]
-- uid: excel.Excel.RangeBorder.load_2
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
-  name: load(propertyNamesAndPaths)
-  fullName: load(propertyNamesAndPaths)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.RangeBorder;'
-    return:
-      type:
-      - excel.Excel.RangeBorder
-      description: ''
-    parameters:
-    - id: propertyNamesAndPaths
-      description: 其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
-      type:
-      - '{ select?: string; expand?: string; }'
-- uid: excel.Excel.RangeBorder.set
-  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
-  remarks: >-
-    此方法具有以下附加签名:
-
-
-    `set(properties: Excel.RangeBorder): void`
-  name: set(properties, options)
-  fullName: set(properties, options)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'set(properties: Interfaces.RangeBorderUpdateData, options?: OfficeExtension.UpdateOptions): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: properties
-      description: 一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。
-      type:
-      - Interfaces.RangeBorderUpdateData
-    - id: options
-      description: 提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。
-      type:
-      - office.OfficeExtension.UpdateOptions
-- uid: excel.Excel.RangeBorder.set_1
-  summary: 基于现有加载的对象同时设置该对象的多个属性。
-  name: set(properties)
-  fullName: set(properties)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'set(properties: Excel.RangeBorder): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: properties
-      description: ''
-      type:
-      - excel.Excel.RangeBorder
-- uid: excel.Excel.RangeBorder.sideIndex
-  summary: >-
-    指示边框的特定边的常量值。 有关详细信息, 请参阅 BorderIndex。 只读。
-
-
-    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: sideIndex
-  fullName: sideIndex
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly sideIndex: Excel.BorderIndex | "EdgeTop" | "EdgeBottom" | "EdgeLeft" | "EdgeRight" | "InsideVertical" | "InsideHorizontal" | "DiagonalDown" | "DiagonalUp";'
-    return:
-      type:
-      - Excel.BorderIndex | "EdgeTop" | "EdgeBottom" | "EdgeLeft" | "EdgeRight" | "InsideVertical" | "InsideHorizontal" | "DiagonalDown" | "DiagonalUp"
-- uid: excel.Excel.RangeBorder.style
-  summary: >-
-    指定边框线条样式的线条样式的常量之一。 有关详细信息, 请参阅 BorderLineStyle。
-
-
-    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: style
-  fullName: style
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'style: Excel.BorderLineStyle | "None" | "Continuous" | "Dash" | "DashDot" | "DashDotDot" | "Dot" | "Double" | "SlantDashDot";'
-    return:
-      type:
-      - Excel.BorderLineStyle | "None" | "Continuous" | "Dash" | "DashDot" | "DashDotDot" | "Dot" | "Double" | "SlantDashDot"
-- uid: excel.Excel.RangeBorder.tintAndShade
-  summary: >-
-    返回或设置一个双精度值, 表示将区域边框的颜色变浅或变暗, 该值介于-1 (最暗) 和 1 (最亮) 之间, 原始颜色为0。 空值表示边框没有统一的 tintAndShade 设置。
-
-
-    \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: tintAndShade
-  fullName: tintAndShade
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'tintAndShade: number;'
-    return:
-      type:
-      - number
-- uid: excel.Excel.RangeBorder.toJSON
-  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到`JSON.stringify()` <!-- -->时提供更有用的输出。 (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。)尽管原始 RangeBorder 对象是 API 对象, 但该`toJSON`方法返回一个纯 JavaScript 对象 (类型为`Excel.Interfaces.RangeBorderData` <!-- -->), 其中包含原始对象中任何已加载的子属性的浅表副本。
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'toJSON(): Excel.Interfaces.RangeBorderData;'
-    return:
-      type:
-      - excel.Excel.Interfaces.RangeBorderData
-      description: ''
-- uid: excel.Excel.RangeBorder.weight
-  summary: >-
-    指定某一区域周围的边框的粗细。 有关详细信息, 请参阅 BorderWeight。
-
-
-    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: weight
-  fullName: weight
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'weight: Excel.BorderWeight | "Hairline" | "Thin" | "Medium" | "Thick";'
-    return:
-      type:
-      - Excel.BorderWeight | "Hairline" | "Thin" | "Medium" | "Thick"
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: weight
+    fullName: weight
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'weight: Excel.BorderWeight | "Hairline" | "Thin" | "Medium" | "Thick";'
+      return:
+        type:
+          - Excel.BorderWeight | "Hairline" | "Thin" | "Medium" | "Thick"

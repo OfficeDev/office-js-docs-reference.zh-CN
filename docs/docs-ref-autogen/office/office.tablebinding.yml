@@ -1,799 +1,741 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: f323ce2a7e2510f4309a37a7123c51dcbb36d5e4
-ms.sourcegitcommit: b0b614f5315ab2e5c1e0ea51c687498f87684a07
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/15/2019
-ms.locfileid: "30055610"
 items:
-- uid: office.Office.TableBinding
-  summary: 表示两个维度的行和列的绑定，标题可选。
-  remarks: >-
-    <table><tr><td>要求集</td><td>TableBindings</td></tr></table>
-
-
-    TableBinding 对象从对象`id`继承属性`type` 、属性`getDataAsync` 、方法和`setDataAsync`方法。 [](xref:office.Office.Binding)
-
-
-    对于 Excel, 请注意, 在建立表绑定后, 用户添加到表中的每个新行都将自动包含在绑定和行计数增加中。
-  name: Office.TableBinding
-  fullName: Office.TableBinding
-  langs:
-  - typeScript
-  type: interface
-  extends:
-  - 'Binding '
-  package: office
-  children:
-  - office.Office.TableBinding.addColumnsAsync
-  - office.Office.TableBinding.addColumnsAsync_1
-  - office.Office.TableBinding.addRowsAsync
-  - office.Office.TableBinding.addRowsAsync_1
-  - office.Office.TableBinding.clearFormatsAsync
-  - office.Office.TableBinding.clearFormatsAsync_1
-  - office.Office.TableBinding.deleteAllDataValuesAsync
-  - office.Office.TableBinding.deleteAllDataValuesAsync_1
-  - office.Office.TableBinding.getFormatsAsync
-  - office.Office.TableBinding.getFormatsAsync_1
-  - office.Office.TableBinding.setFormatsAsync
-  - office.Office.TableBinding.setFormatsAsync_1
-  - office.Office.TableBinding.setTableOptionsAsync
-  - office.Office.TableBinding.setTableOptionsAsync_1
-  - office.Office.TableBinding.columnCount
-  - office.Office.TableBinding.hasHeaders
-  - office.Office.TableBinding.rowCount
-- uid: office.Office.TableBinding.addColumnsAsync
-  summary: 将指定的数据作为其他列添加到表中。
-  remarks: >-
-    若要添加一个或多个指定数据和标头值的列, 请将 TableData 对象作为 data 参数传递。 若要添加一个或多个仅指定数据的列, 请将数组的数组 ("矩阵") 作为 data 参数传递。
-
-
-    addColumnsAsync 操作的成功或失败是原子操作。 也就是说, 整个添加列操作必须成功, 否则将完全回滚 (并返回回叫的 AsyncResult 属性将报告失败):
-
-
-    - 作为 data 参数传递的数组中的每一行的行数必须与要更新的表的行数相同。 如果不是, 则整个操作将失败。
-
-
-    - 数组中的每行和每个单元格都必须成功将该行或单元格添加到表中的新增列中。如果出于任何原因任意行或单元格未能添加成功，则整个操作将失败。
-
-
-    - 如果将 TableData 对象作为 data 参数传递, 则标头行的数目必须与要更新的表的数目相匹配。
-
-
-    Excel Online 的其他注解: 在对此方法的单个调用中, 传递给 data 参数的 TableData 对象中的单元格总数不能超过20000。
-
-
-    **支持详细信息**
-
-
-    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
-
-
-    有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。
-
-
-    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
-
-    #### <a name="examples"></a>示例
-
-
-    ```javascript
-
-    // The following example adds a single column with three rows to a bound table with the id "myTable"
-
-    // by passing a TableData object as the data argument of the addColumnsAsync method. To succeed,
-
-    // the table being updated must have three rows.
-
-
-    // Add a column to a binding of type table by passing a TableData object.
-
-    function addColumns() {
-        var myTable = new Office.TableData();
-        myTable.headers = [["Cities"]];
-        myTable.rows = [["Berlin"], ["Roma"], ["Tokyo"]];
-
-        Office.context.document.bindings.getByIdAsync("myTable", function (result) {
-            result.value.addColumnsAsync(myTable);
-        });
-    }
-
-
-    // The following example adds a single column with three rows to a bound table with the id myTable
-
-    // by passing an array of arrays ("matrix") as the data argument of the addColumnsAsync method.
-
-    // To succeed, the table being updated must have three rows.
-
-
-    // Add a column to a binding of type table by passing an array of arrays.
-
-    function addColumns() {
-        var myTable = [["Berlin"], ["Roma"], ["Tokyo"]];
-
-        Office.context.document.bindings.getByIdAsync("myTable", function (result) {
-            result.value.addColumnsAsync(myTable);
-        });
-    }
-
-    ```
-  name: addColumnsAsync(tableData, options, callback)
-  fullName: addColumnsAsync(tableData, options, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'addColumnsAsync(tableData: TableData | any[][], options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: tableData
-      description: 数组的数组 ("矩阵") 或 TableData 对象, 其中包含要添加到表中的一个或多个数据列。 必需。
-      type:
-      - TableData | any[][]
-    - id: options
-      description: 提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。
-      type:
-      - office.Office.AsyncContextOptions
-    - id: callback
-      description: 可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->"。
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.TableBinding.addColumnsAsync_1
-  summary: 将指定的数据作为其他列添加到表中。
-  remarks: >-
-    若要添加一个或多个指定数据和标头值的列, 请将 TableData 对象作为 data 参数传递。 若要添加一个或多个仅指定数据的列, 请将数组的数组 ("矩阵") 作为 data 参数传递。
-
-
-    addColumnsAsync 操作的成功或失败是原子操作。 也就是说, 整个添加列操作必须成功, 否则将完全回滚 (并返回回叫的 AsyncResult 属性将报告失败):
-
-
-    - 作为 data 参数传递的数组中的每一行的行数必须与要更新的表的行数相同。 如果不是, 则整个操作将失败。
-
-
-    - 数组中的每行和每个单元格都必须成功将该行或单元格添加到表中的新增列中。如果出于任何原因任意行或单元格未能添加成功，则整个操作将失败。
-
-
-    - 如果将 TableData 对象作为 data 参数传递, 则标头行的数目必须与要更新的表的数目相匹配。
-
-
-    Excel Online 的其他注解: 在对此方法的单个调用中, 传递给 data 参数的 TableData 对象中的单元格总数不能超过20000。
-
-
-    **支持详细信息**
-
-
-    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
-
-
-    有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。
-
-
-    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
-  name: addColumnsAsync(tableData, callback)
-  fullName: addColumnsAsync(tableData, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'addColumnsAsync(tableData: TableData | any[][], callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: tableData
-      description: 数组的数组 ("矩阵") 或 TableData 对象, 其中包含要添加到表中的一个或多个数据列。 必需。
-      type:
-      - TableData | any[][]
-    - id: callback
-      description: 可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->"。
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.TableBinding.addRowsAsync
-  summary: 将指定的数据作为附加行添加到表中。
-  remarks: >-
-    addRowsAsync 操作的成功或失败是原子操作。 也就是说, 整个添加列操作必须成功, 否则将完全回滚 (并返回回叫的 AsyncResult 属性将报告失败):
-
-
-    - 作为 data 参数传递的数组中的每一行必须与要更新的表具有相同的列数。 如果不是, 则整个操作将失败。
-
-
-    - 数组中的每个列和单元格必须在新添加的行中将该列或单元格成功添加到表中。 如果由于任何原因而无法设置任何列或单元格, 则整个操作将失败。
-
-
-    - 如果将 TableData 对象作为 data 参数传递, 则标头行的数目必须与要更新的表的数目相匹配。
-
-
-    Excel Online 的其他注解: 在对此方法的单个调用中, 传递给 data 参数的 TableData 对象中的单元格总数不能超过20000。
-
-
-    **支持详细信息**
-
-
-    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
-
-
-    有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。
-
-
-    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
-
-    #### <a name="examples"></a>示例
-
-
-    ```javascript
-
-    function addRowsToTable() {
-        Office.context.document.bindings.getByIdAsync("myBinding", function (asyncResult) {
-            var binding = asyncResult.value;
-            binding.addRowsAsync([["6", "k"], ["7", "j"]]);
-        });
-    }
-
-    ```
-  name: addRowsAsync(rows, options, callback)
-  fullName: addRowsAsync(rows, options, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'addRowsAsync(rows: TableData | any[][], options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: rows
-      description: 数组的数组 ("矩阵") 或 TableData 对象, 其中包含要添加到表中的一个或多个数据行。 必需。
-      type:
-      - TableData | any[][]
-    - id: options
-      description: 提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。
-      type:
-      - office.Office.AsyncContextOptions
-    - id: callback
-      description: 可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->"。
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.TableBinding.addRowsAsync_1
-  summary: 将指定的数据作为附加行添加到表中。
-  remarks: >-
-    addRowsAsync 操作的成功或失败是原子操作。 也就是说, 整个添加列操作必须成功, 否则将完全回滚 (并返回回叫的 AsyncResult 属性将报告失败):
-
-
-    - 作为 data 参数传递的数组中的每一行必须与要更新的表具有相同的列数。 如果不是, 则整个操作将失败。
-
-
-    - 数组中的每个列和单元格必须在新添加的行中将该列或单元格成功添加到表中。 如果由于任何原因而无法设置任何列或单元格, 则整个操作将失败。
-
-
-    - 如果将 TableData 对象作为 data 参数传递, 则标头行的数目必须与要更新的表的数目相匹配。
-
-
-    Excel Online 的其他注解: 在对此方法的单个调用中, 传递给 data 参数的 TableData 对象中的单元格总数不能超过20000。
-
-
-    **支持详细信息**
-
-
-    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
-
-
-    有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。
-
-
-    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
-  name: addRowsAsync(rows, callback)
-  fullName: addRowsAsync(rows, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'addRowsAsync(rows: TableData | any[][], callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: rows
-      description: 数组的数组 ("矩阵") 或 TableData 对象, 其中包含要添加到表中的一个或多个数据行。 必需。
-      type:
-      - TableData | any[][]
-    - id: callback
-      description: 可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->"。
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.TableBinding.clearFormatsAsync
-  summary: 清除绑定表中的格式。
-  remarks: >-
-    有关详细信息, 请参阅[设置 Excel 外接程序中表格的格式](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-tables#format-a-table)。
-
-
-    **支持详细信息**
-
-
-    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
-
-
-    有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。
-
-
-    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
-
-    #### <a name="examples"></a>示例
-
-
-    ```javascript
-
-    // The following example shows how to clear the formatting of the bound table with an ID of "myBinding":
-
-    Office.select("bindings#myBinding").clearFormatsAsync();
-
-    ```
-  name: clearFormatsAsync(options, callback)
-  fullName: clearFormatsAsync(options, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'clearFormatsAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: options
-      description: 提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。
-      type:
-      - office.Office.AsyncContextOptions
-    - id: callback
-      description: 可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->"。
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.TableBinding.clearFormatsAsync_1
-  summary: 清除绑定表中的格式。
-  remarks: >-
-    有关详细信息, 请参阅[设置 Excel 外接程序中表格的格式](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-tables#format-a-table)。
-
-
-    **支持详细信息**
-
-
-    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
-
-
-    有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。
-
-
-    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
-  name: clearFormatsAsync(callback)
-  fullName: clearFormatsAsync(callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'clearFormatsAsync(callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: callback
-      description: 可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->"。
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.TableBinding.deleteAllDataValuesAsync
-  summary: 删除表中的所有非标题行及其值，对主机应用程序进行相应切换。
-  remarks: >-
-    在 Excel 中，如果表没有标题行，则此方法将删除表。
-
-
-    **支持详细信息**
-
-
-    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
-
-
-    有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。
-
-
-    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
-
-    #### <a name="examples"></a>示例
-
-
-    ```javascript
-
-    function deleteAllRowsFromTable() {
-        Office.context.document.bindings.getByIdAsync("myBinding", function (asyncResult) {
-            var binding = asyncResult.value;
-            binding.deleteAllDataValuesAsync();
-        });
-    }
-
-    ```
-  name: deleteAllDataValuesAsync(options, callback)
-  fullName: deleteAllDataValuesAsync(options, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'deleteAllDataValuesAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: options
-      description: 提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。
-      type:
-      - office.Office.AsyncContextOptions
-    - id: callback
-      description: 可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->"。
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.TableBinding.deleteAllDataValuesAsync_1
-  summary: 删除表中的所有非标题行及其值，对主机应用程序进行相应切换。
-  remarks: >-
-    在 Excel 中，如果表没有标题行，则此方法将删除表。
-
-
-    **支持详细信息**
-
-
-    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
-
-
-    有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。
-
-
-    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
-  name: deleteAllDataValuesAsync(callback)
-  fullName: deleteAllDataValuesAsync(callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'deleteAllDataValuesAsync(callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: callback
-      description: 可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->"。
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.TableBinding.getFormatsAsync
-  summary: 获取表中指定项的格式。
-  remarks: >-
-    **返回的格式结构**
-
-
-    返回值数组中的每个 JavaScript 对象都具有以下格式:`{cells:{ cell_range }, format:{ format_definition }}`
-
-
-    该`cells:`属性使用下列值之一指定要设置格式的区域:
-
-
-    **单元格属性中支持的范围**
-
-
-    <table> <tr> <th>单元格范围设置</th> <th>说明</th> </tr> <tr> <td>`{row: n}`</td> <td>指定一个范围, 该范围是表中从零开始的第 n 行数据。</td> </tr> <tr> <td>`{column: n}`</td> <td>指定一个范围, 该范围是表中从零开始的第 n 列数据。</td> </tr> <tr> <td>`{row: i, column: j}`</td> <td>指定作为表的第 i 行和 jth 列的单个单元格。</td> </tr> <tr> <td>`Office.Table.All`</td> <td>指定整个表格，包括列标题、数据和总数（如果有）。</td> </tr> <tr> <td>`Office.Table.Data`</td> <td>仅指定表中的数据（不含标题和总数）。</td> </tr> <tr> <td>`Office.Table.Headers`</td> <td>仅指定标题行。</td> </tr> </table>
-
-
-    该`format:`属性指定对应于 Excel 中的 "设置单元格格式" 对话框 (右键单击 " &gt;设置单元格格式" 或 "主页&gt;格式&gt;单元格格式" 单元格) 中可用设置的子集的值。
-  name: getFormatsAsync(cellReference, formats, options, callback)
-  fullName: getFormatsAsync(cellReference, formats, options, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getFormatsAsync(cellReference?: any, formats?: any[], options?: Office.AsyncContextOptions, callback?: (result: AsyncResult< ({ cells: any, format: any})[]>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: cellReference
-      description: 一个包含名称/值对的对象文本, 用于指定要从其获取格式的单元格范围。
-      type:
-      - any
-    - id: formats
-      description: 指定要获取的格式属性的数组。
-      type:
-      - any[]
-    - id: options
-      description: 提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。
-      type:
-      - office.Office.AsyncContextOptions
-    - id: callback
-      description: 可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->"。 结果`value`的属性是一个数组, 其中包含一个或多个指定其对应单元格的格式的 JavaScript 对象。
-      type:
-      - '(result: AsyncResult< ({ cells: any, format: any})[]>) => void'
-- uid: office.Office.TableBinding.getFormatsAsync_1
-  summary: 获取表中指定项的格式。
-  remarks: >-
-    **返回的格式结构**
-
-
-    返回值数组中的每个 JavaScript 对象都具有以下格式:`{cells:{ cell_range }, format:{ format_definition }}`
-
-
-    该`cells:`属性使用下列值之一指定要设置格式的区域:
-
-
-    **单元格属性中支持的范围**
-
-
-    <table> <tr> <th>单元格范围设置</th> <th>说明</th> </tr> <tr> <td>`{row: n}`</td> <td>指定一个范围, 该范围是表中从零开始的第 n 行数据。</td> </tr> <tr> <td>`{column: n}`</td> <td>指定一个范围, 该范围是表中从零开始的第 n 列数据。</td> </tr> <tr> <td>`{row: i, column: j}`</td> <td>指定作为表的第 i 行和 jth 列的单个单元格。</td> </tr> <tr> <td>`Office.Table.All`</td> <td>指定整个表格，包括列标题、数据和总数（如果有）。</td> </tr> <tr> <td>`Office.Table.Data`</td> <td>仅指定表中的数据（不含标题和总数）。</td> </tr> <tr> <td>`Office.Table.Headers`</td> <td>仅指定标题行。</td> </tr> </table>
-
-
-    该`format:`属性指定对应于 Excel 中的 "设置单元格格式" 对话框 (右键单击 " &gt;设置单元格格式" 或 "主页&gt;格式&gt;单元格格式" 单元格) 中可用设置的子集的值。
-  name: getFormatsAsync(cellReference, formats, callback)
-  fullName: getFormatsAsync(cellReference, formats, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getFormatsAsync(cellReference?: any, formats?: any[], callback?: (result: AsyncResult< ({ cells: any, format: any})[]>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: cellReference
-      description: 一个包含名称/值对的对象文本, 用于指定要从其获取格式的单元格范围。
-      type:
-      - any
-    - id: formats
-      description: 指定要获取的格式属性的数组。
-      type:
-      - any[]
-    - id: callback
-      description: 可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->"。 结果`value`的属性是一个数组, 其中包含一个或多个指定其对应单元格的格式的 JavaScript 对象。
-      type:
-      - '(result: AsyncResult< ({ cells: any, format: any})[]>) => void'
-- uid: office.Office.TableBinding.setFormatsAsync
-  summary: 设置表格中指定项目和数据的格式。
-  remarks: "**指定 cellFormat 参数**\n\n使用 cellFormat 参数设置或更改单元格格式值, 如宽度、高度、字体、背景、对齐方式等。 作为 cellFormat 参数传递的值是一个数组, 其中包含一个或多个 JavaScript 对象的列表, 这些对象指定要面向的单元`cells:`<!-- -->格 () 和要`format:`<!-- -->应用于它们的格式 ()。\n\ncellFormat 数组中的每个 JavaScript 对象都具有以下格式:`{cells:{ cell_range }, format:{ format_definition }}`\n\n该`cells:`属性使用下列值之一指定要设置格式的区域:\n\n**单元格属性中支持的范围**\n\n<table> <tr> <th>单元格范围设置</th> <th>说明</th> </tr> <tr> <td>`{row: n}`</td> <td>指定一个范围, 该范围是表中从零开始的第 n 行数据。</td> </tr> <tr> <td>`{column: n}`</td> <td>指定一个范围, 该范围是表中从零开始的第 n 列数据。</td> </tr> <tr> <td>`{row: i, column: j}`</td> <td>指定作为表的第 i 行和 jth 列的单个单元格。</td> </tr> <tr> <td>`Office.Table.All`</td> <td>指定整个表格，包括列标题、数据和总数（如果有）。</td> </tr> <tr> <td>`Office.Table.Data`</td> <td>仅指定表中的数据（不含标题和总数）。</td> </tr> <tr> <td>`Office.Table.Headers`</td> <td>仅指定标题行。</td> </tr> </table>\n\n该`format:`属性指定对应于 Excel 中的 \"设置单元格格式\" 对话框 (右键单击 \" &gt;设置单元格格式\" 或 \"主页&gt;格式&gt;单元格格式\" 单元格) 中可用设置的子集的值。\n\n将`format:`属性的值指定为 JavaScript 对象文本中的一个或多个属性名称/值对的列表。 属性名称指定要设置的格式属性的名称, 值指定属性值。 可以指定给定格式的多个值, 如字体的颜色和大小。\n\n以下是三`format:`个属性值示例:\n\n`//Set cells: font color to green and size to 15 points.`\n\n`format: {fontColor : \"green\", fontSize : 15}`\n\n`//Set cells: border to dotted blue.`\n\n`format: {borderStyle: \"dotted\", borderColor: \"blue\"}`\n\n`//Set cells: background to red and alignment to centered.`\n\n`format: {backgroundColor: \"red\", alignHorizontal: \"center\"}`\n\n您可以通过在`numberFormat:`属性中指定数字格式 \"code\" 字符串来指定数字格式。 你可以指定的数字格式字符串对应于你可以使用“设置单元格格式”对话框“数字”选项卡上的“自定义”类别在 Excel 中设置的字符串。 此示例演示如何将数字格式设置为带两个小数位的百分数形式：\n\n`format: {numberFormat:\"0.00%\"}`\n\n有关更多详细信息, 请参阅如何[创建自定义数字格式](https://support.office.com/article/create-or-delete-a-custom-number-format-78f2a361-936b-4c03-8772-09fab54be7f4)<!-- -->。\n\n若要在写入数据时设置表的格式, 请使用`Document.setSelectedDataAsync`或`TableBinding.setDataAsync`方法的 tableOptions 和 cellFormat 可选参数。\n\n将格式设置为`Document.setSelectedDataAsync`和`TableBinding.setDataAsync`方法的可选参数仅在首次写入数据时才会运行设置格式。 若要在写入数据后进行格式更改, 请使用以下方法:\n\n- 若要更新单元格格式 (如字体颜色和样式), `TableBinding.setFormatsAsync`请使用方法 (此方法)。\n\n- 若要更新表格选项 (如镶边行和筛选按钮), 请`TableBinding.setTableOptions`使用方法。\n\n- 若要清除格式设置, `TableBinding.clearFormats`请使用方法。\n\n有关更多详细信息和示例, 请参阅<!-- -->[如何设置 Excel 相关外接程序中表的格式](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-tables#format-a-table)。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Specifying a single target\n// The following example shows a cellFormat value that sets the font color of the header row to red.\nOffice.select(\"bindings#myBinding\").setFormatsAsync(\n    [{cells: Office.Table.Headers, format: {fontColor: \"red\"}}], \n    function (asyncResult){});\n\n// Specifying multiple targets\n// The setFormatsAsync method can support formatting multiple targets within the bound table in a \n// single function call. To do that, you pass a list of objects in the cellFormat array \n// for each target that you want to format.\n// For example, the following line of code will set the font color of the first row yellow, \n// and the fourth cell in the third row to have a white border and bold text.\nOffice.select(\"bindings#myBinding\").setFormatsAsync(\n    [{cells: {row: 1}, format: {fontColor: \"yellow\"}}, \n        {cells: {row: 3, column: 4}, format: {borderColor: \"white\", fontStyle: \"bold\"}}], \n    function (asyncResult){});\n\n// Additional remarks for Excel Online\n// The number of formatting groups passed to the cellFormat parameter can't exceed 100. \n// A single formatting group consists of a set of formatting applied to a specified range of cells. \n// For example, the following call passes two formatting groups to cellFormat.\nOffice.select(\"bindings#myBinding\").setFormatsAsync(\n    [{cells: {row: 1}, format: {fontColor: \"yellow\"}}, \n        {cells: {row: 3, column: 4}, format: {borderColor: \"white\", fontStyle: \"bold\"}}], \n    function (asyncResult){});\n```"
-  name: setFormatsAsync(cellFormat, options, callback)
-  fullName: setFormatsAsync(cellFormat, options, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'setFormatsAsync(cellFormat: any[], options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: cellFormat
-      description: 包含一个或多个 JavaScript 对象的数组, 这些对象指定要设定的目标单元格以及要应用于这些单元格的格式。
-      type:
-      - any[]
-    - id: options
-      description: 提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。
-      type:
-      - office.Office.AsyncContextOptions
-    - id: callback
-      description: 可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->"。
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.TableBinding.setFormatsAsync_1
-  summary: 设置表格中指定项目和数据的格式。
-  remarks: >-
-    **指定 cellFormat 参数**
-
-
-    使用 cellFormat 参数设置或更改单元格格式值, 如宽度、高度、字体、背景、对齐方式等。 作为 cellFormat 参数传递的值是一个数组, 其中包含一个或多个 JavaScript 对象的列表, 这些对象指定要面向的单元`cells:`<!-- -->格 () 和要`format:`<!-- -->应用于它们的格式 ()。
-
-
-    cellFormat 数组中的每个 JavaScript 对象都具有以下格式:`{cells:{ cell_range }, format:{ format_definition }}`
-
-
-    该`cells:`属性使用下列值之一指定要设置格式的区域:
-
-
-    **单元格属性中支持的范围**
-
-
-    <table> <tr> <th>单元格范围设置</th> <th>说明</th> </tr> <tr> <td>`{row: n}`</td> <td>指定一个范围, 该范围是表中从零开始的第 n 行数据。</td> </tr> <tr> <td>`{column: n}`</td> <td>指定一个范围, 该范围是表中从零开始的第 n 列数据。</td> </tr> <tr> <td>`{row: i, column: j}`</td> <td>指定作为表的第 i 行和 jth 列的单个单元格。</td> </tr> <tr> <td>`Office.Table.All`</td> <td>指定整个表格，包括列标题、数据和总数（如果有）。</td> </tr> <tr> <td>`Office.Table.Data`</td> <td>仅指定表中的数据（不含标题和总数）。</td> </tr> <tr> <td>`Office.Table.Headers`</td> <td>仅指定标题行。</td> </tr> </table>
-
-
-    该`format:`属性指定对应于 Excel 中的 "设置单元格格式" 对话框 (右键单击 " &gt;设置单元格格式" 或 "主页&gt;格式&gt;单元格格式" 单元格) 中可用设置的子集的值。
-
-
-    将`format:`属性的值指定为 JavaScript 对象文本中的一个或多个属性名称/值对的列表。 属性名称指定要设置的格式属性的名称, 值指定属性值。 可以指定给定格式的多个值, 如字体的颜色和大小。
-
-
-    以下是三`format:`个属性值示例:
-
-
-    `//Set cells: font color to green and size to 15 points.`
-
-
-    `format: {fontColor : "green", fontSize : 15}`
-
-
-    `//Set cells: border to dotted blue.`
-
-
-    `format: {borderStyle: "dotted", borderColor: "blue"}`
-
-
-    `//Set cells: background to red and alignment to centered.`
-
-
-    `format: {backgroundColor: "red", alignHorizontal: "center"}`
-
-
-    您可以通过在`numberFormat:`属性中指定数字格式 "code" 字符串来指定数字格式。 你可以指定的数字格式字符串对应于你可以使用“设置单元格格式”对话框“数字”选项卡上的“自定义”类别在 Excel 中设置的字符串。 此示例演示如何将数字格式设置为带两个小数位的百分数形式：
-
-
-    `format: {numberFormat:"0.00%"}`
-
-
-    有关更多详细信息, 请参阅如何[创建自定义数字格式](https://support.office.com/article/create-or-delete-a-custom-number-format-78f2a361-936b-4c03-8772-09fab54be7f4)<!-- -->。
-
-
-    若要在写入数据时设置表的格式, 请使用`Document.setSelectedDataAsync`或`TableBinding.setDataAsync`方法的 tableOptions 和 cellFormat 可选参数。
-
-
-    将格式设置为`Document.setSelectedDataAsync`和`TableBinding.setDataAsync`方法的可选参数仅在首次写入数据时才会运行设置格式。 若要在写入数据后进行格式更改, 请使用以下方法:
-
-
-    - 若要更新单元格格式 (如字体颜色和样式), `TableBinding.setFormatsAsync`请使用方法 (此方法)。
-
-
-    - 若要更新表格选项 (如镶边行和筛选按钮), 请`TableBinding.setTableOptions`使用方法。
-
-
-    - 若要清除格式设置, `TableBinding.clearFormats`请使用方法。
-
-
-    有关更多详细信息和示例, 请参阅<!-- -->[如何设置 Excel 相关外接程序中表的格式](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-tables#format-a-table)。
-
-
-    **支持详细信息**
-
-
-    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
-
-
-    有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。
-
-
-    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
-  name: setFormatsAsync(cellFormat, callback)
-  fullName: setFormatsAsync(cellFormat, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'setFormatsAsync(cellFormat: any[], callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: cellFormat
-      description: 包含一个或多个 JavaScript 对象的数组, 这些对象指定要设定的目标单元格以及要应用于这些单元格的格式。
-      type:
-      - any[]
-    - id: callback
-      description: 可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->"。
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.TableBinding.setTableOptionsAsync
-  summary: 更新绑定表上的表格式选项。
-  remarks: "<table> <tr><td>主机</td><td>Excel</td></tr> <tr><td>要求集</td><td>不在集合中</td></tr> </table>\n\n在传递给 document.gotobyidasync 方法的回调函数中, 您可以使用 AsyncResult 对象的属性返回以下信息。\n\n<table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回 undefined, 这是因为在设置格式时没有要检索的数据或对象。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。\n\n有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following example shows how to:\n// 1. Create an object literal that specifies the table formatting options to update on the bound table.\n// 2. Call setTableOptions on a previously bound table (with an id of myBinding) passing the object\n//    with formatting setting as the tableOptions parameter.\nfunction updateTableFormatting(){\n    var tableOptions = {bandedRows: true, filterButton: false, style: \"TableStyleMedium3\"}; \n\n    Office.select(\"bindings#myBinding\").setTableOptionsAsync(tableOptions, function(asyncResult){});\n}\n```"
-  name: setTableOptionsAsync(tableOptions, options, callback)
-  fullName: setTableOptionsAsync(tableOptions, options, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'setTableOptionsAsync(tableOptions: any, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: tableOptions
-      description: 一个对象文本, 包含定义要应用的表选项的属性名称/值对的列表。
-      type:
-      - any
-    - id: options
-      description: 提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。
-      type:
-      - office.Office.AsyncContextOptions
-    - id: callback
-      description: 可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->"。
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.TableBinding.setTableOptionsAsync_1
-  summary: 更新绑定表上的表格式选项。
-  remarks: >-
-    <table> <tr><td>主机</td><td>Excel</td></tr> <tr><td>要求集</td><td>不在集合中</td></tr> </table>
-
-
-    在传递给 document.gotobyidasync 方法的回调函数中, 您可以使用 AsyncResult 对象的属性返回以下信息。
-
-
-    <table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回 undefined, 这是因为在设置格式时没有要检索的数据或对象。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>
-
-
-    **支持详细信息**
-
-
-    下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此方法。空的单元格表示相应的 Office 主机应用程序不支持此方法。
-
-
-    有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。
-
-
-    *支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>
-  name: setTableOptionsAsync(tableOptions, callback)
-  fullName: setTableOptionsAsync(tableOptions, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'setTableOptionsAsync(tableOptions: any, callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: tableOptions
-      description: 一个对象文本, 包含定义要应用的表选项的属性名称/值对的列表。
-      type:
-      - any
-    - id: callback
-      description: 可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->"。
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.TableBinding.columnCount
-  summary: 获取 TableBinding 中的列数, 作为整数值。
-  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此属性。空的单元格表示相应的 Office 主机应用程序不支持此属性。\n\n有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction showBindingColumnCount() {\n    Office.context.document.bindings.getByIdAsync(\"myBinding\", function (asyncResult) {\n        write(\"Column: \" + asyncResult.value.columnCount);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: columnCount
-  fullName: columnCount
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'columnCount: number;'
-    return:
-      type:
-      - number
-- uid: office.Office.TableBinding.hasHeaders
-  summary: 如果表具有标头, 则为 True; 否则为 false。否则为 false。
-  remarks: "**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此属性。空的单元格表示相应的 Office 主机应用程序不支持此属性。\n\n有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction showBindingHasHeaders() {\n    Office.context.document.bindings.getByIdAsync(\"myBinding\", function (asyncResult) {\n        write(\"Binding has headers: \" + asyncResult.value.hasHeaders);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: hasHeaders
-  fullName: hasHeaders
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'hasHeaders: boolean;'
-    return:
-      type:
-      - boolean
-- uid: office.Office.TableBinding.rowCount
-  summary: 获取 TableBinding 中的行数, 作为整数值。
-  remarks: "通过在 excel 2013 和 excel Online (使用 \"插入\" 选项卡上的 \"表\") 中选择单行来插入空表格时, 两个 Office 主机应用程序都会创建一行标题, 后跟一个空行。 但是, 如果外接程序的脚本为此新插入的表创建绑定 (例如, 通过使用[](xref:office.Office.Bindings)<!-- -->addFromSelectionAsync 方法), 然后检查 rowCount 属性的值, 则返回的值将不同取决于电子表格是在 excel 2013 中打开, 还是在 excel Online 中打开。\n\n- 在桌面上的 Excel 中, rowCount 将返回 0 (标头后面的空白行不计算在内)。\n\n- 在 Excel Online 中, rowCount 将返回 1 (标头后面的空白行被计算在内)。\n\n您可以通过检查 rowCount = = 1 来解决脚本中的这一差异, 如果是, 则检查该行是否包含所有空字符串。\n\n在 Access 相关内容外接程序中, 出于性能原因, rowCount 属性始终返回-1。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此属性。空的单元格表示相应的 Office 主机应用程序不支持此属性。\n\n有关 office 主机应用程序和服务器要求的详细信息, 请参阅[运行 office 外接](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->程序的要求。\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Office for Windows Desktop </th><th> Office Online（在浏览器中） </th><th> Office for iPad </th><th> Office for Mac? </th></tr> <tr><td><strong>访问</strong></td><td> </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction showBindingRowCount() {\n    Office.context.document.bindings.getByIdAsync(\"myBinding\", function (asyncResult) {\n        write(\"Rows: \" + asyncResult.value.rowCount);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: rowCount
-  fullName: rowCount
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'rowCount: number;'
-    return:
-      type:
-      - number
+  - uid: office.Office.TableBinding
+    summary: 表示两个维度的行和列的绑定，标题可选。
+    remarks: |-
+      TableBinding 对象从对象`id`继承属性`type` 、属性`getDataAsync` 、方法和`setDataAsync`方法。 [](xref:office.Office.Binding)
+
+      对于 Excel, 请注意, 在建立表绑定后, 用户添加到表中的每个新行都将自动包含在绑定和行计数增加中。
+    name: Office.TableBinding
+    fullName: Office.TableBinding
+    langs:
+      - typeScript
+    type: interface
+    extends:
+      - 'Binding '
+    package: office
+    children:
+      - office.Office.TableBinding.addColumnsAsync
+      - office.Office.TableBinding.addColumnsAsync_1
+      - office.Office.TableBinding.addRowsAsync
+      - office.Office.TableBinding.addRowsAsync_1
+      - office.Office.TableBinding.clearFormatsAsync
+      - office.Office.TableBinding.clearFormatsAsync_1
+      - office.Office.TableBinding.deleteAllDataValuesAsync
+      - office.Office.TableBinding.deleteAllDataValuesAsync_1
+      - office.Office.TableBinding.getFormatsAsync
+      - office.Office.TableBinding.getFormatsAsync_1
+      - office.Office.TableBinding.setFormatsAsync
+      - office.Office.TableBinding.setFormatsAsync_1
+      - office.Office.TableBinding.setTableOptionsAsync
+      - office.Office.TableBinding.setTableOptionsAsync_1
+      - office.Office.TableBinding.columnCount
+      - office.Office.TableBinding.hasHeaders
+      - office.Office.TableBinding.rowCount
+  - uid: office.Office.TableBinding.addColumnsAsync
+    summary: 将指定的数据作为其他列添加到表中。
+    remarks: |-
+      若要添加一个或多个指定数据和标头值的列, 请将 TableData 对象作为 data 参数传递。 若要添加仅指定数据的一个或多个列，请将数组的数组（“矩阵”）以 data 参数形式传递。
+
+      addColumnsAsync 操作的成功或失败是原子操作。 That is, the entire add columns operation must succeed, or it will be completely rolled back (and the AsyncResult.status property returned to the callback will report failure):
+
+      - 作为 data 参数传递的数组中的每一行的行数必须与要更新的表的行数相同。 如果没有，整个操作都会失败。
+
+      - 数组中的每行和每个单元格都必须成功将该行或单元格添加到表中的新增列中。如果出于任何原因任意行或单元格未能添加成功，则整个操作将失败。
+
+      - 如果将 TableData 对象作为 data 参数传递, 则标头行的数目必须与要更新的表的数目相匹配。
+
+      Excel Online 的其他注解: 在对此方法的单个调用中, 传递给 data 参数的 TableData 对象中的单元格总数不能超过20000。
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // The following example adds a single column with three rows to a bound table with the id "myTable"
+      // by passing a TableData object as the data argument of the addColumnsAsync method. To succeed,
+      // the table being updated must have three rows.
+
+      // Add a column to a binding of type table by passing a TableData object.
+      function addColumns() {
+          var myTable = new Office.TableData();
+          myTable.headers = [["Cities"]];
+          myTable.rows = [["Berlin"], ["Roma"], ["Tokyo"]];
+
+          Office.context.document.bindings.getByIdAsync("myTable", function (result) {
+              result.value.addColumnsAsync(myTable);
+          });
+      }
+
+      // The following example adds a single column with three rows to a bound table with the id myTable
+      // by passing an array of arrays ("matrix") as the data argument of the addColumnsAsync method.
+      // To succeed, the table being updated must have three rows.
+
+      // Add a column to a binding of type table by passing an array of arrays.
+      function addColumns() {
+          var myTable = [["Berlin"], ["Roma"], ["Tokyo"]];
+
+          Office.context.document.bindings.getByIdAsync("myTable", function (result) {
+              result.value.addColumnsAsync(myTable);
+          });
+      }
+      ```
+    name: 'addColumnsAsync(tableData, options, callback)'
+    fullName: 'addColumnsAsync(tableData, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addColumnsAsync(tableData: TableData | any[][], options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: tableData
+          description: '数组的数组 ("矩阵") 或 TableData 对象, 其中包含要添加到表中的一个或多个数据列。 必需。'
+          type:
+            - 'TableData | any[][]'
+        - id: options
+          description: '提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。'
+          type:
+            - office.Office.AsyncContextOptions
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.TableBinding.addColumnsAsync_1
+    summary: 将指定的数据作为其他列添加到表中。
+    remarks: |-
+      若要添加一个或多个指定数据和标头值的列, 请将 TableData 对象作为 data 参数传递。 若要添加仅指定数据的一个或多个列，请将数组的数组（“矩阵”）以 data 参数形式传递。
+
+      addColumnsAsync 操作的成功或失败是原子操作。 That is, the entire add columns operation must succeed, or it will be completely rolled back (and the AsyncResult.status property returned to the callback will report failure):
+
+      - 作为 data 参数传递的数组中的每一行的行数必须与要更新的表的行数相同。 如果没有，整个操作都会失败。
+
+      - 数组中的每行和每个单元格都必须成功将该行或单元格添加到表中的新增列中。如果出于任何原因任意行或单元格未能添加成功，则整个操作将失败。
+
+      - 如果将 TableData 对象作为 data 参数传递, 则标头行的数目必须与要更新的表的数目相匹配。
+
+      Excel Online 的其他注解: 在对此方法的单个调用中, 传递给 data 参数的 TableData 对象中的单元格总数不能超过20000。
+    name: 'addColumnsAsync(tableData, callback)'
+    fullName: 'addColumnsAsync(tableData, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addColumnsAsync(tableData: TableData | any[][], callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: tableData
+          description: '数组的数组 ("矩阵") 或 TableData 对象, 其中包含要添加到表中的一个或多个数据列。 必需。'
+          type:
+            - 'TableData | any[][]'
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.TableBinding.addRowsAsync
+    summary: 将指定的数据作为附加行添加到表中。
+    remarks: |-
+      addRowsAsync 操作的成功或失败是原子操作。 That is, the entire add columns operation must succeed, or it will be completely rolled back (and the AsyncResult.status property returned to the callback will report failure):
+
+      - 作为 data 参数传递的数组中的每一行必须与要更新的表具有相同的列数。 如果没有，整个操作都会失败。
+
+      - 数组中的每个列和单元格必须在新添加的行中将该列或单元格成功添加到表中。 如果由于任何原因而无法设置任何列或单元格, 则整个操作将失败。
+
+      - 如果将 TableData 对象作为 data 参数传递, 则标头行的数目必须与要更新的表的数目相匹配。
+
+      Excel Online 的其他注解: 在对此方法的单个调用中, 传递给 data 参数的 TableData 对象中的单元格总数不能超过20000。
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      function addRowsToTable() {
+          Office.context.document.bindings.getByIdAsync("myBinding", function (asyncResult) {
+              var binding = asyncResult.value;
+              binding.addRowsAsync([["6", "k"], ["7", "j"]]);
+          });
+      }
+      ```
+    name: 'addRowsAsync(rows, options, callback)'
+    fullName: 'addRowsAsync(rows, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addRowsAsync(rows: TableData | any[][], options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: rows
+          description: '数组的数组 ("矩阵") 或 TableData 对象, 其中包含要添加到表中的一个或多个数据行。 必需。'
+          type:
+            - 'TableData | any[][]'
+        - id: options
+          description: '提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。'
+          type:
+            - office.Office.AsyncContextOptions
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.TableBinding.addRowsAsync_1
+    summary: 将指定的数据作为附加行添加到表中。
+    remarks: |-
+      addRowsAsync 操作的成功或失败是原子操作。 That is, the entire add columns operation must succeed, or it will be completely rolled back (and the AsyncResult.status property returned to the callback will report failure):
+
+      - 作为 data 参数传递的数组中的每一行必须与要更新的表具有相同的列数。 如果没有，整个操作都会失败。
+
+      - 数组中的每个列和单元格必须在新添加的行中将该列或单元格成功添加到表中。 如果由于任何原因而无法设置任何列或单元格, 则整个操作将失败。
+
+      - 如果将 TableData 对象作为 data 参数传递, 则标头行的数目必须与要更新的表的数目相匹配。
+
+      Excel Online 的其他注解: 在对此方法的单个调用中, 传递给 data 参数的 TableData 对象中的单元格总数不能超过20000。
+    name: 'addRowsAsync(rows, callback)'
+    fullName: 'addRowsAsync(rows, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addRowsAsync(rows: TableData | any[][], callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: rows
+          description: '数组的数组 ("矩阵") 或 TableData 对象, 其中包含要添加到表中的一个或多个数据行。 必需。'
+          type:
+            - 'TableData | any[][]'
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.TableBinding.clearFormatsAsync
+    summary: 清除绑定表中的格式。
+    remarks: |-
+      有关详细信息, 请参阅[设置 Excel 外接程序中表格的格式](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-tables#format-a-table)。
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // The following example shows how to clear the formatting of the bound table with an ID of "myBinding":
+      Office.select("bindings#myBinding").clearFormatsAsync();
+      ```
+    name: 'clearFormatsAsync(options, callback)'
+    fullName: 'clearFormatsAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clearFormatsAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: '提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。'
+          type:
+            - office.Office.AsyncContextOptions
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.TableBinding.clearFormatsAsync_1
+    summary: 清除绑定表中的格式。
+    remarks: '有关详细信息, 请参阅[设置 Excel 外接程序中表格的格式](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-tables#format-a-table)。'
+    name: clearFormatsAsync(callback)
+    fullName: clearFormatsAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clearFormatsAsync(callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.TableBinding.deleteAllDataValuesAsync
+    summary: 删除表中的所有非标题行及其值，对主机应用程序进行相应切换。
+    remarks: |-
+      在 Excel 中，如果表没有标题行，则此方法将删除表。
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      function deleteAllRowsFromTable() {
+          Office.context.document.bindings.getByIdAsync("myBinding", function (asyncResult) {
+              var binding = asyncResult.value;
+              binding.deleteAllDataValuesAsync();
+          });
+      }
+      ```
+    name: 'deleteAllDataValuesAsync(options, callback)'
+    fullName: 'deleteAllDataValuesAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'deleteAllDataValuesAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: '提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。'
+          type:
+            - office.Office.AsyncContextOptions
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.TableBinding.deleteAllDataValuesAsync_1
+    summary: 删除表中的所有非标题行及其值，对主机应用程序进行相应切换。
+    remarks: 在 Excel 中，如果表没有标题行，则此方法将删除表。
+    name: deleteAllDataValuesAsync(callback)
+    fullName: deleteAllDataValuesAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'deleteAllDataValuesAsync(callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.TableBinding.getFormatsAsync
+    summary: 获取表中指定项的格式。
+    remarks: |-
+      **返回的格式结构**
+
+      返回值数组中的每个 JavaScript 对象都具有以下格式:`{cells:{ cell_range }, format:{ format_definition }}`
+
+      该`cells:`属性使用下列值之一指定要设置格式的区域:
+
+      **单元格属性中支持的范围**
+
+      <table> <tr> <th>单元格范围设置</th> <th>说明</th> </tr> <tr> <td>`{row: n}`</td> <td>指定一个范围, 该范围是表中从零开始的第 n 行数据。</td> </tr> <tr> <td>`{column: n}`</td> <td>指定一个范围, 该范围是表中从零开始的第 n 列数据。</td> </tr> <tr> <td>`{row: i, column: j}`</td> <td>指定作为表的第 i 行和 jth 列的单个单元格。</td> </tr> <tr> <td>`Office.Table.All`</td> <td>指定整个表格，包括列标题、数据和总数（如果有）。</td> </tr> <tr> <td>`Office.Table.Data`</td> <td>仅指定表中的数据（不含标题和总数）。</td> </tr> <tr> <td>`Office.Table.Headers`</td> <td>仅指定标题行。</td> </tr> </table>
+
+      该`format:`属性指定对应于 Excel 中的 "设置单元格格式" 对话框 (右键单击 " &gt;设置单元格格式" 或 "主页&gt;格式&gt;单元格格式" 单元格) 中可用设置的子集的值。
+    name: 'getFormatsAsync(cellReference, formats, options, callback)'
+    fullName: 'getFormatsAsync(cellReference, formats, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getFormatsAsync(cellReference?: any, formats?: any[], options?: Office.AsyncContextOptions, callback?: (result: AsyncResult< ({ cells: any, format: any})[]>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: cellReference
+          description: '一个包含名称/值对的对象文本, 用于指定要从其获取格式的单元格范围。'
+          type:
+            - any
+        - id: formats
+          description: 指定要获取的格式属性的数组。
+          type:
+            - 'any[]'
+        - id: options
+          description: '提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。'
+          type:
+            - office.Office.AsyncContextOptions
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是一个数组, 其中包含一个或多个指定其对应单元格的格式的 JavaScript 对象。'
+          type:
+            - '(result: AsyncResult< ({ cells: any, format: any})[]>) => void'
+  - uid: office.Office.TableBinding.getFormatsAsync_1
+    summary: 获取表中指定项的格式。
+    remarks: |-
+      **返回的格式结构**
+
+      返回值数组中的每个 JavaScript 对象都具有以下格式:`{cells:{ cell_range }, format:{ format_definition }}`
+
+      该`cells:`属性使用下列值之一指定要设置格式的区域:
+
+      **单元格属性中支持的范围**
+
+      <table> <tr> <th>单元格范围设置</th> <th>说明</th> </tr> <tr> <td>`{row: n}`</td> <td>指定一个范围, 该范围是表中从零开始的第 n 行数据。</td> </tr> <tr> <td>`{column: n}`</td> <td>指定一个范围, 该范围是表中从零开始的第 n 列数据。</td> </tr> <tr> <td>`{row: i, column: j}`</td> <td>指定作为表的第 i 行和 jth 列的单个单元格。</td> </tr> <tr> <td>`Office.Table.All`</td> <td>指定整个表格，包括列标题、数据和总数（如果有）。</td> </tr> <tr> <td>`Office.Table.Data`</td> <td>仅指定表中的数据（不含标题和总数）。</td> </tr> <tr> <td>`Office.Table.Headers`</td> <td>仅指定标题行。</td> </tr> </table>
+
+      该`format:`属性指定对应于 Excel 中的 "设置单元格格式" 对话框 (右键单击 " &gt;设置单元格格式" 或 "主页&gt;格式&gt;单元格格式" 单元格) 中可用设置的子集的值。
+    name: 'getFormatsAsync(cellReference, formats, callback)'
+    fullName: 'getFormatsAsync(cellReference, formats, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getFormatsAsync(cellReference?: any, formats?: any[], callback?: (result: AsyncResult< ({ cells: any, format: any})[]>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: cellReference
+          description: '一个包含名称/值对的对象文本, 用于指定要从其获取格式的单元格范围。'
+          type:
+            - any
+        - id: formats
+          description: 指定要获取的格式属性的数组。
+          type:
+            - 'any[]'
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是一个数组, 其中包含一个或多个指定其对应单元格的格式的 JavaScript 对象。'
+          type:
+            - '(result: AsyncResult< ({ cells: any, format: any})[]>) => void'
+  - uid: office.Office.TableBinding.setFormatsAsync
+    summary: 设置表格中指定项目和数据的格式。
+    remarks: |-
+      **指定 cellFormat 参数**
+
+      使用 cellFormat 参数设置或更改单元格格式值, 如宽度、高度、字体、背景、对齐方式等。 作为 cellFormat 参数传递的值是一个数组, 其中包含一个或多个 JavaScript 对象的列表, 这些对象指定要定位的单元格 (`cells:`<!-- -->) 和格式 (`format:`<!-- -->) 以应用于它们。
+
+      cellFormat 数组中的每个 JavaScript 对象都具有以下格式:`{cells:{ cell_range }, format:{ format_definition }}`
+
+      该`cells:`属性使用下列值之一指定要设置格式的区域:
+
+      **单元格属性中支持的范围**
+
+      <table> <tr> <th>单元格范围设置</th> <th>说明</th> </tr> <tr> <td>`{row: n}`</td> <td>指定一个范围, 该范围是表中从零开始的第 n 行数据。</td> </tr> <tr> <td>`{column: n}`</td> <td>指定一个范围, 该范围是表中从零开始的第 n 列数据。</td> </tr> <tr> <td>`{row: i, column: j}`</td> <td>指定作为表的第 i 行和 jth 列的单个单元格。</td> </tr> <tr> <td>`Office.Table.All`</td> <td>指定整个表格，包括列标题、数据和总数（如果有）。</td> </tr> <tr> <td>`Office.Table.Data`</td> <td>仅指定表中的数据（不含标题和总数）。</td> </tr> <tr> <td>`Office.Table.Headers`</td> <td>仅指定标题行。</td> </tr> </table>
+
+      该`format:`属性指定对应于 Excel 中的 "设置单元格格式" 对话框 (右键单击 " &gt;设置单元格格式" 或 "主页&gt;格式&gt;单元格格式" 单元格) 中可用设置的子集的值。
+
+      将`format:`属性的值指定为 JavaScript 对象文本中的一个或多个属性名称/值对的列表。 属性名称指定要设置的格式属性的名称，值则指定属性值。 您可以为给定的格式指定多个值，如字体的颜色及大小。
+
+      以下是三`format:`个属性值示例:
+
+      `//Set cells: font color to green and size to 15 points.`
+
+      `format: {fontColor : "green", fontSize : 15}`
+
+      `//Set cells: border to dotted blue.`
+
+      `format: {borderStyle: "dotted", borderColor: "blue"}`
+
+      `//Set cells: background to red and alignment to centered.`
+
+      `format: {backgroundColor: "red", alignHorizontal: "center"}`
+
+      您可以通过在`numberFormat:`属性中指定数字格式 "code" 字符串来指定数字格式。 你可以指定的数字格式字符串对应于你可以使用“设置单元格格式”对话框“数字”选项卡上的“自定义”类别在 Excel 中设置的字符串。 此示例演示如何将数字格式设置为带两个小数位的百分数形式：
+
+      `format: {numberFormat:"0.00%"}`
+
+      有关更多详细信息, 请参阅如何[创建自定义数字格式](https://support.office.com/article/create-or-delete-a-custom-number-format-78f2a361-936b-4c03-8772-09fab54be7f4)<!-- -->.
+
+      若要在写入数据时设置表的格式, 请使用`Document.setSelectedDataAsync`或`TableBinding.setDataAsync`方法的 tableOptions 和 cellFormat 可选参数。
+
+      将格式设置为`Document.setSelectedDataAsync`和`TableBinding.setDataAsync`方法的可选参数仅在首次写入数据时才会运行设置格式。 若要在写入数据后更改格式，请使用下列方法：
+
+      - 若要更新单元格格式 (如字体颜色和样式), `TableBinding.setFormatsAsync`请使用方法 (此方法)。
+
+      - 若要更新表格选项 (如镶边行和筛选按钮), 请`TableBinding.setTableOptions`使用方法。
+
+      - 若要清除格式设置, `TableBinding.clearFormats`请使用方法。
+
+      有关更多详细信息和示例, 请参阅[如何设置 Excel 外接程序中表的格式](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-tables#format-a-table)<!-- -->.
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // Specifying a single target
+      // The following example shows a cellFormat value that sets the font color of the header row to red.
+      Office.select("bindings#myBinding").setFormatsAsync(
+          [{cells: Office.Table.Headers, format: {fontColor: "red"}}], 
+          function (asyncResult){});
+
+      // Specifying multiple targets
+      // The setFormatsAsync method can support formatting multiple targets within the bound table in a 
+      // single function call. To do that, you pass a list of objects in the cellFormat array 
+      // for each target that you want to format.
+      // For example, the following line of code will set the font color of the first row yellow, 
+      // and the fourth cell in the third row to have a white border and bold text.
+      Office.select("bindings#myBinding").setFormatsAsync(
+          [{cells: {row: 1}, format: {fontColor: "yellow"}}, 
+              {cells: {row: 3, column: 4}, format: {borderColor: "white", fontStyle: "bold"}}], 
+          function (asyncResult){});
+
+      // Additional remarks for Excel Online
+      // The number of formatting groups passed to the cellFormat parameter can't exceed 100. 
+      // A single formatting group consists of a set of formatting applied to a specified range of cells. 
+      // For example, the following call passes two formatting groups to cellFormat.
+      Office.select("bindings#myBinding").setFormatsAsync(
+          [{cells: {row: 1}, format: {fontColor: "yellow"}}, 
+              {cells: {row: 3, column: 4}, format: {borderColor: "white", fontStyle: "bold"}}], 
+          function (asyncResult){});
+      ```
+    name: 'setFormatsAsync(cellFormat, options, callback)'
+    fullName: 'setFormatsAsync(cellFormat, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setFormatsAsync(cellFormat: any[], options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: cellFormat
+          description: 包含指定针对哪些单元格以及适用格式的一个或多个 JavaScript 对象的数组。
+          type:
+            - 'any[]'
+        - id: options
+          description: '提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。'
+          type:
+            - office.Office.AsyncContextOptions
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.TableBinding.setFormatsAsync_1
+    summary: 设置表格中指定项目和数据的格式。
+    remarks: |-
+      **指定 cellFormat 参数**
+
+      使用 cellFormat 参数设置或更改单元格格式值, 如宽度、高度、字体、背景、对齐方式等。 作为 cellFormat 参数传递的值是一个数组, 其中包含一个或多个 JavaScript 对象的列表, 这些对象指定要定位的单元格 (`cells:`<!-- -->) 和格式 (`format:`<!-- -->) 以应用于它们。
+
+      cellFormat 数组中的每个 JavaScript 对象都具有以下格式:`{cells:{ cell_range }, format:{ format_definition }}`
+
+      该`cells:`属性使用下列值之一指定要设置格式的区域:
+
+      **单元格属性中支持的范围**
+
+      <table> <tr> <th>单元格范围设置</th> <th>说明</th> </tr> <tr> <td>`{row: n}`</td> <td>指定一个范围, 该范围是表中从零开始的第 n 行数据。</td> </tr> <tr> <td>`{column: n}`</td> <td>指定一个范围, 该范围是表中从零开始的第 n 列数据。</td> </tr> <tr> <td>`{row: i, column: j}`</td> <td>指定作为表的第 i 行和 jth 列的单个单元格。</td> </tr> <tr> <td>`Office.Table.All`</td> <td>指定整个表格，包括列标题、数据和总数（如果有）。</td> </tr> <tr> <td>`Office.Table.Data`</td> <td>仅指定表中的数据（不含标题和总数）。</td> </tr> <tr> <td>`Office.Table.Headers`</td> <td>仅指定标题行。</td> </tr> </table>
+
+      该`format:`属性指定对应于 Excel 中的 "设置单元格格式" 对话框 (右键单击 " &gt;设置单元格格式" 或 "主页&gt;格式&gt;单元格格式" 单元格) 中可用设置的子集的值。
+
+      将`format:`属性的值指定为 JavaScript 对象文本中的一个或多个属性名称/值对的列表。 属性名称指定要设置的格式属性的名称，值则指定属性值。 您可以为给定的格式指定多个值，如字体的颜色及大小。
+
+      以下是三`format:`个属性值示例:
+
+      `//Set cells: font color to green and size to 15 points.`
+
+      `format: {fontColor : "green", fontSize : 15}`
+
+      `//Set cells: border to dotted blue.`
+
+      `format: {borderStyle: "dotted", borderColor: "blue"}`
+
+      `//Set cells: background to red and alignment to centered.`
+
+      `format: {backgroundColor: "red", alignHorizontal: "center"}`
+
+      您可以通过在`numberFormat:`属性中指定数字格式 "code" 字符串来指定数字格式。 你可以指定的数字格式字符串对应于你可以使用“设置单元格格式”对话框“数字”选项卡上的“自定义”类别在 Excel 中设置的字符串。 此示例演示如何将数字格式设置为带两个小数位的百分数形式：
+
+      `format: {numberFormat:"0.00%"}`
+
+      有关更多详细信息, 请参阅如何[创建自定义数字格式](https://support.office.com/article/create-or-delete-a-custom-number-format-78f2a361-936b-4c03-8772-09fab54be7f4)<!-- -->.
+
+      若要在写入数据时设置表的格式, 请使用`Document.setSelectedDataAsync`或`TableBinding.setDataAsync`方法的 tableOptions 和 cellFormat 可选参数。
+
+      将格式设置为`Document.setSelectedDataAsync`和`TableBinding.setDataAsync`方法的可选参数仅在首次写入数据时才会运行设置格式。 若要在写入数据后更改格式，请使用下列方法：
+
+      - 若要更新单元格格式 (如字体颜色和样式), `TableBinding.setFormatsAsync`请使用方法 (此方法)。
+
+      - 若要更新表格选项 (如镶边行和筛选按钮), 请`TableBinding.setTableOptions`使用方法。
+
+      - 若要清除格式设置, `TableBinding.clearFormats`请使用方法。
+
+      有关更多详细信息和示例, 请参阅[如何设置 Excel 外接程序中表的格式](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-tables#format-a-table)<!-- -->.
+    name: 'setFormatsAsync(cellFormat, callback)'
+    fullName: 'setFormatsAsync(cellFormat, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setFormatsAsync(cellFormat: any[], callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: cellFormat
+          description: 包含指定针对哪些单元格以及适用格式的一个或多个 JavaScript 对象的数组。
+          type:
+            - 'any[]'
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.TableBinding.setTableOptionsAsync
+    summary: 更新绑定表上的表格式选项。
+    remarks: |-
+      **要求集**:[不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
+
+      在传递给 goToByIdAsync 方法的回调函数中，您可以使用 AsyncResult 对象的属性返回以下信息。
+
+      <table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回 undefined, 这是因为在设置格式时没有要检索的数据或对象。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // The following example shows how to:
+      // 1. Create an object literal that specifies the table formatting options to update on the bound table.
+      // 2. Call setTableOptions on a previously bound table (with an id of myBinding) passing the object
+      //    with formatting setting as the tableOptions parameter.
+      function updateTableFormatting(){
+          var tableOptions = {bandedRows: true, filterButton: false, style: "TableStyleMedium3"}; 
+
+          Office.select("bindings#myBinding").setTableOptionsAsync(tableOptions, function(asyncResult){});
+      }
+      ```
+    name: 'setTableOptionsAsync(tableOptions, options, callback)'
+    fullName: 'setTableOptionsAsync(tableOptions, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setTableOptionsAsync(tableOptions: any, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: tableOptions
+          description: 包含定义要应用的表选项的属性名称 - 值对列表的对象文字。
+          type:
+            - any
+        - id: options
+          description: '提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。'
+          type:
+            - office.Office.AsyncContextOptions
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.TableBinding.setTableOptionsAsync_1
+    summary: 更新绑定表上的表格式选项。
+    remarks: |-
+      **要求集**:[不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
+
+      在传递给 goToByIdAsync 方法的回调函数中，您可以使用 AsyncResult 对象的属性返回以下信息。
+
+      <table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回 undefined, 这是因为在设置格式时没有要检索的数据或对象。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>
+    name: 'setTableOptionsAsync(tableOptions, callback)'
+    fullName: 'setTableOptionsAsync(tableOptions, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setTableOptionsAsync(tableOptions: any, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: tableOptions
+          description: 包含定义要应用的表选项的属性名称 - 值对列表的对象文字。
+          type:
+            - any
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.TableBinding.columnCount
+    summary: '获取 TableBinding 中的列数, 作为整数值。'
+    name: columnCount
+    fullName: columnCount
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'columnCount: number;'
+      return:
+        type:
+          - number
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          function showBindingColumnCount() {
+              Office.context.document.bindings.getByIdAsync("myBinding", function (asyncResult) {
+                  write("Column: " + asyncResult.value.columnCount);
+              });
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.TableBinding.hasHeaders
+    summary: '如果表具有标头, 则为 True; 否则为 false。否则为 false。'
+    name: hasHeaders
+    fullName: hasHeaders
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'hasHeaders: boolean;'
+      return:
+        type:
+          - boolean
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          function showBindingHasHeaders() {
+              Office.context.document.bindings.getByIdAsync("myBinding", function (asyncResult) {
+                  write("Binding has headers: " + asyncResult.value.hasHeaders);
+              });
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.TableBinding.rowCount
+    summary: '获取 TableBinding 中的行数, 作为整数值。'
+    remarks: |-
+      通过在 excel 2013 和 excel Online (使用 "插入" 选项卡上的 "表") 中选择单行来插入空表格时, 两个 Office 主机应用程序都会创建一行标题, 后跟一个空行。 但是, 如果外接程序的脚本为此新插入的表创建了绑定 (例如, 使用的是[](xref:office.Office.Bindings)<!-- -->. addFromSelectionAsync 方法), 然后检查 rowCount 属性的值, 返回的值将因电子表格在 Excel 2013 或 excel Online 中是否打开而异。
+
+      - 在桌面上的 Excel 中, rowCount 将返回 0 (标头后面的空白行不计算在内)。
+
+      - 在 Excel Online 中, rowCount 将返回 1 (标头后面的空白行被计算在内)。
+
+      可通过检查是否存在 rowCount == 1 在脚本中解决返回值不同的问题，如果存在，再检查行是否包含所有空字符串。
+
+      在 Access 相关内容外接程序中, 出于性能原因, rowCount 属性始终返回-1。
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      function showBindingRowCount() {
+          Office.context.document.bindings.getByIdAsync("myBinding", function (asyncResult) {
+              write("Rows: " + asyncResult.value.rowCount);
+          });
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: rowCount
+    fullName: rowCount
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'rowCount: number;'
+      return:
+        type:
+          - number

@@ -1,157 +1,163 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 46f2ca6ab12fbe4cad956c40b3df252d187e7532
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30096897"
 items:
-- uid: visio.Visio.ShapeCollection
-  summary: >-
-    表示 Shape 集合。
+  - uid: visio.Visio.ShapeCollection
+    summary: |-
+      表示 Shape 集合。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: Visio.ShapeCollection
+    fullName: Visio.ShapeCollection
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: visio
+    children:
+      - visio.Visio.ShapeCollection.getCount
+      - visio.Visio.ShapeCollection.getItem
+      - visio.Visio.ShapeCollection.items
+      - visio.Visio.ShapeCollection.load
+      - visio.Visio.ShapeCollection.load_1
+      - visio.Visio.ShapeCollection.load_2
+      - visio.Visio.ShapeCollection.toJSON
+  - uid: visio.Visio.ShapeCollection.getCount
+    summary: |-
+      获取集合中的形状数量。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: getCount()
+    fullName: getCount()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getCount(): OfficeExtension.ClientResult<number>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<number>
+        description: |-
 
 
-    \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: Visio.ShapeCollection
-  fullName: Visio.ShapeCollection
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: visio
-  children:
-  - visio.Visio.ShapeCollection.getCount
-  - visio.Visio.ShapeCollection.getItem
-  - visio.Visio.ShapeCollection.items
-  - visio.Visio.ShapeCollection.load
-  - visio.Visio.ShapeCollection.load_1
-  - visio.Visio.ShapeCollection.load_2
-  - visio.Visio.ShapeCollection.toJSON
-- uid: visio.Visio.ShapeCollection.getCount
-  summary: >-
-    获取集合中的形状数量。
+          #### <a name="examples"></a>示例
 
+          ```javascript
+          Visio.run(session, function (ctx) {
+              var activePage = ctx.document.getActivePage();
+              var numShapesActivePage = activePage.shapes.getCount();
+              return ctx.sync().then(function () {
+                  console.log("Shapes Count: " + numShapesActivePage.value);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: visio.Visio.ShapeCollection.getItem
+    summary: |-
+      按键（名称或索引）获取形状。
 
-    \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: getCount()
-  fullName: getCount()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getCount(): OfficeExtension.ClientResult<number>;'
-    return:
-      type:
-      - OfficeExtension.ClientResult<number>
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nVisio.run(session, function (ctx) {\n    var activePage = ctx.document.getActivePage();\n    var numShapesActivePage = activePage.shapes.getCount();\n    return ctx.sync().then(function () {\n        console.log(\"Shapes Count: \" + numShapesActivePage.value);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-- uid: visio.Visio.ShapeCollection.getItem
-  summary: >-
-    按键（名称或索引）获取形状。
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: getItem(key)
+    fullName: getItem(key)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItem(key: number | string): Visio.Shape;'
+      return:
+        type:
+          - Visio.Shape
+        description: ''
+      parameters:
+        - id: key
+          description: 键是要检索的形状的名称或索引。
+          type:
+            - number | string
+  - uid: visio.Visio.ShapeCollection.items
+    summary: 获取此集合中已加载的子项。
+    name: items
+    fullName: items
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly items: Visio.Shape[];'
+      return:
+        type:
+          - 'Visio.Shape[]'
+  - uid: visio.Visio.ShapeCollection.load
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+    remarks: |-
+      除了此签名之外, 此方法还具有以下签名:
 
+      `load(option?: string | string[]): Visio.ShapeCollection`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
 
-    \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: getItem(key)
-  fullName: getItem(key)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getItem(key: number | string): Visio.Shape;'
-    return:
-      type:
-      - Visio.Shape
-      description: ''
-    parameters:
-    - id: key
-      description: 键是要检索的形状的名称或索引。
-      type:
-      - number | string
-- uid: visio.Visio.ShapeCollection.items
-  summary: 获取此集合中的已加载子项目。
-  name: items
-  fullName: items
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly items: Visio.Shape[];'
-    return:
-      type:
-      - Visio.Shape[]
-- uid: visio.Visio.ShapeCollection.load
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性之前, 必须先调用 "context, sync ()"。
-  remarks: >-
-    除了此签名之外, 此方法还具有以下签名:
+      `load(option?: { select?: string; expand?: string; }): Visio.ShapeCollection`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
-
-    `load(option?: string | string[]): Visio.ShapeCollection`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
-
-
-    `load(option?: { select?: string; expand?: string; }): Visio.ShapeCollection`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
-
-
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.ShapeCollection`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: Visio.Interfaces.ShapeCollectionLoadOptions & Visio.Interfaces.CollectionLoadOptions): Visio.ShapeCollection;'
-    return:
-      type:
-      - Visio.ShapeCollection
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - Visio.Interfaces.ShapeCollectionLoadOptions & Visio.Interfaces.CollectionLoadOptions
-- uid: visio.Visio.ShapeCollection.load_1
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
-  name: load(propertyNames)
-  fullName: load(propertyNames)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNames?: string | string[]): Visio.ShapeCollection;'
-    return:
-      type:
-      - Visio.ShapeCollection
-      description: ''
-    parameters:
-    - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。
-      type:
-      - string | string[]
-- uid: visio.Visio.ShapeCollection.load_2
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: OfficeExtension.LoadOption): Visio.ShapeCollection;'
-    return:
-      type:
-      - Visio.ShapeCollection
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - office.OfficeExtension.LoadOption
-- uid: visio.Visio.ShapeCollection.toJSON
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'toJSON(): Visio.Interfaces.ShapeCollectionData;'
-    return:
-      type:
-      - Visio.Interfaces.ShapeCollectionData
-      description: ''
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.ShapeCollection`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Visio.Interfaces.ShapeCollectionLoadOptions & Visio.Interfaces.CollectionLoadOptions): Visio.ShapeCollection;'
+      return:
+        type:
+          - Visio.ShapeCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - Visio.Interfaces.ShapeCollectionLoadOptions & Visio.Interfaces.CollectionLoadOptions
+  - uid: visio.Visio.ShapeCollection.load_1
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Visio.ShapeCollection;'
+      return:
+        type:
+          - Visio.ShapeCollection
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: '一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。'
+          type:
+            - 'string | string[]'
+  - uid: visio.Visio.ShapeCollection.load_2
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OfficeExtension.LoadOption): Visio.ShapeCollection;'
+      return:
+        type:
+          - Visio.ShapeCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - office.OfficeExtension.LoadOption
+  - uid: visio.Visio.ShapeCollection.toJSON
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Visio.Interfaces.ShapeCollectionData;'
+      return:
+        type:
+          - Visio.Interfaces.ShapeCollectionData
+        description: ''

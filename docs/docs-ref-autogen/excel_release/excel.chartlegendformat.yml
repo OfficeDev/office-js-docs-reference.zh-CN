@@ -1,217 +1,226 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 364899866176598561e3fe18ef08dae37604fd9e
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30115511"
 items:
-- uid: excel_release.Excel.ChartLegendFormat
-  summary: >-
-    封装图表图例的格式属性。
+  - uid: excel_release.Excel.ChartLegendFormat
+    summary: |-
+      封装图表图例的格式属性。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.ChartLegendFormat
+    fullName: Excel.ChartLegendFormat
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: excel_release
+    children:
+      - excel_release.Excel.ChartLegendFormat.border
+      - excel_release.Excel.ChartLegendFormat.context
+      - excel_release.Excel.ChartLegendFormat.fill
+      - excel_release.Excel.ChartLegendFormat.font
+      - excel_release.Excel.ChartLegendFormat.load
+      - excel_release.Excel.ChartLegendFormat.load_1
+      - excel_release.Excel.ChartLegendFormat.load_2
+      - excel_release.Excel.ChartLegendFormat.set
+      - excel_release.Excel.ChartLegendFormat.set_1
+      - excel_release.Excel.ChartLegendFormat.toJSON
+  - uid: excel_release.Excel.ChartLegendFormat.border
+    summary: |-
+      表示边框格式，包括颜色、线条样式和粗细。 只读。
+
+      \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: border
+    fullName: border
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly border: Excel.ChartBorder;'
+      return:
+        type:
+          - excel.Excel.ChartBorder
+  - uid: excel_release.Excel.ChartLegendFormat.context
+    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - RequestContext
+  - uid: excel_release.Excel.ChartLegendFormat.fill
+    summary: |-
+      表示对象的填充格式，包括背景格式信息。 只读。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: fill
+    fullName: fill
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly fill: Excel.ChartFill;'
+      return:
+        type:
+          - excel.Excel.ChartFill
+  - uid: excel_release.Excel.ChartLegendFormat.font
+    summary: |-
+      表示图表图例的字体属性，例如字体名称、字体大小、颜色等。 只读。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: font
+    fullName: font
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly font: Excel.ChartFont;'
+      return:
+        type:
+          - excel.Excel.ChartFont
+        description: |-
 
 
-    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: Excel.ChartLegendFormat
-  fullName: Excel.ChartLegendFormat
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: excel_release
-  children:
-  - excel_release.Excel.ChartLegendFormat.border
-  - excel_release.Excel.ChartLegendFormat.context
-  - excel_release.Excel.ChartLegendFormat.fill
-  - excel_release.Excel.ChartLegendFormat.font
-  - excel_release.Excel.ChartLegendFormat.load
-  - excel_release.Excel.ChartLegendFormat.load_1
-  - excel_release.Excel.ChartLegendFormat.load_2
-  - excel_release.Excel.ChartLegendFormat.set
-  - excel_release.Excel.ChartLegendFormat.set_1
-  - excel_release.Excel.ChartLegendFormat.toJSON
-- uid: excel_release.Excel.ChartLegendFormat.border
-  summary: >-
-    表示边框格式，包括颜色、线条样式和粗细。 只读。
+          #### <a name="examples"></a>示例
 
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
 
-    \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: border
-  fullName: border
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly border: Excel.ChartBorder;'
-    return:
-      type:
-      - excel.Excel.ChartBorder
-- uid: excel_release.Excel.ChartLegendFormat.context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-  name: context
-  fullName: context
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'context: RequestContext;'
-    return:
-      type:
-      - RequestContext
-- uid: excel_release.Excel.ChartLegendFormat.fill
-  summary: >-
-    表示对象的填充格式，包括背景格式信息。只读。
+              let chart = sheet.charts.getItemAt(0);
+              chart.legend.visible = true;
 
+              // Format the legend font.
+              let font = chart.legend.format.font;
+              font.bold = true;
+              font.color = "red";
+              font.italic = true;
+              font.size = 15;
+              font.name = "Calibri";
+              font.underline = "Single";
 
-    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: fill
-  fullName: fill
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly fill: Excel.ChartFill;'
-    return:
-      type:
-      - excel.Excel.ChartFill
-- uid: excel_release.Excel.ChartLegendFormat.font
-  summary: >-
-    表示图表图例的字体属性，例如字体名称、字体大小、颜色等。只读。
+              await context.sync();
+          });
+          ```
+  - uid: excel_release.Excel.ChartLegendFormat.load
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+    remarks: |-
+      除了此签名之外, 此方法还具有以下签名:
 
+      `load(option?: string | string[]): Excel.ChartLegendFormat`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
 
-    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: font
-  fullName: font
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly font: Excel.ChartFont;'
-    return:
-      type:
-      - excel.Excel.ChartFont
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    let chart = sheet.charts.getItemAt(0);\n    chart.legend.visible = true;\n\n    // Format the legend font.\n    let font = chart.legend.format.font;\n    font.bold = true;\n    font.color = \"red\";\n    font.italic = true;\n    font.size = 15;\n    font.name = \"Calibri\";\n    font.underline = \"Single\";\n\n    await context.sync();\n});\n```"
-- uid: excel_release.Excel.ChartLegendFormat.load
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性之前, 必须先调用 "context, sync ()"。
-  remarks: >-
-    除了此签名之外, 此方法还具有以下签名:
+      `load(option?: { select?: string; expand?: string; }): Excel.ChartLegendFormat`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartLegendFormat`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.ChartLegendFormatLoadOptions): Excel.ChartLegendFormat;'
+      return:
+        type:
+          - excel.Excel.ChartLegendFormat
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - excel.Excel.Interfaces.ChartLegendFormatLoadOptions
+  - uid: excel_release.Excel.ChartLegendFormat.load_1
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.ChartLegendFormat;'
+      return:
+        type:
+          - excel.Excel.ChartLegendFormat
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: '一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。'
+          type:
+            - 'string | string[]'
+  - uid: excel_release.Excel.ChartLegendFormat.load_2
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.ChartLegendFormat;'
+      return:
+        type:
+          - excel.Excel.ChartLegendFormat
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: excel_release.Excel.ChartLegendFormat.set
+    summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+    remarks: |-
+      此方法具有以下附加签名:
 
-    `load(option?: string | string[]): Excel.ChartLegendFormat`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
-
-
-    `load(option?: { select?: string; expand?: string; }): Excel.ChartLegendFormat`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
-
-
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartLegendFormat`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: Excel.Interfaces.ChartLegendFormatLoadOptions): Excel.ChartLegendFormat;'
-    return:
-      type:
-      - excel.Excel.ChartLegendFormat
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - excel.Excel.Interfaces.ChartLegendFormatLoadOptions
-- uid: excel_release.Excel.ChartLegendFormat.load_1
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
-  name: load(propertyNames)
-  fullName: load(propertyNames)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNames?: string | string[]): Excel.ChartLegendFormat;'
-    return:
-      type:
-      - excel.Excel.ChartLegendFormat
-      description: ''
-    parameters:
-    - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。
-      type:
-      - string | string[]
-- uid: excel_release.Excel.ChartLegendFormat.load_2
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
-  name: load(propertyNamesAndPaths)
-  fullName: load(propertyNamesAndPaths)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.ChartLegendFormat;'
-    return:
-      type:
-      - excel.Excel.ChartLegendFormat
-      description: ''
-    parameters:
-    - id: propertyNamesAndPaths
-      description: 其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
-      type:
-      - '{ select?: string; expand?: string; }'
-- uid: excel_release.Excel.ChartLegendFormat.set
-  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
-  remarks: >-
-    此方法具有以下附加签名:
-
-
-    `set(properties: Excel.ChartLegendFormat): void`
-  name: set(properties, options)
-  fullName: set(properties, options)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'set(properties: Interfaces.ChartLegendFormatUpdateData, options?: OfficeExtension.UpdateOptions): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: properties
-      description: 一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。
-      type:
-      - Interfaces.ChartLegendFormatUpdateData
-    - id: options
-      description: 提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。
-      type:
-      - office.OfficeExtension.UpdateOptions
-- uid: excel_release.Excel.ChartLegendFormat.set_1
-  summary: 基于现有加载的对象同时设置该对象的多个属性。
-  name: set(properties)
-  fullName: set(properties)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'set(properties: Excel.ChartLegendFormat): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: properties
-      description: ''
-      type:
-      - excel.Excel.ChartLegendFormat
-- uid: excel_release.Excel.ChartLegendFormat.toJSON
-  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到`JSON.stringify()` <!-- -->时提供更有用的输出。 (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。)尽管原始 ChartLegendFormat 对象是 API 对象, 但该`toJSON`方法返回一个纯 JavaScript 对象 (类型为`Excel.Interfaces.ChartLegendFormatData` <!-- -->), 其中包含原始对象中任何已加载的子属性的浅表副本。
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'toJSON(): Excel.Interfaces.ChartLegendFormatData;'
-    return:
-      type:
-      - excel.Excel.Interfaces.ChartLegendFormatData
-      description: ''
+      `set(properties: Excel.ChartLegendFormat): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.ChartLegendFormatUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: '一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。'
+          type:
+            - Interfaces.ChartLegendFormatUpdateData
+        - id: options
+          description: '提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。'
+          type:
+            - office.OfficeExtension.UpdateOptions
+  - uid: excel_release.Excel.ChartLegendFormat.set_1
+    summary: 基于现有加载的对象同时设置该对象的多个属性。
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Excel.ChartLegendFormat): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - excel.Excel.ChartLegendFormat
+  - uid: excel_release.Excel.ChartLegendFormat.toJSON
+    summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始 ChartLegendFormat 对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Excel.Interfaces.ChartLegendFormatData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.ChartLegendFormatData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.ChartLegendFormatData
+        description: ''

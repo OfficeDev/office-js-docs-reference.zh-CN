@@ -1,78 +1,114 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: edeec461fbb075ad2589459db09b33b2f09e448d
-ms.sourcegitcommit: 788ab9c595c9143f8b8f4822a170e8b90d72ee1d
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 03/06/2019
-ms.locfileid: "30413803"
 items:
-- uid: outlook.Office.EmailAddressDetails
-  summary: >-
-    提供电子邮件或约会的发件人或指定收件人的电子邮件属性。
+  - uid: outlook.Office.EmailAddressDetails
+    summary: |-
+      提供电子邮件或约会的发件人或指定收件人的电子邮件属性。
+
+      \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读
+    name: Office.EmailAddressDetails
+    fullName: Office.EmailAddressDetails
+    langs:
+      - typeScript
+    type: interface
+    package: outlook
+    children:
+      - outlook.Office.EmailAddressDetails.appointmentResponse
+      - outlook.Office.EmailAddressDetails.displayName
+      - outlook.Office.EmailAddressDetails.emailAddress
+      - outlook.Office.EmailAddressDetails.recipientType
+  - uid: outlook.Office.EmailAddressDetails.appointmentResponse
+    summary: '获取参与者返回的约会响应。 此属性仅适用于约会的与会者, 由 optionalAttendees 或 requiredAttendees 属性表示。 在其他方案中, 此属性返回未定义。'
+    name: appointmentResponse
+    fullName: appointmentResponse
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'appointmentResponse: MailboxEnums.ResponseType;'
+      return:
+        type:
+          - MailboxEnums.ResponseType
+        description: |-
 
 
-    \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>撰写或阅读</td></tr> </table>
-  name: Office.EmailAddressDetails
-  fullName: Office.EmailAddressDetails
-  langs:
-  - typeScript
-  type: interface
-  package: outlook
-  children:
-  - outlook.Office.EmailAddressDetails.appointmentResponse
-  - outlook.Office.EmailAddressDetails.displayName
-  - outlook.Office.EmailAddressDetails.emailAddress
-  - outlook.Office.EmailAddressDetails.recipientType
-- uid: outlook.Office.EmailAddressDetails.appointmentResponse
-  summary: 获取参与者返回的约会响应。 此属性仅适用于约会的与会者, 由 optionalAttendees 或 requiredAttendees 属性表示。 在其他方案中, 此属性返回未定义。
-  name: appointmentResponse
-  fullName: appointmentResponse
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'appointmentResponse: MailboxEnums.ResponseType;'
-    return:
-      type:
-      - MailboxEnums.ResponseType
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following sample provides the responses from required attendees.\n// Note that this sample needs the add-in to be in Appointment Read (Attendee) mode.\nvar requiredAttendees = Office.context.mailbox.item.requiredAttendees;\nconsole.log(\"There are \" + requiredAttendees.length + \" required attendees.\")\nrequiredAttendees.forEach(function (requiredAttendee) {\n    console.log(\"Attendee \" + requiredAttendee.displayName + \": \" + requiredAttendee.appointmentResponse);\n});\n```"
-- uid: outlook.Office.EmailAddressDetails.displayName
-  summary: 获取与电子邮件地址关联的显示名称。
-  name: displayName
-  fullName: displayName
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'displayName: string;'
-    return:
-      type:
-      - string
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nvar organizerName = Office.context.mailbox.item.organizer.displayName;\nconsole.log(\"Organizer: \" + organizerName);\n```"
-- uid: outlook.Office.EmailAddressDetails.emailAddress
-  summary: 获取 SMTP 电子邮件地址。
-  name: emailAddress
-  fullName: emailAddress
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'emailAddress: string;'
-    return:
-      type:
-      - string
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nvar organizerAddress = Office.context.mailbox.item.organizer.emailAddress;\nconsole.log(\"Organizer's email address: \" + organizerAddress);\n```"
-- uid: outlook.Office.EmailAddressDetails.recipientType
-  summary: 获取收件人的电子邮件地址类型。
-  name: recipientType
-  fullName: recipientType
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'recipientType: MailboxEnums.RecipientType;'
-    return:
-      type:
-      - MailboxEnums.RecipientType
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nvar requiredAttendees = Office.context.mailbox.item.requiredAttendees;\nconsole.log(\"There are \" + requiredAttendees.length + \" required attendees.\")\nrequiredAttendees.forEach(function (requiredAttendee) {\n    console.log(\"Attendee \" + requiredAttendee.displayName + \": \" + requiredAttendee.recipientType);\n});\n```"
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // The following sample provides the responses from required attendees.
+          // Note that this sample needs the add-in to be in Appointment Read (Attendee) mode.
+          var requiredAttendees = Office.context.mailbox.item.requiredAttendees;
+          console.log("There are " + requiredAttendees.length + " required attendees.")
+          requiredAttendees.forEach(function (requiredAttendee) {
+              console.log("Attendee " + requiredAttendee.displayName + ": " + requiredAttendee.appointmentResponse);
+          });
+          ```
+  - uid: outlook.Office.EmailAddressDetails.displayName
+    summary: 获取与电子邮件地址关联的显示名称。
+    name: displayName
+    fullName: displayName
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'displayName: string;'
+      return:
+        type:
+          - string
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          var organizerName = Office.context.mailbox.item.organizer.displayName;
+          console.log("Organizer: " + organizerName);
+          ```
+  - uid: outlook.Office.EmailAddressDetails.emailAddress
+    summary: 获取 SMTP 电子邮件地址。
+    name: emailAddress
+    fullName: emailAddress
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'emailAddress: string;'
+      return:
+        type:
+          - string
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          var organizerAddress = Office.context.mailbox.item.organizer.emailAddress;
+          console.log("Organizer's email address: " + organizerAddress);
+          ```
+  - uid: outlook.Office.EmailAddressDetails.recipientType
+    summary: 获取收件人的电子邮件地址类型。
+    name: recipientType
+    fullName: recipientType
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'recipientType: MailboxEnums.RecipientType;'
+      return:
+        type:
+          - MailboxEnums.RecipientType
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          var requiredAttendees = Office.context.mailbox.item.requiredAttendees;
+          console.log("There are " + requiredAttendees.length + " required attendees.")
+          requiredAttendees.forEach(function (requiredAttendee) {
+              console.log("Attendee " + requiredAttendee.displayName + ": " + requiredAttendee.recipientType);
+          });
+          ```

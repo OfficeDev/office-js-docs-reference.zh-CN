@@ -1,56 +1,63 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: cec482973bf91916bd3f9a748906c199d4d085c7
-ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "26226573"
 items:
-- uid: excel.Excel.ConditionalTextComparisonRule
-  summary: >-
-    表示单元格值条件格式规则
+  - uid: excel.Excel.ConditionalTextComparisonRule
+    summary: |-
+      表示单元格值条件格式规则
+
+      \[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.ConditionalTextComparisonRule
+    fullName: Excel.ConditionalTextComparisonRule
+    langs:
+      - typeScript
+    type: interface
+    package: excel
+    children:
+      - excel.Excel.ConditionalTextComparisonRule.operator
+      - excel.Excel.ConditionalTextComparisonRule.text
+  - uid: excel.Excel.ConditionalTextComparisonRule.operator
+    summary: |-
+      文本条件格式的运算符。
+
+      \[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: operator
+    fullName: operator
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'operator: Excel.ConditionalTextOperator | "Invalid" | "Contains" | "NotContains" | "BeginsWith" | "EndsWith";'
+      return:
+        type:
+          - Excel.ConditionalTextOperator | "Invalid" | "Contains" | "NotContains" | "BeginsWith" | "EndsWith"
+  - uid: excel.Excel.ConditionalTextComparisonRule.text
+    summary: |-
+      条件格式的文本值。
+
+      \[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: text
+    fullName: text
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'text: string;'
+      return:
+        type:
+          - string
+        description: |-
 
 
-    \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: Excel.ConditionalTextComparisonRule
-  fullName: Excel.ConditionalTextComparisonRule
-  langs:
-  - typeScript
-  type: interface
-  package: excel
-  children:
-  - excel.Excel.ConditionalTextComparisonRule.operator
-  - excel.Excel.ConditionalTextComparisonRule.text
-- uid: excel.Excel.ConditionalTextComparisonRule.operator
-  summary: >-
-    文本条件格式的运算符。
+          #### <a name="examples"></a>示例
 
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const range = sheet.getRange("B16:D18");
+              const conditionalFormat = range.conditionalFormats
+                  .add(Excel.ConditionalFormatType.containsText);
+              conditionalFormat.textComparison.format.font.color = "red";
+              conditionalFormat.textComparison.rule = { operator: Excel.ConditionalTextOperator.contains, text: "Delayed" };
 
-    \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: operator
-  fullName: operator
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'operator: Excel.ConditionalTextOperator | "Invalid" | "Contains" | "NotContains" | "BeginsWith" | "EndsWith";'
-    return:
-      type:
-      - Excel.ConditionalTextOperator | "Invalid" | "Contains" | "NotContains" | "BeginsWith" | "EndsWith"
-- uid: excel.Excel.ConditionalTextComparisonRule.text
-  summary: >-
-    条件格式的文本值。
-
-
-    \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: text
-  fullName: text
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'text: string;'
-    return:
-      type:
-      - string
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B16:D18\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.containsText);\n    conditionalFormat.textComparison.format.font.color = \"red\";\n    conditionalFormat.textComparison.rule = { operator: Excel.ConditionalTextOperator.contains, text: \"Delayed\" };\n\n    await context.sync();\n});\n```"
+              await context.sync();
+          });
+          ```

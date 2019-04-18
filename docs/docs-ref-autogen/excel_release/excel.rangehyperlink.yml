@@ -1,93 +1,202 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 5d5329a030d39f0a5f00d5dbb8d182973422535f
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30105158"
 items:
-- uid: excel_release.Excel.RangeHyperlink
-  summary: >-
-    表示获取/设置超链接 (XHL) 对象所需的字符串。
+  - uid: excel_release.Excel.RangeHyperlink
+    summary: |-
+      表示获取/设置超链接 (XHL) 对象所需的字符串。
+
+      \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.RangeHyperlink
+    fullName: Excel.RangeHyperlink
+    langs:
+      - typeScript
+    type: interface
+    package: excel_release
+    children:
+      - excel_release.Excel.RangeHyperlink.address
+      - excel_release.Excel.RangeHyperlink.documentReference
+      - excel_release.Excel.RangeHyperlink.screenTip
+      - excel_release.Excel.RangeHyperlink.textToDisplay
+  - uid: excel_release.Excel.RangeHyperlink.address
+    summary: |-
+      表示超链接的 URL 目标。
+
+      \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: address
+    fullName: address
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'address?: string;'
+      return:
+        type:
+          - string
+        description: |-
 
 
-    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: Excel.RangeHyperlink
-  fullName: Excel.RangeHyperlink
-  langs:
-  - typeScript
-  type: interface
-  package: excel_release
-  children:
-  - excel_release.Excel.RangeHyperlink.address
-  - excel_release.Excel.RangeHyperlink.documentReference
-  - excel_release.Excel.RangeHyperlink.screenTip
-  - excel_release.Excel.RangeHyperlink.textToDisplay
-- uid: excel_release.Excel.RangeHyperlink.address
-  summary: >-
-    表示超链接的 URL 目标。
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Orders");
+
+              let productsRange = sheet.getRange("A3:A5");
+              productsRange.load("values");
+
+              await context.sync();
+
+              // Create a hyperlink to a URL 
+              // for each product name in the first table.
+              for (let i = 0; i < productsRange.values.length; i++) {
+                  let cellRange = productsRange.getCell(i, 0);
+                  let cellText = productsRange.values[i][0];
+
+                  let hyperlink = {
+                      textToDisplay: cellText,
+                      screenTip: "Search Bing for '" + cellText + "'",
+                      address: "https://www.bing.com?q=" + cellText
+                  }
+                  cellRange.hyperlink = hyperlink;
+              }
+
+              await context.sync();
+          });
+          ```
+  - uid: excel_release.Excel.RangeHyperlink.documentReference
+    summary: |-
+      表示超链接的文档引用目标。
+
+      \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: documentReference
+    fullName: documentReference
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'documentReference?: string;'
+      return:
+        type:
+          - string
+        description: |-
 
 
-    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: address
-  fullName: address
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'address?: string;'
-    return:
-      type:
-      - string
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Orders\");\n\n    let productsRange = sheet.getRange(\"A3:A5\");\n    productsRange.load(\"values\");\n\n    await context.sync();\n\n    // Create a hyperlink to a URL \n    // for each product name in the first table.\n    for (let i = 0; i < productsRange.values.length; i++) {\n        let cellRange = productsRange.getCell(i, 0);\n        let cellText = productsRange.values[i][0];\n\n        let hyperlink = {\n            textToDisplay: cellText,\n            screenTip: \"Search Bing for '\" + cellText + \"'\",\n            address: \"https://www.bing.com?q=\" + cellText\n        }\n        cellRange.hyperlink = hyperlink;\n    }\n\n    await context.sync();\n});\n```"
-- uid: excel_release.Excel.RangeHyperlink.documentReference
-  summary: >-
-    表示超链接的文档引用目标。
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Orders");
+
+              let productsRange = sheet.getRange("A9:A11");
+              productsRange.load("values");
+
+              await context.sync();
+
+              // Create a hyperlink to a location within the workbook
+              // for each product name in the second table.
+              for (let i = 0; i < productsRange.values.length; i++) {
+                  let cellRange = productsRange.getCell(i, 0);
+                  let cellText = productsRange.values[i][0];
+
+                  let hyperlink = {
+                      textToDisplay: cellText,
+                      screenTip: "Navigate to the '" + cellText + "' worksheet",
+                      documentReference: cellText + "!A1"
+                  }
+                  cellRange.hyperlink = hyperlink;
+              }
+
+              await context.sync();
+          });
+          ```
+  - uid: excel_release.Excel.RangeHyperlink.screenTip
+    summary: |-
+      表示鼠标悬停在超链接上时显示的字符串。
+
+      \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: screenTip
+    fullName: screenTip
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'screenTip?: string;'
+      return:
+        type:
+          - string
+        description: |-
 
 
-    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: documentReference
-  fullName: documentReference
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'documentReference?: string;'
-    return:
-      type:
-      - string
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Orders\");\n\n    let productsRange = sheet.getRange(\"A9:A11\");\n    productsRange.load(\"values\");\n\n    await context.sync();\n\n    // Create a hyperlink to a location within the workbook\n    // for each product name in the second table.\n    for (let i = 0; i < productsRange.values.length; i++) {\n        let cellRange = productsRange.getCell(i, 0);\n        let cellText = productsRange.values[i][0];\n\n        let hyperlink = {\n            textToDisplay: cellText,\n            screenTip: \"Navigate to the '\" + cellText + \"' worksheet\",\n            documentReference: cellText + \"!A1\"\n        }\n        cellRange.hyperlink = hyperlink;\n    }\n\n    await context.sync();\n});\n```"
-- uid: excel_release.Excel.RangeHyperlink.screenTip
-  summary: >-
-    表示鼠标悬停在超链接上时显示的字符串。
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Orders");
+
+              let productsRange = sheet.getRange("A3:A5");
+              productsRange.load("values");
+
+              await context.sync();
+
+              // Create a hyperlink to a URL 
+              // for each product name in the first table.
+              for (let i = 0; i < productsRange.values.length; i++) {
+                  let cellRange = productsRange.getCell(i, 0);
+                  let cellText = productsRange.values[i][0];
+
+                  let hyperlink = {
+                      textToDisplay: cellText,
+                      screenTip: "Search Bing for '" + cellText + "'",
+                      address: "https://www.bing.com?q=" + cellText
+                  }
+                  cellRange.hyperlink = hyperlink;
+              }
+
+              await context.sync();
+          });
+          ```
+  - uid: excel_release.Excel.RangeHyperlink.textToDisplay
+    summary: |-
+      表示区域最左上方单元格中显示的字符串。
+
+      \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: textToDisplay
+    fullName: textToDisplay
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'textToDisplay?: string;'
+      return:
+        type:
+          - string
+        description: |-
 
 
-    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: screenTip
-  fullName: screenTip
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'screenTip?: string;'
-    return:
-      type:
-      - string
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Orders\");\n\n    let productsRange = sheet.getRange(\"A3:A5\");\n    productsRange.load(\"values\");\n\n    await context.sync();\n\n    // Create a hyperlink to a URL \n    // for each product name in the first table.\n    for (let i = 0; i < productsRange.values.length; i++) {\n        let cellRange = productsRange.getCell(i, 0);\n        let cellText = productsRange.values[i][0];\n\n        let hyperlink = {\n            textToDisplay: cellText,\n            screenTip: \"Search Bing for '\" + cellText + \"'\",\n            address: \"https://www.bing.com?q=\" + cellText\n        }\n        cellRange.hyperlink = hyperlink;\n    }\n\n    await context.sync();\n});\n```"
-- uid: excel_release.Excel.RangeHyperlink.textToDisplay
-  summary: >-
-    表示区域最左上方单元格中显示的字符串。
+          #### <a name="examples"></a>示例
 
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Orders");
 
-    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: textToDisplay
-  fullName: textToDisplay
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'textToDisplay?: string;'
-    return:
-      type:
-      - string
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Orders\");\n\n    let productsRange = sheet.getRange(\"A3:A5\");\n    productsRange.load(\"values\");\n\n    await context.sync();\n\n    // Create a hyperlink to a URL \n    // for each product name in the first table.\n    for (let i = 0; i < productsRange.values.length; i++) {\n        let cellRange = productsRange.getCell(i, 0);\n        let cellText = productsRange.values[i][0];\n\n        let hyperlink = {\n            textToDisplay: cellText,\n            screenTip: \"Search Bing for '\" + cellText + \"'\",\n            address: \"https://www.bing.com?q=\" + cellText\n        }\n        cellRange.hyperlink = hyperlink;\n    }\n\n    await context.sync();\n});\n```"
+              let productsRange = sheet.getRange("A3:A5");
+              productsRange.load("values");
+
+              await context.sync();
+
+              // Create a hyperlink to a URL 
+              // for each product name in the first table.
+              for (let i = 0; i < productsRange.values.length; i++) {
+                  let cellRange = productsRange.getCell(i, 0);
+                  let cellText = productsRange.values[i][0];
+
+                  let hyperlink = {
+                      textToDisplay: cellText,
+                      screenTip: "Search Bing for '" + cellText + "'",
+                      address: "https://www.bing.com?q=" + cellText
+                  }
+                  cellRange.hyperlink = hyperlink;
+              }
+
+              await context.sync();
+          });
+          ```

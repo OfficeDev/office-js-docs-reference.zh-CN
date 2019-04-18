@@ -1,390 +1,455 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: a00d58522afc78436b279e69f33320ab56d816fd
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
-ms.translationtype: MT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30115140"
 items:
-- uid: excel_release.Excel.NamedItem
-  summary: >-
-    代表单元格区域或值的定义名称。 名称可以是命名为对象的基元 (如下面的类型中所示)、range 对象或对区域的引用。 此对象可用于获取与名称关联的 range 对象。
+  - uid: excel_release.Excel.NamedItem
+    summary: |-
+      表示单元格区域或值的定义名称。 名称可以是命名为对象的基元 (如下面的类型中所示)、range 对象或对区域的引用。 此对象可用于获取与名称相关的 range 对象。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.NamedItem
+    fullName: Excel.NamedItem
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: excel_release
+    children:
+      - excel_release.Excel.NamedItem.arrayValues
+      - excel_release.Excel.NamedItem.comment
+      - excel_release.Excel.NamedItem.context
+      - excel_release.Excel.NamedItem.delete
+      - excel_release.Excel.NamedItem.formula
+      - excel_release.Excel.NamedItem.getRange
+      - excel_release.Excel.NamedItem.getRangeOrNullObject
+      - excel_release.Excel.NamedItem.load
+      - excel_release.Excel.NamedItem.load_1
+      - excel_release.Excel.NamedItem.load_2
+      - excel_release.Excel.NamedItem.name
+      - excel_release.Excel.NamedItem.scope
+      - excel_release.Excel.NamedItem.set
+      - excel_release.Excel.NamedItem.set_1
+      - excel_release.Excel.NamedItem.toJSON
+      - excel_release.Excel.NamedItem.type
+      - excel_release.Excel.NamedItem.value
+      - excel_release.Excel.NamedItem.visible
+      - excel_release.Excel.NamedItem.worksheet
+      - excel_release.Excel.NamedItem.worksheetOrNullObject
+  - uid: excel_release.Excel.NamedItem.arrayValues
+    summary: |-
+      返回包含已命名项目的值和类型的对象。 只读。
+
+      \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: arrayValues
+    fullName: arrayValues
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly arrayValues: Excel.NamedItemArrayValues;'
+      return:
+        type:
+          - excel.Excel.NamedItemArrayValues
+  - uid: excel_release.Excel.NamedItem.comment
+    summary: |-
+      表示与此名称相关联的注释。
+
+      \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: comment
+    fullName: comment
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'comment: string;'
+      return:
+        type:
+          - string
+  - uid: excel_release.Excel.NamedItem.context
+    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - RequestContext
+  - uid: excel_release.Excel.NamedItem.delete
+    summary: |-
+      删除给定的名称。
+
+      \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: delete()
+    fullName: delete()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'delete(): void;'
+      return:
+        type:
+          - void
+        description: |-
 
 
-    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: Excel.NamedItem
-  fullName: Excel.NamedItem
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: excel_release
-  children:
-  - excel_release.Excel.NamedItem.arrayValues
-  - excel_release.Excel.NamedItem.comment
-  - excel_release.Excel.NamedItem.context
-  - excel_release.Excel.NamedItem.delete
-  - excel_release.Excel.NamedItem.formula
-  - excel_release.Excel.NamedItem.getRange
-  - excel_release.Excel.NamedItem.getRangeOrNullObject
-  - excel_release.Excel.NamedItem.load
-  - excel_release.Excel.NamedItem.load_1
-  - excel_release.Excel.NamedItem.load_2
-  - excel_release.Excel.NamedItem.name
-  - excel_release.Excel.NamedItem.scope
-  - excel_release.Excel.NamedItem.set
-  - excel_release.Excel.NamedItem.set_1
-  - excel_release.Excel.NamedItem.toJSON
-  - excel_release.Excel.NamedItem.type
-  - excel_release.Excel.NamedItem.value
-  - excel_release.Excel.NamedItem.visible
-  - excel_release.Excel.NamedItem.worksheet
-  - excel_release.Excel.NamedItem.worksheetOrNullObject
-- uid: excel_release.Excel.NamedItem.arrayValues
-  summary: >-
-    返回包含已命名项目的值和类型的对象。 只读。
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const totalName = sheet.names.getItemOrNullObject("TotalAmount");
+              totalName.load();
+              await context.sync();
+
+              if (totalName.value) {
+                  totalName.delete();
+
+                  // Replace the named item (TotalAmount) with the actual formula for TotalAmount to avoid displaying #NAME in the cell.
+                  sheet.getRange("D11").values = [["=SUM(ExpensesTable[AMOUNT])"]];
+              } else {
+                  console.log("No named item created for the formula.");
+              }
+
+              await context.sync();
+          });
+          ```
+  - uid: excel_release.Excel.NamedItem.formula
+    summary: |-
+      获取或设置的已命名项目的公式。 公式始终以等号 (=) 开头。
+
+      \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: formula
+    fullName: formula
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'formula: any;'
+      return:
+        type:
+          - any
+        description: |-
 
 
-    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: arrayValues
-  fullName: arrayValues
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly arrayValues: Excel.NamedItemArrayValues;'
-    return:
-      type:
-      - excel.Excel.NamedItemArrayValues
-- uid: excel_release.Excel.NamedItem.comment
-  summary: >-
-    表示与此名称相关联的注释。
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+
+              // Get the named item
+              const myNamedItem = sheet.names.getItemOrNullObject("MyRange");
+              myNamedItem.load("name, formula");
+              await context.sync();
+
+              if (myNamedItem.isNullObject) {
+                  console.log(`There is no named item. Create it with "Add named item for a range" first.`);
+              } else {                    
+                  // Update named item to point to the second range
+                  myNamedItem.formula = "=Sample!$B$10:$D$14";
+                  sheet.getRange("B10:D14").select();
+                  await context.sync();
+
+                  console.log(`Just updated the named item "${myNamedItem.name}" -- it's now located here: ${myNamedItem.formula}`);
+              }
+          });
+          ```
+  - uid: excel_release.Excel.NamedItem.getRange
+    summary: |-
+      返回与名称相关的 range 对象。 如果已命名项的类型不是 Range，将引发错误。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getRange()
+    fullName: getRange()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getRange(): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
 
 
-    \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: comment
-  fullName: comment
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'comment: string;'
-    return:
-      type:
-      - string
-- uid: excel_release.Excel.NamedItem.context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-  name: context
-  fullName: context
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'context: RequestContext;'
-    return:
-      type:
-      - RequestContext
-- uid: excel_release.Excel.NamedItem.delete
-  summary: >-
-    删除给定的名称。
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Returns the Range object that is associated with the name. 
+          // null if the name is not of the type Range.
+          // Note: This API currently supports only the Workbook scoped items.
+          Excel.run(function (ctx) { 
+              var names = ctx.workbook.names;
+              var range = names.getItem('MyRange').getRange();
+              range.load('address');
+              return ctx.sync().then(function() {
+                  console.log(range.address);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: excel_release.Excel.NamedItem.getRangeOrNullObject
+    summary: |-
+      返回与名称相关联的 Range 对象。 如果已命名项的类型不是 Range，将返回 NULL 对象。
+
+      \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getRangeOrNullObject()
+    fullName: getRangeOrNullObject()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getRangeOrNullObject(): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: ''
+  - uid: excel_release.Excel.NamedItem.load
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+    remarks: |-
+      除了此签名之外, 此方法还具有以下签名:
+
+      `load(option?: string | string[]): Excel.NamedItem`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
+
+      `load(option?: { select?: string; expand?: string; }): Excel.NamedItem`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.NamedItem`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.NamedItemLoadOptions): Excel.NamedItem;'
+      return:
+        type:
+          - excel.Excel.NamedItem
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - excel.Excel.Interfaces.NamedItemLoadOptions
+  - uid: excel_release.Excel.NamedItem.load_1
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.NamedItem;'
+      return:
+        type:
+          - excel.Excel.NamedItem
+        description: |-
 
 
-    \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: delete()
-  fullName: delete()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'delete(): void;'
-    return:
-      type:
-      - void
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const totalName = sheet.names.getItemOrNullObject(\"TotalAmount\");\n    totalName.load();\n    await context.sync();\n\n    if (totalName.value) {\n        totalName.delete();\n\n        // Replace the named item (TotalAmount) with the actual formula for TotalAmount to avoid displaying #NAME in the cell.\n        sheet.getRange(\"D11\").values = [[\"=SUM(ExpensesTable[AMOUNT])\"]];\n    } else {\n        console.log(\"No named item created for the formula.\");\n    }\n\n    await context.sync();\n});\n```"
-- uid: excel_release.Excel.NamedItem.formula
-  summary: >-
-    获取或设置的已命名项目的公式。 公式始终以等号 (=) 开头。
+          #### <a name="examples"></a>示例
 
+          ```javascript
+          Excel.run(function (ctx) { 
+              var names = ctx.workbook.names;
+              var namedItem = names.getItem('MyRange');
+              namedItem.load('type');
+              return ctx.sync().then(function() {
+                      console.log(namedItem.type);
+              });
+          }).catch(function(error) {
+                  console.log("Error: " + error);
+                  if (error instanceof OfficeExtension.Error) {
+                      console.log("Debug info: " + JSON.stringify(error.debugInfo));
+                  }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: '一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。'
+          type:
+            - 'string | string[]'
+  - uid: excel_release.Excel.NamedItem.load_2
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.NamedItem;'
+      return:
+        type:
+          - excel.Excel.NamedItem
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: excel_release.Excel.NamedItem.name
+    summary: |-
+      对象的名称。 只读。
 
-    \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: formula
-  fullName: formula
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'formula: any;'
-    return:
-      type:
-      - any
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    // Get the named item\n    const myNamedItem = sheet.names.getItemOrNullObject(\"MyRange\");\n    myNamedItem.load(\"name, formula\");\n    await context.sync();\n\n    if (myNamedItem.isNullObject) {\n        console.log(`There is no named item. Create it with \"Add named item for a range\" first.`);\n    } else {                    \n        // Update named item to point to the second range\n        myNamedItem.formula = \"=Sample!$B$10:$D$14\";\n        sheet.getRange(\"B10:D14\").select();\n        await context.sync();\n\n        console.log(`Just updated the named item \"${myNamedItem.name}\" -- it's now located here: ${myNamedItem.formula}`);\n    }\n});\n```"
-- uid: excel_release.Excel.NamedItem.getRange
-  summary: >-
-    返回与名称相关联的 Range 对象。如果已命名项的类型不是 Range，将引发错误。
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: name
+    fullName: name
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly name: string;'
+      return:
+        type:
+          - string
+  - uid: excel_release.Excel.NamedItem.scope
+    summary: |-
+      指明是否将 name 限定到工作簿或特定工作表。 可能的值为: 工作表、工作簿。 只读。
 
+      \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: scope
+    fullName: scope
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly scope: Excel.NamedItemScope | "Worksheet" | "Workbook";'
+      return:
+        type:
+          - Excel.NamedItemScope | "Worksheet" | "Workbook"
+  - uid: excel_release.Excel.NamedItem.set
+    summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+    remarks: |-
+      此方法具有以下附加签名:
 
-    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: getRange()
-  fullName: getRange()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getRange(): Excel.Range;'
-    return:
-      type:
-      - excel.Excel.Range
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Returns the Range object that is associated with the name. \n// null if the name is not of the type Range.\n// Note: This API currently supports only the Workbook scoped items.\nExcel.run(function (ctx) { \n    var names = ctx.workbook.names;\n    var range = names.getItem('MyRange').getRange();\n    range.load('address');\n    return ctx.sync().then(function() {\n        console.log(range.address);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-- uid: excel_release.Excel.NamedItem.getRangeOrNullObject
-  summary: >-
-    返回与名称相关联的 Range 对象。如果已命名项的类型不是 Range，将返回 NULL 对象。
+      `set(properties: Excel.NamedItem): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.NamedItemUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: '一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。'
+          type:
+            - Interfaces.NamedItemUpdateData
+        - id: options
+          description: '提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。'
+          type:
+            - office.OfficeExtension.UpdateOptions
+  - uid: excel_release.Excel.NamedItem.set_1
+    summary: 基于现有加载的对象同时设置该对象的多个属性。
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Excel.NamedItem): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - excel.Excel.NamedItem
+  - uid: excel_release.Excel.NamedItem.toJSON
+    summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始 NamedItem 对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Excel.Interfaces.NamedItemData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.NamedItemData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.NamedItemData
+        description: ''
+  - uid: excel_release.Excel.NamedItem.type
+    summary: |-
+      指明 name 公式返回的值的类型。 有关详细信息, 请参阅 NamedItemType。 只读。
 
+      \[[API 集: 字符串、整型、双精度、布尔值、范围、错误的 ExcelApi 1.1、数组的 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: type
+    fullName: type
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly type: Excel.NamedItemType | "String" | "Integer" | "Double" | "Boolean" | "Range" | "Error" | "Array";'
+      return:
+        type:
+          - Excel.NamedItemType | "String" | "Integer" | "Double" | "Boolean" | "Range" | "Error" | "Array"
+  - uid: excel_release.Excel.NamedItem.value
+    summary: |-
+      表示 name 公式计算出的值。 对于已命名区域，将返回区域地址。 只读。
 
-    \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: getRangeOrNullObject()
-  fullName: getRangeOrNullObject()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getRangeOrNullObject(): Excel.Range;'
-    return:
-      type:
-      - excel.Excel.Range
-      description: ''
-- uid: excel_release.Excel.NamedItem.load
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性之前, 必须先调用 "context, sync ()"。
-  remarks: >-
-    除了此签名之外, 此方法还具有以下签名:
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: value
+    fullName: value
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly value: any;'
+      return:
+        type:
+          - any
+  - uid: excel_release.Excel.NamedItem.visible
+    summary: |-
+      指定对象是否可见。
 
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: visible
+    fullName: visible
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'visible: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel_release.Excel.NamedItem.worksheet
+    summary: |-
+      返回已命名项限定到的工作表。 如果项目的作用域改为工作簿, 则会引发错误。
 
-    `load(option?: string | string[]): Excel.NamedItem`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
+      \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: worksheet
+    fullName: worksheet
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly worksheet: Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
+  - uid: excel_release.Excel.NamedItem.worksheetOrNullObject
+    summary: |-
+      返回已命名项限定到的工作表。 如果项改为限定到工作簿，将返回 NULL 对象。
 
-
-    `load(option?: { select?: string; expand?: string; }): Excel.NamedItem`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
-
-
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.NamedItem`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: Excel.Interfaces.NamedItemLoadOptions): Excel.NamedItem;'
-    return:
-      type:
-      - excel.Excel.NamedItem
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - excel.Excel.Interfaces.NamedItemLoadOptions
-- uid: excel_release.Excel.NamedItem.load_1
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
-  name: load(propertyNames)
-  fullName: load(propertyNames)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNames?: string | string[]): Excel.NamedItem;'
-    return:
-      type:
-      - excel.Excel.NamedItem
-      description: "\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var names = ctx.workbook.names;\n    var namedItem = names.getItem('MyRange');\n    namedItem.load('type');\n    return ctx.sync().then(function() {\n            console.log(namedItem.type);\n    });\n}).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n});\n```"
-    parameters:
-    - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。
-      type:
-      - string | string[]
-- uid: excel_release.Excel.NamedItem.load_2
-  summary: 对命令进行排队, 以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。
-  name: load(propertyNamesAndPaths)
-  fullName: load(propertyNamesAndPaths)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.NamedItem;'
-    return:
-      type:
-      - excel.Excel.NamedItem
-      description: ''
-    parameters:
-    - id: propertyNamesAndPaths
-      description: 其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
-      type:
-      - '{ select?: string; expand?: string; }'
-- uid: excel_release.Excel.NamedItem.name
-  summary: >-
-    对象的名称。只读。
-
-
-    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: name
-  fullName: name
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly name: string;'
-    return:
-      type:
-      - string
-- uid: excel_release.Excel.NamedItem.scope
-  summary: >-
-    指示名称是工作簿的范围还是指定的工作表。 可能的值为: 工作表、工作簿。 只读。
-
-
-    \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: scope
-  fullName: scope
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly scope: Excel.NamedItemScope | "Worksheet" | "Workbook";'
-    return:
-      type:
-      - Excel.NamedItemScope | "Worksheet" | "Workbook"
-- uid: excel_release.Excel.NamedItem.set
-  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
-  remarks: >-
-    此方法具有以下附加签名:
-
-
-    `set(properties: Excel.NamedItem): void`
-  name: set(properties, options)
-  fullName: set(properties, options)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'set(properties: Interfaces.NamedItemUpdateData, options?: OfficeExtension.UpdateOptions): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: properties
-      description: 一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。
-      type:
-      - Interfaces.NamedItemUpdateData
-    - id: options
-      description: 提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。
-      type:
-      - office.OfficeExtension.UpdateOptions
-- uid: excel_release.Excel.NamedItem.set_1
-  summary: 基于现有加载的对象同时设置该对象的多个属性。
-  name: set(properties)
-  fullName: set(properties)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'set(properties: Excel.NamedItem): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: properties
-      description: ''
-      type:
-      - excel.Excel.NamedItem
-- uid: excel_release.Excel.NamedItem.toJSON
-  summary: 重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到`JSON.stringify()` <!-- -->时提供更有用的输出。 (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。)尽管原始 NamedItem 对象是 API 对象, 但该`toJSON`方法返回一个纯 JavaScript 对象 (类型为`Excel.Interfaces.NamedItemData` <!-- -->), 其中包含原始对象中任何已加载的子属性的浅表副本。
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'toJSON(): Excel.Interfaces.NamedItemData;'
-    return:
-      type:
-      - excel.Excel.Interfaces.NamedItemData
-      description: ''
-- uid: excel_release.Excel.NamedItem.type
-  summary: >-
-    指示名称的公式返回的值的类型。 有关详细信息, 请参阅 NamedItemType。 只读。
-
-
-    \[[API 集: 字符串、整型、双精度、布尔值、范围、错误的 ExcelApi 1.1、数组的 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: type
-  fullName: type
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly type: Excel.NamedItemType | "String" | "Integer" | "Double" | "Boolean" | "Range" | "Error" | "Array";'
-    return:
-      type:
-      - Excel.NamedItemType | "String" | "Integer" | "Double" | "Boolean" | "Range" | "Error" | "Array"
-- uid: excel_release.Excel.NamedItem.value
-  summary: >-
-    表示 name 公式计算出的值。对于已命名区域，将返回区域地址。只读。
-
-
-    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: value
-  fullName: value
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly value: any;'
-    return:
-      type:
-      - any
-- uid: excel_release.Excel.NamedItem.visible
-  summary: >-
-    指定对象是否可见。
-
-
-    \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: visible
-  fullName: visible
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'visible: boolean;'
-    return:
-      type:
-      - boolean
-- uid: excel_release.Excel.NamedItem.worksheet
-  summary: >-
-    返回已命名项目的作用域所在的工作表。 如果项目的作用域改为工作簿, 则会引发错误。
-
-
-    \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: worksheet
-  fullName: worksheet
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly worksheet: Excel.Worksheet;'
-    return:
-      type:
-      - excel.Excel.Worksheet
-- uid: excel_release.Excel.NamedItem.worksheetOrNullObject
-  summary: >-
-    返回已命名项目的作用域所在的工作表。 如果项目的范围限定为工作簿, 则返回 null 对象。
-
-
-    \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: worksheetOrNullObject
-  fullName: worksheetOrNullObject
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly worksheetOrNullObject: Excel.Worksheet;'
-    return:
-      type:
-      - excel.Excel.Worksheet
+      \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: worksheetOrNullObject
+    fullName: worksheetOrNullObject
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly worksheetOrNullObject: Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
