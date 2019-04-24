@@ -14,8 +14,10 @@ items:
       - office.OfficeExtension.ClientObject
     package: visio
     children:
+      - visio.Visio.DocumentView.context
       - visio.Visio.DocumentView.disableHyperlinks
       - visio.Visio.DocumentView.disablePan
+      - visio.Visio.DocumentView.disablePanZoomWindow
       - visio.Visio.DocumentView.disableZoom
       - visio.Visio.DocumentView.hideDiagramBoundary
       - visio.Visio.DocumentView.load
@@ -24,6 +26,18 @@ items:
       - visio.Visio.DocumentView.set
       - visio.Visio.DocumentView.set_1
       - visio.Visio.DocumentView.toJSON
+  - uid: visio.Visio.DocumentView.context
+    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - RequestContext
   - uid: visio.Visio.DocumentView.disableHyperlinks
     summary: |-
       禁用超链接。
@@ -68,6 +82,21 @@ items:
     type: property
     syntax:
       content: 'disablePan: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: visio.Visio.DocumentView.disablePanZoomWindow
+    summary: |-
+      禁用 PanZoomWindow。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: disablePanZoomWindow
+    fullName: disablePanZoomWindow
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'disablePanZoomWindow: boolean;'
       return:
         type:
           - boolean
@@ -208,6 +237,7 @@ items:
           type:
             - visio.Visio.DocumentView
   - uid: visio.Visio.DocumentView.toJSON
+    summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始 DocumentView 对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Visio.Interfaces.DocumentViewData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。'
     name: toJSON()
     fullName: toJSON()
     langs:
