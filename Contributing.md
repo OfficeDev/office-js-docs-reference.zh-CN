@@ -15,7 +15,7 @@
 
 * 进行小幅度的更改，[通过 GitHub 参与](#contribute-using-github)。
 * 进行大幅度的更改，或更改涉及代码，[通过 Git 参与](#contribute-using-git)。
-* 通过 GitHub 问题报告文档 bug。
+* 通过“GitHub 问题”举报文档缺陷。
 * 通过 [Office 开发人员平台 UserVoice](http://officespdev.uservoice.com) 网站请求查看新文档。
 
 ## <a name="contribute-using-github"></a>通过 GitHub 参与
@@ -26,11 +26,11 @@
 
 ### <a name="to-contribute-using-github"></a>通过 GitHub 参与
 
-1. 在 GitHub 找到想要参与的文章。
-2. 进入 GitHub 上的相应文章后，登录 GitHub （获取免费帐户[加入 GitHub](https://github.com/join)）。
+1. 在 GitHub 上找到想要参与的文章。
+2. 进入 GitHub 上的相应文章后，登录 GitHub（获取免费帐户[加入 GitHub](https://github.com/join)）。
 3. 选择“**铅笔图标**”（编辑项目分叉中的对应文件），然后在“**<>编辑文件**”窗口进行更改。 
 4. 滚动到底部，输入说明。
-5. 依次选择“建议文件更改”****>“创建拉取请求”****。
+5. 依次选择“**建议文件更改**”>“**创建拉取请求**”。
 
 现已成功提交拉取请求。拉取请求通常在 10 个工作日内完成审核。 
 
@@ -47,8 +47,8 @@
 ### <a name="to-contribute-using-git"></a>通过 Git 参与
 
 1. 如果没有 GitHub 帐户，可通过 [GitHub](https://github.com/join) 建立帐户。 
-2. 拥有帐户后，在计算机上安装 Git。 按照[Set up Git]教程中的步骤。
-3. 遵循[使用 GitHub、Git 和此存储库](#use-github-git-and-this-repository)中的步骤来通过 Git 提交拉取请求。
+2. 拥有帐户后，在计算机上安装 Git。 按[安装 Git] 教程中的步骤操作。
+3. 若要通过 Git 提交拉取请求，遵循[使用 GitHub、Git 和此存储库](#use-github-git-and-this-repository)中的步骤操作。
 4. 以下人员需签署参与者许可协议：
 
     * Microsoft Open Technologies 组的成员。
@@ -56,7 +56,7 @@
 
 社区成员必须签署参与许可协议 (CLA) 才能向项目提供大量提交内容。只需完成并提交此文档一次。请仔细查看该文档。可能要求你让你的员工签署此文档。
 
-签名 CLA 不授予您的权限以提交到主存储库，但这意味着将能够查看和批准发布内容的 Office 开发人员和 Office 开发人员内容发布团队。 按贷记您的提交。
+签署此 CLA 并未授予你操纵主存储库的权利，但确实表示 Office 开发人员和 Office 开发人员内容发布团队可以查看并批准你提供的内容。 针对提供的内容，将获得相应奖励。
 
 拉取请求通常在 10 个工作日内完成审核。
 
@@ -67,13 +67,13 @@
 ### <a name="to-set-up-your-fork-of-the-repository"></a>设置存储库分支的具体步骤
 
 1.  建立 GitHub 帐户以参与此项目。如果还未进行此操作，请转至 [GitHub](https://github.com/join) 立即进行。
-2.  在计算机上安装 Git。 按照[Set up Git]教程中的步骤。
-3.  创建此存储库的你自己的分支。 若要执行此操作，在页面的顶部，选择**分叉**按钮。
-4.  将自己的分叉复制到计算机上。打开 Git Bash 以完成此步骤。在命令提示符处输入以下命令：
+2.  在计算机上安装 Git。 按[安装 Git] 教程中的步骤操作。
+3.  对此存储库创建你自己的分叉。为此，在页面顶部，选择“分叉”**** 按钮。
+4.  将自己的分叉复制到计算机上。打开 Git Bash 以完成此步骤。在命令提示符中输入：
 
         git clone https://github.com/<your user name>/<repo name>.git
 
-    接下来，输入以下命令，创建对根存储库的引用：
+    然后，通过输入以下命令来创建对根库的引用：
 
         cd <repo name>
         git remote add upstream https://github.com/OfficeDev/<repo name>.git
@@ -170,9 +170,9 @@
 
 ### <a name="markdown"></a>Markdown
 
-此存储库中的所有文章都使用 Markdown。 可以在[Daring 火球-减价]找到完整简介 （和所有语法的列表）。
+此存储库中的所有文章都使用 Markdown。 [Daring Fireball - Markdown] 中有完整介绍（并列出了所有语法）。
  
-## <a name="faq"></a>常见问题解答
+## <a name="faq"></a>FAQ
 
 ### <a name="how-do-i-get-a-github-account"></a>如何获取 GitHub 帐户？
 
@@ -199,11 +199,11 @@
 
 ## <a name="more-resources"></a>更多资源
 
-* 若要了解有关减价的详细信息，请转到减价创建者的网站[Daring 火球]。
-* 若要了解有关使用 Git 和 GitHub 的详细信息，首先签出[GitHub 帮助]。
+* 若要了解有关 Markdown 的详细信息，请转到 Markdown 创建者的网站 [Daring Fireball]。
+* 若要详细了解如何使用 Git 和 GitHub，请先查看 [GitHub 帮助]。
 
 [GitHub Home]: http://github.com
 [GitHub 帮助]: http://help.github.com/
-[设置 Git]: https://help.github.com/articles/set-up-git/
-[Daring 火球-减价]: http://daringfireball.net/projects/markdown/
+[安装 Git]: https://help.github.com/articles/set-up-git/
+[Daring Fireball - Markdown]: http://daringfireball.net/projects/markdown/
 [Daring Fireball]: http://daringfireball.net/
