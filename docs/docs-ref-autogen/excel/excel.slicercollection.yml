@@ -4,7 +4,7 @@ items:
     summary: |-
       代表工作簿或工作表上所有切片器对象的集合。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: Excel.SlicerCollection
     fullName: Excel.SlicerCollection
@@ -30,7 +30,7 @@ items:
     summary: |-
       将新切片器添加到工作簿。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: 'add(slicerSource, sourceField, slicerDestination)'
     fullName: 'add(slicerSource, sourceField, slicerDestination)'
@@ -42,10 +42,25 @@ items:
       return:
         type:
           - excel.Excel.Slicer
-        description: 新的切片器。
+        description: |-
+          新的切片器。
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Pivot");
+              const slicer = sheet.slicers.add(
+                  "Farm Sales", /* The slicer data source. For PivotTables, this can be the PivotTable object reference or name. */
+                  "Type" /* The field in the data source to filter by. For PivotTables, this can be a PivotField object reference or ID. */
+              );
+              slicer.name = "Fruit Slicer";
+              await context.sync();
+          });
+          ```
       parameters:
         - id: slicerSource
-          description: '新切片器将基于的数据源。 它可以是一个数据透视表对象、一个 Table 对象或一个字符串。 传递数据透视表对象时, 数据源是数据透视表对象的源。 当传递 table 对象时, 数据源是 Table 对象。 传递字符串时, 它被解释为数据透视表/表的名称/id。'
+          description: '新切片器将基于的数据源。 它可以是一个数据透视表对象、一个 Table 对象或一个字符串。 传递数据透视表对象时, 数据源是数据透视表对象的源。 当传递 Table 对象时, 数据源是 Table 对象。 传递字符串时, 它被解释为数据透视表/表的名称/id。'
           type:
             - string | PivotTable | Table
         - id: sourceField
@@ -73,7 +88,7 @@ items:
     summary: |-
       返回集合中的切片器数量。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: getCount()
     fullName: getCount()
@@ -90,7 +105,7 @@ items:
     summary: |-
       使用其名称或 ID 获取 Slicer 对象。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: getItem(key)
     fullName: getItem(key)
@@ -102,7 +117,22 @@ items:
       return:
         type:
           - excel.Excel.Slicer
-        description: ''
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const slicer = context.workbook.slicers.getItem("Fruit Slicer");
+              slicer.caption = "Fruit Types";
+              slicer.left = 395;
+              slicer.top = 15;
+              slicer.height = 135;
+              slicer.width = 150;
+              await context.sync();
+          });
+          ```
       parameters:
         - id: key
           description: 切片器的名称或 id。
@@ -112,7 +142,7 @@ items:
     summary: |-
       根据其在集合中的位置获取切片器。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: getItemAt(index)
     fullName: getItemAt(index)
@@ -134,7 +164,7 @@ items:
     summary: |-
       使用其名称或 ID 获取切片器。如果没有切片器项，将返回 null 对象。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: getItemOrNullObject(key)
     fullName: getItemOrNullObject(key)
@@ -174,7 +204,7 @@ items:
 
       `load(option?: { select?: string; expand?: string; }): Excel.SlicerCollection`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.SlicerCollection`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.SlicerCollection`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
     isPreview: true
     name: load(option)
     fullName: load(option)
