@@ -16,19 +16,23 @@ items:
     children:
       - excel_release.Excel.RangeFormat.autofitColumns
       - excel_release.Excel.RangeFormat.autofitRows
+      - excel_release.Excel.RangeFormat.autoIndent
       - excel_release.Excel.RangeFormat.borders
       - excel_release.Excel.RangeFormat.columnWidth
       - excel_release.Excel.RangeFormat.context
       - excel_release.Excel.RangeFormat.fill
       - excel_release.Excel.RangeFormat.font
       - excel_release.Excel.RangeFormat.horizontalAlignment
+      - excel_release.Excel.RangeFormat.indentLevel
       - excel_release.Excel.RangeFormat.load
       - excel_release.Excel.RangeFormat.load_1
       - excel_release.Excel.RangeFormat.load_2
       - excel_release.Excel.RangeFormat.protection
+      - excel_release.Excel.RangeFormat.readingOrder
       - excel_release.Excel.RangeFormat.rowHeight
       - excel_release.Excel.RangeFormat.set
       - excel_release.Excel.RangeFormat.set_1
+      - excel_release.Excel.RangeFormat.shrinkToFit
       - excel_release.Excel.RangeFormat.textOrientation
       - excel_release.Excel.RangeFormat.toJSON
       - excel_release.Excel.RangeFormat.useStandardHeight
@@ -67,6 +71,21 @@ items:
         type:
           - void
         description: ''
+  - uid: excel_release.Excel.RangeFormat.autoIndent
+    summary: |-
+      指示将文本对齐方式设为相等分布时文本是否会自动缩进。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: autoIndent
+    fullName: autoIndent
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'autoIndent: boolean;'
+      return:
+        type:
+          - boolean
   - uid: excel_release.Excel.RangeFormat.borders
     summary: |-
       应用于整个区域的 Border 对象的集合。 只读。
@@ -154,6 +173,21 @@ items:
       return:
         type:
           - Excel.HorizontalAlignment | "General" | "Left" | "Center" | "Right" | "Fill" | "Justify" | "CenterAcrossSelection" | "Distributed"
+  - uid: excel_release.Excel.RangeFormat.indentLevel
+    summary: |-
+      0 到 250 之间的一个整数，指示缩进水平。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: indentLevel
+    fullName: indentLevel
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'indentLevel: number;'
+      return:
+        type:
+          - number
   - uid: excel_release.Excel.RangeFormat.load
     summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
     remarks: |-
@@ -163,7 +197,7 @@ items:
 
       `load(option?: { select?: string; expand?: string; }): Excel.RangeFormat`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.RangeFormat`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.RangeFormat`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
     name: load(option)
     fullName: load(option)
     langs:
@@ -292,6 +326,21 @@ items:
       return:
         type:
           - excel.Excel.FormatProtection
+  - uid: excel_release.Excel.RangeFormat.readingOrder
+    summary: |-
+      区域的读取顺序。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: readingOrder
+    fullName: readingOrder
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readingOrder: Excel.ReadingOrder | "Context" | "LeftToRight" | "RightToLeft";'
+      return:
+        type:
+          - Excel.ReadingOrder | "Context" | "LeftToRight" | "RightToLeft"
   - uid: excel_release.Excel.RangeFormat.rowHeight
     summary: |-
       获取或设置区域中所有行的高度。 如果行高不一致, 则将返回 null。
@@ -351,6 +400,21 @@ items:
           description: ''
           type:
             - excel.Excel.RangeFormat
+  - uid: excel_release.Excel.RangeFormat.shrinkToFit
+    summary: |-
+      指示文本是否自动缩小以适合可用列宽。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: shrinkToFit
+    fullName: shrinkToFit
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'shrinkToFit: boolean;'
+      return:
+        type:
+          - boolean
   - uid: excel_release.Excel.RangeFormat.textOrientation
     summary: |-
       获取或设置区域内的所有单元格的文本方向。 文本方向应为-90 到90之间的整数, 或者为180垂直方向的文本。 如果区域中的方向不一致, 则将返回 null。

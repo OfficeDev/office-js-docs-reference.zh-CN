@@ -53,6 +53,7 @@ items:
       - excel.Excel.Worksheet.onFormatChanged
       - excel.Excel.Worksheet.onRowSorted
       - excel.Excel.Worksheet.onSelectionChanged
+      - excel.Excel.Worksheet.onSingleClicked
       - excel.Excel.Worksheet.pageLayout
       - excel.Excel.Worksheet.pivotTables
       - excel.Excel.Worksheet.position
@@ -108,8 +109,7 @@ items:
     summary: |-
       表示工作表的 AutoFilter 对象。 只读。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: autoFilter
     fullName: autoFilter
     langs:
@@ -175,7 +175,7 @@ items:
     summary: |-
       返回工作表上的所有 Comments 对象的集合。 只读。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: comments
     fullName: comments
@@ -270,7 +270,7 @@ items:
             - excel.Excel.Worksheet
   - uid: excel.Excel.Worksheet.delete
     summary: |-
-      从工作簿中删除工作表。
+      从工作簿中删除工作表。 请注意, 如果工作表的可见性设置为 "VeryHidden", 则删除操作将失败, 并出现 GeneralException。
 
       \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: delete()
@@ -305,8 +305,7 @@ items:
     summary: |-
       获取或设置工作表的 enableCalculation 属性。 如此如果 Excel 根据需要重新计算工作表。 如果 Excel 不重新计算工作表，则该值为 False。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: enableCalculation
     fullName: enableCalculation
     langs:
@@ -321,8 +320,7 @@ items:
     summary: |-
       根据指定的条件查找给定字符串的所有匹配项，并将它们作为包含一个或多个矩形区域的 RangeAreas 对象返回。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'findAll(text, criteria)'
     fullName: 'findAll(text, criteria)'
     langs:
@@ -347,8 +345,7 @@ items:
     summary: |-
       根据指定的条件查找给定字符串的所有匹配项，并将它们作为包含一个或多个矩形区域的 RangeAreas 对象返回。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'findAllOrNullObject(text, criteria)'
     fullName: 'findAllOrNullObject(text, criteria)'
     langs:
@@ -687,8 +684,7 @@ items:
     summary: |-
       获取按地址或名称指定的 RangeAreas 对象，它表示一个或多个矩形区域块。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: getRanges(address)
     fullName: getRanges(address)
     langs:
@@ -757,7 +753,7 @@ items:
           ```
       parameters:
         - id: valuesOnly
-          description: '可选。 如果为 true, 则仅考虑值为已使用单元格的单元格 (忽略格式设置)。 \[Api 集: ExcelApi 1。2\]'
+          description: '可选。 如果为 true, 则仅考虑值为已使用单元格的单元格 (忽略格式设置)。 \[Api 集: ExcelApi 1.2\]'
           type:
             - boolean
   - uid: excel.Excel.Worksheet.getUsedRangeOrNullObject
@@ -785,8 +781,7 @@ items:
     summary: |-
       获取工作表的水平分页符集合。 此集合仅包含手动分页符。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: horizontalPageBreaks
     fullName: horizontalPageBreaks
     langs:
@@ -821,7 +816,7 @@ items:
 
       `load(option?: { select?: string; expand?: string; }): Excel.Worksheet`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Worksheet`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Worksheet`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
     name: load(option)
     fullName: load(option)
     langs:
@@ -1035,7 +1030,7 @@ items:
     summary: |-
       对列进行排序时发生。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: onColumnSorted
     fullName: onColumnSorted
@@ -1083,7 +1078,7 @@ items:
     summary: |-
       在特定工作表上应用筛选器时发生。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: onFiltered
     fullName: onFiltered
@@ -1099,8 +1094,7 @@ items:
     summary: |-
       在特定工作表上更改格式时发生。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: onFormatChanged
     fullName: onFormatChanged
     langs:
@@ -1115,7 +1109,7 @@ items:
     summary: |-
       对行进行排序时发生。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: onRowSorted
     fullName: onRowSorted
@@ -1159,12 +1153,27 @@ items:
               return context.sync();
           });
           ```
+  - uid: excel.Excel.Worksheet.onSingleClicked
+    summary: |-
+      当工作表中发生左击或点击操作时发生。
+
+      \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: onSingleClicked
+    fullName: onSingleClicked
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onSingleClicked: OfficeExtension.EventHandlers<Excel.WorksheetSingleClickedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.WorksheetSingleClickedEventArgs>
   - uid: excel.Excel.Worksheet.pageLayout
     summary: |-
       获取工作表的 PageLayout 对象。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: pageLayout
     fullName: pageLayout
     langs:
@@ -1224,8 +1233,7 @@ items:
     summary: |-
       根据当前工作表中指定的条件查找并替换给定的字符串。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'replaceAll(text, replacement, criteria)'
     fullName: 'replaceAll(text, replacement, criteria)'
     langs:
@@ -1298,8 +1306,7 @@ items:
     summary: |-
       返回工作表上的所有 Shape 对象的集合。 只读。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: shapes
     fullName: shapes
     langs:
@@ -1357,7 +1364,7 @@ items:
     summary: |-
       返回作为工作表一部分的切片器集合。 只读。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: slicers
     fullName: slicers
@@ -1369,6 +1376,22 @@ items:
       return:
         type:
           - excel.Excel.SlicerCollection
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Pivot");
+              const slicer = sheet.slicers.add(
+                  "Farm Sales", /* The slicer data source. For PivotTables, this can be the PivotTable object reference or name. */
+                  "Type" /* The field in the data source to filter by. For PivotTables, this can be a PivotField object reference or ID. */
+              );
+              slicer.name = "Fruit Slicer";
+              await context.sync();
+          });
+          ```
   - uid: excel.Excel.Worksheet.standardHeight
     summary: |-
       返回工作表中所有行的标准（默认）行高，以磅为单位。 只读。
@@ -1459,8 +1482,7 @@ items:
     summary: |-
       获取工作表的垂直分页符集合。 此集合仅包含手动分页符。
 
-      \[[API 集: ExcelApi BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: verticalPageBreaks
     fullName: verticalPageBreaks
     langs:

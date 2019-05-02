@@ -2,7 +2,7 @@
 items:
   - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions
     summary: |-
-      Workbook 是顶级对象，包含相关 Workbook 对象，如工作表、表、区域等。
+      工作簿是顶级对象，它包含相关 workbook 对象，例如工作表、表、范围等。
 
       \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: Excel.Interfaces.WorkbookLoadOptions
@@ -14,12 +14,18 @@ items:
     children:
       - excel_release.Excel.Interfaces.WorkbookLoadOptions.$all
       - excel_release.Excel.Interfaces.WorkbookLoadOptions.application
+      - excel_release.Excel.Interfaces.WorkbookLoadOptions.autoSave
       - excel_release.Excel.Interfaces.WorkbookLoadOptions.bindings
+      - excel_release.Excel.Interfaces.WorkbookLoadOptions.calculationEngineVersion
+      - excel_release.Excel.Interfaces.WorkbookLoadOptions.chartDataPointTrack
+      - excel_release.Excel.Interfaces.WorkbookLoadOptions.isDirty
       - excel_release.Excel.Interfaces.WorkbookLoadOptions.name
+      - excel_release.Excel.Interfaces.WorkbookLoadOptions.previouslySaved
       - excel_release.Excel.Interfaces.WorkbookLoadOptions.properties
       - excel_release.Excel.Interfaces.WorkbookLoadOptions.protection
       - excel_release.Excel.Interfaces.WorkbookLoadOptions.readOnly
       - excel_release.Excel.Interfaces.WorkbookLoadOptions.tables
+      - excel_release.Excel.Interfaces.WorkbookLoadOptions.usePrecisionAsDisplayed
   - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.$all
     name: $all
     fullName: $all
@@ -46,6 +52,21 @@ items:
       return:
         type:
           - excel.Excel.Interfaces.ApplicationLoadOptions
+  - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.autoSave
+    summary: |-
+      指定工作簿是否处于自动保存模式。 只读。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: autoSave
+    fullName: autoSave
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'autoSave?: boolean;'
+      return:
+        type:
+          - boolean
   - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.bindings
     summary: |-
       表示属于工作簿的绑定的集合。
@@ -61,6 +82,51 @@ items:
       return:
         type:
           - excel.Excel.Interfaces.BindingCollectionLoadOptions
+  - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.calculationEngineVersion
+    summary: |-
+      返回有关 Excel 计算引擎的版本号。 只读。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: calculationEngineVersion
+    fullName: calculationEngineVersion
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'calculationEngineVersion?: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.chartDataPointTrack
+    summary: |-
+      如果工作簿中的所有图表都跟踪它们所附加的实际数据点，则为 True。 假如果图表跟踪数据点的索引。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: chartDataPointTrack
+    fullName: chartDataPointTrack
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'chartDataPointTrack?: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.isDirty
+    summary: |-
+      指定自上次保存以来是否对指定的工作簿进行任何更改。 如果要关闭修改过的工作簿而不保存或提示保存它, 则可以将该属性设置为 true。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: isDirty
+    fullName: isDirty
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'isDirty?: boolean;'
+      return:
+        type:
+          - boolean
   - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.name
     summary: |-
       获取工作簿名称。 只读。
@@ -73,6 +139,21 @@ items:
     type: property
     syntax:
       content: 'name?: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.previouslySaved
+    summary: |-
+      指定工作簿是否已在本地或在线保存。 只读。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: previouslySaved
+    fullName: previouslySaved
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'previouslySaved?: boolean;'
       return:
         type:
           - boolean
@@ -136,3 +217,18 @@ items:
       return:
         type:
           - excel.Excel.Interfaces.TableCollectionLoadOptions
+  - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.usePrecisionAsDisplayed
+    summary: |-
+      如果此工作簿中的计算仅使用显示的数字精度来完成，则为 True。 将此属性从 false 切换到 true 时, 数据将永久丢失精度。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: usePrecisionAsDisplayed
+    fullName: usePrecisionAsDisplayed
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'usePrecisionAsDisplayed?: boolean;'
+      return:
+        type:
+          - boolean

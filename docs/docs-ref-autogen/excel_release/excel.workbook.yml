@@ -2,7 +2,7 @@
 items:
   - uid: excel_release.Excel.Workbook
     summary: |-
-      Workbook 是顶级对象，包含相关 Workbook 对象，如工作表、表、区域等。
+      工作簿是顶级对象，它包含相关 workbook 对象，例如工作表、表、范围等。
 
       \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: Excel.Workbook
@@ -15,20 +15,30 @@ items:
     package: excel_release
     children:
       - excel_release.Excel.Workbook.application
+      - excel_release.Excel.Workbook.autoSave
       - excel_release.Excel.Workbook.bindings
+      - excel_release.Excel.Workbook.calculationEngineVersion
+      - excel_release.Excel.Workbook.chartDataPointTrack
       - excel_release.Excel.Workbook.context
       - excel_release.Excel.Workbook.customXmlParts
       - excel_release.Excel.Workbook.dataConnections
       - excel_release.Excel.Workbook.functions
       - excel_release.Excel.Workbook.getActiveCell
+      - excel_release.Excel.Workbook.getActiveChart
+      - excel_release.Excel.Workbook.getActiveChartOrNullObject
+      - excel_release.Excel.Workbook.getIsActiveCollabSession
       - excel_release.Excel.Workbook.getSelectedRange
+      - excel_release.Excel.Workbook.getSelectedRanges
+      - excel_release.Excel.Workbook.isDirty
       - excel_release.Excel.Workbook.load
       - excel_release.Excel.Workbook.load_1
       - excel_release.Excel.Workbook.load_2
       - excel_release.Excel.Workbook.name
       - excel_release.Excel.Workbook.names
+      - excel_release.Excel.Workbook.onAutoSaveSettingChanged
       - excel_release.Excel.Workbook.onSelectionChanged
       - excel_release.Excel.Workbook.pivotTables
+      - excel_release.Excel.Workbook.previouslySaved
       - excel_release.Excel.Workbook.properties
       - excel_release.Excel.Workbook.protection
       - excel_release.Excel.Workbook.readOnly
@@ -38,6 +48,7 @@ items:
       - excel_release.Excel.Workbook.styles
       - excel_release.Excel.Workbook.tables
       - excel_release.Excel.Workbook.toJSON
+      - excel_release.Excel.Workbook.usePrecisionAsDisplayed
       - excel_release.Excel.Workbook.worksheets
   - uid: excel_release.Excel.Workbook.application
     summary: |-
@@ -54,6 +65,21 @@ items:
       return:
         type:
           - excel.Excel.Application
+  - uid: excel_release.Excel.Workbook.autoSave
+    summary: |-
+      指定工作簿是否处于自动保存模式。 只读。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: autoSave
+    fullName: autoSave
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly autoSave: boolean;'
+      return:
+        type:
+          - boolean
   - uid: excel_release.Excel.Workbook.bindings
     summary: |-
       表示属于工作簿的绑定的集合。 只读。
@@ -69,6 +95,36 @@ items:
       return:
         type:
           - excel.Excel.BindingCollection
+  - uid: excel_release.Excel.Workbook.calculationEngineVersion
+    summary: |-
+      返回有关 Excel 计算引擎的版本号。 只读。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: calculationEngineVersion
+    fullName: calculationEngineVersion
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly calculationEngineVersion: number;'
+      return:
+        type:
+          - number
+  - uid: excel_release.Excel.Workbook.chartDataPointTrack
+    summary: |-
+      如果工作簿中的所有图表都跟踪它们所附加的实际数据点，则为 True。 假如果图表跟踪数据点的索引。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: chartDataPointTrack
+    fullName: chartDataPointTrack
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'chartDataPointTrack: boolean;'
+      return:
+        type:
+          - boolean
   - uid: excel_release.Excel.Workbook.context
     summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
     name: context
@@ -158,6 +214,54 @@ items:
               console.log("The active cell is " + activeCell.address);
           });
           ```
+  - uid: excel_release.Excel.Workbook.getActiveChart
+    summary: |-
+      获取工作簿中的当前活动图表。 如果没有活动图表，则在调用此语句时将引发异常
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getActiveChart()
+    fullName: getActiveChart()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActiveChart(): Excel.Chart;'
+      return:
+        type:
+          - excel.Excel.Chart
+        description: ''
+  - uid: excel_release.Excel.Workbook.getActiveChartOrNullObject
+    summary: |-
+      获取工作簿中的当前活动图表。 如果没有活动图表，则返回 null 对象
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getActiveChartOrNullObject()
+    fullName: getActiveChartOrNullObject()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActiveChartOrNullObject(): Excel.Chart;'
+      return:
+        type:
+          - excel.Excel.Chart
+        description: ''
+  - uid: excel_release.Excel.Workbook.getIsActiveCollabSession
+    summary: |-
+      如果多个用户正在编辑工作簿（共同创作），则为 True。 请注意, 当工作簿状态发生变化以及更改在方法结果上反映时, 可能会有一些延迟。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getIsActiveCollabSession()
+    fullName: getIsActiveCollabSession()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getIsActiveCollabSession(): OfficeExtension.ClientResult<boolean>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<boolean>
+        description: ''
   - uid: excel_release.Excel.Workbook.getSelectedRange
     summary: |-
       从工作簿中获取当前选定的单个区域。 如果选择了多个区域, 则此方法将引发错误。
@@ -192,6 +296,50 @@ items:
               }
           });
           ```
+  - uid: excel_release.Excel.Workbook.getSelectedRanges
+    summary: |-
+      从工作簿中获取当前选定的一个或多个区域。 与 getSelectedRange() 不同，此方法返回表示所有选定区域的 RangeAreas 对象。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getSelectedRanges()
+    fullName: getSelectedRanges()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSelectedRanges(): Excel.RangeAreas;'
+      return:
+        type:
+          - excel.Excel.RangeAreas
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+
+              const selectedRanges = context.workbook.getSelectedRanges();
+              selectedRanges.format.fill.color = "lightblue";
+
+              await context.sync();
+          })
+          ```
+  - uid: excel_release.Excel.Workbook.isDirty
+    summary: |-
+      指定自上次保存以来是否对指定的工作簿进行任何更改。 如果要关闭修改过的工作簿而不保存或提示保存它, 则可以将该属性设置为 true。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: isDirty
+    fullName: isDirty
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'isDirty: boolean;'
+      return:
+        type:
+          - boolean
   - uid: excel_release.Excel.Workbook.load
     summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
     remarks: |-
@@ -201,7 +349,7 @@ items:
 
       `load(option?: { select?: string; expand?: string; }): Excel.Workbook`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Workbook`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Workbook`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
     name: load(option)
     fullName: load(option)
     langs:
@@ -284,6 +432,21 @@ items:
       return:
         type:
           - excel.Excel.NamedItemCollection
+  - uid: excel_release.Excel.Workbook.onAutoSaveSettingChanged
+    summary: |-
+      在工作簿上更改“自动保存”设置时发生。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: onAutoSaveSettingChanged
+    fullName: onAutoSaveSettingChanged
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onAutoSaveSettingChanged: OfficeExtension.EventHandlers<Excel.WorkbookAutoSaveSettingChangedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.WorkbookAutoSaveSettingChangedEventArgs>
   - uid: excel_release.Excel.Workbook.onSelectionChanged
     summary: |-
       文档中的选择更改时发生。
@@ -314,6 +477,21 @@ items:
       return:
         type:
           - excel.Excel.PivotTableCollection
+  - uid: excel_release.Excel.Workbook.previouslySaved
+    summary: |-
+      指定工作簿是否已在本地或在线保存。 只读。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: previouslySaved
+    fullName: previouslySaved
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly previouslySaved: boolean;'
+      return:
+        type:
+          - boolean
   - uid: excel_release.Excel.Workbook.properties
     summary: |-
       获取工作簿属性。 只读。
@@ -492,6 +670,21 @@ items:
         type:
           - excel.Excel.Interfaces.WorkbookData
         description: ''
+  - uid: excel_release.Excel.Workbook.usePrecisionAsDisplayed
+    summary: |-
+      如果此工作簿中的计算仅使用显示的数字精度来完成，则为 True。 将此属性从 false 切换到 true 时, 数据将永久丢失精度。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: usePrecisionAsDisplayed
+    fullName: usePrecisionAsDisplayed
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'usePrecisionAsDisplayed: boolean;'
+      return:
+        type:
+          - boolean
   - uid: excel_release.Excel.Workbook.worksheets
     summary: |-
       表示与工作簿关联的工作表的集合。 只读。

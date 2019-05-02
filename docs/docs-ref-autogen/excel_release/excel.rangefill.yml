@@ -20,8 +20,12 @@ items:
       - excel_release.Excel.RangeFill.load
       - excel_release.Excel.RangeFill.load_1
       - excel_release.Excel.RangeFill.load_2
+      - excel_release.Excel.RangeFill.pattern
+      - excel_release.Excel.RangeFill.patternColor
+      - excel_release.Excel.RangeFill.patternTintAndShade
       - excel_release.Excel.RangeFill.set
       - excel_release.Excel.RangeFill.set_1
+      - excel_release.Excel.RangeFill.tintAndShade
       - excel_release.Excel.RangeFill.toJSON
   - uid: excel_release.Excel.RangeFill.clear
     summary: |-
@@ -95,7 +99,7 @@ items:
 
       `load(option?: { select?: string; expand?: string; }): Excel.RangeFill`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.RangeFill`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.RangeFill`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
     name: load(option)
     fullName: load(option)
     langs:
@@ -185,6 +189,51 @@ items:
           description: '其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。'
           type:
             - '{ select?: string; expand?: string; }'
+  - uid: excel_release.Excel.RangeFill.pattern
+    summary: |-
+      获取或设置区域的图案。 有关详细信息，请参阅 Excel.FillPattern。 不支持 LinearGradient 和 RectangularGradient。 如果为 null 值, 则表示整个区域没有统一的模式设置。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: pattern
+    fullName: pattern
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'pattern: Excel.FillPattern | "None" | "Solid" | "Gray50" | "Gray75" | "Gray25" | "Horizontal" | "Vertical" | "Down" | "Up" | "Checker" | "SemiGray75" | "LightHorizontal" | "LightVertical" | "LightDown" | "LightUp" | "Grid" | "CrissCross" | "Gray16" | "Gray8" | "LinearGradient" | "RectangularGradient";'
+      return:
+        type:
+          - Excel.FillPattern | "None" | "Solid" | "Gray50" | "Gray75" | "Gray25" | "Horizontal" | "Vertical" | "Down" | "Up" | "Checker" | "SemiGray75" | "LightHorizontal" | "LightVertical" | "LightDown" | "LightUp" | "Grid" | "CrissCross" | "Gray16" | "Gray8" | "LinearGradient" | "RectangularGradient"
+  - uid: excel_release.Excel.RangeFill.patternColor
+    summary: |-
+      设置表示范围模式的颜色的 HTML 颜色代码, 格式\#RRGGBB (例如 "FFA500") 或命名的 HTML 颜色 (例如 "橙色")。 获取表示范围模式的颜色的 HTML 颜色代码, 格式\#RRGGBB (例如 "FFA500")。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: patternColor
+    fullName: patternColor
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'patternColor: string;'
+      return:
+        type:
+          - string
+  - uid: excel_release.Excel.RangeFill.patternTintAndShade
+    summary: |-
+      返回或设置一个使区域填充的图案颜色变亮或变暗的双精度数值，该值介于 -1（最暗）与 1（最亮）之间，初始颜色为 0。 如果模式 tintAndShades 不一致, 则将返回 null。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: patternTintAndShade
+    fullName: patternTintAndShade
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'patternTintAndShade: number;'
+      return:
+        type:
+          - number
   - uid: excel_release.Excel.RangeFill.set
     summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
     remarks: |-
@@ -229,6 +278,21 @@ items:
           description: ''
           type:
             - excel.Excel.RangeFill
+  - uid: excel_release.Excel.RangeFill.tintAndShade
+    summary: |-
+      返回或设置一个使区域填充的颜色变亮或变暗的双精度数值，该值介于 -1（最暗）与 1（最亮）之间，初始颜色为 0。 如果 tintAndShades 不是统一的, 将返回 null。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: tintAndShade
+    fullName: tintAndShade
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'tintAndShade: number;'
+      return:
+        type:
+          - number
   - uid: excel_release.Excel.RangeFill.toJSON
     summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始 RangeFill 对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Excel.Interfaces.RangeFillData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。'
     name: toJSON()

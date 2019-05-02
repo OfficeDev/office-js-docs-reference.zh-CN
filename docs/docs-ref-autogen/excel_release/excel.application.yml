@@ -16,14 +16,18 @@ items:
     children:
       - excel_release.Excel.Application.calculate
       - excel_release.Excel.Application.calculate_1
+      - excel_release.Excel.Application.calculationEngineVersion
       - excel_release.Excel.Application.calculationMode
+      - excel_release.Excel.Application.calculationState
       - excel_release.Excel.Application.context
+      - excel_release.Excel.Application.iterativeCalculation
       - excel_release.Excel.Application.load
       - excel_release.Excel.Application.load_1
       - excel_release.Excel.Application.load_2
       - excel_release.Excel.Application.set
       - excel_release.Excel.Application.set_1
       - excel_release.Excel.Application.suspendApiCalculationUntilNextSync
+      - excel_release.Excel.Application.suspendScreenUpdatingUntilNextSync
       - excel_release.Excel.Application.toJSON
   - uid: excel_release.Excel.Application.calculate
     summary: |-
@@ -82,6 +86,21 @@ items:
           description: '指定要使用的计算类型。 有关详细信息, 请参阅 CalculationType。'
           type:
             - '"Recalculate" | "Full" | "FullRebuild"'
+  - uid: excel_release.Excel.Application.calculationEngineVersion
+    summary: |-
+      返回用于上次完全重新计算的 Excel 计算引擎版本。 只读。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: calculationEngineVersion
+    fullName: calculationEngineVersion
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly calculationEngineVersion: number;'
+      return:
+        type:
+          - number
   - uid: excel_release.Excel.Application.calculationMode
     summary: |-
       返回工作簿中使用的计算模式, 如 CalculationMode 中的常量所定义。 可能的值包括:`Automatic`<!-- -->, Excel 控制重新计算的位置;`AutomaticExceptTables`<!-- -->, Excel 在其中控制重新计算, 但忽略表中的更改。`Manual`<!-- -->, 在用户请求计算时完成计算。
@@ -97,6 +116,21 @@ items:
       return:
         type:
           - Excel.CalculationMode | "Automatic" | "AutomaticExceptTables" | "Manual"
+  - uid: excel_release.Excel.Application.calculationState
+    summary: |-
+      返回应用程序的计算状态。 有关详细信息，请参阅 Excel.CalculationState。 只读。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: calculationState
+    fullName: calculationState
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly calculationState: Excel.CalculationState | "Done" | "Calculating" | "Pending";'
+      return:
+        type:
+          - Excel.CalculationState | "Done" | "Calculating" | "Pending"
   - uid: excel_release.Excel.Application.context
     summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
     name: context
@@ -109,6 +143,21 @@ items:
       return:
         type:
           - RequestContext
+  - uid: excel_release.Excel.Application.iterativeCalculation
+    summary: |-
+      返回“迭代计算”设置。 在 Excel for Windows 和 Excel for Mac 上, 这些设置将应用于 Excel 应用程序。 在 Excel Online 和 Excel 中, 对于其他平台, 这些设置将应用于活动工作簿。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: iterativeCalculation
+    fullName: iterativeCalculation
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly iterativeCalculation: Excel.IterativeCalculation;'
+      return:
+        type:
+          - excel.Excel.IterativeCalculation
   - uid: excel_release.Excel.Application.load
     summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
     remarks: |-
@@ -118,7 +167,7 @@ items:
 
       `load(option?: { select?: string; expand?: string; }): Excel.Application`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Application`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Application`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
     name: load(option)
     fullName: load(option)
     langs:
@@ -249,6 +298,54 @@ items:
         type:
           - void
         description: ''
+  - uid: excel_release.Excel.Application.suspendScreenUpdatingUntilNextSync
+    summary: |-
+      在下一次调用“context.sync()”前暂停屏幕更新。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: suspendScreenUpdatingUntilNextSync()
+    fullName: suspendScreenUpdatingUntilNextSync()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'suspendScreenUpdatingUntilNextSync(): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+              const rowCount = 500;
+              const columnCount = 20;
+
+              const startTime = Date.now();
+              console.log("Starting...");
+
+              if (pauseScreenPainting) {
+                  context.application.suspendScreenUpdatingUntilNextSync();
+              }
+
+              for (let i = 0; i < rowCount; i++) {
+                  for (let j = 0; j < columnCount; j++) {
+                      let cell = sheet.getCell(i, j);
+                      cell.values = [[i * j * Math.random()]];
+                      if (untrack) {
+                          cell.untrack();
+                      }
+                  }
+              }
+
+              await context.sync();
+
+              console.log(`Ending. Adding ${rowCount * columnCount} cells took ${Date.now() - startTime} milliseconds`);
+          });
+          ```
   - uid: excel_release.Excel.Application.toJSON
     summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始的 Excel 应用程序对象是 API 对象, 但`toJSON`方法返回一个简单的 JavaScript 对象 (类型为`Excel.Interfaces.ApplicationData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。'
     name: toJSON()

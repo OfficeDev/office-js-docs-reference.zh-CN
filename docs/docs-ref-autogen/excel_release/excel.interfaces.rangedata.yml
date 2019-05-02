@@ -25,6 +25,7 @@ items:
       - excel_release.Excel.Interfaces.RangeData.hyperlink
       - excel_release.Excel.Interfaces.RangeData.isEntireColumn
       - excel_release.Excel.Interfaces.RangeData.isEntireRow
+      - excel_release.Excel.Interfaces.RangeData.linkedDataTypeState
       - excel_release.Excel.Interfaces.RangeData.numberFormat
       - excel_release.Excel.Interfaces.RangeData.numberFormatLocal
       - excel_release.Excel.Interfaces.RangeData.rowCount
@@ -96,7 +97,7 @@ items:
           - number
   - uid: excel_release.Excel.Interfaces.RangeData.columnHidden
     summary: |-
-      表示当前 range 的所有列均已隐藏。
+      表示当前区域中的所有列是否隐藏。
 
       \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: columnHidden
@@ -201,7 +202,7 @@ items:
           - 'any[][]'
   - uid: excel_release.Excel.Interfaces.RangeData.formulasR1C1
     summary: |-
-      表示采用 R1C1 表示法的公式。 将公式设置为区域时, value 参数可以是单个值 (字符串), 也可以是二维数组。 如果参数是单个值, 它将应用于区域中的所有单元格。
+      表示采用 R1C1 样式表示法的公式。 将公式设置为区域时, value 参数可以是单个值 (字符串), 也可以是二维数组。 如果参数是单个值, 它将应用于区域中的所有单元格。
 
       \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: formulasR1C1
@@ -274,6 +275,21 @@ items:
       return:
         type:
           - boolean
+  - uid: excel_release.Excel.Interfaces.RangeData.linkedDataTypeState
+    summary: |-
+      表示每个单元格的数据类型状态。 只读。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: linkedDataTypeState
+    fullName: linkedDataTypeState
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'linkedDataTypeState?: Excel.LinkedDataTypeState[][];'
+      return:
+        type:
+          - 'Excel.LinkedDataTypeState[][]'
   - uid: excel_release.Excel.Interfaces.RangeData.numberFormat
     summary: |-
       表示给定范围的 Excel 数字格式代码。 将数字格式设置为一个区域时, value 参数可以是单个值 (string), 也可以是二维数组。 如果参数是单个值, 它将应用于区域中的所有单元格。
@@ -321,7 +337,7 @@ items:
           - number
   - uid: excel_release.Excel.Interfaces.RangeData.rowHidden
     summary: |-
-      表示当前 range 的所有行均已隐藏。
+      表示当前区域中的所有行是否隐藏。
 
       \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: rowHidden

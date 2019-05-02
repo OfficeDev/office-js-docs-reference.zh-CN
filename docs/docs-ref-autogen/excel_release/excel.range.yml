@@ -2,7 +2,7 @@
 items:
   - uid: excel_release.Excel.Range
     summary: |-
-      Range 表示一个或多个相邻的单元格，例如单元格、行、列、单元格块等。
+      区域表示一个或多个相邻的单元格，例如单元格、行、列、单元格块等。
 
       \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: Excel.Range
@@ -16,6 +16,8 @@ items:
     children:
       - excel_release.Excel.Range.address
       - excel_release.Excel.Range.addressLocal
+      - excel_release.Excel.Range.autoFill
+      - excel_release.Excel.Range.autoFill_1
       - excel_release.Excel.Range.calculate
       - excel_release.Excel.Range.cellCount
       - excel_release.Excel.Range.clear
@@ -25,9 +27,16 @@ items:
       - excel_release.Excel.Range.columnIndex
       - excel_release.Excel.Range.conditionalFormats
       - excel_release.Excel.Range.context
+      - excel_release.Excel.Range.convertDataTypeToText
+      - excel_release.Excel.Range.convertToLinkedDataType
+      - excel_release.Excel.Range.copyFrom
+      - excel_release.Excel.Range.copyFrom_1
       - excel_release.Excel.Range.dataValidation
       - excel_release.Excel.Range.delete
       - excel_release.Excel.Range.delete_1
+      - excel_release.Excel.Range.find
+      - excel_release.Excel.Range.findOrNullObject
+      - excel_release.Excel.Range.flashFill
       - excel_release.Excel.Range.format
       - excel_release.Excel.Range.formulas
       - excel_release.Excel.Range.formulasLocal
@@ -35,7 +44,9 @@ items:
       - excel_release.Excel.Range.getAbsoluteResizedRange
       - excel_release.Excel.Range.getBoundingRect
       - excel_release.Excel.Range.getCell
+      - excel_release.Excel.Range.getCellProperties
       - excel_release.Excel.Range.getColumn
+      - excel_release.Excel.Range.getColumnProperties
       - excel_release.Excel.Range.getColumnsAfter
       - excel_release.Excel.Range.getColumnsBefore
       - excel_release.Excel.Range.getEntireColumn
@@ -49,9 +60,15 @@ items:
       - excel_release.Excel.Range.getOffsetRange
       - excel_release.Excel.Range.getResizedRange
       - excel_release.Excel.Range.getRow
+      - excel_release.Excel.Range.getRowProperties
       - excel_release.Excel.Range.getRowsAbove
       - excel_release.Excel.Range.getRowsBelow
+      - excel_release.Excel.Range.getSpecialCells
+      - excel_release.Excel.Range.getSpecialCells_1
+      - excel_release.Excel.Range.getSpecialCellsOrNullObject
+      - excel_release.Excel.Range.getSpecialCellsOrNullObject_1
       - excel_release.Excel.Range.getSurroundingRegion
+      - excel_release.Excel.Range.getTables
       - excel_release.Excel.Range.getUsedRange
       - excel_release.Excel.Range.getUsedRangeOrNullObject
       - excel_release.Excel.Range.getVisibleView
@@ -61,18 +78,25 @@ items:
       - excel_release.Excel.Range.insert_1
       - excel_release.Excel.Range.isEntireColumn
       - excel_release.Excel.Range.isEntireRow
+      - excel_release.Excel.Range.linkedDataTypeState
       - excel_release.Excel.Range.load
       - excel_release.Excel.Range.load_1
       - excel_release.Excel.Range.load_2
       - excel_release.Excel.Range.merge
       - excel_release.Excel.Range.numberFormat
       - excel_release.Excel.Range.numberFormatLocal
+      - excel_release.Excel.Range.removeDuplicates
+      - excel_release.Excel.Range.replaceAll
       - excel_release.Excel.Range.rowCount
       - excel_release.Excel.Range.rowHidden
       - excel_release.Excel.Range.rowIndex
       - excel_release.Excel.Range.select
       - excel_release.Excel.Range.set
       - excel_release.Excel.Range.set_1
+      - excel_release.Excel.Range.setCellProperties
+      - excel_release.Excel.Range.setColumnProperties
+      - excel_release.Excel.Range.setDirty
+      - excel_release.Excel.Range.setRowProperties
       - excel_release.Excel.Range.showCard
       - excel_release.Excel.Range.sort
       - excel_release.Excel.Range.style
@@ -114,6 +138,56 @@ items:
       return:
         type:
           - string
+  - uid: excel_release.Excel.Range.autoFill
+    summary: |-
+      填充区域从当前区域到目标区域。 目标区域必须水平或垂直扩展源。 不支持不连续的区域。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'autoFill(destinationRange, autoFillType)'
+    fullName: 'autoFill(destinationRange, autoFillType)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'autoFill(destinationRange: Range | string, autoFillType?: Excel.AutoFillType): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: destinationRange
+          description: 要自动填充的目标区域。
+          type:
+            - Range | string
+        - id: autoFillType
+          description: '自动填充的类型。 根据当前区域的内容, 指定目标区域的填充方式。 默认值为 "FillDefault"。'
+          type:
+            - excel.Excel.AutoFillType
+  - uid: excel_release.Excel.Range.autoFill_1
+    summary: |-
+      填充区域从当前区域到目标区域。 目标区域必须水平或垂直扩展源。 不支持不连续的区域。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'autoFill(destinationRange, autoFillTypeString)'
+    fullName: 'autoFill(destinationRange, autoFillTypeString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'autoFill(destinationRange: Range | string, autoFillTypeString?: "FillDefault" | "FillCopy" | "FillSeries" | "FillFormats" | "FillValues" | "FillDays" | "FillWeekdays" | "FillMonths" | "FillYears" | "LinearTrend" | "GrowthTrend" | "FlashFill"): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: destinationRange
+          description: 要自动填充的目标区域。
+          type:
+            - Range | string
+        - id: autoFillTypeString
+          description: '自动填充的类型。 根据当前区域的内容, 指定目标区域的填充方式。 默认值为 "FillDefault"。'
+          type:
+            - '"FillDefault" | "FillCopy" | "FillSeries" | "FillFormats" | "FillValues" | "FillDays" | "FillWeekdays" | "FillMonths" | "FillYears" | "LinearTrend" | "GrowthTrend" | "FlashFill"'
   - uid: excel_release.Excel.Range.calculate
     summary: |-
       计算工作表上的单元格区域。
@@ -223,7 +297,7 @@ items:
           - number
   - uid: excel_release.Excel.Range.columnHidden
     summary: |-
-      表示当前 range 的所有列均已隐藏。
+      表示当前区域中的所有列是否隐藏。
 
       \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: columnHidden
@@ -278,6 +352,129 @@ items:
       return:
         type:
           - RequestContext
+  - uid: excel_release.Excel.Range.convertDataTypeToText
+    summary: |-
+      将具有数据类型的区域单元格转换为文本。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: convertDataTypeToText()
+    fullName: convertDataTypeToText()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'convertDataTypeToText(): void;'
+      return:
+        type:
+          - void
+        description: ''
+  - uid: excel_release.Excel.Range.convertToLinkedDataType
+    summary: |-
+      将区域单元格转换为工作表中的链接数据类型。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'convertToLinkedDataType(serviceID, languageCulture)'
+    fullName: 'convertToLinkedDataType(serviceID, languageCulture)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'convertToLinkedDataType(serviceID: number, languageCulture: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: serviceID
+          description: 将用于查询数据的服务 ID。
+          type:
+            - number
+        - id: languageCulture
+          description: 要为其查询服务的语言区域性。
+          type:
+            - string
+  - uid: excel_release.Excel.Range.copyFrom
+    summary: |-
+      将单元格数据或格式从源区域或 RangeAreas 复制到当前区域。 目标区域的大小可以与源区域或 RangeAreas 的大小不同。 如果目标小于源, 则将自动扩展目标。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'copyFrom(sourceRange, copyType, skipBlanks, transpose)'
+    fullName: 'copyFrom(sourceRange, copyType, skipBlanks, transpose)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'copyFrom(sourceRange: Range | RangeAreas | string, copyType?: Excel.RangeCopyType, skipBlanks?: boolean, transpose?: boolean): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              sheet.getRange("F2").values = [["Copied Formula"]];
+              sheet.getRange("F2").format.autofitColumns();
+
+              // copy a range preserving the formulas
+              // note: non-formula values are copied over as is
+              sheet.getRange("G2").copyFrom("A1:E1", Excel.RangeCopyType.formulas);
+              await context.sync();
+          });
+          ```
+      parameters:
+        - id: sourceRange
+          description: '要从其复制的源区域或 RangeAreas。 当源 RangeAreas 有多个区域时, 它必须在大纲形式中, 可以通过删除矩形区域中的完整行或列来创建。'
+          type:
+            - Range | RangeAreas | string
+        - id: copyType
+          description: 要复制的单元格数据的类型或格式。 默认值为 "All"。
+          type:
+            - excel.Excel.RangeCopyType
+        - id: skipBlanks
+          description: '如果为 True, 则在源区域中跳过空白单元格。 默认为 false。'
+          type:
+            - boolean
+        - id: transpose
+          description: 如此如果要转置目标区域中的单元格。 默认为 false。
+          type:
+            - boolean
+  - uid: excel_release.Excel.Range.copyFrom_1
+    summary: |-
+      将单元格数据或格式从源区域或 RangeAreas 复制到当前区域。 目标区域的大小可以与源区域或 RangeAreas 的大小不同。 如果目标小于源, 则将自动扩展目标。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'copyFrom(sourceRange, copyTypeString, skipBlanks, transpose)'
+    fullName: 'copyFrom(sourceRange, copyTypeString, skipBlanks, transpose)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'copyFrom(sourceRange: Range | RangeAreas | string, copyTypeString?: "All" | "Formulas" | "Values" | "Formats", skipBlanks?: boolean, transpose?: boolean): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: sourceRange
+          description: '要从其复制的源区域或 RangeAreas。 当源 RangeAreas 有多个区域时, 它必须在大纲形式中, 可以通过删除矩形区域中的完整行或列来创建。'
+          type:
+            - Range | RangeAreas | string
+        - id: copyTypeString
+          description: 要复制的单元格数据的类型或格式。 默认值为 "All"。
+          type:
+            - '"All" | "Formulas" | "Values" | "Formats"'
+        - id: skipBlanks
+          description: '如果为 True, 则在源区域中跳过空白单元格。 默认为 false。'
+          type:
+            - boolean
+        - id: transpose
+          description: 如此如果要转置目标区域中的单元格。 默认为 false。
+          type:
+            - boolean
   - uid: excel_release.Excel.Range.dataValidation
     summary: |-
       返回数据有效性对象。
@@ -353,6 +550,122 @@ items:
           description: '指定移动单元格的方式。 有关详细信息, 请参阅 DeleteShiftDirection。'
           type:
             - '"Up" | "Left"'
+  - uid: excel_release.Excel.Range.find
+    summary: |-
+      根据指定的条件查找给定的字符串。 如果当前范围大于单个单元格, 则搜索将限制为该范围, 否则搜索将覆盖该单元格的所有起始工作表。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'find(text, criteria)'
+    fullName: 'find(text, criteria)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'find(text: string, criteria: Excel.SearchCriteria): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+          与搜索条件匹配的范围。
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const table = sheet.tables.getItem("ExpensesTable");
+              const searchRange = table.getRange();
+
+              // NOTE: If no match is found, an ItemNotFound error
+              // is thrown when Range.find is evaluated.
+              const foundRange = searchRange.find($("#searchText").text(), {
+                  completeMatch: completeMatch,
+                  matchCase: matchCase,
+                  searchDirection: searchDirection
+              });
+              
+              foundRange.load("address");
+              await context.sync();
+
+
+              console.log(foundRange.address);
+          });
+          ```
+      parameters:
+        - id: text
+          description: 要查找的字符串。
+          type:
+            - string
+        - id: criteria
+          description: 其他条件。
+          type:
+            - excel.Excel.SearchCriteria
+  - uid: excel_release.Excel.Range.findOrNullObject
+    summary: |-
+      根据指定的条件查找给定的字符串。 如果当前范围大于单个单元格, 则搜索将限制为该范围, 否则搜索将覆盖该单元格的所有起始工作表。 如果没有匹配项, 则此函数将返回一个 null 对象。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'findOrNullObject(text, criteria)'
+    fullName: 'findOrNullObject(text, criteria)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'findOrNullObject(text: string, criteria: Excel.SearchCriteria): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+          与搜索条件匹配的范围。
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const table = sheet.tables.getItem("ExpensesTable");
+              const searchRange = table.getRange();
+              const foundRange = searchRange.findOrNullObject($("#searchText").text(), {
+                  completeMatch: completeMatch,
+                  matchCase: matchCase,
+                  searchDirection: searchDirection
+              });
+              
+              foundRange.load("address");
+              await context.sync();
+
+              if (foundRange.isNullObject) {
+                  console.log("Text not found");
+              } else {
+                  console.log(foundRange.address);
+              }
+          });
+          ```
+      parameters:
+        - id: text
+          description: 要查找的字符串。
+          type:
+            - string
+        - id: criteria
+          description: 其他条件。
+          type:
+            - excel.Excel.SearchCriteria
+  - uid: excel_release.Excel.Range.flashFill
+    summary: |-
+      对当前区域进行快速填充。快速填充在感知到模式时可自动填充数据，因此该区域必须是单列区域且周围有数据以便查找模式。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: flashFill()
+    fullName: flashFill()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'flashFill(): void;'
+      return:
+        type:
+          - void
+        description: ''
   - uid: excel_release.Excel.Range.format
     summary: |-
       返回一个格式对象，其中封装了区域的字体、填充、边框、对齐方式和其他属性。 只读。
@@ -400,7 +713,7 @@ items:
           - 'any[][]'
   - uid: excel_release.Excel.Range.formulasR1C1
     summary: |-
-      表示采用 R1C1 表示法的公式。 将公式设置为区域时, value 参数可以是单个值 (字符串), 也可以是二维数组。 如果参数是单个值, 它将应用于区域中的所有单元格。
+      表示采用 R1C1 样式表示法的公式。 将公式设置为区域时, value 参数可以是单个值 (字符串), 也可以是二维数组。 如果参数是单个值, 它将应用于区域中的所有单元格。
 
       \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: formulasR1C1
@@ -527,9 +840,30 @@ items:
           description: 要检索的单元格的列号。 从零开始编制索引。
           type:
             - number
+  - uid: excel_release.Excel.Range.getCellProperties
+    summary: |-
+      返回一个 2D 数组，其中封装了每个单元格的字体、填充、边框、对齐方式和其他属性数据。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getCellProperties(cellPropertiesLoadOptions)
+    fullName: getCellProperties(cellPropertiesLoadOptions)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getCellProperties(cellPropertiesLoadOptions: CellPropertiesLoadOptions): OfficeExtension.ClientResult<CellProperties[][]>;'
+      return:
+        type:
+          - 'OfficeExtension.ClientResult<CellProperties[][]>'
+        description: '一个二维数组, 其中每一项代表对应单元格的请求属性。'
+      parameters:
+        - id: cellPropertiesLoadOptions
+          description: 一个代表要加载的单元格属性的对象。
+          type:
+            - CellPropertiesLoadOptions
   - uid: excel_release.Excel.Range.getColumn
     summary: |-
-      获取区域中包含的列。
+      获取范围中包含的列。
 
       \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: getColumn(column)
@@ -568,6 +902,27 @@ items:
           description: 要检索的区域的列号。 从零开始编制索引。
           type:
             - number
+  - uid: excel_release.Excel.Range.getColumnProperties
+    summary: |-
+      返回一个一维数组，其中封装了每个列的字体、填充、边框、对齐方式和其他属性数据。 对于给定列中每个单元格不一致的属性，将返回 null。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getColumnProperties(columnPropertiesLoadOptions)
+    fullName: getColumnProperties(columnPropertiesLoadOptions)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getColumnProperties(columnPropertiesLoadOptions: ColumnPropertiesLoadOptions): OfficeExtension.ClientResult<ColumnProperties[]>;'
+      return:
+        type:
+          - 'OfficeExtension.ClientResult<ColumnProperties[]>'
+        description: '一个数组, 其中每个项代表相应列的请求的属性。'
+      parameters:
+        - id: columnPropertiesLoadOptions
+          description: 一个代表要加载的列属性的对象。
+          type:
+            - ColumnPropertiesLoadOptions
   - uid: excel_release.Excel.Range.getColumnsAfter
     summary: |-
       获取当前范围对象右侧的一定数量的列。
@@ -1009,7 +1364,7 @@ items:
             - number
   - uid: excel_release.Excel.Range.getRow
     summary: |-
-      获取区域中包含的行。
+      获取范围中包含的行。
 
       \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: getRow(row)
@@ -1048,6 +1403,27 @@ items:
           description: 要检索的区域的行号。 从零开始编制索引。
           type:
             - number
+  - uid: excel_release.Excel.Range.getRowProperties
+    summary: |-
+      返回一个一维数组，其中封装了每个行的字体、填充、边框、对齐方式和其他属性数据。 对于给定行中每个单元格不一致的属性，将返回 null。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getRowProperties(rowPropertiesLoadOptions)
+    fullName: getRowProperties(rowPropertiesLoadOptions)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getRowProperties(rowPropertiesLoadOptions: RowPropertiesLoadOptions): OfficeExtension.ClientResult<RowProperties[]>;'
+      return:
+        type:
+          - 'OfficeExtension.ClientResult<RowProperties[]>'
+        description: '一个数组, 其中每个项代表相应行的请求属性。'
+      parameters:
+        - id: rowPropertiesLoadOptions
+          description: 一个代表要加载的行属性的对象。
+          type:
+            - RowPropertiesLoadOptions
   - uid: excel_release.Excel.Range.getRowsAbove
     summary: |-
       获取当前范围对象上方的一定数量的行。
@@ -1090,6 +1466,124 @@ items:
           description: 可选。生成的范围中要包含的行数。一般来说，使用正数可以在当前范围之外创建一个范围。也可以使用负数在当前范围之内创建一个范围。默认值为 1。
           type:
             - number
+  - uid: excel_release.Excel.Range.getSpecialCells
+    summary: |-
+      获取包含一个或多个矩形区域的 RangeAreas 对象，它表示匹配指定类型和值的所有单元格。 如果找不到特殊单元格, 则将引发 ItemNotFound 错误。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'getSpecialCells(cellType, cellValueType)'
+    fullName: 'getSpecialCells(cellType, cellValueType)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSpecialCells(cellType: Excel.SpecialCellType, cellValueType?: Excel.SpecialCellValueType): Excel.RangeAreas;'
+      return:
+        type:
+          - excel.Excel.RangeAreas
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+              const usedRange = sheet.getUsedRange();
+
+              // Find the ranges with either text or logical (boolean)
+              // values
+              const formulaRanges = usedRange.getSpecialCells("Constants", "LogicalText");
+              formulaRanges.format.fill.color = "orange";
+
+              return context.sync();
+          });
+          ```
+      parameters:
+        - id: cellType
+          description: 要包含的单元格的类型。
+          type:
+            - excel.Excel.SpecialCellType
+        - id: cellValueType
+          description: '如果 cellType 为常量或公式, 则此参数用于确定要在结果中包含哪些类型的单元格。 可以将这些值组合在一起, 以返回多个类型。 默认情况下，将选择所有常量或公式，无论类型如何。'
+          type:
+            - excel.Excel.SpecialCellValueType
+  - uid: excel_release.Excel.Range.getSpecialCells_1
+    summary: |-
+      获取包含一个或多个矩形区域的 RangeAreas 对象，它表示匹配指定类型和值的所有单元格。 如果找不到特殊单元格, 则将引发 ItemNotFound 错误。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'getSpecialCells(cellTypeString, cellValueType)'
+    fullName: 'getSpecialCells(cellTypeString, cellValueType)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSpecialCells(cellTypeString: "ConditionalFormats" | "DataValidations" | "Blanks" | "Constants" | "Formulas" | "SameConditionalFormat" | "SameDataValidation" | "Visible", cellValueType?: "All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"): Excel.RangeAreas;'
+      return:
+        type:
+          - excel.Excel.RangeAreas
+        description: ''
+      parameters:
+        - id: cellTypeString
+          description: 要包含的单元格的类型。
+          type:
+            - '"ConditionalFormats" | "DataValidations" | "Blanks" | "Constants" | "Formulas" | "SameConditionalFormat" | "SameDataValidation" | "Visible"'
+        - id: cellValueType
+          description: '如果 cellType 为常量或公式, 则此参数用于确定要在结果中包含哪些类型的单元格。 可以将这些值组合在一起, 以返回多个类型。 默认情况下，将选择所有常量或公式，无论类型如何。'
+          type:
+            - '"All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"'
+  - uid: excel_release.Excel.Range.getSpecialCellsOrNullObject
+    summary: |-
+      获取包含一个或多个区域的 RangeAreas 对象，它表示匹配指定类型和值的所有单元格。 如果找不到特殊单元格, 则返回 null 对象。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'getSpecialCellsOrNullObject(cellType, cellValueType)'
+    fullName: 'getSpecialCellsOrNullObject(cellType, cellValueType)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSpecialCellsOrNullObject(cellType: Excel.SpecialCellType, cellValueType?: Excel.SpecialCellValueType): Excel.RangeAreas;'
+      return:
+        type:
+          - excel.Excel.RangeAreas
+        description: ''
+      parameters:
+        - id: cellType
+          description: 要包含的单元格的类型。
+          type:
+            - excel.Excel.SpecialCellType
+        - id: cellValueType
+          description: '如果 cellType 为常量或公式, 则此参数用于确定要在结果中包含哪些类型的单元格。 可以将这些值组合在一起, 以返回多个类型。 默认情况下，将选择所有常量或公式，无论类型如何。'
+          type:
+            - excel.Excel.SpecialCellValueType
+  - uid: excel_release.Excel.Range.getSpecialCellsOrNullObject_1
+    summary: |-
+      获取包含一个或多个区域的 RangeAreas 对象，它表示匹配指定类型和值的所有单元格。 如果找不到特殊单元格, 则返回 null 对象。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'getSpecialCellsOrNullObject(cellTypeString, cellValueType)'
+    fullName: 'getSpecialCellsOrNullObject(cellTypeString, cellValueType)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSpecialCellsOrNullObject(cellTypeString: "ConditionalFormats" | "DataValidations" | "Blanks" | "Constants" | "Formulas" | "SameConditionalFormat" | "SameDataValidation" | "Visible", cellValueType?: "All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"): Excel.RangeAreas;'
+      return:
+        type:
+          - excel.Excel.RangeAreas
+        description: ''
+      parameters:
+        - id: cellTypeString
+          description: 要包含的单元格的类型。
+          type:
+            - '"ConditionalFormats" | "DataValidations" | "Blanks" | "Constants" | "Formulas" | "SameConditionalFormat" | "SameDataValidation" | "Visible"'
+        - id: cellValueType
+          description: '如果 cellType 为常量或公式, 则此参数用于确定要在结果中包含哪些类型的单元格。 可以将这些值组合在一起, 以返回多个类型。 默认情况下，将选择所有常量或公式，无论类型如何。'
+          type:
+            - '"All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"'
   - uid: excel_release.Excel.Range.getSurroundingRegion
     summary: |-
       返回一个 Range 对象，该对象表示此区域左上单元格的周围区域。 周围区域是由相对于该区域的空白行和空白列的任何组合所限定的区域。
@@ -1106,6 +1600,27 @@ items:
         type:
           - excel.Excel.Range
         description: ''
+  - uid: excel_release.Excel.Range.getTables
+    summary: |-
+      获取与区域重叠的限定范围的表格集合。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getTables(fullyContained)
+    fullName: getTables(fullyContained)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getTables(fullyContained?: boolean): Excel.TableScopedCollection;'
+      return:
+        type:
+          - excel.Excel.TableScopedCollection
+        description: ''
+      parameters:
+        - id: fullyContained
+          description: '如果为 true, 则仅返回完全包含在区域边界内的表。 默认值为 false。'
+          type:
+            - boolean
   - uid: excel_release.Excel.Range.getUsedRange
     summary: |-
       返回指定 Range 对象的所用区域。如果区域内没有使用单元格，此函数将引发 ItemNotFound 错误。
@@ -1201,7 +1716,7 @@ items:
           ```
       parameters:
         - id: valuesOnly
-          description: '仅将有值的单元格视为已使用的单元格。 \[Api 集: ExcelApi 1。2\]'
+          description: '仅将有值的单元格视为已使用的单元格。 \[Api 集: ExcelApi 1.2\]'
           type:
             - boolean
   - uid: excel_release.Excel.Range.getUsedRangeOrNullObject
@@ -1431,6 +1946,21 @@ items:
       return:
         type:
           - boolean
+  - uid: excel_release.Excel.Range.linkedDataTypeState
+    summary: |-
+      表示每个单元格的数据类型状态。 只读。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: linkedDataTypeState
+    fullName: linkedDataTypeState
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly linkedDataTypeState: Excel.LinkedDataTypeState[][];'
+      return:
+        type:
+          - 'Excel.LinkedDataTypeState[][]'
   - uid: excel_release.Excel.Range.load
     summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
     remarks: |-
@@ -1440,7 +1970,7 @@ items:
 
       `load(option?: { select?: string; expand?: string; }): Excel.Range`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Range`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Range`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
     name: load(option)
     fullName: load(option)
     langs:
@@ -1556,7 +2086,7 @@ items:
             - '{ select?: string; expand?: string; }'
   - uid: excel_release.Excel.Range.merge
     summary: |-
-      在工作表中，将 range 单元格合并到一个区域中。
+      将范围单元格合并到工作表的一个区域内。
 
       \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: merge(across)
@@ -1637,6 +2167,77 @@ items:
       return:
         type:
           - 'any[][]'
+  - uid: excel_release.Excel.Range.removeDuplicates
+    summary: |-
+      从列指定的区域中删除重复值。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'removeDuplicates(columns, includesHeader)'
+    fullName: 'removeDuplicates(columns, includesHeader)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'removeDuplicates(columns: number[], includesHeader: boolean): Excel.RemoveDuplicatesResult;'
+      return:
+        type:
+          - excel.Excel.RemoveDuplicatesResult
+        description: |-
+          生成的对象, 其中包含已删除的行数和剩余的唯一行数。
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const range = sheet.getRange("B2:D11");
+
+              const deleteResult = range.removeDuplicates([0],true);    
+              deleteResult.load();    
+              await context.sync();
+
+              console.log(deleteResult.removed + " entries with duplicate names removed.");
+              console.log(deleteResult.uniqueRemaining + " entries with unique names remain in the range.");
+          });
+          ```
+      parameters:
+        - id: columns
+          description: 区域中可能包含重复项的列。 至少需要指定一个列。 从零开始编制索引。
+          type:
+            - 'number[]'
+        - id: includesHeader
+          description: '如果输入数据包含标头, 则为 True。 默认为 false。'
+          type:
+            - boolean
+  - uid: excel_release.Excel.Range.replaceAll
+    summary: |-
+      根据当前区域内指定的条件查找并替换给定的字符串。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'replaceAll(text, replacement, criteria)'
+    fullName: 'replaceAll(text, replacement, criteria)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'replaceAll(text: string, replacement: string, criteria: Excel.ReplaceCriteria): OfficeExtension.ClientResult<number>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<number>
+        description: 执行的替换的次数。
+      parameters:
+        - id: text
+          description: 要查找的字符串。
+          type:
+            - string
+        - id: replacement
+          description: 要将原始替换为的字符串。
+          type:
+            - string
+        - id: criteria
+          description: 其他替换条件。
+          type:
+            - excel.Excel.ReplaceCriteria
   - uid: excel_release.Excel.Range.rowCount
     summary: |-
       返回区域中的总行数。 只读。
@@ -1654,7 +2255,7 @@ items:
           - number
   - uid: excel_release.Excel.Range.rowHidden
     summary: |-
-      表示当前 range 的所有行均已隐藏。
+      表示当前区域中的所有行是否隐藏。
 
       \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: rowHidden
@@ -1799,6 +2400,85 @@ items:
           description: ''
           type:
             - excel.Excel.Range
+  - uid: excel_release.Excel.Range.setCellProperties
+    summary: |-
+      根据单元格属性的 2D 数组更新区域，它封装了字体、填充、边框、对齐方式等内容。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: setCellProperties(cellPropertiesData)
+    fullName: setCellProperties(cellPropertiesData)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setCellProperties(cellPropertiesData: SettableCellProperties[][]): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: cellPropertiesData
+          description: '一个二维数组, 表示要在每个单元格中设置的属性。'
+          type:
+            - 'SettableCellProperties[][]'
+  - uid: excel_release.Excel.Range.setColumnProperties
+    summary: |-
+      根据列属性的一维数组更新区域，它封装了字体、填充、边框、对齐方式等内容。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: setColumnProperties(columnPropertiesData)
+    fullName: setColumnProperties(columnPropertiesData)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setColumnProperties(columnPropertiesData: SettableColumnProperties[]): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: columnPropertiesData
+          description: '一个数组, 表示要在每个列中设置的属性。'
+          type:
+            - 'SettableColumnProperties[]'
+  - uid: excel_release.Excel.Range.setDirty
+    summary: |-
+      设置下一次重新计算发生时要重新计算的区域。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: setDirty()
+    fullName: setDirty()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setDirty(): void;'
+      return:
+        type:
+          - void
+        description: ''
+  - uid: excel_release.Excel.Range.setRowProperties
+    summary: |-
+      根据行属性的一维数组更新区域，它封装了字体、填充、边框、对齐方式等内容。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: setRowProperties(rowPropertiesData)
+    fullName: setRowProperties(rowPropertiesData)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setRowProperties(rowPropertiesData: SettableRowProperties[]): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: rowPropertiesData
+          description: '一个数组, 表示要在每行中设置的属性。'
+          type:
+            - 'SettableRowProperties[]'
   - uid: excel_release.Excel.Range.showCard
     summary: |-
       显示活动单元格的卡片（如果该单元格具有富值内容）。

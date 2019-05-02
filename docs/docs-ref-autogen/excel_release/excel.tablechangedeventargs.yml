@@ -16,6 +16,7 @@ items:
       - excel_release.Excel.TableChangedEventArgs.getRangeOrNullObject
       - excel_release.Excel.TableChangedEventArgs.address
       - excel_release.Excel.TableChangedEventArgs.changeType
+      - excel_release.Excel.TableChangedEventArgs.details
       - excel_release.Excel.TableChangedEventArgs.source
       - excel_release.Excel.TableChangedEventArgs.tableId
       - excel_release.Excel.TableChangedEventArgs.type
@@ -92,6 +93,37 @@ items:
       return:
         type:
           - Excel.DataChangeType | "Unknown" | "RangeEdited" | "RowInserted" | "RowDeleted" | "ColumnInserted" | "ColumnDeleted" | "CellInserted" | "CellDeleted"
+  - uid: excel_release.Excel.TableChangedEventArgs.details
+    summary: |-
+      表示更改详情的信息
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: details
+    fullName: details
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'details: Excel.ChangedEventDetail;'
+      return:
+        type:
+          - excel.Excel.ChangedEventDetail
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          async function onTableChanged(eventArgs: Excel.TableChangedEventArgs) {
+              await Excel.run(async (context) => {
+                  const details = eventArgs.details;
+                  const address = eventArgs.address;
+
+                  console.log(`Change at ${address}: was ${details.valueBefore}(${details.valueTypeBefore}),`
+                    + ` now is ${details.valueAfter}(${details.valueTypeAfter})`);
+              });
+          }
+          ```
   - uid: excel_release.Excel.TableChangedEventArgs.source
     summary: |-
       获取事件源。 有关详细信息，请参阅 Excel.EventSource。

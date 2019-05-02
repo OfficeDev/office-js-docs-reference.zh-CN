@@ -14,6 +14,7 @@ items:
       - office.OfficeExtension.ClientObject
     package: excel_release
     children:
+      - excel_release.Excel.Chart.activate
       - excel_release.Excel.Chart.axes
       - excel_release.Excel.Chart.categoryLabelLevel
       - excel_release.Excel.Chart.chartType
@@ -34,6 +35,7 @@ items:
       - excel_release.Excel.Chart.name
       - excel_release.Excel.Chart.onActivated
       - excel_release.Excel.Chart.onDeactivated
+      - excel_release.Excel.Chart.pivotOptions
       - excel_release.Excel.Chart.plotArea
       - excel_release.Excel.Chart.plotBy
       - excel_release.Excel.Chart.plotVisibleOnly
@@ -52,6 +54,22 @@ items:
       - excel_release.Excel.Chart.top
       - excel_release.Excel.Chart.width
       - excel_release.Excel.Chart.worksheet
+  - uid: excel_release.Excel.Chart.activate
+    summary: |-
+      在 Excel UI 中激活图表。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: activate()
+    fullName: activate()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'activate(): void;'
+      return:
+        type:
+          - void
+        description: ''
   - uid: excel_release.Excel.Chart.axes
     summary: |-
       表示图表坐标轴。 只读。
@@ -329,7 +347,7 @@ items:
 
       `load(option?: { select?: string; expand?: string; }): Excel.Chart`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Chart`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Chart`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
     name: load(option)
     fullName: load(option)
     langs:
@@ -503,6 +521,21 @@ items:
               return context.sync();
           });
           ```
+  - uid: excel_release.Excel.Chart.pivotOptions
+    summary: |-
+      封装数据透视图表的选项。 只读。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: pivotOptions
+    fullName: pivotOptions
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly pivotOptions: Excel.ChartPivotOptions;'
+      return:
+        type:
+          - excel.Excel.ChartPivotOptions
   - uid: excel_release.Excel.Chart.plotArea
     summary: |-
       表示图表的绘制区域。

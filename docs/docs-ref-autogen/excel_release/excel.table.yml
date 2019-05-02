@@ -14,6 +14,7 @@ items:
       - office.OfficeExtension.ClientObject
     package: excel_release
     children:
+      - excel_release.Excel.Table.autoFilter
       - excel_release.Excel.Table.clearFilters
       - excel_release.Excel.Table.columns
       - excel_release.Excel.Table.context
@@ -46,6 +47,21 @@ items:
       - excel_release.Excel.Table.style
       - excel_release.Excel.Table.toJSON
       - excel_release.Excel.Table.worksheet
+  - uid: excel_release.Excel.Table.autoFilter
+    summary: |-
+      表示表格的 AutoFilter 对象。 只读。
+
+      \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: autoFilter
+    fullName: autoFilter
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly autoFilter: Excel.AutoFilter;'
+      return:
+        type:
+          - excel.Excel.AutoFilter
   - uid: excel_release.Excel.Table.clearFilters
     summary: |-
       清除当前表上应用的所有筛选器。
@@ -193,7 +209,7 @@ items:
           ```
   - uid: excel_release.Excel.Table.getHeaderRowRange
     summary: |-
-      获取与表的标题行相关的 range 对象。
+      获取与表的标头行相关的 range 对象。
 
       \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: getHeaderRowRange()
@@ -368,7 +384,7 @@ items:
 
       `load(option?: { select?: string; expand?: string; }): Excel.Table`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Table`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Table`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
     name: load(option)
     fullName: load(option)
     langs:
@@ -551,7 +567,7 @@ items:
           ```
   - uid: excel_release.Excel.Table.reapplyFilters
     summary: |-
-      重新应用当前在 table 上应用的所有 filter。
+      重新应用当前表上的所有筛选器。
 
       \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: reapplyFilters()
