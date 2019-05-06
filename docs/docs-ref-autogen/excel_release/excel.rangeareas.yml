@@ -352,6 +352,24 @@ items:
       return:
         type:
           - excel.Excel.RangeFormat
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+              const usedRange = sheet.getUsedRange();
+
+              // Find the ranges with formulas
+              const formulaRanges = usedRange.getSpecialCells("Formulas");
+              formulaRanges.format.fill.color = "lightgreen";
+
+              await context.sync();
+          });
+          ```
   - uid: excel_release.Excel.RangeAreas.getEntireColumn
     summary: |-
       返回表示 RangeAreas 的整个列的 RangeAreas 对象（例如，如果当前 RangeAreas 表示单元格“B4:E11, H2”，它将返回表示列“B:E, H:H”的 RangeAreas）。
