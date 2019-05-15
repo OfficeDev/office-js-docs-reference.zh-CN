@@ -42,6 +42,7 @@ items:
       - word.Word.TableCell.setCellPadding
       - word.Word.TableCell.setCellPadding_1
       - word.Word.TableCell.shadingColor
+      - word.Word.TableCell.split
       - word.Word.TableCell.toJSON
       - word.Word.TableCell.track
       - word.Word.TableCell.untrack
@@ -393,7 +394,7 @@ items:
 
       `load(option?: { select?: string; expand?: string; }): Word.TableCell`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.TableCell`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.TableCell`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
     name: load(option)
     fullName: load(option)
     langs:
@@ -600,6 +601,32 @@ items:
       return:
         type:
           - string
+  - uid: word.Word.TableCell.split
+    summary: |-
+      将单元格拆分为指定的行数和列数。
+
+      \[[API 集: WORDAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: 'split(rowCount, columnCount)'
+    fullName: 'split(rowCount, columnCount)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'split(rowCount: number, columnCount: number): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: rowCount
+          description: 必需。 要拆分成的行数。 必须为基础行数的约数。
+          type:
+            - number
+        - id: columnCount
+          description: 必需。 要拆分成的列数。
+          type:
+            - number
   - uid: word.Word.TableCell.toJSON
     summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始 TableCell 对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Word.Interfaces.TableCellData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。'
     name: toJSON()

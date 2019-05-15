@@ -17,6 +17,10 @@ items:
       - word.Word.DocumentCreated.body
       - word.Word.DocumentCreated.contentControls
       - word.Word.DocumentCreated.context
+      - word.Word.DocumentCreated.customXmlParts
+      - word.Word.DocumentCreated.deleteBookmark
+      - word.Word.DocumentCreated.getBookmarkRange
+      - word.Word.DocumentCreated.getBookmarkRangeOrNullObject
       - word.Word.DocumentCreated.load
       - word.Word.DocumentCreated.load_1
       - word.Word.DocumentCreated.load_2
@@ -27,6 +31,7 @@ items:
       - word.Word.DocumentCreated.sections
       - word.Word.DocumentCreated.set
       - word.Word.DocumentCreated.set_1
+      - word.Word.DocumentCreated.settings
       - word.Word.DocumentCreated.toJSON
       - word.Word.DocumentCreated.track
       - word.Word.DocumentCreated.untrack
@@ -35,6 +40,7 @@ items:
       获取文档的正文对象。 正文是不包括标头、页脚、脚注、文本框等的文本。 只读。
 
       \[[API 集: WordApiHiddenDocument 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
     name: body
     fullName: body
     langs:
@@ -50,6 +56,7 @@ items:
       获取文档中的内容控件对象的集合。 这包括文档正文、标头、页脚、文本框等中的内容控件。 只读。
 
       \[[API 集: WordApiHiddenDocument 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
     name: contentControls
     fullName: contentControls
     langs:
@@ -72,6 +79,88 @@ items:
       return:
         type:
           - RequestContext
+  - uid: word.Word.DocumentCreated.customXmlParts
+    summary: |-
+      获取文档中的自定义 XML 部件。 只读。
+
+      \[[API 集: WordApiHiddenDocument 1.4](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: customXmlParts
+    fullName: customXmlParts
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly customXmlParts: Word.CustomXmlPartCollection;'
+      return:
+        type:
+          - Word.CustomXmlPartCollection
+  - uid: word.Word.DocumentCreated.deleteBookmark
+    summary: |-
+      从文档中删除书签 (如果存在)。
+
+      \[[API 集: WordApiHiddenDocument 1.4](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: deleteBookmark(name)
+    fullName: deleteBookmark(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'deleteBookmark(name: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: name
+          description: '必需。 书签名称, 不区分大小写。'
+          type:
+            - string
+  - uid: word.Word.DocumentCreated.getBookmarkRange
+    summary: |-
+      获取书签的范围。 如果书签不存在, 则引发。
+
+      \[[API 集: WordApiHiddenDocument 1.4](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: getBookmarkRange(name)
+    fullName: getBookmarkRange(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getBookmarkRange(name: string): Word.Range;'
+      return:
+        type:
+          - Word.Range
+        description: ''
+      parameters:
+        - id: name
+          description: '必需。 书签名称, 不区分大小写。'
+          type:
+            - string
+  - uid: word.Word.DocumentCreated.getBookmarkRangeOrNullObject
+    summary: |-
+      获取书签的范围。 如果书签不存在, 则返回 null 对象。
+
+      \[[API 集: WordApiHiddenDocument 1.4](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: getBookmarkRangeOrNullObject(name)
+    fullName: getBookmarkRangeOrNullObject(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getBookmarkRangeOrNullObject(name: string): Word.Range;'
+      return:
+        type:
+          - Word.Range
+        description: ''
+      parameters:
+        - id: name
+          description: '必需。 书签名称, 不区分大小写。'
+          type:
+            - string
   - uid: word.Word.DocumentCreated.load
     summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
     remarks: |-
@@ -81,7 +170,7 @@ items:
 
       `load(option?: { select?: string; expand?: string; }): Word.DocumentCreated`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.DocumentCreated`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.DocumentCreated`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
     name: load(option)
     fullName: load(option)
     langs:
@@ -155,6 +244,7 @@ items:
       获取文档的属性。 只读。
 
       \[[API 集: WordApiHiddenDocument 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
     name: properties
     fullName: properties
     langs:
@@ -170,6 +260,7 @@ items:
       保存文档。 如果文档以前未保存过，将使用 Word 的默认文件命名约定。
 
       \[[API 集: WordApiHiddenDocument 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
     name: save()
     fullName: save()
     langs:
@@ -186,6 +277,7 @@ items:
       指示是否已保存在文档中所做的更改。如果值为 true，表示文档自上次保存以来并未更改。只读。
 
       \[[API 集: WordApiHiddenDocument 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
     name: saved
     fullName: saved
     langs:
@@ -201,6 +293,7 @@ items:
       获取文档中的节对象的集合。 只读。
 
       \[[API 集: WordApiHiddenDocument 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
     name: sections
     fullName: sections
     langs:
@@ -255,6 +348,22 @@ items:
           description: ''
           type:
             - word.Word.DocumentCreated
+  - uid: word.Word.DocumentCreated.settings
+    summary: |-
+      获取文档中的加载项设置。 只读。
+
+      \[[API 集: WordApiHiddenDocument 1.4](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: settings
+    fullName: settings
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly settings: Word.SettingCollection;'
+      return:
+        type:
+          - Word.SettingCollection
   - uid: word.Word.DocumentCreated.toJSON
     summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始 DocumentCreated 对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Word.Interfaces.DocumentCreatedData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。'
     name: toJSON()

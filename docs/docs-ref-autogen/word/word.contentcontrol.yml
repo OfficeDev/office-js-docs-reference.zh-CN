@@ -50,6 +50,9 @@ items:
       - word.Word.ContentControl.load
       - word.Word.ContentControl.load_1
       - word.Word.ContentControl.load_2
+      - word.Word.ContentControl.onDataChanged
+      - word.Word.ContentControl.onDeleted
+      - word.Word.ContentControl.onSelectionChanged
       - word.Word.ContentControl.paragraphs
       - word.Word.ContentControl.parentBody
       - word.Word.ContentControl.parentContentControl
@@ -1277,6 +1280,54 @@ items:
           description: '其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。'
           type:
             - '{ select?: string; expand?: string; }'
+  - uid: word.Word.ContentControl.onDataChanged
+    summary: |-
+      更改内容控件中的数据时发生。 若要获取新文本, 请在处理程序中加载此内容控件。 若要获取旧文本, 请不要加载它。
+
+      \[[API 集: WORDAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: onDataChanged
+    fullName: onDataChanged
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onDataChanged: OfficeExtension.EventHandlers<Word.ContentControlEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Word.ContentControlEventArgs>
+  - uid: word.Word.ContentControl.onDeleted
+    summary: |-
+      删除内容控件时发生。 请勿在处理程序中加载此内容控件, 否则将无法获取其原始属性。
+
+      \[[API 集: WORDAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: onDeleted
+    fullName: onDeleted
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onDeleted: OfficeExtension.EventHandlers<Word.ContentControlEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Word.ContentControlEventArgs>
+  - uid: word.Word.ContentControl.onSelectionChanged
+    summary: |-
+      在内容控件中的选定内容更改时发生。
+
+      \[[API 集: WORDAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: onSelectionChanged
+    fullName: onSelectionChanged
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onSelectionChanged: OfficeExtension.EventHandlers<Word.ContentControlEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Word.ContentControlEventArgs>
   - uid: word.Word.ContentControl.paragraphs
     summary: |-
       获取内容控件中的 paragraph 对象的集合。 只读。

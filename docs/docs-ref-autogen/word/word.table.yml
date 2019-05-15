@@ -52,6 +52,7 @@ items:
       - word.Word.Table.load
       - word.Word.Table.load_1
       - word.Word.Table.load_2
+      - word.Word.Table.mergeCells
       - word.Word.Table.nestingLevel
       - word.Word.Table.parentBody
       - word.Word.Table.parentContentControl
@@ -827,7 +828,7 @@ items:
 
       `load(option?: { select?: string; expand?: string; }): Word.Table`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.Table`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.Table`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
     name: load(option)
     fullName: load(option)
     langs:
@@ -880,6 +881,40 @@ items:
           description: '其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。'
           type:
             - '{ select?: string; expand?: string; }'
+  - uid: word.Word.Table.mergeCells
+    summary: |-
+      合并第一个和最后一个单元格所绑定的单元格。
+
+      \[[API 集: WORDAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: 'mergeCells(topRow, firstCell, bottomRow, lastCell)'
+    fullName: 'mergeCells(topRow, firstCell, bottomRow, lastCell)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'mergeCells(topRow: number, firstCell: number, bottomRow: number, lastCell: number): Word.TableCell;'
+      return:
+        type:
+          - Word.TableCell
+        description: ''
+      parameters:
+        - id: topRow
+          description: 必需。 第一个单元格的行
+          type:
+            - number
+        - id: firstCell
+          description: 必需。 其行中的第一个单元格的索引
+          type:
+            - number
+        - id: bottomRow
+          description: 必需。 最后一个单元格的行
+          type:
+            - number
+        - id: lastCell
+          description: 必需。 其行中的最后一个单元格的索引
+          type:
+            - number
   - uid: word.Word.Table.nestingLevel
     summary: |-
       获取 table 的嵌套级别。 顶级 table 的级别为 1。 只读。

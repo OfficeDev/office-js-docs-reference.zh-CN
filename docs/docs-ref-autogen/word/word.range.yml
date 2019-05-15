@@ -22,6 +22,7 @@ items:
       - word.Word.Range.expandTo
       - word.Word.Range.expandToOrNullObject
       - word.Word.Range.font
+      - word.Word.Range.getBookmarks
       - word.Word.Range.getHtml
       - word.Word.Range.getHyperlinkRanges
       - word.Word.Range.getNextTextRange
@@ -32,6 +33,7 @@ items:
       - word.Word.Range.getTextRanges
       - word.Word.Range.hyperlink
       - word.Word.Range.inlinePictures
+      - word.Word.Range.insertBookmark
       - word.Word.Range.insertBreak
       - word.Word.Range.insertBreak_1
       - word.Word.Range.insertContentControl
@@ -270,6 +272,32 @@ items:
       return:
         type:
           - word.Word.Font
+  - uid: word.Word.Range.getBookmarks
+    summary: |-
+      获取或覆盖区域中所有书签的名称。 如果书签的名称以下划线字符开头, 则隐藏该书签。
+
+      \[[API 集: WORDAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: 'getBookmarks(includeHidden, includeAdjacent)'
+    fullName: 'getBookmarks(includeHidden, includeAdjacent)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getBookmarks(includeHidden?: boolean, includeAdjacent?: boolean): OfficeExtension.ClientResult<string[]>;'
+      return:
+        type:
+          - 'OfficeExtension.ClientResult<string[]>'
+        description: ''
+      parameters:
+        - id: includeHidden
+          description: '可选。 指示是否包括隐藏的书签。 默认值为 false, 表示排除隐藏书签。'
+          type:
+            - boolean
+        - id: includeAdjacent
+          description: '可选。 指示是否包含与范围相邻的书签。 默认值为 false, 表示排除邻近的书签。'
+          type:
+            - boolean
   - uid: word.Word.Range.getHtml
     summary: |-
       获取 range 对象的 HTML 表示形式。 在网页或 HTML 查看器中呈现时, 格式设置将与文档的格式设置完全匹配, 但不完全匹配。 对于不同平台 (Windows、Mac、Word Online 等) 上的同一文档, 此方法不会返回完全相同的 HTML。 如果您需要完全保真度或跨平台的一致性, 请`Range.getOoxml()`使用并将返回的 XML 转换为 HTML。
@@ -552,6 +580,28 @@ items:
       return:
         type:
           - word.Word.InlinePictureCollection
+  - uid: word.Word.Range.insertBookmark
+    summary: |-
+      在区域中插入书签。 如果同一名称的书签存在于某个位置, 则首先将其删除。
+
+      \[[API 集: WORDAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: insertBookmark(name)
+    fullName: insertBookmark(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertBookmark(name: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: name
+          description: '必需。 书签名称, 不区分大小写。 如果名称以下划线字符开头, 则该书签是隐藏的。'
+          type:
+            - string
   - uid: word.Word.Range.insertBreak
     summary: |-
       在主文档的指定位置插入分隔符。 insertLocation 的可取值为“Before”或“After”。
@@ -1103,7 +1153,7 @@ items:
             - 'string[][]'
   - uid: word.Word.Range.insertTable_1
     summary: |-
-      插入包含指定行数和列数的 table。 insertLocation 值可以为“Before”或“After”。
+      插入包含指定行数和列数的 table。 insertLocation 的可取值为“Before”或“After”。
 
       \[[API 集: WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: 'insertTable(rowCount, columnCount, insertLocationString, values)'

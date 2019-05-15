@@ -17,16 +17,22 @@ items:
       - word.Word.Document.body
       - word.Word.Document.contentControls
       - word.Word.Document.context
+      - word.Word.Document.customXmlParts
+      - word.Word.Document.deleteBookmark
+      - word.Word.Document.getBookmarkRange
+      - word.Word.Document.getBookmarkRangeOrNullObject
       - word.Word.Document.getSelection
       - word.Word.Document.load
       - word.Word.Document.load_1
       - word.Word.Document.load_2
+      - word.Word.Document.onContentControlAdded
       - word.Word.Document.properties
       - word.Word.Document.save
       - word.Word.Document.saved
       - word.Word.Document.sections
       - word.Word.Document.set
       - word.Word.Document.set_1
+      - word.Word.Document.settings
       - word.Word.Document.toJSON
       - word.Word.Document.track
       - word.Word.Document.untrack
@@ -72,6 +78,88 @@ items:
       return:
         type:
           - RequestContext
+  - uid: word.Word.Document.customXmlParts
+    summary: |-
+      获取文档中的自定义 XML 部件。 只读。
+
+      \[[API 集: WORDAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: customXmlParts
+    fullName: customXmlParts
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly customXmlParts: Word.CustomXmlPartCollection;'
+      return:
+        type:
+          - Word.CustomXmlPartCollection
+  - uid: word.Word.Document.deleteBookmark
+    summary: |-
+      从文档中删除书签 (如果存在)。
+
+      \[[API 集: WORDAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: deleteBookmark(name)
+    fullName: deleteBookmark(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'deleteBookmark(name: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: name
+          description: '必需。 书签名称, 不区分大小写。'
+          type:
+            - string
+  - uid: word.Word.Document.getBookmarkRange
+    summary: |-
+      获取书签的范围。 如果书签不存在, 则引发。
+
+      \[[API 集: WORDAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: getBookmarkRange(name)
+    fullName: getBookmarkRange(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getBookmarkRange(name: string): Word.Range;'
+      return:
+        type:
+          - Word.Range
+        description: ''
+      parameters:
+        - id: name
+          description: '必需。 书签名称, 不区分大小写。'
+          type:
+            - string
+  - uid: word.Word.Document.getBookmarkRangeOrNullObject
+    summary: |-
+      获取书签的范围。 如果书签不存在, 则返回 null 对象。
+
+      \[[API 集: WORDAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: getBookmarkRangeOrNullObject(name)
+    fullName: getBookmarkRangeOrNullObject(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getBookmarkRangeOrNullObject(name: string): Word.Range;'
+      return:
+        type:
+          - Word.Range
+        description: ''
+      parameters:
+        - id: name
+          description: '必需。 书签名称, 不区分大小写。'
+          type:
+            - string
   - uid: word.Word.Document.getSelection
     summary: |-
       获取文档的当前选定内容。 不支持多重选择。
@@ -130,7 +218,7 @@ items:
 
       `load(option?: { select?: string; expand?: string; }): Word.Document`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
 
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.Document`-仅适用于集合类型。 它类似于前面的签名。 top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.Document`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
 
       #### <a name="examples"></a>示例
 
@@ -217,6 +305,22 @@ items:
           description: '其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。'
           type:
             - '{ select?: string; expand?: string; }'
+  - uid: word.Word.Document.onContentControlAdded
+    summary: |-
+      添加内容控件时发生。 在处理程序中运行 context () 以获取新内容控件的属性。
+
+      \[[API 集: WORDAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: onContentControlAdded
+    fullName: onContentControlAdded
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onContentControlAdded: OfficeExtension.EventHandlers<Word.ContentControlEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Word.ContentControlEventArgs>
   - uid: word.Word.Document.properties
     summary: |-
       获取文档的属性。 只读。
@@ -375,6 +479,22 @@ items:
           description: ''
           type:
             - Word.Document
+  - uid: word.Word.Document.settings
+    summary: |-
+      获取文档中的加载项设置。 只读。
+
+      \[[API 集: WORDAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: settings
+    fullName: settings
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly settings: Word.SettingCollection;'
+      return:
+        type:
+          - Word.SettingCollection
   - uid: word.Word.Document.toJSON
     summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始的 Word Document 对象是 API 对象, 但`toJSON`方法返回一个简单的 JavaScript 对象 (类型为`Word.Interfaces.DocumentData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。'
     name: toJSON()
