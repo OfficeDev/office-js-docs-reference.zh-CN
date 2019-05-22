@@ -2,7 +2,7 @@
 items:
   - uid: Outlook_1_7.Office.Item
     summary: |-
-      item 命名空间用于访问当前选定的邮件、会议请求或约会。 您可以通过使用`itemType`属性来确定项目的类型。
+      Item 命名空间用于访问当前选定的邮件、会议请求或约会。 您可以通过使用`itemType`属性来确定项目的类型。
 
       \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -42,7 +42,7 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'addHandlerAsync(eventType: Office.EventType, handler: any, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      content: 'addHandlerAsync(eventType: Office.EventType | string, handler: any, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
       return:
         type:
           - void
@@ -51,7 +51,7 @@ items:
         - id: eventType
           description: 应调用处理程序的事件。
           type:
-            - Office.EventType
+            - Office.EventType | string
         - id: handler
           description: 用于处理事件的函数。 此函数必须接受一个参数，即对象文本。 参数的 type 属性将与传递给 addHandlerAsync 的事件类型参数相匹配。
           type:
@@ -61,7 +61,7 @@ items:
           type:
             - Office.AsyncContextOptions
         - id: callback
-          description: '可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 asyncresult 对象的参数。'
+          description: '可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 AsyncResult 对象的参数。'
           type:
             - '(asyncResult: Office.AsyncResult<void>) => void'
   - uid: Outlook_1_7.Office.Item.addHandlerAsync_1
@@ -95,7 +95,7 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'addHandlerAsync(eventType: Office.EventType, handler: any, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      content: 'addHandlerAsync(eventType: Office.EventType | string, handler: any, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
       return:
         type:
           - void
@@ -104,13 +104,13 @@ items:
         - id: eventType
           description: 应调用处理程序的事件。
           type:
-            - Office.EventType
+            - Office.EventType | string
         - id: handler
           description: 用于处理事件的函数。 此函数必须接受一个参数，即对象文本。 参数的 type 属性将与传递给 addHandlerAsync 的事件类型参数相匹配。
           type:
             - any
         - id: callback
-          description: '可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 asyncresult 对象的参数。'
+          description: '可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 AsyncResult 对象的参数。'
           type:
             - '(asyncResult: Office.AsyncResult<void>) => void'
   - uid: Outlook_1_7.Office.Item.loadCustomPropertiesAsync
@@ -194,7 +194,7 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'removeHandlerAsync(eventType: Office.EventType, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      content: 'removeHandlerAsync(eventType: Office.EventType | string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
       return:
         type:
           - void
@@ -203,13 +203,13 @@ items:
         - id: eventType
           description: 应撤销处理程序的事件。
           type:
-            - Office.EventType
+            - Office.EventType | string
         - id: options
           description: '可选。 包含一个或多个以下属性的对象文本。 asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。'
           type:
             - Office.AsyncContextOptions
         - id: callback
-          description: '可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 asyncresult 对象的参数。'
+          description: '可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 AsyncResult 对象的参数。'
           type:
             - '(asyncResult: Office.AsyncResult<void>) => void'
   - uid: Outlook_1_7.Office.Item.removeHandlerAsync_1
@@ -229,7 +229,7 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'removeHandlerAsync(eventType: Office.EventType, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      content: 'removeHandlerAsync(eventType: Office.EventType | string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
       return:
         type:
           - void
@@ -238,9 +238,9 @@ items:
         - id: eventType
           description: 应撤销处理程序的事件。
           type:
-            - Office.EventType
+            - Office.EventType | string
         - id: callback
-          description: '可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 asyncresult 对象的参数。'
+          description: '可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 AsyncResult 对象的参数。'
           type:
             - '(asyncResult: Office.AsyncResult<void>) => void'
   - uid: Outlook_1_7.Office.Item.body
@@ -285,7 +285,7 @@ items:
     summary: |-
       获取实例表示的项的类型。
 
-      itemtype 属性返回一个 itemType 枚举值, 指示 item 对象实例是邮件还是约会。
+      ItemType 属性返回一个 ItemType 枚举值, 指示 item 对象实例是邮件还是约会。
 
       \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -308,10 +308,10 @@ items:
       - typeScript
     type: property
     syntax:
-      content: 'itemType: MailboxEnums.ItemType;'
+      content: 'itemType: MailboxEnums.ItemType | string;'
       return:
         type:
-          - MailboxEnums.ItemType
+          - MailboxEnums.ItemType | string
   - uid: Outlook_1_7.Office.Item.notificationMessages
     summary: |-
       获取项目的通知邮件。
@@ -346,11 +346,11 @@ items:
     summary: |-
       获取实例所属的系列的 id。
 
-      在 OWA 和 Outlook 中, webcasts&seriesid 返回此项所属的父 (系列) 项的 Exchange Web 服务 (EWS) ID。 但是, 在 iOS 和 Android 中, webcasts&seriesid 返回父项的 REST ID。
+      在 OWA 和 Outlook 中, Webcasts&seriesid 返回此项所属的父 (系列) 项的 Exchange Web 服务 (EWS) ID。 但是, 在 iOS 和 Android 中, Webcasts&seriesid 返回父项的 REST ID。
 
-      **注意**: webcasts&seriesid 属性返回的标识符与 Exchange Web 服务项目标识符相同。 webcasts&seriesid 属性与 outlook REST API 使用的 outlook id 不相同。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关更多详细信息, 请参阅[使用 outlook 外接程序中的 outlook REST api](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->.
+      **注意**: webcasts&seriesid 属性返回的标识符与 Exchange Web 服务项目标识符相同。 Webcasts&seriesid 属性与 Outlook REST API 使用的 Outlook Id 不相同。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关更多详细信息, 请参阅[使用 outlook 外接程序中的 OUTLOOK REST api](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->.
 
-      对于不包含父项目 (如单个约会、系列项目或会议请求) 的项目, webcasts&seriesid 属性将返回 null, 并且对于不是会议请求的任何其他项目, 返回 "未定义"。
+      对于不包含父项目 (如单个约会、系列项目或会议请求) 的项目, Webcasts&seriesid 属性将返回 null, 并且对于不是会议请求的任何其他项目, 返回 "未定义"。
 
       \[[API 集: 邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-

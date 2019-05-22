@@ -2,7 +2,7 @@
 items:
   - uid: Outlook_1_3.Office.Body
     summary: |-
-      body 对象提供用于添加和更新邮件或约会的内容的方法。 它在选定项的 body 属性中返回。
+      Body 对象提供用于添加和更新邮件或约会的内容的方法。 它在选定项的 body 属性中返回。
 
       \[[API 集: 邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -64,7 +64,7 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'getAsync(coercionType: Office.CoercionType, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
+      content: 'getAsync(coercionType: Office.CoercionType | string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
       return:
         type:
           - void
@@ -73,7 +73,7 @@ items:
         - id: coercionType
           description: 用于返回的正文的格式。
           type:
-            - Office.CoercionType
+            - Office.CoercionType | string
         - id: options
           description: '可选。 包含一个或多个以下属性的对象文本: asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。'
           type:
@@ -101,7 +101,7 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'getAsync(coercionType: Office.CoercionType, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
+      content: 'getAsync(coercionType: Office.CoercionType | string, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
       return:
         type:
           - void
@@ -110,7 +110,7 @@ items:
         - id: coercionType
           description: 用于返回的正文的格式。
           type:
-            - Office.CoercionType
+            - Office.CoercionType | string
         - id: callback
           description: '可选。 方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 在 asyncResult 属性中, 正文以请求的格式提供。'
           type:
@@ -185,7 +185,7 @@ items:
     summary: |-
       将指定内容添加到项目正文开头。
 
-      prependAsync 方法在项正文的开头插入指定的字符串。 插入后, 光标将返回相对于插入内容的原始位置。
+      PrependAsync 方法在项正文的开头插入指定的字符串。 插入后, 光标将返回相对于插入内容的原始位置。
 
       在 HTML 标记中添加链接时, 可以通过在锚点上设置 id 属性禁用联机链接预览 (<!-- -->&lt;<!-- -->a<!-- -->&gt;<!-- -->) 到 "LPNoLP" (有关示例, 请参阅 "示例" 部分)。
 
@@ -226,7 +226,7 @@ items:
           type:
             - string
         - id: options
-          description: '可选。 包含一个或多个以下属性的对象文本。 asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。 coercionType: 正文所需的格式。 data 参数中的字符串将转换为此格式。'
+          description: '可选。 包含一个或多个以下属性的对象文本。 asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。 coercionType: 正文所需的格式。 Data 参数中的字符串将转换为此格式。'
           type:
             - Office.AsyncContextOptions & CoercionTypeOptions
         - id: callback
@@ -237,7 +237,7 @@ items:
     summary: |-
       将指定内容添加到项目正文开头。
 
-      prependAsync 方法在项正文的开头插入指定的字符串。 插入后, 光标将返回相对于插入内容的原始位置。
+      PrependAsync 方法在项正文的开头插入指定的字符串。 插入后, 光标将返回相对于插入内容的原始位置。
 
       在 HTML 标记中添加链接时, 可以通过在锚点上设置 id 属性禁用联机链接预览 (<!-- -->&lt;<!-- -->a<!-- -->&gt;<!-- -->) 到 "LPNoLP" (有关示例, 请参阅 "示例" 部分)。
 
@@ -288,7 +288,7 @@ items:
 
       - DataExceedsMaximumSize: data 参数的长度超过1000000个字符。
 
-      - InvalidFormatError: coercionType 参数设置为 coercionType, 邮件正文为纯文本格式。
+      - InvalidFormatError: coercionType 参数设置为 CoercionType, 邮件正文为纯文本格式。
 
       #### <a name="examples"></a>示例
 
@@ -330,7 +330,7 @@ items:
           type:
             - string
         - id: options
-          description: '可选。 包含一个或多个以下属性的对象文本。 asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。 coercionType: 正文所需的格式。 data 参数中的字符串将转换为此格式。'
+          description: '可选。 包含一个或多个以下属性的对象文本。 asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。 coercionType: 正文所需的格式。 Data 参数中的字符串将转换为此格式。'
           type:
             - Office.AsyncContextOptions & CoercionTypeOptions
         - id: callback
@@ -355,7 +355,7 @@ items:
 
       - DataExceedsMaximumSize: data 参数的长度超过1000000个字符。
 
-      - InvalidFormatError: coercionType 参数设置为 coercionType, 邮件正文为纯文本格式。
+      - InvalidFormatError: coercionType 参数设置为 CoercionType, 邮件正文为纯文本格式。
     name: 'setAsync(data, callback)'
     fullName: 'setAsync(data, callback)'
     langs:
@@ -380,7 +380,7 @@ items:
     summary: |-
       将正文中的所选内容更换为指定文本。
 
-      document.setselecteddataasync 方法将指定的字符串插入到项目正文中的光标位置, 或者, 如果在编辑器中选择了文本, 则会将所选的文本替换为文本。 如果光标从未出现在项目正文中，或者如果该项目的正文不关注 UI，该字符串将插入到正文内容的顶部。 插入后, 光标放置在插入内容的末尾。
+      Document.setselecteddataasync 方法将指定的字符串插入到项目正文中的光标位置, 或者, 如果在编辑器中选择了文本, 则会将所选的文本替换为文本。 如果光标从未出现在项目正文中，或者如果该项目的正文不关注 UI，该字符串将插入到正文内容的顶部。 插入后, 光标放置在插入内容的末尾。
 
       在 HTML 标记中添加链接时, 可以通过在锚点上设置 id 属性禁用联机链接预览 (<!-- -->&lt;<!-- -->a<!-- -->&gt;<!-- -->) 到 "LPNoLP" (有关示例, 请参阅 "示例" 部分)。
 
@@ -394,7 +394,7 @@ items:
 
       - DataExceedsMaximumSize: data 参数的长度超过1000000个字符。
 
-      - InvalidFormatError: coercionType 参数设置为 coercionType, 邮件正文为纯文本格式。
+      - InvalidFormatError: coercionType 参数设置为 CoercionType, 邮件正文为纯文本格式。
 
       #### <a name="examples"></a>示例
 
@@ -423,7 +423,7 @@ items:
           type:
             - string
         - id: options
-          description: '可选。 包含一个或多个以下属性的对象文本。 asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。 coercionType: 正文所需的格式。 data 参数中的字符串将转换为此格式。'
+          description: '可选。 包含一个或多个以下属性的对象文本。 asyncContext: 开发人员可以在回调方法中提供要访问的任何对象。 coercionType: 正文所需的格式。 Data 参数中的字符串将转换为此格式。'
           type:
             - Office.AsyncContextOptions & CoercionTypeOptions
         - id: callback
@@ -434,7 +434,7 @@ items:
     summary: |-
       将正文中的所选内容更换为指定文本。
 
-      document.setselecteddataasync 方法将指定的字符串插入到项目正文中的光标位置, 或者, 如果在编辑器中选择了文本, 则会将所选的文本替换为文本。 如果光标从未出现在项目正文中，或者如果该项目的正文不关注 UI，该字符串将插入到正文内容的顶部。 插入后, 光标放置在插入内容的末尾。
+      Document.setselecteddataasync 方法将指定的字符串插入到项目正文中的光标位置, 或者, 如果在编辑器中选择了文本, 则会将所选的文本替换为文本。 如果光标从未出现在项目正文中，或者如果该项目的正文不关注 UI，该字符串将插入到正文内容的顶部。 插入后, 光标放置在插入内容的末尾。
 
       在 HTML 标记中添加链接时, 可以通过在锚点上设置 id 属性禁用联机链接预览 (<!-- -->&lt;<!-- -->a<!-- -->&gt;<!-- -->) 到 "LPNoLP" (有关示例, 请参阅 "示例" 部分)。
 
@@ -448,7 +448,7 @@ items:
 
       - DataExceedsMaximumSize: data 参数的长度超过1000000个字符。
 
-      - InvalidFormatError: coercionType 参数设置为 coercionType, 邮件正文为纯文本格式。
+      - InvalidFormatError: coercionType 参数设置为 CoercionType, 邮件正文为纯文本格式。
     name: 'setSelectedDataAsync(data, callback)'
     fullName: 'setSelectedDataAsync(data, callback)'
     langs:
