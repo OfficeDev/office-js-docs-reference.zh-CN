@@ -218,7 +218,7 @@ items:
             - '{ select?: string; expand?: string; }'
   - uid: excel_release.Excel.DataValidation.prompt
     summary: |-
-      当用户选择单元格时提示。
+      当用户选择单元格时提示。 必须`DataValidationPrompt`将该对象设置为 JSON 对象 (使用`x.prompt = {...}` , 而不是`x.prompt.message = ...`<!-- -->).
 
       \[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: prompt
@@ -231,6 +231,44 @@ items:
       return:
         type:
           - excel.Excel.DataValidationPrompt
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Decision");
+              const rankingRange = sheet.tables.getItem("NameOptionsTable").columns.getItem("Ranking").getDataBodyRange();
+
+              // When you are developing, it is a good practice to
+              // clear the dataValidation object with each run of your code.
+              rankingRange.dataValidation.clear();
+
+              let greaterThanZeroRule = {
+                  wholeNumber: {
+                      formula1: 0,
+                      operator: Excel.DataValidationOperator.greaterThan
+                  }
+              };
+              rankingRange.dataValidation.rule = greaterThanZeroRule;
+
+              rankingRange.dataValidation.prompt = {
+                  message: "Please enter a positive number.",
+                  showPrompt: true,
+                  title: "Positive numbers only."
+              };
+
+              rankingRange.dataValidation.errorAlert = {
+                  message: "Sorry, only positive numbers are allowed",
+                  showAlert: true,
+                  style: "Stop",
+                  title: "Negative Number Entered"
+              };
+
+              await context.sync();
+          });
+          ```
   - uid: excel_release.Excel.DataValidation.rule
     summary: |-
       包含不同类型的数据验证条件的数据有效性规则。
@@ -246,6 +284,34 @@ items:
       return:
         type:
           - excel.Excel.DataValidationRule
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Decision");
+              const nameRange = 
+                  sheet.tables.getItem("NameOptionsTable").columns.getItem("Baby Name").getDataBodyRange();
+
+              // When you are developing, it is a good practice to
+              // clear the dataValidation object with each run of your code.
+              nameRange.dataValidation.clear();
+
+              const nameSourceRange = context.workbook.worksheets.getItem("Names").getRange("A1:A3");
+
+              let approvedListRule = {
+                  list: {
+                      inCellDropDown: true,
+                      source: nameSourceRange
+                  }
+              };
+              nameRange.dataValidation.rule = approvedListRule;
+
+              await context.sync();
+          });
+          ```
   - uid: excel_release.Excel.DataValidation.set
     summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
     remarks: |-

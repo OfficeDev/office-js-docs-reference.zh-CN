@@ -138,7 +138,9 @@ items:
 
           ```typescript
           await Excel.run(async (context) => {
-              const sheet = context.workbook.worksheets.getItem("Shapes");
+              context.workbook.worksheets.getItemOrNullObject("Shapes").delete();
+              const sheet = context.workbook.worksheets.add("Shapes");
+
               const shapes = sheet.shapes;
 
               // load all the shapes in the collection without loading their properties
@@ -632,7 +634,7 @@ items:
           - string
   - uid: excel_release.Excel.Shape.onActivated
     summary: |-
-      当激活形状时发生。
+      当激活形状时发生此事件。
 
       \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: onActivated
@@ -647,7 +649,7 @@ items:
           - OfficeExtension.EventHandlers<Excel.ShapeActivatedEventArgs>
   - uid: excel_release.Excel.Shape.onDeactivated
     summary: |-
-      当停用形状时发生。
+      当停用形状时发生此事件。
 
       \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: onDeactivated
@@ -951,7 +953,7 @@ items:
         type:
           - excel.Excel.TextFrame
   - uid: excel_release.Excel.Shape.toJSON
-    summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始的 Excel。 Shape 对象是 API 对象, 但`toJSON`方法返回一个简单的 JavaScript 对象 (类型为`Excel.Interfaces.ShapeData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。'
+    summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始的 Excel. Shape 对象是 API 对象, 但`toJSON`方法返回一个简单的 JavaScript 对象 (类型为`Excel.Interfaces.ShapeData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。'
     name: toJSON()
     fullName: toJSON()
     langs:

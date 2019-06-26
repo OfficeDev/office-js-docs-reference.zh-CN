@@ -736,7 +736,7 @@ items:
           - number
   - uid: excel_release.Excel.PageLayout.zoom
     summary: |-
-      获取或设置工作表的打印缩放选项。
+      获取或设置工作表的打印缩放选项。 必须`PageLayoutZoomOptions`将该对象设置为 JSON 对象 (使用`x.zoom = {...}` , 而不是`x.zoom.scale = ...`<!-- -->).
 
       \[[API 集: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: zoom
@@ -749,3 +749,15 @@ items:
       return:
         type:
           - excel.Excel.PageLayoutZoomOptions
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const farmSheet = context.workbook.worksheets.getItem("Print");
+              farmSheet.pageLayout.zoom = { scale: 200 };
+              await context.sync();
+          });
+          ```
