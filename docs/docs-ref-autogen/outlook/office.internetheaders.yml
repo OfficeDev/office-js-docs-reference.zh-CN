@@ -2,9 +2,11 @@
 items:
   - uid: outlook.Office.InternetHeaders
     summary: |-
-      InternetHeaders 对象表示在邮件项目离开 Exchange 并转换为 MIME 邮件后保留的属性。 这些属性存储为 MIME 邮件中的 x 标头。
+      InternetHeaders 对象表示在邮件项目离开 Exchange 并转换为 MIME 邮件后保留的自定义 internet 标头。 这些标头存储为 MIME 邮件中的 x 标头。
 
       InternetHeaders 以键/值对的形式存储在每个项目的基础上。
+
+      **注意**: 此对象用于设置和获取邮件项目的自定义标头。
 
       \[[API 集: 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -28,6 +30,8 @@ items:
   - uid: outlook.Office.InternetHeaders.getAsync
     summary: |-
       已知 internet 标头名称的数组, 此方法将返回包含这些 internet 标头及其值的字典。 如果外接程序请求的 x 标头不可用, 则结果中不会返回该 x 标头。
+
+      **注意**: 此方法用于返回使用`setAsync`方法设置的自定义标头的值。
 
       \[[API 集: 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -56,12 +60,14 @@ items:
           type:
             - Office.AsyncContextOptions
         - id: callback
-          description: '可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 asyncresult 对象的参数。'
+          description: '可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 AsyncResult 对象的参数。'
           type:
             - '(asyncResult: Office.AsyncResult<InternetHeaders>) => void'
   - uid: outlook.Office.InternetHeaders.getAsync_1
     summary: |-
       已知 internet 标头名称的数组, 此方法将返回包含这些 internet 标头及其值的字典。 如果外接程序请求的 x 标头不可用, 则结果中不会返回该 x 标头。
+
+      **注意**: 此方法用于返回使用`setAsync`方法设置的自定义标头的值。
 
       \[[API 集: 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -97,12 +103,14 @@ items:
           type:
             - 'string[]'
         - id: callback
-          description: '可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 asyncresult 对象的参数。'
+          description: '可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 AsyncResult 对象的参数。'
           type:
             - '(asyncResult: Office.AsyncResult<InternetHeaders>) => void'
   - uid: outlook.Office.InternetHeaders.removeAsync
     summary: |-
       已知 internet 标头名称的数组, 此方法将从 internet 头集合中移除指定的标头。
+
+      **注意**: 此方法用于删除使用`setAsync`方法设置的自定义标头。
 
       \[[API 集: 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -131,12 +139,14 @@ items:
           type:
             - Office.AsyncContextOptions
         - id: callback
-          description: '可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 asyncresult 对象的参数。'
+          description: '可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 AsyncResult 对象的参数。'
           type:
             - '(asyncResult: Office.AsyncResult<InternetHeaders>) => void'
   - uid: outlook.Office.InternetHeaders.removeAsync_1
     summary: |-
       已知 internet 标头名称的数组, 此方法将从 internet 头集合中移除指定的标头。
+
+      **注意**: 此方法用于删除使用方法设置的`setAsync`自定义标头。
 
       \[[API 集: 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -167,14 +177,16 @@ items:
           type:
             - 'string[]'
         - id: callback
-          description: '可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 asyncresult 对象的参数。'
+          description: '可选。 方法完成后, 使用单个参数 asyncResult 调用在 callback 参数中传递的函数, 该参数是一个作为一个 AsyncResult 对象的参数。'
           type:
             - '(asyncResult: Office.AsyncResult<InternetHeaders>) => void'
   - uid: outlook.Office.InternetHeaders.setAsync
     summary: |-
       将指定的 internet 标头设置为指定的值。
 
-      如果指定的标头尚不存在, 则 setAsync 方法将创建一个新标头; 否则, 将创建否则, 现有值将被替换为新值。
+      如果指定的标头尚不存在, 则 setAsync 方法将创建一个新的标头。否则, 现有值将被替换为新值。
+
+      **注意**: 此方法用于设置自定义标头的值。
 
       \[[API 集: 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -210,7 +222,9 @@ items:
     summary: |-
       将指定的 internet 标头设置为指定的值。
 
-      如果指定的标头尚不存在, 则 setAsync 方法将创建一个新标头; 否则, 将创建否则, 现有值将被替换为新值。
+      如果指定的标头尚不存在, 则 setAsync 方法将创建一个新的标头。否则, 现有值将被替换为新值。
+
+      **注意**: 此方法用于设置自定义标头的值。
 
       \[[API 集: 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-

@@ -6,9 +6,9 @@ items:
 
       绑定对象公开所有绑定所拥有的功能, 而不考虑类型。
 
-      永远不会直接调用 Binding 对象。 它是表示每种绑定类型的对象的抽象父类: [MatrixBinding](xref:office.Office.MatrixBinding)<!-- -->、 [TableBinding](xref:office.Office.TableBinding)<!-- -->或[textbinding 添加](xref:office.Office.TextBinding)<!-- -->. 所有这三个对象都继承了 binding 对象中的 binding.getdataasync 和 binding.setdataasync 方法, 这些方法允许您与绑定中的数据进行交互。 它们还继承 id 和 type 属性，以便查询这些属性值。 此外，MatrixBinding 和 TableBinding 对象揭示特定于矩阵和表的功能的其他方法，如对行和列计数。
+      永远不会直接调用 Binding 对象。 它是表示每种绑定类型的对象的抽象父类: [MatrixBinding](xref:office.Office.MatrixBinding)<!-- -->、 [TableBinding](xref:office.Office.TableBinding)<!-- -->或[textbinding 添加](xref:office.Office.TextBinding)<!-- -->. 所有这三个对象都继承了 Binding 对象中的 Binding.getdataasync 和 Binding.setdataasync 方法, 这些方法允许您与绑定中的数据进行交互。 它们还继承 id 和 type 属性，以便查询这些属性值。 此外，MatrixBinding 和 TableBinding 对象揭示特定于矩阵和表的功能的其他方法，如对行和列计数。
     remarks: |-
-      **主机**: Access、Excel、Word
+      **主机**: Excel、Word
 
       **要求集**:
 
@@ -158,7 +158,7 @@ items:
 
       - [TextCoercion](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#textcoercion)(使用时`Office.CoercionType.Text`<!-- -->)
 
-      从 MatrixBinding 或 TableBinding 调用时, 如果指定了可选的 startRow、startColumn、rowCount 和 columnCount 参数 (并且它们指定了连续和有效的范围), 则 binding.getdataasync 方法将返回绑定值的子集。
+      从 MatrixBinding 或 TableBinding 调用时, 如果指定了可选的 startRow、startColumn、rowCount 和 columnCount 参数 (并且它们指定了连续和有效的范围), 则 Binding.getdataasync 方法将返回绑定值的子集。
     name: 'getDataAsync(options, callback)'
     fullName: 'getDataAsync(options, callback)'
     langs:
@@ -200,7 +200,7 @@ items:
 
       - [TextCoercion](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#textcoercion)(使用时`Office.CoercionType.Text`<!-- -->)
 
-      从 MatrixBinding 或 TableBinding 调用时, 如果指定了可选的 startRow、startColumn、rowCount 和 columnCount 参数 (并且它们指定了连续和有效的范围), 则 binding.getdataasync 方法将返回绑定值的子集。
+      从 MatrixBinding 或 TableBinding 调用时, 如果指定了可选的 startRow、startColumn、rowCount 和 columnCount 参数 (并且它们指定了连续和有效的范围), 则 Binding.getdataasync 方法将返回绑定值的子集。
 
       #### <a name="examples"></a>示例
 
@@ -373,9 +373,9 @@ items:
 
       对于 Excel，按如下所示，指定的 data 写入绑定：
 
-      <table> <tr> <th>`data`增值</th> <th>写入的数据</th> </tr> <tr> <td>字符串</td> <td>将指定的文本作为第一个绑定单元格的值插入。您还可以指定一个有效公式, 将该公式添加到绑定的单元格。 例如，将 data 设置为 `"=SUM(A1:A5)"` 将计算指定范围中值的总数。 但是，当在绑定单元格中设置公式时，设置后将无法从绑定单元格读取添加的公式（或任何已有公式）。 如果您在绑定单元格上调用 Binding.getDataAsync 方法以读取其数据，方法可能仅返回在单元格中显示的数据（即公式的结果）。</td> </tr> <tr> <td>数组的数组（“矩阵”），形状与指定绑定的形状完全匹配</td> <td>写入一组行和列。您还可以指定包含有效公式的数组的数组, 以将它们添加到绑定的单元格。 例如, 将数据设置为`[["=SUM(A1:A5)","=AVERAGE(A1:A5)"]]`将这两个公式添加到包含两个单元格的绑定。 就像在单个绑定单元格上设置公式一样, 不能使用`Binding.getDataAsync`方法从绑定中读取添加的公式 (或任何预先存在的公式), 它只返回在绑定单元格中显示的数据。</td> </tr> <tr> <td>一个`TableData`对象, 并且表的形状与绑定表匹配。</td> <td>写入一组指定的行和/或标题（如果不会覆盖周围单元格中的其他数据）。 **注意**: 如果在传递给*data*参数的 TableData 对象中指定了公式, 则由于 Excel 的 "计算列" 功能 (它会自动在列中重复公式), 因此可能无法获得预期的结果。 若要在要将包含公式的*数据*写入绑定表时解决此情况, 请尝试将数据指定为数组的数组 (而不是 TableData 对象), 并将该*coercionType*指定为 Microsoft. matrix 或 "matrix"。</td> </tr> </table>
+      <table> <tr> <th>`data`增值</th> <th>写入的数据</th> </tr> <tr> <td>字符串</td> <td>将指定的文本作为第一个绑定单元格的值插入。您还可以指定一个有效公式, 将该公式添加到绑定的单元格。 例如，将 data 设置为 `"=SUM(A1:A5)"` 将计算指定范围中值的总数。 但是，当在绑定单元格中设置公式时，设置后将无法从绑定单元格读取添加的公式（或任何已有公式）。 如果您在绑定单元格上调用 Binding.getDataAsync 方法以读取其数据，方法可能仅返回在单元格中显示的数据（即公式的结果）。</td> </tr> <tr> <td>数组的数组（“矩阵”），形状与指定绑定的形状完全匹配</td> <td>写入一组行和列。您还可以指定包含有效公式的数组的数组, 以将它们添加到绑定的单元格。 例如, 将数据设置为`[["=SUM(A1:A5)","=AVERAGE(A1:A5)"]]`将这两个公式添加到包含两个单元格的绑定。 就像在单个绑定单元格上设置公式一样, 不能使用`Binding.getDataAsync`方法从绑定中读取添加的公式 (或任何预先存在的公式), 它只返回在绑定单元格中显示的数据。</td> </tr> <tr> <td>一个`TableData`对象, 并且表的形状与绑定表匹配。</td> <td>写入一组指定的行和/或标题（如果不会覆盖周围单元格中的其他数据）。 **注意**: 如果在传递给*Data*参数的 TableData 对象中指定了公式, 则由于 Excel 的 "计算列" 功能 (它会自动在列中重复公式), 因此可能无法获得预期的结果。 若要在要将包含公式的*数据*写入绑定表时解决此情况, 请尝试将数据指定为数组的数组 (而不是 TableData 对象), 并将该*CoercionType*指定为 Microsoft. matrix 或 "matrix"。</td> </tr> </table>
 
-      对于 Excel Online:
+      对于 web 上的 Excel:
 
       - 对此方法的单个调用中, 传递给 data 参数的值中的单元格总数不能超过20000。
 
@@ -383,7 +383,7 @@ items:
 
       在其他所有情况下，都会返回错误。
 
-      如果指定了可选的 startRow 和 startColumn 参数, 并且它们指定一个有效的范围, 则 binding.setdataasync 方法将在表或矩阵绑定的子集内写入数据。
+      如果指定了可选的 startRow 和 startColumn 参数, 并且它们指定一个有效的范围, 则 Binding.setdataasync 方法将在表或矩阵绑定的子集内写入数据。
 
       在传递给 setDataAsync 方法的回调函数中，您可以使用 AsyncResult 对象的属性返回以下信息。
 
@@ -404,13 +404,13 @@ items:
           description: |-
             当前选择中要设置的数据。 可能的数据类型 (按主机):
 
-            string: excel、excel Online、word 和 word Online
+            string: web 和 Windows 上的 Excel 以及仅在 web 和 Windows 上的 Word
 
             数组的数组: 仅 Excel 和 Word
 
-            [TableData](xref:office.Office.TableData)<!-- -->: 仅限 Access、Excel 和 Word
+            [TableData](xref:office.Office.TableData)<!-- -->: 仅限 Excel 和 Word
 
-            HTML: 仅限 word 和 word Online
+            HTML: 仅限 web 上的 Word 和 Windows
 
             Office Open XML: 仅限 Word
           type:
@@ -454,9 +454,9 @@ items:
 
       对于 Excel，按如下所示，指定的 data 写入绑定：
 
-      <table> <tr> <th>`data`增值</th> <th>写入的数据</th> </tr> <tr> <td>字符串</td> <td>将指定的文本作为第一个绑定单元格的值插入。您还可以指定一个有效公式, 将该公式添加到绑定的单元格。 例如，将 data 设置为 `"=SUM(A1:A5)"` 将计算指定范围中值的总数。 但是，当在绑定单元格中设置公式时，设置后将无法从绑定单元格读取添加的公式（或任何已有公式）。 如果您在绑定单元格上调用 Binding.getDataAsync 方法以读取其数据，方法可能仅返回在单元格中显示的数据（即公式的结果）。</td> </tr> <tr> <td>数组的数组（“矩阵”），形状与指定绑定的形状完全匹配</td> <td>写入一组行和列。您还可以指定包含有效公式的数组的数组, 以将它们添加到绑定的单元格。 例如, 将数据设置为`[["=SUM(A1:A5)","=AVERAGE(A1:A5)"]]`将这两个公式添加到包含两个单元格的绑定。 就像在单个绑定单元格上设置公式一样, 不能使用`Binding.getDataAsync`方法从绑定中读取添加的公式 (或任何预先存在的公式), 它只返回在绑定单元格中显示的数据。</td> </tr> <tr> <td>一个`TableData`对象, 并且表的形状与绑定表匹配。</td> <td>写入一组指定的行和/或标题（如果不会覆盖周围单元格中的其他数据）。 **注意**: 如果在传递给*data*参数的 TableData 对象中指定了公式, 则由于 Excel 的 "计算列" 功能 (它会自动在列中重复公式), 因此可能无法获得预期的结果。 若要在要将包含公式的*数据*写入绑定表时解决此情况, 请尝试将数据指定为数组的数组 (而不是 TableData 对象), 并将该*coercionType*指定为 Microsoft. matrix 或 "matrix"。</td> </tr> </table>
+      <table> <tr> <th>`data`增值</th> <th>写入的数据</th> </tr> <tr> <td>字符串</td> <td>将指定的文本作为第一个绑定单元格的值插入。您还可以指定一个有效公式, 将该公式添加到绑定的单元格。 例如，将 data 设置为 `"=SUM(A1:A5)"` 将计算指定范围中值的总数。 但是，当在绑定单元格中设置公式时，设置后将无法从绑定单元格读取添加的公式（或任何已有公式）。 如果您在绑定单元格上调用 Binding.getDataAsync 方法以读取其数据，方法可能仅返回在单元格中显示的数据（即公式的结果）。</td> </tr> <tr> <td>数组的数组（“矩阵”），形状与指定绑定的形状完全匹配</td> <td>写入一组行和列。您还可以指定包含有效公式的数组的数组, 以将它们添加到绑定的单元格。 例如, 将数据设置为`[["=SUM(A1:A5)","=AVERAGE(A1:A5)"]]`将这两个公式添加到包含两个单元格的绑定。 就像在单个绑定单元格上设置公式一样, 不能使用`Binding.getDataAsync`方法从绑定中读取添加的公式 (或任何预先存在的公式), 它只返回在绑定单元格中显示的数据。</td> </tr> <tr> <td>一个`TableData`对象, 并且表的形状与绑定表匹配。</td> <td>写入一组指定的行和/或标题（如果不会覆盖周围单元格中的其他数据）。 **注意**: 如果在传递给*Data*参数的 TableData 对象中指定了公式, 则由于 Excel 的 "计算列" 功能 (它会自动在列中重复公式), 因此可能无法获得预期的结果。 若要在要将包含公式的*数据*写入绑定表时解决此情况, 请尝试将数据指定为数组的数组 (而不是 TableData 对象), 并将该*CoercionType*指定为 Microsoft. matrix 或 "matrix"。</td> </tr> </table>
 
-      对于 Excel Online:
+      对于 web 上的 Excel:
 
       - 对此方法的单个调用中, 传递给 data 参数的值中的单元格总数不能超过20000。
 
@@ -464,7 +464,7 @@ items:
 
       在其他所有情况下，都会返回错误。
 
-      如果指定了可选的 startRow 和 startColumn 参数, 并且它们指定一个有效的范围, 则 binding.setdataasync 方法将在表或矩阵绑定的子集内写入数据。
+      如果指定了可选的 startRow 和 startColumn 参数, 并且它们指定一个有效的范围, 则 Binding.setdataasync 方法将在表或矩阵绑定的子集内写入数据。
 
       在传递给 setDataAsync 方法的回调函数中，您可以使用 AsyncResult 对象的属性返回以下信息。
 
@@ -574,13 +574,13 @@ items:
           description: |-
             当前选择中要设置的数据。 可能的数据类型 (按主机):
 
-            string: excel、excel Online、word 和 word Online
+            string: web 和 Windows 上的 Excel 以及仅在 web 和 Windows 上的 Word
 
             数组的数组: 仅 Excel 和 Word
 
-            `TableData`<!-- -->: 仅限 Access、Excel 和 Word
+            `TableData`<!-- -->: 仅限 Excel 和 Word
 
-            HTML: 仅限 word 和 word Online
+            HTML: 仅限 web 上的 Word 和 Windows
 
             Office Open XML: 仅限 Word
           type:

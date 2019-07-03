@@ -3,9 +3,9 @@ items:
   - uid: office.Office.Settings
     summary: 表示作为名称/值对存储在主机文档中的任务窗格或内容外接程序的自定义设置。
     remarks: |-
-      **主机**: Access、Excel、PowerPoint、Word
+      **主机**: Excel、PowerPoint、Word
 
-      使用 settings 对象的方法创建的设置将针对每个加载项和文档进行保存。 即，这些设置仅供创建它们的外接程序使用，并且仅来自保存它们的文档。
+      使用 Settings 对象的方法创建的设置将针对每个加载项和文档进行保存。 即，这些设置仅供创建它们的外接程序使用，并且仅来自保存它们的文档。
 
       设置的名称是一个字符串, 而值可以是字符串、数字、布尔值、null、对象或数组。
 
@@ -33,7 +33,7 @@ items:
     summary: |-
       为 settingsChanged 事件添加事件处理程序。
 
-      **重要说明**: 当外接程序使用任何 excel 客户端运行时, 外接程序的代码可以为 settingsChanged 事件注册处理程序, 但只有在加载加载项时, 将会触发该事件, 并在 Excel Online 中打开一个电子表格, 并且多个用户正在编辑电子表格 (共同创作)。 Therefore, effectively the settingsChanged event is supported only in Excel Online in co-authoring scenarios.
+      **重要说明**: 当外接程序使用任何 Excel 客户端运行时, 加载项的代码可以为 settingsChanged 事件注册处理程序, 但只有在加载加载项时, 才会触发该事件, 在 web 上的 Excel 中打开的电子表格以及多个用户正在编辑电子表格 (合著)。 因此, 只有在合著方案中, 才会在 web 上的 Excel 中有效地支持 settingsChanged 事件。
     remarks: |-
       **要求集**:[不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
 
@@ -73,7 +73,7 @@ items:
     summary: |-
       为 settingsChanged 事件添加事件处理程序。
 
-      **重要说明**: 当外接程序使用任何 excel 客户端运行时, 外接程序的代码可以为 settingsChanged 事件注册处理程序, 但只有在加载加载项时, 将会触发该事件, 并在 Excel Online 中打开一个电子表格, 并且多个用户正在编辑电子表格 (共同创作)。 Therefore, effectively the settingsChanged event is supported only in Excel Online in co-authoring scenarios.
+      **重要说明**: 当外接程序使用任何 Excel 客户端运行时, 加载项的代码可以为 settingsChanged 事件注册处理程序, 但只有在加载加载项时, 才会触发该事件, 在 web 上的 Excel 中打开的电子表格以及多个用户正在编辑电子表格 (合著)。 因此, 只有在合著方案中, 才会在 web 上的 Excel 中有效地支持 settingsChanged 事件。
     remarks: |-
       **要求集**:[不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
 
@@ -317,7 +317,7 @@ items:
 
       加载项以前保存的任何设置都会在初始化时加载, 因此, 在会话的生存期期间, 可以只使用 set 和 get 方法来处理设置属性包的内存副本。 如果希望保留设置以便可在下次使用外接程序时使用这些设置，请使用 saveAsync 方法。
 
-      **注意**: saveAsync 方法将内存中设置属性包保留到文档文件中。 但是, 仅当用户 (或自动恢复设置) 将文档保存到文件系统时, 对文档文件本身所做的更改才会保存。 refreshAsync 方法仅在合著方案中非常有用。当同一加载项的其他实例可能会更改设置, 并且这些更改应对所有实例可用。
+      **注意**: saveAsync 方法将内存中设置属性包保留到文档文件中。 但是, 仅当用户 (或自动恢复设置) 将文档保存到文件系统时, 对文档文件本身所做的更改才会保存。 RefreshAsync 方法仅在合著方案中非常有用。当同一加载项的其他实例可能会更改设置, 并且这些更改应对所有实例可用。
 
       <table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回 undefined，这是因为没有要检索的对象或数据。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>
     name: 'saveAsync(options, callback)'
@@ -347,7 +347,7 @@ items:
 
       加载项以前保存的任何设置都会在初始化时加载, 因此, 在会话的生存期期间, 可以只使用 set 和 get 方法来处理设置属性包的内存副本。 如果希望保留设置以便可在下次使用外接程序时使用这些设置，请使用 saveAsync 方法。
 
-      **注意**: saveAsync 方法将内存中设置属性包保留到文档文件中。 但是, 仅当用户 (或自动恢复设置) 将文档保存到文件系统时, 对文档文件本身所做的更改才会保存。 refreshAsync 方法仅在合著方案中非常有用。当同一加载项的其他实例可能会更改设置, 并且这些更改应对所有实例可用。
+      **注意**: saveAsync 方法将内存中设置属性包保留到文档文件中。 但是, 仅当用户 (或自动恢复设置) 将文档保存到文件系统时, 对文档文件本身所做的更改才会保存。 RefreshAsync 方法仅在合著方案中非常有用。当同一加载项的其他实例可能会更改设置, 并且这些更改应对所有实例可用。
 
       <table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回 undefined，这是因为没有要检索的对象或数据。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>
 
@@ -388,7 +388,7 @@ items:
     remarks: |-
       **要求集**:[设置](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)
 
-      set 方法创建指定名称的新设置 (如果它尚不存在), 或在 settings 属性包的内存中副本中设置指定名称的现有设置。 在你调用 Settings.saveAsync 方法后，值会作为数据类型的序列化 JSON 表示形式存储在文档中。 每个外接程序的设置的大小上限为 2MB。
+      Set 方法创建指定名称的新设置 (如果它尚不存在), 或在 settings 属性包的内存中副本中设置指定名称的现有设置。 在你调用 Settings.saveAsync 方法后，值会作为数据类型的序列化 JSON 表示形式存储在文档中。 每个外接程序的设置的大小上限为 2MB。
 
       #### <a name="examples"></a>示例
 

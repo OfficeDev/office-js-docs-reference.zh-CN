@@ -2,7 +2,7 @@
 items:
   - uid: office.Office.Document
     summary: 表示与外接程序交互的文档的抽象类。
-    remarks: '**主机**: Access、Excel、PowerPoint、Project、Word'
+    remarks: '**主机**: Excel、PowerPoint、Project、Word'
     name: Office.Document
     fullName: Office.Document
     langs:
@@ -90,7 +90,7 @@ items:
           type:
             - office.Office.AsyncContextOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
           type:
             - '(result: AsyncResult<void>) => void'
   - uid: office.Office.Document.addHandlerAsync_1
@@ -356,7 +356,7 @@ items:
           type:
             - any
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
           type:
             - '(result: AsyncResult<void>) => void'
   - uid: office.Office.Document.getActiveViewAsync
@@ -382,7 +382,7 @@ items:
           type:
             - office.Office.AsyncContextOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是演示文稿的当前视图的状态。 返回的值可以是 "编辑" 或 "读取"。 "编辑" 对应于可在其中编辑幻灯片的任何视图, 如 "普通" 或 "大纲视图"。 "读取" 对应于幻灯片放映或阅读视图。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是演示文稿的当前视图的状态。 返回的值可以是 "编辑" 或 "读取"。 "编辑" 对应于可在其中编辑幻灯片的任何视图, 如 "普通" 或 "大纲视图"。 "读取" 对应于幻灯片放映或阅读视图。'
           type:
             - '(result: AsyncResult<"edit" | "read">) => void'
   - uid: office.Office.Document.getActiveViewAsync_1
@@ -420,11 +420,11 @@ items:
         description: ''
       parameters:
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是演示文稿的当前视图的状态。 返回的值可以是 "编辑" 或 "读取"。 "编辑" 对应于可在其中编辑幻灯片的任何视图, 如 "普通" 或 "大纲视图"。 "读取" 对应于幻灯片放映或阅读视图。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是演示文稿的当前视图的状态。 返回的值可以是 "编辑" 或 "读取"。 "编辑" 对应于可在其中编辑幻灯片的任何视图, 如 "普通" 或 "大纲视图"。 "读取" 对应于幻灯片放映或阅读视图。'
           type:
             - '(result: AsyncResult<"edit" | "read">) => void'
   - uid: office.Office.Document.getFileAsync
-    summary: 以高达 4194304 字节 (4 MB) 的切片形式返回整个文档文件。 对于 iOS 加载项而言，支持高达 65536 (64 KB) 的文件切片。 请注意，如果指定文件切片的大小上限超出允许限制，则会导致一个“内部错误”故障。
+    summary: '以高达 4194304 字节 (4 MB) 的切片形式返回整个文档文件。 对于 iOS 上的外接程序, 支持最高为65536的文件切片 (64 KB)。 请注意，若指定文件切片的大小上限超出允许限制，则会导致一个“内部错误”故障。'
     remarks: |-
       **要求集**:
 
@@ -434,17 +434,17 @@ items:
 
       - [TextFile](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#textfile)(使用时`Office.FileType.Text`<!-- -->)
 
-      对于在 Office for iOS 之外的 Office 主机应用程序中运行的外接程序, Document.getfileasync 方法支持获取最多为4194304字节 (4 MB) 的切片中的文件。 对于运行在 Office for iOS 应用中的加载项，getFileAsync 方法支持以切片形式获取至多 65536 (64 KB) 的文件。
+      对于在 iOS 上的 Office 之外的 Office 主机应用程序中运行的外接程序, Document.getfileasync 方法支持获取最多为4194304字节 (4 MB) 的切片中的文件。 对于在 iOS 上运行的 Office 应用程序中运行的外接程序, Document.getfileasync 方法支持获取最高为65536的切片中的文件 (64 KB)。
 
       可以使用 " [Office 文件类型](xref:office.Office.FileType)" 枚举或文本值指定文件类型参数。 但可能的值因主机而异:
 
-      适用于 Windows desktop 和 Excel Online 的 Excel:`Office.FileType.Compressed`
+      在 web 和 Windows 桌面上的 Excel:`Office.FileType.Compressed`
 
-      Excel for Mac:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`
+      Mac 上的 Excel:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`
 
-      PowerPoint for Windows desktop、Mac、iPad 和 PowerPoint Online:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`
+      PowerPoint 在 web、Windows desktop、Mac 和 iPad 上:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`
 
-      Word for Windows desktop、Mac、iPad 和 Word Online:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`<!-- -->, `Office.FileType.Text`
+      Word 网页版、Windows desktop、Mac 和 iPad:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`<!-- -->, `Office.FileType.Text`
 
       #### <a name="examples"></a>示例
 
@@ -553,11 +553,11 @@ items:
           type:
             - office.Office.GetFileOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是 File 对象。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是 File 对象。'
           type:
             - '(result: AsyncResult<Office.File>) => void'
   - uid: office.Office.Document.getFileAsync_1
-    summary: 以高达 4194304 字节 (4 MB) 的切片形式返回整个文档文件。 对于 iOS 加载项而言，支持高达 65536 (64 KB) 的文件切片。 请注意，如果指定文件切片的大小上限超出允许限制，则会导致一个“内部错误”故障。
+    summary: '以高达 4194304 字节 (4 MB) 的切片形式返回整个文档文件。 对于 iOS 上的外接程序, 支持最高为65536的文件切片 (64 KB)。 请注意，若指定文件切片的大小上限超出允许限制，则会导致一个“内部错误”故障。'
     remarks: |-
       **要求集**:
 
@@ -567,17 +567,17 @@ items:
 
       - [TextFile](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#textfile)(使用时`Office.FileType.Text`<!-- -->)
 
-      对于在 Office for iOS 之外的 Office 主机应用程序中运行的外接程序, Document.getfileasync 方法支持获取最多为4194304字节 (4 MB) 的切片中的文件。 对于运行在 Office for iOS 应用中的加载项，getFileAsync 方法支持以切片形式获取至多 65536 (64 KB) 的文件。
+      对于在 iOS 上的 Office 之外的 Office 主机应用程序中运行的外接程序, Document.getfileasync 方法支持获取最多为4194304字节 (4 MB) 的切片中的文件。 对于在 iOS 应用上运行在 Office 中的外接程序, Document.getfileasync 方法支持获取最高为65536的切片中的文件 (64 KB)。
 
       可以使用 " [Office 文件类型](xref:office.Office.FileType)" 枚举或文本值指定文件类型参数。 但可能的值因主机而异:
 
-      适用于 Windows desktop 和 Excel Online 的 Excel:`Office.FileType.Compressed`
+      在 web 和 Windows 桌面上的 Excel:`Office.FileType.Compressed`
 
-      Excel for Mac:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`
+      Mac 上的 Excel:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`
 
-      PowerPoint for Windows desktop、Mac、iPad 和 PowerPoint Online:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`
+      PowerPoint 在 web、Windows desktop、Mac 和 iPad 上:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`
 
-      Word for Windows desktop、Mac、iPad 和 Word Online:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`<!-- -->, `Office.FileType.Text`
+      Word 网页版、Windows desktop、Mac 和 iPad:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`<!-- -->, `Office.FileType.Text`
     name: 'getFileAsync(fileType, callback)'
     fullName: 'getFileAsync(fileType, callback)'
     langs:
@@ -595,7 +595,7 @@ items:
           type:
             - office.Office.FileType
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是 File 对象。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是 File 对象。'
           type:
             - '(result: AsyncResult<Office.File>) => void'
   - uid: office.Office.Document.getFilePropertiesAsync
@@ -621,7 +621,7 @@ items:
           type:
             - office.Office.AsyncContextOptions
         - id: callback
-          description: '回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是文件的属性 (URL 位于`asyncResult.value.url`<!-- -->).'
+          description: '回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是文件的属性 (URL 位于`asyncResult.value.url`<!-- -->).'
           type:
             - '(result: AsyncResult<Office.FileProperties>) => void'
   - uid: office.Office.Document.getFilePropertiesAsync_1
@@ -665,7 +665,7 @@ items:
         description: ''
       parameters:
         - id: callback
-          description: '回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是文件的属性 (URL 位于`asyncResult.value.url`<!-- -->).'
+          description: '回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是文件的属性 (URL 位于`asyncResult.value.url`<!-- -->).'
           type:
             - '(result: AsyncResult<Office.FileProperties>) => void'
   - uid: office.Office.Document.getMaxResourceIndexAsync
@@ -690,7 +690,7 @@ items:
           type:
             - office.Office.AsyncContextOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是当前项目的资源集合中的最大索引号。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是当前项目的资源集合中的最大索引号。'
           type:
             - '(result: AsyncResult<number>) => void'
   - uid: office.Office.Document.getMaxResourceIndexAsync_1
@@ -792,7 +792,7 @@ items:
           ```
       parameters:
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是当前项目的资源集合中的最大索引号。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是当前项目的资源集合中的最大索引号。'
           type:
             - '(result: AsyncResult<number>) => void'
   - uid: office.Office.Document.getMaxTaskIndexAsync
@@ -817,7 +817,7 @@ items:
           type:
             - office.Office.AsyncContextOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是当前项目的任务集合中的最大索引号。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是当前项目的任务集合中的最大索引号。'
           type:
             - '(result: AsyncResult<number>) => void'
   - uid: office.Office.Document.getMaxTaskIndexAsync_1
@@ -919,7 +919,7 @@ items:
           ```
       parameters:
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是当前项目的任务集合中的最大索引号。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是当前项目的任务集合中的最大索引号。'
           type:
             - '(result: AsyncResult<number>) => void'
   - uid: office.Office.Document.getProjectFieldAsync
@@ -945,7 +945,7 @@ items:
           type:
             - office.Office.AsyncContextOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含`fieldValue`属性, 它表示指定字段的值。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含`fieldValue`属性, 它表示指定字段的值。'
           type:
             - '(result: AsyncResult<any>) => void'
   - uid: office.Office.Document.getProjectFieldAsync_1
@@ -1035,7 +1035,7 @@ items:
           type:
             - number
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含`fieldValue`属性, 它表示指定字段的值。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含`fieldValue`属性, 它表示指定字段的值。'
           type:
             - '(result: AsyncResult<any>) => void'
   - uid: office.Office.Document.getResourceByIndexAsync
@@ -1064,7 +1064,7 @@ items:
           type:
             - office.Office.AsyncContextOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的资源的 GUID。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的资源的 GUID。'
           type:
             - '(result: AsyncResult<string>) => void'
   - uid: office.Office.Document.getResourceByIndexAsync_1
@@ -1170,7 +1170,7 @@ items:
           type:
             - number
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的资源的 GUID。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的资源的 GUID。'
           type:
             - '(result: AsyncResult<string>) => void'
   - uid: office.Office.Document.getResourceFieldAsync
@@ -1200,7 +1200,7 @@ items:
           type:
             - office.Office.AsyncContextOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的资源的 GUID。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的资源的 GUID。'
           type:
             - '(result: AsyncResult<string>) => void'
   - uid: office.Office.Document.getResourceFieldAsync_1
@@ -1320,7 +1320,7 @@ items:
           type:
             - number
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的资源的 GUID。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的资源的 GUID。'
           type:
             - '(result: AsyncResult<string>) => void'
   - uid: office.Office.Document.getSelectedDataAsync
@@ -1346,7 +1346,7 @@ items:
 
       [CoercionType](xref:office.Office.CoercionType)参数的可能值因主机而异。
 
-      <table> <tr> <th>主机</th> <th>支持的 coercionType</th> </tr> <tr> <td>Excel、PowerPoint、Project 和 Word</td> <td>`Office.CoercionType.Text`类似</td> </tr> <tr> <td>Excel 和 Word</td> <td>`Office.CoercionType.Matrix`(数组的数组)</td> </tr> <tr> <td>Access、Excel 和 Word</td> <td>`Office.CoercionType.Table`(TableData 对象)</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint 和 PowerPoint Online</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel、PowerPoint 和 Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
+      <table> <tr> <th>主机</th> <th>支持的 coercionType</th> </tr> <tr> <td>Excel、PowerPoint、Project 和 Word</td> <td>`Office.CoercionType.Text`类似</td> </tr> <tr> <td>Excel 和 Word</td> <td>`Office.CoercionType.Matrix`(数组的数组)</td> </tr> <tr> <td>Excel 和 Word</td> <td>`Office.CoercionType.Table`(TableData 对象)</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint 在 web 和 Windows 上</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel、PowerPoint 和 Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
 
       #### <a name="examples"></a>示例
 
@@ -1464,7 +1464,7 @@ items:
           type:
             - office.Office.GetSelectedDataOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性为当前所选内容中的数据。 这是使用 coercionType 参数指定的数据结构或格式返回的。 （请参阅备注，了解有关数据强制的详细信息。）'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性为当前所选内容中的数据。 这是使用 coercionType 参数指定的数据结构或格式返回的。 （请参阅备注，了解有关数据强制的详细信息。）'
           type:
             - '(result: AsyncResult<T>) => void'
   - uid: office.Office.Document.getSelectedDataAsync_1
@@ -1490,7 +1490,7 @@ items:
 
       [CoercionType](xref:office.Office.CoercionType)参数的可能值因主机而异。
 
-      <table> <tr> <th>主机</th> <th>支持的 coercionType</th> </tr> <tr> <td>Excel、PowerPoint、Project 和 Word</td> <td>`Office.CoercionType.Text`类似</td> </tr> <tr> <td>Excel 和 Word</td> <td>`Office.CoercionType.Matrix`(数组的数组)</td> </tr> <tr> <td>Access、Excel 和 Word</td> <td>`Office.CoercionType.Table`(TableData 对象)</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint 和 PowerPoint Online</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel、PowerPoint 和 Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
+      <table> <tr> <th>主机</th> <th>支持的 coercionType</th> </tr> <tr> <td>Excel、PowerPoint、Project 和 Word</td> <td>`Office.CoercionType.Text`类似</td> </tr> <tr> <td>Excel 和 Word</td> <td>`Office.CoercionType.Matrix`(数组的数组)</td> </tr> <tr> <td>Excel 和 Word</td> <td>`Office.CoercionType.Table`(TableData 对象)</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint 在 web 和 Windows 上</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel、PowerPoint 和 Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
     name: 'getSelectedDataAsync(coercionType, callback)'
     fullName: 'getSelectedDataAsync(coercionType, callback)'
     langs:
@@ -1508,7 +1508,7 @@ items:
           type:
             - office.Office.CoercionType
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性为当前所选内容中的数据。 这是使用 coercionType 参数指定的数据结构或格式返回的。 （请参阅备注，了解有关数据强制的详细信息。）'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性为当前所选内容中的数据。 这是使用 coercionType 参数指定的数据结构或格式返回的。 （请参阅备注，了解有关数据强制的详细信息。）'
           type:
             - '(result: AsyncResult<T>) => void'
   - uid: office.Office.Document.getSelectedResourceAsync
@@ -1530,7 +1530,7 @@ items:
           type:
             - office.Office.AsyncContextOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的资源的 GUID。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的资源的 GUID。'
           type:
             - '(result: AsyncResult<string>) => void'
   - uid: office.Office.Document.getSelectedResourceAsync_1
@@ -1642,7 +1642,7 @@ items:
           ```
       parameters:
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的资源的 GUID。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的资源的 GUID。'
           type:
             - '(result: AsyncResult<string>) => void'
   - uid: office.Office.Document.getSelectedTaskAsync
@@ -1664,7 +1664,7 @@ items:
           type:
             - office.Office.AsyncContextOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的资源的 GUID。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的资源的 GUID。'
           type:
             - '(result: AsyncResult<string>) => void'
   - uid: office.Office.Document.getSelectedTaskAsync_1
@@ -1755,7 +1755,7 @@ items:
           ```
       parameters:
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的资源的 GUID。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的资源的 GUID。'
           type:
             - '(result: AsyncResult<string>) => void'
   - uid: office.Office.Document.getSelectedViewAsync
@@ -1777,7 +1777,7 @@ items:
           type:
             - office.Office.AsyncContextOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含以下属性: `viewName`视图的名称, 作为 ProjectViewTypes 常量。 `viewType`-视图的类型, 作为 ProjectViewTypes 常量的整数值。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含以下属性: `viewName`视图的名称, 作为 ProjectViewTypes 常量。 `viewType`-视图的类型, 作为 ProjectViewTypes 常量的整数值。'
           type:
             - '(result: AsyncResult<any>) => void'
   - uid: office.Office.Document.getSelectedViewAsync_1
@@ -1843,7 +1843,7 @@ items:
           ```
       parameters:
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含以下属性: `viewName`视图的名称, 作为 ProjectViewTypes 常量。 `viewType`-视图的类型, 作为 ProjectViewTypes 常量的整数值。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含以下属性: `viewName`视图的名称, 作为 ProjectViewTypes 常量。 `viewType`-视图的类型, 作为 ProjectViewTypes 常量的整数值。'
           type:
             - '(result: AsyncResult<any>) => void'
   - uid: office.Office.Document.getTaskAsync
@@ -1869,7 +1869,7 @@ items:
           type:
             - office.Office.AsyncContextOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含以下属性: `taskName` -任务的名称。 `wssTaskId`-同步的 SharePoint 任务列表中任务的 ID。 如果项目未与 SharePoint 任务列表同步，则值为 0。 `resourceNames`-分配给任务的资源的名称的逗号分隔列表。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含以下属性: `taskName` -任务的名称。 `wssTaskId`-同步的 SharePoint 任务列表中任务的 ID。 如果项目未与 SharePoint 任务列表同步，则值为 0。 `resourceNames`-分配给任务的资源的名称的逗号分隔列表。'
           type:
             - '(result: AsyncResult<any>) => void'
   - uid: office.Office.Document.getTaskAsync_1
@@ -1965,7 +1965,7 @@ items:
           type:
             - string
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含以下属性: `taskName` -任务的名称。 `wssTaskId`-同步的 SharePoint 任务列表中任务的 ID。 如果项目未与 SharePoint 任务列表同步，则值为 0。 `resourceNames`-分配给任务的资源的名称的逗号分隔列表。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含以下属性: `taskName` -任务的名称。 `wssTaskId`-同步的 SharePoint 任务列表中任务的 ID。 如果项目未与 SharePoint 任务列表同步，则值为 0。 `resourceNames`-分配给任务的资源的名称的逗号分隔列表。'
           type:
             - '(result: AsyncResult<any>) => void'
   - uid: office.Office.Document.getTaskByIndexAsync
@@ -1994,7 +1994,7 @@ items:
           type:
             - office.Office.AsyncContextOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的任务的 GUID。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的任务的 GUID。'
           type:
             - '(result: AsyncResult<string>) => void'
   - uid: office.Office.Document.getTaskByIndexAsync_1
@@ -2101,7 +2101,7 @@ items:
           type:
             - number
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的任务的 GUID。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是作为字符串的任务的 GUID。'
           type:
             - '(result: AsyncResult<string>) => void'
   - uid: office.Office.Document.getTaskFieldAsync
@@ -2131,7 +2131,7 @@ items:
           type:
             - office.Office.AsyncContextOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含`fieldValue`属性, 它表示指定字段的值。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含`fieldValue`属性, 它表示指定字段的值。'
           type:
             - '(result: AsyncResult<any>) => void'
   - uid: office.Office.Document.getTaskFieldAsync_1
@@ -2247,7 +2247,7 @@ items:
           type:
             - number
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含`fieldValue`属性, 它表示指定字段的值。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含`fieldValue`属性, 它表示指定字段的值。'
           type:
             - '(result: AsyncResult<any>) => void'
   - uid: office.Office.Document.getWSSUrlAsync
@@ -2269,7 +2269,7 @@ items:
           type:
             - office.Office.AsyncContextOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含以下属性: `listName` -同步的 SharePoint 任务列表的名称。 `serverUrl`-同步的 SharePoint 任务列表的 URL。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含以下属性: `listName` -同步的 SharePoint 任务列表的名称。 `serverUrl`-同步的 SharePoint 任务列表的 URL。'
           type:
             - '(result: AsyncResult<any>) => void'
   - uid: office.Office.Document.getWSSUrlAsync_1
@@ -2287,7 +2287,7 @@ items:
         description: ''
       parameters:
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含以下属性: `listName` -同步的 SharePoint 任务列表的名称。 `serverUrl`-同步的 SharePoint 任务列表的 URL。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性包含以下属性: `listName` -同步的 SharePoint 任务列表的名称。 `serverUrl`-同步的 SharePoint 任务列表的 URL。'
           type:
             - '(result: AsyncResult<any>) => void'
   - uid: office.Office.Document.goToByIdAsync
@@ -2329,7 +2329,7 @@ items:
           type:
             - office.Office.GoToByIdOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是当前视图。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是当前视图。'
           type:
             - '(result: AsyncResult<any>) => void'
   - uid: office.Office.Document.goToByIdAsync_1
@@ -2470,7 +2470,7 @@ items:
           type:
             - office.Office.GoToType
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是当前视图。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是当前视图。'
           type:
             - '(result: AsyncResult<any>) => void'
   - uid: office.Office.Document.removeHandlerAsync
@@ -2497,7 +2497,7 @@ items:
           type:
             - office.Office.RemoveHandlerOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
           type:
             - '(result: AsyncResult<void>) => void'
   - uid: office.Office.Document.removeHandlerAsync_1
@@ -2596,7 +2596,7 @@ items:
           type:
             - Office.EventType
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
           type:
             - '(result: AsyncResult<void>) => void'
   - uid: office.Office.Document.setResourceFieldAsync
@@ -2633,7 +2633,7 @@ items:
           type:
             - office.Office.AsyncContextOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
           type:
             - '(result: AsyncResult<void>) => void'
   - uid: office.Office.Document.setResourceFieldAsync_1
@@ -2749,7 +2749,7 @@ items:
           type:
             - string | number | boolean | object
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
           type:
             - '(result: AsyncResult<void>) => void'
   - uid: office.Office.Document.setSelectedDataAsync
@@ -2779,13 +2779,13 @@ items:
 
       <tr> <td>Excel</td> <td>如果选择了单个单元格</td> <td>如果`data`是字符串, 则将指定的文本作为当前单元格的值插入。</td> </tr> <tr> <td></td> <td></td> <td>如果`data`是数组的数组 ("矩阵"), 则插入一组指定的行和列 (如果不会覆盖周围单元格中的其他任何数据)。</td> </tr> <tr> <td></td> <td></td> <td>如果`data`是 TableData 对象, 则插入具有一组指定的行和标题的新 Excel 表 (如果不会覆盖周围单元格中的其他任何数据)。</td> </tr> <tr> <td></td> <td>如果选择了多个单元格</td> <td>If the shape does not match the shape of `data`<!-- -->, 则会返回错误。</td> </tr> <tr> <td></td> <td></td> <td>If the shape of the selection exactly matches the shape of `data`<!-- -->, 则根据中的值更新所选单元格的值`data`<!-- -->.</td> </tr> <tr> <td></td> <td>插入图像</td> <td>插入的图像为浮动图像。 imageLeft 和 imageTop 位置参数是相对于当前选定的单元格而言的。 允许 imageLeft 和 imageTop 的值为负数，将由 Excel 重新调整在工作表内放置的图像位置。 除非 imageWidth 和 imageHeight 参数均已提供，否则将锁定图像的纵横比。 如果只给定 imageWidth 参数或只给定 imageHeight 参数，则另一个值将自动扩展以保留原始纵横比。</td> </tr> <tr> <td></td> <td>其他所有情况</td> <td>返回错误。</td> </tr>
 
-      <tr> <td>Excel Online</td> <td>除了上述 Excel 中所述的行为之外, 在 Excel Online 中写入数据时也适用这些限制</td> <td>对此方法的单个调用中, 可以使用`data`参数写入工作表的单元格总数不能超过20000。</td> </tr> <tr> <td></td> <td></td> <td>传递给`cellFormat`参数的格式组的数量不能超过100。 每个格式设置组由应用于特定单元格范围的一组格式组成。</td> </tr>
+      <tr> <td>在 web 上的 Excel</td> <td>除了上述 Excel 所述的行为之外, 在 Excel 网页版中写入数据时也适用这些限制</td> <td>对此方法的单个调用中, 可以使用`data`参数写入工作表的单元格总数不能超过20000。</td> </tr> <tr> <td></td> <td></td> <td>传递给`cellFormat`参数的格式组的数量不能超过100。 每个格式设置组由应用于特定单元格范围的一组格式组成。</td> </tr>
 
       <tr> <td>PowerPoint</td> <td>插入图像</td> <td>插入的图像为浮动图像。 Position imageLeft 和 imageTop 参数是可选的, 但如果提供, 则应同时存在。 如果提供单个值，则它将被忽略。 允许 imageLeft 和 imageTop 的值为负数，且可以将图像放置在幻灯片的外部。 如果未给定任何可选参数，并且幻灯片有一个占位符，则图像将替换幻灯片中的占位符。 除非 imageWidth和 imageHeight 参数均已提供，否则将锁定图像纵横比。 如果只给定 imageWidth 参数或只给定 imageHeight 参数，则另一个值将自动扩展以保留原始纵横比。</td> </tr> </table>
 
       [CoercionType](xref:office.Office.CoercionType)参数的可能值因主机而异。
 
-      <table> <tr> <th>主机</th> <th>支持的 coercionType</th> </tr> <tr> <td>Excel、PowerPoint、Project 和 Word</td> <td>`Office.CoercionType.Text`类似</td> </tr> <tr> <td>Excel 和 Word</td> <td>`Office.CoercionType.Matrix`(数组的数组)</td> </tr> <tr> <td>Access、Excel 和 Word</td> <td>`Office.CoercionType.Table`(TableData 对象)</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint 和 PowerPoint Online</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel、PowerPoint 和 Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
+      <table> <tr> <th>主机</th> <th>支持的 coercionType</th> </tr> <tr> <td>Excel、PowerPoint、Project 和 Word</td> <td>`Office.CoercionType.Text`类似</td> </tr> <tr> <td>Excel 和 Word</td> <td>`Office.CoercionType.Matrix`(数组的数组)</td> </tr> <tr> <td>Excel 和 Word</td> <td>`Office.CoercionType.Table`(TableData 对象)</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint 在 web 和 Windows 上</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel、PowerPoint 和 Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
 
       #### <a name="examples"></a>示例
 
@@ -2926,7 +2926,7 @@ items:
 
             在 Excel 中, 还可以将数据指定为数组的数组, 其中包含将其添加到选定单元格的有效公式。 例如, 如果不会覆盖任何其他数据, 则将数据\[ \[设置为 "= SUM (A1: a5)", "= AVERAGE (A1: A5\] \] )" 会将这两个公式添加到所选内容中。 与在单个单元格上将公式设置为“text”一样，设置后你将无法读取添加的公式（或任何已有公式），只能读取公式的结果。
 
-            - TableData 对象： 将插入带标题的表格。 在 Excel 中, 如果在传递给 data 参数的 TableData 对象中指定了公式, 则由于 Excel 的 "计算列" 功能 (它会自动在列中重复公式), 因此您可能无法获得预期的结果。 若要在要将包含公式的对象`data`写入选定的表时解决此情况, 请尝试将数据指定为数组的数组 (而不是 TableData 对象), 并将该 coercionType 指定为 "Microsoft。 matrix" 或 "matrix"。 但是, 仅当满足以下条件之一时, 此方法才会阻止 "计算列" 功能: (1) 您正在写入列的所有单元格, 或者 (2) 列中已有至少两个不同的公式。
+            - TableData 对象： 将插入带标题的表格。 在 Excel 中, 如果在传递给 data 参数的 TableData 对象中指定了公式, 则由于 Excel 的 "计算列" 功能 (它会自动在列中重复公式), 因此您可能无法获得预期的结果。 若要在要将包含公式的对象`data`写入选定的表时解决此情况, 请尝试将数据指定为数组的数组 (而不是 TableData 对象), 并将该 coercionType 指定为 "Microsoft. matrix" 或 "matrix"。 但是, 仅当满足以下条件之一时, 此方法才会阻止 "计算列" 功能: (1) 您正在写入列的所有单元格, 或者 (2) 列中已有至少两个不同的公式。
           type:
             - 'string | TableData | any[][]'
         - id: options
@@ -2934,7 +2934,7 @@ items:
           type:
             - office.Office.SetSelectedDataOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. AsyncResult 值属性始终返回 undefined, 因为没有要检索的对象或数据。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. AsyncResult 值属性始终返回 undefined, 因为没有要检索的对象或数据。'
           type:
             - '(result: AsyncResult<void>) => void'
   - uid: office.Office.Document.setSelectedDataAsync_1
@@ -2964,13 +2964,13 @@ items:
 
       <tr> <td>Excel</td> <td>如果选择了单个单元格</td> <td>如果`data`是字符串, 则将指定的文本作为当前单元格的值插入。</td> </tr> <tr> <td></td> <td></td> <td>如果`data`是数组的数组 ("矩阵"), 则插入一组指定的行和列 (如果不会覆盖周围单元格中的其他任何数据)。</td> </tr> <tr> <td></td> <td></td> <td>如果`data`是 TableData 对象, 则插入具有一组指定的行和标题的新 Excel 表 (如果不会覆盖周围单元格中的其他任何数据)。</td> </tr> <tr> <td></td> <td>如果选择了多个单元格</td><td>If the shape does not match the shape of `data`<!-- -->, 则会返回错误。</td> </tr> <tr> <td></td> <td></td> <td>If the shape of the selection exactly matches the shape of `data`<!-- -->, 则根据中的值更新所选单元格的值`data`<!-- -->.</td> </tr> <tr> <td></td> <td>插入图像</td> <td>插入的图像为浮动图像。 imageLeft 和 imageTop 位置参数是相对于当前选定的单元格而言的。 允许 imageLeft 和 imageTop 的值为负数，将由 Excel 重新调整在工作表内放置的图像位置。 除非 imageWidth 和 imageHeight 参数均已提供，否则将锁定图像的纵横比。 如果只给定 imageWidth 参数或只给定 imageHeight 参数，则另一个值将自动扩展以保留原始纵横比。</td> </tr> <tr> <td></td> <td>其他所有情况</td> <td>返回错误。</td> </tr>
 
-      <tr> <td>Excel Online</td> <td>除了上述 Excel 中所述的行为之外, 在 Excel Online 中写入数据时也适用这些限制</td> <td>对此方法的单个调用中, 可以使用`data`参数写入工作表的单元格总数不能超过20000。</td> </tr> <tr> <td></td> <td></td> <td>传递给`cellFormat`参数的格式组的数量不能超过100。 每个格式设置组由应用于特定单元格范围的一组格式组成。</td> </tr>
+      <tr> <td>在 web 上的 Excel</td> <td>除了上述 Excel 所述的行为之外, 在 Excel 网页版中写入数据时也适用这些限制</td> <td>对此方法的单个调用中, 可以使用`data`参数写入工作表的单元格总数不能超过20000。</td> </tr> <tr> <td></td> <td></td> <td>传递给`cellFormat`参数的格式组的数量不能超过100。 每个格式设置组由应用于特定单元格范围的一组格式组成。</td> </tr>
 
       <tr> <td>PowerPoint</td> <td>插入图像</td> <td>插入的图像为浮动图像。 Position imageLeft 和 imageTop 参数是可选的, 但如果提供, 则应同时存在。 如果提供单个值，则它将被忽略。 允许 imageLeft 和 imageTop 的值为负数，且可以将图像放置在幻灯片的外部。 如果未给定任何可选参数，并且幻灯片有一个占位符，则图像将替换幻灯片中的占位符。 除非 imageWidth和 imageHeight 参数均已提供，否则将锁定图像纵横比。 如果只给定 imageWidth 参数或只给定 imageHeight 参数，则另一个值将自动扩展以保留原始纵横比。</td> </tr> </table>
 
       [CoercionType](xref:office.Office.CoercionType)参数的可能值因主机而异。
 
-      <table> <tr> <th>主机</th> <th>支持的 coercionType</th> </tr> <tr> <td>Excel、PowerPoint、Project 和 Word</td> <td>`Office.CoercionType.Text`类似</td> </tr> <tr> <td>Excel 和 Word</td> <td>`Office.CoercionType.Matrix`(数组的数组)</td> </tr> <tr> <td>Access、Excel 和 Word</td> <td>`Office.CoercionType.Table`(TableData 对象)</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint 和 PowerPoint Online</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel、PowerPoint 和 Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
+      <table> <tr> <th>主机</th> <th>支持的 coercionType</th> </tr> <tr> <td>Excel、PowerPoint、Project 和 Word</td> <td>`Office.CoercionType.Text`类似</td> </tr> <tr> <td>Excel 和 Word</td> <td>`Office.CoercionType.Matrix`(数组的数组)</td> </tr> <tr> <td>Excel 和 Word</td> <td>`Office.CoercionType.Table`(TableData 对象)</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint 在 web 和 Windows 上</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel、PowerPoint 和 Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
     name: 'setSelectedDataAsync(data, callback)'
     fullName: 'setSelectedDataAsync(data, callback)'
     langs:
@@ -2995,11 +2995,11 @@ items:
 
             在 Excel 中, 还可以将数据指定为数组的数组, 其中包含将其添加到选定单元格的有效公式。 例如, 如果不会覆盖任何其他数据, 则将数据\[ \[设置为 "= SUM (A1: a5)", "= AVERAGE (A1: A5\] \] )" 会将这两个公式添加到所选内容中。 与在单个单元格上将公式设置为“text”一样，设置后你将无法读取添加的公式（或任何已有公式），只能读取公式的结果。
 
-            - TableData 对象： 将插入带标题的表格。 在 Excel 中, 如果在传递给 data 参数的 TableData 对象中指定了公式, 则由于 Excel 的 "计算列" 功能 (它会自动在列中重复公式), 因此您可能无法获得预期的结果。 若要在要将包含公式的对象`data`写入选定的表时解决此情况, 请尝试将数据指定为数组的数组 (而不是 TableData 对象), 并将该 coercionType 指定为 "Microsoft。 matrix" 或 "matrix"。 但是, 仅当满足以下条件之一时, 此方法才会阻止 "计算列" 功能: (1) 您正在写入列的所有单元格, 或者 (2) 列中已有至少两个不同的公式。
+            - TableData 对象： 将插入带标题的表格。 在 Excel 中, 如果在传递给 data 参数的 TableData 对象中指定了公式, 则由于 Excel 的 "计算列" 功能 (它会自动在列中重复公式), 因此您可能无法获得预期的结果。 若要在要将包含公式的对象`data`写入选定的表时解决此情况, 请尝试将数据指定为数组的数组 (而不是 TableData 对象), 并将该 coercionType 指定为 "Microsoft. matrix" 或 "matrix"。 但是, 仅当满足以下条件之一时, 此方法才会阻止 "计算列" 功能: (1) 您正在写入列的所有单元格, 或者 (2) 列中已有至少两个不同的公式。
           type:
             - 'string | TableData | any[][]'
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. AsyncResult 值属性始终返回 undefined, 因为没有要检索的对象或数据。'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. AsyncResult 值属性始终返回 undefined, 因为没有要检索的对象或数据。'
           type:
             - '(result: AsyncResult<void>) => void'
   - uid: office.Office.Document.setTaskFieldAsync
@@ -3036,7 +3036,7 @@ items:
           type:
             - office.Office.AsyncContextOptions
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
           type:
             - '(result: AsyncResult<void>) => void'
   - uid: office.Office.Document.setTaskFieldAsync_1
@@ -3152,7 +3152,7 @@ items:
           type:
             - string | number | boolean | object
         - id: callback
-          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office。 AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
           type:
             - '(result: AsyncResult<void>) => void'
   - uid: office.Office.Document.bindings
