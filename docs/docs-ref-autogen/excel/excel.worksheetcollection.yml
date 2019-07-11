@@ -37,8 +37,10 @@ items:
       - excel.Excel.WorksheetCollection.onDeleted
       - excel.Excel.WorksheetCollection.onFiltered
       - excel.Excel.WorksheetCollection.onFormatChanged
+      - excel.Excel.WorksheetCollection.onRowHiddenChanged
       - excel.Excel.WorksheetCollection.onRowSorted
       - excel.Excel.WorksheetCollection.onSelectionChanged
+      - excel.Excel.WorksheetCollection.onSingleClicked
       - excel.Excel.WorksheetCollection.toJSON
   - uid: excel.Excel.WorksheetCollection.add
     summary: |-
@@ -571,7 +573,7 @@ items:
           - OfficeExtension.EventHandlers<Excel.WorksheetChangedEventArgs>
   - uid: excel.Excel.WorksheetCollection.onColumnSorted
     summary: |-
-      对列进行排序时发生。
+      在列上排序时发生。
 
       \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -660,9 +662,25 @@ items:
       return:
         type:
           - OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>
+  - uid: excel.Excel.WorksheetCollection.onRowHiddenChanged
+    summary: |-
+      当工作簿中的任何工作表的行隐藏状态更改时发生。
+
+      \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: onRowHiddenChanged
+    fullName: onRowHiddenChanged
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onRowHiddenChanged: OfficeExtension.EventHandlers<Excel.WorksheetRowHiddenChangedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.WorksheetRowHiddenChangedEventArgs>
   - uid: excel.Excel.WorksheetCollection.onRowSorted
     summary: |-
-      对行进行排序时发生。
+      在行上排序时发生。
 
       \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -691,6 +709,22 @@ items:
       return:
         type:
           - OfficeExtension.EventHandlers<Excel.WorksheetSelectionChangedEventArgs>
+  - uid: excel.Excel.WorksheetCollection.onSingleClicked
+    summary: |-
+      在工作表集合中发生左击或螺纹操作时发生。
+
+      \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: onSingleClicked
+    fullName: onSingleClicked
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onSingleClicked: OfficeExtension.EventHandlers<Excel.WorksheetSingleClickedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.WorksheetSingleClickedEventArgs>
   - uid: excel.Excel.WorksheetCollection.toJSON
     summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始`Excel.WorksheetCollection`对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Excel.Interfaces.WorksheetCollectionData`<!-- -->), 其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。'
     name: toJSON()

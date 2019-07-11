@@ -51,6 +51,7 @@ items:
       - excel.Excel.Worksheet.onDeactivated
       - excel.Excel.Worksheet.onFiltered
       - excel.Excel.Worksheet.onFormatChanged
+      - excel.Excel.Worksheet.onRowHiddenChanged
       - excel.Excel.Worksheet.onRowSorted
       - excel.Excel.Worksheet.onSelectionChanged
       - excel.Excel.Worksheet.onSingleClicked
@@ -270,7 +271,7 @@ items:
             - excel.Excel.Worksheet
   - uid: excel.Excel.Worksheet.delete
     summary: |-
-      从工作簿中删除工作表。 请注意, 如果工作表的可见性设置为 "VeryHidden", 则删除操作将失败, 并出现 GeneralException。
+      从工作簿中删除工作表。 请注意, 如果工作表的可见性设置为 "VeryHidden", 则删除操作将失败, `InvalidOperation`并出现异常。 应首先将其可见性更改为隐藏或可见, 然后再将其删除。
 
       \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: delete()
@@ -1105,6 +1106,22 @@ items:
       return:
         type:
           - OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>
+  - uid: excel.Excel.Worksheet.onRowHiddenChanged
+    summary: |-
+      当特定工作表上的行隐藏状态更改时发生。
+
+      \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: onRowHiddenChanged
+    fullName: onRowHiddenChanged
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onRowHiddenChanged: OfficeExtension.EventHandlers<Excel.WorksheetRowHiddenChangedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.WorksheetRowHiddenChangedEventArgs>
   - uid: excel.Excel.Worksheet.onRowSorted
     summary: |-
       在行上排序时发生。

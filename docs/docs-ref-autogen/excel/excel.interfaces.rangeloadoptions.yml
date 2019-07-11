@@ -37,6 +37,7 @@ items:
       - excel.Excel.Interfaces.RangeLoadOptions.rowCount
       - excel.Excel.Interfaces.RangeLoadOptions.rowHidden
       - excel.Excel.Interfaces.RangeLoadOptions.rowIndex
+      - excel.Excel.Interfaces.RangeLoadOptions.savedAsArray
       - excel.Excel.Interfaces.RangeLoadOptions.style
       - excel.Excel.Interfaces.RangeLoadOptions.text
       - excel.Excel.Interfaces.RangeLoadOptions.top
@@ -117,7 +118,7 @@ items:
           - boolean
   - uid: excel.Excel.Interfaces.RangeLoadOptions.columnHidden
     summary: |-
-      表示当前区域中的所有列是否隐藏。
+      表示当前 range 的所有列均已隐藏。
 
       \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: columnHidden
@@ -207,7 +208,7 @@ items:
           - boolean
   - uid: excel.Excel.Interfaces.RangeLoadOptions.formulasR1C1
     summary: |-
-      表示采用 R1C1 样式表示法的公式。 将公式设置为区域时, value 参数可以是单个值 (字符串), 也可以是二维数组。 如果参数是单个值, 它将应用于区域中的所有单元格。
+      表示采用 R1C1 表示法的公式。 将公式设置为区域时, value 参数可以是单个值 (字符串), 也可以是二维数组。 如果参数是单个值, 它将应用于区域中的所有单元格。
 
       \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: formulasR1C1
@@ -238,7 +239,7 @@ items:
           - boolean
   - uid: excel.Excel.Interfaces.RangeLoadOptions.height
     summary: |-
-      返回以磅为单位的距离, 100 以磅为单位, 从区域的上边缘到区域的下边缘之间的距离 (以磅为单位)。 只读。
+      返回从区域的上边缘到区域的下边缘的 100％ 缩放的距离（以磅为单位）。 只读。
 
       \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -314,7 +315,7 @@ items:
           - boolean
   - uid: excel.Excel.Interfaces.RangeLoadOptions.left
     summary: |-
-      返回以磅为单位的距离, 以磅为单位, 从工作表左边缘到区域左边缘的 100% 缩放。 只读。
+      返回从工作表的左边缘到区域的左边缘的 100％ 缩放的距离（以磅为单位）。 只读。
 
       \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -390,7 +391,7 @@ items:
           - boolean
   - uid: excel.Excel.Interfaces.RangeLoadOptions.rowHidden
     summary: |-
-      表示当前区域中的所有行是否隐藏。
+      表示当前 range 的所有行均已隐藏。
 
       \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: rowHidden
@@ -415,6 +416,22 @@ items:
     type: property
     syntax:
       content: 'rowIndex?: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel.Excel.Interfaces.RangeLoadOptions.savedAsArray
+    summary: |-
+      表示是否将所有单元格都保存为数组公式。 如果所有单元格都将保存为数组, 则返回 true; 如果所有单元格不保存为数组公式, 则返回 false。 如果有混合的单元格, 且不能保存为数组公式, 则返回 null。
+
+      \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: savedAsArray
+    fullName: savedAsArray
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'savedAsArray?: boolean;'
       return:
         type:
           - boolean
@@ -450,7 +467,7 @@ items:
           - boolean
   - uid: excel.Excel.Interfaces.RangeLoadOptions.top
     summary: |-
-      返回以磅为单位的距离, 以磅为单位, 从工作表的上边缘到区域的上边缘之间的 100% 缩放。 只读。
+      返回从工作表的上边缘到区域的上边缘的 100％ 缩放的距离（以磅为单位）。 只读。
 
       \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -496,7 +513,7 @@ items:
           - boolean
   - uid: excel.Excel.Interfaces.RangeLoadOptions.width
     summary: |-
-      返回以磅为单位的距离, 以磅为单位, 从区域的左边缘到范围的右边缘之间的 100% 缩放。 只读。
+      返回从区域的左边缘到区域的右边缘的 100％ 缩放的距离（以磅为单位）。 只读。
 
       \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true

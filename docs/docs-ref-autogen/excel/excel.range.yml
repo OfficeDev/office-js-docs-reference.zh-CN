@@ -97,6 +97,7 @@ items:
       - excel.Excel.Range.rowCount
       - excel.Excel.Range.rowHidden
       - excel.Excel.Range.rowIndex
+      - excel.Excel.Range.savedAsArray
       - excel.Excel.Range.select
       - excel.Excel.Range.set
       - excel.Excel.Range.set_1
@@ -864,7 +865,36 @@ items:
       return:
         type:
           - 'OfficeExtension.ClientResult<CellProperties[][]>'
-        description: '一个二维数组, 其中每一项代表对应单元格的请求属性。'
+        description: |-
+          一个二维数组, 其中每一项代表对应单元格的请求属性。
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const cell = context.workbook.getActiveCell();
+
+              // Define the cell properties to get by setting the matching LoadOptions to true.
+              const propertiesToGet = cell.getCellProperties({
+                  address: true,
+                  format: {
+                      fill: {
+                          color: true
+                      },
+                      font: {
+                          color: true
+                      }
+                  },
+                  style: true
+              });
+
+              // Sync to get the data from the workbook.
+              await context.sync();
+              const cellProperties = propertiesToGet.value[0][0];
+              console.log(
+                  `Address: ${cellProperties.address}\nStyle: ${cellProperties.style}\nFill Color: ${cellProperties.format.fill.color}\nFont Color: ${cellProperties.format.font.color}`);
+          });
+          ```
       parameters:
         - id: cellPropertiesLoadOptions
           description: 一个代表要加载的单元格属性的对象。
@@ -1501,8 +1531,7 @@ items:
               const sheet = context.workbook.worksheets.getActiveWorksheet();
               const usedRange = sheet.getUsedRange();
 
-              // Find the ranges with either text or logical (boolean)
-              // values
+              // Find the ranges with either text or logical (boolean) values.
               const formulaRanges = usedRange.getSpecialCells("Constants", "LogicalText");
               formulaRanges.format.fill.color = "orange";
 
@@ -2408,6 +2437,22 @@ items:
       return:
         type:
           - number
+  - uid: excel.Excel.Range.savedAsArray
+    summary: |-
+      表示是否将所有单元格都保存为数组公式。 如果所有单元格都将保存为数组, 则返回 true; 如果所有单元格不保存为数组公式, 则返回 false。 如果有混合的单元格, 且不能保存为数组公式, 则返回 null。
+
+      \[[API 集: EXCELAPI BETA (仅限预览)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: savedAsArray
+    fullName: savedAsArray
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly savedAsArray: boolean;'
+      return:
+        type:
+          - boolean
   - uid: excel.Excel.Range.select
     summary: |-
       在 Excel UI 中选择指定的区域。
@@ -2540,7 +2585,83 @@ items:
       return:
         type:
           - void
-        description: ''
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+
+              // Creating the SettableCellProperties objects to use for the range.
+              // In your add-in, these should be created once, outside the function.
+              const topHeaderProps: Excel.SettableCellProperties = {
+                  // The style property takes a string matching the name of an Excel style.
+                  // Note that a style will overwrite any formatting,
+                  // so do not use the format property with the style property.
+                  style: "Heading1"
+              };
+
+              const headerProps: Excel.SettableCellProperties = {
+                  // Any subproperties of format that are not set will not be changed when these cell properties are set.
+                  format: {
+                      fill: {
+                          color: "Blue"
+                      },
+                      font: {
+                          color: "White",
+                          bold: true
+                      }
+                  }
+              };
+
+              const nonApplicableProps: Excel.SettableCellProperties = {
+                  format: {
+                      fill: {
+                          pattern: Excel.FillPattern.gray25
+                      },
+                      font: {
+                          color: "Gray",
+                          italic: true
+                      }
+                  }
+              };
+
+              const matchupScoreProps: Excel.SettableCellProperties = {
+                  format: {
+                      borders: {
+                          bottom: {
+                              style: Excel.BorderLineStyle.continuous
+                          },
+                          left: {
+                              style: Excel.BorderLineStyle.continuous
+                          },
+                          right: {
+                              style: Excel.BorderLineStyle.continuous
+                          },
+                          top: {
+                              style: Excel.BorderLineStyle.continuous
+                          }
+                      }
+                  }
+              };
+
+              const range = sheet.getRange("A1:E5");
+
+              // You can use empty JSON objects to avoid changing a cell's properties.
+              range.setCellProperties([
+                  [topHeaderProps, {}, {}, {}, {}],
+                  [{}, {}, headerProps, headerProps, headerProps],
+                  [{}, headerProps, nonApplicableProps, matchupScoreProps, matchupScoreProps],
+                  [{}, headerProps, matchupScoreProps, nonApplicableProps, matchupScoreProps],
+                  [{}, headerProps, matchupScoreProps, matchupScoreProps, nonApplicableProps]
+              ]);
+
+              sheet.getUsedRange().format.autofitColumns();
+              await context.sync();
+          });
+          ```
       parameters:
         - id: cellPropertiesData
           description: '一个二维数组, 表示要在每个单元格中设置的属性。'

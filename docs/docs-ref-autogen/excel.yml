@@ -171,7 +171,6 @@ items:
       - excel.Excel.createWorkbook
       - excel.Excel.CustomConditionalFormat
       - excel.Excel.CustomDataValidation
-      - excel.Excel.CustomFunctionEventArgs
       - excel.Excel.CustomFunctionMetadataFormat
       - excel.Excel.CustomFunctionType
       - excel.Excel.CustomProperty
@@ -752,6 +751,7 @@ items:
       - excel.Excel.RibbonTab
       - excel.Excel.RowColumnPivotHierarchy
       - excel.Excel.RowColumnPivotHierarchyCollection
+      - excel.Excel.RowHiddenChangeType
       - excel.Excel.RowProperties
       - excel.Excel.RowPropertiesLoadOptions
       - excel.Excel.run
@@ -868,6 +868,7 @@ items:
       - excel.Excel.WorksheetPositionType
       - excel.Excel.WorksheetProtection
       - excel.Excel.WorksheetProtectionOptions
+      - excel.Excel.WorksheetRowHiddenChangedEventArgs
       - excel.Excel.WorksheetRowSortedEventArgs
       - excel.Excel.WorksheetSearchCriteria
       - excel.Excel.WorksheetSelectionChangedEventArgs
@@ -965,7 +966,7 @@ items:
         description: ''
       parameters:
         - id: batch
-          description: '一个采用 RequestContext 的函数, 并返回一个承诺 (通常只是 "context。 sync ()" 的结果)。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行, 因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
+          description: '一个采用 RequestContext 的函数, 并返回一个承诺 (通常只是 "context. sync ()" 的结果)。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行, 因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
           type:
             - '(context: Excel.RequestContext) => Promise<T>'
   - uid: excel.Excel.run_1
@@ -987,7 +988,7 @@ items:
           type:
             - office.OfficeExtension.ClientObject
         - id: batch
-          description: '一个采用 RequestContext 的函数, 并返回一个承诺 (通常只是 "context。 sync ()" 的结果)。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行, 因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
+          description: '一个采用 RequestContext 的函数, 并返回一个承诺 (通常只是 "context. sync ()" 的结果)。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行, 因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
           type:
             - '(context: Excel.RequestContext) => Promise<T>'
   - uid: excel.Excel.run_2
@@ -1005,11 +1006,11 @@ items:
         description: ''
       parameters:
         - id: objects
-          description: '以前创建的 API 对象的数组。 将验证该数组, 以确保所有对象都共享相同的上下文。 批处理将使用此共享 RequestContext, 这意味着应用于这些对象的任何更改都将由 "context。 sync ()" 选取。'
+          description: '以前创建的 API 对象的数组。 将验证该数组, 以确保所有对象都共享相同的上下文。 批处理将使用此共享 RequestContext, 这意味着应用于这些对象的任何更改都将由 "context. sync ()" 选取。'
           type:
             - 'OfficeExtension.ClientObject[]'
         - id: batch
-          description: '一个采用 RequestContext 的函数, 并返回一个承诺 (通常只是 "context。 sync ()" 的结果)。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行, 因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
+          description: '一个采用 RequestContext 的函数, 并返回一个承诺 (通常只是 "context. sync ()" 的结果)。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行, 因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
           type:
             - '(context: Excel.RequestContext) => Promise<T>'
   - uid: excel.Excel.run_3
@@ -1031,7 +1032,7 @@ items:
           type:
             - excel.Excel.RunOptions
         - id: batch
-          description: '一个采用 RequestContext 的函数, 并返回一个承诺 (通常只是 "context。 sync ()" 的结果)。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行, 因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
+          description: '一个采用 RequestContext 的函数, 并返回一个承诺 (通常只是 "context. sync ()" 的结果)。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行, 因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
           type:
             - '(context: Excel.RequestContext) => Promise<T>'
   - uid: excel.Excel.run_4
@@ -1063,7 +1064,7 @@ items:
           type:
             - office.OfficeExtension.ClientRequestContext
         - id: batch
-          description: '一个采用 RequestContext 的函数, 并返回一个承诺 (通常只是 "context。 sync ()" 的结果)。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行, 因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
+          description: '一个采用 RequestContext 的函数, 并返回一个承诺 (通常只是 "context. sync ()" 的结果)。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行, 因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
           type:
             - '(context: Excel.RequestContext) => Promise<T>'
 references:
@@ -1393,8 +1394,6 @@ references:
     name: Excel.CustomConditionalFormat
   - uid: excel.Excel.CustomDataValidation
     name: Excel.CustomDataValidation
-  - uid: excel.Excel.CustomFunctionEventArgs
-    name: Excel.CustomFunctionEventArgs
   - uid: excel.Excel.CustomFunctionMetadataFormat
     name: Excel.CustomFunctionMetadataFormat
   - uid: excel.Excel.CustomFunctionType
@@ -2551,6 +2550,8 @@ references:
     name: Excel.RowColumnPivotHierarchy
   - uid: excel.Excel.RowColumnPivotHierarchyCollection
     name: Excel.RowColumnPivotHierarchyCollection
+  - uid: excel.Excel.RowHiddenChangeType
+    name: Excel.RowHiddenChangeType
   - uid: excel.Excel.RowProperties
     name: Excel.RowProperties
   - uid: excel.Excel.RowPropertiesLoadOptions
@@ -2773,6 +2774,8 @@ references:
     name: Excel.WorksheetProtection
   - uid: excel.Excel.WorksheetProtectionOptions
     name: Excel.WorksheetProtectionOptions
+  - uid: excel.Excel.WorksheetRowHiddenChangedEventArgs
+    name: Excel.WorksheetRowHiddenChangedEventArgs
   - uid: excel.Excel.WorksheetRowSortedEventArgs
     name: Excel.WorksheetRowSortedEventArgs
   - uid: excel.Excel.WorksheetSearchCriteria
