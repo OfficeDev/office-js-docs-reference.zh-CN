@@ -2,13 +2,13 @@
 items:
   - uid: outlook.Office.SharedProperties
     summary: |-
-      <span data-ttu-id="24490-101">表示共享文件夹、邮箱或日历中的约会或邮件的属性。</span><span class="sxs-lookup"><span data-stu-id="24490-101">Represents the properties of an appointment or message in a shared folder, mailbox, or calendar.</span></span>
+      <span data-ttu-id="8ba09-101">表示共享文件夹、邮箱或日历中的约会或邮件的属性。</span><span class="sxs-lookup"><span data-stu-id="8ba09-101">Represents the properties of an appointment or message in a shared folder, mailbox, or calendar.</span></span>
 
-      <span data-ttu-id="24490-102">\[[API 集: 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="24490-102">\[ [API set: Mailbox Preview](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+      <span data-ttu-id="8ba09-102">\[[API 集: 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="8ba09-102">\[ [API set: Mailbox Preview](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
     remarks: |-
-      <span data-ttu-id="24490-103">**[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem</span><span class="sxs-lookup"><span data-stu-id="24490-103">**[Minimum permission level](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem</span></span>
+      <span data-ttu-id="8ba09-103">**[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem</span><span class="sxs-lookup"><span data-stu-id="8ba09-103">**[Minimum permission level](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem</span></span>
 
-      <span data-ttu-id="24490-104">**[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读</span><span class="sxs-lookup"><span data-stu-id="24490-104">**[Applicable Outlook mode](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Compose or Read</span></span>
+      <span data-ttu-id="8ba09-104">**[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读</span><span class="sxs-lookup"><span data-stu-id="8ba09-104">**[Applicable Outlook mode](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Compose or Read</span></span>
     isPreview: true
     name: Office.SharedProperties
     fullName: Office.SharedProperties
@@ -19,9 +19,10 @@ items:
     children:
       - outlook.Office.SharedProperties.delegatePermissions
       - outlook.Office.SharedProperties.owner
-      - outlook.Office.SharedProperties.restUrl
+      - outlook.Office.SharedProperties.targetMailbox
+      - outlook.Office.SharedProperties.targetRestUrl
   - uid: outlook.Office.SharedProperties.delegatePermissions
-    summary: <span data-ttu-id="24490-105">委派对共享文件夹的权限。</span><span class="sxs-lookup"><span data-stu-id="24490-105">The permissions that the delegate has on a shared folder.</span></span>
+    summary: <span data-ttu-id="8ba09-105">委派对共享文件夹的权限。</span><span class="sxs-lookup"><span data-stu-id="8ba09-105">The permissions that the delegate has on a shared folder.</span></span>
     isPreview: true
     name: delegatePermissions
     fullName: delegatePermissions
@@ -34,7 +35,7 @@ items:
         type:
           - MailboxEnums.DelegatePermissions
   - uid: outlook.Office.SharedProperties.owner
-    summary: <span data-ttu-id="24490-106">共享项目的所有者的电子邮件地址。</span><span class="sxs-lookup"><span data-stu-id="24490-106">The email address of the owner of a shared item.</span></span>
+    summary: <span data-ttu-id="8ba09-106">共享项目的所有者的电子邮件地址。</span><span class="sxs-lookup"><span data-stu-id="8ba09-106">The email address of the owner of a shared item.</span></span>
     isPreview: true
     name: owner
     fullName: owner
@@ -42,20 +43,39 @@ items:
       - typeScript
     type: property
     syntax:
-      content: 'owner: String;'
+      content: 'owner: string;'
       return:
         type:
-          - String
-  - uid: outlook.Office.SharedProperties.restUrl
-    summary: <span data-ttu-id="24490-107">与所有者的邮箱相关的远程 REST URL。</span><span class="sxs-lookup"><span data-stu-id="24490-107">The remote REST URL related to the owner’s mailbox.</span></span>
+          - string
+  - uid: outlook.Office.SharedProperties.targetMailbox
+    summary: |-
+      <span data-ttu-id="8ba09-107">目标/所有者的邮箱。</span><span class="sxs-lookup"><span data-stu-id="8ba09-107">The target/owner's mailbox.</span></span> <span data-ttu-id="8ba09-108">使用 with targetRestUrl 构造 REST 操作的 URL。</span><span class="sxs-lookup"><span data-stu-id="8ba09-108">Use with targetRestUrl to construct REST operation's URL.</span></span>
+
+      <span data-ttu-id="8ba09-109">示例用法:`targetRestUrl + "/{api_version}/users/" + targetMailbox + "/{REST_operation}"`</span><span class="sxs-lookup"><span data-stu-id="8ba09-109">Example usage: `targetRestUrl + "/{api_version}/users/" + targetMailbox + "/{REST_operation}"`</span></span>
     isPreview: true
-    name: restUrl
-    fullName: restUrl
+    name: targetMailbox
+    fullName: targetMailbox
     langs:
       - typeScript
     type: property
     syntax:
-      content: 'restUrl: String;'
+      content: 'targetMailbox: string;'
       return:
         type:
-          - String
+          - string
+  - uid: outlook.Office.SharedProperties.targetRestUrl
+    summary: |-
+      <span data-ttu-id="8ba09-110">REST API 的基 URL (当前https://outlook.office.com/api)为。</span><span class="sxs-lookup"><span data-stu-id="8ba09-110">The REST API's base URL (currently https://outlook.office.com/api).</span></span> <span data-ttu-id="8ba09-111">使用 with targetMailbox 构造 REST 操作的 URL。</span><span class="sxs-lookup"><span data-stu-id="8ba09-111">Use with targetMailbox to construct REST operation's URL.</span></span>
+
+      <span data-ttu-id="8ba09-112">示例用法:`targetRestUrl + "/{api_version}/users/" + targetMailbox + "/{REST_operation}"`</span><span class="sxs-lookup"><span data-stu-id="8ba09-112">Example usage: `targetRestUrl + "/{api_version}/users/" + targetMailbox + "/{REST_operation}"`</span></span>
+    isPreview: true
+    name: targetRestUrl
+    fullName: targetRestUrl
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'targetRestUrl: string;'
+      return:
+        type:
+          - string
