@@ -19,7 +19,8 @@ items:
     children:
       - outlook.Office.SharedProperties.delegatePermissions
       - outlook.Office.SharedProperties.owner
-      - outlook.Office.SharedProperties.restUrl
+      - outlook.Office.SharedProperties.targetMailbox
+      - outlook.Office.SharedProperties.targetRestUrl
   - uid: outlook.Office.SharedProperties.delegatePermissions
     summary: 委派对共享文件夹的权限。
     isPreview: true
@@ -42,20 +43,39 @@ items:
       - typeScript
     type: property
     syntax:
-      content: 'owner: String;'
+      content: 'owner: string;'
       return:
         type:
-          - String
-  - uid: outlook.Office.SharedProperties.restUrl
-    summary: 与所有者的邮箱相关的远程 REST URL。
+          - string
+  - uid: outlook.Office.SharedProperties.targetMailbox
+    summary: |-
+      目标/所有者的邮箱。 使用 with targetRestUrl 构造 REST 操作的 URL。
+
+      示例用法:`targetRestUrl + "/{api_version}/users/" + targetMailbox + "/{REST_operation}"`
     isPreview: true
-    name: restUrl
-    fullName: restUrl
+    name: targetMailbox
+    fullName: targetMailbox
     langs:
       - typeScript
     type: property
     syntax:
-      content: 'restUrl: String;'
+      content: 'targetMailbox: string;'
       return:
         type:
-          - String
+          - string
+  - uid: outlook.Office.SharedProperties.targetRestUrl
+    summary: |-
+      REST API 的基 URL (当前https://outlook.office.com/api)为。 使用 with targetMailbox 构造 REST 操作的 URL。
+
+      示例用法:`targetRestUrl + "/{api_version}/users/" + targetMailbox + "/{REST_operation}"`
+    isPreview: true
+    name: targetRestUrl
+    fullName: targetRestUrl
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'targetRestUrl: string;'
+      return:
+        type:
+          - string

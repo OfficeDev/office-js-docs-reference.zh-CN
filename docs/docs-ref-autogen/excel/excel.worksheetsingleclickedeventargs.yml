@@ -34,6 +34,26 @@ items:
       return:
         type:
           - string
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+              sheet.onSingleClicked.add((event) => {
+                  return Excel.run((context) => {
+                      console.log(`Click detected at ${event.address} (pixel offset from upper-left cell corner: ${event.offsetX}, ${event.offsetY})`);
+                      return context.sync();
+                  });
+              });
+
+              console.log("The worksheet click handler is registered.");
+
+              await context.sync();
+          });
+          ```
   - uid: excel.Excel.WorksheetSingleClickedEventArgs.offsetX
     summary: |-
       从左键单击/点击的点到左键单击/点击的单元格的左（RTL 则为右侧）网格线边缘的距离（以磅为单位）。
