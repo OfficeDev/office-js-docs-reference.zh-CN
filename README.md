@@ -12,13 +12,11 @@
 
 * 我们还欢迎您对此文档进行贡献。 若要参与、派生此存储库, 请根据需要更新文件, 并提交包含建议更改的拉取请求。 有关详细信息，请参阅 [归入该文档](Contributing.md)(#归入该文档)。
 
-    > **重要说明**: 请勿修改此存储库的[/docs/docs-ref-autogen](https://github.com/OfficeDev/office-js-docs-reference/tree/master/docs/docs-ref-autogen)文件夹内的文件。 该文件夹中的所有文件都将自动生成, 因此不能通过拉取请求更新这些文件。 若要请求对[/docs/docs-ref-autogen](https://github.com/OfficeDev/office-js-docs-reference/tree/master/docs/docs-ref-autogen)文件夹中的任何文件进行更改, 请在此存储库中[提交问题](https://github.com/OfficeDev/office-js-docs-reference/issues)。
+    > **重要说明**: 请勿修改此存储库的[/docs/docs-ref-autogen](https://github.com/OfficeDev/office-js-docs-reference/tree/master/docs/docs-ref-autogen)文件夹内的文件。 该文件夹中的所有文件都将自动生成, 因此不能通过拉取请求更新这些文件。 若要请求对[/docs/docs-ref-autogen](https://github.com/OfficeDev/office-js-docs-reference/tree/master/docs/docs-ref-autogen)文件夹中的任何文件进行更改, 请在此存储库中[提交问题](https://github.com/OfficeDev/office-js-docs-reference/issues)。 你可以在[此处](https://github.com/OfficeDev/office-js-docs-reference/blob/master/DocumentationToolingNotes.md)了解有关此存储库中的工具的详细信息。
 
 * 如果想让我们知道你的编程体验、希望在未来版本中看到哪些内容、代码示例等，请在 [Office 开发人员平台 UserVoice](https://officespdev.uservoice.com/)(#office-开发人员平台-uservoice) 中输入你的建议和想法。
-
 
 ## <a name="microsoft-open-source-code-of-conduct"></a>Microsoft 开放源代码行为准则
 
 此项目已采用 [Microsoft 开放源代码行为准则](https://opensource.microsoft.com/codeofconduct/)。
 有关详细信息, 请参阅[行为准则 FAQ](https://opensource.microsoft.com/codeofconduct/faq/), 或联系[opencode@microsoft.com](mailto:opencode@microsoft.com) , 并提供任何其他问题或意见。
-
