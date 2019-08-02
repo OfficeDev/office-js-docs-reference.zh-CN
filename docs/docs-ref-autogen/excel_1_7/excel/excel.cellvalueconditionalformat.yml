@@ -1,0 +1,220 @@
+### YamlMime:UniversalReference
+items:
+  - uid: excel.Excel.CellValueConditionalFormat
+    summary: |-
+      <span data-ttu-id="36d1f-101">表示单元格值条件格式。</span><span class="sxs-lookup"><span data-stu-id="36d1f-101">Represents a cell value conditional format.</span></span>
+
+      <span data-ttu-id="36d1f-102">\[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="36d1f-102">\[ [API set: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: Excel.CellValueConditionalFormat
+    fullName: Excel.CellValueConditionalFormat
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: excel
+    children:
+      - excel.Excel.CellValueConditionalFormat.context
+      - excel.Excel.CellValueConditionalFormat.format
+      - excel.Excel.CellValueConditionalFormat.load
+      - excel.Excel.CellValueConditionalFormat.load_1
+      - excel.Excel.CellValueConditionalFormat.load_2
+      - excel.Excel.CellValueConditionalFormat.rule
+      - excel.Excel.CellValueConditionalFormat.set
+      - excel.Excel.CellValueConditionalFormat.set_1
+      - excel.Excel.CellValueConditionalFormat.toJSON
+  - uid: excel.Excel.CellValueConditionalFormat.context
+    summary: <span data-ttu-id="36d1f-103">与该对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="36d1f-103">The request context associated with the object.</span></span> <span data-ttu-id="36d1f-104">这会将加载项的进程连接到 Office 主机应用程序的进程。</span><span class="sxs-lookup"><span data-stu-id="36d1f-104">This connects the add-in's process to the Office host application's process.</span></span>
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - excel.Excel.RequestContext
+  - uid: excel.Excel.CellValueConditionalFormat.format
+    summary: |-
+      <span data-ttu-id="36d1f-105">返回一个 format 对象, 该对象封装条件格式字体、填充、边框和其他属性。</span><span class="sxs-lookup"><span data-stu-id="36d1f-105">Returns a format object, encapsulating the conditional formats font, fill, borders, and other properties.</span></span>
+
+      <span data-ttu-id="36d1f-106">\[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="36d1f-106">\[ [API set: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: format
+    fullName: format
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly format: Excel.ConditionalRangeFormat;'
+      return:
+        type:
+          - excel.Excel.ConditionalRangeFormat
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="36d1f-107">示例</span><span class="sxs-lookup"><span data-stu-id="36d1f-107">Examples</span></span>
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const range = sheet.getRange("B21:E23");
+              const conditionalFormat = range.conditionalFormats
+                  .add(Excel.ConditionalFormatType.cellValue);
+              conditionalFormat.cellValue.format.font.color = "red";
+              conditionalFormat.cellValue.rule = { formula1: "=0", operator: "LessThan" };
+
+              await context.sync();
+          });
+          ```
+  - uid: excel.Excel.CellValueConditionalFormat.load
+    summary: <span data-ttu-id="36d1f-108">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="36d1f-108">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="36d1f-109">在读取属性之前，你必须调用“context.sync()”。</span><span class="sxs-lookup"><span data-stu-id="36d1f-109">You must call "context.sync()" before reading the properties.</span></span>
+    remarks: |-
+      <span data-ttu-id="36d1f-110">除了此签名之外, 此方法还具有以下签名:</span><span class="sxs-lookup"><span data-stu-id="36d1f-110">In addition to this signature, this method has the following signatures:</span></span>
+
+      <span data-ttu-id="36d1f-111">`load(option?: string | string[]): Excel.CellValueConditionalFormat`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="36d1f-111">`load(option?: string | string[]): Excel.CellValueConditionalFormat` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
+
+      <span data-ttu-id="36d1f-112">`load(option?: { select?: string; expand?: string; }): Excel.CellValueConditionalFormat`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="36d1f-112">`load(option?: { select?: string; expand?: string; }): Excel.CellValueConditionalFormat` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+
+      <span data-ttu-id="36d1f-113">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.CellValueConditionalFormat`-仅适用于集合类型。</span><span class="sxs-lookup"><span data-stu-id="36d1f-113">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.CellValueConditionalFormat` - Only available on collection types.</span></span> <span data-ttu-id="36d1f-114">它类似于前面的签名。</span><span class="sxs-lookup"><span data-stu-id="36d1f-114">It is similar to the preceding signature.</span></span> <span data-ttu-id="36d1f-115">Top 指定结果中可包含的集合项的最大数量。</span><span class="sxs-lookup"><span data-stu-id="36d1f-115">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="36d1f-116">选项。 skip 指定要跳过且不包含在结果中的项目数。</span><span class="sxs-lookup"><span data-stu-id="36d1f-116">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="36d1f-117">如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。</span><span class="sxs-lookup"><span data-stu-id="36d1f-117">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.CellValueConditionalFormatLoadOptions): Excel.CellValueConditionalFormat;'
+      return:
+        type:
+          - excel.Excel.CellValueConditionalFormat
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - excel.Excel.Interfaces.CellValueConditionalFormatLoadOptions
+  - uid: excel.Excel.CellValueConditionalFormat.load_1
+    summary: '<span data-ttu-id="36d1f-118">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="36d1f-118">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="36d1f-119">在读取属性`context.sync()`之前, 必须先调用。</span><span class="sxs-lookup"><span data-stu-id="36d1f-119">You must call `context.sync()` before reading the properties.</span></span>'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.CellValueConditionalFormat;'
+      return:
+        type:
+          - excel.Excel.CellValueConditionalFormat
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: '<span data-ttu-id="36d1f-120">一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="36d1f-120">A comma-delimited string or an array of strings that specify the properties to load.</span></span>'
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.CellValueConditionalFormat.load_2
+    summary: '<span data-ttu-id="36d1f-121">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="36d1f-121">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="36d1f-122">在读取属性`context.sync()`之前, 必须先调用。</span><span class="sxs-lookup"><span data-stu-id="36d1f-122">You must call `context.sync()` before reading the properties.</span></span>'
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.CellValueConditionalFormat;'
+      return:
+        type:
+          - excel.Excel.CellValueConditionalFormat
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '<span data-ttu-id="36d1f-123">其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="36d1f-123">Where propertyNamesAndPaths.select is a comma-delimited string that specifies the properties to load, and propertyNamesAndPaths.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: excel.Excel.CellValueConditionalFormat.rule
+    summary: |-
+      <span data-ttu-id="36d1f-124">表示此条件格式中的 Rule 对象。</span><span class="sxs-lookup"><span data-stu-id="36d1f-124">Represents the Rule object on this conditional format.</span></span>
+
+      <span data-ttu-id="36d1f-125">\[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="36d1f-125">\[ [API set: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: rule
+    fullName: rule
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'rule: Excel.ConditionalCellValueRule;'
+      return:
+        type:
+          - excel.Excel.ConditionalCellValueRule
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="36d1f-126">示例</span><span class="sxs-lookup"><span data-stu-id="36d1f-126">Examples</span></span>
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const range = sheet.getRange("B21:E23");
+              const conditionalFormat = range.conditionalFormats
+                  .add(Excel.ConditionalFormatType.cellValue);
+              conditionalFormat.cellValue.format.font.color = "red";
+              conditionalFormat.cellValue.rule = { formula1: "=0", operator: "LessThan" };
+
+              await context.sync();
+          });
+          ```
+  - uid: excel.Excel.CellValueConditionalFormat.set
+    summary: '<span data-ttu-id="36d1f-127">同时设置一个对象的多个属性。</span><span class="sxs-lookup"><span data-stu-id="36d1f-127">Sets multiple properties of an object at the same time.</span></span> <span data-ttu-id="36d1f-128">您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。</span><span class="sxs-lookup"><span data-stu-id="36d1f-128">You can pass either a plain object with the appropriate properties, or another API object of the same type.</span></span>'
+    remarks: |-
+      <span data-ttu-id="36d1f-129">此方法具有以下附加签名:</span><span class="sxs-lookup"><span data-stu-id="36d1f-129">This method has the following additional signature:</span></span>
+
+      `set(properties: Excel.CellValueConditionalFormat): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.CellValueConditionalFormatUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: '<span data-ttu-id="36d1f-130">一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。</span><span class="sxs-lookup"><span data-stu-id="36d1f-130">A JavaScript object with properties that are structured isomorphically to the properties of the object on which the method is called.</span></span>'
+          type:
+            - Interfaces.CellValueConditionalFormatUpdateData
+        - id: options
+          description: '<span data-ttu-id="36d1f-131">提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。</span><span class="sxs-lookup"><span data-stu-id="36d1f-131">Provides an option to suppress errors if the properties object tries to set any read-only properties.</span></span>'
+          type:
+            - OfficeExtension.UpdateOptions
+  - uid: excel.Excel.CellValueConditionalFormat.set_1
+    summary: '<span data-ttu-id="36d1f-132">基于现有加载的对象同时设置该对象的多个属性。</span><span class="sxs-lookup"><span data-stu-id="36d1f-132">Sets multiple properties on the object at the same time, based on an existing loaded object.</span></span>'
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Excel.CellValueConditionalFormat): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - excel.Excel.CellValueConditionalFormat
+  - uid: excel.Excel.CellValueConditionalFormat.toJSON
+    summary: '<span data-ttu-id="36d1f-133">重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`</span><span class="sxs-lookup"><span data-stu-id="36d1f-133">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`</span></span><!-- --><span data-ttu-id="36d1f-134">.</span><span class="sxs-lookup"><span data-stu-id="36d1f-134"></span></span> <span data-ttu-id="36d1f-135">(`JSON.stringify`</span><span class="sxs-lookup"><span data-stu-id="36d1f-135"></span></span><!-- --><span data-ttu-id="36d1f-136">反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始 CellValueConditionalFormat 对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Excel.Interfaces.CellValueConditionalFormatData`</span><span class="sxs-lookup"><span data-stu-id="36d1f-136">, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original Excel.CellValueConditionalFormat object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Excel.Interfaces.CellValueConditionalFormatData`</span></span><!-- --><span data-ttu-id="36d1f-137">), 其中包含原始对象中所有已加载的子属性的浅表副本。</span><span class="sxs-lookup"><span data-stu-id="36d1f-137">) that contains shallow copies of any loaded child properties from the original object.</span></span>'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.CellValueConditionalFormatData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.CellValueConditionalFormatData
+        description: ''
