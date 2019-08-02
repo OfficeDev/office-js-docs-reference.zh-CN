@@ -1,0 +1,715 @@
+### YamlMime:UniversalReference
+items:
+  - uid: excel.Excel.Worksheet
+    summary: |-
+      <span data-ttu-id="0afa4-101">Excel 工作表是由单元格组成的网格。</span><span class="sxs-lookup"><span data-stu-id="0afa4-101">An Excel worksheet is a grid of cells.</span></span> <span data-ttu-id="0afa4-102">它可以包含数据、表、图表等。</span><span class="sxs-lookup"><span data-stu-id="0afa4-102">It can contain data, tables, charts, etc.</span></span>
+
+      <span data-ttu-id="0afa4-103">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-103">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: Excel.Worksheet
+    fullName: Excel.Worksheet
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: excel
+    children:
+      - excel.Excel.Worksheet.activate
+      - excel.Excel.Worksheet.charts
+      - excel.Excel.Worksheet.context
+      - excel.Excel.Worksheet.delete
+      - excel.Excel.Worksheet.getCell
+      - excel.Excel.Worksheet.getNext
+      - excel.Excel.Worksheet.getNextOrNullObject
+      - excel.Excel.Worksheet.getPrevious
+      - excel.Excel.Worksheet.getPreviousOrNullObject
+      - excel.Excel.Worksheet.getRange
+      - excel.Excel.Worksheet.getUsedRange
+      - excel.Excel.Worksheet.getUsedRangeOrNullObject
+      - excel.Excel.Worksheet.id
+      - excel.Excel.Worksheet.load
+      - excel.Excel.Worksheet.load_1
+      - excel.Excel.Worksheet.load_2
+      - excel.Excel.Worksheet.name
+      - excel.Excel.Worksheet.names
+      - excel.Excel.Worksheet.pivotTables
+      - excel.Excel.Worksheet.position
+      - excel.Excel.Worksheet.protection
+      - excel.Excel.Worksheet.set
+      - excel.Excel.Worksheet.set_1
+      - excel.Excel.Worksheet.tables
+      - excel.Excel.Worksheet.toJSON
+      - excel.Excel.Worksheet.visibility
+  - uid: excel.Excel.Worksheet.activate
+    summary: |-
+      <span data-ttu-id="0afa4-104">在 Excel UI 中激活工作表。</span><span class="sxs-lookup"><span data-stu-id="0afa4-104">Activate the worksheet in the Excel UI.</span></span>
+
+      <span data-ttu-id="0afa4-105">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-105">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: activate()
+    fullName: activate()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'activate(): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="0afa4-106">示例</span><span class="sxs-lookup"><span data-stu-id="0afa4-106">Examples</span></span>
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var wSheetName = 'Sheet1';
+              var worksheet = ctx.workbook.worksheets.getItem(wSheetName);
+              worksheet.activate();
+              return ctx.sync(); 
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: excel.Excel.Worksheet.charts
+    summary: |-
+      <span data-ttu-id="0afa4-107">返回属于工作表的图表的集合。</span><span class="sxs-lookup"><span data-stu-id="0afa4-107">Returns collection of charts that are part of the worksheet.</span></span> <span data-ttu-id="0afa4-108">只读。</span><span class="sxs-lookup"><span data-stu-id="0afa4-108">Read-only.</span></span>
+
+      <span data-ttu-id="0afa4-109">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-109">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: charts
+    fullName: charts
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly charts: Excel.ChartCollection;'
+      return:
+        type:
+          - excel.Excel.ChartCollection
+  - uid: excel.Excel.Worksheet.context
+    summary: <span data-ttu-id="0afa4-110">与该对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="0afa4-110">The request context associated with the object.</span></span> <span data-ttu-id="0afa4-111">这会将加载项的进程连接到 Office 主机应用程序的进程。</span><span class="sxs-lookup"><span data-stu-id="0afa4-111">This connects the add-in's process to the Office host application's process.</span></span>
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - excel.Excel.RequestContext
+  - uid: excel.Excel.Worksheet.delete
+    summary: |-
+      <span data-ttu-id="0afa4-112">从工作簿中删除工作表。</span><span class="sxs-lookup"><span data-stu-id="0afa4-112">Deletes the worksheet from the workbook.</span></span> <span data-ttu-id="0afa4-113">请注意, 如果工作表的可见性设置为 "VeryHidden", 则删除操作将失败, 并出现 GeneralException。</span><span class="sxs-lookup"><span data-stu-id="0afa4-113">Note that if the worksheet's visibility is set to "VeryHidden", the delete operation will fail with a GeneralException.</span></span>
+
+      <span data-ttu-id="0afa4-114">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-114">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: delete()
+    fullName: delete()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'delete(): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="0afa4-115">示例</span><span class="sxs-lookup"><span data-stu-id="0afa4-115">Examples</span></span>
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var wSheetName = 'Sheet1';
+              var worksheet = ctx.workbook.worksheets.getItem(wSheetName);
+              worksheet.delete();
+              return ctx.sync(); 
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: excel.Excel.Worksheet.getCell
+    summary: |-
+      <span data-ttu-id="0afa4-116">根据行和列编号获取包含单个单元格的 range 对象。</span><span class="sxs-lookup"><span data-stu-id="0afa4-116">Gets the range object containing the single cell based on row and column numbers.</span></span> <span data-ttu-id="0afa4-117">单元格可以位于其父区域的边界之外, 但前提是它停留在工作表网格中。</span><span class="sxs-lookup"><span data-stu-id="0afa4-117">The cell can be outside the bounds of its parent range, so long as it stays within the worksheet grid.</span></span>
+
+      <span data-ttu-id="0afa4-118">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-118">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: 'getCell(row, column)'
+    fullName: 'getCell(row, column)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getCell(row: number, column: number): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="0afa4-119">示例</span><span class="sxs-lookup"><span data-stu-id="0afa4-119">Examples</span></span>
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "A1:F8";
+              var worksheet = ctx.workbook.worksheets.getItem(sheetName);
+              var cell = worksheet.getCell(0,0);
+              cell.load('address');
+              return ctx.sync().then(function() {
+                  console.log(cell.address);
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: row
+          description: <span data-ttu-id="0afa4-120">要检索的单元格的行号。</span><span class="sxs-lookup"><span data-stu-id="0afa4-120">The row number of the cell to be retrieved.</span></span> <span data-ttu-id="0afa4-121">从零开始编制索引。</span><span class="sxs-lookup"><span data-stu-id="0afa4-121">Zero-indexed.</span></span>
+          type:
+            - number
+        - id: column
+          description: <span data-ttu-id="0afa4-122">要检索的单元格的列号。</span><span class="sxs-lookup"><span data-stu-id="0afa4-122">the column number of the cell to be retrieved.</span></span> <span data-ttu-id="0afa4-123">从零开始编制索引。</span><span class="sxs-lookup"><span data-stu-id="0afa4-123">Zero-indexed.</span></span>
+          type:
+            - number
+  - uid: excel.Excel.Worksheet.getNext
+    summary: |-
+      <span data-ttu-id="0afa4-124">获取此工作表的后面的工作表。</span><span class="sxs-lookup"><span data-stu-id="0afa4-124">Gets the worksheet that follows this one.</span></span> <span data-ttu-id="0afa4-125">如果此方法后面没有任何工作表, 则此方法将引发错误。</span><span class="sxs-lookup"><span data-stu-id="0afa4-125">If there are no worksheets following this one, this method will throw an error.</span></span>
+
+      <span data-ttu-id="0afa4-126">\[[API 集: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-126">\[ [API set: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getNext(visibleOnly)
+    fullName: getNext(visibleOnly)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getNext(visibleOnly?: boolean): Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="0afa4-127">示例</span><span class="sxs-lookup"><span data-stu-id="0afa4-127">Examples</span></span>
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheets = context.workbook.worksheets;
+
+              // We don't want to include the default worksheet that was created
+              // when the workbook was created, so our "firstSheet" will be the one
+              // after the literal first. Note chaining of navigation methods.
+              const firstSheet = sheets.getFirst().getNext();
+              const lastSheet = sheets.getLast();
+              const firstTaxRateRange = firstSheet.getRange("B2");
+              const lastTaxRateRange = lastSheet.getRange("B2");
+
+              firstSheet.load("name");
+              lastSheet.load("name");
+              firstTaxRateRange.load("text");
+              lastTaxRateRange.load("text");
+
+              await context.sync();
+
+              let firstYear = firstSheet.name.substr(5, 4);
+              let lastYear = lastSheet.name.substr(5, 4);
+              console.log(`Tax Rate change from ${firstYear} to ${lastYear}`, `Tax rate for ${firstYear}: ${firstTaxRateRange.text[0][0]}\nTax rate for ${lastYear}: ${lastTaxRateRange.text[0][0]}`)
+
+              await context.sync();
+          });
+          ```
+      parameters:
+        - id: visibleOnly
+          description: '<span data-ttu-id="0afa4-128">可选。</span><span class="sxs-lookup"><span data-stu-id="0afa4-128">Optional.</span></span> <span data-ttu-id="0afa4-129">如果为 true, 则只考虑可见的工作表, 跳过任何隐藏的工作表。</span><span class="sxs-lookup"><span data-stu-id="0afa4-129">If true, considers only visible worksheets, skipping over any hidden ones.</span></span>'
+          type:
+            - boolean
+  - uid: excel.Excel.Worksheet.getNextOrNullObject
+    summary: |-
+      <span data-ttu-id="0afa4-130">获取此工作表的后面的工作表。</span><span class="sxs-lookup"><span data-stu-id="0afa4-130">Gets the worksheet that follows this one.</span></span> <span data-ttu-id="0afa4-131">如果此方法后面没有任何工作表, 则此方法将返回一个 null 对象。</span><span class="sxs-lookup"><span data-stu-id="0afa4-131">If there are no worksheets following this one, this method will return a null object.</span></span>
+
+      <span data-ttu-id="0afa4-132">\[[API 集: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-132">\[ [API set: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getNextOrNullObject(visibleOnly)
+    fullName: getNextOrNullObject(visibleOnly)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getNextOrNullObject(visibleOnly?: boolean): Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
+        description: ''
+      parameters:
+        - id: visibleOnly
+          description: '<span data-ttu-id="0afa4-133">可选。</span><span class="sxs-lookup"><span data-stu-id="0afa4-133">Optional.</span></span> <span data-ttu-id="0afa4-134">如果为 true, 则只考虑可见的工作表, 跳过任何隐藏的工作表。</span><span class="sxs-lookup"><span data-stu-id="0afa4-134">If true, considers only visible worksheets, skipping over any hidden ones.</span></span>'
+          type:
+            - boolean
+  - uid: excel.Excel.Worksheet.getPrevious
+    summary: |-
+      <span data-ttu-id="0afa4-135">获取此项之前的工作表。</span><span class="sxs-lookup"><span data-stu-id="0afa4-135">Gets the worksheet that precedes this one.</span></span> <span data-ttu-id="0afa4-136">如果没有以前的工作表, 此方法将引发错误。</span><span class="sxs-lookup"><span data-stu-id="0afa4-136">If there are no previous worksheets, this method will throw an error.</span></span>
+
+      <span data-ttu-id="0afa4-137">\[[API 集: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-137">\[ [API set: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getPrevious(visibleOnly)
+    fullName: getPrevious(visibleOnly)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getPrevious(visibleOnly?: boolean): Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="0afa4-138">示例</span><span class="sxs-lookup"><span data-stu-id="0afa4-138">Examples</span></span>
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheets = context.workbook.worksheets;
+              const currentSheet = sheets.getActiveWorksheet();
+              const previousYearSheet = currentSheet.getPrevious();
+              const currentTaxDueRange = currentSheet.getRange("C2");
+              const previousTaxDueRange = previousYearSheet.getRange("C2");
+
+              currentSheet.load("name");
+              previousYearSheet.load("name");
+              currentTaxDueRange.load("text");
+              previousTaxDueRange.load("text");
+
+              await context.sync();
+
+              let currentYear = currentSheet.name.substr(5, 4);
+              let previousYear = previousYearSheet.name.substr(5, 4);
+              console.log("Two Year Tax Due Comparison", `Tax due for ${currentYear} was ${currentTaxDueRange.text[0][0]}\nTax due for ${previousYear} was ${previousTaxDueRange.text[0][0]}`)
+
+              await context.sync();
+          });
+          ```
+      parameters:
+        - id: visibleOnly
+          description: '<span data-ttu-id="0afa4-139">可选。</span><span class="sxs-lookup"><span data-stu-id="0afa4-139">Optional.</span></span> <span data-ttu-id="0afa4-140">如果为 true, 则只考虑可见的工作表, 跳过任何隐藏的工作表。</span><span class="sxs-lookup"><span data-stu-id="0afa4-140">If true, considers only visible worksheets, skipping over any hidden ones.</span></span>'
+          type:
+            - boolean
+  - uid: excel.Excel.Worksheet.getPreviousOrNullObject
+    summary: |-
+      <span data-ttu-id="0afa4-141">获取此项之前的工作表。</span><span class="sxs-lookup"><span data-stu-id="0afa4-141">Gets the worksheet that precedes this one.</span></span> <span data-ttu-id="0afa4-142">如果没有以前的工作表, 则此方法将返回一个空的 objet。</span><span class="sxs-lookup"><span data-stu-id="0afa4-142">If there are no previous worksheets, this method will return a null objet.</span></span>
+
+      <span data-ttu-id="0afa4-143">\[[API 集: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-143">\[ [API set: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getPreviousOrNullObject(visibleOnly)
+    fullName: getPreviousOrNullObject(visibleOnly)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getPreviousOrNullObject(visibleOnly?: boolean): Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
+        description: ''
+      parameters:
+        - id: visibleOnly
+          description: '<span data-ttu-id="0afa4-144">可选。</span><span class="sxs-lookup"><span data-stu-id="0afa4-144">Optional.</span></span> <span data-ttu-id="0afa4-145">如果为 true, 则只考虑可见的工作表, 跳过任何隐藏的工作表。</span><span class="sxs-lookup"><span data-stu-id="0afa4-145">If true, considers only visible worksheets, skipping over any hidden ones.</span></span>'
+          type:
+            - boolean
+  - uid: excel.Excel.Worksheet.getRange
+    summary: |-
+      <span data-ttu-id="0afa4-146">获取一个 range 对象, 该对象代表由地址或名称指定的单个矩形单元格块。</span><span class="sxs-lookup"><span data-stu-id="0afa4-146">Gets the range object, representing a single rectangular block of cells, specified by the address or name.</span></span>
+
+      <span data-ttu-id="0afa4-147">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-147">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getRange(address)
+    fullName: getRange(address)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getRange(address?: string): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="0afa4-148">示例</span><span class="sxs-lookup"><span data-stu-id="0afa4-148">Examples</span></span>
+
+          ```javascript
+          // Below example uses range address to get the range object.
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "A1:F8";
+              var worksheet = ctx.workbook.worksheets.getItem(sheetName);
+              var range = worksheet.getRange(rangeAddress);
+              range.load('cellCount');
+              return ctx.sync().then(function() {
+                  console.log(range.cellCount);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          // Below example uses a named-range to get the range object.
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeName = 'MyRange';
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeName);
+              range.load('address');
+              return ctx.sync().then(function() {
+                  console.log(range.address);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: address
+          description: '<span data-ttu-id="0afa4-149">可选。</span><span class="sxs-lookup"><span data-stu-id="0afa4-149">Optional.</span></span> <span data-ttu-id="0afa4-150">表示地址或范围名称的字符串。</span><span class="sxs-lookup"><span data-stu-id="0afa4-150">The string representing the address or name of the range.</span></span> <span data-ttu-id="0afa4-151">例如, "A1: B2"。</span><span class="sxs-lookup"><span data-stu-id="0afa4-151">For example, "A1:B2".</span></span> <span data-ttu-id="0afa4-152">如果未指定，则返回整个工作表区域。</span><span class="sxs-lookup"><span data-stu-id="0afa4-152">If not specified, the entire worksheet range is returned.</span></span>'
+          type:
+            - string
+  - uid: excel.Excel.Worksheet.getUsedRange
+    summary: |-
+      <span data-ttu-id="0afa4-153">使用的区域是包含分配了值或格式化的任何单元格的最小区域。</span><span class="sxs-lookup"><span data-stu-id="0afa4-153">The used range is the smallest range that encompasses any cells that have a value or formatting assigned to them.</span></span> <span data-ttu-id="0afa4-154">如果整个工作表为空, 则此函数将返回左上角单元格 (即, 它*不*会引发错误)。</span><span class="sxs-lookup"><span data-stu-id="0afa4-154">If the entire worksheet is blank, this function will return the top left cell (i.e. it will *not* throw an error).</span></span>
+
+      <span data-ttu-id="0afa4-155">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-155">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getUsedRange(valuesOnly)
+    fullName: getUsedRange(valuesOnly)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getUsedRange(valuesOnly?: boolean): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="0afa4-156">示例</span><span class="sxs-lookup"><span data-stu-id="0afa4-156">Examples</span></span>
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var wSheetName = 'Sheet1';
+              var worksheet = ctx.workbook.worksheets.getItem(wSheetName);
+              var usedRange = worksheet.getUsedRange();
+              usedRange.load('address');
+              return ctx.sync().then(function() {
+                      console.log(usedRange.address);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: valuesOnly
+          description: '<span data-ttu-id="0afa4-157">可选。</span><span class="sxs-lookup"><span data-stu-id="0afa4-157">Optional.</span></span> <span data-ttu-id="0afa4-158">如果为 true, 则仅考虑值为已使用单元格的单元格 (忽略格式设置)。</span><span class="sxs-lookup"><span data-stu-id="0afa4-158">If true, considers only cells with values as used cells (ignoring formatting).</span></span> <span data-ttu-id="0afa4-159">\[Api 集: ExcelApi 1。2\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-159">\[Api set: ExcelApi 1.2\]</span></span>'
+          type:
+            - boolean
+  - uid: excel.Excel.Worksheet.getUsedRangeOrNullObject
+    summary: |-
+      <span data-ttu-id="0afa4-p119">使用的区域是包含分配了值或格式的任意单元格的最小区域。如果整个工作表为空，此函数将返回 NULL 对象。</span><span class="sxs-lookup"><span data-stu-id="0afa4-p119">The used range is the smallest range that encompasses any cells that have a value or formatting assigned to them. If the entire worksheet is blank, this function will return a null object.</span></span>
+
+      <span data-ttu-id="0afa4-162">\[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-162">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getUsedRangeOrNullObject(valuesOnly)
+    fullName: getUsedRangeOrNullObject(valuesOnly)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getUsedRangeOrNullObject(valuesOnly?: boolean): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: ''
+      parameters:
+        - id: valuesOnly
+          description: <span data-ttu-id="0afa4-163">可选。</span><span class="sxs-lookup"><span data-stu-id="0afa4-163">Optional.</span></span> <span data-ttu-id="0afa4-164">仅将有值的单元格视为已使用的单元格。</span><span class="sxs-lookup"><span data-stu-id="0afa4-164">Considers only cells with values as used cells.</span></span>
+          type:
+            - boolean
+  - uid: excel.Excel.Worksheet.id
+    summary: |-
+      <span data-ttu-id="0afa4-p121">返回用于唯一标识指定工作簿中工作表的值。即使工作表被重命名或移动，标识符的值仍然相同。只读。</span><span class="sxs-lookup"><span data-stu-id="0afa4-p121">Returns a value that uniquely identifies the worksheet in a given workbook. The value of the identifier remains the same even when the worksheet is renamed or moved. Read-only.</span></span>
+
+      <span data-ttu-id="0afa4-168">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-168">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: id
+    fullName: id
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly id: string;'
+      return:
+        type:
+          - string
+  - uid: excel.Excel.Worksheet.load
+    summary: <span data-ttu-id="0afa4-169">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="0afa4-169">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="0afa4-170">在读取属性之前，你必须调用“context.sync()”。</span><span class="sxs-lookup"><span data-stu-id="0afa4-170">You must call "context.sync()" before reading the properties.</span></span>
+    remarks: |-
+      <span data-ttu-id="0afa4-171">除了此签名之外, 此方法还具有以下签名:</span><span class="sxs-lookup"><span data-stu-id="0afa4-171">In addition to this signature, this method has the following signatures:</span></span>
+
+      <span data-ttu-id="0afa4-172">`load(option?: string | string[]): Excel.Worksheet`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="0afa4-172">`load(option?: string | string[]): Excel.Worksheet` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
+
+      <span data-ttu-id="0afa4-173">`load(option?: { select?: string; expand?: string; }): Excel.Worksheet`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="0afa4-173">`load(option?: { select?: string; expand?: string; }): Excel.Worksheet` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+
+      <span data-ttu-id="0afa4-174">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Worksheet`-仅适用于集合类型。</span><span class="sxs-lookup"><span data-stu-id="0afa4-174">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Worksheet` - Only available on collection types.</span></span> <span data-ttu-id="0afa4-175">它类似于前面的签名。</span><span class="sxs-lookup"><span data-stu-id="0afa4-175">It is similar to the preceding signature.</span></span> <span data-ttu-id="0afa4-176">Top 指定结果中可包含的集合项的最大数量。</span><span class="sxs-lookup"><span data-stu-id="0afa4-176">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="0afa4-177">选项。 skip 指定要跳过且不包含在结果中的项目数。</span><span class="sxs-lookup"><span data-stu-id="0afa4-177">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="0afa4-178">如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。</span><span class="sxs-lookup"><span data-stu-id="0afa4-178">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.WorksheetLoadOptions): Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - excel.Excel.Interfaces.WorksheetLoadOptions
+  - uid: excel.Excel.Worksheet.load_1
+    summary: '<span data-ttu-id="0afa4-179">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="0afa4-179">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="0afa4-180">在读取属性`context.sync()`之前, 必须先调用。</span><span class="sxs-lookup"><span data-stu-id="0afa4-180">You must call `context.sync()` before reading the properties.</span></span>'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="0afa4-181">示例</span><span class="sxs-lookup"><span data-stu-id="0afa4-181">Examples</span></span>
+
+          ```javascript
+          // Get worksheet properties based on sheet name.
+          Excel.run(function (ctx) { 
+              var wSheetName = 'Sheet1';
+              var worksheet = ctx.workbook.worksheets.getItem(wSheetName);
+              worksheet.load('position')
+              return ctx.sync().then(function() {
+                      console.log(worksheet.position);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          // Set worksheet position. 
+          Excel.run(function (ctx) { 
+              var wSheetName = 'Sheet1';
+              var worksheet = ctx.workbook.worksheets.getItem(wSheetName);
+              worksheet.position = 2;
+              return ctx.sync(); 
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: '<span data-ttu-id="0afa4-182">一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="0afa4-182">A comma-delimited string or an array of strings that specify the properties to load.</span></span>'
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.Worksheet.load_2
+    summary: '<span data-ttu-id="0afa4-183">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="0afa4-183">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="0afa4-184">在读取属性`context.sync()`之前, 必须先调用。</span><span class="sxs-lookup"><span data-stu-id="0afa4-184">You must call `context.sync()` before reading the properties.</span></span>'
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '<span data-ttu-id="0afa4-185">其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="0afa4-185">Where propertyNamesAndPaths.select is a comma-delimited string that specifies the properties to load, and propertyNamesAndPaths.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: excel.Excel.Worksheet.name
+    summary: |-
+      <span data-ttu-id="0afa4-186">工作表的显示名称。</span><span class="sxs-lookup"><span data-stu-id="0afa4-186">The display name of the worksheet.</span></span>
+
+      <span data-ttu-id="0afa4-187">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-187">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: name
+    fullName: name
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'name: string;'
+      return:
+        type:
+          - string
+  - uid: excel.Excel.Worksheet.names
+    summary: |-
+      <span data-ttu-id="0afa4-188">一组范围限定到当前工作表的名称。</span><span class="sxs-lookup"><span data-stu-id="0afa4-188">Collection of names scoped to the current worksheet.</span></span> <span data-ttu-id="0afa4-189">只读。</span><span class="sxs-lookup"><span data-stu-id="0afa4-189">Read-only.</span></span>
+
+      <span data-ttu-id="0afa4-190">\[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-190">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: names
+    fullName: names
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly names: Excel.NamedItemCollection;'
+      return:
+        type:
+          - excel.Excel.NamedItemCollection
+  - uid: excel.Excel.Worksheet.pivotTables
+    summary: |-
+      <span data-ttu-id="0afa4-191">一组属于 worksheet 的 PivotTable 对象。</span><span class="sxs-lookup"><span data-stu-id="0afa4-191">Collection of PivotTables that are part of the worksheet.</span></span> <span data-ttu-id="0afa4-192">只读。</span><span class="sxs-lookup"><span data-stu-id="0afa4-192">Read-only.</span></span>
+
+      <span data-ttu-id="0afa4-193">\[[API 集: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-193">\[ [API set: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: pivotTables
+    fullName: pivotTables
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly pivotTables: Excel.PivotTableCollection;'
+      return:
+        type:
+          - excel.Excel.PivotTableCollection
+  - uid: excel.Excel.Worksheet.position
+    summary: |-
+      <span data-ttu-id="0afa4-194">工作表在工作簿中的位置，从零开始。</span><span class="sxs-lookup"><span data-stu-id="0afa4-194">The zero-based position of the worksheet within the workbook.</span></span>
+
+      <span data-ttu-id="0afa4-195">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-195">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: position
+    fullName: position
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'position: number;'
+      return:
+        type:
+          - number
+  - uid: excel.Excel.Worksheet.protection
+    summary: |-
+      <span data-ttu-id="0afa4-196">返回表工作表的工作表保护对象。</span><span class="sxs-lookup"><span data-stu-id="0afa4-196">Returns sheet protection object for a worksheet.</span></span> <span data-ttu-id="0afa4-197">只读。</span><span class="sxs-lookup"><span data-stu-id="0afa4-197">Read-only.</span></span>
+
+      <span data-ttu-id="0afa4-198">\[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-198">\[ [API set: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: protection
+    fullName: protection
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly protection: Excel.WorksheetProtection;'
+      return:
+        type:
+          - excel.Excel.WorksheetProtection
+  - uid: excel.Excel.Worksheet.set
+    summary: '<span data-ttu-id="0afa4-199">同时设置一个对象的多个属性。</span><span class="sxs-lookup"><span data-stu-id="0afa4-199">Sets multiple properties of an object at the same time.</span></span> <span data-ttu-id="0afa4-200">您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。</span><span class="sxs-lookup"><span data-stu-id="0afa4-200">You can pass either a plain object with the appropriate properties, or another API object of the same type.</span></span>'
+    remarks: |-
+      <span data-ttu-id="0afa4-201">此方法具有以下附加签名:</span><span class="sxs-lookup"><span data-stu-id="0afa4-201">This method has the following additional signature:</span></span>
+
+      `set(properties: Excel.Worksheet): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.WorksheetUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: '<span data-ttu-id="0afa4-202">一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。</span><span class="sxs-lookup"><span data-stu-id="0afa4-202">A JavaScript object with properties that are structured isomorphically to the properties of the object on which the method is called.</span></span>'
+          type:
+            - Interfaces.WorksheetUpdateData
+        - id: options
+          description: '<span data-ttu-id="0afa4-203">提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。</span><span class="sxs-lookup"><span data-stu-id="0afa4-203">Provides an option to suppress errors if the properties object tries to set any read-only properties.</span></span>'
+          type:
+            - OfficeExtension.UpdateOptions
+  - uid: excel.Excel.Worksheet.set_1
+    summary: '<span data-ttu-id="0afa4-204">基于现有加载的对象同时设置该对象的多个属性。</span><span class="sxs-lookup"><span data-stu-id="0afa4-204">Sets multiple properties on the object at the same time, based on an existing loaded object.</span></span>'
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Excel.Worksheet): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - excel.Excel.Worksheet
+  - uid: excel.Excel.Worksheet.tables
+    summary: |-
+      <span data-ttu-id="0afa4-205">属于工作表的表的集合。</span><span class="sxs-lookup"><span data-stu-id="0afa4-205">Collection of tables that are part of the worksheet.</span></span> <span data-ttu-id="0afa4-206">只读。</span><span class="sxs-lookup"><span data-stu-id="0afa4-206">Read-only.</span></span>
+
+      <span data-ttu-id="0afa4-207">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-207">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: tables
+    fullName: tables
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly tables: Excel.TableCollection;'
+      return:
+        type:
+          - excel.Excel.TableCollection
+  - uid: excel.Excel.Worksheet.toJSON
+    summary: '<span data-ttu-id="0afa4-208">重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`</span><span class="sxs-lookup"><span data-stu-id="0afa4-208">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`</span></span><!-- --><span data-ttu-id="0afa4-209">.</span><span class="sxs-lookup"><span data-stu-id="0afa4-209"></span></span> <span data-ttu-id="0afa4-210">(`JSON.stringify`</span><span class="sxs-lookup"><span data-stu-id="0afa4-210"></span></span><!-- --><span data-ttu-id="0afa4-211">反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始的 Excel 工作表对象是 API 对象, 但`toJSON`方法返回一个简单的 JavaScript 对象 (类型为`Excel.Interfaces.WorksheetData`</span><span class="sxs-lookup"><span data-stu-id="0afa4-211">, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original Excel.Worksheet object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Excel.Interfaces.WorksheetData`</span></span><!-- --><span data-ttu-id="0afa4-212">), 其中包含原始对象中所有已加载的子属性的浅表副本。</span><span class="sxs-lookup"><span data-stu-id="0afa4-212">) that contains shallow copies of any loaded child properties from the original object.</span></span>'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.WorksheetData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.WorksheetData
+        description: ''
+  - uid: excel.Excel.Worksheet.visibility
+    summary: |-
+      <span data-ttu-id="0afa4-213">工作表的可见性。</span><span class="sxs-lookup"><span data-stu-id="0afa4-213">The Visibility of the worksheet.</span></span>
+
+      <span data-ttu-id="0afa4-214">\[[API 集: ExcelApi 1.1 用于读取可见性; 1.2 用于设置。](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)</span><span class="sxs-lookup"><span data-stu-id="0afa4-214">\[ [API set: ExcelApi 1.1 for reading visibility; 1.2 for setting it.](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)</span></span> <span data-ttu-id="0afa4-215">\]</span><span class="sxs-lookup"><span data-stu-id="0afa4-215"></span></span>
+    name: visibility
+    fullName: visibility
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'visibility: Excel.SheetVisibility | "Visible" | "Hidden" | "VeryHidden";'
+      return:
+        type:
+          - Excel.SheetVisibility | "Visible" | "Hidden" | "VeryHidden"

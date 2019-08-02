@@ -1,0 +1,298 @@
+### YamlMime:UniversalReference
+items:
+  - uid: excel.Excel.TableCollection
+    summary: |-
+      <span data-ttu-id="1d900-101">表示属于工作簿或工作表（具有取决于限定到的范围）的所有表的集合。</span><span class="sxs-lookup"><span data-stu-id="1d900-101">Represents a collection of all the tables that are part of the workbook or worksheet, depending on how it was reached.</span></span>
+
+      <span data-ttu-id="1d900-102">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="1d900-102">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: Excel.TableCollection
+    fullName: Excel.TableCollection
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: excel
+    children:
+      - excel.Excel.TableCollection.add
+      - excel.Excel.TableCollection.context
+      - excel.Excel.TableCollection.count
+      - excel.Excel.TableCollection.getItem
+      - excel.Excel.TableCollection.getItemAt
+      - excel.Excel.TableCollection.items
+      - excel.Excel.TableCollection.load
+      - excel.Excel.TableCollection.load_1
+      - excel.Excel.TableCollection.load_2
+      - excel.Excel.TableCollection.toJSON
+  - uid: excel.Excel.TableCollection.add
+    summary: |-
+      <span data-ttu-id="1d900-p101">新建表。范围对象或源地址决定了在哪个工作表下添加表。如果无法添加表（例如，由于地址无效，或者表与另一个表重叠），则会引发错误。</span><span class="sxs-lookup"><span data-stu-id="1d900-p101">Create a new table. The range object or source address determines the worksheet under which the table will be added. If the table cannot be added (e.g., because the address is invalid, or the table would overlap with another table), an error will be thrown.</span></span>
+
+      <span data-ttu-id="1d900-106">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="1d900-106">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: 'add(address, hasHeaders)'
+    fullName: 'add(address, hasHeaders)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'add(address: Range | string, hasHeaders: boolean): Excel.Table;'
+      return:
+        type:
+          - excel.Excel.Table
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="1d900-107">示例</span><span class="sxs-lookup"><span data-stu-id="1d900-107">Examples</span></span>
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var table = ctx.workbook.tables.add('Sheet1!A1:E7', true);
+              table.load('name');
+              return ctx.sync().then(function() {
+                  console.log(table.name);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: address
+          description: '<span data-ttu-id="1d900-108">Range 对象或表示数据源的区域的字符串地址或名称。</span><span class="sxs-lookup"><span data-stu-id="1d900-108">A Range object, or a string address or name of the range representing the data source.</span></span> <span data-ttu-id="1d900-109">如果地址不包含工作表名称，将使用当前活动的工作表。</span><span class="sxs-lookup"><span data-stu-id="1d900-109">If the address does not contain a sheet name, the currently-active sheet is used.</span></span> <span data-ttu-id="1d900-110">\[Api 集: ExcelApi 1.1/1.3。</span><span class="sxs-lookup"><span data-stu-id="1d900-110">\[Api set: ExcelApi 1.1 / 1.3.</span></span> <span data-ttu-id="1d900-111">在 ExcelApi 1.3 之前, 此参数必须是字符串。</span><span class="sxs-lookup"><span data-stu-id="1d900-111">Prior to ExcelApi 1.3, this parameter must be a string.</span></span> <span data-ttu-id="1d900-112">从 Excel Api 1.3 开始, 此参数可以是一个 Range 对象或一个字符串。\]</span><span class="sxs-lookup"><span data-stu-id="1d900-112">Starting with Excel Api 1.3, this parameter may be a Range object or a string.\]</span></span>'
+          type:
+            - Range | string
+        - id: hasHeaders
+          description: '<span data-ttu-id="1d900-p103">指示导入的数据是否具有列标签的布尔值。如果源不包含标头（即，当此属性设置为 false 时），Excel 将自动生成标头，数据将向下移动一行。</span><span class="sxs-lookup"><span data-stu-id="1d900-p103">Boolean value that indicates whether the data being imported has column labels. If the source does not contain headers (i.e,. when this property set to false), Excel will automatically generate header shifting the data down by one row.</span></span>'
+          type:
+            - boolean
+  - uid: excel.Excel.TableCollection.context
+    summary: <span data-ttu-id="1d900-116">与该对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="1d900-116">The request context associated with the object.</span></span> <span data-ttu-id="1d900-117">这会将加载项的进程连接到 Office 主机应用程序的进程。</span><span class="sxs-lookup"><span data-stu-id="1d900-117">This connects the add-in's process to the Office host application's process.</span></span>
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - excel.Excel.RequestContext
+  - uid: excel.Excel.TableCollection.count
+    summary: |-
+      <span data-ttu-id="1d900-118">返回工作簿中的表数目。</span><span class="sxs-lookup"><span data-stu-id="1d900-118">Returns the number of tables in the workbook.</span></span> <span data-ttu-id="1d900-119">只读。</span><span class="sxs-lookup"><span data-stu-id="1d900-119">Read-only.</span></span>
+
+      <span data-ttu-id="1d900-120">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="1d900-120">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: count
+    fullName: count
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly count: number;'
+      return:
+        type:
+          - number
+  - uid: excel.Excel.TableCollection.getItem
+    summary: |-
+      <span data-ttu-id="1d900-121">按名称或 ID 获取表。</span><span class="sxs-lookup"><span data-stu-id="1d900-121">Gets a table by Name or ID.</span></span>
+
+      <span data-ttu-id="1d900-122">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="1d900-122">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getItem(key)
+    fullName: getItem(key)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItem(key: string): Excel.Table;'
+      return:
+        type:
+          - excel.Excel.Table
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="1d900-123">示例</span><span class="sxs-lookup"><span data-stu-id="1d900-123">Examples</span></span>
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var tableName = 'Table1';
+              var table = ctx.workbook.tables.getItem(tableName);
+              table.load('name');
+              return ctx.sync().then(function() {
+                      console.log(table.name);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: key
+          description: <span data-ttu-id="1d900-124">要检索的表的名称或 ID。</span><span class="sxs-lookup"><span data-stu-id="1d900-124">Name or ID of the table to be retrieved.</span></span>
+          type:
+            - string
+  - uid: excel.Excel.TableCollection.getItemAt
+    summary: |-
+      <span data-ttu-id="1d900-125">根据其在集合中的位置获取表。</span><span class="sxs-lookup"><span data-stu-id="1d900-125">Gets a table based on its position in the collection.</span></span>
+
+      <span data-ttu-id="1d900-126">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="1d900-126">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getItemAt(index)
+    fullName: getItemAt(index)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItemAt(index: number): Excel.Table;'
+      return:
+        type:
+          - excel.Excel.Table
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="1d900-127">示例</span><span class="sxs-lookup"><span data-stu-id="1d900-127">Examples</span></span>
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var table = ctx.workbook.tables.getItemAt(0);
+              table.load('name');
+              return ctx.sync().then(function() {
+                      console.log(table.name);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: index
+          description: <span data-ttu-id="1d900-128">要检索的对象的索引值。</span><span class="sxs-lookup"><span data-stu-id="1d900-128">Index value of the object to be retrieved.</span></span> <span data-ttu-id="1d900-129">从零开始编制索引。</span><span class="sxs-lookup"><span data-stu-id="1d900-129">Zero-indexed.</span></span>
+          type:
+            - number
+  - uid: excel.Excel.TableCollection.items
+    summary: <span data-ttu-id="1d900-130">获取此集合中已加载的子项。</span><span class="sxs-lookup"><span data-stu-id="1d900-130">Gets the loaded child items in this collection.</span></span>
+    name: items
+    fullName: items
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly items: Excel.Table[];'
+      return:
+        type:
+          - 'Excel.Table[]'
+  - uid: excel.Excel.TableCollection.load
+    summary: <span data-ttu-id="1d900-131">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="1d900-131">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="1d900-132">在读取属性之前，你必须调用“context.sync()”。</span><span class="sxs-lookup"><span data-stu-id="1d900-132">You must call "context.sync()" before reading the properties.</span></span>
+    remarks: |-
+      <span data-ttu-id="1d900-133">除了此签名之外, 此方法还具有以下签名:</span><span class="sxs-lookup"><span data-stu-id="1d900-133">In addition to this signature, this method has the following signatures:</span></span>
+
+      <span data-ttu-id="1d900-134">`load(option?: string | string[]): Excel.TableCollection`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="1d900-134">`load(option?: string | string[]): Excel.TableCollection` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
+
+      <span data-ttu-id="1d900-135">`load(option?: { select?: string; expand?: string; }): Excel.TableCollection`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="1d900-135">`load(option?: { select?: string; expand?: string; }): Excel.TableCollection` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+
+      <span data-ttu-id="1d900-136">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TableCollection`-仅适用于集合类型。</span><span class="sxs-lookup"><span data-stu-id="1d900-136">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TableCollection` - Only available on collection types.</span></span> <span data-ttu-id="1d900-137">它类似于前面的签名。</span><span class="sxs-lookup"><span data-stu-id="1d900-137">It is similar to the preceding signature.</span></span> <span data-ttu-id="1d900-138">Top 指定结果中可包含的集合项的最大数量。</span><span class="sxs-lookup"><span data-stu-id="1d900-138">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="1d900-139">选项。 skip 指定要跳过且不包含在结果中的项目数。</span><span class="sxs-lookup"><span data-stu-id="1d900-139">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="1d900-140">如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。</span><span class="sxs-lookup"><span data-stu-id="1d900-140">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.TableCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.TableCollection;'
+      return:
+        type:
+          - excel.Excel.TableCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - Excel.Interfaces.TableCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
+  - uid: excel.Excel.TableCollection.load_1
+    summary: '<span data-ttu-id="1d900-141">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="1d900-141">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="1d900-142">在读取属性`context.sync()`之前, 必须先调用。</span><span class="sxs-lookup"><span data-stu-id="1d900-142">You must call `context.sync()` before reading the properties.</span></span>'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.TableCollection;'
+      return:
+        type:
+          - excel.Excel.TableCollection
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="1d900-143">示例</span><span class="sxs-lookup"><span data-stu-id="1d900-143">Examples</span></span>
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var tables = ctx.workbook.tables;
+              tables.load();
+              return ctx.sync().then(function() {
+                  console.log("tables Count: " + tables.count);
+                  for (var i = 0; i < tables.items.length; i++)
+                  {
+                      console.log(tables.items[i].name);
+                  }
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          // Get the number of tables
+          Excel.run(function (ctx) { 
+              var tables = ctx.workbook.tables;
+              tables.load('count');
+              return ctx.sync().then(function() {
+                  console.log(tables.count);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: '<span data-ttu-id="1d900-144">一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="1d900-144">A comma-delimited string or an array of strings that specify the properties to load.</span></span>'
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.TableCollection.load_2
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OfficeExtension.LoadOption): Excel.TableCollection;'
+      return:
+        type:
+          - excel.Excel.TableCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - OfficeExtension.LoadOption
+  - uid: excel.Excel.TableCollection.toJSON
+    summary: '<span data-ttu-id="1d900-145">重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`</span><span class="sxs-lookup"><span data-stu-id="1d900-145">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`</span></span><!-- --><span data-ttu-id="1d900-146">.</span><span class="sxs-lookup"><span data-stu-id="1d900-146"></span></span> <span data-ttu-id="1d900-147">(`JSON.stringify`</span><span class="sxs-lookup"><span data-stu-id="1d900-147"></span></span><!-- --><span data-ttu-id="1d900-148">反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始`Excel.TableCollection`对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Excel.Interfaces.TableCollectionData`</span><span class="sxs-lookup"><span data-stu-id="1d900-148">, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original `Excel.TableCollection` object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Excel.Interfaces.TableCollectionData`</span></span><!-- --><span data-ttu-id="1d900-149">), 其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。</span><span class="sxs-lookup"><span data-stu-id="1d900-149">) that contains an "items" array with shallow copies of any loaded properties from the collection''s items.</span></span>'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.TableCollectionData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.TableCollectionData
+        description: ''
