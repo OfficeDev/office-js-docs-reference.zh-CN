@@ -1,0 +1,47 @@
+### YamlMime:UniversalReference
+items:
+  - uid: excel.Excel.ConditionalPresetCriteriaRule
+    summary: |-
+      <span data-ttu-id="75b41-101">代表 "预置条件" 条件格式规则</span><span class="sxs-lookup"><span data-stu-id="75b41-101">Represents the Preset Criteria Conditional Format Rule</span></span>
+
+      <span data-ttu-id="75b41-102">\[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="75b41-102">\[ [API set: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: Excel.ConditionalPresetCriteriaRule
+    fullName: Excel.ConditionalPresetCriteriaRule
+    langs:
+      - typeScript
+    type: interface
+    package: excel
+    children:
+      - excel.Excel.ConditionalPresetCriteriaRule.criterion
+  - uid: excel.Excel.ConditionalPresetCriteriaRule.criterion
+    summary: |-
+      <span data-ttu-id="75b41-103">条件格式的条件。</span><span class="sxs-lookup"><span data-stu-id="75b41-103">The criterion of the conditional format.</span></span>
+
+      <span data-ttu-id="75b41-104">\[[API 集: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="75b41-104">\[ [API set: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: criterion
+    fullName: criterion
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'criterion: Excel.ConditionalFormatPresetCriterion | "Invalid" | "Blanks" | "NonBlanks" | "Errors" | "NonErrors" | "Yesterday" | "Today" | "Tomorrow" | "LastSevenDays" | "LastWeek" | "ThisWeek" | "NextWeek" | "LastMonth" | "ThisMonth" | "NextMonth" | "AboveAverage" | "BelowAverage" | "EqualOrAboveAverage" | "EqualOrBelowAverage" | "OneStdDevAboveAverage" | "OneStdDevBelowAverage" | "TwoStdDevAboveAverage" | "TwoStdDevBelowAverage" | "ThreeStdDevAboveAverage" | "ThreeStdDevBelowAverage" | "UniqueValues" | "DuplicateValues";'
+      return:
+        type:
+          - Excel.ConditionalFormatPresetCriterion | "Invalid" | "Blanks" | "NonBlanks" | "Errors" | "NonErrors" | "Yesterday" | "Today" | "Tomorrow" | "LastSevenDays" | "LastWeek" | "ThisWeek" | "NextWeek" | "LastMonth" | "ThisMonth" | "NextMonth" | "AboveAverage" | "BelowAverage" | "EqualOrAboveAverage" | "EqualOrBelowAverage" | "OneStdDevAboveAverage" | "OneStdDevBelowAverage" | "TwoStdDevAboveAverage" | "TwoStdDevBelowAverage" | "ThreeStdDevAboveAverage" | "ThreeStdDevBelowAverage" | "UniqueValues" | "DuplicateValues"
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="75b41-105">示例</span><span class="sxs-lookup"><span data-stu-id="75b41-105">Examples</span></span>
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const range = sheet.getRange("B2:M5");
+              const conditionalFormat = range.conditionalFormats
+                  .add(Excel.ConditionalFormatType.presetCriteria);
+              conditionalFormat.preset.format.font.color = "white";
+              conditionalFormat.preset.rule = { criterion: Excel.ConditionalFormatPresetCriterion.oneStdDevAboveAverage };
+
+              await context.sync();
+          });
+          ```

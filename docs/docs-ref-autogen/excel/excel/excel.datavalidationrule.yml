@@ -1,0 +1,192 @@
+### YamlMime:UniversalReference
+items:
+  - uid: excel.Excel.DataValidationRule
+    summary: |-
+      <span data-ttu-id="f9ee0-101">数据有效性规则包含不同类型的数据验证。</span><span class="sxs-lookup"><span data-stu-id="f9ee0-101">Data validation rule contains different types of data validation.</span></span> <span data-ttu-id="f9ee0-102">一次只能根据 DataValidationType 使用其中一种方法。</span><span class="sxs-lookup"><span data-stu-id="f9ee0-102">You can only use one of them at a time according the Excel.DataValidationType.</span></span>
+
+      <span data-ttu-id="f9ee0-103">\[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="f9ee0-103">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: Excel.DataValidationRule
+    fullName: Excel.DataValidationRule
+    langs:
+      - typeScript
+    type: interface
+    package: excel
+    children:
+      - excel.Excel.DataValidationRule.custom
+      - excel.Excel.DataValidationRule.date
+      - excel.Excel.DataValidationRule.decimal
+      - excel.Excel.DataValidationRule.list
+      - excel.Excel.DataValidationRule.textLength
+      - excel.Excel.DataValidationRule.time
+      - excel.Excel.DataValidationRule.wholeNumber
+  - uid: excel.Excel.DataValidationRule.custom
+    summary: |-
+      <span data-ttu-id="f9ee0-104">自定义数据有效性条件。</span><span class="sxs-lookup"><span data-stu-id="f9ee0-104">Custom data validation criteria.</span></span>
+
+      <span data-ttu-id="f9ee0-105">\[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="f9ee0-105">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: custom
+    fullName: custom
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'custom?: Excel.CustomDataValidation;'
+      return:
+        type:
+          - excel.Excel.CustomDataValidation
+  - uid: excel.Excel.DataValidationRule.date
+    summary: |-
+      <span data-ttu-id="f9ee0-106">日期数据有效性条件。</span><span class="sxs-lookup"><span data-stu-id="f9ee0-106">Date data validation criteria.</span></span>
+
+      <span data-ttu-id="f9ee0-107">\[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="f9ee0-107">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: date
+    fullName: date
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'date?: Excel.DateTimeDataValidation;'
+      return:
+        type:
+          - excel.Excel.DateTimeDataValidation
+  - uid: excel.Excel.DataValidationRule.decimal
+    summary: |-
+      <span data-ttu-id="f9ee0-108">小数数据有效性条件。</span><span class="sxs-lookup"><span data-stu-id="f9ee0-108">Decimal data validation criteria.</span></span>
+
+      <span data-ttu-id="f9ee0-109">\[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="f9ee0-109">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: decimal
+    fullName: decimal
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'decimal?: Excel.BasicDataValidation;'
+      return:
+        type:
+          - excel.Excel.BasicDataValidation
+  - uid: excel.Excel.DataValidationRule.list
+    summary: |-
+      <span data-ttu-id="f9ee0-110">列表数据有效性条件。</span><span class="sxs-lookup"><span data-stu-id="f9ee0-110">List data validation criteria.</span></span>
+
+      <span data-ttu-id="f9ee0-111">\[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="f9ee0-111">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: list
+    fullName: list
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'list?: Excel.ListDataValidation;'
+      return:
+        type:
+          - excel.Excel.ListDataValidation
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="f9ee0-112">示例</span><span class="sxs-lookup"><span data-stu-id="f9ee0-112">Examples</span></span>
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Decision");
+              const nameRange = 
+                  sheet.tables.getItem("NameOptionsTable").columns.getItem("Baby Name").getDataBodyRange();
+
+              // When you are developing, it is a good practice to
+              // clear the dataValidation object with each run of your code.
+              nameRange.dataValidation.clear();
+
+              const nameSourceRange = context.workbook.worksheets.getItem("Names").getRange("A1:A3");
+
+              let approvedListRule = {
+                  list: {
+                      inCellDropDown: true,
+                      source: nameSourceRange
+                  }
+              };
+              nameRange.dataValidation.rule = approvedListRule;
+
+              await context.sync();
+          });
+          ```
+  - uid: excel.Excel.DataValidationRule.textLength
+    summary: |-
+      <span data-ttu-id="f9ee0-113">TextLength 数据有效性条件。</span><span class="sxs-lookup"><span data-stu-id="f9ee0-113">TextLength data validation criteria.</span></span>
+
+      <span data-ttu-id="f9ee0-114">\[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="f9ee0-114">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: textLength
+    fullName: textLength
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'textLength?: Excel.BasicDataValidation;'
+      return:
+        type:
+          - excel.Excel.BasicDataValidation
+  - uid: excel.Excel.DataValidationRule.time
+    summary: |-
+      <span data-ttu-id="f9ee0-115">时间数据有效性条件。</span><span class="sxs-lookup"><span data-stu-id="f9ee0-115">Time data validation criteria.</span></span>
+
+      <span data-ttu-id="f9ee0-116">\[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="f9ee0-116">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: time
+    fullName: time
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'time?: Excel.DateTimeDataValidation;'
+      return:
+        type:
+          - excel.Excel.DateTimeDataValidation
+  - uid: excel.Excel.DataValidationRule.wholeNumber
+    summary: |-
+      <span data-ttu-id="f9ee0-117">WholeNumber 数据有效性条件。</span><span class="sxs-lookup"><span data-stu-id="f9ee0-117">WholeNumber data validation criteria.</span></span>
+
+      <span data-ttu-id="f9ee0-118">\[[API 集: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="f9ee0-118">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: wholeNumber
+    fullName: wholeNumber
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'wholeNumber?: Excel.BasicDataValidation;'
+      return:
+        type:
+          - excel.Excel.BasicDataValidation
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="f9ee0-119">示例</span><span class="sxs-lookup"><span data-stu-id="f9ee0-119">Examples</span></span>
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Decision");
+              const rankingRange = sheet.tables.getItem("NameOptionsTable").columns.getItem("Ranking").getDataBodyRange();
+
+              // When you are developing, it is a good practice to
+              // clear the dataValidation object with each run of your code.
+              rankingRange.dataValidation.clear();
+
+              let greaterThanZeroRule = {
+                  wholeNumber: {
+                      formula1: 0,
+                      operator: Excel.DataValidationOperator.greaterThan
+                  }
+              };
+              rankingRange.dataValidation.rule = greaterThanZeroRule;
+
+              rankingRange.dataValidation.prompt = {
+                  message: "Please enter a positive number.",
+                  showPrompt: true,
+                  title: "Positive numbers only."
+              };
+
+              rankingRange.dataValidation.errorAlert = {
+                  message: "Sorry, only positive numbers are allowed",
+                  showAlert: true,
+                  style: "Stop",
+                  title: "Negative Number Entered"
+              };
+
+              await context.sync();
+          });
+          ```
