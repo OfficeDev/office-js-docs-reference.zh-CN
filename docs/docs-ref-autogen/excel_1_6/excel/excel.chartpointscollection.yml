@@ -1,0 +1,230 @@
+### YamlMime:UniversalReference
+items:
+  - uid: excel.Excel.ChartPointsCollection
+    summary: |-
+      <span data-ttu-id="f0fe2-101">图表中某个系列的所有图表点的集合。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-101">A collection of all the chart points within a series inside a chart.</span></span>
+
+      <span data-ttu-id="f0fe2-102">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="f0fe2-102">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: Excel.ChartPointsCollection
+    fullName: Excel.ChartPointsCollection
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: excel
+    children:
+      - excel.Excel.ChartPointsCollection.context
+      - excel.Excel.ChartPointsCollection.count
+      - excel.Excel.ChartPointsCollection.getCount
+      - excel.Excel.ChartPointsCollection.getItemAt
+      - excel.Excel.ChartPointsCollection.items
+      - excel.Excel.ChartPointsCollection.load
+      - excel.Excel.ChartPointsCollection.load_1
+      - excel.Excel.ChartPointsCollection.load_2
+      - excel.Excel.ChartPointsCollection.toJSON
+  - uid: excel.Excel.ChartPointsCollection.context
+    summary: <span data-ttu-id="f0fe2-103">与该对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-103">The request context associated with the object.</span></span> <span data-ttu-id="f0fe2-104">这会将加载项的进程连接到 Office 主机应用程序的进程。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-104">This connects the add-in's process to the Office host application's process.</span></span>
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - excel.Excel.RequestContext
+  - uid: excel.Excel.ChartPointsCollection.count
+    summary: |-
+      <span data-ttu-id="f0fe2-105">返回系列中的图表点数。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-105">Returns the number of chart points in the series.</span></span> <span data-ttu-id="f0fe2-106">只读。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-106">Read-only.</span></span>
+
+      <span data-ttu-id="f0fe2-107">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="f0fe2-107">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: count
+    fullName: count
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly count: number;'
+      return:
+        type:
+          - number
+  - uid: excel.Excel.ChartPointsCollection.getCount
+    summary: |-
+      <span data-ttu-id="f0fe2-108">返回系列中的图表点数。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-108">Returns the number of chart points in the series.</span></span>
+
+      <span data-ttu-id="f0fe2-109">\[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="f0fe2-109">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getCount()
+    fullName: getCount()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getCount(): OfficeExtension.ClientResult<number>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<number>
+        description: ''
+  - uid: excel.Excel.ChartPointsCollection.getItemAt
+    summary: |-
+      <span data-ttu-id="f0fe2-110">根据其在系列中的位置检索点。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-110">Retrieve a point based on its position within the series.</span></span>
+
+      <span data-ttu-id="f0fe2-111">\[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="f0fe2-111">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getItemAt(index)
+    fullName: getItemAt(index)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItemAt(index: number): Excel.ChartPoint;'
+      return:
+        type:
+          - excel.Excel.ChartPoint
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="f0fe2-112">示例</span><span class="sxs-lookup"><span data-stu-id="f0fe2-112">Examples</span></span>
+
+          ```javascript
+          // Set the border color for the first points in the points collection
+          Excel.run(function (ctx) { 
+              var points = ctx.workbook.worksheets.getItem("Sheet1").charts.getItem("Chart1").series.getItemAt(0).points;
+              points.getItemAt(0).format.fill.setSolidColor("8FBC8F");
+              return ctx.sync().then(function() {
+                  console.log("Point Border Color Changed");
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: index
+          description: <span data-ttu-id="f0fe2-113">要检索的对象的索引值。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-113">Index value of the object to be retrieved.</span></span> <span data-ttu-id="f0fe2-114">从零开始编制索引。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-114">Zero-indexed.</span></span>
+          type:
+            - number
+  - uid: excel.Excel.ChartPointsCollection.items
+    summary: <span data-ttu-id="f0fe2-115">获取此集合中已加载的子项。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-115">Gets the loaded child items in this collection.</span></span>
+    name: items
+    fullName: items
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly items: Excel.ChartPoint[];'
+      return:
+        type:
+          - 'Excel.ChartPoint[]'
+  - uid: excel.Excel.ChartPointsCollection.load
+    summary: <span data-ttu-id="f0fe2-116">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-116">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="f0fe2-117">在读取属性之前，你必须调用“context.sync()”。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-117">You must call "context.sync()" before reading the properties.</span></span>
+    remarks: |-
+      <span data-ttu-id="f0fe2-118">除了此签名之外, 此方法还具有以下签名:</span><span class="sxs-lookup"><span data-stu-id="f0fe2-118">In addition to this signature, this method has the following signatures:</span></span>
+
+      <span data-ttu-id="f0fe2-119">`load(option?: string | string[]): Excel.ChartPointsCollection`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-119">`load(option?: string | string[]): Excel.ChartPointsCollection` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
+
+      <span data-ttu-id="f0fe2-120">`load(option?: { select?: string; expand?: string; }): Excel.ChartPointsCollection`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-120">`load(option?: { select?: string; expand?: string; }): Excel.ChartPointsCollection` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+
+      <span data-ttu-id="f0fe2-121">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartPointsCollection`-仅适用于集合类型。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-121">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartPointsCollection` - Only available on collection types.</span></span> <span data-ttu-id="f0fe2-122">它类似于前面的签名。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-122">It is similar to the preceding signature.</span></span> <span data-ttu-id="f0fe2-123">Top 指定结果中可包含的集合项的最大数量。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-123">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="f0fe2-124">选项。 skip 指定要跳过且不包含在结果中的项目数。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-124">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="f0fe2-125">如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-125">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.ChartPointsCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.ChartPointsCollection;'
+      return:
+        type:
+          - excel.Excel.ChartPointsCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - Excel.Interfaces.ChartPointsCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
+  - uid: excel.Excel.ChartPointsCollection.load_1
+    summary: '<span data-ttu-id="f0fe2-126">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-126">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="f0fe2-127">在读取属性`context.sync()`之前, 必须先调用。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-127">You must call `context.sync()` before reading the properties.</span></span>'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.ChartPointsCollection;'
+      return:
+        type:
+          - excel.Excel.ChartPointsCollection
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="f0fe2-128">示例</span><span class="sxs-lookup"><span data-stu-id="f0fe2-128">Examples</span></span>
+
+          ```javascript
+          // Get the names of points in the points collection
+          Excel.run(function (ctx) { 
+              var pointsCollection = 
+                  ctx.workbook.worksheets.getItem("Sheet1").charts.getItem("Chart1").series.getItemAt(0).points;
+              pointsCollection.load('items');
+              return ctx.sync().then(function() {
+                  console.log("Points Collection loaded");
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          // Get the number of points
+          Excel.run(function (ctx) { 
+              var pointsCollection = 
+                  ctx.workbook.worksheets.getItem("Sheet1").charts.getItem("Chart1").series.getItemAt(0).points;
+              pointsCollection.load('count');
+              return ctx.sync().then(function() {
+                  console.log("points: Count= " + pointsCollection.count);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: '<span data-ttu-id="f0fe2-129">一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-129">A comma-delimited string or an array of strings that specify the properties to load.</span></span>'
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.ChartPointsCollection.load_2
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OfficeExtension.LoadOption): Excel.ChartPointsCollection;'
+      return:
+        type:
+          - excel.Excel.ChartPointsCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - OfficeExtension.LoadOption
+  - uid: excel.Excel.ChartPointsCollection.toJSON
+    summary: '<span data-ttu-id="f0fe2-130">重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`</span><span class="sxs-lookup"><span data-stu-id="f0fe2-130">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`</span></span><!-- --><span data-ttu-id="f0fe2-131">.</span><span class="sxs-lookup"><span data-stu-id="f0fe2-131"></span></span> <span data-ttu-id="f0fe2-132">(`JSON.stringify`</span><span class="sxs-lookup"><span data-stu-id="f0fe2-132"></span></span><!-- --><span data-ttu-id="f0fe2-133">反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始`Excel.ChartPointsCollection`对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Excel.Interfaces.ChartPointsCollectionData`</span><span class="sxs-lookup"><span data-stu-id="f0fe2-133">, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original `Excel.ChartPointsCollection` object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Excel.Interfaces.ChartPointsCollectionData`</span></span><!-- --><span data-ttu-id="f0fe2-134">), 其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。</span><span class="sxs-lookup"><span data-stu-id="f0fe2-134">) that contains an "items" array with shallow copies of any loaded properties from the collection''s items.</span></span>'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.ChartPointsCollectionData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.ChartPointsCollectionData
+        description: ''
