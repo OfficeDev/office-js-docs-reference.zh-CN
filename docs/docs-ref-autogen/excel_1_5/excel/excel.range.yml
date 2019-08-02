@@ -1,0 +1,1766 @@
+### YamlMime:UniversalReference
+items:
+  - uid: excel.Excel.Range
+    summary: |-
+      区域表示一个或多个相邻的单元格，例如单元格、行、列、单元格块等。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.Range
+    fullName: Excel.Range
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: excel
+    children:
+      - excel.Excel.Range.address
+      - excel.Excel.Range.addressLocal
+      - excel.Excel.Range.cellCount
+      - excel.Excel.Range.clear
+      - excel.Excel.Range.clear_1
+      - excel.Excel.Range.columnCount
+      - excel.Excel.Range.columnHidden
+      - excel.Excel.Range.columnIndex
+      - excel.Excel.Range.context
+      - excel.Excel.Range.delete
+      - excel.Excel.Range.delete_1
+      - excel.Excel.Range.format
+      - excel.Excel.Range.formulas
+      - excel.Excel.Range.formulasLocal
+      - excel.Excel.Range.formulasR1C1
+      - excel.Excel.Range.getBoundingRect
+      - excel.Excel.Range.getCell
+      - excel.Excel.Range.getColumn
+      - excel.Excel.Range.getColumnsAfter
+      - excel.Excel.Range.getColumnsBefore
+      - excel.Excel.Range.getEntireColumn
+      - excel.Excel.Range.getEntireRow
+      - excel.Excel.Range.getIntersection
+      - excel.Excel.Range.getIntersectionOrNullObject
+      - excel.Excel.Range.getLastCell
+      - excel.Excel.Range.getLastColumn
+      - excel.Excel.Range.getLastRow
+      - excel.Excel.Range.getOffsetRange
+      - excel.Excel.Range.getResizedRange
+      - excel.Excel.Range.getRow
+      - excel.Excel.Range.getRowsAbove
+      - excel.Excel.Range.getRowsBelow
+      - excel.Excel.Range.getUsedRange
+      - excel.Excel.Range.getUsedRangeOrNullObject
+      - excel.Excel.Range.getVisibleView
+      - excel.Excel.Range.hidden
+      - excel.Excel.Range.insert
+      - excel.Excel.Range.insert_1
+      - excel.Excel.Range.load
+      - excel.Excel.Range.load_1
+      - excel.Excel.Range.load_2
+      - excel.Excel.Range.merge
+      - excel.Excel.Range.numberFormat
+      - excel.Excel.Range.rowCount
+      - excel.Excel.Range.rowHidden
+      - excel.Excel.Range.rowIndex
+      - excel.Excel.Range.select
+      - excel.Excel.Range.set
+      - excel.Excel.Range.set_1
+      - excel.Excel.Range.sort
+      - excel.Excel.Range.text
+      - excel.Excel.Range.toJSON
+      - excel.Excel.Range.track
+      - excel.Excel.Range.unmerge
+      - excel.Excel.Range.untrack
+      - excel.Excel.Range.values
+      - excel.Excel.Range.valueTypes
+      - excel.Excel.Range.worksheet
+  - uid: excel.Excel.Range.address
+    summary: |-
+      表示 A1 样式的区域引用。 Address 值将包含工作表引用 (例如, "Sheet1!A1: B4 ")。 只读。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: address
+    fullName: address
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly address: string;'
+      return:
+        type:
+          - string
+  - uid: excel.Excel.Range.addressLocal
+    summary: |-
+      以用户语言表示对指定区域的区域引用。 只读。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: addressLocal
+    fullName: addressLocal
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly addressLocal: string;'
+      return:
+        type:
+          - string
+  - uid: excel.Excel.Range.cellCount
+    summary: |-
+      范围中的单元格数。 如果单元格数超过 2^31-1 (2,147,483,647)，此 API 返回 -1。 只读。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: cellCount
+    fullName: cellCount
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly cellCount: number;'
+      return:
+        type:
+          - number
+  - uid: excel.Excel.Range.clear
+    summary: |-
+      清除区域值、格式、填充、边框等。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: clear(applyTo)
+    fullName: clear(applyTo)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clear(applyTo?: Excel.ClearApplyTo): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Below example clears format and contents of the range. 
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "D:F";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+              range.clear();
+              return ctx.sync(); 
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: applyTo
+          description: '可选。 确定清除操作的类型。 有关详细信息, 请参阅 ClearApplyTo。'
+          type:
+            - excel.Excel.ClearApplyTo
+  - uid: excel.Excel.Range.clear_1
+    summary: |-
+      清除区域值、格式、填充、边框等。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: clear(applyToString)
+    fullName: clear(applyToString)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clear(applyToString?: "All" | "Formats" | "Contents" | "Hyperlinks" | "RemoveHyperlinks"): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: applyToString
+          description: '可选。 确定清除操作的类型。 有关详细信息, 请参阅 ClearApplyTo。'
+          type:
+            - '"All" | "Formats" | "Contents" | "Hyperlinks" | "RemoveHyperlinks"'
+  - uid: excel.Excel.Range.columnCount
+    summary: |-
+      表示区域中的列总数。 只读。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: columnCount
+    fullName: columnCount
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly columnCount: number;'
+      return:
+        type:
+          - number
+  - uid: excel.Excel.Range.columnHidden
+    summary: |-
+      表示当前 range 的所有列均已隐藏。
+
+      \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: columnHidden
+    fullName: columnHidden
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'columnHidden: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel.Excel.Range.columnIndex
+    summary: |-
+      表示区域中第一个单元格的列编号。 从零开始编制索引。 只读。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: columnIndex
+    fullName: columnIndex
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly columnIndex: number;'
+      return:
+        type:
+          - number
+  - uid: excel.Excel.Range.context
+    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - excel.Excel.RequestContext
+  - uid: excel.Excel.Range.delete
+    summary: |-
+      删除与区域相关的单元格。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: delete(shift)
+    fullName: delete(shift)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'delete(shift: Excel.DeleteShiftDirection): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: shift
+          description: '指定移动单元格的方式。 有关详细信息, 请参阅 DeleteShiftDirection。'
+          type:
+            - excel.Excel.DeleteShiftDirection
+  - uid: excel.Excel.Range.delete_1
+    summary: |-
+      删除与区域相关的单元格。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: delete(shiftString)
+    fullName: delete(shiftString)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'delete(shiftString: "Up" | "Left"): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "D:F";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+              range.delete("Left");
+              return ctx.sync(); 
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: shiftString
+          description: '指定移动单元格的方式。 有关详细信息, 请参阅 DeleteShiftDirection。'
+          type:
+            - '"Up" | "Left"'
+  - uid: excel.Excel.Range.format
+    summary: |-
+      返回一个格式对象，其中封装了区域的字体、填充、边框、对齐方式和其他属性。 只读。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: format
+    fullName: format
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly format: Excel.RangeFormat;'
+      return:
+        type:
+          - excel.Excel.RangeFormat
+  - uid: excel.Excel.Range.formulas
+    summary: |-
+      表示采用 A1 表示法的公式。 将公式设置为区域时, value 参数可以是单个值 (字符串), 也可以是二维数组。 如果参数是单个值, 它将应用于区域中的所有单元格。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: formulas
+    fullName: formulas
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'formulas: any[][];'
+      return:
+        type:
+          - 'any[][]'
+  - uid: excel.Excel.Range.formulasLocal
+    summary: |-
+      表示采用 A1 样式表示法的公式，使用用户的语言和数字格式区域设置。 例如，英语中的公式 "=SUM(A1, 1.5)" 在德语中将变为 "=SUMME(A1; 1,5)"。 将公式设置为区域时, value 参数可以是单个值 (字符串), 也可以是二维数组。 如果参数是单个值, 它将应用于区域中的所有单元格。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: formulasLocal
+    fullName: formulasLocal
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'formulasLocal: any[][];'
+      return:
+        type:
+          - 'any[][]'
+  - uid: excel.Excel.Range.formulasR1C1
+    summary: |-
+      表示采用 R1C1 表示法的公式。 将公式设置为区域时, value 参数可以是单个值 (字符串), 也可以是二维数组。 如果参数是单个值, 它将应用于区域中的所有单元格。
+
+      \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: formulasR1C1
+    fullName: formulasR1C1
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'formulasR1C1: any[][];'
+      return:
+        type:
+          - 'any[][]'
+  - uid: excel.Excel.Range.getBoundingRect
+    summary: |-
+      获取包含指定区域的最小 range 对象。 例如，“B2:C5”和“D10:E15”的 GetBoundingRect 为“B2:E15”。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getBoundingRect(anotherRange)
+    fullName: getBoundingRect(anotherRange)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getBoundingRect(anotherRange: Range | string): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "D4:G6";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+              var range = range.getBoundingRect("G4:H8");
+              range.load('address');
+              return ctx.sync().then(function() {
+                  console.log(range.address); // Prints Sheet1!D4:H8
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: anotherRange
+          description: range 对象或地址或区域名称。
+          type:
+            - Range | string
+  - uid: excel.Excel.Range.getCell
+    summary: |-
+      根据行和列编号获取包含单个单元格的 range 对象。 单元格可以位于其父区域的边界之外, 但前提是它停留在工作表网格中。 返回的单元格位于相对于区域左上角的单元格的位置。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'getCell(row, column)'
+    fullName: 'getCell(row, column)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getCell(row: number, column: number): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "A1:F8";
+              var worksheet = ctx.workbook.worksheets.getItem(sheetName);
+              var range = worksheet.getRange(rangeAddress);
+              var cell = range.cell(0,0);
+              cell.load('address');
+              return ctx.sync().then(function() {
+                  console.log(cell.address);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: row
+          description: 要检索的单元格的行号。 从零开始编制索引。
+          type:
+            - number
+        - id: column
+          description: 要检索的单元格的列号。 从零开始编制索引。
+          type:
+            - number
+  - uid: excel.Excel.Range.getColumn
+    summary: |-
+      获取范围中包含的列。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getColumn(column)
+    fullName: getColumn(column)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getColumn(column: number): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet19";
+              var rangeAddress = "A1:F8";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress).getColumn(1);
+              range.load('address');
+              return ctx.sync().then(function() {
+                  console.log(range.address); // prints Sheet1!B1:B8
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: column
+          description: 要检索的区域的列号。 从零开始编制索引。
+          type:
+            - number
+  - uid: excel.Excel.Range.getColumnsAfter
+    summary: |-
+      获取当前范围对象右侧的一定数量的列。
+
+      \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getColumnsAfter(count)
+    fullName: getColumnsAfter(count)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getColumnsAfter(count?: number): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: ''
+      parameters:
+        - id: count
+          description: 可选。生成的范围中要包含的列数。一般来说，使用正数可以在当前范围之外创建一个范围。也可以使用负数在当前范围之内创建一个范围。默认值为 1。
+          type:
+            - number
+  - uid: excel.Excel.Range.getColumnsBefore
+    summary: |-
+      获取当前范围对象左侧的一定数量的列。
+
+      \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getColumnsBefore(count)
+    fullName: getColumnsBefore(count)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getColumnsBefore(count?: number): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: ''
+      parameters:
+        - id: count
+          description: 可选。生成的范围中要包含的列数。一般来说，使用正数可以在当前范围之外创建一个范围。也可以使用负数在当前范围之内创建一个范围。默认值为 1。
+          type:
+            - number
+  - uid: excel.Excel.Range.getEntireColumn
+    summary: |-
+      获取一个对象, 该对象代表区域的整列 (例如, 如果当前区域表示单元格 "B4: E11", 则它`getEntireColumn`是表示列 "B:E" 的区域)。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getEntireColumn()
+    fullName: getEntireColumn()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getEntireColumn(): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Note: the grid properties of the Range (values, numberFormat, formulas) 
+          // contains null since the Range in question is unbounded.
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "D:F";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+              var rangeEC = range.getEntireColumn();
+              rangeEC.load('address');
+              return ctx.sync().then(function() {
+                  console.log(rangeEC.address);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: excel.Excel.Range.getEntireRow
+    summary: |-
+      获取一个对象, 该对象表示区域的整行 (例如, 如果当前区域表示单元格 "B4: E11", 则它`GetEntireRow`是表示行 "4:11" 的区域)。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getEntireRow()
+    fullName: getEntireRow()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getEntireRow(): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Gets an object that represents the entire row of the range 
+          // (for example, if the current range represents cells "B4:E11", 
+          // its GetEntireRow is a range that represents rows "4:11").
+          Excel.run(function (ctx) {
+              var sheetName = "Sheet1";
+              var rangeAddress = "D:F"; 
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+              var rangeER = range.getEntireRow();
+              rangeER.load('address');
+              return ctx.sync().then(function() {
+                  console.log(rangeER.address);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: excel.Excel.Range.getIntersection
+    summary: |-
+      获取表示指定区域的矩形交集的 range 对象。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getIntersection(anotherRange)
+    fullName: getIntersection(anotherRange)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getIntersection(anotherRange: Range | string): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "A1:F8";
+              var range = 
+                  ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress).getIntersection("D4:G6");
+              range.load('address');
+              return ctx.sync().then(function() {
+                  console.log(range.address); // prints Sheet1!D4:F6
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: anotherRange
+          description: 将用于确定区域交集的 range 对象或区域地址。
+          type:
+            - Range | string
+  - uid: excel.Excel.Range.getIntersectionOrNullObject
+    summary: |-
+      获取表示指定区域的矩形交集的 range 对象。 如果找不到任何交集，则此方法返回空对象。
+
+      \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getIntersectionOrNullObject(anotherRange)
+    fullName: getIntersectionOrNullObject(anotherRange)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getIntersectionOrNullObject(anotherRange: Range | string): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const salesTable = sheet.tables.getItem("SalesTable");
+              const dataRange = salesTable.getDataBodyRange();
+
+              // We want the most recent quarter that has data, so
+              // exclude quarters without data and get the last of
+              // the remaining columns.
+              const usedDataRange = dataRange.getUsedRange(true /* valuesOnly */);
+              const currentQuarterRange = usedDataRange.getLastColumn();
+
+              // Asian and European teams have separate contests.
+              const asianSalesRange = sheet.getRange("A2:E4");
+              const europeanSalesRange = sheet.getRange("A5:E7");
+
+              // The data for each chart is the intersection of the
+              // current quarter column and the rows for the continent.
+              const asianContestRange = asianSalesRange.getIntersectionOrNullObject(currentQuarterRange);
+              const europeanContestRange = europeanSalesRange.getIntersectionOrNullObject(currentQuarterRange);
+
+              // Must sync before you can test the output of *OrNullObject
+              // method/property.
+              await context.sync();
+
+              if (asianContestRange.isNullObject) {
+                  // See the declaration of this method for how to
+                  // test this code path.
+                  reportMissingData("Asian");
+              } else {
+                  createContinentChart(
+                      sheet,
+                      "Asian",
+                      asianContestRange,
+                      "A9",
+                      "F24"
+                  );
+              }
+
+              if (europeanContestRange.isNullObject) {
+                  // See the declaration of this method for how to
+                  // test this code path.
+                  reportMissingData("European");
+              } else {
+                  createContinentChart(
+                      sheet,
+                      "European",
+                      europeanContestRange,
+                      "A25",
+                      "F40"
+                  );
+              }
+
+              await context.sync();
+          });
+          ```
+      parameters:
+        - id: anotherRange
+          description: 将用于确定区域交集的 range 对象或区域地址。
+          type:
+            - Range | string
+  - uid: excel.Excel.Range.getLastCell
+    summary: |-
+      获取区域内的最后一个单元格。 例如，“B2:D5”的最后一个单元格是“D5”。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getLastCell()
+    fullName: getLastCell()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getLastCell(): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "A1:F8";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress).getLastCell();
+              range.load('address');
+              return ctx.sync().then(function() {
+                  console.log(range.address); // prints Sheet1!F8
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: excel.Excel.Range.getLastColumn
+    summary: |-
+      获取区域内的最后一列。 例如，“B2:D5”的最后一列是“D2:D5”。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getLastColumn()
+    fullName: getLastColumn()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getLastColumn(): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "A1:F8";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress).getLastColumn();
+              range.load('address');
+              return ctx.sync().then(function() {
+                  console.log(range.address); // prints Sheet1!F1:F8
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: excel.Excel.Range.getLastRow
+    summary: |-
+      获取区域内的最后一行。 例如，“B2:D5”的最后一行是“B5:D5”。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getLastRow()
+    fullName: getLastRow()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getLastRow(): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "A1:F8";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress).getLastRow();
+              range.load('address');
+              return ctx.sync().then(function() {
+                  console.log(range.address); // prints Sheet1!A8:F8
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: excel.Excel.Range.getOffsetRange
+    summary: |-
+      获取表示与指定区域偏移的区域的对象。返回的区域的尺寸将与此区域一致。如果强制在工作表网格的边界之外生成区域，将引发错误。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'getOffsetRange(rowOffset, columnOffset)'
+    fullName: 'getOffsetRange(rowOffset, columnOffset)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getOffsetRange(rowOffset: number, columnOffset: number): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "D4:F6";
+              var range = 
+                  ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress).getOffsetRange(-1,4);
+              range.load('address');
+              return ctx.sync().then(function() {
+                  console.log(range.address); // prints Sheet1!H3:K5
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: rowOffset
+          description: 区域偏移的行数（正数、负数或 0）。正数表示向下偏移，负数表示向上偏移。
+          type:
+            - number
+        - id: columnOffset
+          description: 区域偏移的列数（正数、负数或 0）。正数表示向右偏移，负数表示向左偏移。
+          type:
+            - number
+  - uid: excel.Excel.Range.getResizedRange
+    summary: |-
+      获取与当前范围对象类似的范围对象，但其右下角可通过一定数量的行和列进行展开（或合拢）。
+
+      \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'getResizedRange(deltaRows, deltaColumns)'
+    fullName: 'getResizedRange(deltaRows, deltaColumns)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getResizedRange(deltaRows: number, deltaColumns: number): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: ''
+      parameters:
+        - id: deltaRows
+          description: 相对于当前范围，展开右下角的行数。使用正数可展开范围，使用负数可合拢范围。
+          type:
+            - number
+        - id: deltaColumns
+          description: '相对于当前范围, 从右下角扩展的列数。 使用正数可展开范围，使用负数可合拢范围。'
+          type:
+            - number
+  - uid: excel.Excel.Range.getRow
+    summary: |-
+      获取范围中包含的行。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getRow(row)
+    fullName: getRow(row)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getRow(row: number): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "A1:F8";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress).getRow(1);
+              range.load('address');
+              return ctx.sync().then(function() {
+                  console.log(range.address); // prints Sheet1!A2:F2
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: row
+          description: 要检索的区域的行号。 从零开始编制索引。
+          type:
+            - number
+  - uid: excel.Excel.Range.getRowsAbove
+    summary: |-
+      获取当前范围对象上方的一定数量的行。
+
+      \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getRowsAbove(count)
+    fullName: getRowsAbove(count)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getRowsAbove(count?: number): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: ''
+      parameters:
+        - id: count
+          description: 可选。生成的范围中要包含的行数。一般来说，使用正数可以在当前范围之外创建一个范围。也可以使用负数在当前范围之内创建一个范围。默认值为 1。
+          type:
+            - number
+  - uid: excel.Excel.Range.getRowsBelow
+    summary: |-
+      获取当前范围对象下方的一定数量的行。
+
+      \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getRowsBelow(count)
+    fullName: getRowsBelow(count)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getRowsBelow(count?: number): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: ''
+      parameters:
+        - id: count
+          description: 可选。生成的范围中要包含的行数。一般来说，使用正数可以在当前范围之外创建一个范围。也可以使用负数在当前范围之内创建一个范围。默认值为 1。
+          type:
+            - number
+  - uid: excel.Excel.Range.getUsedRange
+    summary: |-
+      返回指定 Range 对象的所用区域。如果区域内没有使用单元格，此函数将引发 ItemNotFound 错误。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getUsedRange(valuesOnly)
+    fullName: getUsedRange(valuesOnly)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getUsedRange(valuesOnly?: boolean): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "D:F";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+              var rangeUR = range.getUsedRange();
+              rangeUR.load('address');
+              return ctx.sync().then(function() {
+                  console.log(rangeUR.address);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const salesTable = sheet.tables.getItem("SalesTable");
+              const dataRange = salesTable.getDataBodyRange();
+
+              // We want the most recent quarter that has data, so
+              // exclude quarters without data and get the last of
+              // the remaining columns.
+              const usedDataRange = dataRange.getUsedRange(true /* valuesOnly */);
+              const currentQuarterRange = usedDataRange.getLastColumn();
+
+              // Asian and European teams have separate contests.
+              const asianSalesRange = sheet.getRange("A2:E4");
+              const europeanSalesRange = sheet.getRange("A5:E7");
+
+              // The data for each chart is the intersection of the
+              // current quarter column and the rows for the continent.
+              const asianContestRange = asianSalesRange.getIntersectionOrNullObject(currentQuarterRange);
+              const europeanContestRange = europeanSalesRange.getIntersectionOrNullObject(currentQuarterRange);
+
+              // Must sync before you can test the output of *OrNullObject
+              // method/property.
+              await context.sync();
+
+              if (asianContestRange.isNullObject) {
+                  // See the declaration of this method for how to
+                  // test this code path.
+                  reportMissingData("Asian");
+              } else {
+                  createContinentChart(
+                      sheet,
+                      "Asian",
+                      asianContestRange,
+                      "A9",
+                      "F24"
+                  );
+              }
+
+              if (europeanContestRange.isNullObject) {
+                  // See the declaration of this method for how to
+                  // test this code path.
+                  reportMissingData("European");
+              } else {
+                  createContinentChart(
+                      sheet,
+                      "European",
+                      europeanContestRange,
+                      "A25",
+                      "F40"
+                  );
+              }
+
+              await context.sync();
+          });
+          ```
+      parameters:
+        - id: valuesOnly
+          description: '仅将有值的单元格视为已使用的单元格。 \[Api 集: ExcelApi 1。2\]'
+          type:
+            - boolean
+  - uid: excel.Excel.Range.getUsedRangeOrNullObject
+    summary: |-
+      返回指定 Range 对象的所用区域。如果区域内没有使用单元格，此函数将返回 NULL 对象。
+
+      \[[API 集: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getUsedRangeOrNullObject(valuesOnly)
+    fullName: getUsedRangeOrNullObject(valuesOnly)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getUsedRangeOrNullObject(valuesOnly?: boolean): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const salesTable = sheet.tables.getItem("SalesTable");
+              const dataRange = salesTable.getDataBodyRange();
+
+              // Pass true so only cells with values count as used
+              const usedDataRange = dataRange.getUsedRangeOrNullObject(
+                  true /* valuesOnly */
+              );
+
+              //Must sync before reading value returned from *OrNullObject method/property.
+              await context.sync();
+
+              if (usedDataRange.isNullObject) {
+                  console.log("Need Data to Make Chart");
+                  console.log("To create a meaningful chart, press 'Fill the table' (or add names to the Product column and numbers to some of the other cells). Then press 'Try to create chart' again.");
+              } else {
+                  const chart = sheet.charts.add(
+                      Excel.ChartType.columnClustered,
+                      dataRange,
+                      "Columns"
+                  );
+                  chart.setPosition("A15", "F30");
+                  chart.title.text = "Quarterly sales chart";
+                  chart.legend.position = "Right";
+                  chart.legend.format.fill.setSolidColor("white");
+                  chart.dataLabels.format.font.size = 15;
+                  chart.dataLabels.format.font.color = "black";
+              }
+
+              await context.sync();
+          });
+          ```
+      parameters:
+        - id: valuesOnly
+          description: 仅将有值的单元格视为已使用的单元格。
+          type:
+            - boolean
+  - uid: excel.Excel.Range.getVisibleView
+    summary: |-
+      表示当前 range 对象的可见行。
+
+      \[[API 集: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getVisibleView()
+    fullName: getVisibleView()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getVisibleView(): Excel.RangeView;'
+      return:
+        type:
+          - excel.Excel.RangeView
+        description: ''
+  - uid: excel.Excel.Range.hidden
+    summary: |-
+      表示当前区域中的所有单元格是否隐藏。 只读。
+
+      \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: hidden
+    fullName: hidden
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly hidden: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel.Excel.Range.insert
+    summary: |-
+      将单个单元格或一系列单元格插入到工作表中取代此区域，并移动其他单元格以留出空间。在现在空白的空间返回新的 Range 对象。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: insert(shift)
+    fullName: insert(shift)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insert(shift: Excel.InsertShiftDirection): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "F5:F10";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+              range.insert();
+              return ctx.sync(); 
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: shift
+          description: '指定移动单元格的方式。 有关详细信息, 请参阅 InsertShiftDirection。'
+          type:
+            - excel.Excel.InsertShiftDirection
+  - uid: excel.Excel.Range.insert_1
+    summary: |-
+      将单个单元格或一系列单元格插入到工作表中取代此区域，并移动其他单元格以留出空间。在现在空白的空间返回新的 Range 对象。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: insert(shiftString)
+    fullName: insert(shiftString)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insert(shiftString: "Down" | "Right"): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: ''
+      parameters:
+        - id: shiftString
+          description: '指定移动单元格的方式。 有关详细信息, 请参阅 InsertShiftDirection。'
+          type:
+            - '"Down" | "Right"'
+  - uid: excel.Excel.Range.load
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+    remarks: |-
+      除了此签名之外, 此方法还具有以下签名:
+
+      `load(option?: string | string[]): Excel.Range`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
+
+      `load(option?: { select?: string; expand?: string; }): Excel.Range`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Range`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.RangeLoadOptions): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - excel.Excel.Interfaces.RangeLoadOptions
+  - uid: excel.Excel.Range.load_1
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Below example uses range address to get the range object.
+          Excel.run(function (ctx) {
+              var sheetName = "Sheet1";
+              var rangeAddress = "A1:F8"; 
+              var worksheet = ctx.workbook.worksheets.getItem(sheetName);
+              var range = worksheet.getRange(rangeAddress);
+              range.load('cellCount');
+              return ctx.sync().then(function() {
+                  console.log(range.cellCount);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          // Below example uses a named-range to get the range object.
+          Excel.run(function (ctx) { 
+              var rangeName = 'MyRange';
+              var range = ctx.workbook.names.getItem(rangeName).range;
+              range.load('cellCount');
+              return ctx.sync().then(function() {
+                  console.log(range.cellCount);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          // The example below sets number-format, values and formulas on a grid that contains 2x3 grid.
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "F5:G7";
+              var numberFormat = [[null, "d-mmm"], [null, "d-mmm"], [null, null]]
+              var values = [["Today", 42147], ["Tomorrow", "5/24"], ["Difference in days", null]];
+              var formulas = [[null,null], [null,null], [null,"=G6-G5"]];
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+              range.numberFormat = numberFormat;
+              range.values = values;
+              range.formulas= formulas;
+              range.load('text');
+              return ctx.sync().then(function() {
+                  console.log(range.text);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: '一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。'
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.Range.load_2
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: excel.Excel.Range.merge
+    summary: |-
+      在工作表中，将 range 单元格合并到一个区域中。
+
+      \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: merge(across)
+    fullName: merge(across)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'merge(across?: boolean): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "A1:C3";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+              range.merge(true);
+              return ctx.sync(); 
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "A1:C3";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+              range.unmerge();
+              return ctx.sync(); 
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: across
+          description: 可选。 如果为 True，则将指定区域中每一行的单元格合并为一个单独的合并单元格。 默认值是 false。
+          type:
+            - boolean
+  - uid: excel.Excel.Range.numberFormat
+    summary: |-
+      表示给定范围的 Excel 数字格式代码。 将数字格式设置为一个区域时, value 参数可以是单个值 (string), 也可以是二维数组。 如果参数是单个值, 它将应用于区域中的所有单元格。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: numberFormat
+    fullName: numberFormat
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'numberFormat: any[][];'
+      return:
+        type:
+          - 'any[][]'
+  - uid: excel.Excel.Range.rowCount
+    summary: |-
+      返回区域中的总行数。 只读。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: rowCount
+    fullName: rowCount
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly rowCount: number;'
+      return:
+        type:
+          - number
+  - uid: excel.Excel.Range.rowHidden
+    summary: |-
+      表示当前 range 的所有行均已隐藏。
+
+      \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: rowHidden
+    fullName: rowHidden
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'rowHidden: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel.Excel.Range.rowIndex
+    summary: |-
+      返回区域中第一个单元格的行编号。 从零开始编制索引。 只读。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: rowIndex
+    fullName: rowIndex
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly rowIndex: number;'
+      return:
+        type:
+          - number
+  - uid: excel.Excel.Range.select
+    summary: |-
+      在 Excel UI 中选择指定的区域。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: select()
+    fullName: select()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'select(): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Excel.run(function (ctx) {
+              var sheetName = "Sheet1";
+              var rangeAddress = "F5:F10"; 
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+              range.select();
+              return ctx.sync(); 
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: excel.Excel.Range.set
+    summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+    remarks: |-
+      此方法具有以下附加签名:
+
+      `set(properties: Excel.Range): void`
+
+      #### <a name="examples"></a>示例
+
+      ```typescript
+      await Excel.run(async (context) => {
+          const sheet = context.workbook.worksheets.getItem("Sample");
+
+          const range = sheet.getRange("B2:E2");
+          range.set({
+              format: {
+                  fill: {
+                      color: "#4472C4"
+                  },
+                  font: {
+                      name: "Verdana",
+                      color: "white"
+                  }
+              }
+          })
+          range.format.autofitColumns();
+          await context.sync();
+      });
+      ```
+      ```typescript
+      await Excel.run(async (context) => {
+          const sheet = context.workbook.worksheets.getItem("Sample");
+
+          const sourceRange = sheet.getRange("B2:E2");
+          sourceRange.load("format/fill/color, format/font/name, format/font/color");
+          await context.sync();
+
+          // Set properties based on the loaded and synced 
+          // source range.
+          const targetRange = sheet.getRange("B7:E7");
+          targetRange.set(sourceRange); 
+          targetRange.format.autofitColumns();
+          await context.sync();
+      });
+      ```
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.RangeUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: '一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。'
+          type:
+            - Interfaces.RangeUpdateData
+        - id: options
+          description: '提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。'
+          type:
+            - OfficeExtension.UpdateOptions
+  - uid: excel.Excel.Range.set_1
+    summary: 基于现有加载的对象同时设置该对象的多个属性。
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Excel.Range): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - excel.Excel.Range
+  - uid: excel.Excel.Range.sort
+    summary: |-
+      表示当前 range 的区域排序。 只读。
+
+      \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: sort
+    fullName: sort
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly sort: Excel.RangeSort;'
+      return:
+        type:
+          - excel.Excel.RangeSort
+  - uid: excel.Excel.Range.text
+    summary: |-
+      指定区域的文本值。 文本值与单元格宽度无关。 Excel \# UI 中发生的符号替换不会影响 API 返回的文本值。 只读。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: text
+    fullName: text
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly text: string[][];'
+      return:
+        type:
+          - 'string[][]'
+  - uid: excel.Excel.Range.toJSON
+    summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始的 Excel Range 对象是 API 对象, 但`toJSON`方法返回一个简单的 JavaScript 对象 (类型为`Excel.Interfaces.RangeData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.RangeData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.RangeData
+        description: ''
+  - uid: excel.Excel.Range.track
+    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。
+    name: track()
+    fullName: track()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'track(): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: ''
+  - uid: excel.Excel.Range.unmerge
+    summary: |-
+      将范围单元格取消合并为各个单元格。
+
+      \[[API 集: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: unmerge()
+    fullName: unmerge()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'unmerge(): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "A1:C3";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+              range.unmerge();
+              return ctx.sync(); 
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: excel.Excel.Range.untrack
+    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前，你需要调用“context.sync()”。
+    name: untrack()
+    fullName: untrack()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'untrack(): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          Excel.run(async (context) => {
+              const largeRange = context.workbook.getSelectedRange();
+              largeRange.load(["rowCount", "columnCount"]);
+              await context.sync();
+
+              for (let i = 0; i < largeRange.rowCount; i++) {
+                  for (let j = 0; j < largeRange.columnCount; j++) {
+                      let cell = largeRange.getCell(i, j);
+                      cell.values = [[i *j]];
+
+                      // call untrack() to release the range from memory
+                      cell.untrack();
+                  }
+              }
+
+              await context.sync();
+          });
+          ```
+  - uid: excel.Excel.Range.values
+    summary: |-
+      表示指定区域的原始值。 返回的数据可能是字符串、数字，也可能是布尔值。 包含错误的单元格将返回错误字符串。 将值设置为一个范围时, value 参数可以是单个值 (string、number 或 boolean), 也可以是一个二维数组。 如果参数是单个值, 它将应用于区域中的所有单元格。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: values
+    fullName: values
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'values: any[][];'
+      return:
+        type:
+          - 'any[][]'
+  - uid: excel.Excel.Range.valueTypes
+    summary: |-
+      表示每个单元格的数据类型。 只读。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: valueTypes
+    fullName: valueTypes
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly valueTypes: Excel.RangeValueType[][];'
+      return:
+        type:
+          - 'Excel.RangeValueType[][]'
+  - uid: excel.Excel.Range.worksheet
+    summary: |-
+      包含当前区域的工作表。 只读。
+
+      \[[API 集: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: worksheet
+    fullName: worksheet
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly worksheet: Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
