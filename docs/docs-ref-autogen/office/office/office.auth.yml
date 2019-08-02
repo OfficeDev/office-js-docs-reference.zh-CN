@@ -1,0 +1,87 @@
+### YamlMime:UniversalReference
+items:
+  - uid: office.Office.Auth
+    summary: 'Office Auth namespace (即 "context.subname") 提供了一种方法, 允许 Office 主机获取对加载项 web 应用程序的访问令牌。 这也使加载项能够间接访问已登录用户的 Microsoft Graph 数据，而不需要用户第二次登录。'
+    isPreview: true
+    name: Office.Auth
+    fullName: Office.Auth
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    children:
+      - office.Office.Auth.getAccessTokenAsync
+      - office.Office.Auth.getAccessTokenAsync_1
+  - uid: office.Office.Auth.getAccessTokenAsync
+    summary: |-
+      调用 Azure Active Directory V 2.0 终结点以获取令牌来访问加载项的 Web 应用程序。 启用外接程序以标识用户。 通过使用["代表" OAuth 流](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of), 服务器端代码可以使用此令牌访问加载项的 web 应用程序的 Microsoft Graph<!-- -->.
+
+      重要说明: 在 Outlook 中, 如果外接程序加载到 Outlook.com 或 Gmail 邮箱中, 则此 API 不受支持。
+    remarks: |-
+      **主机**: Excel、OneNote、Outlook、PowerPoint、Word
+
+      **要求集**: [IdentityAPI](https://docs.microsoft.com/en-us/office/dev/add-ins/reference/requirement-sets/identity-api-requirement-sets)
+
+      此 API 需要将加载项桥接到 Azure 应用程序的单一登录配置。 Office 用户使用组织帐户和 Microsoft 帐户登录。 Microsoft Azure 返回适用于两种用户帐户类型的令牌，以访问 Microsoft Graph 中的资源。
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      Office.context.auth.getAccessTokenAsync(function(result) {
+          if (result.status === "succeeded") {
+              var token = result.value;
+              // ...
+          } else {
+              console.log("Error obtaining token", result.error);
+          }
+      });
+      ```
+    isPreview: true
+    name: 'getAccessTokenAsync(options, callback)'
+    fullName: 'getAccessTokenAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getAccessTokenAsync(options?: AuthOptions, callback?: (result: AsyncResult<string>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: 可选。 接受 AuthOptions 对象以定义登录行为。
+          type:
+            - office.Office.AuthOptions
+        - id: callback
+          description: '可选。 接受可对用户 ID 使用分析令牌的回调方法, 或使用 "代表" 流中的令牌来获取对 Microsoft Graph 的访问权限。 如果 AsyncResult. status 为 "succeeded", 则为 AsyncResult。值为原始 AAD v。 2.0 格式的访问令牌。'
+          type:
+            - '(result: AsyncResult<string>) => void'
+  - uid: office.Office.Auth.getAccessTokenAsync_1
+    summary: |-
+      调用 Azure Active Directory V 2.0 终结点以获取令牌来访问加载项的 Web 应用程序。 启用外接程序以标识用户。 通过使用["代表" OAuth 流](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of), 服务器端代码可以使用此令牌访问加载项的 web 应用程序的 Microsoft Graph<!-- -->.
+
+      重要说明: 在 Outlook 中, 如果外接程序加载到 Outlook.com 或 Gmail 邮箱中, 则此 API 不受支持。
+    remarks: |-
+      **主机**: Excel、OneNote、Outlook、PowerPoint、Word
+
+      **要求集**: [IdentityAPI](https://docs.microsoft.com/en-us/office/dev/add-ins/reference/requirement-sets/identity-api-requirement-sets)
+
+      此 API 需要将加载项桥接到 Azure 应用程序的单一登录配置。 Office 用户使用组织帐户和 Microsoft 帐户登录。 Microsoft Azure 返回适用于两种用户帐户类型的令牌，以访问 Microsoft Graph 中的资源。
+    isPreview: true
+    name: getAccessTokenAsync(callback)
+    fullName: getAccessTokenAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getAccessTokenAsync(callback?: (result: AsyncResult<string>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: '可选。 接受可对用户 ID 使用分析令牌的回调方法, 或使用 "代表" 流中的令牌来获取对 Microsoft Graph 的访问权限。 如果 AsyncResult. status 为 "succeeded", 则为 AsyncResult。值为原始 AAD v。 2.0 格式的访问令牌。'
+          type:
+            - '(result: AsyncResult<string>) => void'
