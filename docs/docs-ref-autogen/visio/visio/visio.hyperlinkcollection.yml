@@ -1,0 +1,184 @@
+### YamlMime:UniversalReference
+items:
+  - uid: visio.Visio.HyperlinkCollection
+    summary: |-
+      表示 HyperlinkCollection 对象。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: Visio.HyperlinkCollection
+    fullName: Visio.HyperlinkCollection
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: visio
+    children:
+      - visio.Visio.HyperlinkCollection.context
+      - visio.Visio.HyperlinkCollection.getCount
+      - visio.Visio.HyperlinkCollection.getItem
+      - visio.Visio.HyperlinkCollection.items
+      - visio.Visio.HyperlinkCollection.load
+      - visio.Visio.HyperlinkCollection.load_1
+      - visio.Visio.HyperlinkCollection.load_2
+      - visio.Visio.HyperlinkCollection.toJSON
+  - uid: visio.Visio.HyperlinkCollection.context
+    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - visio.Visio.RequestContext
+  - uid: visio.Visio.HyperlinkCollection.getCount
+    summary: |-
+      获取超链接的数量。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: getCount()
+    fullName: getCount()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getCount(): OfficeExtension.ClientResult<number>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<number>
+        description: ''
+  - uid: visio.Visio.HyperlinkCollection.getItem
+    summary: |-
+      按键（名称或 ID）获取超链接。
+
+      \[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: getItem(Key)
+    fullName: getItem(Key)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItem(Key: number | string): Visio.Hyperlink;'
+      return:
+        type:
+          - visio.Visio.Hyperlink
+        description: ''
+      parameters:
+        - id: Key
+          description: 键是要检索的超链接的名称或索引。
+          type:
+            - number | string
+  - uid: visio.Visio.HyperlinkCollection.items
+    summary: 获取此集合中已加载的子项。
+    name: items
+    fullName: items
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly items: Visio.Hyperlink[];'
+      return:
+        type:
+          - 'Visio.Hyperlink[]'
+  - uid: visio.Visio.HyperlinkCollection.load
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+    remarks: |-
+      除了此签名之外, 此方法还具有以下签名:
+
+      `load(option?: string | string[]): Visio.HyperlinkCollection`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
+
+      `load(option?: { select?: string; expand?: string; }): Visio.HyperlinkCollection`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.HyperlinkCollection`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      Visio.run(session, function (ctx) {
+          var activePage = ctx.document.getActivePage();
+          var shapeName = "Manager Belt";
+          var shape = activePage.shapes.getItem(shapeName);
+          var hyperlinks = shape.hyperlinks;
+          shapeHyperlinks.load(["description", "address", "subAddress"]);
+              ctx.sync().then(function () {
+                  for (var i = 0; i < shapeHyperlinks.items.length; i++) {
+                      var hyperlink = shapeHyperlinks.items[i];
+                      console.log(
+                          "Description:"+hyperlink.description +"Address:"+hyperlink.address +"SubAddress:  " + 
+                          hyperlink.subAddress);
+                  }
+              });
+      }).catch(function(error) {
+          console.log("Error: " + error);
+          if (error instanceof OfficeExtension.Error) {
+              console.log("Debug info: " + JSON.stringify(error.debugInfo));
+          }
+      });
+      ```
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Visio.Interfaces.HyperlinkCollectionLoadOptions & Visio.Interfaces.CollectionLoadOptions): Visio.HyperlinkCollection;'
+      return:
+        type:
+          - visio.Visio.HyperlinkCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - Visio.Interfaces.HyperlinkCollectionLoadOptions & Visio.Interfaces.CollectionLoadOptions
+  - uid: visio.Visio.HyperlinkCollection.load_1
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Visio.HyperlinkCollection;'
+      return:
+        type:
+          - visio.Visio.HyperlinkCollection
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: '一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。'
+          type:
+            - 'string | string[]'
+  - uid: visio.Visio.HyperlinkCollection.load_2
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OfficeExtension.LoadOption): Visio.HyperlinkCollection;'
+      return:
+        type:
+          - visio.Visio.HyperlinkCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - OfficeExtension.LoadOption
+  - uid: visio.Visio.HyperlinkCollection.toJSON
+    summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始`Visio.HyperlinkCollection`对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Visio.Interfaces.HyperlinkCollectionData`<!-- -->), 其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Visio.Interfaces.HyperlinkCollectionData;'
+      return:
+        type:
+          - visio.Visio.Interfaces.HyperlinkCollectionData
+        description: ''
