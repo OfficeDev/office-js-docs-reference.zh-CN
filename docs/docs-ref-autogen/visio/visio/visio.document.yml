@@ -1,0 +1,425 @@
+### YamlMime:UniversalReference
+items:
+  - uid: visio.Visio.Document
+    summary: |-
+      <span data-ttu-id="b0d05-101">表示 Document 类。</span><span class="sxs-lookup"><span data-stu-id="b0d05-101">Represents the Document class.</span></span>
+
+      <span data-ttu-id="b0d05-102">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="b0d05-102">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: Visio.Document
+    fullName: Visio.Document
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: visio
+    children:
+      - visio.Visio.Document.application
+      - visio.Visio.Document.context
+      - visio.Visio.Document.getActivePage
+      - visio.Visio.Document.load
+      - visio.Visio.Document.load_1
+      - visio.Visio.Document.load_2
+      - visio.Visio.Document.onDataRefreshComplete
+      - visio.Visio.Document.onDocumentLoadComplete
+      - visio.Visio.Document.onPageLoadComplete
+      - visio.Visio.Document.onSelectionChanged
+      - visio.Visio.Document.onShapeMouseEnter
+      - visio.Visio.Document.onShapeMouseLeave
+      - visio.Visio.Document.pages
+      - visio.Visio.Document.set
+      - visio.Visio.Document.set_1
+      - visio.Visio.Document.setActivePage
+      - visio.Visio.Document.startDataRefresh
+      - visio.Visio.Document.toJSON
+      - visio.Visio.Document.view
+  - uid: visio.Visio.Document.application
+    summary: |-
+      <span data-ttu-id="b0d05-103">表示包含此文档的 Visio 应用程序实例。</span><span class="sxs-lookup"><span data-stu-id="b0d05-103">Represents a Visio application instance that contains this document.</span></span> <span data-ttu-id="b0d05-104">只读。</span><span class="sxs-lookup"><span data-stu-id="b0d05-104">Read-only.</span></span>
+
+      <span data-ttu-id="b0d05-105">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="b0d05-105">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: application
+    fullName: application
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly application: Visio.Application;'
+      return:
+        type:
+          - visio.Visio.Application
+  - uid: visio.Visio.Document.context
+    summary: <span data-ttu-id="b0d05-106">与该对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="b0d05-106">The request context associated with the object.</span></span> <span data-ttu-id="b0d05-107">这会将加载项的进程连接到 Office 主机应用程序的进程。</span><span class="sxs-lookup"><span data-stu-id="b0d05-107">This connects the add-in's process to the Office host application's process.</span></span>
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - visio.Visio.RequestContext
+  - uid: visio.Visio.Document.getActivePage
+    summary: |-
+      <span data-ttu-id="b0d05-108">返回文档的活动页。</span><span class="sxs-lookup"><span data-stu-id="b0d05-108">Returns the Active Page of the document.</span></span>
+
+      <span data-ttu-id="b0d05-109">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="b0d05-109">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: getActivePage()
+    fullName: getActivePage()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActivePage(): Visio.Page;'
+      return:
+        type:
+          - visio.Visio.Page
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="b0d05-110">示例</span><span class="sxs-lookup"><span data-stu-id="b0d05-110">Examples</span></span>
+
+          ```javascript
+          Visio.run(session, function (ctx) {
+              var document = ctx.document;
+              var activePage = document.getActivePage();
+              activePage.load("name");
+              return ctx.sync().then(function () {
+                  console.log("pageName: " +activePage.name);
+              });   
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: visio.Visio.Document.load
+    summary: <span data-ttu-id="b0d05-111">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="b0d05-111">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="b0d05-112">在读取属性之前，你必须调用“context.sync()”。</span><span class="sxs-lookup"><span data-stu-id="b0d05-112">You must call "context.sync()" before reading the properties.</span></span>
+    remarks: |-
+      <span data-ttu-id="b0d05-113">除了此签名之外, 此方法还具有以下签名:</span><span class="sxs-lookup"><span data-stu-id="b0d05-113">In addition to this signature, this method has the following signatures:</span></span>
+
+      <span data-ttu-id="b0d05-114">`load(option?: string | string[]): Visio.Document`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="b0d05-114">`load(option?: string | string[]): Visio.Document` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
+
+      <span data-ttu-id="b0d05-115">`load(option?: { select?: string; expand?: string; }): Visio.Document`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="b0d05-115">`load(option?: { select?: string; expand?: string; }): Visio.Document` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+
+      <span data-ttu-id="b0d05-116">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.Document`-仅适用于集合类型。</span><span class="sxs-lookup"><span data-stu-id="b0d05-116">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.Document` - Only available on collection types.</span></span> <span data-ttu-id="b0d05-117">它类似于前面的签名。</span><span class="sxs-lookup"><span data-stu-id="b0d05-117">It is similar to the preceding signature.</span></span> <span data-ttu-id="b0d05-118">Top 指定结果中可包含的集合项的最大数量。</span><span class="sxs-lookup"><span data-stu-id="b0d05-118">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="b0d05-119">选项。 skip 指定要跳过且不包含在结果中的项目数。</span><span class="sxs-lookup"><span data-stu-id="b0d05-119">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="b0d05-120">如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。</span><span class="sxs-lookup"><span data-stu-id="b0d05-120">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Visio.Interfaces.DocumentLoadOptions): Visio.Document;'
+      return:
+        type:
+          - visio.Visio.Document
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - visio.Visio.Interfaces.DocumentLoadOptions
+  - uid: visio.Visio.Document.load_1
+    summary: '<span data-ttu-id="b0d05-121">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="b0d05-121">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="b0d05-122">在读取属性`context.sync()`之前, 必须先调用。</span><span class="sxs-lookup"><span data-stu-id="b0d05-122">You must call `context.sync()` before reading the properties.</span></span>'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Visio.Document;'
+      return:
+        type:
+          - visio.Visio.Document
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: '<span data-ttu-id="b0d05-123">一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="b0d05-123">A comma-delimited string or an array of strings that specify the properties to load.</span></span>'
+          type:
+            - 'string | string[]'
+  - uid: visio.Visio.Document.load_2
+    summary: '<span data-ttu-id="b0d05-124">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="b0d05-124">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="b0d05-125">在读取属性`context.sync()`之前, 必须先调用。</span><span class="sxs-lookup"><span data-stu-id="b0d05-125">You must call `context.sync()` before reading the properties.</span></span>'
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Visio.Document;'
+      return:
+        type:
+          - visio.Visio.Document
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '<span data-ttu-id="b0d05-126">其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="b0d05-126">Where propertyNamesAndPaths.select is a comma-delimited string that specifies the properties to load, and propertyNamesAndPaths.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: visio.Visio.Document.onDataRefreshComplete
+    summary: |-
+      <span data-ttu-id="b0d05-127">在图表中刷新数据时发生。</span><span class="sxs-lookup"><span data-stu-id="b0d05-127">Occurs when the data is refreshed in the diagram.</span></span>
+
+      <span data-ttu-id="b0d05-128">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="b0d05-128">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: onDataRefreshComplete
+    fullName: onDataRefreshComplete
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onDataRefreshComplete: OfficeExtension.EventHandlers<Visio.DataRefreshCompleteEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.DataRefreshCompleteEventArgs>
+  - uid: visio.Visio.Document.onDocumentLoadComplete
+    summary: |-
+      <span data-ttu-id="b0d05-129">在加载、刷新或更改文档时发生。</span><span class="sxs-lookup"><span data-stu-id="b0d05-129">Occurs when the Document is loaded, refreshed, or changed.</span></span>
+
+      <span data-ttu-id="b0d05-130">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="b0d05-130">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: onDocumentLoadComplete
+    fullName: onDocumentLoadComplete
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onDocumentLoadComplete: OfficeExtension.EventHandlers<Visio.DocumentLoadCompleteEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.DocumentLoadCompleteEventArgs>
+  - uid: visio.Visio.Document.onPageLoadComplete
+    summary: |-
+      <span data-ttu-id="b0d05-131">页面加载完成时发生。</span><span class="sxs-lookup"><span data-stu-id="b0d05-131">Occurs when the page is finished loading.</span></span>
+
+      <span data-ttu-id="b0d05-132">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="b0d05-132">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: onPageLoadComplete
+    fullName: onPageLoadComplete
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onPageLoadComplete: OfficeExtension.EventHandlers<Visio.PageLoadCompleteEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.PageLoadCompleteEventArgs>
+  - uid: visio.Visio.Document.onSelectionChanged
+    summary: |-
+      <span data-ttu-id="b0d05-133">在当前选定的形状发生变化时发生。</span><span class="sxs-lookup"><span data-stu-id="b0d05-133">Occurs when the current selection of shapes changes.</span></span>
+
+      <span data-ttu-id="b0d05-134">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="b0d05-134">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: onSelectionChanged
+    fullName: onSelectionChanged
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onSelectionChanged: OfficeExtension.EventHandlers<Visio.SelectionChangedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.SelectionChangedEventArgs>
+  - uid: visio.Visio.Document.onShapeMouseEnter
+    summary: |-
+      <span data-ttu-id="b0d05-135">当用户将鼠标指针移到形状的边界框中时发生。</span><span class="sxs-lookup"><span data-stu-id="b0d05-135">Occurs when the user moves the mouse pointer into the bounding box of a shape.</span></span>
+
+      <span data-ttu-id="b0d05-136">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="b0d05-136">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: onShapeMouseEnter
+    fullName: onShapeMouseEnter
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onShapeMouseEnter: OfficeExtension.EventHandlers<Visio.ShapeMouseEnterEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.ShapeMouseEnterEventArgs>
+  - uid: visio.Visio.Document.onShapeMouseLeave
+    summary: |-
+      <span data-ttu-id="b0d05-137">当用户将鼠标移出形状的边界框时发生。</span><span class="sxs-lookup"><span data-stu-id="b0d05-137">Occurs when the user moves the mouse out of the bounding box of a shape.</span></span>
+
+      <span data-ttu-id="b0d05-138">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="b0d05-138">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: onShapeMouseLeave
+    fullName: onShapeMouseLeave
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onShapeMouseLeave: OfficeExtension.EventHandlers<Visio.ShapeMouseLeaveEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.ShapeMouseLeaveEventArgs>
+  - uid: visio.Visio.Document.pages
+    summary: |-
+      <span data-ttu-id="b0d05-139">表示一组与文档相关联的页面。</span><span class="sxs-lookup"><span data-stu-id="b0d05-139">Represents a collection of pages associated with the document.</span></span> <span data-ttu-id="b0d05-140">只读。</span><span class="sxs-lookup"><span data-stu-id="b0d05-140">Read-only.</span></span>
+
+      <span data-ttu-id="b0d05-141">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="b0d05-141">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: pages
+    fullName: pages
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly pages: Visio.PageCollection;'
+      return:
+        type:
+          - visio.Visio.PageCollection
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="b0d05-142">示例</span><span class="sxs-lookup"><span data-stu-id="b0d05-142">Examples</span></span>
+
+          ```javascript
+          Visio.run(session, function (ctx) {
+              var pages = ctx.document.pages;
+              var pageCount = pages.getCount();
+              return ctx.sync().then(function () {
+                  console.log("Pages Count: " +pageCount.value);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: visio.Visio.Document.set
+    summary: '<span data-ttu-id="b0d05-143">同时设置一个对象的多个属性。</span><span class="sxs-lookup"><span data-stu-id="b0d05-143">Sets multiple properties of an object at the same time.</span></span> <span data-ttu-id="b0d05-144">您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。</span><span class="sxs-lookup"><span data-stu-id="b0d05-144">You can pass either a plain object with the appropriate properties, or another API object of the same type.</span></span>'
+    remarks: |-
+      <span data-ttu-id="b0d05-145">此方法具有以下附加签名:</span><span class="sxs-lookup"><span data-stu-id="b0d05-145">This method has the following additional signature:</span></span>
+
+      `set(properties: Visio.Document): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.DocumentUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: '<span data-ttu-id="b0d05-146">一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。</span><span class="sxs-lookup"><span data-stu-id="b0d05-146">A JavaScript object with properties that are structured isomorphically to the properties of the object on which the method is called.</span></span>'
+          type:
+            - Interfaces.DocumentUpdateData
+        - id: options
+          description: '<span data-ttu-id="b0d05-147">提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。</span><span class="sxs-lookup"><span data-stu-id="b0d05-147">Provides an option to suppress errors if the properties object tries to set any read-only properties.</span></span>'
+          type:
+            - OfficeExtension.UpdateOptions
+  - uid: visio.Visio.Document.set_1
+    summary: '<span data-ttu-id="b0d05-148">基于现有加载的对象同时设置该对象的多个属性。</span><span class="sxs-lookup"><span data-stu-id="b0d05-148">Sets multiple properties on the object at the same time, based on an existing loaded object.</span></span>'
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Visio.Document): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - visio.Visio.Document
+  - uid: visio.Visio.Document.setActivePage
+    summary: |-
+      <span data-ttu-id="b0d05-149">设置文档的活动页。</span><span class="sxs-lookup"><span data-stu-id="b0d05-149">Set the Active Page of the document.</span></span>
+
+      <span data-ttu-id="b0d05-150">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="b0d05-150">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: setActivePage(PageName)
+    fullName: setActivePage(PageName)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setActivePage(PageName: string): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="b0d05-151">示例</span><span class="sxs-lookup"><span data-stu-id="b0d05-151">Examples</span></span>
+
+          ```javascript
+          Visio.run(session, function (ctx) {
+              var document = ctx.document;
+              var pageName = "Page-1";
+              document.setActivePage(pageName);
+              return ctx.sync();
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: PageName
+          description: <span data-ttu-id="b0d05-152">页面的名称</span><span class="sxs-lookup"><span data-stu-id="b0d05-152">Name of the page</span></span>
+          type:
+            - string
+  - uid: visio.Visio.Document.startDataRefresh
+    summary: |-
+      <span data-ttu-id="b0d05-153">触发刷新关系图中所有页面的数据。</span><span class="sxs-lookup"><span data-stu-id="b0d05-153">Triggers the refresh of the data in the Diagram, for all pages.</span></span>
+
+      <span data-ttu-id="b0d05-154">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="b0d05-154">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: startDataRefresh()
+    fullName: startDataRefresh()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'startDataRefresh(): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="b0d05-155">示例</span><span class="sxs-lookup"><span data-stu-id="b0d05-155">Examples</span></span>
+
+          ```javascript
+          Visio.run(session, function (ctx) {
+              var document = ctx.document;
+              document.startDataRefresh();
+              return ctx.sync();
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: visio.Visio.Document.toJSON
+    summary: '<span data-ttu-id="b0d05-156">重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`</span><span class="sxs-lookup"><span data-stu-id="b0d05-156">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`</span></span><!-- --><span data-ttu-id="b0d05-157">.</span><span class="sxs-lookup"><span data-stu-id="b0d05-157"></span></span> <span data-ttu-id="b0d05-158">(`JSON.stringify`</span><span class="sxs-lookup"><span data-stu-id="b0d05-158"></span></span><!-- --><span data-ttu-id="b0d05-159">反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始的 Visio Document 对象是 API 对象, 但`toJSON`方法返回一个简单的 JavaScript 对象 (类型为`Visio.Interfaces.DocumentData`</span><span class="sxs-lookup"><span data-stu-id="b0d05-159">, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original Visio.Document object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Visio.Interfaces.DocumentData`</span></span><!-- --><span data-ttu-id="b0d05-160">), 其中包含原始对象中所有已加载的子属性的浅表副本。</span><span class="sxs-lookup"><span data-stu-id="b0d05-160">) that contains shallow copies of any loaded child properties from the original object.</span></span>'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Visio.Interfaces.DocumentData;'
+      return:
+        type:
+          - visio.Visio.Interfaces.DocumentData
+        description: ''
+  - uid: visio.Visio.Document.view
+    summary: |-
+      <span data-ttu-id="b0d05-161">返回 DocumentView 对象。</span><span class="sxs-lookup"><span data-stu-id="b0d05-161">Returns the DocumentView object.</span></span> <span data-ttu-id="b0d05-162">只读。</span><span class="sxs-lookup"><span data-stu-id="b0d05-162">Read-only.</span></span>
+
+      <span data-ttu-id="b0d05-163">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="b0d05-163">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: view
+    fullName: view
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly view: Visio.DocumentView;'
+      return:
+        type:
+          - visio.Visio.DocumentView

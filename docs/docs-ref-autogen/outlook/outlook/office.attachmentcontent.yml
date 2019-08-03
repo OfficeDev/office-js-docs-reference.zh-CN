@@ -1,0 +1,90 @@
+### YamlMime:UniversalReference
+items:
+  - uid: outlook.Office.AttachmentContent
+    summary: |-
+      <span data-ttu-id="b75b6-101">表示邮件或约会项目上的附件内容。</span><span class="sxs-lookup"><span data-stu-id="b75b6-101">Represents the content of an attachment on a message or appointment item.</span></span>
+
+      <span data-ttu-id="b75b6-102">\[[API 集: 邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b75b6-102">\[ [API set: Mailbox Preview](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+    remarks: |-
+      <span data-ttu-id="b75b6-103">**[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem</span><span class="sxs-lookup"><span data-stu-id="b75b6-103">**[Minimum permission level](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem</span></span>
+
+      <span data-ttu-id="b75b6-104">**[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读</span><span class="sxs-lookup"><span data-stu-id="b75b6-104">**[Applicable Outlook mode](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Compose or Read</span></span>
+    isPreview: true
+    name: Office.AttachmentContent
+    fullName: Office.AttachmentContent
+    langs:
+      - typeScript
+    type: interface
+    package: outlook
+    children:
+      - outlook.Office.AttachmentContent.content
+      - outlook.Office.AttachmentContent.format
+  - uid: outlook.Office.AttachmentContent.content
+    summary: <span data-ttu-id="b75b6-105">字符串形式的附件内容。</span><span class="sxs-lookup"><span data-stu-id="b75b6-105">The content of an attachment as a string.</span></span>
+    isPreview: true
+    name: content
+    fullName: content
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'content: string;'
+      return:
+        type:
+          - string
+  - uid: outlook.Office.AttachmentContent.format
+    summary: |-
+      <span data-ttu-id="b75b6-106">附件内容要使用的字符串格式。</span><span class="sxs-lookup"><span data-stu-id="b75b6-106">The string format to use for an attachment's content.</span></span>
+
+      <span data-ttu-id="b75b6-107">对于文件附件, 格式为 base64 编码的字符串。</span><span class="sxs-lookup"><span data-stu-id="b75b6-107">For file attachments, the formatting is a base64-encoded string.</span></span>
+
+      <span data-ttu-id="b75b6-108">对于表示邮件的项目附件, 格式是一个字符串, 表示一个 .eml 格式的文件。</span><span class="sxs-lookup"><span data-stu-id="b75b6-108">For item attachments that represent messages, the formatting is a string representing an .eml formatted file.</span></span>
+
+      <span data-ttu-id="b75b6-109">对于表示日历项目的项目附件, 格式是一个表示 icalendar 文件的字符串。</span><span class="sxs-lookup"><span data-stu-id="b75b6-109">For item attachments that represent calendar items, the formatting is a string representing an .icalendar file.</span></span>
+
+      <span data-ttu-id="b75b6-110">对于云附件, 格式为 URL 字符串。</span><span class="sxs-lookup"><span data-stu-id="b75b6-110">For cloud attachments, the formatting is a URL string.</span></span>
+    isPreview: true
+    name: format
+    fullName: format
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'format: MailboxEnums.AttachmentContentFormat | string;'
+      return:
+        type:
+          - MailboxEnums.AttachmentContentFormat | string
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="b75b6-111">示例</span><span class="sxs-lookup"><span data-stu-id="b75b6-111">Examples</span></span>
+
+          ```javascript
+          var item = Office.context.mailbox.item;
+          var listOfAttachments = [];
+          var options = {asyncContext: {currentItem: item}};
+          item.getAttachmentsAsync(options, callback);
+
+          function callback(result) {
+              if (result.value.length > 0) {
+                  for (i = 0 ; i < result.value.length ; i++) {
+                      result.asyncContext.currentItem.getAttachmentContentAsync(result.value[i].id, handleAttachmentsCallback);
+                  }
+              }
+          }
+
+          function handleAttachmentsCallback(result) {
+              // Parse string to be a url, an .eml file, a base64-encoded string, or an .icalendar file.
+              if (result.value.format === Office.MailboxEnums.AttachmentContentFormat.Base64) {
+                  // Handle file attachment.
+              } else if (result.value.format === Office.MailboxEnums.AttachmentContentFormat.Eml) {
+                  // Handle email item attachment.
+              } else if (result.value.format === Office.MailboxEnums.AttachmentContentFormat.ICalendar) {
+                  // Handle .icalender attachment.
+              } else if (result.value.format === Office.MailboxEnums.AttachmentContentFormat.Url) {
+                  // Handle cloud attachment.
+              } else {
+                  // Handle attachment formats that are not supported.
+              }
+          }
+          ```

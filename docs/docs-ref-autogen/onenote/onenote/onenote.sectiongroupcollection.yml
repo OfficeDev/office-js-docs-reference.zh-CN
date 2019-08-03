@@ -1,0 +1,301 @@
+### YamlMime:UniversalReference
+items:
+  - uid: onenote.OneNote.SectionGroupCollection
+    summary: |-
+      <span data-ttu-id="2163e-101">代表分区组的集合。</span><span class="sxs-lookup"><span data-stu-id="2163e-101">Represents a collection of section groups.</span></span>
+
+      <span data-ttu-id="2163e-102">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="2163e-102">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: OneNote.SectionGroupCollection
+    fullName: OneNote.SectionGroupCollection
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: onenote
+    children:
+      - onenote.OneNote.SectionGroupCollection.context
+      - onenote.OneNote.SectionGroupCollection.count
+      - onenote.OneNote.SectionGroupCollection.getByName
+      - onenote.OneNote.SectionGroupCollection.getItem
+      - onenote.OneNote.SectionGroupCollection.getItemAt
+      - onenote.OneNote.SectionGroupCollection.items
+      - onenote.OneNote.SectionGroupCollection.load
+      - onenote.OneNote.SectionGroupCollection.load_1
+      - onenote.OneNote.SectionGroupCollection.load_2
+      - onenote.OneNote.SectionGroupCollection.toJSON
+      - onenote.OneNote.SectionGroupCollection.track
+      - onenote.OneNote.SectionGroupCollection.untrack
+  - uid: onenote.OneNote.SectionGroupCollection.context
+    summary: <span data-ttu-id="2163e-103">与该对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="2163e-103">The request context associated with the object.</span></span> <span data-ttu-id="2163e-104">这会将加载项的进程连接到 Office 主机应用程序的进程。</span><span class="sxs-lookup"><span data-stu-id="2163e-104">This connects the add-in's process to the Office host application's process.</span></span>
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - onenote.OneNote.RequestContext
+  - uid: onenote.OneNote.SectionGroupCollection.count
+    summary: |-
+      <span data-ttu-id="2163e-105">返回集合中的分区组数。</span><span class="sxs-lookup"><span data-stu-id="2163e-105">Returns the number of section groups in the collection.</span></span> <span data-ttu-id="2163e-106">只读。</span><span class="sxs-lookup"><span data-stu-id="2163e-106">Read-only.</span></span>
+
+      <span data-ttu-id="2163e-107">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="2163e-107">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: count
+    fullName: count
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly count: number;'
+      return:
+        type:
+          - number
+  - uid: onenote.OneNote.SectionGroupCollection.getByName
+    summary: |-
+      <span data-ttu-id="2163e-108">获取具有指定名称的分区组的集合。</span><span class="sxs-lookup"><span data-stu-id="2163e-108">Gets the collection of section groups with the specified name.</span></span>
+
+      <span data-ttu-id="2163e-109">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="2163e-109">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: getByName(name)
+    fullName: getByName(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getByName(name: string): OneNote.SectionGroupCollection;'
+      return:
+        type:
+          - onenote.OneNote.SectionGroupCollection
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="2163e-110">示例</span><span class="sxs-lookup"><span data-stu-id="2163e-110">Examples</span></span>
+
+          ```javascript
+          OneNote.run(function (context) {
+
+              // Get the section groups that are direct children of the current notebook.
+              var sectionGroups = context.application.getActiveNotebook().sectionGroups;
+
+              // Queue a command to load the section groups. 
+              // For best performance, request specific properties.
+              sectionGroups.load("id"); 
+
+              // Get the section groups with the specified name.
+              var labsSectionGroups = sectionGroups.getByName("Labs");
+
+              // Queue a command to load the section groups with the specified properties.
+              labsSectionGroups.load("id,name"); 
+                      
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+
+                      // Iterate through the collection or access items individually by index.
+                      if (labsSectionGroups.items.length > 0) {
+                          console.log("Section group name: " + labsSectionGroups.items[0].name);
+                          console.log("Section group ID: " + labsSectionGroups.items[0].id);
+                      }
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: name
+          description: <span data-ttu-id="2163e-111">节组的名称。</span><span class="sxs-lookup"><span data-stu-id="2163e-111">The name of the section group.</span></span>
+          type:
+            - string
+  - uid: onenote.OneNote.SectionGroupCollection.getItem
+    summary: |-
+      <span data-ttu-id="2163e-112">按其在集合中的 ID 或索引获取分区组。</span><span class="sxs-lookup"><span data-stu-id="2163e-112">Gets a section group by ID or by its index in the collection.</span></span> <span data-ttu-id="2163e-113">只读。</span><span class="sxs-lookup"><span data-stu-id="2163e-113">Read-only.</span></span>
+
+      <span data-ttu-id="2163e-114">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="2163e-114">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: getItem(index)
+    fullName: getItem(index)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItem(index: number | string): OneNote.SectionGroup;'
+      return:
+        type:
+          - onenote.OneNote.SectionGroup
+        description: ''
+      parameters:
+        - id: index
+          description: '<span data-ttu-id="2163e-115">分区组的 ID 或集合中的分区组的索引位置。</span><span class="sxs-lookup"><span data-stu-id="2163e-115">The ID of the section group, or the index location of the section group in the collection.</span></span>'
+          type:
+            - number | string
+  - uid: onenote.OneNote.SectionGroupCollection.getItemAt
+    summary: |-
+      <span data-ttu-id="2163e-116">按其在集合中的位置获取分区组。</span><span class="sxs-lookup"><span data-stu-id="2163e-116">Gets a section group on its position in the collection.</span></span>
+
+      <span data-ttu-id="2163e-117">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="2163e-117">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: getItemAt(index)
+    fullName: getItemAt(index)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItemAt(index: number): OneNote.SectionGroup;'
+      return:
+        type:
+          - onenote.OneNote.SectionGroup
+        description: ''
+      parameters:
+        - id: index
+          description: <span data-ttu-id="2163e-118">要检索的对象的索引值。</span><span class="sxs-lookup"><span data-stu-id="2163e-118">Index value of the object to be retrieved.</span></span> <span data-ttu-id="2163e-119">从零开始编制索引。</span><span class="sxs-lookup"><span data-stu-id="2163e-119">Zero-indexed.</span></span>
+          type:
+            - number
+  - uid: onenote.OneNote.SectionGroupCollection.items
+    summary: <span data-ttu-id="2163e-120">获取此集合中已加载的子项。</span><span class="sxs-lookup"><span data-stu-id="2163e-120">Gets the loaded child items in this collection.</span></span>
+    name: items
+    fullName: items
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly items: OneNote.SectionGroup[];'
+      return:
+        type:
+          - 'OneNote.SectionGroup[]'
+  - uid: onenote.OneNote.SectionGroupCollection.load
+    summary: <span data-ttu-id="2163e-121">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="2163e-121">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="2163e-122">在读取属性之前，你必须调用“context.sync()”。</span><span class="sxs-lookup"><span data-stu-id="2163e-122">You must call "context.sync()" before reading the properties.</span></span>
+    remarks: |-
+      <span data-ttu-id="2163e-123">除了此签名之外, 此方法还具有以下签名:</span><span class="sxs-lookup"><span data-stu-id="2163e-123">In addition to this signature, this method has the following signatures:</span></span>
+
+      <span data-ttu-id="2163e-124">`load(option?: string | string[]): OneNote.SectionGroupCollection`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="2163e-124">`load(option?: string | string[]): OneNote.SectionGroupCollection` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
+
+      <span data-ttu-id="2163e-125">`load(option?: { select?: string; expand?: string; }): OneNote.SectionGroupCollection`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="2163e-125">`load(option?: { select?: string; expand?: string; }): OneNote.SectionGroupCollection` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+
+      <span data-ttu-id="2163e-126">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.SectionGroupCollection`-仅适用于集合类型。</span><span class="sxs-lookup"><span data-stu-id="2163e-126">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.SectionGroupCollection` - Only available on collection types.</span></span> <span data-ttu-id="2163e-127">它类似于前面的签名。</span><span class="sxs-lookup"><span data-stu-id="2163e-127">It is similar to the preceding signature.</span></span> <span data-ttu-id="2163e-128">Top 指定结果中可包含的集合项的最大数量。</span><span class="sxs-lookup"><span data-stu-id="2163e-128">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="2163e-129">选项。 skip 指定要跳过且不包含在结果中的项目数。</span><span class="sxs-lookup"><span data-stu-id="2163e-129">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="2163e-130">如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。</span><span class="sxs-lookup"><span data-stu-id="2163e-130">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OneNote.Interfaces.SectionGroupCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions): OneNote.SectionGroupCollection;'
+      return:
+        type:
+          - onenote.OneNote.SectionGroupCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - OneNote.Interfaces.SectionGroupCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions
+  - uid: onenote.OneNote.SectionGroupCollection.load_1
+    summary: '<span data-ttu-id="2163e-131">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="2163e-131">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="2163e-132">在读取属性`context.sync()`之前, 必须先调用。</span><span class="sxs-lookup"><span data-stu-id="2163e-132">You must call `context.sync()` before reading the properties.</span></span>'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): OneNote.SectionGroupCollection;'
+      return:
+        type:
+          - onenote.OneNote.SectionGroupCollection
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="2163e-133">示例</span><span class="sxs-lookup"><span data-stu-id="2163e-133">Examples</span></span>
+
+          ```javascript
+          OneNote.run(function (context) {
+
+              // Get the section groups that are direct children of the current notebook.
+              var sectionGroups = context.application.getActiveNotebook().sectionGroups;
+
+              // Queue a command to load the section groups. 
+              // For best performance, request specific properties.
+              sectionGroups.load("name"); 
+
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                      
+                      // Iterate through the collection or access items individually by index, 
+                      // for example: sectionGroups.items[0]
+                      $.each(sectionGroups.items, function(index, sectionGroup) {
+                          console.log("Section group name: " + sectionGroup.name);  
+                          console.log("Section group ID: " + sectionGroup.id);  
+                      });
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: '<span data-ttu-id="2163e-134">一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="2163e-134">A comma-delimited string or an array of strings that specify the properties to load.</span></span>'
+          type:
+            - 'string | string[]'
+  - uid: onenote.OneNote.SectionGroupCollection.load_2
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OfficeExtension.LoadOption): OneNote.SectionGroupCollection;'
+      return:
+        type:
+          - onenote.OneNote.SectionGroupCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - OfficeExtension.LoadOption
+  - uid: onenote.OneNote.SectionGroupCollection.toJSON
+    summary: '<span data-ttu-id="2163e-135">重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`</span><span class="sxs-lookup"><span data-stu-id="2163e-135">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`</span></span><!-- --><span data-ttu-id="2163e-136">.</span><span class="sxs-lookup"><span data-stu-id="2163e-136"></span></span> <span data-ttu-id="2163e-137">(`JSON.stringify`</span><span class="sxs-lookup"><span data-stu-id="2163e-137"></span></span><!-- --><span data-ttu-id="2163e-138">反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始`OneNote.SectionGroupCollection`对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`OneNote.Interfaces.SectionGroupCollectionData`</span><span class="sxs-lookup"><span data-stu-id="2163e-138">, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original `OneNote.SectionGroupCollection` object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `OneNote.Interfaces.SectionGroupCollectionData`</span></span><!-- --><span data-ttu-id="2163e-139">), 其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。</span><span class="sxs-lookup"><span data-stu-id="2163e-139">) that contains an "items" array with shallow copies of any loaded properties from the collection''s items.</span></span>'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): OneNote.Interfaces.SectionGroupCollectionData;'
+      return:
+        type:
+          - onenote.OneNote.Interfaces.SectionGroupCollectionData
+        description: ''
+  - uid: onenote.OneNote.SectionGroupCollection.track
+    summary: '<span data-ttu-id="2163e-140">根据文档中的相应更改来跟踪对象，以便进行自动调整。</span><span class="sxs-lookup"><span data-stu-id="2163e-140">Track the object for automatic adjustment based on surrounding changes in the document.</span></span> <span data-ttu-id="2163e-141">此调用是 context.trackedObjects.add(thisObject) 的缩写。</span><span class="sxs-lookup"><span data-stu-id="2163e-141">This call is a shorthand for context.trackedObjects.add(thisObject).</span></span> <span data-ttu-id="2163e-142">如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。</span><span class="sxs-lookup"><span data-stu-id="2163e-142">If you are using this object across ".sync" calls and outside the sequential execution of a ".run" batch, and get an "InvalidObjectPath" error when setting a property or invoking a method on the object, you needed to have added the object to the tracked object collection when the object was first created.</span></span>'
+    name: track()
+    fullName: track()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'track(): OneNote.SectionGroupCollection;'
+      return:
+        type:
+          - onenote.OneNote.SectionGroupCollection
+        description: ''
+  - uid: onenote.OneNote.SectionGroupCollection.untrack
+    summary: '<span data-ttu-id="2163e-143">释放与此对象关联的内存（如果先前已跟踪过）。</span><span class="sxs-lookup"><span data-stu-id="2163e-143">Release the memory associated with this object, if it has previously been tracked.</span></span> <span data-ttu-id="2163e-144">此调用是 context.trackedObjects.add(thisObject) 的缩写。</span><span class="sxs-lookup"><span data-stu-id="2163e-144">This call is shorthand for context.trackedObjects.remove(thisObject).</span></span> <span data-ttu-id="2163e-145">拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。</span><span class="sxs-lookup"><span data-stu-id="2163e-145">Having many tracked objects slows down the host application, so please remember to free any objects you add, once you''re done using them.</span></span> <span data-ttu-id="2163e-146">在内存释放生效之前，你需要调用“context.sync()”。</span><span class="sxs-lookup"><span data-stu-id="2163e-146">You will need to call "context.sync()" before the memory release takes effect.</span></span>'
+    name: untrack()
+    fullName: untrack()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'untrack(): OneNote.SectionGroupCollection;'
+      return:
+        type:
+          - onenote.OneNote.SectionGroupCollection
+        description: ''

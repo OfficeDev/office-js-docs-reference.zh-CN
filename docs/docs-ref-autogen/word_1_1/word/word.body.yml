@@ -1,0 +1,1315 @@
+### YamlMime:UniversalReference
+items:
+  - uid: word.Word.Body
+    summary: |-
+      <span data-ttu-id="4682f-101">表示文档或节的正文。</span><span class="sxs-lookup"><span data-stu-id="4682f-101">Represents the body of a document or a section.</span></span>
+
+      <span data-ttu-id="4682f-102">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-102">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: Word.Body
+    fullName: Word.Body
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: word
+    children:
+      - word.Word.Body.clear
+      - word.Word.Body.contentControls
+      - word.Word.Body.context
+      - word.Word.Body.font
+      - word.Word.Body.getHtml
+      - word.Word.Body.getOoxml
+      - word.Word.Body.inlinePictures
+      - word.Word.Body.insertBreak
+      - word.Word.Body.insertBreak_1
+      - word.Word.Body.insertContentControl
+      - word.Word.Body.insertFileFromBase64
+      - word.Word.Body.insertFileFromBase64_1
+      - word.Word.Body.insertHtml
+      - word.Word.Body.insertHtml_1
+      - word.Word.Body.insertOoxml
+      - word.Word.Body.insertOoxml_1
+      - word.Word.Body.insertParagraph
+      - word.Word.Body.insertParagraph_1
+      - word.Word.Body.insertText
+      - word.Word.Body.insertText_1
+      - word.Word.Body.load
+      - word.Word.Body.load_1
+      - word.Word.Body.load_2
+      - word.Word.Body.paragraphs
+      - word.Word.Body.parentContentControl
+      - word.Word.Body.search
+      - word.Word.Body.select
+      - word.Word.Body.select_1
+      - word.Word.Body.set
+      - word.Word.Body.set_1
+      - word.Word.Body.style
+      - word.Word.Body.text
+      - word.Word.Body.toJSON
+      - word.Word.Body.track
+      - word.Word.Body.untrack
+  - uid: word.Word.Body.clear
+    summary: |-
+      <span data-ttu-id="4682f-103">清除 body 对象的内容。</span><span class="sxs-lookup"><span data-stu-id="4682f-103">Clears the contents of the body object.</span></span> <span data-ttu-id="4682f-104">用户可以对已清除的内容执行撤消操作。</span><span class="sxs-lookup"><span data-stu-id="4682f-104">The user can perform the undo operation on the cleared content.</span></span>
+
+      <span data-ttu-id="4682f-105">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-105">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: clear()
+    fullName: clear()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clear(): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4682f-106">示例</span><span class="sxs-lookup"><span data-stu-id="4682f-106">Examples</span></span>
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the document body.
+              var body = context.document.body;
+
+              // Queue a commmand to clear the contents of the body.
+              body.clear();
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+                  console.log('Cleared the body contents.');
+              });
+          })
+          .catch(function (error) {
+              console.log("Error: " + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+
+          // The Silly stories add-in sample shows how the 
+          // clear method can be used to clear the contents of a document.
+          // https://aka.ms/sillystorywordaddin
+          ```
+  - uid: word.Word.Body.contentControls
+    summary: |-
+      <span data-ttu-id="4682f-107">获取正文中的格式文本内容控件对象的集合。</span><span class="sxs-lookup"><span data-stu-id="4682f-107">Gets the collection of rich text content control objects in the body.</span></span> <span data-ttu-id="4682f-108">只读。</span><span class="sxs-lookup"><span data-stu-id="4682f-108">Read-only.</span></span>
+
+      <span data-ttu-id="4682f-109">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-109">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: contentControls
+    fullName: contentControls
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly contentControls: Word.ContentControlCollection;'
+      return:
+        type:
+          - word.Word.ContentControlCollection
+  - uid: word.Word.Body.context
+    summary: <span data-ttu-id="4682f-110">与该对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="4682f-110">The request context associated with the object.</span></span> <span data-ttu-id="4682f-111">这会将加载项的进程连接到 Office 主机应用程序的进程。</span><span class="sxs-lookup"><span data-stu-id="4682f-111">This connects the add-in's process to the Office host application's process.</span></span>
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - word.Word.RequestContext
+  - uid: word.Word.Body.font
+    summary: |-
+      <span data-ttu-id="4682f-112">获取正文的文本格式。</span><span class="sxs-lookup"><span data-stu-id="4682f-112">Gets the text format of the body.</span></span> <span data-ttu-id="4682f-113">使用此属性可获取和设置字体名称、大小、颜色和其他属性。</span><span class="sxs-lookup"><span data-stu-id="4682f-113">Use this to get and set font name, size, color and other properties.</span></span> <span data-ttu-id="4682f-114">只读。</span><span class="sxs-lookup"><span data-stu-id="4682f-114">Read-only.</span></span>
+
+      <span data-ttu-id="4682f-115">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-115">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: font
+    fullName: font
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly font: Word.Font;'
+      return:
+        type:
+          - word.Word.Font
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4682f-116">示例</span><span class="sxs-lookup"><span data-stu-id="4682f-116">Examples</span></span>
+
+          ```javascript
+          // Get the style and the font size, font name, and font color properties on the body object.
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the document body.
+              var body = context.document.body;
+
+              // Queue a commmand to load font and style information for the document body.
+              context.load(body, 'font/size, font/name, font/color, style');
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+                  // Show the results of the load method. Here we show the
+                  // property values on the body object.
+                  var results = 'Font size: ' + body.font.size +
+                                '; Font name: ' + body.font.name +
+                                '; Font color: ' + body.font.color +
+                                '; Body style: ' + body.style;
+
+                  console.log(results);
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: word.Word.Body.getHtml
+    summary: |-
+      <span data-ttu-id="4682f-117">获取 body 对象的 HTML 表示形式。</span><span class="sxs-lookup"><span data-stu-id="4682f-117">Gets an HTML representation of the body object.</span></span> <span data-ttu-id="4682f-118">在网页或 HTML 查看器中呈现时, 格式设置将与文档的格式相匹配, 但不完全相同。</span><span class="sxs-lookup"><span data-stu-id="4682f-118">When rendered in a web page or HTML viewer, the formatting will be a close, but not exact, match to the formatting of the document.</span></span> <span data-ttu-id="4682f-119">对于不同平台 (Windows、Mac 等) 上的同一文档, 此方法不会返回完全相同的 HTML。</span><span class="sxs-lookup"><span data-stu-id="4682f-119">This method does not return the exact same HTML for the same document on different platforms (Windows, Mac, etc.).</span></span> <span data-ttu-id="4682f-120">如果您需要完全保真度或跨平台的一致性, 请`Body.getOoxml()`使用并将返回的 XML 转换为 HTML。</span><span class="sxs-lookup"><span data-stu-id="4682f-120">If you need exact fidelity, or consistency across platforms, use `Body.getOoxml()` and convert the returned XML to HTML.</span></span>
+
+      <span data-ttu-id="4682f-121">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-121">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: getHtml()
+    fullName: getHtml()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getHtml(): OfficeExtension.ClientResult<string>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<string>
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4682f-122">示例</span><span class="sxs-lookup"><span data-stu-id="4682f-122">Examples</span></span>
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the document body.
+              var body = context.document.body;
+
+              // Queue a commmand to get the HTML contents of the body.
+              var bodyHTML = body.getHtml();
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+                  console.log("Body HTML contents: " + bodyHTML.value);
+              });
+          })
+          .catch(function (error) {
+              console.log("Error: " + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: word.Word.Body.getOoxml
+    summary: |-
+      <span data-ttu-id="4682f-123">获取 body 对象的 OOXML (Office Open XML) 表示形式。</span><span class="sxs-lookup"><span data-stu-id="4682f-123">Gets the OOXML (Office Open XML) representation of the body object.</span></span>
+
+      <span data-ttu-id="4682f-124">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-124">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: getOoxml()
+    fullName: getOoxml()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getOoxml(): OfficeExtension.ClientResult<string>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<string>
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4682f-125">示例</span><span class="sxs-lookup"><span data-stu-id="4682f-125">Examples</span></span>
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the document body.
+              var body = context.document.body;
+
+              // Queue a commmand to get the OOXML contents of the body.
+              var bodyOOXML = body.getOoxml();
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+                  console.log("Body OOXML contents: " + bodyOOXML.value);
+              });
+          })
+          .catch(function (error) {
+              console.log("Error: " + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: word.Word.Body.inlinePictures
+    summary: |-
+      <span data-ttu-id="4682f-126">获取正文中 InlinePicture 对象的集合。</span><span class="sxs-lookup"><span data-stu-id="4682f-126">Gets the collection of InlinePicture objects in the body.</span></span> <span data-ttu-id="4682f-127">集合不包括浮动图像。</span><span class="sxs-lookup"><span data-stu-id="4682f-127">The collection does not include floating images.</span></span> <span data-ttu-id="4682f-128">只读。</span><span class="sxs-lookup"><span data-stu-id="4682f-128">Read-only.</span></span>
+
+      <span data-ttu-id="4682f-129">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-129">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: inlinePictures
+    fullName: inlinePictures
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly inlinePictures: Word.InlinePictureCollection;'
+      return:
+        type:
+          - word.Word.InlinePictureCollection
+  - uid: word.Word.Body.insertBreak
+    summary: |-
+      <span data-ttu-id="4682f-130">在主文档的指定位置插入分隔符。</span><span class="sxs-lookup"><span data-stu-id="4682f-130">Inserts a break at the specified location in the main document.</span></span> <span data-ttu-id="4682f-131">insertLocation 值可以为“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-131">The insertLocation value can be 'Start' or 'End'.</span></span>
+
+      <span data-ttu-id="4682f-132">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-132">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: 'insertBreak(breakType, insertLocation)'
+    fullName: 'insertBreak(breakType, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertBreak(breakType: Word.BreakType, insertLocation: Word.InsertLocation): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4682f-133">示例</span><span class="sxs-lookup"><span data-stu-id="4682f-133">Examples</span></span>
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (ctx) {
+
+              // Create a proxy object for the document body.
+              var body = ctx.document.body;
+
+              // Queue a commmand to insert a page break at the start of the document body.
+              body.insertBreak(Word.BreakType.page, Word.InsertLocation.start);
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return ctx.sync().then(function () {
+                  console.log('Added a page break at the start of the document body.');
+              });
+          })
+          .catch(function (error) {
+              console.log("Error: " + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: breakType
+          description: <span data-ttu-id="4682f-134">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-134">Required.</span></span> <span data-ttu-id="4682f-135">要添加到正文的分隔符类型。</span><span class="sxs-lookup"><span data-stu-id="4682f-135">The break type to add to the body.</span></span>
+          type:
+            - word.Word.BreakType
+        - id: insertLocation
+          description: <span data-ttu-id="4682f-136">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-136">Required.</span></span> <span data-ttu-id="4682f-137">此值可以为“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-137">The value can be 'Start' or 'End'.</span></span>
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.Body.insertBreak_1
+    summary: |-
+      <span data-ttu-id="4682f-138">在主文档的指定位置插入分隔符。</span><span class="sxs-lookup"><span data-stu-id="4682f-138">Inserts a break at the specified location in the main document.</span></span> <span data-ttu-id="4682f-139">insertLocation 值可以为“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-139">The insertLocation value can be 'Start' or 'End'.</span></span>
+
+      <span data-ttu-id="4682f-140">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-140">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: 'insertBreak(breakTypeString, insertLocation)'
+    fullName: 'insertBreak(breakTypeString, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertBreak(breakTypeString: "Page" | "Next" | "SectionNext" | "SectionContinuous" | "SectionEven" | "SectionOdd" | "Line", insertLocation: "Before" | "After" | "Start" | "End" | "Replace"): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: breakTypeString
+          description: <span data-ttu-id="4682f-141">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-141">Required.</span></span> <span data-ttu-id="4682f-142">要添加到正文的分隔符类型。</span><span class="sxs-lookup"><span data-stu-id="4682f-142">The break type to add to the body.</span></span>
+          type:
+            - '"Page" | "Next" | "SectionNext" | "SectionContinuous" | "SectionEven" | "SectionOdd" | "Line"'
+        - id: insertLocation
+          description: <span data-ttu-id="4682f-143">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-143">Required.</span></span> <span data-ttu-id="4682f-144">此值可以为“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-144">The value can be 'Start' or 'End'.</span></span>
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.Body.insertContentControl
+    summary: |-
+      <span data-ttu-id="4682f-145">使用富文本内容控件封装 body 对象。</span><span class="sxs-lookup"><span data-stu-id="4682f-145">Wraps the body object with a Rich Text content control.</span></span>
+
+      <span data-ttu-id="4682f-146">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-146">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: insertContentControl()
+    fullName: insertContentControl()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertContentControl(): Word.ContentControl;'
+      return:
+        type:
+          - word.Word.ContentControl
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4682f-147">示例</span><span class="sxs-lookup"><span data-stu-id="4682f-147">Examples</span></span>
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the document body.
+              var body = context.document.body;
+
+              // Queue a commmand to wrap the body in a content control.
+              body.insertContentControl();
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+                  console.log('Wrapped the body in a content control.');
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: word.Word.Body.insertFileFromBase64
+    summary: |-
+      <span data-ttu-id="4682f-148">将文档插入到正文中的指定位置。</span><span class="sxs-lookup"><span data-stu-id="4682f-148">Inserts a document into the body at the specified location.</span></span> <span data-ttu-id="4682f-149">insertLocation 值可以为“Replace”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-149">The insertLocation value can be 'Replace', 'Start', or 'End'.</span></span>
+
+      <span data-ttu-id="4682f-150">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-150">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: 'insertFileFromBase64(base64File, insertLocation)'
+    fullName: 'insertFileFromBase64(base64File, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertFileFromBase64(base64File: string, insertLocation: Word.InsertLocation): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4682f-151">示例</span><span class="sxs-lookup"><span data-stu-id="4682f-151">Examples</span></span>
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the document body.
+              var body = context.document.body;
+
+              // Queue a commmand to insert base64 encoded .docx at the beginning of the content body.
+              // You will need to implement getBase64() to pass in a string of a base64 encoded docx file.
+              body.insertFileFromBase64(getBase64(), Word.InsertLocation.start);
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+                  console.log('Added base64 encoded text to the beginning of the document body.');
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: base64File
+          description: <span data-ttu-id="4682f-152">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-152">Required.</span></span> <span data-ttu-id="4682f-153">.Docx 文件的 base64 编码内容。</span><span class="sxs-lookup"><span data-stu-id="4682f-153">The base64 encoded content of a .docx file.</span></span>
+          type:
+            - string
+        - id: insertLocation
+          description: '<span data-ttu-id="4682f-154">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-154">Required.</span></span> <span data-ttu-id="4682f-155">此值可以为“Replace”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-155">The value can be ''Replace'', ''Start'', or ''End''.</span></span>'
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.Body.insertFileFromBase64_1
+    summary: |-
+      <span data-ttu-id="4682f-156">将文档插入到正文中的指定位置。</span><span class="sxs-lookup"><span data-stu-id="4682f-156">Inserts a document into the body at the specified location.</span></span> <span data-ttu-id="4682f-157">insertLocation 值可以为“Replace”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-157">The insertLocation value can be 'Replace', 'Start', or 'End'.</span></span>
+
+      <span data-ttu-id="4682f-158">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-158">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: 'insertFileFromBase64(base64File, insertLocationString)'
+    fullName: 'insertFileFromBase64(base64File, insertLocationString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertFileFromBase64(base64File: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: base64File
+          description: <span data-ttu-id="4682f-159">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-159">Required.</span></span> <span data-ttu-id="4682f-160">.Docx 文件的 base64 编码内容。</span><span class="sxs-lookup"><span data-stu-id="4682f-160">The base64 encoded content of a .docx file.</span></span>
+          type:
+            - string
+        - id: insertLocationString
+          description: '<span data-ttu-id="4682f-161">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-161">Required.</span></span> <span data-ttu-id="4682f-162">此值可以为“Replace”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-162">The value can be ''Replace'', ''Start'', or ''End''.</span></span>'
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.Body.insertHtml
+    summary: |-
+      <span data-ttu-id="4682f-163">在指定位置插入 HTML。</span><span class="sxs-lookup"><span data-stu-id="4682f-163">Inserts HTML at the specified location.</span></span> <span data-ttu-id="4682f-164">insertLocation 值可以为“Replace”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-164">The insertLocation value can be 'Replace', 'Start', or 'End'.</span></span>
+
+      <span data-ttu-id="4682f-165">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-165">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: 'insertHtml(html, insertLocation)'
+    fullName: 'insertHtml(html, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertHtml(html: string, insertLocation: Word.InsertLocation): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4682f-166">示例</span><span class="sxs-lookup"><span data-stu-id="4682f-166">Examples</span></span>
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the document body.
+              var body = context.document.body;
+
+              // Queue a commmand to insert HTML in to the beginning of the body.
+              body.insertHtml(
+                  '<strong>This is text inserted with body.insertHtml()</strong>', Word.InsertLocation.start);
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+                  console.log('HTML added to the beginning of the document body.');
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: html
+          description: <span data-ttu-id="4682f-167">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-167">Required.</span></span> <span data-ttu-id="4682f-168">要插入到文档中的 HTML。</span><span class="sxs-lookup"><span data-stu-id="4682f-168">The HTML to be inserted in the document.</span></span>
+          type:
+            - string
+        - id: insertLocation
+          description: '<span data-ttu-id="4682f-169">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-169">Required.</span></span> <span data-ttu-id="4682f-170">此值可以为“Replace”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-170">The value can be ''Replace'', ''Start'', or ''End''.</span></span>'
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.Body.insertHtml_1
+    summary: |-
+      <span data-ttu-id="4682f-171">在指定位置插入 HTML。</span><span class="sxs-lookup"><span data-stu-id="4682f-171">Inserts HTML at the specified location.</span></span> <span data-ttu-id="4682f-172">insertLocation 值可以为“Replace”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-172">The insertLocation value can be 'Replace', 'Start', or 'End'.</span></span>
+
+      <span data-ttu-id="4682f-173">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-173">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: 'insertHtml(html, insertLocationString)'
+    fullName: 'insertHtml(html, insertLocationString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertHtml(html: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: html
+          description: <span data-ttu-id="4682f-174">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-174">Required.</span></span> <span data-ttu-id="4682f-175">要插入到文档中的 HTML。</span><span class="sxs-lookup"><span data-stu-id="4682f-175">The HTML to be inserted in the document.</span></span>
+          type:
+            - string
+        - id: insertLocationString
+          description: '<span data-ttu-id="4682f-176">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-176">Required.</span></span> <span data-ttu-id="4682f-177">此值可以为“Replace”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-177">The value can be ''Replace'', ''Start'', or ''End''.</span></span>'
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.Body.insertOoxml
+    summary: |-
+      <span data-ttu-id="4682f-178">在指定位置插入 OOXML。</span><span class="sxs-lookup"><span data-stu-id="4682f-178">Inserts OOXML at the specified location.</span></span> <span data-ttu-id="4682f-179">insertLocation 值可以为“Replace”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-179">The insertLocation value can be 'Replace', 'Start', or 'End'.</span></span>
+
+      <span data-ttu-id="4682f-180">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-180">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: 'insertOoxml(ooxml, insertLocation)'
+    fullName: 'insertOoxml(ooxml, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertOoxml(ooxml: string, insertLocation: Word.InsertLocation): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: ooxml
+          description: <span data-ttu-id="4682f-181">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-181">Required.</span></span> <span data-ttu-id="4682f-182">要插入的 OOXML。</span><span class="sxs-lookup"><span data-stu-id="4682f-182">The OOXML to be inserted.</span></span>
+          type:
+            - string
+        - id: insertLocation
+          description: '<span data-ttu-id="4682f-183">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-183">Required.</span></span> <span data-ttu-id="4682f-184">此值可以为“Replace”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-184">The value can be ''Replace'', ''Start'', or ''End''.</span></span>'
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.Body.insertOoxml_1
+    summary: |-
+      <span data-ttu-id="4682f-185">在指定位置插入 OOXML。</span><span class="sxs-lookup"><span data-stu-id="4682f-185">Inserts OOXML at the specified location.</span></span> <span data-ttu-id="4682f-186">insertLocation 值可以为“Replace”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-186">The insertLocation value can be 'Replace', 'Start', or 'End'.</span></span>
+
+      <span data-ttu-id="4682f-187">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-187">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: 'insertOoxml(ooxml, insertLocationString)'
+    fullName: 'insertOoxml(ooxml, insertLocationString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertOoxml(ooxml: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: ooxml
+          description: <span data-ttu-id="4682f-188">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-188">Required.</span></span> <span data-ttu-id="4682f-189">要插入的 OOXML。</span><span class="sxs-lookup"><span data-stu-id="4682f-189">The OOXML to be inserted.</span></span>
+          type:
+            - string
+        - id: insertLocationString
+          description: '<span data-ttu-id="4682f-190">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-190">Required.</span></span> <span data-ttu-id="4682f-191">此值可以为“Replace”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-191">The value can be ''Replace'', ''Start'', or ''End''.</span></span>'
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.Body.insertParagraph
+    summary: |-
+      <span data-ttu-id="4682f-192">在指定位置插入段落。</span><span class="sxs-lookup"><span data-stu-id="4682f-192">Inserts a paragraph at the specified location.</span></span> <span data-ttu-id="4682f-193">insertLocation 值可以为“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-193">The insertLocation value can be 'Start' or 'End'.</span></span>
+
+      <span data-ttu-id="4682f-194">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-194">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: 'insertParagraph(paragraphText, insertLocation)'
+    fullName: 'insertParagraph(paragraphText, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertParagraph(paragraphText: string, insertLocation: Word.InsertLocation): Word.Paragraph;'
+      return:
+        type:
+          - word.Word.Paragraph
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4682f-195">示例</span><span class="sxs-lookup"><span data-stu-id="4682f-195">Examples</span></span>
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the document body.
+              var body = context.document.body;
+
+              // Queue a commmand to insert the paragraph at the end of the document body.
+              body.insertParagraph('Content of a new paragraph', Word.InsertLocation.end);
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+                  console.log('Paragraph added at the end of the document body.');
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+
+          // The Word-Add-in-DocumentAssembly sample shows how you can use the insertParagraph method to assemble a document.
+          // https://github.com/OfficeDev/Word-Add-in-DocumentAssembly
+          ```
+          ```typescript
+          await Word.run(async (context) => {
+              let paragraph = context.document.body.insertParagraph("Timeline", "End");
+              paragraph.style = "Heading 2";
+              let paragraph2 = context.document.body.insertParagraph("The Services shall commence on July 31, 2015, and shall continue through July 29, 2015.", "End");
+              paragraph2.style = "Normal";
+              let paragraph3 = context.document.body.insertParagraph("Project Costs by Phase", "End");
+              paragraph3.style = "Heading 2";
+              // Note a content control with the title of "ProjectCosts" is added. Content will be replaced later.
+              let paragraph4 = context.document.body.insertParagraph("<Add Project Costs Here>", "End");
+              paragraph4.style = "Normal";
+              paragraph4.font.highlightColor = "#FFFF00";
+              let contentControl = paragraph4.insertContentControl();
+              contentControl.title = "ProjectCosts";
+              let paragraph5 = context.document.body.insertParagraph("Project Team", "End");
+              paragraph5.style = "Heading 2";
+              paragraph5.font.highlightColor = "#FFFFFF";
+              let paragraph6 = context.document.body.insertParagraph("Terms of Work", "End");
+              paragraph6.style = "Heading 1";
+              let paragraph7 = context.document.body.insertParagraph("Contractor shall provide the Services and Deliverable(s) as follows:", "End");
+              paragraph7.style = "Normal";
+              let paragraph8 = context.document.body.insertParagraph("Out-of-Pocket Expenses / Invoice Procedures", "End");
+              paragraph8.style = "Heading 2";
+              let paragraph9 = context.document.body.insertParagraph("Client will be invoiced monthly for the consulting services and T&L expenses. Standard Contractor invoicing is assumed to be acceptable. Invoices are due upon receipt. client will be invoiced all costs associated with out-of-pocket expenses (including, without limitation, costs and expenses associated with meals, lodging, local transportation and any other applicable business expenses) listed on the invoice as a separate line item. Reimbursement for out-of-pocket expenses in connection with performance of this SOW, when authorized and up to the limits set forth in this SOW, shall be in accordance with Client's then-current published policies governing travel and associated business expenses, which information shall be provided by the Client Project Manager.", "End");
+              paragraph9.style = "Normal";
+              // Insert a page break at the end of the document.
+              context.document.body.insertBreak("Page", "End");
+
+              await context.sync();
+          });
+          ```
+      parameters:
+        - id: paragraphText
+          description: <span data-ttu-id="4682f-196">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-196">Required.</span></span> <span data-ttu-id="4682f-197">要插入的段落文本。</span><span class="sxs-lookup"><span data-stu-id="4682f-197">The paragraph text to be inserted.</span></span>
+          type:
+            - string
+        - id: insertLocation
+          description: <span data-ttu-id="4682f-198">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-198">Required.</span></span> <span data-ttu-id="4682f-199">此值可以为“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-199">The value can be 'Start' or 'End'.</span></span>
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.Body.insertParagraph_1
+    summary: |-
+      <span data-ttu-id="4682f-200">在指定位置插入段落。</span><span class="sxs-lookup"><span data-stu-id="4682f-200">Inserts a paragraph at the specified location.</span></span> <span data-ttu-id="4682f-201">insertLocation 值可以为“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-201">The insertLocation value can be 'Start' or 'End'.</span></span>
+
+      <span data-ttu-id="4682f-202">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-202">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: 'insertParagraph(paragraphText, insertLocationString)'
+    fullName: 'insertParagraph(paragraphText, insertLocationString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertParagraph(paragraphText: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Paragraph;'
+      return:
+        type:
+          - word.Word.Paragraph
+        description: ''
+      parameters:
+        - id: paragraphText
+          description: <span data-ttu-id="4682f-203">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-203">Required.</span></span> <span data-ttu-id="4682f-204">要插入的段落文本。</span><span class="sxs-lookup"><span data-stu-id="4682f-204">The paragraph text to be inserted.</span></span>
+          type:
+            - string
+        - id: insertLocationString
+          description: <span data-ttu-id="4682f-205">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-205">Required.</span></span> <span data-ttu-id="4682f-206">此值可以为“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-206">The value can be 'Start' or 'End'.</span></span>
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.Body.insertText
+    summary: |-
+      <span data-ttu-id="4682f-207">将文本插入到正文中的指定位置。</span><span class="sxs-lookup"><span data-stu-id="4682f-207">Inserts text into the body at the specified location.</span></span> <span data-ttu-id="4682f-208">insertLocation 值可以为“Replace”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-208">The insertLocation value can be 'Replace', 'Start', or 'End'.</span></span>
+
+      <span data-ttu-id="4682f-209">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-209">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: 'insertText(text, insertLocation)'
+    fullName: 'insertText(text, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertText(text: string, insertLocation: Word.InsertLocation): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4682f-210">示例</span><span class="sxs-lookup"><span data-stu-id="4682f-210">Examples</span></span>
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the document body.
+              var body = context.document.body;
+
+              // Queue a commmand to insert text in to the beginning of the body.
+              body.insertText('This is text inserted with body.insertText()', Word.InsertLocation.start);
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+                  console.log('Text added to the beginning of the document body.');
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: text
+          description: <span data-ttu-id="4682f-211">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-211">Required.</span></span> <span data-ttu-id="4682f-212">要插入的文本。</span><span class="sxs-lookup"><span data-stu-id="4682f-212">Text to be inserted.</span></span>
+          type:
+            - string
+        - id: insertLocation
+          description: '<span data-ttu-id="4682f-213">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-213">Required.</span></span> <span data-ttu-id="4682f-214">此值可以为“Replace”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-214">The value can be ''Replace'', ''Start'', or ''End''.</span></span>'
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.Body.insertText_1
+    summary: |-
+      <span data-ttu-id="4682f-215">将文本插入到正文中的指定位置。</span><span class="sxs-lookup"><span data-stu-id="4682f-215">Inserts text into the body at the specified location.</span></span> <span data-ttu-id="4682f-216">insertLocation 值可以为“Replace”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-216">The insertLocation value can be 'Replace', 'Start', or 'End'.</span></span>
+
+      <span data-ttu-id="4682f-217">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-217">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: 'insertText(text, insertLocationString)'
+    fullName: 'insertText(text, insertLocationString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertText(text: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: text
+          description: <span data-ttu-id="4682f-218">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-218">Required.</span></span> <span data-ttu-id="4682f-219">要插入的文本。</span><span class="sxs-lookup"><span data-stu-id="4682f-219">Text to be inserted.</span></span>
+          type:
+            - string
+        - id: insertLocationString
+          description: '<span data-ttu-id="4682f-220">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-220">Required.</span></span> <span data-ttu-id="4682f-221">此值可以为“Replace”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-221">The value can be ''Replace'', ''Start'', or ''End''.</span></span>'
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.Body.load
+    summary: <span data-ttu-id="4682f-222">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="4682f-222">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="4682f-223">在读取属性之前，你必须调用“context.sync()”。</span><span class="sxs-lookup"><span data-stu-id="4682f-223">You must call "context.sync()" before reading the properties.</span></span>
+    remarks: |-
+      <span data-ttu-id="4682f-224">除了此签名之外, 此方法还具有以下签名:</span><span class="sxs-lookup"><span data-stu-id="4682f-224">In addition to this signature, this method has the following signatures:</span></span>
+
+      <span data-ttu-id="4682f-225">`load(option?: string | string[]): Word.Body`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="4682f-225">`load(option?: string | string[]): Word.Body` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
+
+      <span data-ttu-id="4682f-226">`load(option?: { select?: string; expand?: string; }): Word.Body`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="4682f-226">`load(option?: { select?: string; expand?: string; }): Word.Body` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+
+      <span data-ttu-id="4682f-227">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.Body`-仅适用于集合类型。</span><span class="sxs-lookup"><span data-stu-id="4682f-227">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.Body` - Only available on collection types.</span></span> <span data-ttu-id="4682f-228">它类似于前面的签名。</span><span class="sxs-lookup"><span data-stu-id="4682f-228">It is similar to the preceding signature.</span></span> <span data-ttu-id="4682f-229">Top 指定结果中可包含的集合项的最大数量。</span><span class="sxs-lookup"><span data-stu-id="4682f-229">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="4682f-230">选项。 skip 指定要跳过且不包含在结果中的项目数。</span><span class="sxs-lookup"><span data-stu-id="4682f-230">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="4682f-231">如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。</span><span class="sxs-lookup"><span data-stu-id="4682f-231">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Word.Interfaces.BodyLoadOptions): Word.Body;'
+      return:
+        type:
+          - word.Word.Body
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - word.Word.Interfaces.BodyLoadOptions
+  - uid: word.Word.Body.load_1
+    summary: '<span data-ttu-id="4682f-232">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="4682f-232">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="4682f-233">在读取属性`context.sync()`之前, 必须先调用。</span><span class="sxs-lookup"><span data-stu-id="4682f-233">You must call `context.sync()` before reading the properties.</span></span>'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Word.Body;'
+      return:
+        type:
+          - word.Word.Body
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: '<span data-ttu-id="4682f-234">一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="4682f-234">A comma-delimited string or an array of strings that specify the properties to load.</span></span>'
+          type:
+            - 'string | string[]'
+  - uid: word.Word.Body.load_2
+    summary: '<span data-ttu-id="4682f-235">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="4682f-235">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="4682f-236">在读取属性`context.sync()`之前, 必须先调用。</span><span class="sxs-lookup"><span data-stu-id="4682f-236">You must call `context.sync()` before reading the properties.</span></span>'
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Word.Body;'
+      return:
+        type:
+          - word.Word.Body
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '<span data-ttu-id="4682f-237">其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="4682f-237">Where propertyNamesAndPaths.select is a comma-delimited string that specifies the properties to load, and propertyNamesAndPaths.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: word.Word.Body.paragraphs
+    summary: |-
+      <span data-ttu-id="4682f-238">获取正文中段落对象的集合。</span><span class="sxs-lookup"><span data-stu-id="4682f-238">Gets the collection of paragraph objects in the body.</span></span> <span data-ttu-id="4682f-239">只读。</span><span class="sxs-lookup"><span data-stu-id="4682f-239">Read-only.</span></span>
+
+      <span data-ttu-id="4682f-240">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-240">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: paragraphs
+    fullName: paragraphs
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly paragraphs: Word.ParagraphCollection;'
+      return:
+        type:
+          - word.Word.ParagraphCollection
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4682f-241">示例</span><span class="sxs-lookup"><span data-stu-id="4682f-241">Examples</span></span>
+
+          ```typescript
+          await Word.run(async (context) => {
+            let paragraphs = context.document.body.paragraphs;
+            paragraphs.load("text");
+            await context.sync();
+
+            let text = [];
+            paragraphs.items.forEach((item) => {
+              let paragraph = item.text.trim();
+              if (paragraph) {
+                paragraph.split(" ").forEach((term) => {
+                  let currentTerm = term.trim();
+                  if (currentTerm) {
+                    text.push(currentTerm);
+                  }
+                });
+              }
+            });
+
+            let makeTextDistinct = new Set(text);
+            let distinctText = Array.from(makeTextDistinct);
+            let allSearchResults = [];
+
+            for (let i = 0; i < distinctText.length; i++) {
+              let results = context.document.body.search(distinctText[i], { matchCase: true, matchWholeWord: true });
+              results.load("text");
+
+              // Map search term with its results.
+              let correlatedResults = {
+                searchTerm: distinctText[i],
+                hits: results
+              };
+
+              allSearchResults.push(correlatedResults);
+            }
+
+            await context.sync();
+
+            // Display counts.
+            allSearchResults.forEach((result) => {
+              let length = result.hits.items.length;
+
+              console.log("Search term: " + result.searchTerm + " => Count: " + length);
+            });
+          });
+          ```
+  - uid: word.Word.Body.parentContentControl
+    summary: |-
+      <span data-ttu-id="4682f-242">获取包含正文的内容控件。</span><span class="sxs-lookup"><span data-stu-id="4682f-242">Gets the content control that contains the body.</span></span> <span data-ttu-id="4682f-243">如果没有父内容控件, 将引发此异常。</span><span class="sxs-lookup"><span data-stu-id="4682f-243">Throws if there isn't a parent content control.</span></span> <span data-ttu-id="4682f-244">只读。</span><span class="sxs-lookup"><span data-stu-id="4682f-244">Read-only.</span></span>
+
+      <span data-ttu-id="4682f-245">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-245">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: parentContentControl
+    fullName: parentContentControl
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly parentContentControl: Word.ContentControl;'
+      return:
+        type:
+          - word.Word.ContentControl
+  - uid: word.Word.Body.search
+    summary: |-
+      <span data-ttu-id="4682f-246">在 body 对象的作用域上使用指定的 SearchOptions 执行搜索。</span><span class="sxs-lookup"><span data-stu-id="4682f-246">Performs a search with the specified SearchOptions on the scope of the body object.</span></span> <span data-ttu-id="4682f-247">搜索结果是 range 对象的集合。</span><span class="sxs-lookup"><span data-stu-id="4682f-247">The search results are a collection of range objects.</span></span>
+
+      <span data-ttu-id="4682f-248">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-248">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: 'search(searchText, searchOptions)'
+    fullName: 'search(searchText, searchOptions)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: |-
+        search(searchText: string, searchOptions?: Word.SearchOptions | {
+                    ignorePunct?: boolean;
+                    ignoreSpace?: boolean;
+                    matchCase?: boolean;
+                    matchPrefix?: boolean;
+                    matchSuffix?: boolean;
+                    matchWholeWord?: boolean;
+                    matchWildcards?: boolean;
+                }): Word.RangeCollection;
+      return:
+        type:
+          - word.Word.RangeCollection
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4682f-249">示例</span><span class="sxs-lookup"><span data-stu-id="4682f-249">Examples</span></span>
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the document body.
+              var body = context.document.body;
+
+              // Queue a commmand to search the document.
+              var searchResults = context.document.body.search('video', {matchCase: false});
+
+              // Queue a commmand to load the results.
+              context.load(searchResults, 'text, font');
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+                  var results = 'Found count: ' + searchResults.items.length +
+                                '; we highlighted the results.';
+
+                  // Queue a command to change the font for each found item.
+                  for (var i = 0; i < searchResults.items.length; i++) {
+                    searchResults.items[i].font.color = '#FF0000'    // Change color to Red
+                    searchResults.items[i].font.highlightColor = '#FFFF00';
+                    searchResults.items[i].font.bold = true;
+                  }
+
+                  // Synchronize the document state by executing the queued commands,
+                  // and return a promise to indicate task completion.
+                  return context.sync().then(function () {
+                      console.log(results);
+                  });
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+
+          // The Word-Add-in-DocumentAssembly sample provides another example of how to search a document.
+          // https://github.com/OfficeDev/Word-Add-in-DocumentAssembly
+          ```
+          ```typescript
+          await Word.run(async (context) => {
+            let results = context.document.body.search("Online");
+            results.load("length");
+
+            await context.sync();
+
+            // Let's traverse the search results... and highlight...
+            for (let i = 0; i < results.items.length; i++) {
+              results.items[i].font.highlightColor = "yellow";
+            }
+
+            await context.sync();
+          });
+          ```
+          ```typescript
+          await Word.run(async (context) => {
+            // Check out how wildcard expression are built, also use the second parameter of the search method to include search modes
+            // (i.e. use wildcards).
+            let results = context.document.body.search("$*.[0-9][0-9]", { matchWildcards: true });
+            results.load("length");
+
+            await context.sync();
+
+            // Let's traverse the search results... and highlight...
+            for (let i = 0; i < results.items.length; i++) {
+              results.items[i].font.highlightColor = "red";
+              results.items[i].font.color = "white";
+            }
+
+            await context.sync();
+          });
+          ```
+          ```typescript
+          await Word.run(async (context) => {
+            let paragraphs = context.document.body.paragraphs;
+            paragraphs.load("text");
+            await context.sync();
+
+            let text = [];
+            paragraphs.items.forEach((item) => {
+              let paragraph = item.text.trim();
+              if (paragraph) {
+                paragraph.split(" ").forEach((term) => {
+                  let currentTerm = term.trim();
+                  if (currentTerm) {
+                    text.push(currentTerm);
+                  }
+                });
+              }
+            });
+
+            let makeTextDistinct = new Set(text);
+            let distinctText = Array.from(makeTextDistinct);
+            let allSearchResults = [];
+
+            for (let i = 0; i < distinctText.length; i++) {
+              let results = context.document.body.search(distinctText[i], { matchCase: true, matchWholeWord: true });
+              results.load("text");
+
+              // Map search term with its results.
+              let correlatedResults = {
+                searchTerm: distinctText[i],
+                hits: results
+              };
+
+              allSearchResults.push(correlatedResults);
+            }
+
+            await context.sync();
+
+            // Display counts.
+            allSearchResults.forEach((result) => {
+              let length = result.hits.items.length;
+
+              console.log("Search term: " + result.searchTerm + " => Count: " + length);
+            });
+          });
+          ```
+      parameters:
+        - id: searchText
+          description: <span data-ttu-id="4682f-250">必需。</span><span class="sxs-lookup"><span data-stu-id="4682f-250">Required.</span></span> <span data-ttu-id="4682f-251">搜索文本。</span><span class="sxs-lookup"><span data-stu-id="4682f-251">The search text.</span></span> <span data-ttu-id="4682f-252">最多可以为255个字符。</span><span class="sxs-lookup"><span data-stu-id="4682f-252">Can be a maximum of 255 characters.</span></span>
+          type:
+            - string
+        - id: searchOptions
+          description: <span data-ttu-id="4682f-253">可选。</span><span class="sxs-lookup"><span data-stu-id="4682f-253">Optional.</span></span> <span data-ttu-id="4682f-254">用于搜索的选项。</span><span class="sxs-lookup"><span data-stu-id="4682f-254">Options for the search.</span></span>
+          type:
+            - |-
+              Word.SearchOptions | {
+                          ignorePunct?: boolean;
+                          ignoreSpace?: boolean;
+                          matchCase?: boolean;
+                          matchPrefix?: boolean;
+                          matchSuffix?: boolean;
+                          matchWholeWord?: boolean;
+                          matchWildcards?: boolean;
+                      }
+  - uid: word.Word.Body.select
+    summary: |-
+      <span data-ttu-id="4682f-255">选择正文并在 Word UI 中进行浏览。</span><span class="sxs-lookup"><span data-stu-id="4682f-255">Selects the body and navigates the Word UI to it.</span></span>
+
+      <span data-ttu-id="4682f-256">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-256">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: select(selectionMode)
+    fullName: select(selectionMode)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'select(selectionMode?: Word.SelectionMode): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4682f-257">示例</span><span class="sxs-lookup"><span data-stu-id="4682f-257">Examples</span></span>
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the document body.
+              var body = context.document.body;
+
+              // Queue a commmand to select the document body. The Word UI will
+              // move to the selected document body.
+              body.select();
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+                  console.log('Selected the document body.');
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: selectionMode
+          description: '<span data-ttu-id="4682f-258">可选。</span><span class="sxs-lookup"><span data-stu-id="4682f-258">Optional.</span></span> <span data-ttu-id="4682f-259">选择模式可以为“Select”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-259">The selection mode can be ''Select'', ''Start'', or ''End''.</span></span> <span data-ttu-id="4682f-260">“Select”为默认值。</span><span class="sxs-lookup"><span data-stu-id="4682f-260">''Select'' is the default.</span></span>'
+          type:
+            - word.Word.SelectionMode
+  - uid: word.Word.Body.select_1
+    summary: |-
+      <span data-ttu-id="4682f-261">选择正文并在 Word UI 中进行浏览。</span><span class="sxs-lookup"><span data-stu-id="4682f-261">Selects the body and navigates the Word UI to it.</span></span>
+
+      <span data-ttu-id="4682f-262">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-262">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: select(selectionModeString)
+    fullName: select(selectionModeString)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'select(selectionModeString?: "Select" | "Start" | "End"): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: selectionModeString
+          description: '<span data-ttu-id="4682f-263">可选。</span><span class="sxs-lookup"><span data-stu-id="4682f-263">Optional.</span></span> <span data-ttu-id="4682f-264">选择模式可以为“Select”、“Start”或“End”。</span><span class="sxs-lookup"><span data-stu-id="4682f-264">The selection mode can be ''Select'', ''Start'', or ''End''.</span></span> <span data-ttu-id="4682f-265">“Select”为默认值。</span><span class="sxs-lookup"><span data-stu-id="4682f-265">''Select'' is the default.</span></span>'
+          type:
+            - '"Select" | "Start" | "End"'
+  - uid: word.Word.Body.set
+    summary: '<span data-ttu-id="4682f-266">同时设置一个对象的多个属性。</span><span class="sxs-lookup"><span data-stu-id="4682f-266">Sets multiple properties of an object at the same time.</span></span> <span data-ttu-id="4682f-267">您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。</span><span class="sxs-lookup"><span data-stu-id="4682f-267">You can pass either a plain object with the appropriate properties, or another API object of the same type.</span></span>'
+    remarks: |-
+      <span data-ttu-id="4682f-268">此方法具有以下附加签名:</span><span class="sxs-lookup"><span data-stu-id="4682f-268">This method has the following additional signature:</span></span>
+
+      `set(properties: Word.Body): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.BodyUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: '<span data-ttu-id="4682f-269">一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。</span><span class="sxs-lookup"><span data-stu-id="4682f-269">A JavaScript object with properties that are structured isomorphically to the properties of the object on which the method is called.</span></span>'
+          type:
+            - Interfaces.BodyUpdateData
+        - id: options
+          description: '<span data-ttu-id="4682f-270">提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。</span><span class="sxs-lookup"><span data-stu-id="4682f-270">Provides an option to suppress errors if the properties object tries to set any read-only properties.</span></span>'
+          type:
+            - OfficeExtension.UpdateOptions
+  - uid: word.Word.Body.set_1
+    summary: '<span data-ttu-id="4682f-271">基于现有加载的对象同时设置该对象的多个属性。</span><span class="sxs-lookup"><span data-stu-id="4682f-271">Sets multiple properties on the object at the same time, based on an existing loaded object.</span></span>'
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Word.Body): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - word.Word.Body
+  - uid: word.Word.Body.style
+    summary: |-
+      <span data-ttu-id="4682f-p155">获取或设置 body 的样式名称。请对自定义样式和本地化样式名称使用此属性。若要使用可以在区域设置之间移植的嵌入样式，请参阅“styleBuiltIn”属性。</span><span class="sxs-lookup"><span data-stu-id="4682f-p155">Gets or sets the style name for the body. Use this property for custom styles and localized style names. To use the built-in styles that are portable between locales, see the "styleBuiltIn" property.</span></span>
+
+      <span data-ttu-id="4682f-275">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-275">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: style
+    fullName: style
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'style: string;'
+      return:
+        type:
+          - string
+  - uid: word.Word.Body.text
+    summary: |-
+      <span data-ttu-id="4682f-276">获取正文的文本。</span><span class="sxs-lookup"><span data-stu-id="4682f-276">Gets the text of the body.</span></span> <span data-ttu-id="4682f-277">使用 insertText 方法插入文本。</span><span class="sxs-lookup"><span data-stu-id="4682f-277">Use the insertText method to insert text.</span></span> <span data-ttu-id="4682f-278">只读。</span><span class="sxs-lookup"><span data-stu-id="4682f-278">Read-only.</span></span>
+
+      <span data-ttu-id="4682f-279">\[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4682f-279">\[ [API set: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]</span></span>
+    name: text
+    fullName: text
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly text: string;'
+      return:
+        type:
+          - string
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4682f-280">示例</span><span class="sxs-lookup"><span data-stu-id="4682f-280">Examples</span></span>
+
+          ```javascript
+          // Get the text property on the body object
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the document body.
+              var body = context.document.body;
+
+              // Queue a commmand to load the text in document body.
+              context.load(body, 'text');
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+                  console.log("Body contents: " + body.text);
+              });
+          })
+          .catch(function (error) {
+              console.log("Error: " + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: word.Word.Body.toJSON
+    summary: '<span data-ttu-id="4682f-281">重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`</span><span class="sxs-lookup"><span data-stu-id="4682f-281">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`</span></span><!-- --><span data-ttu-id="4682f-282">.</span><span class="sxs-lookup"><span data-stu-id="4682f-282"></span></span> <span data-ttu-id="4682f-283">(`JSON.stringify`</span><span class="sxs-lookup"><span data-stu-id="4682f-283"></span></span><!-- --><span data-ttu-id="4682f-284">反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始的 "Body" 对象是 API 对象, 但`toJSON`方法返回一个简单的 JavaScript 对象 (类型为`Word.Interfaces.BodyData`</span><span class="sxs-lookup"><span data-stu-id="4682f-284">, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original Word.Body object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Word.Interfaces.BodyData`</span></span><!-- --><span data-ttu-id="4682f-285">), 其中包含原始对象中所有已加载的子属性的浅表副本。</span><span class="sxs-lookup"><span data-stu-id="4682f-285">) that contains shallow copies of any loaded child properties from the original object.</span></span>'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Word.Interfaces.BodyData;'
+      return:
+        type:
+          - word.Word.Interfaces.BodyData
+        description: ''
+  - uid: word.Word.Body.track
+    summary: '<span data-ttu-id="4682f-286">根据文档中的相应更改来跟踪对象，以便进行自动调整。</span><span class="sxs-lookup"><span data-stu-id="4682f-286">Track the object for automatic adjustment based on surrounding changes in the document.</span></span> <span data-ttu-id="4682f-287">此调用是 context.trackedObjects.add(thisObject) 的缩写。</span><span class="sxs-lookup"><span data-stu-id="4682f-287">This call is a shorthand for context.trackedObjects.add(thisObject).</span></span> <span data-ttu-id="4682f-288">如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。</span><span class="sxs-lookup"><span data-stu-id="4682f-288">If you are using this object across ".sync" calls and outside the sequential execution of a ".run" batch, and get an "InvalidObjectPath" error when setting a property or invoking a method on the object, you needed to have added the object to the tracked object collection when the object was first created.</span></span>'
+    name: track()
+    fullName: track()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'track(): Word.Body;'
+      return:
+        type:
+          - word.Word.Body
+        description: ''
+  - uid: word.Word.Body.untrack
+    summary: '<span data-ttu-id="4682f-289">释放与此对象关联的内存（如果先前已跟踪过）。</span><span class="sxs-lookup"><span data-stu-id="4682f-289">Release the memory associated with this object, if it has previously been tracked.</span></span> <span data-ttu-id="4682f-290">此调用是 context.trackedObjects.add(thisObject) 的缩写。</span><span class="sxs-lookup"><span data-stu-id="4682f-290">This call is shorthand for context.trackedObjects.remove(thisObject).</span></span> <span data-ttu-id="4682f-291">拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。</span><span class="sxs-lookup"><span data-stu-id="4682f-291">Having many tracked objects slows down the host application, so please remember to free any objects you add, once you''re done using them.</span></span> <span data-ttu-id="4682f-292">在内存释放生效之前，你需要调用“context.sync()”。</span><span class="sxs-lookup"><span data-stu-id="4682f-292">You will need to call "context.sync()" before the memory release takes effect.</span></span>'
+    name: untrack()
+    fullName: untrack()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'untrack(): Word.Body;'
+      return:
+        type:
+          - word.Word.Body
+        description: ''
