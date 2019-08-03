@@ -1,0 +1,102 @@
+### YamlMime:UniversalReference
+items:
+  - uid: visio.Visio.SelectionChangedEventArgs
+    summary: |-
+      <span data-ttu-id="1df55-101">提供有关引发了 SelectionChanged 事件的形状集合的信息。</span><span class="sxs-lookup"><span data-stu-id="1df55-101">Provides information about the shape collection that raised the SelectionChanged event.</span></span>
+
+      <span data-ttu-id="1df55-102">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="1df55-102">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: Visio.SelectionChangedEventArgs
+    fullName: Visio.SelectionChangedEventArgs
+    langs:
+      - typeScript
+    type: interface
+    package: visio
+    remarks: |-
+
+
+      #### <a name="examples"></a><span data-ttu-id="1df55-103">示例</span><span class="sxs-lookup"><span data-stu-id="1df55-103">Examples</span></span>
+
+      ```javascript
+      var eventResult; //Global Variable to store the EventHandlerResult returned on attaching handler.
+
+      function AttachHandler()
+      {
+          Visio.run(function(ctx)
+          {
+              var doc = ctx.document;
+              eventResult = doc.onSelectionChanged.add(
+                  function (args) {
+                      console.log("Selected Shape Name: "+args.shapeNames[0]);
+                  });
+              return ctx.sync().then(function(){
+                  console.log("Handler attached");
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+
+          function onSelectionChanged(args)
+          {
+              console.log(Date.now() + "Selection Changes Event" + JSON.stringify(args));
+          }
+      }
+
+      function RemoveHandler()
+      {
+          if(!eventResult || !eventResult.context)
+          {
+              console.log("Handler has not been attached");
+              return;
+          }
+
+          Visio.run(eventResult.context, function(ctx)
+          {
+              eventResult.remove();
+              return ctx.sync().then(function (){
+                  eventResult = null;
+                  console.log("Handler removed");
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+      }
+      ```
+    children:
+      - visio.Visio.SelectionChangedEventArgs.pageName
+      - visio.Visio.SelectionChangedEventArgs.shapeNames
+  - uid: visio.Visio.SelectionChangedEventArgs.pageName
+    summary: |-
+      <span data-ttu-id="1df55-104">获取页面名称，其中包含引发了 SelectionChanged 事件的 ShapeCollection 对象。</span><span class="sxs-lookup"><span data-stu-id="1df55-104">Gets the name of the page which has the ShapeCollection object that raised the SelectionChanged event.</span></span>
+
+      <span data-ttu-id="1df55-105">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="1df55-105">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: pageName
+    fullName: pageName
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'pageName: string;'
+      return:
+        type:
+          - string
+  - uid: visio.Visio.SelectionChangedEventArgs.shapeNames
+    summary: |-
+      <span data-ttu-id="1df55-106">获取引发了 SelectionChanged 事件的形状名称数组。</span><span class="sxs-lookup"><span data-stu-id="1df55-106">Gets the array of shape names that raised the SelectionChanged event.</span></span>
+
+      <span data-ttu-id="1df55-107">\[[API 集: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]</span><span class="sxs-lookup"><span data-stu-id="1df55-107">\[ [API set: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]</span></span>
+    name: shapeNames
+    fullName: shapeNames
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'shapeNames: string[];'
+      return:
+        type:
+          - 'string[]'
