@@ -1,0 +1,300 @@
+### YamlMime:UniversalReference
+items:
+  - uid: onenote.OneNote.NotebookCollection
+    summary: |-
+      表示笔记本的集合。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: OneNote.NotebookCollection
+    fullName: OneNote.NotebookCollection
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: onenote
+    children:
+      - onenote.OneNote.NotebookCollection.context
+      - onenote.OneNote.NotebookCollection.count
+      - onenote.OneNote.NotebookCollection.getByName
+      - onenote.OneNote.NotebookCollection.getItem
+      - onenote.OneNote.NotebookCollection.getItemAt
+      - onenote.OneNote.NotebookCollection.items
+      - onenote.OneNote.NotebookCollection.load
+      - onenote.OneNote.NotebookCollection.load_1
+      - onenote.OneNote.NotebookCollection.load_2
+      - onenote.OneNote.NotebookCollection.toJSON
+      - onenote.OneNote.NotebookCollection.track
+      - onenote.OneNote.NotebookCollection.untrack
+  - uid: onenote.OneNote.NotebookCollection.context
+    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - onenote.OneNote.RequestContext
+  - uid: onenote.OneNote.NotebookCollection.count
+    summary: |-
+      返回集合中笔记本的数目。 只读。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: count
+    fullName: count
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly count: number;'
+      return:
+        type:
+          - number
+  - uid: onenote.OneNote.NotebookCollection.getByName
+    summary: |-
+      获取在应用程序实例中打开的指定名称的笔记本集合。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getByName(name)
+    fullName: getByName(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getByName(name: string): OneNote.NotebookCollection;'
+      return:
+        type:
+          - onenote.OneNote.NotebookCollection
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          OneNote.run(function (context) {
+
+              // Get the notebooks that are open in the application instance and have the specified name.
+              var notebooks = context.application.notebooks.getByName("Homework");
+
+              // Queue a command to load the notebooks. 
+              // For best performance, request specific properties.           
+              notebooks.load("id,name");
+
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+
+                      // Iterate through the collection or access items individually by index,
+                      // for example: notebooks.items[0]
+                      if (notebooks.items.length > 0) {
+                          console.log("Notebook name: " + notebooks.items[0].name);
+                          console.log("Notebook ID: " + notebooks.items[0].id);
+                      }
+                          
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: name
+          description: 笔记本的名称。
+          type:
+            - string
+  - uid: onenote.OneNote.NotebookCollection.getItem
+    summary: |-
+      按其在集合中的 ID 或索引获取笔记本。 只读。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getItem(index)
+    fullName: getItem(index)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItem(index: number | string): OneNote.Notebook;'
+      return:
+        type:
+          - onenote.OneNote.Notebook
+        description: ''
+      parameters:
+        - id: index
+          description: 笔记本的 ID 或集合中笔记本的索引位置。
+          type:
+            - number | string
+  - uid: onenote.OneNote.NotebookCollection.getItemAt
+    summary: |-
+      按其在集合中的位置获取笔记本。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getItemAt(index)
+    fullName: getItemAt(index)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItemAt(index: number): OneNote.Notebook;'
+      return:
+        type:
+          - onenote.OneNote.Notebook
+        description: ''
+      parameters:
+        - id: index
+          description: 要检索的对象的索引值。 从零开始编制索引。
+          type:
+            - number
+  - uid: onenote.OneNote.NotebookCollection.items
+    summary: 获取此集合中已加载的子项。
+    name: items
+    fullName: items
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly items: OneNote.Notebook[];'
+      return:
+        type:
+          - 'OneNote.Notebook[]'
+  - uid: onenote.OneNote.NotebookCollection.load
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+    remarks: |-
+      除了此签名之外, 此方法还具有以下签名:
+
+      `load(option?: string | string[]): OneNote.NotebookCollection`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
+
+      `load(option?: { select?: string; expand?: string; }): OneNote.NotebookCollection`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.NotebookCollection`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OneNote.Interfaces.NotebookCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions): OneNote.NotebookCollection;'
+      return:
+        type:
+          - onenote.OneNote.NotebookCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - OneNote.Interfaces.NotebookCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions
+  - uid: onenote.OneNote.NotebookCollection.load_1
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): OneNote.NotebookCollection;'
+      return:
+        type:
+          - onenote.OneNote.NotebookCollection
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          OneNote.run(function (context) {
+
+              // Get the notebooks that are open in the application instance and have the specified name.
+              var notebooks = context.application.notebooks.getByName("Homework");
+
+              // Queue a command to load the notebooks. 
+              // For best performance, request specific properties.           
+              notebooks.load("id");
+
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+
+                      // Iterate through the collection or access items individually by index, 
+                      // for example: notebooks.items[0]
+                      $.each(notebooks.items, function(index, notebook) {
+                          notebook.addSection("Biology");
+                          notebook.addSection("Spanish");
+                          notebook.addSection("Computer Science");
+                      });
+                      
+                      return context.sync();
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: '一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。'
+          type:
+            - 'string | string[]'
+  - uid: onenote.OneNote.NotebookCollection.load_2
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OfficeExtension.LoadOption): OneNote.NotebookCollection;'
+      return:
+        type:
+          - onenote.OneNote.NotebookCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - OfficeExtension.LoadOption
+  - uid: onenote.OneNote.NotebookCollection.toJSON
+    summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始`OneNote.NotebookCollection`对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`OneNote.Interfaces.NotebookCollectionData`<!-- -->), 其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): OneNote.Interfaces.NotebookCollectionData;'
+      return:
+        type:
+          - onenote.OneNote.Interfaces.NotebookCollectionData
+        description: ''
+  - uid: onenote.OneNote.NotebookCollection.track
+    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。
+    name: track()
+    fullName: track()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'track(): OneNote.NotebookCollection;'
+      return:
+        type:
+          - onenote.OneNote.NotebookCollection
+        description: ''
+  - uid: onenote.OneNote.NotebookCollection.untrack
+    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前，你需要调用“context.sync()”。
+    name: untrack()
+    fullName: untrack()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'untrack(): OneNote.NotebookCollection;'
+      return:
+        type:
+          - onenote.OneNote.NotebookCollection
+        description: ''
