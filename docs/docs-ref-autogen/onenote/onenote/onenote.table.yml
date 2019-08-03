@@ -1,0 +1,687 @@
+### YamlMime:UniversalReference
+items:
+  - uid: onenote.OneNote.Table
+    summary: |-
+      <span data-ttu-id="4dd9a-101">表示 OneNote 页中的表格。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-101">Represents a table in a OneNote page.</span></span>
+
+      <span data-ttu-id="4dd9a-102">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4dd9a-102">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: OneNote.Table
+    fullName: OneNote.Table
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: onenote
+    children:
+      - onenote.OneNote.Table.appendColumn
+      - onenote.OneNote.Table.appendRow
+      - onenote.OneNote.Table.borderVisible
+      - onenote.OneNote.Table.clear
+      - onenote.OneNote.Table.columnCount
+      - onenote.OneNote.Table.context
+      - onenote.OneNote.Table.getCell
+      - onenote.OneNote.Table.id
+      - onenote.OneNote.Table.insertColumn
+      - onenote.OneNote.Table.insertRow
+      - onenote.OneNote.Table.load
+      - onenote.OneNote.Table.load_1
+      - onenote.OneNote.Table.load_2
+      - onenote.OneNote.Table.paragraph
+      - onenote.OneNote.Table.rowCount
+      - onenote.OneNote.Table.rows
+      - onenote.OneNote.Table.set
+      - onenote.OneNote.Table.set_1
+      - onenote.OneNote.Table.setShadingColor
+      - onenote.OneNote.Table.toJSON
+      - onenote.OneNote.Table.track
+      - onenote.OneNote.Table.untrack
+  - uid: onenote.OneNote.Table.appendColumn
+    summary: |-
+      <span data-ttu-id="4dd9a-103">将列添加至表格结尾。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-103">Adds a column to the end of the table.</span></span> <span data-ttu-id="4dd9a-104">指定的值在新列中设置。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-104">Values, if specified, are set in the new column.</span></span> <span data-ttu-id="4dd9a-105">否则该列为空。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-105">Otherwise the column is empty.</span></span>
+
+      <span data-ttu-id="4dd9a-106">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4dd9a-106">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: appendColumn(values)
+    fullName: appendColumn(values)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'appendColumn(values?: string[]): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4dd9a-107">示例</span><span class="sxs-lookup"><span data-stu-id="4dd9a-107">Examples</span></span>
+
+          ```javascript
+          OneNote.run(function(ctx) {
+              var app = ctx.application;
+              var outline = app.getActiveOutline();
+              
+              // Queue a command to load outline.paragraphs and their types.
+              ctx.load(outline, "paragraphs, paragraphs/type");
+              
+              // Run the queued commands, and return a promise to indicate task completion.
+              return ctx.sync().then(function () {
+                  var paragraphs = outline.paragraphs;
+                  
+                  // for each table, append a column.
+                  for (var i = 0; i < paragraphs.items.length; i++) {
+                      var paragraph = paragraphs.items[i];
+                      if (paragraph.type == "Table") {
+                          var table = paragraph.table;
+                          table.appendColumn(["cell0", "cell1"]);
+                      }
+                  }
+                  return ctx.sync();
+              })
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: values
+          description: '<span data-ttu-id="4dd9a-108">可选。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-108">Optional.</span></span> <span data-ttu-id="4dd9a-109">在新列中插入的字符串，指定为数组。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-109">Strings to insert in the new column, specified as an array.</span></span> <span data-ttu-id="4dd9a-110">表中的值不能多于行。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-110">Must not have more values than rows in the table.</span></span>'
+          type:
+            - 'string[]'
+  - uid: onenote.OneNote.Table.appendRow
+    summary: |-
+      <span data-ttu-id="4dd9a-111">将行添加至表格结尾。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-111">Adds a row to the end of the table.</span></span> <span data-ttu-id="4dd9a-112">指定的值在新行中设置。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-112">Values, if specified, are set in the new row.</span></span> <span data-ttu-id="4dd9a-113">否则该行为空。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-113">Otherwise the row is empty.</span></span>
+
+      <span data-ttu-id="4dd9a-114">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4dd9a-114">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: appendRow(values)
+    fullName: appendRow(values)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'appendRow(values?: string[]): OneNote.TableRow;'
+      return:
+        type:
+          - onenote.OneNote.TableRow
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4dd9a-115">示例</span><span class="sxs-lookup"><span data-stu-id="4dd9a-115">Examples</span></span>
+
+          ```javascript
+          OneNote.run(function(ctx) {
+              var app = ctx.application;
+              var outline = app.getActiveOutline();
+              
+              // Queue a command to load outline.paragraphs and their types.
+              ctx.load(outline, "paragraphs, paragraphs/type");
+              
+              // Run the queued commands, and return a promise to indicate task completion.
+              return ctx.sync().then(function () {
+                  var paragraphs = outline.paragraphs;
+                  
+                  // for each table, append a column.
+                  for (var i = 0; i < paragraphs.items.length; i++) {
+                      var paragraph = paragraphs.items[i];
+                      if (paragraph.type == "Table") {
+                          var table = paragraph.table;
+                          var row = table.appendRow(["cell0", "cell1"]);
+                      }
+                  }
+                  return ctx.sync();
+              })
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: values
+          description: '<span data-ttu-id="4dd9a-116">可选。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-116">Optional.</span></span> <span data-ttu-id="4dd9a-117">在新行中插入的字符串，指定为数组。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-117">Strings to insert in the new row, specified as an array.</span></span> <span data-ttu-id="4dd9a-118">表中的值不能多于列。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-118">Must not have more values than columns in the table.</span></span>'
+          type:
+            - 'string[]'
+  - uid: onenote.OneNote.Table.borderVisible
+    summary: |-
+      <span data-ttu-id="4dd9a-119">获取或设置边框是否可见。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-119">Gets or sets whether the borders are visible or not.</span></span> <span data-ttu-id="4dd9a-120">如果为 true，则边框可见，如果为 false，则隐藏边框。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-120">True if they are visible, false if they are hidden.</span></span>
+
+      <span data-ttu-id="4dd9a-121">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4dd9a-121">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: borderVisible
+    fullName: borderVisible
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'borderVisible: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: onenote.OneNote.Table.clear
+    summary: |-
+      <span data-ttu-id="4dd9a-122">清除表内容。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-122">Clears the contents of the table.</span></span>
+
+      <span data-ttu-id="4dd9a-123">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4dd9a-123">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: clear()
+    fullName: clear()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clear(): void;'
+      return:
+        type:
+          - void
+        description: ''
+  - uid: onenote.OneNote.Table.columnCount
+    summary: |-
+      <span data-ttu-id="4dd9a-124">获取表中的列数。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-124">Gets the number of columns in the table.</span></span>
+
+      <span data-ttu-id="4dd9a-125">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4dd9a-125">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: columnCount
+    fullName: columnCount
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly columnCount: number;'
+      return:
+        type:
+          - number
+  - uid: onenote.OneNote.Table.context
+    summary: <span data-ttu-id="4dd9a-126">与该对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-126">The request context associated with the object.</span></span> <span data-ttu-id="4dd9a-127">这会将加载项的进程连接到 Office 主机应用程序的进程。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-127">This connects the add-in's process to the Office host application's process.</span></span>
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - onenote.OneNote.RequestContext
+  - uid: onenote.OneNote.Table.getCell
+    summary: |-
+      <span data-ttu-id="4dd9a-128">获取指定行和列处的表单元格。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-128">Gets the table cell at a specified row and column.</span></span>
+
+      <span data-ttu-id="4dd9a-129">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4dd9a-129">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: 'getCell(rowIndex, cellIndex)'
+    fullName: 'getCell(rowIndex, cellIndex)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getCell(rowIndex: number, cellIndex: number): OneNote.TableCell;'
+      return:
+        type:
+          - onenote.OneNote.TableCell
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4dd9a-130">示例</span><span class="sxs-lookup"><span data-stu-id="4dd9a-130">Examples</span></span>
+
+          ```javascript
+          OneNote.run(function(ctx) {
+              var app = ctx.application;
+              var outline = app.getActiveOutline();
+              
+              // Queue a command to load outline.paragraphs and their types.
+              ctx.load(outline, "paragraphs, paragraphs/type");
+              
+              // Run the queued commands, and return a promise to indicate task completion.
+              return ctx.sync().then(function () {
+                  var paragraphs = outline.paragraphs;
+                  
+                  // for each table, get a cell in the second row and third column.
+                  for (var i = 0; i < paragraphs.items.length; i++) {
+                      var paragraph = paragraphs.items[i];
+                      if (paragraph.type == "Table") {
+                          var table = paragraph.table;
+                          var cell = table.getCell(2 /*Row Index*/, 3 /*Column Index*/);
+                      }
+                  }
+                  return ctx.sync();
+              })
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: rowIndex
+          description: <span data-ttu-id="4dd9a-131">行的索引。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-131">The index of the row.</span></span>
+          type:
+            - number
+        - id: cellIndex
+          description: <span data-ttu-id="4dd9a-132">行中单元格的索引。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-132">The index of the cell in the row.</span></span>
+          type:
+            - number
+  - uid: onenote.OneNote.Table.id
+    summary: |-
+      <span data-ttu-id="4dd9a-133">获取表格的 ID。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-133">Gets the ID of the table.</span></span> <span data-ttu-id="4dd9a-134">只读。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-134">Read-only.</span></span>
+
+      <span data-ttu-id="4dd9a-135">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4dd9a-135">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: id
+    fullName: id
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly id: string;'
+      return:
+        type:
+          - string
+  - uid: onenote.OneNote.Table.insertColumn
+    summary: |-
+      <span data-ttu-id="4dd9a-p108">在表中给定索引处插入一列。 指定的值在新列中设置。 否则该列为空。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-p108">Inserts a column at the given index in the table. Values, if specified, are set in the new column. Otherwise the column is empty.</span></span>
+
+      <span data-ttu-id="4dd9a-139">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4dd9a-139">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: 'insertColumn(index, values)'
+    fullName: 'insertColumn(index, values)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertColumn(index: number, values?: string[]): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4dd9a-140">示例</span><span class="sxs-lookup"><span data-stu-id="4dd9a-140">Examples</span></span>
+
+          ```javascript
+          OneNote.run(function(ctx) {
+              var app = ctx.application;
+              var outline = app.getActiveOutline();
+              
+              // Queue a command to load outline.paragraphs and their types.
+              ctx.load(outline, "paragraphs, paragraphs/type");
+              
+              // Run the queued commands, and return a promise to indicate task completion.
+              return ctx.sync().then(function () {
+                  var paragraphs = outline.paragraphs;
+                  
+                  // for each table, insert a column at index two.
+                  for (var i = 0; i < paragraphs.items.length; i++) {
+                      var paragraph = paragraphs.items[i];
+                      if (paragraph.type == "Table") {
+                          var table = paragraph.table;
+                          table.insertColumn(2, ["cell0", "cell1"]);
+                      }
+                  }
+                  return ctx.sync();
+              })
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: index
+          description: <span data-ttu-id="4dd9a-141">表格中插入列位置的索引。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-141">Index where the column will be inserted in the table.</span></span>
+          type:
+            - number
+        - id: values
+          description: '<span data-ttu-id="4dd9a-142">可选。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-142">Optional.</span></span> <span data-ttu-id="4dd9a-143">在新列中插入的字符串，指定为数组。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-143">Strings to insert in the new column, specified as an array.</span></span> <span data-ttu-id="4dd9a-144">表中的值不能多于行。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-144">Must not have more values than rows in the table.</span></span>'
+          type:
+            - 'string[]'
+  - uid: onenote.OneNote.Table.insertRow
+    summary: |-
+      <span data-ttu-id="4dd9a-p110">在表中给定索引处插入一行。 指定的值在新行中设置。 否则该行为空。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-p110">Inserts a row at the given index in the table. Values, if specified, are set in the new row. Otherwise the row is empty.</span></span>
+
+      <span data-ttu-id="4dd9a-148">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4dd9a-148">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: 'insertRow(index, values)'
+    fullName: 'insertRow(index, values)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertRow(index: number, values?: string[]): OneNote.TableRow;'
+      return:
+        type:
+          - onenote.OneNote.TableRow
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4dd9a-149">示例</span><span class="sxs-lookup"><span data-stu-id="4dd9a-149">Examples</span></span>
+
+          ```javascript
+          OneNote.run(function(ctx) {
+              var app = ctx.application;
+              var outline = app.getActiveOutline();
+              
+              // Queue a command to load outline.paragraphs and their types.
+              ctx.load(outline, "paragraphs, paragraphs/type");
+              
+              // Run the queued commands, and return a promise to indicate task completion.
+              return ctx.sync().then(function () {
+                  var paragraphs = outline.paragraphs;
+                  
+                  // for each table, insert a row at index two.
+                  for (var i = 0; i < paragraphs.items.length; i++) {
+                      var paragraph = paragraphs.items[i];
+                      if (paragraph.type == "Table") {
+                          var table = paragraph.table;
+                          var row = table.insertRow(2, ["cell0", "cell1"]);
+                      }
+                  }
+                  return ctx.sync();
+              })
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: index
+          description: <span data-ttu-id="4dd9a-150">表格中插入行位置的索引。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-150">Index where the row will be inserted in the table.</span></span>
+          type:
+            - number
+        - id: values
+          description: '<span data-ttu-id="4dd9a-151">可选。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-151">Optional.</span></span> <span data-ttu-id="4dd9a-152">在新行中插入的字符串，指定为数组。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-152">Strings to insert in the new row, specified as an array.</span></span> <span data-ttu-id="4dd9a-153">表中的值不能多于列。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-153">Must not have more values than columns in the table.</span></span>'
+          type:
+            - 'string[]'
+  - uid: onenote.OneNote.Table.load
+    summary: <span data-ttu-id="4dd9a-154">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-154">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="4dd9a-155">在读取属性之前，你必须调用“context.sync()”。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-155">You must call "context.sync()" before reading the properties.</span></span>
+    remarks: |-
+      <span data-ttu-id="4dd9a-156">除了此签名之外, 此方法还具有以下签名:</span><span class="sxs-lookup"><span data-stu-id="4dd9a-156">In addition to this signature, this method has the following signatures:</span></span>
+
+      <span data-ttu-id="4dd9a-157">`load(option?: string | string[]): OneNote.Table`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-157">`load(option?: string | string[]): OneNote.Table` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
+
+      <span data-ttu-id="4dd9a-158">`load(option?: { select?: string; expand?: string; }): OneNote.Table`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-158">`load(option?: { select?: string; expand?: string; }): OneNote.Table` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+
+      <span data-ttu-id="4dd9a-159">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Table`-仅适用于集合类型。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-159">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Table` - Only available on collection types.</span></span> <span data-ttu-id="4dd9a-160">它类似于前面的签名。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-160">It is similar to the preceding signature.</span></span> <span data-ttu-id="4dd9a-161">Top 指定结果中可包含的集合项的最大数量。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-161">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="4dd9a-162">选项。 skip 指定要跳过且不包含在结果中的项目数。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-162">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="4dd9a-163">如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-163">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OneNote.Interfaces.TableLoadOptions): OneNote.Table;'
+      return:
+        type:
+          - onenote.OneNote.Table
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - onenote.OneNote.Interfaces.TableLoadOptions
+  - uid: onenote.OneNote.Table.load_1
+    summary: '<span data-ttu-id="4dd9a-164">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-164">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="4dd9a-165">在读取属性`context.sync()`之前, 必须先调用。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-165">You must call `context.sync()` before reading the properties.</span></span>'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): OneNote.Table;'
+      return:
+        type:
+          - onenote.OneNote.Table
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="4dd9a-166">示例</span><span class="sxs-lookup"><span data-stu-id="4dd9a-166">Examples</span></span>
+
+          ```javascript
+          OneNote.run(function(ctx) {
+              var app = ctx.application;
+              var outline = app.getActiveOutline();
+              
+              // Queue a command to load outline.paragraphs and their types.
+              ctx.load(outline, "paragraphs/type");
+              
+              // Run the queued commands, and return a promise to indicate task completion.
+              return ctx.sync().then(function () {
+                  var paragraphs = outline.paragraphs;
+                  
+                  // For each table, log properties.
+                  for (var i = 0; i < paragraphs.items.length; i++) {
+                      var paragraph = paragraphs.items[i];
+                      if (paragraph.type == "Table") {
+                          var table = paragraph.table;
+                          ctx.load(table);
+                          return ctx.sync().then(function() {
+                              console.log("Table Id: " + table.id);
+                              console.log("Row Count: " + table.rowCount);
+                              console.log("Column Count: " + table.columnCount);
+                              return ctx.sync();
+                          });
+                      }
+                  }
+              });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          OneNote.run(function(ctx) {
+              var app = ctx.application;
+              var outline = app.getActiveOutline();
+              
+              // Queue a command to load outline.paragraphs and their types.
+              ctx.load(outline, "paragraphs, paragraphs/type");
+              
+              // Run the queued commands, and return a promise to indicate task completion.
+              return ctx.sync().then(function () {
+                  var paragraphs = outline.paragraphs;
+                  
+                  // for each table, log its paragraph id.
+                  for (var i = 0; i < paragraphs.items.length; i++) {
+                      var paragraph = paragraphs.items[i];
+                      if (paragraph.type == "Table") {
+                          var table = paragraph.table;
+                          ctx.load(table, "paragraph/id, rows/id");
+                          return ctx.sync().then(function() {
+                              console.log("Paragraph Id: " + table.paragraph.id);
+                              var rows = table.rows;
+                              
+                              // for each rows in the table, log row index and id.
+                              for (var i = 0; i < rows.items.length; i++) {
+                                  console.log("Row " + i + " Id: " + rows.items[i].id);
+                              }
+                              return ctx.sync();
+                          });
+                      }
+                  }
+              })
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: '<span data-ttu-id="4dd9a-167">一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-167">A comma-delimited string or an array of strings that specify the properties to load.</span></span>'
+          type:
+            - 'string | string[]'
+  - uid: onenote.OneNote.Table.load_2
+    summary: '<span data-ttu-id="4dd9a-168">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-168">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="4dd9a-169">在读取属性`context.sync()`之前, 必须先调用。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-169">You must call `context.sync()` before reading the properties.</span></span>'
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.Table;'
+      return:
+        type:
+          - onenote.OneNote.Table
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '<span data-ttu-id="4dd9a-170">其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-170">Where propertyNamesAndPaths.select is a comma-delimited string that specifies the properties to load, and propertyNamesAndPaths.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: onenote.OneNote.Table.paragraph
+    summary: |-
+      <span data-ttu-id="4dd9a-171">获取包含“表格”对象的“段落”对象。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-171">Gets the Paragraph object that contains the Table object.</span></span> <span data-ttu-id="4dd9a-172">只读。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-172">Read-only.</span></span>
+
+      <span data-ttu-id="4dd9a-173">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4dd9a-173">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: paragraph
+    fullName: paragraph
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly paragraph: OneNote.Paragraph;'
+      return:
+        type:
+          - onenote.OneNote.Paragraph
+  - uid: onenote.OneNote.Table.rowCount
+    summary: |-
+      <span data-ttu-id="4dd9a-174">获取表格中的行数。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-174">Gets the number of rows in the table.</span></span>
+
+      <span data-ttu-id="4dd9a-175">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4dd9a-175">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: rowCount
+    fullName: rowCount
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly rowCount: number;'
+      return:
+        type:
+          - number
+  - uid: onenote.OneNote.Table.rows
+    summary: |-
+      <span data-ttu-id="4dd9a-176">获取所有表格行。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-176">Gets all of the table rows.</span></span> <span data-ttu-id="4dd9a-177">只读。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-177">Read-only.</span></span>
+
+      <span data-ttu-id="4dd9a-178">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4dd9a-178">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: rows
+    fullName: rows
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly rows: OneNote.TableRowCollection;'
+      return:
+        type:
+          - onenote.OneNote.TableRowCollection
+  - uid: onenote.OneNote.Table.set
+    summary: '<span data-ttu-id="4dd9a-179">同时设置一个对象的多个属性。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-179">Sets multiple properties of an object at the same time.</span></span> <span data-ttu-id="4dd9a-180">您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-180">You can pass either a plain object with the appropriate properties, or another API object of the same type.</span></span>'
+    remarks: |-
+      <span data-ttu-id="4dd9a-181">此方法具有以下附加签名:</span><span class="sxs-lookup"><span data-stu-id="4dd9a-181">This method has the following additional signature:</span></span>
+
+      `set(properties: OneNote.Table): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.TableUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: '<span data-ttu-id="4dd9a-182">一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-182">A JavaScript object with properties that are structured isomorphically to the properties of the object on which the method is called.</span></span>'
+          type:
+            - Interfaces.TableUpdateData
+        - id: options
+          description: '<span data-ttu-id="4dd9a-183">提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-183">Provides an option to suppress errors if the properties object tries to set any read-only properties.</span></span>'
+          type:
+            - OfficeExtension.UpdateOptions
+  - uid: onenote.OneNote.Table.set_1
+    summary: '<span data-ttu-id="4dd9a-184">基于现有加载的对象同时设置该对象的多个属性。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-184">Sets multiple properties on the object at the same time, based on an existing loaded object.</span></span>'
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: OneNote.Table): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - onenote.OneNote.Table
+  - uid: onenote.OneNote.Table.setShadingColor
+    summary: |-
+      <span data-ttu-id="4dd9a-185">设置表格中所有单元格的底纹色。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-185">Sets the shading color of all cells in the table.</span></span> <span data-ttu-id="4dd9a-186">要为单元格设置的颜色代码。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-186">The color code to set the cells to.</span></span>
+
+      <span data-ttu-id="4dd9a-187">\[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="4dd9a-187">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: setShadingColor(colorCode)
+    fullName: setShadingColor(colorCode)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setShadingColor(colorCode: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: colorCode
+          description: ''
+          type:
+            - string
+  - uid: onenote.OneNote.Table.toJSON
+    summary: '<span data-ttu-id="4dd9a-188">重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`</span><span class="sxs-lookup"><span data-stu-id="4dd9a-188">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`</span></span><!-- --><span data-ttu-id="4dd9a-189">.</span><span class="sxs-lookup"><span data-stu-id="4dd9a-189"></span></span> <span data-ttu-id="4dd9a-190">(`JSON.stringify`</span><span class="sxs-lookup"><span data-stu-id="4dd9a-190"></span></span><!-- --><span data-ttu-id="4dd9a-191">反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始的 OneNote 对象是 API 对象, 但`toJSON`方法返回一个简单的 JavaScript 对象 (类型为`OneNote.Interfaces.TableData`</span><span class="sxs-lookup"><span data-stu-id="4dd9a-191">, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original OneNote.Table object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `OneNote.Interfaces.TableData`</span></span><!-- --><span data-ttu-id="4dd9a-192">), 其中包含原始对象中所有已加载的子属性的浅表副本。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-192">) that contains shallow copies of any loaded child properties from the original object.</span></span>'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): OneNote.Interfaces.TableData;'
+      return:
+        type:
+          - onenote.OneNote.Interfaces.TableData
+        description: ''
+  - uid: onenote.OneNote.Table.track
+    summary: '<span data-ttu-id="4dd9a-193">根据文档中的相应更改来跟踪对象，以便进行自动调整。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-193">Track the object for automatic adjustment based on surrounding changes in the document.</span></span> <span data-ttu-id="4dd9a-194">此调用是 context.trackedObjects.add(thisObject) 的缩写。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-194">This call is a shorthand for context.trackedObjects.add(thisObject).</span></span> <span data-ttu-id="4dd9a-195">如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-195">If you are using this object across ".sync" calls and outside the sequential execution of a ".run" batch, and get an "InvalidObjectPath" error when setting a property or invoking a method on the object, you needed to have added the object to the tracked object collection when the object was first created.</span></span>'
+    name: track()
+    fullName: track()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'track(): OneNote.Table;'
+      return:
+        type:
+          - onenote.OneNote.Table
+        description: ''
+  - uid: onenote.OneNote.Table.untrack
+    summary: '<span data-ttu-id="4dd9a-196">释放与此对象关联的内存（如果先前已跟踪过）。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-196">Release the memory associated with this object, if it has previously been tracked.</span></span> <span data-ttu-id="4dd9a-197">此调用是 context.trackedObjects.add(thisObject) 的缩写。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-197">This call is shorthand for context.trackedObjects.remove(thisObject).</span></span> <span data-ttu-id="4dd9a-198">拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-198">Having many tracked objects slows down the host application, so please remember to free any objects you add, once you''re done using them.</span></span> <span data-ttu-id="4dd9a-199">在内存释放生效之前，你需要调用“context.sync()”。</span><span class="sxs-lookup"><span data-stu-id="4dd9a-199">You will need to call "context.sync()" before the memory release takes effect.</span></span>'
+    name: untrack()
+    fullName: untrack()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'untrack(): OneNote.Table;'
+      return:
+        type:
+          - onenote.OneNote.Table
+        description: ''

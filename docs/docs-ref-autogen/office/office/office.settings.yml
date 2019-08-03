@@ -1,0 +1,419 @@
+### YamlMime:UniversalReference
+items:
+  - uid: office.Office.Settings
+    summary: <span data-ttu-id="b4f2f-101">表示作为名称/值对存储在主机文档中的任务窗格或内容外接程序的自定义设置。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-101">Represents custom settings for a task pane or content add-in that are stored in the host document as name/value pairs.</span></span>
+    remarks: |-
+      <span data-ttu-id="b4f2f-102">**主机**: Excel、PowerPoint、Word</span><span class="sxs-lookup"><span data-stu-id="b4f2f-102">**Hosts**: Excel, PowerPoint, Word</span></span>
+
+      <span data-ttu-id="b4f2f-103">使用 Settings 对象的方法创建的设置将针对每个加载项和文档进行保存。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-103">The settings created by using the methods of the Settings object are saved per add-in and per document.</span></span> <span data-ttu-id="b4f2f-104">即，这些设置仅供创建它们的外接程序使用，并且仅来自保存它们的文档。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-104">That is, they are available only to the add-in that created them, and only from the document in which they are saved.</span></span>
+
+      <span data-ttu-id="b4f2f-105">设置的名称是一个字符串, 而值可以是字符串、数字、布尔值、null、对象或数组。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-105">The name of a setting is a string, while the value can be a string, number, boolean, null, object, or array.</span></span>
+
+      <span data-ttu-id="b4f2f-106">设置对象将作为 Document 对象的一部分自动加载, 并可通过在外接程序激活时调用该对象的 Settings 属性。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-106">The Settings object is automatically loaded as part of the Document object, and is available by calling the settings property of that object when the add-in is activated.</span></span>
+
+      <span data-ttu-id="b4f2f-107">开发者负责在添加或删除设置后调用 saveAsync 方法，从而将设置保存到文档中。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-107">The developer is responsible for calling the saveAsync method after adding or deleting settings to save the settings in the document.</span></span>
+    name: Office.Settings
+    fullName: Office.Settings
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    children:
+      - office.Office.Settings.addHandlerAsync
+      - office.Office.Settings.addHandlerAsync_1
+      - office.Office.Settings.get
+      - office.Office.Settings.refreshAsync
+      - office.Office.Settings.remove
+      - office.Office.Settings.removeHandlerAsync
+      - office.Office.Settings.removeHandlerAsync_1
+      - office.Office.Settings.saveAsync
+      - office.Office.Settings.saveAsync_1
+      - office.Office.Settings.set
+  - uid: office.Office.Settings.addHandlerAsync
+    summary: |-
+      <span data-ttu-id="b4f2f-108">为 settingsChanged 事件添加事件处理程序。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-108">Adds an event handler for the settingsChanged event.</span></span>
+
+      <span data-ttu-id="b4f2f-109">**重要说明**: 当外接程序使用任何 Excel 客户端运行时, 加载项的代码可以为 settingsChanged 事件注册处理程序, 但只有在加载加载项时, 才会触发该事件, 在 web 上的 Excel 中打开的电子表格以及多个用户正在编辑电子表格 (合著)。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-109">**Important**: Your add-in's code can register a handler for the settingsChanged event when the add-in is running with any Excel client, but the event will fire only when the add-in is loaded with a spreadsheet that is opened in Excel on the web, and more than one user is editing the spreadsheet (coauthoring).</span></span> <span data-ttu-id="b4f2f-110">因此, 只有在合著方案中, 才会在 web 上的 Excel 中有效地支持 settingsChanged 事件。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-110">Therefore, effectively the settingsChanged event is supported only in Excel on the web in coauthoring scenarios.</span></span>
+    remarks: |-
+      <span data-ttu-id="b4f2f-111">**要求集**:[不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)</span><span class="sxs-lookup"><span data-stu-id="b4f2f-111">**Requirement set**: [Not in a set](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)</span></span>
+
+      <span data-ttu-id="b4f2f-112">只要每个事件处理程序函数的名称是唯一的, 您就可以为指定的事件类型添加多个事件处理程序。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-112">You can add multiple event handlers for the specified eventType as long as the name of each event handler function is unique.</span></span>
+    name: 'addHandlerAsync(eventType, handler, options, callback)'
+    fullName: 'addHandlerAsync(eventType, handler, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addHandlerAsync(eventType: Office.EventType, handler: any, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: eventType
+          description: <span data-ttu-id="b4f2f-113">指定要添加事件的类型。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-113">Specifies the type of event to add.</span></span> <span data-ttu-id="b4f2f-114">必需。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-114">Required.</span></span>
+          type:
+            - office.Office.EventType
+        - id: handler
+          description: '<span data-ttu-id="b4f2f-115">要添加的事件处理程序函数, 其唯一的参数的类型为[SettingsChangedEventArgs](xref:office.Office.SettingsChangedEventArgs)</span><span class="sxs-lookup"><span data-stu-id="b4f2f-115">The event handler function to add, whose only parameter is of type [Office.SettingsChangedEventArgs](xref:office.Office.SettingsChangedEventArgs)</span></span><!-- --><span data-ttu-id="b4f2f-116">.</span><span class="sxs-lookup"><span data-stu-id="b4f2f-116"></span></span> <span data-ttu-id="b4f2f-117">必需。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-117">Required.</span></span>'
+          type:
+            - any
+        - id: options
+          description: '<span data-ttu-id="b4f2f-118">提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-118">Provides an option for preserving context data of any type, unchanged, for use in a callback.</span></span>'
+          type:
+            - office.Office.AsyncContextOptions
+        - id: callback
+          description: |-
+            <span data-ttu-id="b4f2f-119">可选。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-119">Optional.</span></span> <span data-ttu-id="b4f2f-120">回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "</span><span class="sxs-lookup"><span data-stu-id="b4f2f-120">A function that is invoked when the callback returns, whose only parameter is of type [Office.AsyncResult](xref:office.Office.AsyncResult)</span></span><!-- --><span data-ttu-id="b4f2f-121">.</span><span class="sxs-lookup"><span data-stu-id="b4f2f-121"></span></span>
+
+            <table> <tr> <th><span data-ttu-id="b4f2f-122">属性</span><span class="sxs-lookup"><span data-stu-id="b4f2f-122">Property</span></span></th> <th><span data-ttu-id="b4f2f-123">用于...</span><span class="sxs-lookup"><span data-stu-id="b4f2f-123">Use to...</span></span></th> </tr> <tr> <td><span data-ttu-id="b4f2f-124">AsyncResult.value</span><span class="sxs-lookup"><span data-stu-id="b4f2f-124">AsyncResult.value</span></span></td> <td><span data-ttu-id="b4f2f-125">始终返回  undefined，这是因为添加事件处理程序时没有要检索的数据或对象。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-125">Always returns undefined because there is no data or object to retrieve when adding an event handler.</span></span></td> </tr> <tr> <td><span data-ttu-id="b4f2f-126">AsyncResult.status</span><span class="sxs-lookup"><span data-stu-id="b4f2f-126">AsyncResult.status</span></span></td> <td><span data-ttu-id="b4f2f-127">确定操作是成功还是失败。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-127">Determine the success or failure of the operation.</span></span></td> </tr> <tr> <td><span data-ttu-id="b4f2f-128">AsyncResult.error</span><span class="sxs-lookup"><span data-stu-id="b4f2f-128">AsyncResult.error</span></span></td> <td><span data-ttu-id="b4f2f-129">如果操作失败，则访问提供错误信息的 Error 对象。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-129">Access an Error object that provides error information if the operation failed.</span></span></td> </tr> <tr> <td><span data-ttu-id="b4f2f-130">AsyncResult.asyncContext</span><span class="sxs-lookup"><span data-stu-id="b4f2f-130">AsyncResult.asyncContext</span></span></td> <td><span data-ttu-id="b4f2f-131">在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-131">A user-defined item of any type that is returned in the AsyncResult object without being altered.</span></span></td> </tr> </table>
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.Settings.addHandlerAsync_1
+    summary: |-
+      <span data-ttu-id="b4f2f-132">为 settingsChanged 事件添加事件处理程序。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-132">Adds an event handler for the settingsChanged event.</span></span>
+
+      <span data-ttu-id="b4f2f-133">**重要说明**: 当外接程序使用任何 Excel 客户端运行时, 加载项的代码可以为 settingsChanged 事件注册处理程序, 但只有在加载加载项时, 才会触发该事件, 在 web 上的 Excel 中打开的电子表格以及多个用户正在编辑电子表格 (合著)。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-133">**Important**: Your add-in's code can register a handler for the settingsChanged event when the add-in is running with any Excel client, but the event will fire only when the add-in is loaded with a spreadsheet that is opened in Excel on the web, and more than one user is editing the spreadsheet (coauthoring).</span></span> <span data-ttu-id="b4f2f-134">因此, 只有在合著方案中, 才会在 web 上的 Excel 中有效地支持 settingsChanged 事件。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-134">Therefore, effectively the settingsChanged event is supported only in Excel on the web in coauthoring scenarios.</span></span>
+    remarks: |-
+      <span data-ttu-id="b4f2f-135">**要求集**:[不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)</span><span class="sxs-lookup"><span data-stu-id="b4f2f-135">**Requirement set**: [Not in a set](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)</span></span>
+
+      <span data-ttu-id="b4f2f-136">只要每个事件处理程序函数的名称是唯一的, 您就可以为指定的事件类型添加多个事件处理程序。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-136">You can add multiple event handlers for the specified eventType as long as the name of each event handler function is unique.</span></span>
+
+      #### <a name="examples"></a><span data-ttu-id="b4f2f-137">示例</span><span class="sxs-lookup"><span data-stu-id="b4f2f-137">Examples</span></span>
+
+      ```javascript
+      function addSelectionChangedEventHandler() {
+          Office.context.document.settings.addHandlerAsync(Office.EventType.SettingsChanged, MyHandler);
+      }
+
+      function MyHandler(eventArgs) {
+          write('Event raised: ' + eventArgs.type);
+          doSomethingWithSettings(eventArgs.settings);
+      }
+
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: 'addHandlerAsync(eventType, handler, callback)'
+    fullName: 'addHandlerAsync(eventType, handler, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addHandlerAsync(eventType: Office.EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: eventType
+          description: <span data-ttu-id="b4f2f-138">指定要添加事件的类型。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-138">Specifies the type of event to add.</span></span> <span data-ttu-id="b4f2f-139">必需。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-139">Required.</span></span>
+          type:
+            - office.Office.EventType
+        - id: handler
+          description: '<span data-ttu-id="b4f2f-140">要添加的事件处理程序函数, 其唯一的参数的类型为[SettingsChangedEventArgs](xref:office.Office.SettingsChangedEventArgs)</span><span class="sxs-lookup"><span data-stu-id="b4f2f-140">The event handler function to add, whose only parameter is of type [Office.SettingsChangedEventArgs](xref:office.Office.SettingsChangedEventArgs)</span></span><!-- --><span data-ttu-id="b4f2f-141">.</span><span class="sxs-lookup"><span data-stu-id="b4f2f-141"></span></span> <span data-ttu-id="b4f2f-142">必需。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-142">Required.</span></span>'
+          type:
+            - any
+        - id: callback
+          description: |-
+            <span data-ttu-id="b4f2f-143">可选。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-143">Optional.</span></span> <span data-ttu-id="b4f2f-144">回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "</span><span class="sxs-lookup"><span data-stu-id="b4f2f-144">A function that is invoked when the callback returns, whose only parameter is of type [Office.AsyncResult](xref:office.Office.AsyncResult)</span></span><!-- --><span data-ttu-id="b4f2f-145">.</span><span class="sxs-lookup"><span data-stu-id="b4f2f-145"></span></span>
+
+            <table> <tr> <th><span data-ttu-id="b4f2f-146">属性</span><span class="sxs-lookup"><span data-stu-id="b4f2f-146">Property</span></span></th> <th><span data-ttu-id="b4f2f-147">用于...</span><span class="sxs-lookup"><span data-stu-id="b4f2f-147">Use to...</span></span></th> </tr> <tr> <td><span data-ttu-id="b4f2f-148">AsyncResult.value</span><span class="sxs-lookup"><span data-stu-id="b4f2f-148">AsyncResult.value</span></span></td> <td><span data-ttu-id="b4f2f-149">始终返回  undefined，这是因为添加事件处理程序时没有要检索的数据或对象。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-149">Always returns undefined because there is no data or object to retrieve when adding an event handler.</span></span></td> </tr> <tr> <td><span data-ttu-id="b4f2f-150">AsyncResult.status</span><span class="sxs-lookup"><span data-stu-id="b4f2f-150">AsyncResult.status</span></span></td> <td><span data-ttu-id="b4f2f-151">确定操作是成功还是失败。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-151">Determine the success or failure of the operation.</span></span></td> </tr> <tr> <td><span data-ttu-id="b4f2f-152">AsyncResult.error</span><span class="sxs-lookup"><span data-stu-id="b4f2f-152">AsyncResult.error</span></span></td> <td><span data-ttu-id="b4f2f-153">如果操作失败，则访问提供错误信息的 Error 对象。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-153">Access an Error object that provides error information if the operation failed.</span></span></td> </tr> <tr> <td><span data-ttu-id="b4f2f-154">AsyncResult.asyncContext</span><span class="sxs-lookup"><span data-stu-id="b4f2f-154">AsyncResult.asyncContext</span></span></td> <td><span data-ttu-id="b4f2f-155">在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-155">A user-defined item of any type that is returned in the AsyncResult object without being altered.</span></span></td> </tr> </table>
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.Settings.get
+    summary: <span data-ttu-id="b4f2f-156">检索指定设置。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-156">Retrieves the specified setting.</span></span>
+    remarks: |-
+      <span data-ttu-id="b4f2f-157">**要求集**:[设置](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)</span><span class="sxs-lookup"><span data-stu-id="b4f2f-157">**Requirement set**: [Settings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)</span></span>
+
+      #### <a name="examples"></a><span data-ttu-id="b4f2f-158">示例</span><span class="sxs-lookup"><span data-stu-id="b4f2f-158">Examples</span></span>
+
+      ```javascript
+      function displayMySetting() {
+          write('Current value for mySetting: ' + Office.context.document.settings.get('mySetting'));
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: get(name)
+    fullName: get(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'get(name: string): any;'
+      return:
+        type:
+          - any
+        description: <span data-ttu-id="b4f2f-159">具有映射到 JSON 序列化值的属性名称的对象。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-159">An object that has property names mapped to JSON serialized values.</span></span>
+      parameters:
+        - id: name
+          description: ''
+          type:
+            - string
+  - uid: office.Office.Settings.refreshAsync
+    summary: <span data-ttu-id="b4f2f-160">读取文档中保存的所有设置并刷新内容或任务窗格外接程序在内存中保留的这些设置的副本。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-160">Reads all settings persisted in the document and refreshes the content or task pane add-in's copy of those settings held in memory.</span></span>
+    remarks: |-
+      <span data-ttu-id="b4f2f-161">**要求集**:[不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)</span><span class="sxs-lookup"><span data-stu-id="b4f2f-161">**Requirement set**: [Not in a set](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)</span></span>
+
+      <span data-ttu-id="b4f2f-162">当同一加载项的多个实例在同一文档中运行时, 此方法在 Excel、Word 和 PowerPoint 合著方案中非常有用。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-162">This method is useful in Excel, Word, and PowerPoint coauthoring scenarios when multiple instances of the same add-in are working against the same document.</span></span> <span data-ttu-id="b4f2f-163">由于每个加载项都在用户打开文档时从该文档加载的设置的内存中副本运行, 因此每个用户使用的设置值可能会不同步。只要外接程序的实例调用 saveAsync 方法以将该用户的所有设置都保留到文档中, 就会发生这种情况。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-163">Because each add-in is working against an in-memory copy of the settings loaded from the document at the time the user opened it, the settings values used by each user can get out of sync. This can happen whenever an instance of the add-in calls the Settings.saveAsync method to persist all of that user's settings to the document.</span></span> <span data-ttu-id="b4f2f-164">从外接程序的 settingsChanged 事件的事件处理程序中调用 refreshAsync 方法将会刷新所有用户的设置值。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-164">Calling the refreshAsync method from the event handler for the settingsChanged event of the add-in will refresh the settings values for all users.</span></span>
+
+      <span data-ttu-id="b4f2f-165">在传递给 refreshAsync 方法的回调函数中，您可以使用 AsyncResult 对象的属性返回以下信息。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-165">In the callback function passed to the refreshAsync method, you can use the properties of the AsyncResult object to return the following information.</span></span>
+
+      <table> <tr> <th><span data-ttu-id="b4f2f-166">属性</span><span class="sxs-lookup"><span data-stu-id="b4f2f-166">Property</span></span></th> <th><span data-ttu-id="b4f2f-167">用于...</span><span class="sxs-lookup"><span data-stu-id="b4f2f-167">Use to...</span></span></th> </tr> <tr> <td><span data-ttu-id="b4f2f-168">AsyncResult.value</span><span class="sxs-lookup"><span data-stu-id="b4f2f-168">AsyncResult.value</span></span></td> <td><span data-ttu-id="b4f2f-169">使用刷新值访问 Settings 对象。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-169">Access a Settings object with the refreshed values.</span></span></td> </tr> <tr> <td><span data-ttu-id="b4f2f-170">AsyncResult.status</span><span class="sxs-lookup"><span data-stu-id="b4f2f-170">AsyncResult.status</span></span></td> <td><span data-ttu-id="b4f2f-171">确定操作是成功还是失败。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-171">Determine the success or failure of the operation.</span></span></td> </tr> <tr> <td><span data-ttu-id="b4f2f-172">AsyncResult.error</span><span class="sxs-lookup"><span data-stu-id="b4f2f-172">AsyncResult.error</span></span></td> <td><span data-ttu-id="b4f2f-173">如果操作失败，则访问提供错误信息的 Error 对象。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-173">Access an Error object that provides error information if the operation failed.</span></span></td> </tr> <tr> <td><span data-ttu-id="b4f2f-174">AsyncResult.asyncContext</span><span class="sxs-lookup"><span data-stu-id="b4f2f-174">AsyncResult.asyncContext</span></span></td> <td><span data-ttu-id="b4f2f-175">在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-175">A user-defined item of any type that is returned in the AsyncResult object without being altered.</span></span></td> </tr> </table>
+
+      #### <a name="examples"></a><span data-ttu-id="b4f2f-176">示例</span><span class="sxs-lookup"><span data-stu-id="b4f2f-176">Examples</span></span>
+
+      ```javascript
+      function refreshSettings() {
+          Office.context.document.settings.refreshAsync(function (asyncResult) {
+              write('Settings refreshed with status: ' + asyncResult.status);
+          });
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: refreshAsync(callback)
+    fullName: refreshAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'refreshAsync(callback?: (result: AsyncResult<Office.Settings>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: '<span data-ttu-id="b4f2f-177">可选。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-177">Optional.</span></span> <span data-ttu-id="b4f2f-178">回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "</span><span class="sxs-lookup"><span data-stu-id="b4f2f-178">A function that is invoked when the callback returns, whose only parameter is of type [Office.AsyncResult](xref:office.Office.AsyncResult)</span></span><!-- --><span data-ttu-id="b4f2f-179">.</span><span class="sxs-lookup"><span data-stu-id="b4f2f-179"></span></span> <span data-ttu-id="b4f2f-180">结果`value`的属性是一个包含刷新值的[Office. Settings](xref:office.Office.Settings)对象。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-180">The `value` property of the result is an [Office.Settings](xref:office.Office.Settings) object with the refreshed values.</span></span>'
+          type:
+            - '(result: AsyncResult<Office.Settings>) => void'
+  - uid: office.Office.Settings.remove
+    summary: |-
+      <span data-ttu-id="b4f2f-181">移除指定设置。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-181">Removes the specified setting.</span></span>
+
+      <span data-ttu-id="b4f2f-182">**重要说明**: 请注意, settings 方法仅影响设置属性包的内存中副本。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-182">**Important**: Be aware that the Settings.remove method affects only the in-memory copy of the settings property bag.</span></span> <span data-ttu-id="b4f2f-183">若要在调用 Settings.remove 方法之后的某个时间点以及在关闭外接程序之前保留文档中指定设置的删除状态，你必须调用 Settings.saveAsync 方法。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-183">To persist the removal of the specified setting in the document, at some point after calling the Settings.remove method and before the add-in is closed, you must call the Settings.saveAsync method.</span></span>
+    remarks: |-
+      <span data-ttu-id="b4f2f-184">**要求集**:[设置](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)</span><span class="sxs-lookup"><span data-stu-id="b4f2f-184">**Requirement set**: [Settings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)</span></span>
+
+      <span data-ttu-id="b4f2f-185">null 是设置的有效值。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-185">null is a valid value for a setting.</span></span> <span data-ttu-id="b4f2f-186">因此，将 null 分配给设置不会将它从设置属性包中删除。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-186">Therefore, assigning null to the setting will not remove it from the settings property bag.</span></span>
+
+      #### <a name="examples"></a><span data-ttu-id="b4f2f-187">示例</span><span class="sxs-lookup"><span data-stu-id="b4f2f-187">Examples</span></span>
+
+      ```javascript
+      function removeMySetting() {
+          Office.context.document.settings.remove('mySetting');
+      }
+      ```
+    name: remove(name)
+    fullName: remove(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'remove(name: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: name
+          description: ''
+          type:
+            - string
+  - uid: office.Office.Settings.removeHandlerAsync
+    summary: <span data-ttu-id="b4f2f-188">删除 settingsChanged 事件的事件处理程序。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-188">Removes an event handler for the settingsChanged event.</span></span>
+    remarks: |-
+      <span data-ttu-id="b4f2f-189">**要求集**:[不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)</span><span class="sxs-lookup"><span data-stu-id="b4f2f-189">**Requirement set**: [Not in a set](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)</span></span>
+
+      <span data-ttu-id="b4f2f-190">如果调用 removeHandlerAsync 方法时省略可选的 handler 参数, 则将删除指定的事件的所有事件处理程序。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-190">If the optional handler parameter is omitted when calling the removeHandlerAsync method, all event handlers for the specified eventType will be removed.</span></span>
+
+      <span data-ttu-id="b4f2f-191">当执行传递给 callback 参数的函数时, 它会接收您可以从回调函数的唯一参数访问的 AsyncResult 对象。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-191">When the function you passed to the callback parameter executes, it receives an AsyncResult object that you can access from the callback function's only parameter.</span></span>
+
+      <span data-ttu-id="b4f2f-192">在传递给 removeHandlerAsync 方法的回调函数中, 您可以使用 AsyncResult 对象的属性返回以下信息。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-192">In the callback function passed to the removeHandlerAsync method, you can use the properties of the AsyncResult object to return the following information.</span></span>
+    name: 'removeHandlerAsync(eventType, options, callback)'
+    fullName: 'removeHandlerAsync(eventType, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'removeHandlerAsync(eventType: Office.EventType, options?: RemoveHandlerOptions, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: eventType
+          description: <span data-ttu-id="b4f2f-193">指定要移除事件的类型。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-193">Specifies the type of event to remove.</span></span> <span data-ttu-id="b4f2f-194">必需。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-194">Required.</span></span>
+          type:
+            - office.Office.EventType
+        - id: options
+          description: <span data-ttu-id="b4f2f-195">提供用于确定要删除的事件处理程序或处理程序的选项。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-195">Provides options to determine which event handler or handlers are removed.</span></span>
+          type:
+            - office.Office.RemoveHandlerOptions
+        - id: callback
+          description: '<span data-ttu-id="b4f2f-196">可选。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-196">Optional.</span></span> <span data-ttu-id="b4f2f-197">回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "</span><span class="sxs-lookup"><span data-stu-id="b4f2f-197">A function that is invoked when the callback returns, whose only parameter is of type [Office.AsyncResult](xref:office.Office.AsyncResult)</span></span><!-- --><span data-ttu-id="b4f2f-198">.</span><span class="sxs-lookup"><span data-stu-id="b4f2f-198"></span></span>'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.Settings.removeHandlerAsync_1
+    summary: <span data-ttu-id="b4f2f-199">删除 settingsChanged 事件的事件处理程序。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-199">Removes an event handler for the settingsChanged event.</span></span>
+    remarks: |-
+      <span data-ttu-id="b4f2f-200">**要求集**:[不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)</span><span class="sxs-lookup"><span data-stu-id="b4f2f-200">**Requirement set**: [Not in a set](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)</span></span>
+
+      <span data-ttu-id="b4f2f-201">如果调用 removeHandlerAsync 方法时省略可选的 handler 参数, 则将删除指定的事件的所有事件处理程序。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-201">If the optional handler parameter is omitted when calling the removeHandlerAsync method, all event handlers for the specified eventType will be removed.</span></span>
+
+      <span data-ttu-id="b4f2f-202">当执行传递给 callback 参数的函数时, 它会接收您可以从回调函数的唯一参数访问的 AsyncResult 对象。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-202">When the function you passed to the callback parameter executes, it receives an AsyncResult object that you can access from the callback function's only parameter.</span></span>
+
+      <span data-ttu-id="b4f2f-203">在传递给 removeHandlerAsync 方法的回调函数中, 您可以使用 AsyncResult 对象的属性返回以下信息。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-203">In the callback function passed to the removeHandlerAsync method, you can use the properties of the AsyncResult object to return the following information.</span></span>
+
+      #### <a name="examples"></a><span data-ttu-id="b4f2f-204">示例</span><span class="sxs-lookup"><span data-stu-id="b4f2f-204">Examples</span></span>
+
+      ```javascript
+      function removeSettingsChangedEventHandler() {
+          Office.context.document.settings.removeHandlerAsync(Office.EventType.SettingsChanged, MyHandler);
+      }
+
+      function MyHandler(eventArgs) {
+          write('Event raised: ' + eventArgs.type);
+          doSomethingWithSettings(eventArgs.settings);
+      }
+
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: 'removeHandlerAsync(eventType, callback)'
+    fullName: 'removeHandlerAsync(eventType, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'removeHandlerAsync(eventType: Office.EventType, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: eventType
+          description: <span data-ttu-id="b4f2f-205">指定要移除事件的类型。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-205">Specifies the type of event to remove.</span></span> <span data-ttu-id="b4f2f-206">必需。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-206">Required.</span></span>
+          type:
+            - office.Office.EventType
+        - id: callback
+          description: '<span data-ttu-id="b4f2f-207">可选。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-207">Optional.</span></span> <span data-ttu-id="b4f2f-208">回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "</span><span class="sxs-lookup"><span data-stu-id="b4f2f-208">A function that is invoked when the callback returns, whose only parameter is of type [Office.AsyncResult](xref:office.Office.AsyncResult)</span></span><!-- --><span data-ttu-id="b4f2f-209">.</span><span class="sxs-lookup"><span data-stu-id="b4f2f-209"></span></span>'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.Settings.saveAsync
+    summary: <span data-ttu-id="b4f2f-210">将设置属性包的内存副本保留到文档中。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-210">Persists the in-memory copy of the settings property bag in the document.</span></span>
+    remarks: |-
+      <span data-ttu-id="b4f2f-211">**要求集**:[设置](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)</span><span class="sxs-lookup"><span data-stu-id="b4f2f-211">**Requirement set**: [Settings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)</span></span>
+
+      <span data-ttu-id="b4f2f-212">加载项以前保存的任何设置都会在初始化时加载, 因此, 在会话的生存期期间, 可以只使用 set 和 get 方法来处理设置属性包的内存副本。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-212">Any settings previously saved by an add-in are loaded when it is initialized, so during the lifetime of the session you can just use the set and get methods to work with the in-memory copy of the settings property bag.</span></span> <span data-ttu-id="b4f2f-213">如果希望保留设置以便可在下次使用外接程序时使用这些设置，请使用 saveAsync 方法。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-213">When you want to persist the settings so that they are available the next time the add-in is used, use the saveAsync method.</span></span>
+
+      <span data-ttu-id="b4f2f-214">**注意**: saveAsync 方法将内存中设置属性包保留到文档文件中。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-214">**Note**: The saveAsync method persists the in-memory settings property bag into the document file.</span></span> <span data-ttu-id="b4f2f-215">但是, 仅当用户 (或自动恢复设置) 将文档保存到文件系统时, 对文档文件本身所做的更改才会保存。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-215">However, the changes to the document file itself are saved only when the user (or AutoRecover setting) saves the document to the file system.</span></span> <span data-ttu-id="b4f2f-216">RefreshAsync 方法仅在合著方案中非常有用。当同一加载项的其他实例可能会更改设置, 并且这些更改应对所有实例可用。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-216">The refreshAsync method is only useful in coauthoring scenarios when other instances of the same add-in might change the settings and those changes should be made available to all instances.</span></span>
+
+      <table> <tr> <th><span data-ttu-id="b4f2f-217">属性</span><span class="sxs-lookup"><span data-stu-id="b4f2f-217">Property</span></span></th> <th><span data-ttu-id="b4f2f-218">用于...</span><span class="sxs-lookup"><span data-stu-id="b4f2f-218">Use to...</span></span></th> </tr> <tr> <td><span data-ttu-id="b4f2f-219">AsyncResult.value</span><span class="sxs-lookup"><span data-stu-id="b4f2f-219">AsyncResult.value</span></span></td> <td><span data-ttu-id="b4f2f-220">始终返回 undefined，这是因为没有要检索的对象或数据。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-220">Always returns undefined because there is no object or data to retrieve.</span></span></td> </tr> <tr> <td><span data-ttu-id="b4f2f-221">AsyncResult.status</span><span class="sxs-lookup"><span data-stu-id="b4f2f-221">AsyncResult.status</span></span></td> <td><span data-ttu-id="b4f2f-222">确定操作是成功还是失败。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-222">Determine the success or failure of the operation.</span></span></td> </tr> <tr> <td><span data-ttu-id="b4f2f-223">AsyncResult.error</span><span class="sxs-lookup"><span data-stu-id="b4f2f-223">AsyncResult.error</span></span></td> <td><span data-ttu-id="b4f2f-224">如果操作失败，则访问提供错误信息的 Error 对象。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-224">Access an Error object that provides error information if the operation failed.</span></span></td> </tr> <tr> <td><span data-ttu-id="b4f2f-225">AsyncResult.asyncContext</span><span class="sxs-lookup"><span data-stu-id="b4f2f-225">AsyncResult.asyncContext</span></span></td> <td><span data-ttu-id="b4f2f-226">在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-226">A user-defined item of any type that is returned in the AsyncResult object without being altered.</span></span></td> </tr> </table>
+    name: 'saveAsync(options, callback)'
+    fullName: 'saveAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'saveAsync(options?: SaveSettingsOptions, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: <span data-ttu-id="b4f2f-227">提供用于保存设置的选项。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-227">Provides options for saving settings.</span></span>
+          type:
+            - office.Office.SaveSettingsOptions
+        - id: callback
+          description: '<span data-ttu-id="b4f2f-228">可选。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-228">Optional.</span></span> <span data-ttu-id="b4f2f-229">回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "</span><span class="sxs-lookup"><span data-stu-id="b4f2f-229">A function that is invoked when the callback returns, whose only parameter is of type [Office.AsyncResult](xref:office.Office.AsyncResult)</span></span><!-- --><span data-ttu-id="b4f2f-230">.</span><span class="sxs-lookup"><span data-stu-id="b4f2f-230"></span></span>'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.Settings.saveAsync_1
+    summary: <span data-ttu-id="b4f2f-231">将设置属性包的内存副本保留到文档中。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-231">Persists the in-memory copy of the settings property bag in the document.</span></span>
+    remarks: |-
+      <span data-ttu-id="b4f2f-232">**要求集**:[设置](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)</span><span class="sxs-lookup"><span data-stu-id="b4f2f-232">**Requirement set**: [Settings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)</span></span>
+
+      <span data-ttu-id="b4f2f-233">加载项以前保存的任何设置都会在初始化时加载, 因此, 在会话的生存期期间, 可以只使用 set 和 get 方法来处理设置属性包的内存副本。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-233">Any settings previously saved by an add-in are loaded when it is initialized, so during the lifetime of the session you can just use the set and get methods to work with the in-memory copy of the settings property bag.</span></span> <span data-ttu-id="b4f2f-234">如果希望保留设置以便可在下次使用外接程序时使用这些设置，请使用 saveAsync 方法。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-234">When you want to persist the settings so that they are available the next time the add-in is used, use the saveAsync method.</span></span>
+
+      <span data-ttu-id="b4f2f-235">**注意**: saveAsync 方法将内存中设置属性包保留到文档文件中。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-235">**Note**: The saveAsync method persists the in-memory settings property bag into the document file.</span></span> <span data-ttu-id="b4f2f-236">但是, 仅当用户 (或自动恢复设置) 将文档保存到文件系统时, 对文档文件本身所做的更改才会保存。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-236">However, the changes to the document file itself are saved only when the user (or AutoRecover setting) saves the document to the file system.</span></span> <span data-ttu-id="b4f2f-237">RefreshAsync 方法仅在合著方案中非常有用。当同一加载项的其他实例可能会更改设置, 并且这些更改应对所有实例可用。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-237">The refreshAsync method is only useful in coauthoring scenarios when other instances of the same add-in might change the settings and those changes should be made available to all instances.</span></span>
+
+      <table> <tr> <th><span data-ttu-id="b4f2f-238">属性</span><span class="sxs-lookup"><span data-stu-id="b4f2f-238">Property</span></span></th> <th><span data-ttu-id="b4f2f-239">用于...</span><span class="sxs-lookup"><span data-stu-id="b4f2f-239">Use to...</span></span></th> </tr> <tr> <td><span data-ttu-id="b4f2f-240">AsyncResult.value</span><span class="sxs-lookup"><span data-stu-id="b4f2f-240">AsyncResult.value</span></span></td> <td><span data-ttu-id="b4f2f-241">始终返回 undefined，这是因为没有要检索的对象或数据。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-241">Always returns undefined because there is no object or data to retrieve.</span></span></td> </tr> <tr> <td><span data-ttu-id="b4f2f-242">AsyncResult.status</span><span class="sxs-lookup"><span data-stu-id="b4f2f-242">AsyncResult.status</span></span></td> <td><span data-ttu-id="b4f2f-243">确定操作是成功还是失败。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-243">Determine the success or failure of the operation.</span></span></td> </tr> <tr> <td><span data-ttu-id="b4f2f-244">AsyncResult.error</span><span class="sxs-lookup"><span data-stu-id="b4f2f-244">AsyncResult.error</span></span></td> <td><span data-ttu-id="b4f2f-245">如果操作失败，则访问提供错误信息的 Error 对象。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-245">Access an Error object that provides error information if the operation failed.</span></span></td> </tr> <tr> <td><span data-ttu-id="b4f2f-246">AsyncResult.asyncContext</span><span class="sxs-lookup"><span data-stu-id="b4f2f-246">AsyncResult.asyncContext</span></span></td> <td><span data-ttu-id="b4f2f-247">在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-247">A user-defined item of any type that is returned in the AsyncResult object without being altered.</span></span></td> </tr> </table>
+
+      #### <a name="examples"></a><span data-ttu-id="b4f2f-248">示例</span><span class="sxs-lookup"><span data-stu-id="b4f2f-248">Examples</span></span>
+
+      ```javascript
+      function persistSettings() {
+          Office.context.document.settings.saveAsync(function (asyncResult) {
+              write('Settings saved with status: ' + asyncResult.status);
+          });
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: saveAsync(callback)
+    fullName: saveAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'saveAsync(callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: '<span data-ttu-id="b4f2f-249">可选。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-249">Optional.</span></span> <span data-ttu-id="b4f2f-250">回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "</span><span class="sxs-lookup"><span data-stu-id="b4f2f-250">A function that is invoked when the callback returns, whose only parameter is of type [Office.AsyncResult](xref:office.Office.AsyncResult)</span></span><!-- --><span data-ttu-id="b4f2f-251">.</span><span class="sxs-lookup"><span data-stu-id="b4f2f-251"></span></span>'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.Settings.set
+    summary: |-
+      <span data-ttu-id="b4f2f-252">设置或创建指定设置。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-252">Sets or creates the specified setting.</span></span>
+
+      <span data-ttu-id="b4f2f-253">**重要说明**: 请注意, 设置方法仅影响设置属性包的内存中副本。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-253">**Important**: Be aware that the Settings.set method affects only the in-memory copy of the settings property bag.</span></span> <span data-ttu-id="b4f2f-254">为了确保对设置所做的增补或更改在文档下次打开时、在调用 Settings.set 方法之后的某个时间点以及在关闭外接程序之前对外接程序生效，你必须调用 Settings.saveAsync 方法，将设置保留在文档中。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-254">To make sure that additions or changes to settings will be available to your add-in the next time the document is opened, at some point after calling the Settings.set method and before the add-in is closed, you must call the Settings.saveAsync method to persist settings in the document.</span></span>
+    remarks: |-
+      <span data-ttu-id="b4f2f-255">**要求集**:[设置](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)</span><span class="sxs-lookup"><span data-stu-id="b4f2f-255">**Requirement set**: [Settings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)</span></span>
+
+      <span data-ttu-id="b4f2f-256">Set 方法创建指定名称的新设置 (如果它尚不存在), 或在 settings 属性包的内存中副本中设置指定名称的现有设置。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-256">The set method creates a new setting of the specified name if it does not already exist, or sets an existing setting of the specified name in the in-memory copy of the settings property bag.</span></span> <span data-ttu-id="b4f2f-257">在你调用 Settings.saveAsync 方法后，值会作为数据类型的序列化 JSON 表示形式存储在文档中。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-257">After you call the Settings.saveAsync method, the value is stored in the document as the serialized JSON representation of its data type.</span></span> <span data-ttu-id="b4f2f-258">每个外接程序的设置的大小上限为 2MB。</span><span class="sxs-lookup"><span data-stu-id="b4f2f-258">A maximum of 2MB is available for the settings of each add-in.</span></span>
+
+      #### <a name="examples"></a><span data-ttu-id="b4f2f-259">示例</span><span class="sxs-lookup"><span data-stu-id="b4f2f-259">Examples</span></span>
+
+      ```javascript
+      function setMySetting() {
+          Office.context.document.settings.set('mySetting', 'mySetting value');
+      }
+      ```
+    name: 'set(name, value)'
+    fullName: 'set(name, value)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(name: string, value: any): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: name
+          description: ''
+          type:
+            - string
+        - id: value
+          description: <span data-ttu-id="b4f2f-260">Specifies the value to be stored.</span><span class="sxs-lookup"><span data-stu-id="b4f2f-260">Specifies the value to be stored.</span></span>
+          type:
+            - any
