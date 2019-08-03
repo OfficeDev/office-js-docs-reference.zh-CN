@@ -1,0 +1,150 @@
+### YamlMime:UniversalReference
+items:
+  - uid: excel.Excel.TableChangedEventArgs
+    summary: |-
+      提供有关引发 Changed 事件的表的信息。
+
+      \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.TableChangedEventArgs
+    fullName: Excel.TableChangedEventArgs
+    langs:
+      - typeScript
+    type: interface
+    package: excel
+    children:
+      - excel.Excel.TableChangedEventArgs.address
+      - excel.Excel.TableChangedEventArgs.changeType
+      - excel.Excel.TableChangedEventArgs.source
+      - excel.Excel.TableChangedEventArgs.tableId
+      - excel.Excel.TableChangedEventArgs.type
+      - excel.Excel.TableChangedEventArgs.worksheetId
+  - uid: excel.Excel.TableChangedEventArgs.address
+    summary: |-
+      获取地址，该地址表示特定工作表上的表格的更改区域。
+
+      \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: address
+    fullName: address
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'address: string;'
+      return:
+        type:
+          - string
+  - uid: excel.Excel.TableChangedEventArgs.changeType
+    summary: |-
+      获取更改类型，该类型表示 Changed 事件的触发方式。 有关详细信息, 请参阅 DataChangeType。
+
+      \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: changeType
+    fullName: changeType
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'changeType: Excel.DataChangeType | "Unknown" | "RangeEdited" | "RowInserted" | "RowDeleted" | "ColumnInserted" | "ColumnDeleted" | "CellInserted" | "CellDeleted";'
+      return:
+        type:
+          - Excel.DataChangeType | "Unknown" | "RangeEdited" | "RowInserted" | "RowDeleted" | "ColumnInserted" | "ColumnDeleted" | "CellInserted" | "CellDeleted"
+  - uid: excel.Excel.TableChangedEventArgs.source
+    summary: |-
+      获取事件源。 有关详细信息，请参阅 Excel.EventSource。
+
+      \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: source
+    fullName: source
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'source: Excel.EventSource | "Local" | "Remote";'
+      return:
+        type:
+          - Excel.EventSource | "Local" | "Remote"
+  - uid: excel.Excel.TableChangedEventArgs.tableId
+    summary: |-
+      获取其中的数据发生更改的表格的 ID。
+
+      \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: tableId
+    fullName: tableId
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'tableId: string;'
+      return:
+        type:
+          - string
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          async function onChange(event) {
+              await Excel.run(async (context) => {
+                  let table = context.workbook.tables.getItem(event.tableId);
+                  let worksheet = context.workbook.worksheets.getItem(event.worksheetId);
+                  worksheet.load("name");
+
+                  await context.sync();
+
+                  console.log("Handler for table collection onChanged event has been triggered. Data changed address: " + event.address);
+                  console.log("Table Id : " + event.tableId);
+                  console.log("Worksheet Id : " + worksheet.name);
+              });
+          }
+          ```
+  - uid: excel.Excel.TableChangedEventArgs.type
+    summary: |-
+      获取事件的类型。 有关详细信息，请参阅 Excel.EventType。
+
+      \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: type
+    fullName: type
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'type: "TableChanged";'
+      return:
+        type:
+          - '"TableChanged"'
+  - uid: excel.Excel.TableChangedEventArgs.worksheetId
+    summary: |-
+      获取其中的数据发生更改的工作表的 ID。
+
+      \[[API 集: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: worksheetId
+    fullName: worksheetId
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'worksheetId: string;'
+      return:
+        type:
+          - string
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          async function onChange(event) {
+              await Excel.run(async (context) => {
+                  let table = context.workbook.tables.getItem(event.tableId);
+                  let worksheet = context.workbook.worksheets.getItem(event.worksheetId);
+                  worksheet.load("name");
+
+                  await context.sync();
+
+                  console.log("Handler for table collection onChanged event has been triggered. Data changed address: " + event.address);
+                  console.log("Table Id : " + event.tableId);
+                  console.log("Worksheet Id : " + worksheet.name);
+              });
+          }
+          ```

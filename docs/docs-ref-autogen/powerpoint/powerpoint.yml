@@ -1,0 +1,50 @@
+### YamlMime:UniversalReference
+items:
+  - uid: powerpoint
+    name: powerpoint
+    fullName: powerpoint
+    langs:
+      - typeScript
+    type: package
+    children:
+      - powerpoint.PowerPoint.createPresentation
+  - uid: powerpoint.PowerPoint.createPresentation
+    summary: |-
+      创建并打开一个新的演示文稿。 (可选) 可以使用 base64 编码的 .pptx 文件预填充演示文稿。
+
+      \[[API 集: PowerPointApi 1.1](/office/dev/add-ins/reference/javascript-api-for-office)\]
+    name: PowerPoint.createPresentation
+    fullName: PowerPoint.createPresentation
+    langs:
+      - typeScript
+    type: function
+    syntax:
+      content: 'export function createPresentation(base64File?: string): Promise<void>;'
+      return:
+        type:
+          - Promise<void>
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          var myFile = document.getElementById("file");
+          var reader = new FileReader();
+
+          reader.onload = function (event) {
+              // strip off the metadata before the base64-encoded string
+              var startIndex = event.target.result.indexOf("base64,");
+              var copyBase64 = event.target.result.substr(startIndex + 7);
+
+              PowerPoint.createPresentation(copyBase64);        
+          };
+
+          // read in the file as a data URL so we can parse the base64-encoded string
+          reader.readAsDataURL(myFile.files[0]);
+          ```
+      parameters:
+        - id: base64File
+          description: 可选。 Base64 编码的 .pptx 文件。 默认值为 null。
+          type:
+            - string
