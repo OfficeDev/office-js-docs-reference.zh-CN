@@ -1,0 +1,655 @@
+### YamlMime:UniversalReference
+items:
+  - uid: onenote.OneNote.Section
+    summary: |-
+      表示 OneNote 分区。 分区可包含页面。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: OneNote.Section
+    fullName: OneNote.Section
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: onenote
+    children:
+      - onenote.OneNote.Section.addPage
+      - onenote.OneNote.Section.clientUrl
+      - onenote.OneNote.Section.context
+      - onenote.OneNote.Section.copyToNotebook
+      - onenote.OneNote.Section.copyToSectionGroup
+      - onenote.OneNote.Section.getRestApiId
+      - onenote.OneNote.Section.id
+      - onenote.OneNote.Section.insertSectionAsSibling
+      - onenote.OneNote.Section.insertSectionAsSibling_1
+      - onenote.OneNote.Section.isEncrypted
+      - onenote.OneNote.Section.isLocked
+      - onenote.OneNote.Section.load
+      - onenote.OneNote.Section.load_1
+      - onenote.OneNote.Section.load_2
+      - onenote.OneNote.Section.name
+      - onenote.OneNote.Section.notebook
+      - onenote.OneNote.Section.pages
+      - onenote.OneNote.Section.parentSectionGroup
+      - onenote.OneNote.Section.parentSectionGroupOrNull
+      - onenote.OneNote.Section.toJSON
+      - onenote.OneNote.Section.track
+      - onenote.OneNote.Section.untrack
+      - onenote.OneNote.Section.webUrl
+  - uid: onenote.OneNote.Section.addPage
+    summary: |-
+      添加新页面至分区结尾。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: addPage(title)
+    fullName: addPage(title)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addPage(title: string): OneNote.Page;'
+      return:
+        type:
+          - onenote.OneNote.Page
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          OneNote.run(function (context) {
+                      
+              // Queue a command to add a page to the current section.
+              var page = context.application.getActiveSection().addPage("Wish list");
+                      
+              // Queue a command to load the id and title of the new page. 
+              // This example loads the new page so it can read its properties later.           
+              page.load('id,title');
+                      
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                       
+                      // Display the properties.       
+                      console.log("Page name: " + page.title);
+                      console.log("Page ID: " + page.id);
+
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: title
+          description: 新页面的标题。
+          type:
+            - string
+  - uid: onenote.OneNote.Section.clientUrl
+    summary: |-
+      分区的客户端 url。 只读
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: clientUrl
+    fullName: clientUrl
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly clientUrl: string;'
+      return:
+        type:
+          - string
+  - uid: onenote.OneNote.Section.context
+    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - onenote.OneNote.RequestContext
+  - uid: onenote.OneNote.Section.copyToNotebook
+    summary: |-
+      将此分区复制到指定的笔记本。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: copyToNotebook(destinationNotebook)
+    fullName: copyToNotebook(destinationNotebook)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'copyToNotebook(destinationNotebook: OneNote.Notebook): OneNote.Section;'
+      return:
+        type:
+          - onenote.OneNote.Section
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          OneNote.run(function (context) {
+              var app = context.application;
+              
+              // Gets the active Notebook.
+              var notebook = app.getActiveNotebook();
+              
+              // Gets the active Section.
+              var section = app.getActiveSection();
+              
+              var newSection;
+              
+              return context.sync()
+                  .then(function() {
+                      newSection = section.copyToNotebook(notebook);
+                      newSection.load('id');
+                      return context.sync();
+                  })
+                  .then(function() {
+                      console.log(newSection.id);
+                  });
+          })
+          .catch(function (error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: destinationNotebook
+          description: 要将此分区复制到的笔记本。
+          type:
+            - onenote.OneNote.Notebook
+  - uid: onenote.OneNote.Section.copyToSectionGroup
+    summary: |-
+      将此分区复制到指定的分区组。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: copyToSectionGroup(destinationSectionGroup)
+    fullName: copyToSectionGroup(destinationSectionGroup)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'copyToSectionGroup(destinationSectionGroup: OneNote.SectionGroup): OneNote.Section;'
+      return:
+        type:
+          - onenote.OneNote.Section
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          OneNote.run(function (ctx) {
+              var app = ctx.application;
+              
+              // Gets the active Notebook.
+              var notebook = app.getActiveNotebook();
+              
+              // Gets the active Section.
+              var section = app.getActiveSection();
+              
+              var newSection;
+              
+              return ctx.sync()
+                  .then(function() {
+                      var firstSectionGroup = notebook.sectionGroups.items[0];
+                      newSection = section.copyToSectionGroup(firstSectionGroup);
+                      newSection.load('id');
+                      return ctx.sync();
+                  })
+                  .then(function() {
+                      console.log(newSection.id);
+                  });
+          })
+          .catch(function (error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: destinationSectionGroup
+          description: 要将此分区复制到的分区组。
+          type:
+            - onenote.OneNote.SectionGroup
+  - uid: onenote.OneNote.Section.getRestApiId
+    summary: |-
+      获取 REST API ID。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getRestApiId()
+    fullName: getRestApiId()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getRestApiId(): OfficeExtension.ClientResult<string>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<string>
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          OneNote.run(function(ctx){
+              // Get the current section.         
+              var section = ctx.application.getActiveSection();
+              var restApiId = section.getRestApiId();
+
+              return ctx.sync().
+                  then(function(){
+                      console.log("The REST API ID is " + restApiId.value);
+                      // Note that the REST API ID isn't all you need to interact with the OneNote REST API. 
+                      // This is only required for SharePoint notebooks. baseUrl will be null for OneDrive notebooks.
+                      // For SharePoint notebooks, the notebook baseUrl should be used to talk to the 
+                      // OneNote REST API according to the OneNote Development Blog.
+                      // https://blogs.msdn.microsoft.com/onenotedev/2015/06/11/and-sharepoint-makes-three/
+                  });
+          });
+          ```
+  - uid: onenote.OneNote.Section.id
+    summary: |-
+      获取分区的 ID。 只读。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: id
+    fullName: id
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly id: string;'
+      return:
+        type:
+          - string
+  - uid: onenote.OneNote.Section.insertSectionAsSibling
+    summary: |-
+      在当前分区之前或之后插入一个新的分区。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: 'insertSectionAsSibling(location, title)'
+    fullName: 'insertSectionAsSibling(location, title)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertSectionAsSibling(location: OneNote.InsertLocation, title: string): OneNote.Section;'
+      return:
+        type:
+          - onenote.OneNote.Section
+        description: ''
+      parameters:
+        - id: location
+          description: 相对于当前分区的新分区的位置。
+          type:
+            - onenote.OneNote.InsertLocation
+        - id: title
+          description: 新节的名称。
+          type:
+            - string
+  - uid: onenote.OneNote.Section.insertSectionAsSibling_1
+    summary: |-
+      在当前分区之前或之后插入一个新的分区。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: 'insertSectionAsSibling(locationString, title)'
+    fullName: 'insertSectionAsSibling(locationString, title)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertSectionAsSibling(locationString: "Before" | "After", title: string): OneNote.Section;'
+      return:
+        type:
+          - onenote.OneNote.Section
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          OneNote.run(function (context) {
+                      
+              // Queue a command to insert a section after the current section.
+              var section = context.application.getActiveSection().insertSectionAsSibling("After", "New section");
+                      
+              // Queue a command to load the id and name of the new section. 
+              // This example loads the new section so it can read its properties later.           
+              section.load('id,name');
+                      
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                       
+                      // Display the properties.       
+                      console.log("Section name: " + section.name);
+                      console.log("Section ID: " + section.id);
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: locationString
+          description: 相对于当前分区的新分区的位置。
+          type:
+            - '"Before" | "After"'
+        - id: title
+          description: 新节的名称。
+          type:
+            - string
+  - uid: onenote.OneNote.Section.isEncrypted
+    summary: |-
+      如此如果使用密码加密此节。 只读
+
+      \[[API 集: OneNoteApi 1.2](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: isEncrypted
+    fullName: isEncrypted
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly isEncrypted: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: onenote.OneNote.Section.isLocked
+    summary: |-
+      如果此节已锁定, 则为 True。 只读
+
+      \[[API 集: OneNoteApi 1.2](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: isLocked
+    fullName: isLocked
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly isLocked: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: onenote.OneNote.Section.load
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+    remarks: |-
+      除了此签名之外, 此方法还具有以下签名:
+
+      `load(option?: string | string[]): OneNote.Section`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
+
+      `load(option?: { select?: string; expand?: string; }): OneNote.Section`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Section`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OneNote.Interfaces.SectionLoadOptions): OneNote.Section;'
+      return:
+        type:
+          - onenote.OneNote.Section
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - onenote.OneNote.Interfaces.SectionLoadOptions
+  - uid: onenote.OneNote.Section.load_1
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): OneNote.Section;'
+      return:
+        type:
+          - onenote.OneNote.Section
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          OneNote.run(function (context) {
+                  
+              // Get the current section.
+              var section = context.application.getActiveSection();
+                      
+              // Queue a command to load the section. 
+              // For best performance, request specific properties.           
+              section.load("id");
+                      
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                      console.log("Section ID: " + section.id);
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          OneNote.run(function (context) {
+                  
+              // Get the current section.
+              var section = context.application.getActiveSection();
+                      
+              // Queue a command to load the section with the specified properties. 
+              section.load("name,notebook/name");
+                      
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                      console.log("Section name: " + section.name);
+                      console.log("Parent notebook name: " + section.notebook.name);
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          OneNote.run(function (context) {
+              // Queue a command to add a page to the current section.
+              var section = context.application.getActiveSection();
+              section.load('clientUrl,notebook');
+              var sectionGroup = section.parentSectionGroupOrNull;
+              
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                      if(sectionGroup.isNull === false)
+                      {
+                          // If a parent section group exists, queue a command to add a section in it!
+                          sectionGroup.addSection("NewSectionInSectionGroup");
+                      }
+                      return context.sync();
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: '一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。'
+          type:
+            - 'string | string[]'
+  - uid: onenote.OneNote.Section.load_2
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.Section;'
+      return:
+        type:
+          - onenote.OneNote.Section
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: onenote.OneNote.Section.name
+    summary: |-
+      获取分区的名称。 只读。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: name
+    fullName: name
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly name: string;'
+      return:
+        type:
+          - string
+  - uid: onenote.OneNote.Section.notebook
+    summary: |-
+      获取包含分区的笔记本。 只读。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: notebook
+    fullName: notebook
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly notebook: OneNote.Notebook;'
+      return:
+        type:
+          - onenote.OneNote.Notebook
+  - uid: onenote.OneNote.Section.pages
+    summary: |-
+      分区中的页面集合。 只读
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: pages
+    fullName: pages
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly pages: OneNote.PageCollection;'
+      return:
+        type:
+          - onenote.OneNote.PageCollection
+  - uid: onenote.OneNote.Section.parentSectionGroup
+    summary: |-
+      获取包含分区的分区组。 如果分区是笔记本的直接子级，则引发 ItemNotFound。 只读。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: parentSectionGroup
+    fullName: parentSectionGroup
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly parentSectionGroup: OneNote.SectionGroup;'
+      return:
+        type:
+          - onenote.OneNote.SectionGroup
+  - uid: onenote.OneNote.Section.parentSectionGroupOrNull
+    summary: |-
+      获取包含分区的分区组。 如果分区是笔记本的直接子级，则返回 null。 只读。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: parentSectionGroupOrNull
+    fullName: parentSectionGroupOrNull
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly parentSectionGroupOrNull: OneNote.SectionGroup;'
+      return:
+        type:
+          - onenote.OneNote.SectionGroup
+  - uid: onenote.OneNote.Section.toJSON
+    summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始的 OneNote. Section 对象是一个 API 对象, 但`toJSON`该方法返回一个简单的 JavaScript 对象 (类型为`OneNote.Interfaces.SectionData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): OneNote.Interfaces.SectionData;'
+      return:
+        type:
+          - onenote.OneNote.Interfaces.SectionData
+        description: ''
+  - uid: onenote.OneNote.Section.track
+    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。
+    name: track()
+    fullName: track()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'track(): OneNote.Section;'
+      return:
+        type:
+          - onenote.OneNote.Section
+        description: ''
+  - uid: onenote.OneNote.Section.untrack
+    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前，你需要调用“context.sync()”。
+    name: untrack()
+    fullName: untrack()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'untrack(): OneNote.Section;'
+      return:
+        type:
+          - onenote.OneNote.Section
+        description: ''
+  - uid: onenote.OneNote.Section.webUrl
+    summary: |-
+      页面的 Web URL。 只读
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: webUrl
+    fullName: webUrl
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly webUrl: string;'
+      return:
+        type:
+          - string

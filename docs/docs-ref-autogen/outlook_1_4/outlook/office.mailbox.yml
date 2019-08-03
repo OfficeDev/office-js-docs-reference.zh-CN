@@ -1,0 +1,606 @@
+### YamlMime:UniversalReference
+items:
+  - uid: Outlook.Office.Mailbox
+    summary: |-
+      为 Microsoft Outlook 和 Microsoft Outlook 网页版提供对 Outlook 外接程序对象模型的访问权限。
+
+      命名
+
+      - diagnostics：将诊断信息提供给 Outlook 外接程序。
+
+      - item：提供用于访问 Outlook 外接程序中的邮件或约会的方法和属性。
+
+      - userProfile：提供有关 Outlook 外接程序中的用户的信息。
+
+      \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: 受限
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读
+    name: Office.Mailbox
+    fullName: Office.Mailbox
+    langs:
+      - typeScript
+    type: interface
+    package: Outlook
+    children:
+      - Outlook.Office.Mailbox.convertToEwsId
+      - Outlook.Office.Mailbox.convertToLocalClientTime
+      - Outlook.Office.Mailbox.convertToRestId
+      - Outlook.Office.Mailbox.convertToUtcClientTime
+      - Outlook.Office.Mailbox.displayAppointmentForm
+      - Outlook.Office.Mailbox.displayMessageForm
+      - Outlook.Office.Mailbox.displayNewAppointmentForm
+      - Outlook.Office.Mailbox.getCallbackTokenAsync
+      - Outlook.Office.Mailbox.getUserIdentityTokenAsync
+      - Outlook.Office.Mailbox.makeEwsRequestAsync
+      - Outlook.Office.Mailbox.diagnostics
+      - Outlook.Office.Mailbox.ewsUrl
+      - Outlook.Office.Mailbox.item
+      - Outlook.Office.Mailbox.userProfile
+  - uid: Outlook.Office.Mailbox.convertToEwsId
+    summary: |-
+      将项目 ID 格式化（从 REST 转换为 EWS 格式）。
+
+      通过 REST API 检索的项 Id（如 Outlook 邮件 API 或 Microsoft Graph）使用与 Exchange Web 服务 (EWS) 所使用格式不同的格式。 Office.context.mailbox.converttoewsid 方法将 REST 格式的 ID 转换为正确的 EWS 格式。
+
+      **注意**: 在 IOS 或 Android 上的 Outlook 中不支持此方法。
+
+      \[[API 集: 邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: 受限
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // Get an item's ID from a REST API.
+      var restId = 'AAMkAGVlOTZjNTM3LW...';
+
+      // Treat restId as coming from the v2.0 version of the Outlook Mail API.
+      var ewsId = Office.context.mailbox.convertToEwsId(restId, Office.MailboxEnums.RestVersion.v2_0);
+      ```
+    name: 'convertToEwsId(itemId, restVersion)'
+    fullName: 'convertToEwsId(itemId, restVersion)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'convertToEwsId(itemId: string, restVersion: MailboxEnums.RestVersion | string): string;'
+      return:
+        type:
+          - string
+        description: ''
+      parameters:
+        - id: itemId
+          description: Outlook REST Api 格式的项目 ID。
+          type:
+            - string
+        - id: restVersion
+          description: 指示用于检索项目 ID 的 Outlook REST API 的版本。
+          type:
+            - MailboxEnums.RestVersion | string
+  - uid: Outlook.Office.Mailbox.convertToLocalClientTime
+    summary: |-
+      获取包含以本地客户端时间表示的时间信息的字典。
+
+      Outlook 网页版或桌面客户端上的邮件应用程序使用的日期和时间可以使用不同的时区。 Outlook 使用客户端计算机时区;Web 上的 Outlook 使用 Exchange 管理中心 (EAC) 上设置的时区。 应对日期和时间值进行处理，以便用户界面上显示的值始终与用户预期的时区一致。
+
+      如果邮件应用程序在桌面客户端上的 Outlook 中运行, 则 convertToLocalClientTime 方法将返回一个 dictionary 对象, 并将值设置为客户端计算机时区。 如果邮件应用程序在 web 上的 Outlook 中运行, 则 convertToLocalClientTime 方法将返回一个 dictionary 对象, 其中的值设置为 EAC 中指定的时区。
+
+      \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读
+    name: convertToLocalClientTime(timeValue)
+    fullName: convertToLocalClientTime(timeValue)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'convertToLocalClientTime(timeValue: Date): LocalClientTime;'
+      return:
+        type:
+          - Outlook.Office.LocalClientTime
+        description: ''
+      parameters:
+        - id: timeValue
+          description: Date 对象。
+          type:
+            - Date
+  - uid: Outlook.Office.Mailbox.convertToRestId
+    summary: |-
+      将项目 ID 格式化（从 EWS 转换为 REST 格式）。
+
+      **注意**: 在 IOS 或 Android 上的 Outlook 中不支持此方法。
+
+      \[[API 集: 邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: 受限
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读
+
+      通过 EWS 或通过 itemId 属性检索的项目 Id 使用的格式不同于 REST Api (如[Outlook 邮件 API](https://docs.microsoft.com/previous-versions/office/office-365-api/api/version-2.0/mail-rest-operations)或[Microsoft Graph](https://graph.microsoft.io/) ) 使用的格式<!-- -->. Office.context.mailbox.converttorestid 方法将 EWS 格式的 ID 转换为正确的 REST 格式。
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // Get the currently selected item's ID.
+      var ewsId = Office.context.mailbox.item.itemId;
+
+      // Convert to a REST ID for the v2.0 version of the Outlook Mail API.
+      var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);
+      ```
+    name: 'convertToRestId(itemId, restVersion)'
+    fullName: 'convertToRestId(itemId, restVersion)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'convertToRestId(itemId: string, restVersion: MailboxEnums.RestVersion | string): string;'
+      return:
+        type:
+          - string
+        description: ''
+      parameters:
+        - id: itemId
+          description: 适用于 Exchange Web 服务 (EWS) 的项目 ID 格式化。
+          type:
+            - string
+        - id: restVersion
+          description: 值指示转换的 ID 所使用的 Outlook REST API 的版本。
+          type:
+            - MailboxEnums.RestVersion | string
+  - uid: Outlook.Office.Mailbox.convertToUtcClientTime
+    summary: |-
+      从包含时间信息的字典中获取 Date 对象。
+
+      ConvertToUtcClientTime 方法将包含本地日期和时间的字典转换为带有本地日期和时间的正确值的 Date 对象。
+
+      \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读
+    name: convertToUtcClientTime(input)
+    fullName: convertToUtcClientTime(input)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'convertToUtcClientTime(input: LocalClientTime): Date;'
+      return:
+        type:
+          - Date
+        description: 包含以 UTC 表示的时间的 Date 对象。
+      parameters:
+        - id: input
+          description: 要转换的本地时间值。
+          type:
+            - Outlook.Office.LocalClientTime
+  - uid: Outlook.Office.Mailbox.displayAppointmentForm
+    summary: |-
+      显示现有日历约会。
+
+      DisplayAppointmentForm 方法打开桌面的新窗口中或移动设备对话框中的现有日历约会。
+
+      在 Mac 上的 Outlook 中, 可以使用此方法显示不是定期系列的一部分的单个约会, 也可以是定期系列的主约会, 但不能显示该系列的实例。 这是因为在 Mac 上的 Outlook 中, 无法访问定期系列的实例的属性 (包括项目 ID)。
+
+      在 web 上的 Outlook 中, 仅当窗体的正文小于或等于32KB 个字符时, 此方法才会打开指定的窗体。
+
+      如果指定的项标识符没有识别现有约会，将在客户端计算机或设备上打开一个空白窗格，并且不会返回错误消息。
+
+      **注意**: 在 IOS 或 Android 上的 Outlook 中不支持此方法。
+
+      \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      Office.context.mailbox.displayAppointmentForm(appointmentId);
+      ```
+    name: displayAppointmentForm(itemId)
+    fullName: displayAppointmentForm(itemId)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'displayAppointmentForm(itemId: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: itemId
+          description: 现有日历约会的 Exchange Web 服务 (EWS) 标识符。
+          type:
+            - string
+  - uid: Outlook.Office.Mailbox.displayMessageForm
+    summary: |-
+      显示现有邮件。
+
+      DisplayMessageForm 方法打开桌面的新窗口中或移动设备对话框中的现有邮件。
+
+      在 web 上的 Outlook 中, 仅当窗体的正文小于或等于 32 KB 的字符数时, 此方法才会打开指定的窗体。
+
+      如果指定的项标识符未识别现有消息，则客户端计算机上不会显示任何消息，并且也不会返回错误消息。
+
+      请勿将 displayMessageForm 与代表约会的 itemId 一起使用。 使用 displayAppointmentForm 方法显示现有约会, 并 displayNewAppointmentForm 显示创建新约会的窗体。
+
+      **注意**: 在 IOS 或 Android 上的 Outlook 中不支持此方法。
+
+      \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      Office.context.mailbox.displayMessageForm(messageId);
+      ```
+    name: displayMessageForm(itemId)
+    fullName: displayMessageForm(itemId)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'displayMessageForm(itemId: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: itemId
+          description: 现有消息的 Exchange Web 服务 (EWS) 标识符。
+          type:
+            - string
+  - uid: Outlook.Office.Mailbox.displayNewAppointmentForm
+    summary: |-
+      显示用于新建日历约会的表单。
+
+      DisplayNewAppointmentForm 方法打开一个窗体, 使用户可以创建新的约会或会议。 如果指定了参数，将使用参数的内容自动填充约会窗体字段。
+
+      在 web 上的 Outlook 中, 此方法始终显示一个包含 "与会者" 字段的窗体。 如果你未将任何与会者指定为输入参数，该方法将显示为一个包含“保存”按钮的窗体。 如果已指定与会者，窗体将包含与会者和“发送”按钮。
+
+      在 Outlook 富客户端和 Outlook RT 中, 如果您在 requiredAttendees、optionalAttendees 或 resources 参数中指定了任何与会者或资源, 则此方法显示带有 "发送" 按钮的会议窗体。 如果不指定任何收件人, 此方法将显示带有 "保存&amp;关闭" 按钮的约会窗体。
+
+      如果任何参数超过指定大小限制，或者指定了未知参数名称，则会引发异常。
+
+      **注意**: 在 IOS 或 Android 上的 Outlook 中不支持此方法。
+
+      \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 读取
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      var start = new Date();
+      var end = new Date();
+      end.setHours(start.getHours() + 1);
+
+      Office.context.mailbox.displayNewAppointmentForm(
+      {
+          requiredAttendees: ['bob@contoso.com'],
+          optionalAttendees: ['sam@contoso.com'],
+          start: start,
+          end: end,
+          location: 'Home',
+          resources: ['projector@contoso.com'],
+          subject: 'meeting',
+          body: 'Hello World!'
+      });
+      ```
+    name: displayNewAppointmentForm(parameters)
+    fullName: displayNewAppointmentForm(parameters)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'displayNewAppointmentForm(parameters: AppointmentForm): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: parameters
+          description: 描述新约会的 AppointmentForm。 所有属性都是可选的。
+          type:
+            - Outlook.Office.AppointmentForm
+  - uid: Outlook.Office.Mailbox.getCallbackTokenAsync
+    summary: |-
+      获取一个字符串，其中包含用于从 Exchange Server 获取附件或项目的令牌。
+
+      Mailbox.getcallbacktokenasync 方法进行异步调用, 以从承载用户邮箱的 Exchange 服务器中获取不透明令牌。 回调令牌的生存期为 5 分钟。
+
+      可以将令牌和附件标识符或项标识符传递到第三方系统。 第三方系统使用令牌作为持有者身份验证令牌调用 Exchange Web 服务 (EWS) GetAttachment 或 GetItem，以返回附件或项目。 例如，可以创建远程服务来获取选定项目中的附件。
+
+      您的应用程序必须在其清单中指定了 ReadItem 权限, 才能在阅读模式下调用 Mailbox.getcallbacktokenasync 方法。
+
+      在撰写模式下, 必须调用 saveAsync 方法来获取要传递给 Mailbox.getcallbacktokenasync 方法的项目标识符。 您的应用程序必须具有 ReadWriteItem 权限, 才能调用 saveAsync 方法。
+
+      \[[API 集: 邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      function getCallbackToken() {
+          var options = {
+              isRest: true,
+              asyncContext: { message: 'Hello World!' }
+          };
+
+          Office.context.mailbox.getCallbackTokenAsync(options, cb);
+      }
+
+      function cb(asyncResult) {
+          var token = asyncResult.value;
+      }
+      ```
+    name: 'getCallbackTokenAsync(callback, userContext)'
+    fullName: 'getCallbackTokenAsync(callback, userContext)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getCallbackTokenAsync(callback: (asyncResult: Office.AsyncResult<string>) => void, userContext?: any): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: '方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 令牌作为 `asyncResult.value` 属性中的字符串提供。 如果出现错误, 则`asyncResult.error`和`asyncResult.diagnostics`属性可能会提供其他信息。'
+          type:
+            - '(asyncResult: Office.AsyncResult<string>) => void'
+        - id: userContext
+          description: 可选。 传递给异步方法的任何状态数据。
+          type:
+            - any
+  - uid: Outlook.Office.Mailbox.getUserIdentityTokenAsync
+    summary: |-
+      获取用于标识用户和 Office 外接程序的令牌。
+
+      令牌作为 asyncResult 属性中的字符串提供。
+
+      \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读
+
+      GetUserIdentityTokenAsync 方法返回一个令牌, 可用于[通过第三方系统识别和验证外接程序和用户](https://docs.microsoft.com/outlook/add-ins/authentication)<!-- -->.
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      function getIdentityToken() {
+          Office.context.mailbox.getUserIdentityTokenAsync(cb);
+      }
+
+      function cb(asyncResult) {
+          var token = asyncResult.value;
+      }
+      ```
+    name: 'getUserIdentityTokenAsync(callback, userContext)'
+    fullName: 'getUserIdentityTokenAsync(callback, userContext)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getUserIdentityTokenAsync(callback: (asyncResult: Office.AsyncResult<string>) => void, userContext?: any): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: '方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 令牌作为 `asyncResult.value` 属性中的字符串提供。 如果出现错误, 则`asyncResult.error`和`asyncResult.diagnostics`属性可能会提供其他信息。'
+          type:
+            - '(asyncResult: Office.AsyncResult<string>) => void'
+        - id: userContext
+          description: 可选。 传递给异步方法的任何状态数据。
+          type:
+            - any
+  - uid: Outlook.Office.Mailbox.makeEwsRequestAsync
+    summary: |-
+      向承载用户邮箱的 Exchange 服务器上的 Exchange Web 服务 (EWS) 服务发出异步请求。
+
+      在这些情况下，加载项应该使用 REST API 来改为访问用户的邮箱。
+
+      MakeEwsRequestAsync 方法代表外接程序将 EWS 请求发送到 Exchange。
+
+      您不能使用 makeEwsRequestAsync 方法请求与文件夹相关联的项目。
+
+      XML 请求必须指定 UTF-8 编码。 &lt;<!-- -->？ xml 版本 = "1.0" 编码 = "utf-8"？<!-- -->&gt;
+
+      您的外接程序必须具有 ReadWriteMailbox 权限才能使用 makeEwsRequestAsync 方法。 有关使用 ReadWriteMailbox 权限和您可以使用 makeEwsRequestAsync 方法调用的 EWS 操作的信息, 请参阅[指定邮件外接程序对用户邮箱的访问权限](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->.
+
+      EWS 调用的 XML 结果作为 asyncResult 属性中的字符串提供。 如果结果大小超过 1 MB，则改为返回一条错误消息。
+
+      **注意**: 在以下情况下, 不支持此方法:
+
+      - 在 iOS 或 Android 上的 Outlook 中。
+
+      - 将加载项加载到 Gmail 邮箱中时。
+
+      **注意**: 服务器管理员必须在客户端访问服务器 EWS 目录上将 OAuthAuthentication 设置为 true, 以使 makeEwsRequestAsync 方法能够发出 EWS 请求。
+
+      *版本差异*
+
+      当您在早于较15.0.4535.1004 版本的 Outlook 版本中运行的邮件应用程序中使用 makeEwsRequestAsync 方法时, 应将编码值设置为 ISO-8859-1。
+
+      `<?xml version="1.0" encoding="iso-8859-1"?>`
+
+      当邮件应用程序运行在 Outlook 网页版中时，您不需要设置编码值。可以通过使用 mailbox.diagnostics.hostName 属性来确定您的邮件应用程序在 Outlook 中还是 Outlook 网页版中运行。可以通过使用 mailbox.diagnostics.hostVersion 属性来确定正在运行的是 Outlook 的哪个版本。
+
+      \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadWriteMailbox
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      function getSubjectRequest(id) {
+          // Return a GetItem operation request for the subject of the specified item.
+          var request =
+              '<?xml version="1.0" encoding="utf-8"?>' +
+              '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"' +
+              '               xmlns:xsd="http://www.w3.org/2001/XMLSchema"' +
+              '               xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"' +
+              '               xmlns:t="http://schemas.microsoft.com/exchange/services/2006/types">' +
+              '  <soap:Header>' +
+              '    <RequestServerVersion Version="Exchange2013" xmlns="http://schemas.microsoft.com/exchange/services/2006/types" soap:mustUnderstand="0" />' +
+              '  </soap:Header>' +
+              '  <soap:Body>' +
+              '    <GetItem xmlns="http://schemas.microsoft.com/exchange/services/2006/messages">' +
+              '      <ItemShape>' +
+              '        <t:BaseShape>IdOnly</t:BaseShape>' +
+              '        <t:AdditionalProperties>' +
+              '            <t:FieldURI FieldURI="item:Subject"/>' +
+              '        </t:AdditionalProperties>' +
+              '      </ItemShape>' +
+              '      <ItemIds><t:ItemId Id="' + id + '"/></ItemIds>' +
+              '    </GetItem>' +
+              '  </soap:Body>' +
+              '</soap:Envelope>';
+
+          return request;
+      }
+
+      function sendRequest() {
+          // Create a local variable that contains the mailbox.
+          Office.context.mailbox.makeEwsRequestAsync(
+              getSubjectRequest(mailbox.item.itemId), callback);
+      }
+
+      function callback(asyncResult)  {
+          var result = asyncResult.value;
+          var context = asyncResult.asyncContext;
+
+          // Process the returned response here.
+      }
+      ```
+    name: 'makeEwsRequestAsync(data, callback, userContext)'
+    fullName: 'makeEwsRequestAsync(data, callback, userContext)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'makeEwsRequestAsync(data: any, callback: (asyncResult: Office.AsyncResult<string>) => void, userContext?: any): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: data
+          description: EWS 请求。
+          type:
+            - any
+        - id: callback
+          description: '方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 结果`value`的属性是以字符串形式提供的 EWS 请求的 XML。 如果结果大小超过 1 MB，则改为返回一条错误消息。'
+          type:
+            - '(asyncResult: Office.AsyncResult<string>) => void'
+        - id: userContext
+          description: 可选。 传递给异步方法的任何状态数据。
+          type:
+            - any
+  - uid: Outlook.Office.Mailbox.diagnostics
+    summary: |-
+      将诊断信息提供给 Outlook 外接程序。
+
+      包含以下成员:
+
+      - hostName (string): 一个表示主机应用程序的名称的字符串。 它是以下值之一: Outlook、Mac Outlook、OutlookIOS 或 OutlookWebApp。
+
+      - Diagnostics.hostversion (字符串): 表示主机应用程序或 Exchange Server 的版本的字符串。 如果邮件外接程序在桌面客户端或 iOS 上的 Outlook 中运行, 则 Diagnostics.hostversion 属性将返回主机应用程序 (Outlook) 的版本。 在 Outlook 网页版中, 该属性返回的是 Exchange 服务器的版本。 例如, 字符串15.0.468.0。
+
+      - OWAView (MailboxEnums 或 string): 代表 web 上的 Outlook 当前视图的枚举 (或字符串文字)。 如果主机应用程序不是 web 上的 Outlook, 则访问此属性将导致未定义。 Web 上的 Outlook 具有三个视图 (OneColumn-当屏幕变宽时显示, TwoColumns-当屏幕变宽时显示; 在屏幕宽度显示为 ThreeColumns 时显示) 与屏幕和窗口的宽度相对应, 以及列数可以显示的。
+
+      有关详细信息, 请与[Office 诊断](xref:Outlook.Office.Diagnostics)<!-- -->.
+
+      \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读
+    name: diagnostics
+    fullName: diagnostics
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'diagnostics: Diagnostics;'
+      return:
+        type:
+          - Outlook.Office.Diagnostics
+  - uid: Outlook.Office.Mailbox.ewsUrl
+    summary: |-
+      获取此电子邮件帐户的 Exchange Web Services (EWS) 终点的 URL。 仅限阅读模式。
+
+      您的应用程序必须在其清单中指定了 ReadItem 权限, 才能在阅读模式下调用 Mailbox.ewsurl 成员。
+
+      在撰写模式下, 您必须先调用 saveAsync 方法, 然后才能使用 Mailbox.ewsurl 成员。 您的应用程序必须具有 ReadWriteItem 权限, 才能调用 saveAsync 方法。
+
+      \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读
+
+      远程服务可使用 Mailbox.ewsurl 值对用户邮箱进行 EWS 调用。 例如, 可以创建远程服务以[从所选项目中获取附件](https://docs.microsoft.com/outlook/add-ins/get-attachments-of-an-outlook-item)<!-- -->.
+
+      **注意**: 在 IOS 或 Android 上的 Outlook 中不支持此成员。
+    name: ewsUrl
+    fullName: ewsUrl
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'ewsUrl: string;'
+      return:
+        type:
+          - string
+  - uid: Outlook.Office.Mailbox.item
+    summary: '邮箱项目。 根据在其中打开外接的上下文, 该项目可以是任意数量的类型。 如果只想查看特定类型的 IntelliSense, 应将此项转换为以下项之一:`ItemCompose`<!-- -->, `ItemRead`<!-- -->, `MessageCompose`<!-- -->, `MessageRead`<!-- -->, `AppointmentCompose`<!-- -->, `AppointmentRead`'
+    name: item
+    fullName: item
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'item: Item & ItemCompose & ItemRead & MessageRead & MessageCompose & AppointmentRead & AppointmentCompose;'
+      return:
+        type:
+          - Item & ItemCompose & ItemRead & MessageRead & MessageCompose & AppointmentRead & AppointmentCompose
+  - uid: Outlook.Office.Mailbox.userProfile
+    summary: |-
+      有关与邮箱关联的用户的信息。 这包括帐户类型、显示名称、电子邮件地址和时区。
+
+      有关详细信息, 请在[Office. UserProfile](xref:Outlook.Office.UserProfile)
+    name: userProfile
+    fullName: userProfile
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'userProfile: UserProfile;'
+      return:
+        type:
+          - Outlook.Office.UserProfile
