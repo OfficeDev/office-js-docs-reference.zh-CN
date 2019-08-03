@@ -1,0 +1,227 @@
+### YamlMime:UniversalReference
+items:
+  - uid: onenote.OneNote.FloatingInk
+    summary: |-
+      表示一组墨迹笔划。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: OneNote.FloatingInk
+    fullName: OneNote.FloatingInk
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: onenote
+    children:
+      - onenote.OneNote.FloatingInk.context
+      - onenote.OneNote.FloatingInk.id
+      - onenote.OneNote.FloatingInk.inkStrokes
+      - onenote.OneNote.FloatingInk.load
+      - onenote.OneNote.FloatingInk.load_1
+      - onenote.OneNote.FloatingInk.load_2
+      - onenote.OneNote.FloatingInk.pageContent
+      - onenote.OneNote.FloatingInk.toJSON
+      - onenote.OneNote.FloatingInk.track
+      - onenote.OneNote.FloatingInk.untrack
+  - uid: onenote.OneNote.FloatingInk.context
+    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - onenote.OneNote.RequestContext
+  - uid: onenote.OneNote.FloatingInk.id
+    summary: |-
+      获取 FloatingInk 对象的 ID。 只读。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: id
+    fullName: id
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly id: string;'
+      return:
+        type:
+          - string
+  - uid: onenote.OneNote.FloatingInk.inkStrokes
+    summary: |-
+      获取 FloatingInk 对象的笔划。 只读。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: inkStrokes
+    fullName: inkStrokes
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly inkStrokes: OneNote.InkStrokeCollection;'
+      return:
+        type:
+          - onenote.OneNote.InkStrokeCollection
+  - uid: onenote.OneNote.FloatingInk.load
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+    remarks: |-
+      除了此签名之外, 此方法还具有以下签名:
+
+      `load(option?: string | string[]): OneNote.FloatingInk`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
+
+      `load(option?: { select?: string; expand?: string; }): OneNote.FloatingInk`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.FloatingInk`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OneNote.Interfaces.FloatingInkLoadOptions): OneNote.FloatingInk;'
+      return:
+        type:
+          - onenote.OneNote.FloatingInk
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - onenote.OneNote.Interfaces.FloatingInkLoadOptions
+  - uid: onenote.OneNote.FloatingInk.load_1
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): OneNote.FloatingInk;'
+      return:
+        type:
+          - onenote.OneNote.FloatingInk
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          OneNote.run(function(context) {
+
+              // Gets the active page.
+              var page = context.application.getActivePage();
+              var contents = page.contents;
+              
+              // Load page contents and their types.
+              page.load('contents/type');
+              return context.sync()
+                  .then(function(){
+                  
+                      // Load every ink content.
+                      $.each(contents.items, function(i, content) {
+                          if (content.type == "Ink")
+                          {
+                              content.load('ink/id');
+                          }                            
+                      })
+                      return context.sync();
+                  })
+                  .then(function(){
+                  
+                      // Log ID of every ink content.
+                      $.each(contents.items, function(i, content) {
+                          if (content.type == "Ink")
+                          {
+                              console.log(content.ink.id);
+                          }                            
+                      })                
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          }); 
+          ```
+      parameters:
+        - id: propertyNames
+          description: '一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。'
+          type:
+            - 'string | string[]'
+  - uid: onenote.OneNote.FloatingInk.load_2
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.FloatingInk;'
+      return:
+        type:
+          - onenote.OneNote.FloatingInk
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: onenote.OneNote.FloatingInk.pageContent
+    summary: |-
+      获取 FloatingInk 对象的 PageContent 父级。 只读。
+
+      \[[API 集: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: pageContent
+    fullName: pageContent
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly pageContent: OneNote.PageContent;'
+      return:
+        type:
+          - onenote.OneNote.PageContent
+  - uid: onenote.OneNote.FloatingInk.toJSON
+    summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始 FloatingInk 对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`OneNote.Interfaces.FloatingInkData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): OneNote.Interfaces.FloatingInkData;'
+      return:
+        type:
+          - onenote.OneNote.Interfaces.FloatingInkData
+        description: ''
+  - uid: onenote.OneNote.FloatingInk.track
+    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。
+    name: track()
+    fullName: track()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'track(): OneNote.FloatingInk;'
+      return:
+        type:
+          - onenote.OneNote.FloatingInk
+        description: ''
+  - uid: onenote.OneNote.FloatingInk.untrack
+    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前，你需要调用“context.sync()”。
+    name: untrack()
+    fullName: untrack()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'untrack(): OneNote.FloatingInk;'
+      return:
+        type:
+          - onenote.OneNote.FloatingInk
+        description: ''

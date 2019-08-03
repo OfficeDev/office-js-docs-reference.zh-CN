@@ -1,0 +1,1551 @@
+### YamlMime:UniversalReference
+items:
+  - uid: word.Word.Paragraph
+    summary: |-
+      表示选定内容、区域、内容控件或文档正文中的单个段落。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: Word.Paragraph
+    fullName: Word.Paragraph
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: word
+    children:
+      - word.Word.Paragraph.alignment
+      - word.Word.Paragraph.clear
+      - word.Word.Paragraph.contentControls
+      - word.Word.Paragraph.context
+      - word.Word.Paragraph.delete
+      - word.Word.Paragraph.firstLineIndent
+      - word.Word.Paragraph.font
+      - word.Word.Paragraph.getHtml
+      - word.Word.Paragraph.getOoxml
+      - word.Word.Paragraph.inlinePictures
+      - word.Word.Paragraph.insertBreak
+      - word.Word.Paragraph.insertBreak_1
+      - word.Word.Paragraph.insertContentControl
+      - word.Word.Paragraph.insertFileFromBase64
+      - word.Word.Paragraph.insertFileFromBase64_1
+      - word.Word.Paragraph.insertHtml
+      - word.Word.Paragraph.insertHtml_1
+      - word.Word.Paragraph.insertInlinePictureFromBase64
+      - word.Word.Paragraph.insertInlinePictureFromBase64_1
+      - word.Word.Paragraph.insertOoxml
+      - word.Word.Paragraph.insertOoxml_1
+      - word.Word.Paragraph.insertParagraph
+      - word.Word.Paragraph.insertParagraph_1
+      - word.Word.Paragraph.insertText
+      - word.Word.Paragraph.insertText_1
+      - word.Word.Paragraph.leftIndent
+      - word.Word.Paragraph.lineSpacing
+      - word.Word.Paragraph.lineUnitAfter
+      - word.Word.Paragraph.lineUnitBefore
+      - word.Word.Paragraph.load
+      - word.Word.Paragraph.load_1
+      - word.Word.Paragraph.load_2
+      - word.Word.Paragraph.outlineLevel
+      - word.Word.Paragraph.parentContentControl
+      - word.Word.Paragraph.rightIndent
+      - word.Word.Paragraph.search
+      - word.Word.Paragraph.select
+      - word.Word.Paragraph.select_1
+      - word.Word.Paragraph.set
+      - word.Word.Paragraph.set_1
+      - word.Word.Paragraph.spaceAfter
+      - word.Word.Paragraph.spaceBefore
+      - word.Word.Paragraph.style
+      - word.Word.Paragraph.text
+      - word.Word.Paragraph.toJSON
+      - word.Word.Paragraph.track
+      - word.Word.Paragraph.untrack
+  - uid: word.Word.Paragraph.alignment
+    summary: |-
+      获取或设置段落的对齐方式。 可取值为“left”、“centered”、“right”或“justified”。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: alignment
+    fullName: alignment
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'alignment: Word.Alignment | "Mixed" | "Unknown" | "Left" | "Centered" | "Right" | "Justified";'
+      return:
+        type:
+          - Word.Alignment | "Mixed" | "Unknown" | "Left" | "Centered" | "Right" | "Justified"
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Word.run(async (context) => {
+            // Centers last paragraph alignment.
+            context.document.body.paragraphs.getLast().alignment = "Centered";
+
+            await context.sync();
+          });
+          ```
+  - uid: word.Word.Paragraph.clear
+    summary: |-
+      清除 paragraph 对象的内容。 用户可以对已清除的内容执行撤消操作。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: clear()
+    fullName: clear()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clear(): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the paragraphs collection.
+              var paragraphs = context.document.body.paragraphs;
+
+              // Queue a commmand to load the style property for all of the paragraphs.
+              context.load(paragraphs, 'style');
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+
+                  // Queue a command to clear the contents of the first paragraph.
+                  paragraphs.items[0].clear();
+
+                  // Synchronize the document state by executing the queued commands,
+                  // and return a promise to indicate task completion.
+                  return context.sync().then(function () {
+                      console.log('Cleared the contents of the first paragraph.');
+                  });
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: word.Word.Paragraph.contentControls
+    summary: |-
+      获取段落中的内容控件对象的集合。 只读。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: contentControls
+    fullName: contentControls
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly contentControls: Word.ContentControlCollection;'
+      return:
+        type:
+          - word.Word.ContentControlCollection
+  - uid: word.Word.Paragraph.context
+    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - word.Word.RequestContext
+  - uid: word.Word.Paragraph.delete
+    summary: |-
+      从文档中删除段落及其内容。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: delete()
+    fullName: delete()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'delete(): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the paragraphs collection.
+              var paragraphs = context.document.body.paragraphs;
+
+              // Queue a commmand to load the text property for all of the paragraphs.
+              context.load(paragraphs, 'text');
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+
+                  // Queue a command to delete the first paragraph.
+                  paragraphs.items[0].delete();
+
+                  // Synchronize the document state by executing the queued commands,
+                  // and return a promise to indicate task completion.
+                  return context.sync().then(function () {
+                      console.log('Deleted the first paragraph.');
+                  });
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: word.Word.Paragraph.firstLineIndent
+    summary: |-
+      获取或设置首行缩进或悬挂缩进的大小（以磅值表示）。用正数设置首行缩进的尺寸，用负数设置悬挂缩进的尺寸。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: firstLineIndent
+    fullName: firstLineIndent
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'firstLineIndent: number;'
+      return:
+        type:
+          - number
+  - uid: word.Word.Paragraph.font
+    summary: |-
+      获取段落的文本格式。 使用此对象获取和设置字体名称、大小、颜色和其他属性。 只读。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: font
+    fullName: font
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly font: Word.Font;'
+      return:
+        type:
+          - word.Word.Font
+  - uid: word.Word.Paragraph.getHtml
+    summary: |-
+      获取段落对象的 HTML 表示形式。 在网页或 HTML 查看器中呈现时, 格式设置将与文档的格式相匹配, 但不完全相同。 对于不同平台 (Windows、Mac 等) 上的同一文档, 此方法不会返回完全相同的 HTML。 如果您需要完全保真度或跨平台的一致性, 请`Paragraph.getOoxml()`使用并将返回的 XML 转换为 HTML。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: getHtml()
+    fullName: getHtml()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getHtml(): OfficeExtension.ClientResult<string>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<string>
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the paragraphs collection.
+              var paragraphs = context.document.body.paragraphs;
+
+              // Queue a commmand to load the style property for all of the paragraphs.
+              context.load(paragraphs, 'style');
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+
+                  // Queue a a set of commands to get the HTML of the first paragraph.
+                  var html = paragraphs.items[0].getHtml();
+
+                  // Synchronize the document state by executing the queued commands,
+                  // and return a promise to indicate task completion.
+                  return context.sync().then(function () {
+                      console.log('Paragraph HTML: ' + html.value);
+                  });
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: word.Word.Paragraph.getOoxml
+    summary: |-
+      获取 paragraph 对象的 Office Open XML (OOXML) 表示形式。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: getOoxml()
+    fullName: getOoxml()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getOoxml(): OfficeExtension.ClientResult<string>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<string>
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the paragraphs collection.
+              var paragraphs = context.document.body.paragraphs;
+
+              // Queue a commmand to load the style property for the top 2 paragraphs.
+              context.load(paragraphs, {select: 'style', top: 2} );
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+
+                  // Queue a a set of commands to get the OOXML of the first paragraph.
+                  var ooxml = paragraphs.items[0].getOoxml();
+
+                  // Synchronize the document state by executing the queued commands,
+                  // and return a promise to indicate task completion.
+                  return context.sync().then(function () {
+                      console.log('Paragraph OOXML: ' + ooxml.value);
+                  });
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: word.Word.Paragraph.inlinePictures
+    summary: |-
+      获取段落中 InlinePicture 对象的集合。 集合不包括浮动图像。 只读。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: inlinePictures
+    fullName: inlinePictures
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly inlinePictures: Word.InlinePictureCollection;'
+      return:
+        type:
+          - word.Word.InlinePictureCollection
+  - uid: word.Word.Paragraph.insertBreak
+    summary: |-
+      在主文档的指定位置插入分隔符。 insertLocation 的可取值为“Before”或“After”。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertBreak(breakType, insertLocation)'
+    fullName: 'insertBreak(breakType, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertBreak(breakType: Word.BreakType, insertLocation: Word.InsertLocation): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          Word.run(async (context) => {
+            context.document.body.paragraphs.getFirst().insertBreak(Word.BreakType.line, "After");
+
+            await context.sync();
+            console.log("success");
+          });
+          ```
+          ```typescript
+          await Word.run(async (context) => {
+            context.document.body.paragraphs.getFirst().insertBreak(Word.BreakType.page, "After");
+
+            await context.sync();
+            console.log("success");
+          });
+          ```
+      parameters:
+        - id: breakType
+          description: 必需。 要添加到文档的分隔符类型。
+          type:
+            - word.Word.BreakType
+        - id: insertLocation
+          description: 必需。 值可以为“Before”或“After”。
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.Paragraph.insertBreak_1
+    summary: |-
+      在主文档的指定位置插入分隔符。 insertLocation 的可取值为“Before”或“After”。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertBreak(breakTypeString, insertLocation)'
+    fullName: 'insertBreak(breakTypeString, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertBreak(breakTypeString: "Page" | "Next" | "SectionNext" | "SectionContinuous" | "SectionEven" | "SectionOdd" | "Line", insertLocation: "Before" | "After" | "Start" | "End" | "Replace"): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the paragraphs collection.
+              var paragraphs = context.document.body.paragraphs;
+
+              // Queue a commmand to load the style property for the top 2 paragraphs.
+              // We never perform an empty load. We always must request a property.
+              context.load(paragraphs, {select: 'style', top: 2} );
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+
+                  // Queue a command to get the first paragraph.
+                  var paragraph = paragraphs.items[0];
+
+                  // Queue a command to insert a page break after the first paragraph.
+                  paragraph.insertBreak('page', 'After');
+
+                  // Synchronize the document state by executing the queued commands,
+                  // and return a promise to indicate task completion.
+                  return context.sync().then(function () {
+                      console.log('Inserted a page break after the paragraph.');
+                  });
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: breakTypeString
+          description: 必需。 要添加到文档的分隔符类型。
+          type:
+            - '"Page" | "Next" | "SectionNext" | "SectionContinuous" | "SectionEven" | "SectionOdd" | "Line"'
+        - id: insertLocation
+          description: 必需。 值可以为“Before”或“After”。
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.Paragraph.insertContentControl
+    summary: |-
+      使用富文本内容控件封装 paragraph 对象。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: insertContentControl()
+    fullName: insertContentControl()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertContentControl(): Word.ContentControl;'
+      return:
+        type:
+          - word.Word.ContentControl
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the paragraphs collection.
+              var paragraphs = context.document.body.paragraphs;
+
+              // Queue a commmand to load the style property for the top 2 paragraphs.
+              // We never perform an empty load. We always must request a property.
+              context.load(paragraphs, {select: 'style', top: 2} );
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+
+                  // Queue a command to get the first paragraph.
+                  var paragraph = paragraphs.items[0];
+
+                  // Queue a command to wrap the first paragraph in a rich text content control.
+                  paragraph.insertContentControl();
+
+                  // Synchronize the document state by executing the queued commands,
+                  // and return a promise to indicate task completion.
+                  return context.sync().then(function () {
+                      console.log('Wrapped the first paragraph in a content control.');
+                  });
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: word.Word.Paragraph.insertFileFromBase64
+    summary: |-
+      将文档插入到指定位置的段落中。 insertLocation 值可以为“Replace”、“Start”或“End”。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertFileFromBase64(base64File, insertLocation)'
+    fullName: 'insertFileFromBase64(base64File, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertFileFromBase64(base64File: string, insertLocation: Word.InsertLocation): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: base64File
+          description: 必需。 .Docx 文件的 base64 编码内容。
+          type:
+            - string
+        - id: insertLocation
+          description: 必需。 此值可以为“Replace”、“Start”或“End”。
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.Paragraph.insertFileFromBase64_1
+    summary: |-
+      将文档插入到指定位置的段落中。 insertLocation 值可以为“Replace”、“Start”或“End”。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertFileFromBase64(base64File, insertLocationString)'
+    fullName: 'insertFileFromBase64(base64File, insertLocationString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertFileFromBase64(base64File: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: base64File
+          description: 必需。 .Docx 文件的 base64 编码内容。
+          type:
+            - string
+        - id: insertLocationString
+          description: 必需。 此值可以为“Replace”、“Start”或“End”。
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.Paragraph.insertHtml
+    summary: |-
+      将 HTML 插入到段落中的指定位置。 insertLocation 值可以为“Replace”、“Start”或“End”。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertHtml(html, insertLocation)'
+    fullName: 'insertHtml(html, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertHtml(html: string, insertLocation: Word.InsertLocation): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the paragraphs collection.
+              var paragraphs = context.document.body.paragraphs;
+
+              // Queue a commmand to load the style property for the top 2 paragraphs.
+              // We never perform an empty load. We always must request a property.
+              context.load(paragraphs, {select: 'style', top: 2} );
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+
+                  // Queue a command to get the first paragraph.
+                  var paragraph = paragraphs.items[0];
+
+                  // Queue a command to insert HTML content at the end of the first paragraph.
+                  paragraph.insertHtml('<strong>Inserted HTML.</strong>', Word.InsertLocation.end);
+
+                  // Synchronize the document state by executing the queued commands,
+                  // and return a promise to indicate task completion.
+                  return context.sync().then(function () {
+                      console.log('Inserted HTML content at the end of the first paragraph.');
+                  });
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: html
+          description: 必需。 要插入到段落中的 HTML。
+          type:
+            - string
+        - id: insertLocation
+          description: 必需。 此值可以为“Replace”、“Start”或“End”。
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.Paragraph.insertHtml_1
+    summary: |-
+      将 HTML 插入到段落中的指定位置。 insertLocation 值可以为“Replace”、“Start”或“End”。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertHtml(html, insertLocationString)'
+    fullName: 'insertHtml(html, insertLocationString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertHtml(html: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: html
+          description: 必需。 要插入到段落中的 HTML。
+          type:
+            - string
+        - id: insertLocationString
+          description: 必需。 此值可以为“Replace”、“Start”或“End”。
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.Paragraph.insertInlinePictureFromBase64
+    summary: |-
+      将图片插入到段落中的指定位置。 insertLocation 值可以为“Replace”、“Start”或“End”。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertInlinePictureFromBase64(base64EncodedImage, insertLocation)'
+    fullName: 'insertInlinePictureFromBase64(base64EncodedImage, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertInlinePictureFromBase64(base64EncodedImage: string, insertLocation: Word.InsertLocation): Word.InlinePicture;'
+      return:
+        type:
+          - word.Word.InlinePicture
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the paragraphs collection.
+              var paragraphs = context.document.body.paragraphs;
+
+              // Queue a commmand to load the style property for all of the paragraphs.
+              context.load(paragraphs, 'style');
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+
+                  // Queue a command to get the first paragraph.
+                  var paragraph = paragraphs.items[0];
+
+                  var b64encodedImg = "iVBORw0KGgoAAAANSUhEUgAAAB4AAAANCAIAAAAxEEnAAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACFSURBVDhPtY1BEoQwDMP6/0+XgIMTBAeYoTqso9Rkx1zG+tNj1H94jgGzeNSjteO5vtQQuG2seO0av8LzGbe3anzRoJ4ybm/VeKEerAEbAUpW4aWQCmrGFWykRzGBCnYy2ha3oAIq2MloW9yCCqhgJ6NtcQsqoIKdjLbFLaiACnYyf2fODbrjZcXfr2F4AAAAAElFTkSuQmCC";
+
+                  // Queue a command to insert a base64 encoded image at the beginning of the first paragraph.
+                  paragraph.insertInlinePictureFromBase64(b64encodedImg, Word.InsertLocation.start);
+
+                  // Synchronize the document state by executing the queued commands,
+                  // and return a promise to indicate task completion.
+                  return context.sync().then(function () {
+                      console.log('Added an image to the first paragraph.');
+                  });
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: base64EncodedImage
+          description: 必需。 要插入的 base64 编码的图像。
+          type:
+            - string
+        - id: insertLocation
+          description: 必需。 此值可以为“Replace”、“Start”或“End”。
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.Paragraph.insertInlinePictureFromBase64_1
+    summary: |-
+      将图片插入到段落中的指定位置。 insertLocation 值可以为“Replace”、“Start”或“End”。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertInlinePictureFromBase64(base64EncodedImage, insertLocationString)'
+    fullName: 'insertInlinePictureFromBase64(base64EncodedImage, insertLocationString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertInlinePictureFromBase64(base64EncodedImage: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.InlinePicture;'
+      return:
+        type:
+          - word.Word.InlinePicture
+        description: ''
+      parameters:
+        - id: base64EncodedImage
+          description: 必需。 要插入的 base64 编码的图像。
+          type:
+            - string
+        - id: insertLocationString
+          description: 必需。 此值可以为“Replace”、“Start”或“End”。
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.Paragraph.insertOoxml
+    summary: |-
+      将 OOXML 插入到段落中的指定位置。 insertLocation 值可以为“Replace”、“Start”或“End”。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertOoxml(ooxml, insertLocation)'
+    fullName: 'insertOoxml(ooxml, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertOoxml(ooxml: string, insertLocation: Word.InsertLocation): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: ooxml
+          description: 必需。 要在段落中插入的 OOXML。
+          type:
+            - string
+        - id: insertLocation
+          description: 必需。 此值可以为“Replace”、“Start”或“End”。
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.Paragraph.insertOoxml_1
+    summary: |-
+      将 OOXML 插入到段落中的指定位置。 insertLocation 值可以为“Replace”、“Start”或“End”。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertOoxml(ooxml, insertLocationString)'
+    fullName: 'insertOoxml(ooxml, insertLocationString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertOoxml(ooxml: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: ooxml
+          description: 必需。 要在段落中插入的 OOXML。
+          type:
+            - string
+        - id: insertLocationString
+          description: 必需。 此值可以为“Replace”、“Start”或“End”。
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.Paragraph.insertParagraph
+    summary: |-
+      在指定位置插入段落。 insertLocation 值可以为“Before”或“After”。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertParagraph(paragraphText, insertLocation)'
+    fullName: 'insertParagraph(paragraphText, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertParagraph(paragraphText: string, insertLocation: Word.InsertLocation): Word.Paragraph;'
+      return:
+        type:
+          - word.Word.Paragraph
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the paragraphs collection.
+              var paragraphs = context.document.body.paragraphs;
+
+              // Queue a commmand to load the style property for the top 2 paragraphs.
+              // We never perform an empty load. We always must request a property.
+              context.load(paragraphs, {select: 'style', top: 2} );
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+
+                  // Queue a command to get the first paragraph.
+                  var paragraph = paragraphs.items[0];
+
+                  // Queue a command to insert the paragraph after the current paragraph.
+                  paragraph.insertParagraph('Content of a new paragraph', Word.InsertLocation.after);
+
+                  // Synchronize the document state by executing the queued commands,
+                  // and return a promise to indicate task completion.
+                  return context.sync().then(function () {
+                      console.log('Inserted a new paragraph at the end of the first paragraph.');
+                  });
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```typescript
+          await Word.run(async (context) => {
+            // Second sentence, let's insert it as a paragraph after the previously inserted one.
+            let secondSentence = context.document.body.insertParagraph(
+              "This is the first text with a custom style.",
+              "End"
+            );
+            secondSentence.font.set({
+              bold: false,
+              italic: true,
+              name: "Berlin Sans FB",
+              color: "blue",
+              size: 30
+            });
+
+            await context.sync();
+          });
+          ```
+      parameters:
+        - id: paragraphText
+          description: 必需。 要插入的段落文本。
+          type:
+            - string
+        - id: insertLocation
+          description: 必需。 值可以为“Before”或“After”。
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.Paragraph.insertParagraph_1
+    summary: |-
+      在指定位置插入段落。 insertLocation 值可以为“Before”或“After”。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertParagraph(paragraphText, insertLocationString)'
+    fullName: 'insertParagraph(paragraphText, insertLocationString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertParagraph(paragraphText: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Paragraph;'
+      return:
+        type:
+          - word.Word.Paragraph
+        description: ''
+      parameters:
+        - id: paragraphText
+          description: 必需。 要插入的段落文本。
+          type:
+            - string
+        - id: insertLocationString
+          description: 必需。 值可以为“Before”或“After”。
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.Paragraph.insertText
+    summary: |-
+      将文本插入到段落中的指定位置。 insertLocation 值可以为“Replace”、“Start”或“End”。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertText(text, insertLocation)'
+    fullName: 'insertText(text, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertText(text: string, insertLocation: Word.InsertLocation): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the paragraphs collection.
+              var paragraphs = context.document.body.paragraphs;
+
+              // Queue a commmand to load the style property for the top 2 paragraphs.
+              // We never perform an empty load. We always must request a property.
+              context.load(paragraphs, {select: 'style', top: 2} );
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+
+                  // Queue a command to get the first paragraph.
+                  var paragraph = paragraphs.items[0];
+
+                  // Queue a command to insert text into the end of the paragraph.
+                  paragraph.insertText('New text inserted into the paragraph.', Word.InsertLocation.end);
+
+                  // Synchronize the document state by executing the queued commands,
+                  // and return a promise to indicate task completion.
+                  return context.sync().then(function () {
+                      console.log('Inserted text at the end of the first paragraph.');
+                  });
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```typescript
+          await Word.run(async (context) => {
+            // Replace the last paragraph.
+            let range = context.document.body.paragraphs.getLast().insertText("Just replaced the last paragraph!", "Replace");
+            range.font.highlightColor = "black";
+            range.font.color = "white";
+
+            await context.sync();
+          });
+          ```
+      parameters:
+        - id: text
+          description: 必需。 要插入的文本。
+          type:
+            - string
+        - id: insertLocation
+          description: 必需。 此值可以为“Replace”、“Start”或“End”。
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.Paragraph.insertText_1
+    summary: |-
+      将文本插入到段落中的指定位置。 insertLocation 值可以为“Replace”、“Start”或“End”。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertText(text, insertLocationString)'
+    fullName: 'insertText(text, insertLocationString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertText(text: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: text
+          description: 必需。 要插入的文本。
+          type:
+            - string
+        - id: insertLocationString
+          description: 必需。 此值可以为“Replace”、“Start”或“End”。
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.Paragraph.leftIndent
+    summary: |-
+      获取或设置段落的向左缩进值（以磅值表示）。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: leftIndent
+    fullName: leftIndent
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'leftIndent: number;'
+      return:
+        type:
+          - number
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Word.run(async (context) => {
+            // Indents the first paragraph.
+            context.document.body.paragraphs.getFirst().leftIndent = 75; //units = points
+
+            return context.sync();
+          });
+          ```
+  - uid: word.Word.Paragraph.lineSpacing
+    summary: |-
+      获取或设置指定段落的行间距（以磅值表示）。 在 Word UI 中，该值应除以 12。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: lineSpacing
+    fullName: lineSpacing
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'lineSpacing: number;'
+      return:
+        type:
+          - number
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Word.run(async (context) => {
+            // Adjusts line spacing.
+            context.document.body.paragraphs.getFirst().lineSpacing = 20;
+
+            await context.sync();
+          });
+          ```
+  - uid: word.Word.Paragraph.lineUnitAfter
+    summary: |-
+      获取或设置段落后面的网格线中的间距量。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: lineUnitAfter
+    fullName: lineUnitAfter
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'lineUnitAfter: number;'
+      return:
+        type:
+          - number
+  - uid: word.Word.Paragraph.lineUnitBefore
+    summary: |-
+      获取或设置段落前面的网格线中的间隔量。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: lineUnitBefore
+    fullName: lineUnitBefore
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'lineUnitBefore: number;'
+      return:
+        type:
+          - number
+  - uid: word.Word.Paragraph.load
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+    remarks: |-
+      除了此签名之外, 此方法还具有以下签名:
+
+      `load(option?: string | string[]): Word.Paragraph`-Where 选项是一个逗号分隔的字符串或一个字符串数组, 用于指定要加载的属性。
+
+      `load(option?: { select?: string; expand?: string; }): Word.Paragraph`-Where 选项。选择是一个用逗号分隔的字符串, 用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串, 用于指定要加载的导航属性。
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.Paragraph`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项, 则在跳过指定数目的项目后将启动结果集。
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Word.Interfaces.ParagraphLoadOptions): Word.Paragraph;'
+      return:
+        type:
+          - word.Word.Paragraph
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - word.Word.Interfaces.ParagraphLoadOptions
+  - uid: word.Word.Paragraph.load_1
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Word.Paragraph;'
+      return:
+        type:
+          - word.Word.Paragraph
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: '一个以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。'
+          type:
+            - 'string | string[]'
+  - uid: word.Word.Paragraph.load_2
+    summary: '将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前, 必须先调用。'
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Word.Paragraph;'
+      return:
+        type:
+          - word.Word.Paragraph
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '其中, propertyNamesAndPaths 是用逗号分隔的字符串, 用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串, 用于指定要加载的导航属性。'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: word.Word.Paragraph.outlineLevel
+    summary: |-
+      获取或设置段落的大纲级别。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: outlineLevel
+    fullName: outlineLevel
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'outlineLevel: number;'
+      return:
+        type:
+          - number
+  - uid: word.Word.Paragraph.parentContentControl
+    summary: |-
+      获取包含段落的内容控件。 如果没有父内容控件, 将引发此异常。 只读。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: parentContentControl
+    fullName: parentContentControl
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly parentContentControl: Word.ContentControl;'
+      return:
+        type:
+          - word.Word.ContentControl
+  - uid: word.Word.Paragraph.rightIndent
+    summary: |-
+      获取或设置段落的向右缩进值（以磅值表示）。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: rightIndent
+    fullName: rightIndent
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'rightIndent: number;'
+      return:
+        type:
+          - number
+  - uid: word.Word.Paragraph.search
+    summary: |-
+      在段落对象的作用域上使用指定的 SearchOptions 执行搜索。 搜索结果是 range 对象的集合。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'search(searchText, searchOptions)'
+    fullName: 'search(searchText, searchOptions)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: |-
+        search(searchText: string, searchOptions?: Word.SearchOptions | {
+                    ignorePunct?: boolean;
+                    ignoreSpace?: boolean;
+                    matchCase?: boolean;
+                    matchPrefix?: boolean;
+                    matchSuffix?: boolean;
+                    matchWholeWord?: boolean;
+                    matchWildcards?: boolean;
+                }): Word.RangeCollection;
+      return:
+        type:
+          - word.Word.RangeCollection
+        description: ''
+      parameters:
+        - id: searchText
+          description: 必需。 搜索文本。
+          type:
+            - string
+        - id: searchOptions
+          description: 可选。 用于搜索的选项。
+          type:
+            - |-
+              Word.SearchOptions | {
+                          ignorePunct?: boolean;
+                          ignoreSpace?: boolean;
+                          matchCase?: boolean;
+                          matchPrefix?: boolean;
+                          matchSuffix?: boolean;
+                          matchWholeWord?: boolean;
+                          matchWildcards?: boolean;
+                      }
+  - uid: word.Word.Paragraph.select
+    summary: |-
+      选择并在 Word UI 中导航到段落。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: select(selectionMode)
+    fullName: select(selectionMode)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'select(selectionMode?: Word.SelectionMode): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the paragraphs collection.
+              var paragraphs = context.document.body.paragraphs;
+
+              // Queue a commmand to load the style property for all of the paragraphs.
+              context.load(paragraphs, 'style');
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+
+                  // Queue a command to get the last paragraph a create a
+                  // proxy paragraph object.
+                  var paragraph = paragraphs.items[paragraphs.items.length - 1];
+
+                  // Queue a command to select the paragraph. The Word UI will
+                  // move to the selected paragraph.
+                  paragraph.select();
+
+                  // Synchronize the document state by executing the queued commands,
+                  // and return a promise to indicate task completion.
+                  return context.sync().then(function () {
+                      console.log('Selected the last paragraph.');
+                  });
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```typescript
+          await Word.run(async (context) => {
+            // If select is called with no parameters, it selects the object.
+            context.document.body.paragraphs.getLast().select();
+
+            await context.sync();
+          });
+          ```
+          ```typescript
+          await Word.run(async (context) => {
+            // Select can be at the start or end of a range; this by definition moves the insertion point without selecting the range.
+            context.document.body.paragraphs.getLast().select("End");
+
+            await context.sync();
+          });
+          ```
+      parameters:
+        - id: selectionMode
+          description: 可选。 选择模式可以为“Select”、“Start”或“End”。 “Select”为默认值。
+          type:
+            - word.Word.SelectionMode
+  - uid: word.Word.Paragraph.select_1
+    summary: |-
+      选择并在 Word UI 中导航到段落。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: select(selectionModeString)
+    fullName: select(selectionModeString)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'select(selectionModeString?: "Select" | "Start" | "End"): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: selectionModeString
+          description: 可选。 选择模式可以为“Select”、“Start”或“End”。 “Select”为默认值。
+          type:
+            - '"Select" | "Start" | "End"'
+  - uid: word.Word.Paragraph.set
+    summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+    remarks: |-
+      此方法具有以下附加签名:
+
+      `set(properties: Word.Paragraph): void`
+
+      #### <a name="examples"></a>示例
+
+      ```typescript
+      await Word.run(async (context) => {
+        const paragraph = context.document.body.paragraphs.getFirst();
+        paragraph.set({
+          leftIndent: 30,
+          font: {
+            bold: true,
+            color: "red"
+          }
+        });
+
+        await context.sync();
+      });
+      ```
+      ```typescript
+      await Word.run(async (context) => {
+        const firstParagraph = context.document.body.paragraphs.getFirst();
+        const secondParagraph = firstParagraph.getNext();
+        firstParagraph.load("text, font/color, font/bold, leftIndent");
+
+        await context.sync();
+
+        secondParagraph.set(firstParagraph);
+
+        await context.sync();
+      });
+      ```
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.ParagraphUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: '一个 JavaScript 对象, 其属性的结构 isomorphically 为在其上调用方法的对象的属性。'
+          type:
+            - Interfaces.ParagraphUpdateData
+        - id: options
+          description: '提供一个选项, 以在 properties 对象尝试设置任何只读属性时禁止显示错误。'
+          type:
+            - OfficeExtension.UpdateOptions
+  - uid: word.Word.Paragraph.set_1
+    summary: 基于现有加载的对象同时设置该对象的多个属性。
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Word.Paragraph): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - word.Word.Paragraph
+  - uid: word.Word.Paragraph.spaceAfter
+    summary: |-
+      获取或设置段落后面的间距（以磅值表示）。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: spaceAfter
+    fullName: spaceAfter
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'spaceAfter: number;'
+      return:
+        type:
+          - number
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Word.run(async (context) => {
+            // Adjust space between paragraphs.
+            context.document.body.paragraphs.getFirst().spaceAfter = 20;
+
+            await context.sync();
+          });
+          ```
+  - uid: word.Word.Paragraph.spaceBefore
+    summary: |-
+      获取或设置段落前面的间距（以磅值表示）。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: spaceBefore
+    fullName: spaceBefore
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'spaceBefore: number;'
+      return:
+        type:
+          - number
+  - uid: word.Word.Paragraph.style
+    summary: |-
+      获取或设置段落的样式名称。 请对自定义样式和本地化样式名称使用此属性。 若要使用可以在区域设置之间移植的嵌入样式，请参阅“styleBuiltIn”属性。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: style
+    fullName: style
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'style: string;'
+      return:
+        type:
+          - string
+  - uid: word.Word.Paragraph.text
+    summary: |-
+      获取段落的文本。 只读。
+
+      \[[API 集: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: text
+    fullName: text
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly text: string;'
+      return:
+        type:
+          - string
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Word.run(async (context) => {
+            // The collection of paragraphs of the current selection returns the full paragraphs contained in it.
+            let paragraph = context.document.getSelection().paragraphs.getFirst();
+            paragraph.load("text");
+
+            await context.sync();
+            console.log(paragraph.text);
+          });
+          ```
+  - uid: word.Word.Paragraph.toJSON
+    summary: '重写 JavaScript `toJSON()`方法, 以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来, 也会调用传递`toJSON`给它的对象的方法。尽管原始的 Word 段落对象是 API 对象, 但`toJSON`方法返回一个无格式的 JavaScript 对象 (类型为`Word.Interfaces.ParagraphData`<!-- -->), 其中包含原始对象中所有已加载的子属性的浅表副本。'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Word.Interfaces.ParagraphData;'
+      return:
+        type:
+          - word.Word.Interfaces.ParagraphData
+        description: ''
+  - uid: word.Word.Paragraph.track
+    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。
+    name: track()
+    fullName: track()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'track(): Word.Paragraph;'
+      return:
+        type:
+          - word.Word.Paragraph
+        description: ''
+  - uid: word.Word.Paragraph.untrack
+    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前，你需要调用“context.sync()”。
+    name: untrack()
+    fullName: untrack()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'untrack(): Word.Paragraph;'
+      return:
+        type:
+          - word.Word.Paragraph
+        description: ''

@@ -1,0 +1,137 @@
+### YamlMime:UniversalReference
+items:
+  - uid: office.OfficeExtension.LoadOption
+    summary: '指定应加载对象的哪些属性。 当执行 sync () 方法时, 将发生此负载。 这将同步 Office 对象与对应的 JavaScript 代理对象之间的状态。'
+    remarks: |-
+      对于 Word, 指定属性和分页信息的首选方法是使用字符串文字。 前两个示例说明了请求段落集合中段落的文本和字体大小属性的首选方法：
+
+      `context.load(paragraphs, 'text, font/size');`
+
+      `paragraphs.load('text, font/size');`
+
+      下面是使用对象表示法（包括分页）的类似示例：
+
+      `context.load(paragraphs, {select: 'text, font/size', expand: 'font', top: 50, skip: 0});`
+
+      `paragraphs.load({select: 'text, font/size', expand: 'font', top: 50, skip: 0});`
+
+      请注意，如果我们未在 select 语句中指定字体对象的特定属性，expand 语句本身将指示需加载所有字体属性。
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // This example shows how to get the paragraphs in the Word document
+      // along with their text and font size properties.
+
+      // Run a batch operation against the Word object model.
+      Word.run(function (context) {
+          // Create a proxy object for the paragraphs collection.
+          var paragraphs = context.document.body.paragraphs;
+
+          // Queue a commmand to load the text and font properties.
+          // It is best practice to always specify the property set.
+          // Otherwise, all properties are returned on the object.
+          context.load(paragraphs, 'text, font/size');
+
+          // Synchronize the document state by executing the queued commands,
+          // and return a promise to indicate task completion.
+          return context.sync().then(function () {
+              // Insert code that works with the paragraphs loaded by context.load().
+          })
+      })
+      .catch(function (error) {
+          console.log('Error: ' + JSON.stringify(error));
+          if (error instanceof OfficeExtension.Error) {
+              console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+          }
+      });
+      ```
+    name: OfficeExtension.LoadOption
+    fullName: OfficeExtension.LoadOption
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    children:
+      - office.OfficeExtension.LoadOption.expand
+      - office.OfficeExtension.LoadOption.select
+      - office.OfficeExtension.LoadOption.skip
+      - office.OfficeExtension.LoadOption.top
+  - uid: office.OfficeExtension.LoadOption.expand
+    summary: '以逗号分隔的字符串或字符串数组, 用于指定要加载的导航属性。'
+    name: expand
+    fullName: expand
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'expand?: string | string[];'
+      return:
+        type:
+          - 'string | string[]'
+  - uid: office.OfficeExtension.LoadOption.select
+    summary: '以逗号分隔的字符串或字符串数组, 用于指定要加载的属性。'
+    name: select
+    fullName: select
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'select?: string | string[];'
+      return:
+        type:
+          - 'string | string[]'
+  - uid: office.OfficeExtension.LoadOption.skip
+    summary: '仅对集合类型可用。 指定要跳过且不包含在结果中的集合中的项目数。 如果指定 top, 则在跳过指定数目的项目后, 将启动结果集。'
+    name: skip
+    fullName: skip
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'skip?: number;'
+      return:
+        type:
+          - number
+  - uid: office.OfficeExtension.LoadOption.top
+    summary: 仅对集合类型可用。 指定结果中可以包含的集合项最大数量。
+    name: top
+    fullName: top
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'top?: number;'
+      return:
+        type:
+          - number
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // This OneNote example shows how to get the page title and indentation level
+          // of the top five pages in the current section.
+          OneNote.run(function (context) {
+              // Get the pages in the current section.
+              var pages = context.application.getActiveSection().pages;
+
+              // Queue a command to load the pages.           
+              pages.load({ "select":"title,pageLevel", "top":5, "skip":0 });
+              return context.sync()
+                  .then(function() {
+                      // Iterate through the collection of pages.    
+                      $.each(pages.items, function(index, page) {
+                          // Show some properties.
+                          console.log("Page title: " + page.title);
+                          console.log("Indentation level: " + page.pageLevel);
+                      });
+                  }).catch(function(error) {
+                      console.log("Error: " + error);
+                      if (error instanceof OfficeExtension.Error) {
+                          console.log("Debug info: " + JSON.stringify(error.debugInfo));
+                      }
+                  })
+              });
+          ```

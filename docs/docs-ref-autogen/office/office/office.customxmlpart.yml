@@ -1,0 +1,493 @@
+### YamlMime:UniversalReference
+items:
+  - uid: office.Office.CustomXmlPart
+    summary: '表示[CustomXmlParts](xref:office.Office.CustomXmlParts)集合中的单个 CustomXMLPart。'
+    remarks: '**主机**: Word'
+    name: Office.CustomXmlPart
+    fullName: Office.CustomXmlPart
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    children:
+      - office.Office.CustomXmlPart.addHandlerAsync
+      - office.Office.CustomXmlPart.addHandlerAsync_1
+      - office.Office.CustomXmlPart.deleteAsync
+      - office.Office.CustomXmlPart.deleteAsync_1
+      - office.Office.CustomXmlPart.getNodesAsync
+      - office.Office.CustomXmlPart.getNodesAsync_1
+      - office.Office.CustomXmlPart.getXmlAsync
+      - office.Office.CustomXmlPart.getXmlAsync_1
+      - office.Office.CustomXmlPart.removeHandlerAsync
+      - office.Office.CustomXmlPart.removeHandlerAsync_1
+      - office.Office.CustomXmlPart.builtIn
+      - office.Office.CustomXmlPart.id
+      - office.Office.CustomXmlPart.namespaceManager
+  - uid: office.Office.CustomXmlPart.addHandlerAsync
+    summary: 使用指定的事件类型将事件处理程序添加到对象。
+    remarks: |-
+      **要求集**: [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)
+
+      只要每个事件处理程序函数的名称是唯一的, 您就可以为指定的事件类型添加多个事件处理程序。
+    name: 'addHandlerAsync(eventType, handler, options, callback)'
+    fullName: 'addHandlerAsync(eventType, handler, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addHandlerAsync(eventType: Office.EventType, handler: (result: any) => void, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: eventType
+          description: '指定要添加事件的类型。 对于 CustomXmlPart 对象, 可将事件 "参数指定为`Office.EventType.NodeDeleted`<!-- -->, `Office.EventType.NodeInserted`<!-- -->, 并`Office.EventType.NodeReplaced`<!-- -->.'
+          type:
+            - office.Office.EventType
+        - id: handler
+          description: '要添加的事件处理程序函数, 其唯一的参数的类型为[NodeDeletedEventArgs](xref:office.Office.NodeDeletedEventArgs)<!-- -->、 [NodeInsertedEventArgs](xref:office.Office.NodeInsertedEventArgs)<!-- -->或[NodeReplacedEventArgs](xref:office.Office.NodeReplacedEventArgs)'
+          type:
+            - '(result: any) => void'
+        - id: options
+          description: '提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。'
+          type:
+            - office.Office.AsyncContextOptions
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.CustomXmlPart.addHandlerAsync_1
+    summary: 使用指定的事件类型将事件处理程序添加到对象。
+    remarks: |-
+      **要求集**: [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)
+
+      只要每个事件处理程序函数的名称是唯一的, 您就可以为指定的事件类型添加多个事件处理程序。
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // To add an event handler for the NodeDeleted event, use the addHandlerAsync method of the CustomXmlPart object.
+      function addNodeDeletedEvent() {
+          Office.context.document.customXmlParts.getByIdAsync(
+              "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
+              var xmlPart = result.value;
+              xmlPart.addHandlerAsync(Office.EventType.NodeDeleted, function (eventArgs) {
+                  write("A node has been deleted.");
+              });
+          });
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message;
+      }
+      ```
+      ```javascript
+      // To add an event handler for the NodeInserted event, use the addHandlerAsync method of the CustomXmlPart object.
+      function addNodeInsertedEvent() {
+          Office.context.document.customXmlParts.getByIdAsync(
+              "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
+              var xmlPart = result.value;
+              xmlPart.addHandlerAsync(Office.EventType.NodeInserted, function (eventArgs) {
+                  write("A node has been inserted.");
+              });
+          });
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message;
+      }
+      ```
+      ```javascript
+      // To add an event handler for the NodeReplaced event, use the addHandlerAsync method of the CustomXmlPart object.
+      function addNodeReplacedEvent() {
+          Office.context.document.customXmlParts.getByIdAsync(
+              "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
+              var xmlPart = result.value;
+              xmlPart.addHandlerAsync(Office.EventType.NodeReplaced, function (eventArgs) {
+                  write("A node has been replaced.");
+              });
+          });
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message;
+      }
+      ```
+    name: 'addHandlerAsync(eventType, handler, callback)'
+    fullName: 'addHandlerAsync(eventType, handler, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addHandlerAsync(eventType: Office.EventType, handler: (result: any) => void, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: eventType
+          description: '指定要添加事件的类型。 对于 CustomXmlPart 对象, 可将事件 "参数指定为`Office.EventType.NodeDeleted`<!-- -->, `Office.EventType.NodeInserted`<!-- -->, 并`Office.EventType.NodeReplaced`<!-- -->.'
+          type:
+            - office.Office.EventType
+        - id: handler
+          description: '要添加的事件处理程序函数, 其唯一的参数的类型为[NodeDeletedEventArgs](xref:office.Office.NodeDeletedEventArgs)<!-- -->、 [NodeInsertedEventArgs](xref:office.Office.NodeInsertedEventArgs)<!-- -->或[NodeReplacedEventArgs](xref:office.Office.NodeReplacedEventArgs)'
+          type:
+            - '(result: any) => void'
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.CustomXmlPart.deleteAsync
+    summary: 删除自定义 XML 部件。
+    remarks: '**要求集**: [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
+    name: 'deleteAsync(options, callback)'
+    fullName: 'deleteAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'deleteAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: '提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。'
+          type:
+            - office.Office.AsyncContextOptions
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.CustomXmlPart.deleteAsync_1
+    summary: 删除自定义 XML 部件。
+    remarks: |-
+      **要求集**: [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      function deleteXMLPart() {
+          Office.context.document.customXmlParts.getByIdAsync(
+              "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
+              var xmlPart = result.value;
+              xmlPart.deleteAsync(function (eventArgs) {
+                  write("The XML Part has been deleted.");
+              });
+          });
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: deleteAsync(callback)
+    fullName: deleteAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'deleteAsync(callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.CustomXmlPart.getNodesAsync
+    summary: 异步获取此自定义 XML 部件中与指定 XPath 匹配的任何 CustomXmlNodes。
+    remarks: '**要求集**: [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
+    name: 'getNodesAsync(xPath, options, callback)'
+    fullName: 'getNodesAsync(xPath, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getNodesAsync(xPath: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<CustomXmlNode[]>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: xPath
+          description: 返回指定你想要的节点的 XPath 表达式。 必需。
+          type:
+            - string
+        - id: options
+          description: '提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。'
+          type:
+            - office.Office.AsyncContextOptions
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是 CustomXmlNode 对象的数组, 这些对象代表传递给 xpath 参数的 xpath 表达式指定的节点。'
+          type:
+            - '(result: AsyncResult<CustomXmlNode[]>) => void'
+  - uid: office.Office.CustomXmlPart.getNodesAsync_1
+    summary: 异步获取此自定义 XML 部件中与指定 XPath 匹配的任何 CustomXmlNodes。
+    remarks: |-
+      **要求集**: [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      function showXmlNodeType() {
+          Office.context.document.customXmlParts.getByIdAsync(
+              "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
+              var xmlPart = result.value;
+              xmlPart.getNodesAsync('*/*', function (nodeResults) {
+                  for (i = 0; i < nodeResults.value.length; i++) {
+                      var node = nodeResults.value[i];
+                      write(node.nodeType);
+                  }
+              });
+          });
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: 'getNodesAsync(xPath, callback)'
+    fullName: 'getNodesAsync(xPath, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getNodesAsync(xPath: string, callback?: (result: AsyncResult<CustomXmlNode[]>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: xPath
+          description: 返回指定你想要的节点的 XPath 表达式。 必需。
+          type:
+            - string
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是 CustomXmlNode 对象的数组, 这些对象代表传递给 xpath 参数的 xpath 表达式指定的节点。'
+          type:
+            - '(result: AsyncResult<CustomXmlNode[]>) => void'
+  - uid: office.Office.CustomXmlPart.getXmlAsync
+    summary: 异步获取此自定义 XML 部件内的 XML。
+    remarks: '**要求集**: [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
+    name: 'getXmlAsync(options, callback)'
+    fullName: 'getXmlAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getXmlAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: '提供一个选项, 用于保留任何类型的未更改的上下文数据, 以供在回调中使用。'
+          type:
+            - office.Office.AsyncContextOptions
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是一个字符串, 其中包含引用的 CustomXmlPart 对象的 XML。'
+          type:
+            - '(result: AsyncResult<string>) => void'
+  - uid: office.Office.CustomXmlPart.getXmlAsync_1
+    summary: 异步获取此自定义 XML 部件内的 XML。
+    remarks: |-
+      **要求集**: [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      function showXMLPartInnerXML() {
+          Office.context.document.customXmlParts.getByIdAsync(
+              "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
+              var xmlPart = result.value;
+              xmlPart.getXmlAsync(function (eventArgs) {
+                  write(eventArgs.value);
+              });
+          });
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: getXmlAsync(callback)
+    fullName: getXmlAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getXmlAsync(callback?: (result: AsyncResult<string>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->. 结果`value`的属性是一个字符串, 其中包含引用的 CustomXmlPart 对象的 XML。'
+          type:
+            - '(result: AsyncResult<string>) => void'
+  - uid: office.Office.CustomXmlPart.removeHandlerAsync
+    summary: 删除指定事件类型的事件处理程序。
+    remarks: '**要求集**: [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
+    name: 'removeHandlerAsync(eventType, handler, options, callback)'
+    fullName: 'removeHandlerAsync(eventType, handler, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'removeHandlerAsync(eventType: Office.EventType, handler?: (result: any) => void, options?: RemoveHandlerOptions, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: eventType
+          description: '指定要移除事件的类型。 对于 CustomXmlPart 对象, 可将事件 "参数指定为`Office.EventType.NodeDeleted`<!-- -->, `Office.EventType.NodeInserted`<!-- -->, 并`Office.EventType.NodeReplaced`<!-- -->.'
+          type:
+            - office.Office.EventType
+        - id: handler
+          description: 要删除的处理程序的名称。
+          type:
+            - '(result: any) => void'
+        - id: options
+          description: 提供用于确定要删除的事件处理程序或处理程序的选项。
+          type:
+            - office.Office.RemoveHandlerOptions
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.CustomXmlPart.removeHandlerAsync_1
+    summary: 删除指定事件类型的事件处理程序。
+    remarks: |-
+      **要求集**: [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      function removeNodeInsertedEventHandler() {
+          Office.context.document.customXmlParts.getByIdAsync(
+              "{3BC85265-09D6-4205-B665-8EB239A8B9A1}",
+              function (result) {
+                  var xmlPart = result.value;
+                  xmlPart.removeHandlerAsync(Office.EventType.DataNodeInserted, {handler:myHandler});
+          });
+      }
+      ```
+    name: 'removeHandlerAsync(eventType, handler, callback)'
+    fullName: 'removeHandlerAsync(eventType, handler, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'removeHandlerAsync(eventType: Office.EventType, handler?: (result: any) => void, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: eventType
+          description: '指定要移除事件的类型。 对于 CustomXmlPart 对象, 可将事件 "参数指定为`Office.EventType.NodeDeleted`<!-- -->, `Office.EventType.NodeInserted`<!-- -->, 并`Office.EventType.NodeReplaced`<!-- -->.'
+          type:
+            - office.Office.EventType
+        - id: handler
+          description: 要删除的处理程序的名称。
+          type:
+            - '(result: any) => void'
+        - id: callback
+          description: '可选。 回调返回时调用的函数, 其唯一的参数的类型为 " [Office. AsyncResult](xref:office.Office.AsyncResult) "<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.CustomXmlPart.builtIn
+    summary: '如果内置了自定义 XML 部件, 则为 True; 否则为 false。否则为 false。'
+    name: builtIn
+    fullName: builtIn
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'builtIn: boolean;'
+      return:
+        type:
+          - boolean
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          function showXMLPartBuiltIn() {
+              Office.context.document.customXmlParts.getByIdAsync(
+                  "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
+                  var xmlPart = result.value;
+                  write(xmlPart.builtIn);
+              });
+          }
+
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.CustomXmlPart.id
+    summary: 获取 CustomXMLPart 的 GUID。
+    name: id
+    fullName: id
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'id: string;'
+      return:
+        type:
+          - string
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          function showXMLPartBuiltId() {
+              Office.context.document.customXmlParts.getByIdAsync(
+                  "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
+                  var xmlPart = result.value;
+                  write(xmlPart.id);
+              });
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.CustomXmlPart.namespaceManager
+    summary: '获取命名空间前缀映射的集合 ([CustomXmlPrefixMappings](xref:office.Office.CustomXmlPrefixMappings)<!-- -->) 用于当前 CustomXmlPart。'
+    name: namespaceManager
+    fullName: namespaceManager
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'namespaceManager: CustomXmlPrefixMappings;'
+      return:
+        type:
+          - office.Office.CustomXmlPrefixMappings
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          function setXMLPartNamespaceManagerNamespace() {
+              Office.context.document.customXmlParts.getByIdAsync(
+                  "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
+                  var xmlPart = result.value;
+                  xmlPart.namespaceManager.addNamespaceAsync("myPrefix", "myNamespace");
+              });
+          }
+          ```
