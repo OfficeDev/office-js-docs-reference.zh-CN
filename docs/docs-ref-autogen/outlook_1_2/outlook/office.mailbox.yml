@@ -29,6 +29,7 @@ items:
       - Outlook.Office.Mailbox.displayAppointmentForm
       - Outlook.Office.Mailbox.displayMessageForm
       - Outlook.Office.Mailbox.displayNewAppointmentForm
+      - Outlook.Office.Mailbox.getCallbackTokenAsync
       - Outlook.Office.Mailbox.getUserIdentityTokenAsync
       - Outlook.Office.Mailbox.makeEwsRequestAsync
       - Outlook.Office.Mailbox.diagnostics
@@ -228,11 +229,75 @@ items:
           description: 描述新约会的 AppointmentForm。 所有属性都是可选的。
           type:
             - Outlook.Office.AppointmentForm
+  - uid: Outlook.Office.Mailbox.getCallbackTokenAsync
+    summary: |-
+      获取一个字符串，其中包含用于从 Exchange Server 获取附件或项目的令牌。
+
+      Mailbox.getcallbacktokenasync 方法进行异步调用, 以从承载用户邮箱的 Exchange 服务器中获取不透明令牌。 回调令牌的生存期为 5 分钟。
+
+      令牌作为`asyncResult.value`属性中的字符串返回。
+
+      可以将令牌和附件标识符或项标识符传递到第三方系统。 第三方系统使用令牌作为持有者身份验证令牌调用 Exchange Web 服务 (EWS) GetAttachment 或 GetItem，以返回附件或项目。 例如，可以创建远程服务来获取选定项目中的附件。
+
+      您的应用程序必须在其清单中指定了 ReadItem 权限, 才能在阅读模式下调用 Mailbox.getcallbacktokenasync 方法。
+
+      在撰写模式下, 必须调用 saveAsync 方法来获取要传递给 Mailbox.getcallbacktokenasync 方法的项目标识符。 您的应用程序必须具有 ReadWriteItem 权限, 才能调用 saveAsync 方法。
+
+      \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **错误**:
+
+      - HTTPRequestFailure: 请求失败。 请查看 HTTP 错误代码的 diagnostics 对象。
+
+      - InternalServerError: Exchange 服务器返回一个错误。 有关详细信息, 请参阅 diagnostics 对象。
+
+      - NetworkError: 用户不再连接到网络。 请检查你的网络连接, 然后重试。
+
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      function getCallbackToken() {
+          var options = {
+              isRest: true,
+              asyncContext: { message: 'Hello World!' }
+          };
+
+          Office.context.mailbox.getCallbackTokenAsync(options, cb);
+      }
+
+      function cb(asyncResult) {
+          var token = asyncResult.value;
+      }
+      ```
+    name: 'getCallbackTokenAsync(callback, userContext)'
+    fullName: 'getCallbackTokenAsync(callback, userContext)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getCallbackTokenAsync(callback: (asyncResult: Office.AsyncResult<string>) => void, userContext?: any): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: '方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 令牌作为`asyncResult.value`属性中的字符串返回。 如果出现错误, 则`asyncResult.error`和`asyncResult.diagnostics`属性可能会提供其他信息。'
+          type:
+            - '(asyncResult: Office.AsyncResult<string>) => void'
+        - id: userContext
+          description: 可选。 传递给异步方法的任何状态数据。
+          type:
+            - any
   - uid: Outlook.Office.Mailbox.getUserIdentityTokenAsync
     summary: |-
       获取用于标识用户和 Office 外接程序的令牌。
 
-      令牌作为 asyncResult 属性中的字符串提供。
+      令牌作为`asyncResult.value`属性中的字符串返回。
 
       \[[API 集: 邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -241,6 +306,14 @@ items:
       **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: 撰写或阅读
 
       GetUserIdentityTokenAsync 方法返回一个令牌, 可用于[通过第三方系统识别和验证外接程序和用户](https://docs.microsoft.com/outlook/add-ins/authentication)<!-- -->.
+
+      **错误**:
+
+      - HTTPRequestFailure: 请求失败。 请查看 HTTP 错误代码的 diagnostics 对象。
+
+      - InternalServerError: Exchange 服务器返回一个错误。 有关详细信息, 请参阅 diagnostics 对象。
+
+      - NetworkError: 用户不再连接到网络。 请检查你的网络连接, 然后重试。
 
       #### <a name="examples"></a>示例
 
@@ -266,7 +339,7 @@ items:
         description: ''
       parameters:
         - id: callback
-          description: '方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 令牌作为 `asyncResult.value` 属性中的字符串提供。 如果出现错误, 则`asyncResult.error`和`asyncResult.diagnostics`属性可能会提供其他信息。'
+          description: '方法完成后, 将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 令牌作为`asyncResult.value`属性中的字符串返回。 如果出现错误, 则`asyncResult.error`和`asyncResult.diagnostics`属性可能会提供其他信息。'
           type:
             - '(asyncResult: Office.AsyncResult<string>) => void'
         - id: userContext
@@ -384,9 +457,9 @@ items:
 
       包含以下成员:
 
-      - hostName (string): 一个表示主机应用程序的名称的字符串。 它是以下值之一: "Outlook"、"OutlookWebApp"、"OutlookIOS" 或 "OutlookAndroid"。
+      - hostName (string): 一个表示主机应用程序的名称的字符串。 它应为以下值之一: "Outlook"、"OutlookWebApp"、"OutlookIOS" 或 "OutlookAndroid"。 **注意**: 针对桌面客户端 (即 Windows 和 Mac) 上的 outlook 返回了 "outlook" 值。
 
-      - Diagnostics.hostversion (字符串): 表示主机应用程序或 Exchange Server 的版本的字符串。 如果邮件外接程序在桌面客户端或 iOS 上的 Outlook 中运行, 则 Diagnostics.hostversion 属性将返回主机应用程序 (Outlook) 的版本。 在 Outlook 网页版中, 该属性返回的是 Exchange 服务器的版本。 一个示例是字符串 "15.0.468.0"。
+      - Diagnostics.hostversion (string): 表示主机应用程序或 Exchange Server 的版本的字符串 (例如, "15.0.468.0")。 如果邮件外接程序在桌面或移动客户端上的 Outlook 中运行, 则 Diagnostics.hostversion 属性将返回主机应用程序 (Outlook) 的版本。 在 Outlook 网页版中, 该属性返回的是 Exchange 服务器的版本。
 
       - OWAView (MailboxEnums 或 string): 代表 web 上的 Outlook 当前视图的枚举 (或字符串文字)。 如果主机应用程序不是 web 上的 Outlook, 则访问此属性将导致未定义。 Web 上的 Outlook 具有三个视图 ("OneColumn"-在屏幕变宽时显示, "TwoColumns"-当屏幕变宽时显示, 在屏幕宽度显示为 "ThreeColumns" 时显示) 与屏幕和窗口的宽度相对应, 以及可以显示的列。
 
