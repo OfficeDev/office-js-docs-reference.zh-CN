@@ -19,11 +19,13 @@ items:
       - office.Office.AddinCommands.Event.source
   - uid: office.Office.AddinCommands.Event.completed
     summary: |-
-      指示外接程序已完成由外接程序命令按钮或事件处理程序触发的处理。
+      指示外接程序已完成处理, 并将自动关闭。
 
-      此方法必须在由外接程序命令 (由 xsi: type 属性设置为 ExecuteFunction 的 Action 元素定义) 调用的函数末尾调用。 调用此方法会向主机客户端发出信号，指示函数已完成并且它可以清理调用该函数所涉及的任何状态。 例如，如果用户在调用此方法之前关闭 Outlook，Outlook 将警告函数仍在执行。
+      此方法必须在由以下函数调用的函数末尾调用。
 
-      事件处理完成后，必须在由 Office.context.mailbox.addHandlerAsync 添加的事件处理程序中调用此方法。
+      - 无 UI 按钮 (即, 使用 Action 元素定义的外接程序命令, 其中 xsi: type 属性设置为 ExecuteFunction)
+
+      - [事件扩展点](https://docs.microsoft.com/office/dev/add-ins/reference/manifest/extensionpoint#events)中定义的[事件](https://docs.microsoft.com/office/dev/add-ins/reference/manifest/event)<!-- -->(例如, `ItemSend`事件
 
       \[[API 集: 邮箱 1.3](/office/dev/add-ins/reference/javascript-api-for-office)\]
     remarks: |-
@@ -36,28 +38,29 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      function processItem (event) {
+      // For the following example, the processItem function is
+      // defined in the FunctionFile referenced from the add-in manifest,
+      // and maps to the FunctionName of the action in the associated button control.
+      function processItem(event) {
           // Do some processing
 
           event.completed();
       }
-
-      // In the following example, the checkMessage function has
-      // been registered as an event handler for ItemSend.
+      ```
+      ```javascript
+      // For the following example, the checkMessage function was
+      // registered as an event handler for ItemSend.
       function checkMessage(event) {
-          // Get the item being sent
+          // Get the item being sent.
           var outgoingMsg = Office.context.mailbox.item;
 
-          // Check if subject contains "BLOCK"
+          // Check if subject contains "BLOCK".
           outgoingMsg.subject.getAsync(function (result) {
-              // Subject is in result.value
-              if (result.value.indexOf('BLOCK') != -1) {
-                  // Value is found, stop send
-                  event.completed({allowEvent = false});
-              } else {
-                  // Value wasn't found, allow send
-                  event.completed({allowEvent = true});
-              }
+              // Subject is in `result.value`.
+              // If search term "BLOCK" is found, don't send message.
+              const notFound = -1;
+              var allowEvent = (result.value.indexOf('BLOCK') === notFound);
+              event.completed({allowEvent: allowEvent});
           });
       }
       ```
