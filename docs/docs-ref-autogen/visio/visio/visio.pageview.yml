@@ -1,0 +1,365 @@
+### YamlMime:UniversalReference
+items:
+  - uid: 'visio!Visio.PageView:class'
+    summary: |-
+      表示 PageView 类。
+
+      \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: Visio.PageView
+    fullName: Visio.PageView
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'visio!OfficeExtension.ClientObject:class'
+    package: visio!
+    children:
+      - 'visio!Visio.PageView#centerViewportOnShape:member(1)'
+      - 'visio!Visio.PageView#context:member'
+      - 'visio!Visio.PageView#fitToWindow:member(1)'
+      - 'visio!Visio.PageView#getPosition:member(1)'
+      - 'visio!Visio.PageView#getSelection:member(1)'
+      - 'visio!Visio.PageView#isShapeInViewport:member(1)'
+      - 'visio!Visio.PageView#load:member(1)'
+      - 'visio!Visio.PageView#load:member(2)'
+      - 'visio!Visio.PageView#load:member(3)'
+      - 'visio!Visio.PageView#set:member(1)'
+      - 'visio!Visio.PageView#set:member(2)'
+      - 'visio!Visio.PageView#setPosition:member(1)'
+      - 'visio!Visio.PageView#toJSON:member(1)'
+      - 'visio!Visio.PageView#zoom:member'
+  - uid: 'visio!Visio.PageView#centerViewportOnShape:member(1)'
+    summary: |-
+      平移 Visio 绘图，将指定的形状放置在视图中心位置。
+
+      \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: centerViewportOnShape(ShapeId)
+    fullName: centerViewportOnShape(ShapeId)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'centerViewportOnShape(ShapeId: number): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Visio.run(session, function (ctx) {
+              var activePage = ctx.document.getActivePage();
+              var shape = activePage.shapes.getItem(0);
+              activePage.view.centerViewportOnShape(shape.Id);
+              return ctx.sync();
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: ShapeId
+          description: 在中心位置显示的形状的 ID。
+          type:
+            - number
+  - uid: 'visio!Visio.PageView#context:member'
+    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - 'visio!Visio.RequestContext:class'
+  - uid: 'visio!Visio.PageView#fitToWindow:member(1)'
+    summary: |-
+      让页面填满当前窗口。
+
+      \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: fitToWindow()
+    fullName: fitToWindow()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'fitToWindow(): void;'
+      return:
+        type:
+          - void
+        description: ''
+  - uid: 'visio!Visio.PageView#getPosition:member(1)'
+    summary: |-
+      返回在视图中指定页面位置的 Position 对象。
+
+      \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: getPosition()
+    fullName: getPosition()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getPosition(): OfficeExtension.ClientResult<Visio.Position>;'
+      return:
+        type:
+          - 'visio!Visio.PageView#getPosition~0:complex'
+        description: ''
+  - uid: 'visio!Visio.PageView#getSelection:member(1)'
+    summary: |-
+      表示页面中的 Selection 对象。
+
+      \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: getSelection()
+    fullName: getSelection()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSelection(): Visio.Selection;'
+      return:
+        type:
+          - 'visio!Visio.Selection:class'
+        description: ''
+  - uid: 'visio!Visio.PageView#isShapeInViewport:member(1)'
+    summary: |-
+      检查形状是否在页面的视区内。
+
+      \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: isShapeInViewport(Shape)
+    fullName: isShapeInViewport(Shape)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'isShapeInViewport(Shape: Visio.Shape): OfficeExtension.ClientResult<boolean>;'
+      return:
+        type:
+          - 'visio!Visio.PageView#isShapeInViewport~0:complex'
+        description: ''
+      parameters:
+        - id: Shape
+          description: 要检查的形状。
+          type:
+            - 'visio!Visio.Shape:class'
+  - uid: 'visio!Visio.PageView#load:member(1)'
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+    remarks: |-
+      除了此签名之外，此方法还具有以下签名：
+
+      `load(option?: string | string[]): Visio.PageView`-Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
+
+      `load(option?: { select?: string; expand?: string; }): Visio.PageView`-Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.PageView`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Visio.Interfaces.PageViewLoadOptions): Visio.PageView;'
+      return:
+        type:
+          - 'visio!Visio.PageView:class'
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - 'visio!Visio.Interfaces.PageViewLoadOptions:interface'
+  - uid: 'visio!Visio.PageView#load:member(2)'
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Visio.PageView;'
+      return:
+        type:
+          - 'visio!Visio.PageView:class'
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+          type:
+            - 'string | string[]'
+  - uid: 'visio!Visio.PageView#load:member(3)'
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Visio.PageView;'
+      return:
+        type:
+          - 'visio!Visio.PageView:class'
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: 其中，propertyNamesAndPaths 是用逗号分隔的字符串，用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: 'visio!Visio.PageView#set:member(1)'
+    summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+    remarks: |-
+      此方法具有以下附加签名：
+
+      `set(properties: Visio.PageView): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.PageViewUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
+          type:
+            - 'visio!Visio.Interfaces.PageViewUpdateData:interface'
+        - id: options
+          description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
+          type:
+            - 'visio!OfficeExtension.UpdateOptions:interface'
+  - uid: 'visio!Visio.PageView#set:member(2)'
+    summary: 基于现有加载的对象同时设置该对象的多个属性。
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Visio.PageView): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - 'visio!Visio.PageView:class'
+  - uid: 'visio!Visio.PageView#setPosition:member(1)'
+    summary: |-
+      在视图中设置页面的位置。
+
+      \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: setPosition(Position)
+    fullName: setPosition(Position)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setPosition(Position: Visio.Position): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: Position
+          description: 指定页面在视图中的新位置的位置对象。
+          type:
+            - 'visio!Visio.Position:interface'
+  - uid: 'visio!Visio.PageView#toJSON:member(1)'
+    summary: 重写 JavaScript `toJSON()`方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也会调用传递`toJSON`给它的对象的方法。尽管原始 PageView 对象是 API 对象，但`toJSON`方法返回一个无格式的 JavaScript 对象（类型为`Visio.Interfaces.PageViewData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Visio.Interfaces.PageViewData;'
+      return:
+        type:
+          - 'visio!Visio.Interfaces.PageViewData:interface'
+        description: ''
+  - uid: 'visio!Visio.PageView#zoom:member'
+    summary: |-
+      获取和设置页面的缩放级别。 该值可以介于10和400之间，表示缩放百分比。
+
+      \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: zoom
+    fullName: zoom
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'zoom: number;'
+      return:
+        type:
+          - number
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Visio.run(session, function (ctx) {
+              var activePage = ctx.document.getActivePage();
+              activePage.view.zoom = 300;
+              return ctx.sync();
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+references:
+  - uid: 'visio!OfficeExtension.ClientObject:class'
+    name: OfficeExtension.ClientObject
+  - uid: 'visio!Visio.RequestContext:class'
+    name: RequestContext
+  - uid: 'visio!Visio.PageView#getPosition~0:complex'
+    name: OfficeExtension.ClientResult<Visio.Position>
+    fullName: OfficeExtension.ClientResult<Visio.Position>
+    spec.typeScript:
+      - uid: 'visio!OfficeExtension.ClientResult:class'
+        name: OfficeExtension.ClientResult
+        fullName: OfficeExtension.ClientResult
+      - name: <
+        fullName: <
+      - uid: 'visio!Visio.Position:interface'
+        name: Visio.Position
+        fullName: Visio.Position
+      - name: '>'
+        fullName: '>'
+  - uid: 'visio!Visio.Selection:class'
+    name: Visio.Selection
+  - uid: 'visio!Visio.PageView#isShapeInViewport~0:complex'
+    name: OfficeExtension.ClientResult<boolean>
+    fullName: OfficeExtension.ClientResult<boolean>
+    spec.typeScript:
+      - uid: 'visio!OfficeExtension.ClientResult:class'
+        name: OfficeExtension.ClientResult
+        fullName: OfficeExtension.ClientResult
+      - name: <boolean>
+        fullName: <boolean>
+  - uid: 'visio!Visio.Shape:class'
+    name: Visio.Shape
+  - uid: 'visio!Visio.PageView:class'
+    name: Visio.PageView
+  - uid: 'visio!Visio.Interfaces.PageViewLoadOptions:interface'
+    name: Visio.Interfaces.PageViewLoadOptions
+  - uid: 'visio!Visio.Interfaces.PageViewUpdateData:interface'
+    name: Interfaces.PageViewUpdateData
+  - uid: 'visio!OfficeExtension.UpdateOptions:interface'
+    name: OfficeExtension.UpdateOptions
+  - uid: 'visio!Visio.Position:interface'
+    name: Visio.Position
+  - uid: 'visio!Visio.Interfaces.PageViewData:interface'
+    name: Visio.Interfaces.PageViewData
