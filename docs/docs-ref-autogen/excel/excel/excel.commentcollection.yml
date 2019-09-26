@@ -30,17 +30,17 @@ items:
       - 'excel!Excel.CommentCollection#toJSON:member(1)'
   - uid: 'excel!Excel.CommentCollection#add:member(1)'
     summary: |-
-      在给定单元格上创建具有给定内容的新注释（注释线程）。 如果`InvalidArgument`提供的范围大于一个单元格，则会引发错误。
+      使用给定单元格上的给定内容创建新批注。 如果`InvalidArgument`提供的范围大于一个单元格，则会引发错误。
 
       \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
-    name: 'add(content, cellAddress, contentType)'
-    fullName: 'add(content, cellAddress, contentType)'
+    name: 'add(cellAddress, content, contentType)'
+    fullName: 'add(cellAddress, content, contentType)'
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'add(content: string, cellAddress: Range | string, contentType?: Excel.ContentType): Excel.Comment;'
+      content: 'add(cellAddress: Range | string, content: CommentRichContent | string, contentType?: Excel.ContentType): Excel.Comment;'
       return:
         type:
           - 'excel!Excel.Comment:class'
@@ -59,48 +59,48 @@ items:
           });
           ```
       parameters:
-        - id: content
-          description: 注释内容。
-          type:
-            - string
         - id: cellAddress
           description: 向其中添加批注的单元格。 它可以是一个 Range 对象或一个字符串。 如果是字符串，则必须包含完整的地址，包括工作表名称。 如果`InvalidArgument`提供的范围大于一个单元格，则会引发错误。
           type:
             - 'excel!Excel.CommentCollection#add~0:complex'
+        - id: content
+          description: '批注的内容。 它可以是 string 或 CommentRichContent 对象。 字符串用于纯文本。 CommentRichContent 对象允许其他注释功能，如提到。 \[Api 集： ExcelApi BETA （仅限 PREVIEW）对于 string，ExcelApi Preview for CommentRichContent 对象\]'
+          type:
+            - 'excel!Excel.CommentCollection#add~1:complex'
         - id: contentType
-          description: 可选。 注释内容的类型
+          description: 可选。 包含在注释中的内容类型。 默认值为枚举`ContentType.plain`<!-- -->.
           type:
             - 'excel!Excel.ContentType:enum'
   - uid: 'excel!Excel.CommentCollection#add:member(2)'
     summary: |-
-      在给定单元格上创建具有给定内容的新注释（注释线程）。 如果`InvalidArgument`提供的范围大于一个单元格，则会引发错误。
+      使用给定单元格上的给定内容创建新批注。 如果`InvalidArgument`提供的范围大于一个单元格，则会引发错误。
 
       \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
-    name: 'add(content, cellAddress, contentTypeString)'
-    fullName: 'add(content, cellAddress, contentTypeString)'
+    name: 'add(cellAddress, content, contentTypeString)'
+    fullName: 'add(cellAddress, content, contentTypeString)'
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'add(content: string, cellAddress: Range | string, contentTypeString?: "Plain"): Excel.Comment;'
+      content: 'add(cellAddress: Range | string, content: CommentRichContent | string, contentTypeString?: "Plain" | "Mention"): Excel.Comment;'
       return:
         type:
           - 'excel!Excel.Comment:class'
         description: ''
       parameters:
-        - id: content
-          description: 注释内容。
-          type:
-            - string
         - id: cellAddress
           description: 向其中添加批注的单元格。 它可以是一个 Range 对象或一个字符串。 如果是字符串，则必须包含完整的地址，包括工作表名称。 如果`InvalidArgument`提供的范围大于一个单元格，则会引发错误。
           type:
-            - 'excel!Excel.CommentCollection#add~1:complex'
-        - id: contentTypeString
-          description: 可选。 注释内容的类型
+            - 'excel!Excel.CommentCollection#add~2:complex'
+        - id: content
+          description: '批注的内容。 它可以是 string 或 CommentRichContent 对象。 字符串用于纯文本。 CommentRichContent 对象允许其他注释功能，如提到。 \[Api 集： ExcelApi BETA （仅限 PREVIEW）对于 string，ExcelApi Preview for CommentRichContent 对象\]'
           type:
-            - '"Plain"'
+            - 'excel!Excel.CommentCollection#add~3:complex'
+        - id: contentTypeString
+          description: 可选。 包含在注释中的内容类型。 默认值为枚举`ContentType.plain`<!-- -->.
+          type:
+            - '"Plain" | "Mention"'
   - uid: 'excel!Excel.CommentCollection#context:member'
     summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
     isPreview: true
@@ -177,7 +177,7 @@ items:
             - number
   - uid: 'excel!Excel.CommentCollection#getItemByCell:member(1)'
     summary: |-
-      从指定单元格中获取批注。
+      从指定单元格获取的批注。
 
       \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -199,7 +199,7 @@ items:
             - 'excel!Excel.CommentCollection#getItemByCell~0:complex'
   - uid: 'excel!Excel.CommentCollection#getItemByReplyId:member(1)'
     summary: |-
-      获取与集合中的回复 ID 相关的批注。
+      获取给定答复连接到的注释。
 
       \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -233,30 +233,22 @@ items:
         type:
           - 'excel!Excel.CommentCollection#items~0:complex'
   - uid: 'excel!Excel.CommentCollection#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
-    remarks: |-
-      除了此签名之外，此方法还具有以下签名：
-
-      `load(option?: string | string[]): Excel.CommentCollection`-Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
-
-      `load(option?: { select?: string; expand?: string; }): Excel.CommentCollection`-Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.CommentCollection`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
     isPreview: true
-    name: load(option)
-    fullName: load(option)
+    name: load(options)
+    fullName: load(options)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: Excel.Interfaces.CommentCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.CommentCollection;'
+      content: 'load(options?: Excel.Interfaces.CommentCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.CommentCollection;'
       return:
         type:
           - 'excel!Excel.CommentCollection:class'
         description: ''
       parameters:
-        - id: option
-          description: ''
+        - id: options
+          description: 提供要加载的对象的属性的选项。
           type:
             - 'excel!Excel.CommentCollection#load~0:complex'
   - uid: 'excel!Excel.CommentCollection#load:member(2)'
@@ -279,21 +271,22 @@ items:
           type:
             - 'string | string[]'
   - uid: 'excel!Excel.CommentCollection#load:member(3)'
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
     isPreview: true
-    name: load(option)
-    fullName: load(option)
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: OfficeExtension.LoadOption): Excel.CommentCollection;'
+      content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.CommentCollection;'
       return:
         type:
           - 'excel!Excel.CommentCollection:class'
         description: ''
       parameters:
-        - id: option
-          description: ''
+        - id: propertyNamesAndPaths
+          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性`propertyNamesAndPaths.expand` ，并且是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
           type:
             - 'excel!OfficeExtension.LoadOption:interface'
   - uid: 'excel!Excel.CommentCollection#toJSON:member(1)'
@@ -324,15 +317,33 @@ references:
         fullName: Excel.Range
       - name: ' | string'
         fullName: ' | string'
+  - uid: 'excel!Excel.CommentCollection#add~1:complex'
+    name: CommentRichContent | string
+    fullName: Excel.CommentRichContent | string
+    spec.typeScript:
+      - uid: 'excel!Excel.CommentRichContent:interface'
+        name: CommentRichContent
+        fullName: Excel.CommentRichContent
+      - name: ' | string'
+        fullName: ' | string'
   - uid: 'excel!Excel.ContentType:enum'
     name: Excel.ContentType
-  - uid: 'excel!Excel.CommentCollection#add~1:complex'
+  - uid: 'excel!Excel.CommentCollection#add~2:complex'
     name: Range | string
     fullName: Excel.Range | string
     spec.typeScript:
       - uid: 'excel!Excel.Range:class'
         name: Range
         fullName: Excel.Range
+      - name: ' | string'
+        fullName: ' | string'
+  - uid: 'excel!Excel.CommentCollection#add~3:complex'
+    name: CommentRichContent | string
+    fullName: Excel.CommentRichContent | string
+    spec.typeScript:
+      - uid: 'excel!Excel.CommentRichContent:interface'
+        name: CommentRichContent
+        fullName: Excel.CommentRichContent
       - name: ' | string'
         fullName: ' | string'
   - uid: 'excel!Excel.RequestContext:class'
