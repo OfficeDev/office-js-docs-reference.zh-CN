@@ -14,6 +14,7 @@ items:
       - 'excel!OfficeExtension.ClientObject:class'
     package: excel!
     children:
+      - 'excel!Excel.RangeFormat#adjustIndent:member(1)'
       - 'excel!Excel.RangeFormat#autofitColumns:member(1)'
       - 'excel!Excel.RangeFormat#autofitRows:member(1)'
       - 'excel!Excel.RangeFormat#autoIndent:member'
@@ -39,6 +40,28 @@ items:
       - 'excel!Excel.RangeFormat#useStandardWidth:member'
       - 'excel!Excel.RangeFormat#verticalAlignment:member'
       - 'excel!Excel.RangeFormat#wrapText:member'
+  - uid: 'excel!Excel.RangeFormat#adjustIndent:member(1)'
+    summary: |-
+      调整范围格式的缩进量。 缩进值的范围为0到250。
+
+      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: adjustIndent(amount)
+    fullName: adjustIndent(amount)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'adjustIndent(amount: number): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: amount
+          description: 当前缩进调整值的字符间距数。 此值应介于-250 和250之间。 * 注意 * *：如果该数量将提高高于250的缩进级别，缩进量将保留为250。 同样，如果该数量降低了低于0的缩进量，缩进级别将保持为0。
+          type:
+            - number
   - uid: 'excel!Excel.RangeFormat#autofitColumns:member(1)'
     summary: |-
       根据列中的当前数据更改当前范围的列宽，以达到最佳宽度。
@@ -189,29 +212,21 @@ items:
         type:
           - number
   - uid: 'excel!Excel.RangeFormat#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
-    remarks: |-
-      除了此签名之外，此方法还具有以下签名：
-
-      `load(option?: string | string[]): Excel.RangeFormat`-Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
-
-      `load(option?: { select?: string; expand?: string; }): Excel.RangeFormat`-Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.RangeFormat`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
-    name: load(option)
-    fullName: load(option)
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
+    name: load(options)
+    fullName: load(options)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: Excel.Interfaces.RangeFormatLoadOptions): Excel.RangeFormat;'
+      content: 'load(options?: Excel.Interfaces.RangeFormatLoadOptions): Excel.RangeFormat;'
       return:
         type:
           - 'excel!Excel.RangeFormat:class'
         description: ''
       parameters:
-        - id: option
-          description: ''
+        - id: options
+          description: 提供要加载的对象的属性的选项。
           type:
             - 'excel!Excel.Interfaces.RangeFormatLoadOptions:interface'
   - uid: 'excel!Excel.RangeFormat#load:member(2)'
@@ -301,16 +316,24 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.RangeFormat;'
+      content: |-
+        load(propertyNamesAndPaths?: {
+                    select?: string;
+                    expand?: string;
+                }): Excel.RangeFormat;
       return:
         type:
           - 'excel!Excel.RangeFormat:class'
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: 其中，propertyNamesAndPaths 是用逗号分隔的字符串，用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性`propertyNamesAndPaths.expand` ，并且是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
           type:
-            - '{ select?: string; expand?: string; }'
+            - |-
+              {
+                          select?: string;
+                          expand?: string;
+                      }
   - uid: 'excel!Excel.RangeFormat#protection:member'
     summary: |-
       返回某一区域的格式 protection 对象。 只读。
