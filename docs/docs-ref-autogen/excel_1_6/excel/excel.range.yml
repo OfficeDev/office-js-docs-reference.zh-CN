@@ -1274,29 +1274,21 @@ items:
           type:
             - '"Down" | "Right"'
   - uid: 'excel!Excel.Range#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
-    remarks: |-
-      除了此签名之外，此方法还具有以下签名：
-
-      `load(option?: string | string[]): Excel.Range`-Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
-
-      `load(option?: { select?: string; expand?: string; }): Excel.Range`-Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Range`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
-    name: load(option)
-    fullName: load(option)
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
+    name: load(options)
+    fullName: load(options)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: Excel.Interfaces.RangeLoadOptions): Excel.Range;'
+      content: 'load(options?: Excel.Interfaces.RangeLoadOptions): Excel.Range;'
       return:
         type:
           - 'excel!Excel.Range:class'
         description: ''
       parameters:
-        - id: option
-          description: ''
+        - id: options
+          description: 提供要加载的对象的属性的选项。
           type:
             - 'excel!Excel.Interfaces.RangeLoadOptions:interface'
   - uid: 'excel!Excel.Range#load:member(2)'
@@ -1386,16 +1378,24 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.Range;'
+      content: |-
+        load(propertyNamesAndPaths?: {
+                    select?: string;
+                    expand?: string;
+                }): Excel.Range;
       return:
         type:
           - 'excel!Excel.Range:class'
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: 其中，propertyNamesAndPaths 是用逗号分隔的字符串，用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性`propertyNamesAndPaths.expand` ，并且是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
           type:
-            - '{ select?: string; expand?: string; }'
+            - |-
+              {
+                          select?: string;
+                          expand?: string;
+                      }
   - uid: 'excel!Excel.Range#merge:member(1)'
     summary: |-
       在工作表中，将 range 单元格合并到一个区域中。
@@ -1701,7 +1701,7 @@ items:
           - 'excel!Excel.Interfaces.RangeData:interface'
         description: ''
   - uid: 'excel!Excel.Range#track:member(1)'
-    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。
+    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是的简写`context.trackedObjects.add(thisObject)`<!-- -->. 如果要在多`.sync`个调用中使用此对象，并在 "运行" 批处理的顺序执行之外使用此对象，并在设置属性或对对象调用方法时获取 "InvalidObjectPath" 错误，则需要向跟踪的对象添加对象首次创建对象时的集合。
     name: track()
     fullName: track()
     langs:
@@ -1748,7 +1748,7 @@ items:
           });
           ```
   - uid: 'excel!Excel.Range#untrack:member(1)'
-    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前，你需要调用“context.sync()”。
+    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是的简写`context.trackedObjects.remove(thisObject)`<!-- -->. 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前`context.sync()` ，您需要调用该过程。
     name: untrack()
     fullName: untrack()
     langs:
