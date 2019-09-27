@@ -143,7 +143,7 @@ items:
         description: ''
   - uid: 'excel!Excel.Slicer#height:member'
     summary: |-
-      表示切片器的高度（以磅为单位）。 当设置为负值或零作为输入时，将引发无效参数异常。
+      表示切片器的高度（以磅为单位）。 引发 "参数无效或丢失或格式不正确"。 在设置为负值或零作为输入时出现异常。
 
       \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -191,7 +191,7 @@ items:
           - boolean
   - uid: 'excel!Excel.Slicer#left:member'
     summary: |-
-      表示从切片器左侧到工作表左侧的距离（以磅为单位）。 当设置为负值作为输入时引发无效参数异常。
+      表示从切片器左侧到工作表左侧的距离（以磅为单位）。 引发 "参数无效或丢失或格式不正确"。 将负值设置为 input 时出现异常。
 
       \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -206,30 +206,22 @@ items:
         type:
           - number
   - uid: 'excel!Excel.Slicer#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
-    remarks: |-
-      除了此签名之外，此方法还具有以下签名：
-
-      `load(option?: string | string[]): Excel.Slicer`-Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
-
-      `load(option?: { select?: string; expand?: string; }): Excel.Slicer`-Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Slicer`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
     isPreview: true
-    name: load(option)
-    fullName: load(option)
+    name: load(options)
+    fullName: load(options)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: Excel.Interfaces.SlicerLoadOptions): Excel.Slicer;'
+      content: 'load(options?: Excel.Interfaces.SlicerLoadOptions): Excel.Slicer;'
       return:
         type:
           - 'excel!Excel.Slicer:class'
         description: ''
       parameters:
-        - id: option
-          description: ''
+        - id: options
+          description: 提供要加载的对象的属性的选项。
           type:
             - 'excel!Excel.Interfaces.SlicerLoadOptions:interface'
   - uid: 'excel!Excel.Slicer#load:member(2)'
@@ -260,16 +252,24 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.Slicer;'
+      content: |-
+        load(propertyNamesAndPaths?: {
+                    select?: string;
+                    expand?: string;
+                }): Excel.Slicer;
       return:
         type:
           - 'excel!Excel.Slicer:class'
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: 其中，propertyNamesAndPaths 是用逗号分隔的字符串，用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性`propertyNamesAndPaths.expand` ，并且是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
           type:
-            - '{ select?: string; expand?: string; }'
+            - |-
+              {
+                          select?: string;
+                          expand?: string;
+                      }
   - uid: 'excel!Excel.Slicer#name:member'
     summary: |-
       表示切片器的名称。
@@ -304,7 +304,7 @@ items:
           - string
   - uid: 'excel!Excel.Slicer#selectItems:member(1)'
     summary: |-
-      根据密钥选择切片器项目。 之前的选择将被清除。 如果数组为空，则默认情况下将选择所有项目。
+      根据它们的键选择切片器项目。 将清除以前的选择。 如果数组为空，则默认情况下将选择所有项目。
 
       \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -399,7 +399,7 @@ items:
           - 'excel!Excel.SlicerItemCollection:class'
   - uid: 'excel!Excel.Slicer#sortBy:member'
     summary: |-
-      表示切片器中的项目的排序顺序。 可能的值为：DataSourceOrder、Ascending、Descending。
+      表示切片器中的项目的排序顺序。 可能的值为： "DataSourceOrder"、"升序"、"降序"。
 
       \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -457,7 +457,7 @@ items:
         description: ''
   - uid: 'excel!Excel.Slicer#top:member'
     summary: |-
-      表示从切片器上边缘到工作表顶部的距离（以磅为单位）。 当设置为负值作为输入时引发无效参数异常。
+      表示从切片器上边缘到工作表顶部的距离（以磅为单位）。 引发 "参数无效或丢失或格式不正确"。 将负值设置为 input 时出现异常。
 
       \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -473,7 +473,7 @@ items:
           - number
   - uid: 'excel!Excel.Slicer#width:member'
     summary: |-
-      表示切片器的宽度（以磅为单位）。 当设置为负值或零作为输入时，将引发无效参数异常。
+      表示切片器的宽度（以磅为单位）。 引发 "参数无效或丢失或格式不正确"。 在设置为负值或零作为输入时出现异常。
 
       \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true

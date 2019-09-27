@@ -1,7 +1,10 @@
 ### YamlMime:UniversalReference
 items:
   - uid: 'excel!Excel.PageLayout:class'
-    summary: '\[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]'
+    summary: |-
+      表示不依赖于任何特定于打印机的实现的布局和打印设置。 这些设置包括页边距、方向、页码编号、标题行，并打印区域。
+
+      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: Excel.PageLayout
     fullName: Excel.PageLayout
     langs:
@@ -334,29 +337,21 @@ items:
         type:
           - number
   - uid: 'excel!Excel.PageLayout#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
-    remarks: |-
-      除了此签名之外，此方法还具有以下签名：
-
-      `load(option?: string | string[]): Excel.PageLayout`-Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
-
-      `load(option?: { select?: string; expand?: string; }): Excel.PageLayout`-Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.PageLayout`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
-    name: load(option)
-    fullName: load(option)
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
+    name: load(options)
+    fullName: load(options)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: Excel.Interfaces.PageLayoutLoadOptions): Excel.PageLayout;'
+      content: 'load(options?: Excel.Interfaces.PageLayoutLoadOptions): Excel.PageLayout;'
       return:
         type:
           - 'excel!Excel.PageLayout:class'
         description: ''
       parameters:
-        - id: option
-          description: ''
+        - id: options
+          description: 提供要加载的对象的属性的选项。
           type:
             - 'excel!Excel.Interfaces.PageLayoutLoadOptions:interface'
   - uid: 'excel!Excel.PageLayout#load:member(2)'
@@ -385,16 +380,24 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.PageLayout;'
+      content: |-
+        load(propertyNamesAndPaths?: {
+                    select?: string;
+                    expand?: string;
+                }): Excel.PageLayout;
       return:
         type:
           - 'excel!Excel.PageLayout:class'
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: 其中，propertyNamesAndPaths 是用逗号分隔的字符串，用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性`propertyNamesAndPaths.expand` ，并且是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
           type:
-            - '{ select?: string; expand?: string; }'
+            - |-
+              {
+                          select?: string;
+                          expand?: string;
+                      }
   - uid: 'excel!Excel.PageLayout#orientation:member'
     summary: |-
       获取或设置工作表的页面方向。

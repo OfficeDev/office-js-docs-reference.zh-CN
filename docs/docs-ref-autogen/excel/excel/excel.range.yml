@@ -158,9 +158,7 @@ items:
           - string
   - uid: 'excel!Excel.Range#autoFill:member(1)'
     summary: |-
-      使用指定的自动填充逻辑将范围从当前范围填充到目标区域。 目标区域可以是 null，也可以是水平或垂直扩展源。 如果目标区域为 null，则根据周围单元格（双击 UI 的区域填充句柄时的行为）填充数据。
-
-      有关详细信息，请参阅[使用自动填充和快速填充](https://support.office.com/article/video-use-autofill-and-flash-fill-2e79a709-c814-4b27-8bc2-c4dc84d49464)<!-- -->.
+      使用指定的自动填充逻辑将范围从当前范围填充到目标区域。 目标区域可以是 null，也可以是水平或垂直扩展源。 不支持不连续的区域。 有关详细信息，请参阅[使用自动填充和快速填充](https://support.office.com/article/video-use-autofill-and-flash-fill-2e79a709-c814-4b27-8bc2-c4dc84d49464)<!-- -->.
 
       \[[API 集： ExcelApi 1.9、EXCELAPI BETA （仅限预览） null `destinationRange` ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'autoFill(destinationRange, autoFillType)'
@@ -173,10 +171,25 @@ items:
       return:
         type:
           - void
-        description: ''
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+            const sheet = context.workbook.worksheets.getActiveWorksheet();
+            const sumCell = sheet.getRange("P4");
+            
+            // Copy everything. The formulas will be contextually updated based on their new locations.
+            sumCell.autoFill("P4:P7", Excel.AutoFillType.fillCopy);
+            sumCell.format.autofitColumns();
+            await context.sync();
+          });
+          ```
       parameters:
         - id: destinationRange
-          description: 要填充的目标区域。 不支持不连续的区域。
+          description: 要自动填充的目标区域。 如果目标区域为 null，则根据周围单元格（双击 UI 的区域填充句柄时的行为）填充数据。
           type:
             - 'excel!Excel.Range#autoFill~0:complex'
         - id: autoFillType
@@ -185,9 +198,7 @@ items:
             - 'excel!Excel.AutoFillType:enum'
   - uid: 'excel!Excel.Range#autoFill:member(2)'
     summary: |-
-      使用指定的自动填充逻辑将范围从当前范围填充到目标区域。 目标区域可以是 null，也可以是水平或垂直扩展源。 如果目标区域为 null，则根据周围单元格（双击 UI 的区域填充句柄时的行为）填充数据。
-
-      有关详细信息，请参阅[使用自动填充和快速填充](https://support.office.com/article/video-use-autofill-and-flash-fill-2e79a709-c814-4b27-8bc2-c4dc84d49464)<!-- -->.
+      使用指定的自动填充逻辑将范围从当前范围填充到目标区域。 目标区域可以是 null，也可以是水平或垂直扩展源。 不支持不连续的区域。 有关详细信息，请参阅[使用自动填充和快速填充](https://support.office.com/article/video-use-autofill-and-flash-fill-2e79a709-c814-4b27-8bc2-c4dc84d49464)<!-- -->.
 
       \[[API 集： ExcelApi 1.9、EXCELAPI BETA （仅限预览） null `destinationRange` ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'autoFill(destinationRange, autoFillTypeString)'
@@ -203,7 +214,7 @@ items:
         description: ''
       parameters:
         - id: destinationRange
-          description: 要填充的目标区域。 不支持不连续的区域。
+          description: 要自动填充的目标区域。 如果目标区域为 null，则根据周围单元格（双击 UI 的区域填充句柄时的行为）填充数据。
           type:
             - 'excel!Excel.Range#autoFill~1:complex'
         - id: autoFillTypeString
@@ -449,7 +460,7 @@ items:
           ```
       parameters:
         - id: sourceRange
-          description: 要从其复制的源区域或 RangeAreas。 当源 RangeAreas 有多个区域时，它必须在大纲形式中，可以通过删除矩形区域中的完整行或列来创建。
+          description: 要从其复制的源区域或 RangeAreas。 当源 RangeAreas 有多个区域时，必须通过删除矩形区域中的完整行或列来创建窗体。
           type:
             - 'excel!Excel.Range#copyFrom~0:complex'
         - id: copyType
@@ -482,7 +493,7 @@ items:
         description: ''
       parameters:
         - id: sourceRange
-          description: 要从其复制的源区域或 RangeAreas。 当源 RangeAreas 有多个区域时，它必须在大纲形式中，可以通过删除矩形区域中的完整行或列来创建。
+          description: 要从其复制的源区域或 RangeAreas。 当源 RangeAreas 有多个区域时，必须通过删除矩形区域中的完整行或列来创建窗体。
           type:
             - 'excel!Excel.Range#copyFrom~1:complex'
         - id: copyTypeString
@@ -588,7 +599,7 @@ items:
         type:
           - 'excel!Excel.Range:class'
         description: |-
-          与搜索条件匹配的范围。
+          表示第一个单元格的 Range 对象，其中包含与搜索文本和条件相匹配的值。
 
           #### <a name="examples"></a>示例
 
@@ -1928,7 +1939,26 @@ items:
       return:
         type:
           - void
-        description: ''
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+              
+              // Group the larger, main level. Note that the outline controls
+              // will be on row 10, meaning 4-9 will collapse and expand.
+              sheet.getRange("4:9").group(Excel.GroupOption.byRows);
+
+              // Group the smaller, sublevels. Note that the outline controls
+              // will be on rows 6 and 9, meaning 4-5 and 7-8 will collapse and expand.
+              sheet.getRange("4:5").group(Excel.GroupOption.byRows);
+              sheet.getRange("7:8").group(Excel.GroupOption.byRows);
+              await context.sync();
+          });
+          ```
       parameters:
         - id: groupOption
           description: 指定如何按行或列对区域进行分组。 当`InvalidArgument`组选项与范围`isEntireRow`或`isEntireColumn`属性不同时（即， `range.isEntireRow`为 true 且`groupOption`为 "ByColumns"，或者`range.isEntireColumn` `groupOption`为 "ByRows"）时，将引发错误。
@@ -2216,29 +2246,21 @@ items:
         type:
           - 'excel!Excel.Range#linkedDataTypeState~0:complex'
   - uid: 'excel!Excel.Range#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
-    remarks: |-
-      除了此签名之外，此方法还具有以下签名：
-
-      `load(option?: string | string[]): Excel.Range`-Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
-
-      `load(option?: { select?: string; expand?: string; }): Excel.Range`-Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Range`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
-    name: load(option)
-    fullName: load(option)
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
+    name: load(options)
+    fullName: load(options)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: Excel.Interfaces.RangeLoadOptions): Excel.Range;'
+      content: 'load(options?: Excel.Interfaces.RangeLoadOptions): Excel.Range;'
       return:
         type:
           - 'excel!Excel.Range:class'
         description: ''
       parameters:
-        - id: option
-          description: ''
+        - id: options
+          description: 提供要加载的对象的属性的选项。
           type:
             - 'excel!Excel.Interfaces.RangeLoadOptions:interface'
   - uid: 'excel!Excel.Range#load:member(2)'
@@ -2328,16 +2350,24 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.Range;'
+      content: |-
+        load(propertyNamesAndPaths?: {
+                    select?: string;
+                    expand?: string;
+                }): Excel.Range;
       return:
         type:
           - 'excel!Excel.Range:class'
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: 其中，propertyNamesAndPaths 是用逗号分隔的字符串，用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性`propertyNamesAndPaths.expand` ，并且是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
           type:
-            - '{ select?: string; expand?: string; }'
+            - |-
+              {
+                          select?: string;
+                          expand?: string;
+                      }
   - uid: 'excel!Excel.Range#merge:member(1)'
     summary: |-
       在工作表中，将 range 单元格合并到一个区域中。
@@ -2539,7 +2569,7 @@ items:
           - number
   - uid: 'excel!Excel.Range#savedAsArray:member'
     summary: |-
-      表示是否将所有单元格都保存为数组公式。 如果所有单元格都将保存为数组，则返回 true; 如果所有单元格不保存为数组公式，则返回 false。 如果有混合的单元格，且不能保存为数组公式，则返回 null。
+      表示是否将所有单元格都保存为数组公式。 如果所有单元格都将保存为数组公式，则返回 true; 如果不将所有单元格保存为数组公式，则返回 false。 如果某些单元格将另存为数组公式，则返回 null，而某些单元格则不是。
 
       \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -3009,7 +3039,7 @@ items:
         type:
           - number
   - uid: 'excel!Excel.Range#track:member(1)'
-    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。
+    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是的简写`context.trackedObjects.add(thisObject)`<!-- -->. 如果要在多`.sync`个调用中使用此对象，并在 "运行" 批处理的顺序执行之外使用此对象，并在设置属性或对对象调用方法时获取 "InvalidObjectPath" 错误，则需要向跟踪的对象添加对象首次创建对象时的集合。
     name: track()
     fullName: track()
     langs:
@@ -3037,7 +3067,24 @@ items:
       return:
         type:
           - void
-        description: ''
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+              
+              // This removes two levels of groups from the "A1-R10" range.
+              // Any groups at the same level on the same dimension will be removed by a single call.
+              sheet.getRange("A1:R10").ungroup(Excel.GroupOption.byRows);
+              sheet.getRange("A1:R10").ungroup(Excel.GroupOption.byRows);
+              sheet.getRange("A1:R10").ungroup(Excel.GroupOption.byColumns);
+              sheet.getRange("A1:R10").ungroup(Excel.GroupOption.byColumns);
+              await context.sync();
+          });
+          ```
       parameters:
         - id: groupOption
           description: 指定如何将区域与行或列取消组合。
@@ -3100,7 +3147,7 @@ items:
           });
           ```
   - uid: 'excel!Excel.Range#untrack:member(1)'
-    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前，你需要调用“context.sync()”。
+    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是的简写`context.trackedObjects.remove(thisObject)`<!-- -->. 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前`context.sync()` ，您需要调用该过程。
     name: untrack()
     fullName: untrack()
     langs:
