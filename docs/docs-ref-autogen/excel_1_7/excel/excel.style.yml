@@ -323,49 +323,42 @@ items:
         type:
           - number
   - uid: 'excel!Excel.Style#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
-    remarks: |-
-      除了此签名之外，此方法还具有以下签名：
-
-      `load(option?: string | string[]): Excel.Style`-Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
-
-      `load(option?: { select?: string; expand?: string; }): Excel.Style`-Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Style`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
-
-      #### <a name="examples"></a>示例
-
-      ```typescript
-      await Excel.run(async (context) => {
-          let style = context.workbook.styles.getItem("Diagonal Orientation Style");            
-          style.load("textOrientation, horizontalAlignment, autoIndent, readingOrder, wrapText, includeProtection, shrinkToFit, locked");
-
-          await context.sync();
-
-          console.log("Orientation: " + style.textOrientation);
-          console.log("Horizontal alignment: " + style.horizontalAlignment);
-          console.log("Add indent: " + style.autoIndent);
-          console.log("Reading order: " + style.readingOrder);
-          console.log("Wrap text: " + style.wrapText);
-          console.log("Include protection: " + style.includeProtection);
-          console.log("Shrink to fit: " + style.shrinkToFit);
-          console.log("Style locked: " + style.locked);
-      });
-      ```
-    name: load(option)
-    fullName: load(option)
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
+    name: load(options)
+    fullName: load(options)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: Excel.Interfaces.StyleLoadOptions): Excel.Style;'
+      content: 'load(options?: Excel.Interfaces.StyleLoadOptions): Excel.Style;'
       return:
         type:
           - 'excel!Excel.Style:class'
-        description: ''
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              let style = context.workbook.styles.getItem("Diagonal Orientation Style");            
+              style.load("textOrientation, horizontalAlignment, autoIndent, readingOrder, wrapText, includeProtection, shrinkToFit, locked");
+
+              await context.sync();
+
+              console.log("Orientation: " + style.textOrientation);
+              console.log("Horizontal alignment: " + style.horizontalAlignment);
+              console.log("Add indent: " + style.autoIndent);
+              console.log("Reading order: " + style.readingOrder);
+              console.log("Wrap text: " + style.wrapText);
+              console.log("Include protection: " + style.includeProtection);
+              console.log("Shrink to fit: " + style.shrinkToFit);
+              console.log("Style locked: " + style.locked);
+          });
+          ```
       parameters:
-        - id: option
-          description: ''
+        - id: options
+          description: 提供要加载的对象的属性的选项。
           type:
             - 'excel!Excel.Interfaces.StyleLoadOptions:interface'
   - uid: 'excel!Excel.Style#load:member(2)'
@@ -394,16 +387,24 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.Style;'
+      content: |-
+        load(propertyNamesAndPaths?: {
+                    select?: string;
+                    expand?: string;
+                }): Excel.Style;
       return:
         type:
           - 'excel!Excel.Style:class'
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: 其中，propertyNamesAndPaths 是用逗号分隔的字符串，用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性`propertyNamesAndPaths.expand` ，并且是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
           type:
-            - '{ select?: string; expand?: string; }'
+            - |-
+              {
+                          select?: string;
+                          expand?: string;
+                      }
   - uid: 'excel!Excel.Style#locked:member'
     summary: |-
       指示工作表受保护时是否锁定对象。
