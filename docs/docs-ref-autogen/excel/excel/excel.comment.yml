@@ -89,7 +89,8 @@ items:
 
           ```typescript
           await Excel.run(async (context) => {
-              const comment = context.workbook.comments.getItemAt(0);
+              const sheet = context.workbook.worksheets.getItem("Comments");
+              const comment = sheet.comments.getItemAt(0);
               comment.content = "PLEASE add headers here.";
               await context.sync();
           });
@@ -310,6 +311,18 @@ items:
       return:
         type:
           - boolean
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Comments");
+              sheet.comments.getItemAt(0).resolved = true;
+              await context.sync();
+          });
+          ```
   - uid: 'excel!Excel.Comment#richContent:member'
     summary: |-
       获取丰富的注释内容（例如，注释中的提及）。 此字符串不应显示给最终用户。 您的外接程序应仅使用此信息分析丰富的注释内容。
