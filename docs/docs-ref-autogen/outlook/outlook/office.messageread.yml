@@ -27,6 +27,7 @@ items:
       - 'outlook!Office.MessageRead#displayReplyAllForm:member(1)'
       - 'outlook!Office.MessageRead#displayReplyForm:member(1)'
       - 'outlook!Office.MessageRead#from:member'
+      - 'outlook!Office.MessageRead#getAllInternetHeadersAsync:member(1)'
       - 'outlook!Office.MessageRead#getEntities:member(1)'
       - 'outlook!Office.MessageRead#getEntitiesByType:member(1)'
       - 'outlook!Office.MessageRead#getFilteredEntitiesByName:member(1)'
@@ -36,7 +37,6 @@ items:
       - 'outlook!Office.MessageRead#getRegExMatchesByName:member(1)'
       - 'outlook!Office.MessageRead#getSelectedEntities:member(1)'
       - 'outlook!Office.MessageRead#getSelectedRegExMatches:member(1)'
-      - 'outlook!Office.MessageRead#internetHeaders:member'
       - 'outlook!Office.MessageRead#internetMessageId:member'
       - 'outlook!Office.MessageRead#itemClass:member'
       - 'outlook!Office.MessageRead#itemId:member'
@@ -243,7 +243,7 @@ items:
     summary: |-
       提供对邮件的抄送 (Cc) 收件人的访问权限。 对象的类型和访问级别取决于当前项目的模式。
 
-      Cc 属性返回一个数组，其中包含邮件的 "抄送" 行上列出的每个收件人的 EmailAddressDetails 对象。 集合上限为 100 个成员。
+      Cc 属性返回一个数组，其中包含邮件的 "抄送" 行上列出的每个收件人的 EmailAddressDetails 对象。 默认情况下，集合限制为最多为100个成员。 但是，在 Windows 和 Mac 上，您可以获得500个成员的最大值。
 
       \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -354,7 +354,7 @@ items:
     summary: |-
       显示答复窗体，其中包括所选邮件的发件人和所有收件人或所选约会的组织者和所有与会者。
 
-      在 web 上的 Outlook 中，答复窗体显示为3列视图中的弹出窗体和2列或1列视图中的弹出式窗体。
+      在 Outlook 网页版中，答复窗体显示为包含 3 列视图的弹出式窗体，以及包含 2 列或 1 列视图的弹出式窗体。
 
       如果任何字符串参数超出其限制，displayReplyAllForm 将引发异常。
 
@@ -459,7 +459,7 @@ items:
     summary: |-
       显示答复窗体，其中仅包括所选邮件的发件人或所选约会的组织者。
 
-      在 web 上的 Outlook 中，答复窗体显示为3列视图中的弹出窗体和2列或1列视图中的弹出式窗体。
+      在 Outlook 网页版中，答复窗体显示为包含 3 列视图的弹出式窗体，以及包含 2 列或 1 列视图的弹出式窗体。
 
       如果任何字符串参数超出其限制，displayReplyForm 将引发异常。
 
@@ -592,6 +592,56 @@ items:
       return:
         type:
           - 'outlook!Office.EmailAddressDetails:interface'
+  - uid: 'outlook!Office.MessageRead#getAllInternetHeadersAsync:member(1)'
+    summary: |-
+      以字符串形式获取邮件的所有 internet 邮件头。
+
+      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**：邮件已阅读
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // Get the internet headers related to the mail.
+      Office.context.mailbox.item.getAllInternetHeadersAsync(
+          function(asyncResult) {
+              if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+                  console.log(asyncResult.value);
+              } else {
+                  if (asyncResult.error.code == 9020) {
+                      // GenericResponseError returned when there is no context.
+                      // Treat as no context.
+                  } else {
+                      // Handle the error.
+                  }
+              }
+          }
+      );
+      ```
+    isPreview: true
+    name: 'getAllInternetHeadersAsync(options, callback)'
+    fullName: 'getAllInternetHeadersAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getAllInternetHeadersAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: 可选。 包含一个或多个以下属性的对象文本。 asyncContext：开发人员可以在回调方法中提供要访问的任何对象。
+          type:
+            - 'outlook!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: '可选。 方法完成后，使用单个参数 asyncResult 调用在 callback 参数中传递的函数，该参数是一个作为一个 AsyncResult 对象的参数。 在成功的情况下，internet 标头数据在 asyncResult 属性中以字符串的形式提供。 有关返回的字符串值的格式设置信息，请参阅[RFC 2183](https://tools.ietf.org/html/rfc2183) 。 如果调用失败，asyncResult 属性将包含错误代码和失败原因。'
+          type:
+            - 'outlook!Office.MessageRead#getAllInternetHeadersAsync~0:complex'
   - uid: 'outlook!Office.MessageRead#getEntities:member(1)'
     summary: |-
       获取在所选项目的正文中找到的实体。
@@ -636,7 +686,7 @@ items:
 
       当使用此方法的最低权限级别受限时，某些实体类型需要 ReadItem 才能进行访问，如下表中所指定。
 
-      <table> <tr> <th>EntityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需权限级别</th> </tr> <tr> <td>Address</td> <td>String</td> <td>受限</td> </tr> <tr> <td>联系人</td> <td>联系人</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>String</td> <td>受限</td> </tr> </table>
+      <table> <tr> <th>EntityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需权限级别</th> </tr> <tr> <td>地址</td> <td>字符串</td> <td>受限</td> </tr> <tr> <td>Contact</td> <td>Contact</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>字符串</td> <td>受限</td> </tr> </table>
 
       #### <a name="examples"></a>示例
 
@@ -948,39 +998,6 @@ items:
         type:
           - any
         description: 一个包含匹配在清单 XML 文件中定义的正则表达式的字符串数组的对象。 每个数组的名称等于匹配的 ItemHasRegularExpressionMatch 规则的 RegExName 属性的相应值或匹配 ItemHasKnownEntity 规则的 FilterName 属性的值。
-  - uid: 'outlook!Office.MessageRead#internetHeaders:member'
-    summary: |-
-      获取或设置邮件的自定义 internet 邮件头。
-
-      InternetHeaders 属性返回一个 InternetHeaders 对象，该对象提供用于管理邮件上的 internet 标头的方法。
-
-      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**：邮件已阅读
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      Office.context.mailbox.item.internetHeaders.getAsync(["header1", "header2"], callback);
-
-      function callback(asyncResult) {
-          var dictionary = asyncResult.value;
-          var header1_value = dictionary["header1"];
-      }
-      ```
-    isPreview: true
-    name: internetHeaders
-    fullName: internetHeaders
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'internetHeaders: InternetHeaders;'
-      return:
-        type:
-          - 'outlook!Office.InternetHeaders:interface'
   - uid: 'outlook!Office.MessageRead#internetMessageId:member'
     summary: |-
       获取电子邮件的 Internet 消息标识符。
@@ -1413,7 +1430,7 @@ items:
     summary: |-
       提供对邮件的“收件人”行上的收件人的访问权限。 对象的类型和访问级别取决于当前项目的模式。
 
-      To 属性返回一个数组，该数组包含邮件的 "收件人" 行中列出的每个收件人的 EmailAddressDetails 对象。 集合上限为 100 个成员。
+      To 属性返回一个数组，该数组包含邮件的 "收件人" 行中列出的每个收件人的 EmailAddressDetails 对象。 默认情况下，集合限制为最多为100个成员。 但是，在 Windows 和 Mac 上，您可以获得500个成员的最大值。
 
       \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -1549,6 +1566,17 @@ references:
         fullName: <void>) => void
   - uid: 'outlook!Office.EmailAddressDetails:interface'
     name: EmailAddressDetails
+  - uid: 'outlook!Office.MessageRead#getAllInternetHeadersAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<string>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<string>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <string>) => void
+        fullName: <string>) => void
   - uid: 'outlook!Office.Entities:interface'
     name: Entities
   - uid: 'outlook!Office.MessageRead#getEntitiesByType~0:complex'
@@ -1634,8 +1662,6 @@ references:
         fullName: Office.AsyncResult
       - name: <string>) => void
         fullName: <string>) => void
-  - uid: 'outlook!Office.InternetHeaders:interface'
-    name: InternetHeaders
   - uid: 'outlook!Office.MessageRead#itemType~0:complex'
     name: MailboxEnums.ItemType | string
     fullName: Office.MailboxEnums.ItemType | string
