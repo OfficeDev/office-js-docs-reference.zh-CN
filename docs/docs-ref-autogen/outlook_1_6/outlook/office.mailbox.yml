@@ -337,9 +337,9 @@ items:
 
       DisplayAppointmentForm 方法打开桌面的新窗口中或移动设备对话框中的现有日历约会。
 
-      在 Mac 上的 Outlook 中，可以使用此方法显示不是定期系列的一部分的单个约会，也可以是定期系列的主约会，但不能显示该系列的实例。 这是因为在 Mac 上的 Outlook 中，无法访问定期系列的实例的属性（包括项目 ID）。
+      在 Mac 版 Outlook 中，可以使用此方法来显示不属于重复时序的一个约会，或显示重复时序的主约会，但无法显示重复时序的实例。这是因为在 Mac 版 Outlook 中，无法访问重复时序的实例属性（包括项 ID）。
 
-      在 web 上的 Outlook 中，仅当窗体的正文小于或等于32KB 个字符时，此方法才会打开指定的窗体。
+      在 Outlook 网页版中，此方法仅在窗体正文的字符数小于或等于 32KB 时，才会打开指定的窗体。
 
       如果指定的项标识符没有识别现有约会，将在客户端计算机或设备上打开一个空白窗格，并且不会返回错误消息。
 
@@ -378,7 +378,7 @@ items:
 
       DisplayMessageForm 方法打开桌面的新窗口中或移动设备对话框中的现有邮件。
 
-      在 web 上的 Outlook 中，仅当窗体的正文小于或等于 32 KB 的字符数时，此方法才会打开指定的窗体。
+      在 Outlook 网页版中，此方法仅在窗体正文的字符数小于或等于 32KB 时，才会打开指定的窗体。
 
       如果指定的项标识符未识别现有消息，则客户端计算机上不会显示任何消息，并且也不会返回错误消息。
 
@@ -572,9 +572,14 @@ items:
     summary: |-
       获取一个包含用于调用 REST API 或 Exchange Web 服务的令牌的字符串。
 
-      Mailbox.getcallbacktokenasync 方法进行异步调用，以从承载用户邮箱的 Exchange 服务器中获取不透明令牌。 回调令牌的生存期为 5 分钟。
+
+                  `getCallbackTokenAsync` 方法进行异步调用，从托管用户邮箱的 Exchange Server 获取非跳转令牌。回调令牌的生存期为 5 分钟。
 
       令牌作为`asyncResult.value`属性中的字符串返回。
+
+      在阅读模式下调用 `getCallbackTokenAsync` 方法要求最低权限级别的 **ReadItem**。
+
+      在撰写`getCallbackTokenAsync`模式下调用方法需要您保存项目。 `saveAsync` 方法要求最低权限级别的 **ReadWriteItem**。
 
       *REST 令牌*
 
@@ -588,6 +593,8 @@ items:
 
       外接端应使用 Mailbox.ewsurl 属性来确定在进行 EWS 调用时要使用的正确 URL。
 
+      可以将令牌和附件标识符或项标识符传递到第三方系统。 第三方系统使用令牌作为持有者身份验证令牌调用 Exchange Web 服务 (EWS) [GetAttachment](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getattachment-operation) 操作或 [GetItem](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getitem-operation) 操作，以返回附件或项目。 例如，可以创建远程服务以[从所选项目中获取附件](https://docs.microsoft.com/outlook/add-ins/get-attachments-of-an-outlook-item)<!-- -->.
+
       **注意**：建议外接程序尽可能使用 REST api 而不是 Exchange Web 服务。
 
       \[[API 集：邮箱 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -598,11 +605,11 @@ items:
 
       **错误**：
 
-      - HTTPRequestFailure：请求失败。 请查看 HTTP 错误代码的 diagnostics 对象。
+      - HTTPRequestFailure：请求失败。 请查看诊断对象，了解 HTTP 错误代码。
 
-      - InternalServerError： Exchange 服务器返回一个错误。 有关详细信息，请参阅 diagnostics 对象。
+      - InternalServerError： Exchange 服务器返回一个错误。 请查看诊断对象，了解详细信息。
 
-      - NetworkError：用户不再连接到网络。 请检查你的网络连接，然后重试。
+      - NetworkError：用户不再连接到网络。 请检查网络连接并重试。
 
       #### <a name="examples"></a>示例
 
@@ -637,24 +644,24 @@ items:
           type:
             - 'outlook!Office.Mailbox#getCallbackTokenAsync~0:complex'
         - id: callback
-          description: 方法完成后，将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 令牌作为`asyncResult.value`属性中的字符串返回。 如果出现错误，则`asyncResult.error`和`asyncResult.diagnostics`属性可能会提供其他信息。
+          description: 方法完成后，将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 令牌作为`asyncResult.value`属性中的字符串返回。 如果出现错误，则 `asyncResult.error` 和 `asyncResult.diagnostics` 属性可能会提供其他信息。
           type:
             - 'outlook!Office.Mailbox#getCallbackTokenAsync~1:complex'
   - uid: 'outlook!Office.Mailbox#getCallbackTokenAsync:member(2)'
     summary: |-
       获取一个字符串，其中包含用于从 Exchange Server 获取附件或项目的令牌。
 
-      Mailbox.getcallbacktokenasync 方法进行异步调用，以从承载用户邮箱的 Exchange 服务器中获取不透明令牌。 回调令牌的生存期为 5 分钟。
+      `getCallbackTokenAsync` 方法进行异步调用，从托管用户邮箱的 Exchange Server 获取非跳转令牌。回调令牌的生存期为 5 分钟。
 
       令牌作为`asyncResult.value`属性中的字符串返回。
 
-      可以将令牌和附件标识符或项标识符传递到第三方系统。 第三方系统使用令牌作为持有者身份验证令牌调用 Exchange Web 服务 (EWS) GetAttachment 或 GetItem，以返回附件或项目。 例如，可以创建远程服务来获取选定项目中的附件。
+      可以将令牌和附件标识符或项标识符传递到第三方系统。 第三方系统使用令牌作为持有者身份验证令牌调用 Exchange Web 服务 (EWS) [GetAttachment](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getattachment-operation) 操作或 [GetItem](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getitem-operation) 操作，以返回附件或项目。 例如，可以创建远程服务以[从所选项目中获取附件](https://docs.microsoft.com/outlook/add-ins/get-attachments-of-an-outlook-item)<!-- -->.
 
-      您的应用程序必须在其清单中指定了 ReadItem 权限，才能在阅读模式下调用 Mailbox.getcallbacktokenasync 方法。
+      在阅读模式下调用 `getCallbackTokenAsync` 方法要求最低权限级别的 **ReadItem**。
 
-      在撰写模式下，必须调用 saveAsync 方法来获取要传递给 Mailbox.getcallbacktokenasync 方法的项目标识符。 您的应用程序必须具有 ReadWriteItem 权限，才能调用 saveAsync 方法。
+      在撰写`getCallbackTokenAsync`模式下调用方法需要您保存项目。 `saveAsync` 方法要求最低权限级别的 **ReadWriteItem**。
 
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+      \[[API 集：用于读取模式支持的邮箱 1.0; 适用于撰写模式支持的 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -662,11 +669,11 @@ items:
 
       **错误**：
 
-      - HTTPRequestFailure：请求失败。 请查看 HTTP 错误代码的 diagnostics 对象。
+      - HTTPRequestFailure：请求失败。 请查看诊断对象，了解 HTTP 错误代码。
 
-      - InternalServerError： Exchange 服务器返回一个错误。 有关详细信息，请参阅 diagnostics 对象。
+      - InternalServerError： Exchange 服务器返回一个错误。 请查看诊断对象，了解详细信息。
 
-      - NetworkError：用户不再连接到网络。 请检查你的网络连接，然后重试。
+      - NetworkError：用户不再连接到网络。 请检查网络连接并重试。
 
       #### <a name="examples"></a>示例
 
@@ -692,7 +699,7 @@ items:
         description: ''
       parameters:
         - id: callback
-          description: 方法完成后，将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 令牌作为`asyncResult.value`属性中的字符串返回。 如果出现错误，则`asyncResult.error`和`asyncResult.diagnostics`属性可能会提供其他信息。
+          description: 方法完成后，将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 令牌作为`asyncResult.value`属性中的字符串返回。 如果出现错误，则 `asyncResult.error` 和 `asyncResult.diagnostics` 属性可能会提供其他信息。
           type:
             - 'outlook!Office.Mailbox#getCallbackTokenAsync~2:complex'
         - id: userContext
@@ -715,11 +722,11 @@ items:
 
       **错误**：
 
-      - HTTPRequestFailure：请求失败。 请查看 HTTP 错误代码的 diagnostics 对象。
+      - HTTPRequestFailure：请求失败。 请查看诊断对象，了解 HTTP 错误代码。
 
-      - InternalServerError： Exchange 服务器返回一个错误。 有关详细信息，请参阅 diagnostics 对象。
+      - InternalServerError： Exchange 服务器返回一个错误。 请查看诊断对象，了解详细信息。
 
-      - NetworkError：用户不再连接到网络。 请检查你的网络连接，然后重试。
+      - NetworkError：用户不再连接到网络。 请检查网络连接并重试。
 
       #### <a name="examples"></a>示例
 
@@ -745,7 +752,7 @@ items:
         description: ''
       parameters:
         - id: callback
-          description: 方法完成后，将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 令牌作为`asyncResult.value`属性中的字符串返回。 如果出现错误，则`asyncResult.error`和`asyncResult.diagnostics`属性可能会提供其他信息。
+          description: 方法完成后，将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 令牌作为`asyncResult.value`属性中的字符串返回。 如果出现错误，则 `asyncResult.error` 和 `asyncResult.diagnostics` 属性可能会提供其他信息。
           type:
             - 'outlook!Office.Mailbox#getUserIdentityTokenAsync~0:complex'
         - id: userContext
