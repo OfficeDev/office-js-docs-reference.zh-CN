@@ -2,9 +2,9 @@
 items:
   - uid: 'office!Office.AsyncResult:interface'
     summary: |-
-      <span data-ttu-id="74a52-101">用于封装异步请求的结果的对象，包括状态和错误信息（如果请求失败）。</span><span class="sxs-lookup"><span data-stu-id="74a52-101">An object which encapsulates the result of an asynchronous request, including status and error information if the request failed.</span></span>
+      用于封装异步请求的结果的对象，包括状态和错误信息（如果请求失败）。
 
-      <span data-ttu-id="74a52-102">当您传递给 "Async" `callback`方法的参数的函数执行时，它会接收您可以从该`callback`函数的唯一参数访问的 AsyncResult 对象。</span><span class="sxs-lookup"><span data-stu-id="74a52-102">When the function you pass to the `callback` parameter of an "Async" method executes, it receives an AsyncResult object that you can access from the `callback` function's only parameter.</span></span>
+      当您传递给 "Async" `callback`方法的参数的函数执行时，它会接收您可以从该`callback`函数的唯一参数访问的 AsyncResult 对象。
     name: Office.AsyncResult
     fullName: Office.AsyncResult
     langs:
@@ -17,7 +17,7 @@ items:
     remarks: |-
 
 
-      #### <a name="examples"></a><span data-ttu-id="74a52-103">示例</span><span class="sxs-lookup"><span data-stu-id="74a52-103">Examples</span></span>
+      #### <a name="examples"></a>示例
 
       ```javascript
       // The following is an example applicable to content and task pane add-ins.
@@ -27,7 +27,7 @@ items:
               filterType: "all"
           },
           function (result) {
-              if (result.status === "success") {
+              if (result.status === Office.AsyncResultStatus.Succeeded) {
                   var dataValue = result.value; // Get selected data.
                   console.log('Selected data is ' + dataValue);
               } else {
@@ -51,7 +51,7 @@ items:
       - 'office!Office.AsyncResult#status:member'
       - 'office!Office.AsyncResult#value:member'
   - uid: 'office!Office.AsyncResult#asyncContext:member'
-    summary: '<span data-ttu-id="74a52-104">获取与传入时状态相同的传递给调用`asyncContext`方法的可选参数的用户定义项。</span><span class="sxs-lookup"><span data-stu-id="74a52-104">Gets the user-defined item passed to the optional `asyncContext` parameter of the invoked method in the same state as it was passed in.</span></span> <span data-ttu-id="74a52-105">这将返回传递给调用方法的可选`asyncContext`参数的用户定义的项（可以是任何 JavaScript 类型： String、Number、Boolean、Object、Array、Null 或未定义）。</span><span class="sxs-lookup"><span data-stu-id="74a52-105">This returns the user-defined item (which can be of any JavaScript type: String, Number, Boolean, Object, Array, Null, or Undefined) passed to the optional `asyncContext` parameter of the invoked method.</span></span> <span data-ttu-id="74a52-106">如果您未向  asyncContext 参数传递任何东西，则返回 Undefined 。</span><span class="sxs-lookup"><span data-stu-id="74a52-106">Returns Undefined, if you didn''t pass anything to the asyncContext parameter.</span></span>'
+    summary: 获取与传入时状态相同的传递给调用`asyncContext`方法的可选参数的用户定义项。 这将返回传递给调用方法的可选`asyncContext`参数的用户定义的项（可以是任何 JavaScript 类型： String、Number、Boolean、Object、Array、Null 或未定义）。 如果您未向  asyncContext 参数传递任何东西，则返回 Undefined 。
     name: asyncContext
     fullName: asyncContext
     langs:
@@ -65,7 +65,7 @@ items:
         description: |-
 
 
-          #### <a name="examples"></a><span data-ttu-id="74a52-107">示例</span><span class="sxs-lookup"><span data-stu-id="74a52-107">Examples</span></span>
+          #### <a name="examples"></a>示例
 
           ```javascript
           function getDataWithContext() {
@@ -85,15 +85,15 @@ items:
           }
           ```
   - uid: 'office!Office.AsyncResult#diagnostics:member'
-    summary: '<span data-ttu-id="74a52-108">如果发生[错误](xref:office!Office.Error:interface)，则获取可能提供其他信息的对象。</span><span class="sxs-lookup"><span data-stu-id="74a52-108">Gets an object that may provide additional information if an [error](xref:office!Office.Error:interface) occurred.</span></span>'
+    summary: '如果发生[错误](xref:office!Office.Error:interface)，则获取可能提供其他信息的对象。'
     remarks: |-
-      <span data-ttu-id="74a52-109">如果这些受支持的 Api 发生以下错误，则此属性将返回其他信息。</span><span class="sxs-lookup"><span data-stu-id="74a52-109">This property returns additional information if the following errors occur with these supported APIs.</span></span>
+      如果这些受支持的 Api 发生以下错误，则此属性将返回其他信息。
 
-      <span data-ttu-id="74a52-110">*支持的 Api*</span><span class="sxs-lookup"><span data-stu-id="74a52-110">*Supported APIs*</span></span>
+      *支持的 Api*
 
-      `Office.context.mailbox.item.getCallbackTokenAsync`<!-- --><span data-ttu-id="74a52-111">, `Office.context.mailbox.item.getUserIdentityTokenAsync`</span><span class="sxs-lookup"><span data-stu-id="74a52-111"></span></span>
+      `Office.context.mailbox.item.getCallbackTokenAsync`<!-- -->, `Office.context.mailbox.item.getUserIdentityTokenAsync`
 
-      <span data-ttu-id="74a52-112">*支持的错误*</span><span class="sxs-lookup"><span data-stu-id="74a52-112">*Supported errors*</span></span> <table> <tr><th>`AsyncResult.error.name` </th><th>`AsyncResult.error.message` </th><th><span data-ttu-id="74a52-113">返回的诊断对象的说明</span><span class="sxs-lookup"><span data-stu-id="74a52-113">Description of diagnostics object returned</span></span> </th></tr> <tr><td><span data-ttu-id="74a52-114"><strong>HTTPRequestFailure</strong></span><span class="sxs-lookup"><span data-stu-id="74a52-114"><strong>HTTPRequestFailure</strong></span></span> </td><td><span data-ttu-id="74a52-115">请求失败。</span><span class="sxs-lookup"><span data-stu-id="74a52-115">The request has failed.</span></span> <span data-ttu-id="74a52-116">请查看 HTTP 错误代码的 diagnostics 对象。</span><span class="sxs-lookup"><span data-stu-id="74a52-116">Please look at the diagnostics object for the HTTP error code.</span></span> </td><td><span data-ttu-id="74a52-117">JSON 对象中的 HTTP 错误代码，例如，`{"HTTPCode":"401"}`</span><span class="sxs-lookup"><span data-stu-id="74a52-117">The HTTP error code in a JSON object e.g., `{"HTTPCode":"401"}`</span></span> </td></tr> <tr><td><span data-ttu-id="74a52-118"><strong>InternalServerError</strong></span><span class="sxs-lookup"><span data-stu-id="74a52-118"><strong>InternalServerError</strong></span></span></td><td><span data-ttu-id="74a52-119">Exchange 服务器返回错误。</span><span class="sxs-lookup"><span data-stu-id="74a52-119">The Exchange server returned an error.</span></span> <span data-ttu-id="74a52-120">有关详细信息，请参阅 diagnostics 对象。</span><span class="sxs-lookup"><span data-stu-id="74a52-120">Please look at the diagnostics object for more information.</span></span></td><td><span data-ttu-id="74a52-121">JSON 对象中来自 Exchange 服务器的错误消息，例如，`{"ErrorText": "The mailbox database is temporarily unavailable"}`</span><span class="sxs-lookup"><span data-stu-id="74a52-121">The error message from the Exchange server in a JSON object e.g., `{"ErrorText": "The mailbox database is temporarily unavailable"}`</span></span></td></tr> </table>
+      *支持的错误* <table> <tr><th>`AsyncResult.error.name` </th><th>`AsyncResult.error.message` </th><th>返回的诊断对象的说明 </th></tr> <tr><td><strong>HTTPRequestFailure</strong> </td><td>请求失败。 请查看诊断对象，了解 HTTP 错误代码。 </td><td>JSON 对象中的 HTTP 错误代码，例如，`{"HTTPCode":"401"}` </td></tr> <tr><td><strong>InternalServerError</strong></td><td>Exchange 服务器返回了错误。 请查看诊断对象，了解详细信息。</td><td>JSON 对象中来自 Exchange 服务器的错误消息，例如，`{"ErrorText": "The mailbox database is temporarily unavailable"}`</td></tr> </table>
     name: diagnostics
     fullName: diagnostics
     langs:
@@ -105,7 +105,7 @@ items:
         type:
           - any
   - uid: 'office!Office.AsyncResult#error:member'
-    summary: '<span data-ttu-id="74a52-122">如果出现任何错误，则获取一个提供错误说明的 " [Office." 错误](xref:office!Office.Error:interface)对象。</span><span class="sxs-lookup"><span data-stu-id="74a52-122">Gets an [Office.Error](xref:office!Office.Error:interface) object that provides a description of the error, if any error occurred.</span></span>'
+    summary: '如果出现任何错误，则获取一个提供错误说明的 " [Office." 错误](xref:office!Office.Error:interface)对象。'
     name: error
     fullName: error
     langs:
@@ -119,7 +119,7 @@ items:
         description: |-
 
 
-          #### <a name="examples"></a><span data-ttu-id="74a52-123">示例</span><span class="sxs-lookup"><span data-stu-id="74a52-123">Examples</span></span>
+          #### <a name="examples"></a>示例
 
           ```javascript
           function getData() {
@@ -138,7 +138,7 @@ items:
           }
           ```
   - uid: 'office!Office.AsyncResult#status:member'
-    summary: '<span data-ttu-id="74a52-124">获取异步操作的[AsyncResultStatus](xref:office!Office.AsyncResultStatus:enum) 。</span><span class="sxs-lookup"><span data-stu-id="74a52-124">Gets the [Office.AsyncResultStatus](xref:office!Office.AsyncResultStatus:enum) of the asynchronous operation.</span></span>'
+    summary: '获取异步操作的[AsyncResultStatus](xref:office!Office.AsyncResultStatus:enum) 。'
     name: status
     fullName: status
     langs:
@@ -152,7 +152,7 @@ items:
         description: |-
 
 
-          #### <a name="examples"></a><span data-ttu-id="74a52-125">示例</span><span class="sxs-lookup"><span data-stu-id="74a52-125">Examples</span></span>
+          #### <a name="examples"></a>示例
 
           ```javascript
           function getData() {
@@ -171,13 +171,13 @@ items:
           }
           ```
   - uid: 'office!Office.AsyncResult#value:member'
-    summary: '<span data-ttu-id="74a52-126">获取此异步操作的负载或内容（如有）。</span><span class="sxs-lookup"><span data-stu-id="74a52-126">Gets the payload or content of this asynchronous operation, if any.</span></span>'
+    summary: 获取此异步操作的负载或内容（如有）。
     remarks: |-
-      <span data-ttu-id="74a52-127">可以在作为参数传递给 "Async" 方法的 callback 参数的函数中访问 AsyncResult 对象，如`getSelectedDataAsync` [Document](xref:office!Office.Document:interface)对象的和`setSelectedDataAsync`方法。</span><span class="sxs-lookup"><span data-stu-id="74a52-127">You access the AsyncResult object in the function passed as the argument to the callback parameter of an "Async" method, such as the `getSelectedDataAsync` and `setSelectedDataAsync` methods of the [Document](xref:office!Office.Document:interface) object.</span></span>
+      可以在作为参数传递给 "Async" 方法的 callback 参数的函数中访问 AsyncResult 对象，如`getSelectedDataAsync` [Document](xref:office!Office.Document:interface)对象的和`setSelectedDataAsync`方法。
 
-      <span data-ttu-id="74a52-128">**注意**：对于特定的 "Async" 方法，value 属性的返回值取决于该方法的用途和上下文。</span><span class="sxs-lookup"><span data-stu-id="74a52-128">**Note**: What the value property returns for a particular "Async" method varies depending on the purpose and context of that method.</span></span> <span data-ttu-id="74a52-129">若要确定 value 属性为 "Async" 方法返回了什么内容，请参阅该方法主题的“回调值”部分。</span><span class="sxs-lookup"><span data-stu-id="74a52-129">To determine what is returned by the value property for an "Async" method, refer to the "Callback value" section of the method's topic.</span></span>
+      **注意**：对于特定的 "Async" 方法，value 属性的返回值取决于该方法的用途和上下文。 若要确定 value 属性为 "Async" 方法返回了什么内容，请参阅该方法主题的“回调值”部分。
 
-      #### <a name="examples"></a><span data-ttu-id="74a52-130">示例</span><span class="sxs-lookup"><span data-stu-id="74a52-130">Examples</span></span>
+      #### <a name="examples"></a>示例
 
       ```javascript
       function getData() {
