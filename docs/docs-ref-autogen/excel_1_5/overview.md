@@ -1,72 +1,74 @@
 ---
 title: Office JavaScript API 参考
 description: 每个主机要求集的 Office JavaScript Api
-ms.date: 07/25/2019
-ms.openlocfilehash: e4b45370dcaf82a60d39264a97f1e28c0dab543d
-ms.sourcegitcommit: ceb67bed1111b63e75e3a69a9a42a27ccc4d5749
+ms.date: 10/24/2019
+ms.openlocfilehash: fb6f228306c6fc5840c2f8b9c9bc46d56b43f50c
+ms.sourcegitcommit: dc57153a05b103a8493370c8aa1bd936f4d5f7c4
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/02/2019
-ms.locfileid: "36080980"
+ms.lasthandoff: 10/31/2019
+ms.locfileid: "37907153"
 ---
-# <a name="office-javascript-api-reference"></a><span data-ttu-id="a027a-103">Office JavaScript API 参考</span><span class="sxs-lookup"><span data-stu-id="a027a-103">Office JavaScript API reference</span></span>
+# <a name="office-javascript-api-reference"></a><span data-ttu-id="144b8-103">Office JavaScript API 参考</span><span class="sxs-lookup"><span data-stu-id="144b8-103">Office JavaScript API reference</span></span>
 
-<span data-ttu-id="a027a-104">借助适用于 Office 的 JavaScript API，您可以创建可与 Office 主机应用程序中的对象模型进行交互的 Web 应用程序。</span><span class="sxs-lookup"><span data-stu-id="a027a-104">The JavaScript API for Office enables you to create web applications that interact with the object models in Office host applications.</span></span> <span data-ttu-id="a027a-105">使用此部分可详细了解可用于生成 Office 外接程序的类、方法和其他类型。</span><span class="sxs-lookup"><span data-stu-id="a027a-105">Use this section to learn more about the classes, methods, and other types available for building Office Add-ins.</span></span>
+<span data-ttu-id="144b8-104">借助适用于 Office 的 JavaScript API，您可以创建可与 Office 主机应用程序中的对象模型进行交互的 Web 应用程序。</span><span class="sxs-lookup"><span data-stu-id="144b8-104">The JavaScript API for Office enables you to create web applications that interact with the object models in Office host applications.</span></span> <span data-ttu-id="144b8-105">使用此部分可详细了解可用于生成 Office 外接程序的类、方法和其他类型。</span><span class="sxs-lookup"><span data-stu-id="144b8-105">Use this section to learn more about the classes, methods, and other types available for building Office Add-ins.</span></span>
 
-<span data-ttu-id="a027a-106">下面列出了主机特定的要求集 (以及跨主机通用 Api)。</span><span class="sxs-lookup"><span data-stu-id="a027a-106">The following is a list of host-specific requirement sets (and the cross-host Common APIs).</span></span> <span data-ttu-id="a027a-107">每个项目都链接到该要求集支持的 API 参考文档版本 (例如, ExcelApi 1.3 显示 ExcelApi 1.1、1.2、1.3 以及通用 API) 的 api。</span><span class="sxs-lookup"><span data-stu-id="a027a-107">Each item links to a version of the API reference documentation that is supported by that requirement set (e.g. ExcelApi 1.3 shows APIs in ExcelApi 1.1, 1.2, 1.3 as well as the Common API).</span></span>
+<span data-ttu-id="144b8-106">下面列出了主机特定的要求集（以及跨主机通用 Api）。</span><span class="sxs-lookup"><span data-stu-id="144b8-106">The following is a list of host-specific requirement sets (and the cross-host Common APIs).</span></span> <span data-ttu-id="144b8-107">每个项目都链接到该要求集支持的 API 参考文档版本（例如，ExcelApi 1.3 显示 ExcelApi 1.1、1.2、1.3 以及通用 API）的 api。</span><span class="sxs-lookup"><span data-stu-id="144b8-107">Each item links to a version of the API reference documentation that is supported by that requirement set (e.g. ExcelApi 1.3 shows APIs in ExcelApi 1.1, 1.2, 1.3 as well as the Common API).</span></span>
 
 > [!TIP]
-> <span data-ttu-id="a027a-108">选择此页面上的链接可查看指定要求集支持的 Api 的参考文档, 或使用目录上方的筛选器选择下拉菜单更改要求集。</span><span class="sxs-lookup"><span data-stu-id="a027a-108">Choose a link on this page to view reference documentation for APIs supported by the specified requirement set, or use the filter selection drop-down menu above the table of contents to change the requirement set at any time.</span></span>
+> <span data-ttu-id="144b8-108">选择此页面上的链接可查看指定要求集支持的 Api 的参考文档，或使用目录上方的筛选器选择下拉菜单更改要求集。</span><span class="sxs-lookup"><span data-stu-id="144b8-108">Choose a link on this page to view reference documentation for APIs supported by the specified requirement set, or use the filter selection drop-down menu above the table of contents to change the requirement set at any time.</span></span>
 
-## <a name="excel"></a><span data-ttu-id="a027a-109">Excel</span><span class="sxs-lookup"><span data-stu-id="a027a-109">Excel</span></span>
+## <a name="excel"></a><span data-ttu-id="144b8-109">Excel</span><span class="sxs-lookup"><span data-stu-id="144b8-109">Excel</span></span>
 
-- [<span data-ttu-id="a027a-110">ExcelApi 预览</span><span class="sxs-lookup"><span data-stu-id="a027a-110">ExcelApi Preview</span></span>](/javascript/api/excel?view=excel-js-preview)
-- [<span data-ttu-id="a027a-111">ExcelApi 1.9</span><span class="sxs-lookup"><span data-stu-id="a027a-111">ExcelApi 1.9</span></span>](/javascript/api/excel?view=excel-js-1.9)
-- [<span data-ttu-id="a027a-112">ExcelApi 1.8</span><span class="sxs-lookup"><span data-stu-id="a027a-112">ExcelApi 1.8</span></span>](/javascript/api/excel?view=excel-js-1.8)
-- [<span data-ttu-id="a027a-113">ExcelApi 1.7</span><span class="sxs-lookup"><span data-stu-id="a027a-113">ExcelApi 1.7</span></span>](/javascript/api/excel?view=excel-js-1.7)
-- [<span data-ttu-id="a027a-114">ExcelApi 1.6</span><span class="sxs-lookup"><span data-stu-id="a027a-114">ExcelApi 1.6</span></span>](/javascript/api/excel?view=excel-js-1.6)
-- [<span data-ttu-id="a027a-115">ExcelApi 1.5</span><span class="sxs-lookup"><span data-stu-id="a027a-115">ExcelApi 1.5</span></span>](/javascript/api/excel?view=excel-js-1.5)
-- [<span data-ttu-id="a027a-116">ExcelApi 1.4</span><span class="sxs-lookup"><span data-stu-id="a027a-116">ExcelApi 1.4</span></span>](/javascript/api/excel?view=excel-js-1.4)
-- [<span data-ttu-id="a027a-117">ExcelApi 1.3</span><span class="sxs-lookup"><span data-stu-id="a027a-117">ExcelApi 1.3</span></span>](/javascript/api/excel?view=excel-js-1.3)
-- [<span data-ttu-id="a027a-118">ExcelApi 1.2</span><span class="sxs-lookup"><span data-stu-id="a027a-118">ExcelApi 1.2</span></span>](/javascript/api/excel?view=excel-js-1.2)
-- [<span data-ttu-id="a027a-119">ExcelApi 1.1</span><span class="sxs-lookup"><span data-stu-id="a027a-119">ExcelApi 1.1</span></span>](/javascript/api/excel?view=excel-js-1.1)
+- [<span data-ttu-id="144b8-110">ExcelApi 预览</span><span class="sxs-lookup"><span data-stu-id="144b8-110">ExcelApi Preview</span></span>](/javascript/api/excel?view=excel-js-preview)
+- [<span data-ttu-id="144b8-111">ExcelApi 1.10</span><span class="sxs-lookup"><span data-stu-id="144b8-111">ExcelApi 1.10</span></span>](/javascript/api/excel?view=excel-js-1.10)
+- [<span data-ttu-id="144b8-112">ExcelApi 1.9</span><span class="sxs-lookup"><span data-stu-id="144b8-112">ExcelApi 1.9</span></span>](/javascript/api/excel?view=excel-js-1.9)
+- [<span data-ttu-id="144b8-113">ExcelApi 1.8</span><span class="sxs-lookup"><span data-stu-id="144b8-113">ExcelApi 1.8</span></span>](/javascript/api/excel?view=excel-js-1.8)
+- [<span data-ttu-id="144b8-114">ExcelApi 1.7</span><span class="sxs-lookup"><span data-stu-id="144b8-114">ExcelApi 1.7</span></span>](/javascript/api/excel?view=excel-js-1.7)
+- [<span data-ttu-id="144b8-115">ExcelApi 1.6</span><span class="sxs-lookup"><span data-stu-id="144b8-115">ExcelApi 1.6</span></span>](/javascript/api/excel?view=excel-js-1.6)
+- [<span data-ttu-id="144b8-116">ExcelApi 1.5</span><span class="sxs-lookup"><span data-stu-id="144b8-116">ExcelApi 1.5</span></span>](/javascript/api/excel?view=excel-js-1.5)
+- [<span data-ttu-id="144b8-117">ExcelApi 1.4</span><span class="sxs-lookup"><span data-stu-id="144b8-117">ExcelApi 1.4</span></span>](/javascript/api/excel?view=excel-js-1.4)
+- [<span data-ttu-id="144b8-118">ExcelApi 1.3</span><span class="sxs-lookup"><span data-stu-id="144b8-118">ExcelApi 1.3</span></span>](/javascript/api/excel?view=excel-js-1.3)
+- [<span data-ttu-id="144b8-119">ExcelApi 1.2</span><span class="sxs-lookup"><span data-stu-id="144b8-119">ExcelApi 1.2</span></span>](/javascript/api/excel?view=excel-js-1.2)
+- [<span data-ttu-id="144b8-120">ExcelApi 1.1</span><span class="sxs-lookup"><span data-stu-id="144b8-120">ExcelApi 1.1</span></span>](/javascript/api/excel?view=excel-js-1.1)
 
-## <a name="onenote"></a><span data-ttu-id="a027a-120">OneNote</span><span class="sxs-lookup"><span data-stu-id="a027a-120">OneNote</span></span>
+## <a name="onenote"></a><span data-ttu-id="144b8-121">OneNote</span><span class="sxs-lookup"><span data-stu-id="144b8-121">OneNote</span></span>
 
-- [<span data-ttu-id="a027a-121">OneNote 1。1</span><span class="sxs-lookup"><span data-stu-id="a027a-121">OneNote 1.1</span></span>](/javascript/api/onenote?view=onenote-js-1.1)
+- [<span data-ttu-id="144b8-122">OneNote 1。1</span><span class="sxs-lookup"><span data-stu-id="144b8-122">OneNote 1.1</span></span>](/javascript/api/onenote?view=onenote-js-1.1)
 
-## <a name="outlook"></a><span data-ttu-id="a027a-122">Outlook</span><span class="sxs-lookup"><span data-stu-id="a027a-122">Outlook</span></span>
+## <a name="outlook"></a><span data-ttu-id="144b8-123">Outlook</span><span class="sxs-lookup"><span data-stu-id="144b8-123">Outlook</span></span>
 
-- [<span data-ttu-id="a027a-123">邮箱预览</span><span class="sxs-lookup"><span data-stu-id="a027a-123">Mailbox Preview</span></span>](/javascript/api/outlook?view=outlook-js-preview)
-- [<span data-ttu-id="a027a-124">Mailbox 1.7</span><span class="sxs-lookup"><span data-stu-id="a027a-124">Mailbox 1.7</span></span>](/javascript/api/outlook?view=outlook-js-1.7)
-- [<span data-ttu-id="a027a-125">Mailbox 1.6</span><span class="sxs-lookup"><span data-stu-id="a027a-125">Mailbox 1.6</span></span>](/javascript/api/outlook?view=outlook-js-1.6)
-- [<span data-ttu-id="a027a-126">Mailbox 1.5</span><span class="sxs-lookup"><span data-stu-id="a027a-126">Mailbox 1.5</span></span>](/javascript/api/outlook?view=outlook-js-1.5)
-- [<span data-ttu-id="a027a-127">Mailbox 1.4</span><span class="sxs-lookup"><span data-stu-id="a027a-127">Mailbox 1.4</span></span>](/javascript/api/outlook?view=outlook-js-1.4)
-- [<span data-ttu-id="a027a-128">Mailbox 1.3</span><span class="sxs-lookup"><span data-stu-id="a027a-128">Mailbox 1.3</span></span>](/javascript/api/outlook?view=outlook-js-1.3)
-- [<span data-ttu-id="a027a-129">Mailbox 1.2</span><span class="sxs-lookup"><span data-stu-id="a027a-129">Mailbox 1.2</span></span>](/javascript/api/outlook?view=outlook-js-1.2)
-- [<span data-ttu-id="a027a-130">Mailbox 1.1</span><span class="sxs-lookup"><span data-stu-id="a027a-130">Mailbox 1.1</span></span>](/javascript/api/outlook?view=outlook-js-1.1)
+- [<span data-ttu-id="144b8-124">邮箱预览</span><span class="sxs-lookup"><span data-stu-id="144b8-124">Mailbox Preview</span></span>](/javascript/api/outlook?view=outlook-js-preview)
+- [<span data-ttu-id="144b8-125">邮箱1。8</span><span class="sxs-lookup"><span data-stu-id="144b8-125">Mailbox 1.8</span></span>](/javascript/api/outlook?view=outlook-js-1.8)
+- [<span data-ttu-id="144b8-126">Mailbox 1.7</span><span class="sxs-lookup"><span data-stu-id="144b8-126">Mailbox 1.7</span></span>](/javascript/api/outlook?view=outlook-js-1.7)
+- [<span data-ttu-id="144b8-127">Mailbox 1.6</span><span class="sxs-lookup"><span data-stu-id="144b8-127">Mailbox 1.6</span></span>](/javascript/api/outlook?view=outlook-js-1.6)
+- [<span data-ttu-id="144b8-128">Mailbox 1.5</span><span class="sxs-lookup"><span data-stu-id="144b8-128">Mailbox 1.5</span></span>](/javascript/api/outlook?view=outlook-js-1.5)
+- [<span data-ttu-id="144b8-129">Mailbox 1.4</span><span class="sxs-lookup"><span data-stu-id="144b8-129">Mailbox 1.4</span></span>](/javascript/api/outlook?view=outlook-js-1.4)
+- [<span data-ttu-id="144b8-130">Mailbox 1.3</span><span class="sxs-lookup"><span data-stu-id="144b8-130">Mailbox 1.3</span></span>](/javascript/api/outlook?view=outlook-js-1.3)
+- [<span data-ttu-id="144b8-131">Mailbox 1.2</span><span class="sxs-lookup"><span data-stu-id="144b8-131">Mailbox 1.2</span></span>](/javascript/api/outlook?view=outlook-js-1.2)
+- [<span data-ttu-id="144b8-132">Mailbox 1.1</span><span class="sxs-lookup"><span data-stu-id="144b8-132">Mailbox 1.1</span></span>](/javascript/api/outlook?view=outlook-js-1.1)
 
-## <a name="powerpoint"></a><span data-ttu-id="a027a-131">PowerPoint</span><span class="sxs-lookup"><span data-stu-id="a027a-131">PowerPoint</span></span>
+## <a name="powerpoint"></a><span data-ttu-id="144b8-133">PowerPoint</span><span class="sxs-lookup"><span data-stu-id="144b8-133">PowerPoint</span></span>
 
-- [<span data-ttu-id="a027a-132">PowerPointApi 1。1</span><span class="sxs-lookup"><span data-stu-id="a027a-132">PowerPointApi 1.1</span></span>](/javascript/api/powerpoint?view=powerpoint-js-1.1)
+- [<span data-ttu-id="144b8-134">PowerPointApi 1.1</span><span class="sxs-lookup"><span data-stu-id="144b8-134">PowerPointApi 1.1</span></span>](/javascript/api/powerpoint?view=powerpoint-js-1.1)
 
-## <a name="visio"></a><span data-ttu-id="a027a-133">Visio</span><span class="sxs-lookup"><span data-stu-id="a027a-133">Visio</span></span>
+## <a name="visio"></a><span data-ttu-id="144b8-135">Visio</span><span class="sxs-lookup"><span data-stu-id="144b8-135">Visio</span></span>
 
-- [<span data-ttu-id="a027a-134">VisioApi 1。1</span><span class="sxs-lookup"><span data-stu-id="a027a-134">VisioApi 1.1</span></span>](/javascript/api/visio?view=visio-js-1.1)
+- [<span data-ttu-id="144b8-136">VisioApi 1。1</span><span class="sxs-lookup"><span data-stu-id="144b8-136">VisioApi 1.1</span></span>](/javascript/api/visio?view=visio-js-1.1)
 
-## <a name="word"></a><span data-ttu-id="a027a-135">Word</span><span class="sxs-lookup"><span data-stu-id="a027a-135">Word</span></span>
+## <a name="word"></a><span data-ttu-id="144b8-137">Word</span><span class="sxs-lookup"><span data-stu-id="144b8-137">Word</span></span>
 
-- [<span data-ttu-id="a027a-136">Word 预览</span><span class="sxs-lookup"><span data-stu-id="a027a-136">Word Preview</span></span>](/javascript/api/word?view=word-js-preview)
-- [<span data-ttu-id="a027a-137">WordApi 1.3</span><span class="sxs-lookup"><span data-stu-id="a027a-137">WordApi 1.3</span></span>](/javascript/api/word?view=word-js-1.3)
-- [<span data-ttu-id="a027a-138">WordApi 1.2</span><span class="sxs-lookup"><span data-stu-id="a027a-138">WordApi 1.2</span></span>](/javascript/api/word?view=word-js-1.2)
-- [<span data-ttu-id="a027a-139">WordApi 1.1</span><span class="sxs-lookup"><span data-stu-id="a027a-139">WordApi 1.1</span></span>](/javascript/api/word?view=word-js-1.1)
+- [<span data-ttu-id="144b8-138">Word 预览</span><span class="sxs-lookup"><span data-stu-id="144b8-138">Word Preview</span></span>](/javascript/api/word?view=word-js-preview)
+- [<span data-ttu-id="144b8-139">WordApi 1.3</span><span class="sxs-lookup"><span data-stu-id="144b8-139">WordApi 1.3</span></span>](/javascript/api/word?view=word-js-1.3)
+- [<span data-ttu-id="144b8-140">WordApi 1.2</span><span class="sxs-lookup"><span data-stu-id="144b8-140">WordApi 1.2</span></span>](/javascript/api/word?view=word-js-1.2)
+- [<span data-ttu-id="144b8-141">WordApi 1.1</span><span class="sxs-lookup"><span data-stu-id="144b8-141">WordApi 1.1</span></span>](/javascript/api/word?view=word-js-1.1)
 
-## <a name="common-api"></a><span data-ttu-id="a027a-140">通用 API</span><span class="sxs-lookup"><span data-stu-id="a027a-140">Common API</span></span>
+## <a name="common-api"></a><span data-ttu-id="144b8-142">通用 API</span><span class="sxs-lookup"><span data-stu-id="144b8-142">Common API</span></span>
 
-- [<span data-ttu-id="a027a-141">通用 API</span><span class="sxs-lookup"><span data-stu-id="a027a-141">Common API</span></span>](/javascript/api/office?view=common-js)
+- [<span data-ttu-id="144b8-143">通用 API</span><span class="sxs-lookup"><span data-stu-id="144b8-143">Common API</span></span>](/javascript/api/office?view=common-js)
 
-## <a name="see-also"></a><span data-ttu-id="a027a-142">另请参阅</span><span class="sxs-lookup"><span data-stu-id="a027a-142">See also</span></span>
+## <a name="see-also"></a><span data-ttu-id="144b8-144">另请参阅</span><span class="sxs-lookup"><span data-stu-id="144b8-144">See also</span></span>
 
-- [<span data-ttu-id="a027a-143">关于 Office 外接程序</span><span class="sxs-lookup"><span data-stu-id="a027a-143">About Office Add-ins</span></span>](/office/dev/add-ins/overview)
-- [<span data-ttu-id="a027a-144">Office 外接程序主机和平台可用性</span><span class="sxs-lookup"><span data-stu-id="a027a-144">Office Add-in host and platform availability</span></span>](/office/dev/add-ins/overview/office-add-in-availability)
-- [<span data-ttu-id="a027a-145">Office 版本和要求集</span><span class="sxs-lookup"><span data-stu-id="a027a-145">Office versions and requirement sets</span></span>](/office/dev/add-ins/develop/office-versions-and-requirement-sets)
+- [<span data-ttu-id="144b8-145">关于 Office 加载项</span><span class="sxs-lookup"><span data-stu-id="144b8-145">About Office Add-ins</span></span>](/office/dev/add-ins/overview)
+- [<span data-ttu-id="144b8-146">Office 加载项主机和平台可用性</span><span class="sxs-lookup"><span data-stu-id="144b8-146">Office Add-in host and platform availability</span></span>](/office/dev/add-ins/overview/office-add-in-availability)
+- [<span data-ttu-id="144b8-147">Office 版本和要求集</span><span class="sxs-lookup"><span data-stu-id="144b8-147">Office versions and requirement sets</span></span>](/office/dev/add-ins/develop/office-versions-and-requirement-sets)
