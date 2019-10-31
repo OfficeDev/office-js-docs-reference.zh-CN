@@ -197,7 +197,7 @@ items:
 
       **注意**：如果使用的是数据 url API （例如，readAsDataURL），则需要先去掉数据 url 前缀，然后再将字符串的其余部分发送到此 API。 例如，如果完整的字符串由`data:image/svg+xml;base64,<rest of base64 string>`<!-- -->，请删除`data:image/svg+xml;base64,`<!-- -->.
 
-      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadWriteItem
 
@@ -231,7 +231,6 @@ items:
                   });
           });
       ```
-    isPreview: true
     name: 'addFileAttachmentFromBase64Async(base64File, attachmentName, options, callback)'
     fullName: 'addFileAttachmentFromBase64Async(base64File, attachmentName, options, callback)'
     langs:
@@ -270,7 +269,7 @@ items:
 
       **注意**：如果使用的是数据 url API （例如，readAsDataURL），则需要先去掉数据 url 前缀，然后再将字符串的其余部分发送到此 API。 例如，如果完整的字符串由`data:image/svg+xml;base64,<rest of base64 string>`<!-- -->，请删除`data:image/svg+xml;base64,`<!-- -->.
 
-      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadWriteItem
 
@@ -283,7 +282,6 @@ items:
       - FileTypeNotSupported：附件的分机号码是不允许的。
 
       - NumberOfAttachmentsExceeded：邮件或约会的附件过多。
-    isPreview: true
     name: 'addFileAttachmentFromBase64Async(base64File, attachmentName, callback)'
     fullName: 'addFileAttachmentFromBase64Async(base64File, attachmentName, callback)'
     langs:
@@ -312,7 +310,7 @@ items:
     summary: |-
       添加支持事件的事件处理程序。 **注意**：事件仅在任务窗格中可用。
 
-      目前，受支持的事件类型是`Office.EventType.AppointmentTimeChanged`<!-- -->, `Office.EventType.RecipientsChanged`<!-- -->，并`Office.EventType.RecurrenceChanged`<!-- -->. 在 "预览`Office.EventType.AttachmentsChanged` " `Office.EventType.EnhancedLocationsChanged`中，也支持。
+      若要查看受支持的事件类型， `Office.EventType`请参阅了解详细信息。
 
       \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -351,7 +349,7 @@ items:
     summary: |-
       添加支持事件的事件处理程序。 **注意**：事件仅在任务窗格中可用。
 
-      目前，受支持的事件类型是`Office.EventType.AppointmentTimeChanged`<!-- -->, `Office.EventType.RecipientsChanged`<!-- -->，并`Office.EventType.RecurrenceChanged`<!-- -->. 在 "预览`Office.EventType.AttachmentsChanged` " `Office.EventType.EnhancedLocationsChanged`中，也支持。
+      若要查看受支持的事件类型， `Office.EventType`请参阅了解详细信息。
 
       \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -500,11 +498,11 @@ items:
     summary: |-
       获取对象，该对象提供用于获取或更新邮件的密件抄送 (Bcc) 行上的收件人的方法。
 
-      默认情况下，集合限制为最多为100个成员。 但是，在 Windows 和 Mac 上，以下限制适用。
+      默认情况下，集合上限为 100 个成员。 但是，在 Windows 和 Mac 上，以下限制适用。
 
-      - 最多获取500个成员。
+      - 最多包含 500 个成员。
 
-      - 每个呼叫最多可设置100个成员，最多为500个成员总数。
+      - 为每个呼叫最多设置 100 个成员，总共多达 500 个成员。
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -575,7 +573,7 @@ items:
     summary: |-
       获取一个对象，该对象提供用于管理项的类别的方法。
 
-      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -592,7 +590,6 @@ items:
           }
       });
       ```
-    isPreview: true
     name: categories
     fullName: categories
     langs:
@@ -607,11 +604,11 @@ items:
     summary: |-
       提供对邮件的抄送 (Cc) 收件人的访问权限。 对象的类型和访问级别取决于当前项目的模式。
 
-      Cc 属性返回一个[Office. 收件人](xref:outlook!Office.Recipients:interface)对象，该对象提供用于获取或更新邮件的 "抄送" 行上的收件人的方法。 默认情况下，集合限制为最多为100个成员。 但是，在 Windows 和 Mac 上，以下限制适用。
+      Cc 属性返回一个[收件人](xref:outlook!Office.Recipients:interface)对象，该对象提供用于获取或更新邮件的 "抄送" 行上的收件人的方法。 默认情况下，集合上限为 100 个成员。 但是，在 Windows 和 Mac 上，以下限制适用。
 
-      - 最多获取500个成员。
+      - 最多包含 500 个成员。
 
-      - 每个呼叫最多可设置100个成员，最多为500个成员总数。
+      - 为每个呼叫最多设置 100 个成员，总共多达 500 个成员。
 
       \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -733,12 +730,11 @@ items:
     summary: |-
       以数组的形式获取项目的附件。
 
-      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
       **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**：邮件撰写
-    isPreview: true
     name: 'getAttachmentsAsync(options, callback)'
     fullName: 'getAttachmentsAsync(options, callback)'
     langs:
@@ -763,7 +759,7 @@ items:
     summary: |-
       以数组的形式获取项目的附件。
 
-      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -791,7 +787,6 @@ items:
           }
       }
       ```
-    isPreview: true
     name: getAttachmentsAsync(callback)
     fullName: getAttachmentsAsync(callback)
     langs:
@@ -880,7 +875,7 @@ items:
 
       **注意**：如果你的外接程序`getItemIdAsync`对撰写模式中的项（例如，获取`itemId`与 EWS 或 REST API 一起使用）调用，请注意，当 Outlook 处于缓存模式下时，可能需要一段时间才能将项目同步到服务器。 在同步项目之前，无法识别`itemId`该项目并使用它将返回错误。
 
-      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -889,7 +884,6 @@ items:
       **错误**：
 
       - `ItemNotSaved`<!-- -->：在保存项目之前无法检索该 id。
-    isPreview: true
     name: 'getItemIdAsync(options, callback)'
     fullName: 'getItemIdAsync(options, callback)'
     langs:
@@ -918,7 +912,7 @@ items:
 
       **注意**：如果你的外接程序`getItemIdAsync`对撰写模式中的项（例如，获取`itemId`与 EWS 或 REST API 一起使用）调用，请注意，当 Outlook 处于缓存模式下时，可能需要一段时间才能将项目同步到服务器。 在同步项目之前，无法识别`itemId`该项目并使用它将返回错误。
 
-      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -927,7 +921,6 @@ items:
       **错误**：
 
       - `ItemNotSaved`<!-- -->：在保存项目之前无法检索该 id。
-    isPreview: true
     name: getItemIdAsync(callback)
     fullName: getItemIdAsync(callback)
     langs:
@@ -1040,7 +1033,7 @@ items:
 
       InternetHeaders 属性返回一个 InternetHeaders 对象，该对象提供用于管理邮件上的 internet 标头的方法。
 
-      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -1056,7 +1049,6 @@ items:
           var header1_value = dictionary["header1"];
       }
       ```
-    isPreview: true
     name: internetHeaders
     fullName: internetHeaders
     langs:
@@ -1253,7 +1245,7 @@ items:
     summary: |-
       删除受支持事件类型的事件处理程序。 **注意**：事件仅在任务窗格中可用。
 
-      目前，受支持的事件类型是`Office.EventType.AppointmentTimeChanged`<!-- -->, `Office.EventType.RecipientsChanged`<!-- -->，并`Office.EventType.RecurrenceChanged`<!-- -->. 在 "预览`Office.EventType.AttachmentsChanged` " `Office.EventType.EnhancedLocationsChanged`中，也支持。
+      若要查看受支持的事件类型， `Office.EventType`请参阅了解详细信息。
 
       \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -1288,7 +1280,7 @@ items:
     summary: |-
       删除受支持事件类型的事件处理程序。 **注意**：事件仅在任务窗格中可用。
 
-      目前，受支持的事件类型是`Office.EventType.AppointmentTimeChanged`<!-- -->, `Office.EventType.RecipientsChanged`<!-- -->，并`Office.EventType.RecurrenceChanged`<!-- -->. 在 "预览`Office.EventType.AttachmentsChanged` " `Office.EventType.EnhancedLocationsChanged`中，也支持。
+      若要查看受支持的事件类型， `Office.EventType`请参阅了解详细信息。
 
       \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -1582,11 +1574,11 @@ items:
     summary: |-
       提供对邮件的“收件人”行上的收件人的访问权限。 对象的类型和访问级别取决于当前项目的模式。
 
-      To 属性返回一个收件人对象，该对象提供用于获取或更新邮件的 "收件人" 行上的收件人的方法。 默认情况下，集合限制为最多为100个成员。 但是，在 Windows 和 Mac 上，以下限制适用。
+      To 属性返回一个收件人对象，该对象提供用于获取或更新邮件的 "收件人" 行上的收件人的方法。 默认情况下，集合上限为 100 个成员。 但是，在 Windows 和 Mac 上，以下限制适用。
 
-      - 最多获取500个成员。
+      - 最多包含 500 个成员。
 
-      - 每个呼叫最多可设置100个成员，最多为500个成员总数。
+      - 为每个呼叫最多设置 100 个成员，总共多达 500 个成员。
 
       \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
