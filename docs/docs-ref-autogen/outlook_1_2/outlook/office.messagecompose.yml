@@ -427,9 +427,11 @@ items:
     summary: |-
       以异步方式返回邮件的主题或正文中选定的数据。
 
-      如果没有选定内容，但光标位于正文或主题中，此方法将会为所选数据返回 null。 如果选择了 "正文" 或 "主题" 以外的字段，则该方法将返回 InvalidSelection 错误。
+      如果没有选定内容，但光标在正文或主题中，则该方法将返回所选数据的空字符串。 如果选择了 "正文" 或 "主题" 以外的字段，则该方法将返回 InvalidSelection 错误。
 
       若要从回调方法访问所选数据，请调用 asyncResult. value。 若要访问所选内容来自的源属性，请调用 asyncResult. sourceProperty，它是正文或主题。
+
+      **注意**：在 web 上的 Outlook 中，如果未选择任何文本，但光标在正文中，则该方法将返回字符串 "null"。
 
       \[[API 集：邮箱 1.2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -449,11 +451,13 @@ items:
           var text = asyncResult.value.data;
           var prop = asyncResult.value.sourceProperty;
 
-          Office.context.mailbox.item.setSelectedDataAsync('Setting ' + prop + ': ' + text, {}, setCallback);
-      }
+          // Handle where Outlook on the web erroneously returns "null" instead of empty string.
+          if (Office.context.mailbox.diagnostics.hostName === 'OutlookWebApp'
+              && asyncResult.value.endPosition === asyncResult.value.startPosition) {
+              text = "";
+          }
 
-      function setCallback(asyncResult) {
-          // Check for errors.
+          console.log("Selected text in " + prop + ": " + text);
       }
       ```
     name: 'getSelectedDataAsync(coercionType, options, callback)'
@@ -484,9 +488,11 @@ items:
     summary: |-
       以异步方式返回邮件的主题或正文中选定的数据。
 
-      如果没有选定内容，但光标位于正文或主题中，此方法将会为所选数据返回 null。 如果选择了 "正文" 或 "主题" 以外的字段，则该方法将返回 InvalidSelection 错误。
+      如果没有选定内容，但光标在正文或主题中，则该方法将返回所选数据的空字符串。 如果选择了 "正文" 或 "主题" 以外的字段，则该方法将返回 InvalidSelection 错误。
 
       若要从回调方法访问所选数据，请调用 asyncResult. value。 若要访问所选内容来自的源属性，请调用 asyncResult. sourceProperty，它是正文或主题。
+
+      **注意**：在 web 上的 Outlook 中，如果未选择任何文本，但光标在正文中，则该方法将返回字符串 "null"。
 
       \[[API 集：邮箱 1.2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
