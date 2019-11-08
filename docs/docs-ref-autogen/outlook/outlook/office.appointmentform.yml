@@ -39,10 +39,10 @@ items:
       - typeScript
     type: property
     syntax:
-      content: 'body: string;'
+      content: 'body: Body | string;'
       return:
         type:
-          - string
+          - 'outlook!Office.AppointmentForm#body~0:complex'
   - uid: 'outlook!Office.AppointmentForm#end:member'
     summary: |-
       获取或设置约会结束的日期和时间。
@@ -70,10 +70,10 @@ items:
       - typeScript
     type: property
     syntax:
-      content: 'end: Date;'
+      content: 'end: Time | Date;'
       return:
         type:
-          - '!Date:interface'
+          - 'outlook!Office.AppointmentForm#end~0:complex'
   - uid: 'outlook!Office.AppointmentForm#location:member'
     summary: |-
       获取或设置约会的位置。
@@ -97,25 +97,25 @@ items:
       - typeScript
     type: property
     syntax:
-      content: 'location: string;'
+      content: 'location: Location | string;'
       return:
         type:
-          - string
+          - 'outlook!Office.AppointmentForm#location~0:complex'
   - uid: 'outlook!Office.AppointmentForm#optionalAttendees:member'
     summary: |-
       提供对事件的可选与会者的访问权限。 对象的类型和访问级别取决于当前项目的模式。
 
       *阅读模式*
 
-      OptionalAttendees 属性返回一个数组，该数组包含会议的每个可选与会者的 EmailAddressDetails 对象。 默认情况下，集合限制为最多为100个成员。 但是，在 Windows 和 Mac 上，您可以获得500个成员的最大值。
+      OptionalAttendees 属性返回一个数组，该数组包含会议的每个可选与会者的 EmailAddressDetails 对象。 默认情况下，集合上限为 100 个成员。 但是，在 Windows 和 Mac 上，最多可包含 500 个成员。
 
       *撰写模式*
 
-      OptionalAttendees 属性返回一个收件人对象，该对象提供用于获取或更新会议的可选与会者的方法。 默认情况下，集合限制为最多为100个成员。 但是，在 Windows 和 Mac 上，以下限制适用。
+      OptionalAttendees 属性返回一个收件人对象，该对象提供用于获取或更新会议的可选与会者的方法。 默认情况下，集合上限为 100 个成员。 但是，在 Windows 和 Mac 上，以下限制适用。
 
-      - 最多获取500个成员。
+      - 最多包含 500 个成员。
 
-      - 每个呼叫最多可设置100个成员，最多为500个成员总数。
+      - 为每个呼叫最多设置 100 个成员，总共多达 500 个成员。
 
       \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -138,15 +138,15 @@ items:
 
       *阅读模式*
 
-      RequiredAttendees 属性返回一个数组，其中包含会议的每个所需与会者的 EmailAddressDetails 对象。 默认情况下，集合限制为最多为100个成员。 但是，在 Windows 和 Mac 上，您可以获得500个成员的最大值。
+      RequiredAttendees 属性返回一个数组，其中包含会议的每个所需与会者的 EmailAddressDetails 对象。 默认情况下，集合上限为 100 个成员。 但是，在 Windows 和 Mac 上，最多可包含 500 个成员。
 
       *撰写模式*
 
-      RequiredAttendees 属性返回一个收件人对象，该对象提供用于获取或更新会议的必需与会者的方法。 默认情况下，集合限制为最多为100个成员。 但是，在 Windows 和 Mac 上，以下限制适用。
+      RequiredAttendees 属性返回一个收件人对象，该对象提供用于获取或更新会议的必需与会者的方法。 默认情况下，集合上限为 100 个成员。 但是，在 Windows 和 Mac 上，以下限制适用。
 
-      - 最多获取500个成员。
+      - 最多包含 500 个成员。
 
-      - 每个呼叫最多可设置100个成员，最多为500个成员总数。
+      - 为每个呼叫最多设置 100 个成员，总共多达 500 个成员。
 
       \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -209,10 +209,10 @@ items:
       - typeScript
     type: property
     syntax:
-      content: 'start: Date;'
+      content: 'start: Time | Date;'
       return:
         type:
-          - '!Date:interface'
+          - 'outlook!Office.AppointmentForm#start~0:complex'
   - uid: 'outlook!Office.AppointmentForm#subject:member'
     summary: |-
       获取或设置显示在项目的主题字段中的说明。
@@ -238,13 +238,41 @@ items:
       - typeScript
     type: property
     syntax:
-      content: 'subject: string;'
+      content: 'subject: Subject | string;'
       return:
         type:
-          - string
+          - 'outlook!Office.AppointmentForm#subject~0:complex'
 references:
-  - uid: '!Date:interface'
-    name: Date
+  - uid: 'outlook!Office.AppointmentForm#body~0:complex'
+    name: Body | string
+    fullName: Office.Body | string
+    spec.typeScript:
+      - uid: 'outlook!Office.Body:interface'
+        name: Body
+        fullName: Office.Body
+      - name: ' | string'
+        fullName: ' | string'
+  - uid: 'outlook!Office.AppointmentForm#end~0:complex'
+    name: Time | Date
+    fullName: Office.Time | Date
+    spec.typeScript:
+      - uid: 'outlook!Office.Time:interface'
+        name: Time
+        fullName: Office.Time
+      - name: ' | '
+        fullName: ' | '
+      - uid: '!Date:interface'
+        name: Date
+        fullName: Date
+  - uid: 'outlook!Office.AppointmentForm#location~0:complex'
+    name: Location | string
+    fullName: Office.Location | string
+    spec.typeScript:
+      - uid: 'outlook!Office.Location:interface'
+        name: Location
+        fullName: Office.Location
+      - name: ' | string'
+        fullName: ' | string'
   - uid: 'outlook!Office.AppointmentForm#optionalAttendees~0:complex'
     name: 'Recipients[] | EmailAddressDetails[]'
     fullName: 'Office.Recipients[] | Office.EmailAddressDetails[]'
@@ -273,3 +301,24 @@ references:
         fullName: Office.EmailAddressDetails
       - name: '[]'
         fullName: '[]'
+  - uid: 'outlook!Office.AppointmentForm#start~0:complex'
+    name: Time | Date
+    fullName: Office.Time | Date
+    spec.typeScript:
+      - uid: 'outlook!Office.Time:interface'
+        name: Time
+        fullName: Office.Time
+      - name: ' | '
+        fullName: ' | '
+      - uid: '!Date:interface'
+        name: Date
+        fullName: Date
+  - uid: 'outlook!Office.AppointmentForm#subject~0:complex'
+    name: Subject | string
+    fullName: Office.Subject | string
+    spec.typeScript:
+      - uid: 'outlook!Office.Subject:interface'
+        name: Subject
+        fullName: Office.Subject
+      - name: ' | string'
+        fullName: ' | string'

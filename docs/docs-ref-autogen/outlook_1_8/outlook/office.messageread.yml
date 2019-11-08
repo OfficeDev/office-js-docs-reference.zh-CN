@@ -26,6 +26,7 @@ items:
       - 'outlook!Office.MessageRead#dateTimeModified:member'
       - 'outlook!Office.MessageRead#displayReplyAllForm:member(1)'
       - 'outlook!Office.MessageRead#displayReplyForm:member(1)'
+      - 'outlook!Office.MessageRead#end:member'
       - 'outlook!Office.MessageRead#from:member'
       - 'outlook!Office.MessageRead#getAllInternetHeadersAsync:member(1)'
       - 'outlook!Office.MessageRead#getAllInternetHeadersAsync:member(2)'
@@ -41,6 +42,7 @@ items:
       - 'outlook!Office.MessageRead#itemId:member'
       - 'outlook!Office.MessageRead#itemType:member'
       - 'outlook!Office.MessageRead#loadCustomPropertiesAsync:member(1)'
+      - 'outlook!Office.MessageRead#location:member'
       - 'outlook!Office.MessageRead#normalizedSubject:member'
       - 'outlook!Office.MessageRead#notificationMessages:member'
       - 'outlook!Office.MessageRead#recurrence:member'
@@ -48,6 +50,7 @@ items:
       - 'outlook!Office.MessageRead#removeHandlerAsync:member(2)'
       - 'outlook!Office.MessageRead#sender:member'
       - 'outlook!Office.MessageRead#seriesId:member'
+      - 'outlook!Office.MessageRead#start:member'
       - 'outlook!Office.MessageRead#subject:member'
       - 'outlook!Office.MessageRead#to:member'
   - uid: 'outlook!Office.MessageRead#addHandlerAsync:member(1)'
@@ -558,6 +561,29 @@ items:
           description: 可选。 方法完成后，使用单个参数 asyncResult 调用在 callback 参数中传递的函数，该参数是一个作为一个 AsyncResult 对象的参数。
           type:
             - 'outlook!Office.MessageRead#displayReplyForm~1:complex'
+  - uid: 'outlook!Office.MessageRead#end:member'
+    summary: |-
+      获取约会结束的日期和时间。
+
+      End 属性是以协调世界时（UTC）日期和时间值表示的 Date 对象。 您可以使用 convertToLocalClientTime 方法将 end 属性值转换为客户端的本地日期和时间。
+
+      使用 setAsync 方法设置结束时间时，应使用 convertToUtcClientTime 方法将客户端上的本地时间转换为服务器的 UTC。
+
+      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**：邮件已阅读
+    name: end
+    fullName: end
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'end: Date;'
+      return:
+        type:
+          - '!Date:interface'
   - uid: 'outlook!Office.MessageRead#from:member'
     summary: |-
       获取邮件发件人的电子邮件地址。
@@ -708,7 +734,7 @@ items:
 
       当使用此方法的最低权限级别受限时，某些实体类型需要 ReadItem 才能进行访问，如下表中所指定。
 
-      <table> <tr> <th>EntityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需权限级别</th> </tr> <tr> <td>地址</td> <td>字符串</td> <td>受限</td> </tr> <tr> <td>Contact</td> <td>Contact</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>字符串</td> <td>受限</td> </tr> </table>
+      <table> <tr> <th>EntityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需权限级别</th> </tr> <tr> <td>Address</td> <td>String</td> <td>受限</td> </tr> <tr> <td>Contact</td> <td>Contact</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>String</td> <td>受限</td> </tr> </table>
 
       #### <a name="examples"></a>示例
 
@@ -1020,11 +1046,11 @@ items:
           - string
   - uid: 'outlook!Office.MessageRead#itemId:member'
     summary: |-
-      获取当前项目的 Exchange Web 服务项目标识符。
+      获取当前项的[Exchange Web 服务项标识符](https://docs.microsoft.com/exchange/client-developer/exchange-web-services/ews-identifiers-in-exchange)。
 
       ItemId 属性在撰写模式中不可用。 如果需要项目标识符，则可以使用 saveAsync 方法将项目保存到存储区，这将在回调函数的 asyncResult 参数中返回项目标识符。
 
-      **注意**： itemId 属性返回的标识符与 Exchange Web 服务项目标识符相同。 ItemId 属性与 outlook 条目 ID 或 Outlook REST API 使用的 ID 不相同。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关更多详细信息，请参阅[使用 outlook 外接程序中的 OUTLOOK REST api](https://docs.microsoft.com/outlook/add-ins/use-rest-api#get-the-item-id)<!-- -->.
+      **注意**： itemId 属性返回的标识符与[Exchange Web 服务项目标识符](https://docs.microsoft.com/exchange/client-developer/exchange-web-services/ews-identifiers-in-exchange)相同。<!-- -->. ItemId 属性与 outlook 条目 ID 或 Outlook REST API 使用的 ID 不相同。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关更多详细信息，请参阅[使用 outlook 外接程序中的 OUTLOOK REST api](https://docs.microsoft.com/outlook/add-ins/use-rest-api#get-the-item-id)<!-- -->.
 
       \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -1120,6 +1146,27 @@ items:
           description: 可选。 开发人员可以提供他们想要在回调函数中访问的任何对象。 此对象可以通过回调函数中的 asyncContext 属性来访问。
           type:
             - any
+  - uid: 'outlook!Office.MessageRead#location:member'
+    summary: |-
+      获取会议请求的位置。
+
+      Location 属性返回一个包含约会位置的字符串。
+
+      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**：邮件已阅读
+    name: location
+    fullName: location
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'location: string;'
+      return:
+        type:
+          - string
   - uid: 'outlook!Office.MessageRead#normalizedSubject:member'
     summary: |-
       获取项目的主题，删除所有前缀（包括 RE：和 FWD：）。
@@ -1346,6 +1393,27 @@ items:
       return:
         type:
           - string
+  - uid: 'outlook!Office.MessageRead#start:member'
+    summary: |-
+      获取约会开始的日期和时间。
+
+      Start 属性是以协调世界时（UTC）日期和时间值表示的 Date 对象。 您可以使用 convertToLocalClientTime 方法将值转换为客户端的本地日期和时间。
+
+      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**：邮件已阅读
+    name: start
+    fullName: start
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'start: Date;'
+      return:
+        type:
+          - '!Date:interface'
   - uid: 'outlook!Office.MessageRead#subject:member'
     summary: |-
       获取项目的 "主题" 字段中显示的说明。
