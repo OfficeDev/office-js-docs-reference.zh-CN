@@ -5,6 +5,12 @@ items:
       "Office" 的约会与会者模式： "邮箱"。[项目](xref:outlook!Office.Item:interface)<!-- -->.
 
       **重要说明**：这是一个内部 Outlook 对象，而不是直接通过现有接口公开。 应将其视为 "context.subname" 模式。 有关详细信息，请参阅[对象模型](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/preview-requirement-set/office.context.mailbox.item)页。
+
+      父接口：
+
+      - [ItemRead](xref:outlook!Office.ItemRead:interface)
+
+      - [约会](xref:outlook!Office.Appointment:interface)
     name: Office.AppointmentRead
     fullName: Office.AppointmentRead
     langs:
@@ -26,6 +32,8 @@ items:
       - 'outlook!Office.AppointmentRead#displayReplyForm:member(1)'
       - 'outlook!Office.AppointmentRead#end:member'
       - 'outlook!Office.AppointmentRead#enhancedLocation:member'
+      - 'outlook!Office.AppointmentRead#getAttachmentContentAsync:member(1)'
+      - 'outlook!Office.AppointmentRead#getAttachmentContentAsync:member(2)'
       - 'outlook!Office.AppointmentRead#getEntities:member(1)'
       - 'outlook!Office.AppointmentRead#getEntitiesByType:member(1)'
       - 'outlook!Office.AppointmentRead#getFilteredEntitiesByName:member(1)'
@@ -35,6 +43,8 @@ items:
       - 'outlook!Office.AppointmentRead#getRegExMatchesByName:member(1)'
       - 'outlook!Office.AppointmentRead#getSelectedEntities:member(1)'
       - 'outlook!Office.AppointmentRead#getSelectedRegExMatches:member(1)'
+      - 'outlook!Office.AppointmentRead#getSharedPropertiesAsync:member(1)'
+      - 'outlook!Office.AppointmentRead#getSharedPropertiesAsync:member(2)'
       - 'outlook!Office.AppointmentRead#itemClass:member'
       - 'outlook!Office.AppointmentRead#itemId:member'
       - 'outlook!Office.AppointmentRead#itemType:member'
@@ -126,10 +136,7 @@ items:
           type:
             - 'outlook!Office.AppointmentRead#addHandlerAsync~3:complex'
   - uid: 'outlook!Office.AppointmentRead#attachments:member'
-    summary: |-
-      以数组的形式获取项目的附件。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    summary: 以数组的形式获取项目的附件。
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -239,10 +246,7 @@ items:
         type:
           - 'outlook!Office.Categories:interface'
   - uid: 'outlook!Office.AppointmentRead#dateTimeCreated:member'
-    summary: |-
-      获取项目创建的日期和时间。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    summary: 获取项目创建的日期和时间。
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -265,10 +269,7 @@ items:
         type:
           - '!Date:interface'
   - uid: 'outlook!Office.AppointmentRead#dateTimeModified:member'
-    summary: |-
-      获取项目最近一次修改的日期和时间。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    summary: 获取项目最近一次修改的日期和时间。
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -303,8 +304,6 @@ items:
       当附件在 formData 参数中指定时，web 上的 Outlook 和桌面客户端将尝试下载所有附件并将其附加到答复窗体。 如果无法添加任何附件，则在窗体 UI 中显示错误。 如果这不可能，则不引发错误消息。
 
       **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -408,8 +407,6 @@ items:
       当附件在 formData 参数中指定时，web 上的 Outlook 和桌面客户端将尝试下载所有附件并将其附加到答复窗体。 如果无法添加任何附件，则在窗体 UI 中显示错误。 如果这不可能，则不引发错误消息。
 
       **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -509,8 +506,6 @@ items:
       End 属性是以协调世界时（UTC）日期和时间值表示的 Date 对象。 您可以使用 convertToLocalClientTime 方法将 end 属性值转换为客户端的本地日期和时间。
 
       使用 setAsync 方法设置结束时间时，应使用 convertToUtcClientTime 方法将客户端上的本地时间转换为服务器的 UTC。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -569,13 +564,85 @@ items:
       return:
         type:
           - 'outlook!Office.EnhancedLocation:interface'
+  - uid: 'outlook!Office.AppointmentRead#getAttachmentContentAsync:member(1)'
+    summary: |-
+      从邮件或约会中获取附件并将其作为**AttachmentContent**对象返回。
+
+      该`getAttachmentContentAsync`方法从项目中获取具有指定标识符的附件。 作为一种最佳做法，您应使用标识符在与`getAttachmentsAsync` or `item.attachments`调用一起检索到会话的同一会话中检索附件。 在 Outlook 网页版和移动设备上，附件标识符只在同一个会话中才有效。 当用户关闭应用程序时，或者如果用户开始撰写内嵌窗体，随后弹出窗体以继续在单独的窗口中。
+
+      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**：约会与会者
+
+      **错误**：
+
+      - InvalidAttachmentId：附件标识符不存在。
+    name: 'getAttachmentContentAsync(attachmentId, options, callback)'
+    fullName: 'getAttachmentContentAsync(attachmentId, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getAttachmentContentAsync(attachmentId: string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<AttachmentContent>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: attachmentId
+          description: 要获取的附件的标识符。
+          type:
+            - string
+        - id: options
+          description: 可选。 包含一个或多个以下属性的对象文本。 asyncContext：开发人员可以在回调方法中提供要访问的任何对象。
+          type:
+            - 'outlook!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 可选。 方法完成后，使用单个参数 asyncResult 调用在 callback 参数中传递的函数，该参数是一个作为一个 AsyncResult 对象的参数。 如果调用失败，asyncResult 属性将包含失败原因的错误代码和错误代码。
+          type:
+            - 'outlook!Office.AppointmentRead#getAttachmentContentAsync~0:complex'
+  - uid: 'outlook!Office.AppointmentRead#getAttachmentContentAsync:member(2)'
+    summary: |-
+      从邮件或约会中获取附件并将其作为**AttachmentContent**对象返回。
+
+      该`getAttachmentContentAsync`方法从项目中获取具有指定标识符的附件。 作为一种最佳做法，您应使用标识符在与`getAttachmentsAsync` or `item.attachments`调用一起检索到会话的同一会话中检索附件。 在 Outlook 网页版和移动设备上，附件标识符只在同一个会话中才有效。 当用户关闭应用程序时，或者如果用户开始撰写内嵌窗体，随后弹出窗体以继续在单独的窗口中。
+
+      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**：约会与会者
+
+      **错误**：
+
+      - InvalidAttachmentId：附件标识符不存在。
+    name: 'getAttachmentContentAsync(attachmentId, callback)'
+    fullName: 'getAttachmentContentAsync(attachmentId, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getAttachmentContentAsync(attachmentId: string, callback?: (asyncResult: Office.AsyncResult<AttachmentContent>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: attachmentId
+          description: 要获取的附件的标识符。
+          type:
+            - string
+        - id: callback
+          description: 可选。 方法完成后，使用单个参数 asyncResult 调用在 callback 参数中传递的函数，该参数是一个作为一个 AsyncResult 对象的参数。 如果调用失败，asyncResult 属性将包含失败原因的错误代码和错误代码。
+          type:
+            - 'outlook!Office.AppointmentRead#getAttachmentContentAsync~1:complex'
   - uid: 'outlook!Office.AppointmentRead#getEntities:member(1)'
     summary: |-
       获取在所选项目的正文中找到的实体。
 
       **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -604,8 +671,6 @@ items:
       获取所选项目的正文中找到的指定实体类型的所有实体的数组。
 
       **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**：受限
 
@@ -656,8 +721,6 @@ items:
       GetFilteredEntitiesByName 方法返回与在清单 XML 文件中的 ItemHasKnownEntity rule 元素中定义的正则表达式匹配的实体，具有指定的 FilterName 元素值。
 
       **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -747,8 +810,6 @@ items:
       如果您在项目的 body 属性上指定 ItemHasRegularExpressionMatch 规则，则正则表达式应进一步筛选正文，并且不应尝试返回项目的整个正文。 使用正则表达式（如. *）获取项目的整个正文并不总是返回预期的结果。 而是使用 getAsync 方法检索整个正文。
 
       **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -799,8 +860,6 @@ items:
       如果您在项目的 body 属性上指定 ItemHasRegularExpressionMatch 规则，则正则表达式应进一步筛选正文，并且不应尝试返回项目的整个正文。 使用正则表达式（如. *）获取项目的整个正文并不总是返回预期的结果。
 
       **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -910,13 +969,65 @@ items:
         type:
           - any
         description: 一个包含匹配在清单 XML 文件中定义的正则表达式的字符串数组的对象。 每个数组的名称等于匹配的 ItemHasRegularExpressionMatch 规则的 RegExName 属性的相应值或匹配 ItemHasKnownEntity 规则的 FilterName 属性的值。
+  - uid: 'outlook!Office.AppointmentRead#getSharedPropertiesAsync:member(1)'
+    summary: |-
+      获取共享文件夹、日历或邮箱中的约会或邮件的属性。
+
+      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**：约会与会者
+    name: 'getSharedPropertiesAsync(options, callback)'
+    fullName: 'getSharedPropertiesAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSharedPropertiesAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<SharedProperties>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: 包含一个或多个以下属性的对象文本。 asyncContext：开发人员可以在回调方法中提供要访问的任何对象。
+          type:
+            - 'outlook!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 方法完成后，将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 结果`value`的属性是共享项的属性。
+          type:
+            - 'outlook!Office.AppointmentRead#getSharedPropertiesAsync~0:complex'
+  - uid: 'outlook!Office.AppointmentRead#getSharedPropertiesAsync:member(2)'
+    summary: |-
+      获取共享文件夹、日历或邮箱中的约会或邮件的属性。
+
+      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**：约会与会者
+    name: getSharedPropertiesAsync(callback)
+    fullName: getSharedPropertiesAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSharedPropertiesAsync(callback: (asyncResult: Office.AsyncResult<SharedProperties>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: 方法完成后，将使用类型为 AsyncResult 的单个参数调用在 callback 参数中传递的函数。 结果`value`的属性是共享项的属性。
+          type:
+            - 'outlook!Office.AppointmentRead#getSharedPropertiesAsync~1:complex'
   - uid: 'outlook!Office.AppointmentRead#itemClass:member'
     summary: |-
       获取选定项目的 Exchange Web 服务项目类。
 
       您可以创建扩展默认邮件类别的自定义邮件类别，例如，自定义约会邮件类 IPM。Contoso。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -949,8 +1060,6 @@ items:
       ItemId 属性在撰写模式中不可用。 如果需要项目标识符，则可以使用 saveAsync 方法将项目保存到存储区，这将在回调函数的 asyncResult 参数中返回项目标识符。
 
       **注意**： itemId 属性返回的标识符与[Exchange Web 服务项目标识符](https://docs.microsoft.com/exchange/client-developer/exchange-web-services/ews-identifiers-in-exchange)相同。<!-- -->. ItemId 属性与 outlook 条目 ID 或 Outlook REST API 使用的 ID 不相同。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关更多详细信息，请参阅[使用 outlook 外接程序中的 OUTLOOK REST api](https://docs.microsoft.com/outlook/add-ins/use-rest-api#get-the-item-id)<!-- -->.
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -963,6 +1072,8 @@ items:
       // identifier. If the `itemId` property returns `null` or
       // `undefined`, it saves the item to the store and gets the
       // item identifier from the asynchronous result.
+      // **Important**: `saveAsync` was introduced with requirement set 1.3
+      // so you can't get the `itemId` in Compose mode in earlier sets.
       var itemId = Office.context.mailbox.item.itemId;
       if (itemId === null || itemId == undefined) {
           Office.context.mailbox.item.saveAsync(function(result) {
@@ -985,8 +1096,6 @@ items:
       获取实例表示的项的类型。
 
       ItemType 属性返回一个 ItemType 枚举值，指示 item 对象实例是邮件还是约会。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -1018,8 +1127,6 @@ items:
       自定义属性基于每个应用、每个项目存储为键/值对。 此方法在回调中返回一个 CustomProperties 对象，该对象提供用于访问特定于当前项目和当前加载项的自定义属性的方法。 自定义属性未在项目上加密，因此这不应用作安全存储。
 
       自定义属性作为 asyncResult 属性中的 CustomProperties 对象提供。 此对象可用于获取、设置以及从项目中删除自定义属性，并将自定义属性集的更改重新保存到服务器。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -1049,8 +1156,6 @@ items:
       获取约会的位置。
 
       Location 属性返回一个包含约会位置的字符串。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -1077,8 +1182,6 @@ items:
       获取项目的主题，删除所有前缀（包括 RE：和 FWD：）。
 
       NormalizedSubject 属性获取项目的主题，其中包含任何标准前缀（如 RE：和 FW：）由电子邮件程序添加的。 若要获取具有完整前缀的项的主题，请使用 subject 属性。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -1135,8 +1238,6 @@ items:
       提供对事件的可选与会者的访问权限。 对象的类型和访问级别取决于当前项目的模式。
 
       OptionalAttendees 属性返回一个数组，该数组包含会议的每个可选与会者的[EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface)对象。 默认情况下，集合上限为 100 个成员。 但是，在 Windows 和 Mac 上，最多可包含 500 个成员。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -1159,10 +1260,7 @@ items:
         type:
           - 'outlook!Office.AppointmentRead#optionalAttendees~0:complex'
   - uid: 'outlook!Office.AppointmentRead#organizer:member'
-    summary: |-
-      获取指定会议的会议组织者的电子邮件地址。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    summary: 获取指定会议的会议组织者的电子邮件地址。
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -1288,8 +1386,6 @@ items:
       提供对事件的必需与会者的访问权限。 对象的类型和访问级别取决于当前项目的模式。
 
       RequiredAttendees 属性返回一个数组，其中包含会议的每个所需与会者的[EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface)对象。 默认情况下，集合上限为 100 个成员。 但是，在 Windows 和 Mac 上，最多可包含 500 个成员。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -1355,8 +1451,6 @@ items:
       获取约会开始的日期和时间。
 
       Start 属性是以协调世界时（UTC）日期和时间值表示的 Date 对象。 您可以使用 convertToLocalClientTime 方法将值转换为客户端的本地日期和时间。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -1385,8 +1479,6 @@ items:
       Subject 属性获取或设置由电子邮件服务器发送的项目的整个主题。
 
       Subject 属性返回一个字符串。 使用 normalizedSubject 属性可获取主题减去任何前导前缀，如 RE：和 FW：。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -1524,6 +1616,38 @@ references:
         fullName: <void>) => void
   - uid: 'outlook!Office.EnhancedLocation:interface'
     name: EnhancedLocation
+  - uid: 'outlook!Office.AppointmentRead#getAttachmentContentAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<AttachmentContent>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<Office.AttachmentContent>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <
+        fullName: <
+      - uid: 'outlook!Office.AttachmentContent:interface'
+        name: AttachmentContent
+        fullName: Office.AttachmentContent
+      - name: '>) => void'
+        fullName: '>) => void'
+  - uid: 'outlook!Office.AppointmentRead#getAttachmentContentAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<AttachmentContent>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<Office.AttachmentContent>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <
+        fullName: <
+      - uid: 'outlook!Office.AttachmentContent:interface'
+        name: AttachmentContent
+        fullName: Office.AttachmentContent
+      - name: '>) => void'
+        fullName: '>) => void'
   - uid: 'outlook!Office.Entities:interface'
     name: Entities
   - uid: 'outlook!Office.AppointmentRead#getEntitiesByType~0:complex'
@@ -1609,6 +1733,38 @@ references:
         fullName: Office.AsyncResult
       - name: <string>) => void
         fullName: <string>) => void
+  - uid: 'outlook!Office.AppointmentRead#getSharedPropertiesAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<SharedProperties>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<Office.SharedProperties>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <
+        fullName: <
+      - uid: 'outlook!Office.SharedProperties:interface'
+        name: SharedProperties
+        fullName: Office.SharedProperties
+      - name: '>) => void'
+        fullName: '>) => void'
+  - uid: 'outlook!Office.AppointmentRead#getSharedPropertiesAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<SharedProperties>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<Office.SharedProperties>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <
+        fullName: <
+      - uid: 'outlook!Office.SharedProperties:interface'
+        name: SharedProperties
+        fullName: Office.SharedProperties
+      - name: '>) => void'
+        fullName: '>) => void'
   - uid: 'outlook!Office.AppointmentRead#itemType~0:complex'
     name: MailboxEnums.ItemType | string
     fullName: Office.MailboxEnums.ItemType | string
