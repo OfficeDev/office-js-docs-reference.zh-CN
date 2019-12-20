@@ -5,6 +5,12 @@ items:
       Office 的邮件读取模式： "[邮箱](xref:outlook!Office.Item:interface)"。<!-- -->.
 
       **重要说明**：这是一个内部 Outlook 对象，而不是直接通过现有接口公开。 应将其视为 "context.subname" 模式。 有关详细信息，请参阅[对象模型](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.1/office.context.mailbox.item)页。
+
+      父接口：
+
+      - [ItemRead](xref:outlook!Office.ItemRead:interface)
+
+      - [邮件](xref:outlook!Office.Message:interface)
     name: Office.MessageRead
     fullName: Office.MessageRead
     langs:
@@ -42,10 +48,7 @@ items:
       - 'outlook!Office.MessageRead#subject:member'
       - 'outlook!Office.MessageRead#to:member'
   - uid: 'outlook!Office.MessageRead#attachments:member'
-    summary: |-
-      以数组的形式获取项目的附件。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    summary: 以数组的形式获取项目的附件。
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -128,8 +131,6 @@ items:
       提供对邮件的抄送 (Cc) 收件人的访问权限。 对象的类型和访问级别取决于当前项目的模式。
 
       Cc 属性返回一个数组，其中包含邮件的 "抄送" 行上列出的每个收件人的 EmailAddressDetails 对象。 默认情况下，集合上限为 100 个成员。 但是，在 Windows 和 Mac 上，最多可包含 500 个成员。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -157,8 +158,6 @@ items:
       如果在阅读窗体或撰写窗体的回复中激活邮件应用程序，则此属性可以获得一个整数值。如果用户随后更改了回复邮件的主题（若发送回复），则该邮件的对话 ID 将改变且之前获取的值将不适用。
 
       对于撰写窗体的新项目，此属性获得一个 null 值。 如果用户设置主题并保存项，则 conversationId 属性将返回一个值。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -181,10 +180,7 @@ items:
         type:
           - string
   - uid: 'outlook!Office.MessageRead#dateTimeCreated:member'
-    summary: |-
-      获取项目创建的日期和时间。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    summary: 获取项目创建的日期和时间。
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -207,10 +203,7 @@ items:
         type:
           - '!Date:interface'
   - uid: 'outlook!Office.MessageRead#dateTimeModified:member'
-    summary: |-
-      获取项目最近一次修改的日期和时间。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    summary: 获取项目最近一次修改的日期和时间。
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -245,8 +238,6 @@ items:
       当附件在 formData 参数中指定时，web 上的 Outlook 和桌面客户端将尝试下载所有附件并将其附加到答复窗体。 如果无法添加任何附件，则在窗体 UI 中显示错误。 如果这不可能，则不引发错误消息。
 
       **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -350,8 +341,6 @@ items:
       当附件在 formData 参数中指定时，web 上的 Outlook 和桌面客户端将尝试下载所有附件并将其附加到答复窗体。 如果无法添加任何附件，则在窗体 UI 中显示错误。 如果这不可能，则不引发错误消息。
 
       **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -451,8 +440,6 @@ items:
       End 属性是以协调世界时（UTC）日期和时间值表示的 Date 对象。 您可以使用 convertToLocalClientTime 方法将 end 属性值转换为客户端的本地日期和时间。
 
       使用 setAsync 方法设置结束时间时，应使用 convertToUtcClientTime 方法将客户端上的本地时间转换为服务器的 UTC。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -476,8 +463,6 @@ items:
       **注意**： from 属性中 EmailAddressDetails 对象的 recipientType 属性未定义。
 
       From 属性返回一个 EmailAddressDetails 对象。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -504,8 +489,6 @@ items:
       获取在所选项目的正文中找到的实体。
 
       **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -534,8 +517,6 @@ items:
       获取所选项目的正文中找到的指定实体类型的所有实体的数组。
 
       **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**：受限
 
@@ -586,8 +567,6 @@ items:
       GetFilteredEntitiesByName 方法返回与在清单 XML 文件中的 ItemHasKnownEntity rule 元素中定义的正则表达式匹配的实体，具有指定的 FilterName 元素值。
 
       **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -617,8 +596,6 @@ items:
       如果您在项目的 body 属性上指定 ItemHasRegularExpressionMatch 规则，则正则表达式应进一步筛选正文，并且不应尝试返回项目的整个正文。 使用正则表达式（如. *）获取项目的整个正文并不总是返回预期的结果。 而是使用 getAsync 方法检索整个正文。
 
       **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -669,8 +646,6 @@ items:
       如果您在项目的 body 属性上指定 ItemHasRegularExpressionMatch 规则，则正则表达式应进一步筛选正文，并且不应尝试返回项目的整个正文。 使用正则表达式（如. *）获取项目的整个正文并不总是返回预期的结果。
 
       **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -714,10 +689,7 @@ items:
           type:
             - string
   - uid: 'outlook!Office.MessageRead#internetMessageId:member'
-    summary: |-
-      获取电子邮件的 Internet 消息标识符。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    summary: 获取电子邮件的 Internet 消息标识符。
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -744,8 +716,6 @@ items:
       获取选定项目的 Exchange Web 服务项目类。
 
       您可以创建扩展默认邮件类别的自定义邮件类别，例如，自定义约会邮件类 IPM。Contoso。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -778,8 +748,6 @@ items:
       ItemId 属性在撰写模式中不可用。 如果需要项目标识符，则可以使用 saveAsync 方法将项目保存到存储区，这将在回调函数的 asyncResult 参数中返回项目标识符。
 
       **注意**： itemId 属性返回的标识符与[Exchange Web 服务项目标识符](https://docs.microsoft.com/exchange/client-developer/exchange-web-services/ews-identifiers-in-exchange)相同。<!-- -->. ItemId 属性与 outlook 条目 ID 或 Outlook REST API 使用的 ID 不相同。 使用此值进行 REST API 调用前，应使用 Office.context.mailbox.convertToRestId 对它进行转换。 有关更多详细信息，请参阅[使用 outlook 外接程序中的 OUTLOOK REST api](https://docs.microsoft.com/outlook/add-ins/use-rest-api#get-the-item-id)<!-- -->.
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -792,6 +760,8 @@ items:
       // identifier. If the `itemId` property returns `null` or
       // `undefined`, it saves the item to the store and gets the
       // item identifier from the asynchronous result.
+      // **Important**: `saveAsync` was introduced with requirement set 1.3
+      // so you can't get the `itemId` in Compose mode in earlier sets.
       var itemId = Office.context.mailbox.item.itemId;
       if (itemId === null || itemId == undefined) {
           Office.context.mailbox.item.saveAsync(function(result) {
@@ -814,8 +784,6 @@ items:
       获取实例表示的项的类型。
 
       ItemType 属性返回一个 ItemType 枚举值，指示 item 对象实例是邮件还是约会。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -847,8 +815,6 @@ items:
       自定义属性基于每个应用、每个项目存储为键/值对。 此方法在回调中返回一个 CustomProperties 对象，该对象提供用于访问特定于当前项目和当前加载项的自定义属性的方法。 自定义属性未在项目上加密，因此这不应用作安全存储。
 
       自定义属性作为 asyncResult 属性中的 CustomProperties 对象提供。 此对象可用于获取、设置以及从项目中删除自定义属性，并将自定义属性集的更改重新保存到服务器。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -878,8 +844,6 @@ items:
       获取会议请求的位置。
 
       Location 属性返回一个包含约会位置的字符串。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -899,8 +863,6 @@ items:
       获取项目的主题，删除所有前缀（包括 RE：和 FWD：）。
 
       NormalizedSubject 属性获取项目的主题，其中包含任何标准前缀（如 RE：和 FW：）由电子邮件程序添加的。 若要获取具有完整前缀的项的主题，请使用 subject 属性。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -929,8 +891,6 @@ items:
       "发件人" 和 "发件人" 属性表示同一个人，除非该邮件是由代理发送的。 在这种情况下，from 属性表示代理者，而 sender 属性表示委托。
 
       **注意**： sender 属性中 EmailAddressDetails 对象的 recipientType 属性未定义。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -958,8 +918,6 @@ items:
       获取约会开始的日期和时间。
 
       Start 属性是以协调世界时（UTC）日期和时间值表示的 Date 对象。 您可以使用 convertToLocalClientTime 方法将值转换为客户端的本地日期和时间。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -981,8 +939,6 @@ items:
       Subject 属性获取或设置由电子邮件服务器发送的项目的整个主题。
 
       Subject 属性返回一个字符串。 使用 normalizedSubject 属性可获取主题减去任何前导前缀，如 RE：和 FW：。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
@@ -1021,8 +977,6 @@ items:
       提供对邮件的“收件人”行上的收件人的访问权限。 对象的类型和访问级别取决于当前项目的模式。
 
       To 属性返回一个数组，该数组包含邮件的 "收件人" 行中列出的每个收件人的 EmailAddressDetails 对象。 默认情况下，集合上限为 100 个成员。 但是，在 Windows 和 Mac 上，最多可包含 500 个成员。
-
-      \[[API 集：邮箱 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
