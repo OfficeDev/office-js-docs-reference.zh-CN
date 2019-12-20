@@ -686,6 +686,42 @@ items:
       **错误**：
 
       - InvalidAttachmentId：附件标识符不存在。
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      var item = Office.context.mailbox.item;
+      var options = {asyncContext: {currentItem: item}};
+      item.getAttachmentsAsync(options, callback);
+
+      function callback(result) {
+          if (result.value.length > 0) {
+              for (i = 0 ; i < result.value.length ; i++) {
+                  result.asyncContext.currentItem.getAttachmentContentAsync(result.value[i].id, handleAttachmentsCallback);
+              }
+          }
+      }
+
+      function handleAttachmentsCallback(result) {
+          // Parse string to be a url, an .eml file, a base64-encoded string, or an .icalendar file.
+          switch (result.value.format) {
+              case Office.MailboxEnums.AttachmentContentFormat.Base64:
+                  // Handle file attachment.
+                  break;
+              case Office.MailboxEnums.AttachmentContentFormat.Eml:
+                  // Handle email item attachment.
+                  break;
+              case Office.MailboxEnums.AttachmentContentFormat.ICalendar:
+                  // Handle .icalender attachment.
+                  break;
+              case Office.MailboxEnums.AttachmentContentFormat.Url:
+                  // Handle cloud attachment.
+                  break;
+              default:
+                  // Handle attachment formats that are not supported.
+          }
+      }
+      ```
     name: 'getAttachmentContentAsync(attachmentId, options, callback)'
     fullName: 'getAttachmentContentAsync(attachmentId, options, callback)'
     langs:
@@ -1016,6 +1052,17 @@ items:
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
       **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**：约会组织者
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      Office.context.mailbox.item.getSharedPropertiesAsync(callback);
+
+      function callback (asyncResult) {
+          var context = asyncResult.context;
+          var sharedProperties = asyncResult.value;
+      }
+      ```
     name: getSharedPropertiesAsync(callback)
     fullName: getSharedPropertiesAsync(callback)
     langs:
