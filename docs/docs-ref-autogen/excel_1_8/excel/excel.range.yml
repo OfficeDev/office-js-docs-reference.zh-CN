@@ -1623,7 +1623,22 @@ items:
       return:
         type:
           - void
-        description: ''
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              sheet.getRange("F12").values = [["Moved Range"]];
+              sheet.getRange("F12").format.autofitColumns();
+
+              // Move a range to the specified location.
+              sheet.getRange("A1:E1").moveTo("G12");
+              await context.sync();
+          });
+          ```
       parameters:
         - id: destinationRange
           description: destinationRange 指定此范围中的信息将移动到的范围。
