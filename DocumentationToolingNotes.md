@@ -24,12 +24,18 @@ Office JavaScript 参考文档页面由类型定义文件和示例代码段生�
   - [Outlook （预览）](https://docs.microsoft.com/javascript/api/outlook)
   - [Word （预览）](https://docs.microsoft.com/javascript/api/word)
   - [通用 API](https://docs.microsoft.com/javascript/api/office)
-- [自定义函数-运行时](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/custom-functions-runtime/index.d.ts)（Excel 自定义函数运行时定义。）
+- [自定义函数-运行时/索引](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/custom-functions-runtime/index.d.ts)（Excel 自定义函数运行时定义）
   - [自定义函数](https://docs.microsoft.com/javascript/api/custom-functions-runtime)
-- [office 运行时](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/office-runtime/index.d.ts)（自定义函数平台的 office 运行时定义。）
+- [office-运行时/索引](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/office-runtime/index.d.ts)（自定义函数平台的 office 运行时定义）。
   - [Office 运行时](https://docs.microsoft.com/javascript/api/office-runtime)
 
 较旧版本的 Api 具有它们自己的 d ts 文件。 当发布新的 API 要求集时，将保留这些设置。 也可以使用[版本 Remover 工具](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/tools/VersionRemover.ts)生成。 保留这些旧的 d .aspx 文件，以便在对事件 Api 进行修补或更改时，仍会记录原始行为。 如果您必须针对较旧版本的 API，这将非常有用。
+
+#### <a name="testing-type-definition-file-changes"></a>测试类型定义文件更改
+
+Office JavaScript API 的任何文档更改都可以通过编辑上面提到的四个 d. ts 文件来完成。 但是，可以在向 Jquery.typescript.definitelytyped 提交 PR 之前测试更改（例如，如果需要，请通过在[生成-文档/脚本输入](https://github.com/OfficeDev/office-js-docs-reference/tree/master/generate-docs/script-inputs)和运行[GenerateDocs](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/GenerateDocs.cmd)中编辑相应的文件来测试格式将转换为 markdown 的方式）。 出现提示时，选择 "本地文件" 选项。
+
+将更改推送到此存储库的远程分支会导致 docs.microsoft.com 平台生成测试分支。 此分支在 review.docs.microsoft.com 中呈现，仅供内部 Microsoft 人员访问。 查看你的 PR 的任何人都将检查评审网站的准确性。
 
 ### <a name="code-snippets"></a>代码段
 
