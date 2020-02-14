@@ -75,6 +75,10 @@ items:
 
       console.log(outputString);
       ```
+      ```javascript
+      var attachments = Office.context.mailbox.item.attachments;
+      console.log(attachments);
+      ```
     name: attachments
     fullName: attachments
     langs:
@@ -254,6 +258,11 @@ items:
           }
       });
       ```
+      ```javascript
+      Office.context.mailbox.item.displayReplyAllForm(
+        "This is a reply ALL with <b>some bold text</b>."
+      );
+      ```
     name: 'displayReplyAllForm(formData, callback)'
     fullName: 'displayReplyAllForm(formData, callback)'
     langs:
@@ -357,6 +366,30 @@ items:
           }
       });
       ```
+      ```javascript
+      Office.context.mailbox.item.displayReplyForm(
+        "This is a reply with <i>some text in italics</i>."
+      );
+      ```
+      ```javascript
+      Office.context.mailbox.item.displayReplyForm(
+      {
+          htmlBody : "This is a reply with a couple of attachments - an inline image and an item<br><img src='cid:dog.jpg'>",
+          attachments :
+          [
+              { type: "file", url: "http://i.imgur.com/9S36xvA.jpg", name: "dog.jpg", isInline: true },
+              { type: "item", itemId : Office.context.mailbox.item.itemId, name: "test_email.msg" }
+          ],
+          options : { asyncContext: null },
+          callback : function (result)
+          {
+              if (result.status !== Office.AsyncResultStatus.Succeeded)
+              {
+                  console.error(`Action failed with message ${result.error.message}`);
+              }
+          }
+      });
+      ```
     name: 'displayReplyForm(formData, callback)'
     fullName: 'displayReplyForm(formData, callback)'
     langs:
@@ -422,6 +455,49 @@ items:
 
       var contacts = Office.context.mailbox.item.getEntities().contacts;
       ```
+      ```javascript
+      var entities = Office.context.mailbox.item.getEntities();
+      var entityTypesFound = 0;
+      if (entities.addresses.length > 0) {
+          console.warn("physical addresses: ");
+          console.log(entities.addresses);
+          entityTypesFound++;
+      }
+      if (entities.contacts.length > 0) {
+          console.warn("contacts: ");
+          entities.contacts.forEach(function (contact) { console.log(contact.personName); })
+          entityTypesFound++;
+      }
+      if (entities.emailAddresses.length > 0) {
+          console.warn("email addresses: ");
+          console.log(entities.emailAddresses);
+          entityTypesFound++;
+      }
+      if (entities.meetingSuggestions.length > 0) {
+          console.warn("meetings suggestions: ");
+          entities.meetingSuggestions.forEach(function (meetingSuggestion) { console.log(meetingSuggestion.meetingString); })
+          entityTypesFound++;
+      }
+      if (entities.phoneNumbers.length > 0) {
+          console.warn("phone numbers: ");
+          entities.phoneNumbers.forEach(function (phoneNumber) { console.log(phoneNumber.originalPhoneString); })
+          entityTypesFound++;
+      }
+      if (entities.taskSuggestions.length > 0) {
+          console.warn("task suggestions: ");
+          entities.taskSuggestions.forEach(function (taskSuggestion) { console.log(taskSuggestion.taskString); })
+          entityTypesFound++;
+      }
+      if (entities.urls.length > 0) {
+          console.warn("URLs: ");
+          console.log(entities.urls);
+          entityTypesFound++;
+      }
+      if (entityTypesFound == 0)
+      {
+          console.log("No entities found on this item.");
+      }
+      ```
     name: getEntities()
     fullName: getEntities()
     langs:
@@ -445,7 +521,7 @@ items:
 
       当使用此方法的最低权限级别受限时，某些实体类型需要 ReadItem 才能进行访问，如下表中所指定。
 
-      <table> <tr> <th>EntityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需权限级别</th> </tr> <tr> <td>Address</td> <td>String</td> <td>受限</td> </tr> <tr> <td>Contact</td> <td>Contact</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>String</td> <td>受限</td> </tr> </table>
+      <table> <tr> <th>EntityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需权限级别</th> </tr> <tr> <td>地址</td> <td>String</td> <td>受限</td> </tr> <tr> <td>Contact</td> <td>Contact</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>String</td> <td>受限</td> </tr> </table>
 
       #### <a name="examples"></a>示例
 
@@ -464,6 +540,9 @@ items:
               // Continue processing the array of addresses.
           });
       };
+      ```
+      ```javascript
+      console.log(Office.context.mailbox.item.getEntitiesByType(Office.MailboxEnums.EntityType.Address));
       ```
     name: getEntitiesByType(entityType)
     fullName: getEntitiesByType(entityType)
@@ -492,6 +571,13 @@ items:
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
       **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**：约会与会者
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // This API would only work when you click on highlighted physical address that has the word "Way" in it.
+      console.log(Office.context.mailbox.item.getFilteredEntitiesByName("sampleFilterName"));
+      ```
     name: getFilteredEntitiesByName(name)
     fullName: getFilteredEntitiesByName(name)
     langs:
@@ -547,6 +633,10 @@ items:
       var fruits = allMatches.fruits;
       var veggies = allMatches.veggies;
       ```
+      ```javascript
+      // This API would only work when you click on highlighted word "ScriptLab".
+      console.log(Office.context.mailbox.item.getRegExMatches());
+      ```
     name: getRegExMatches()
     fullName: getRegExMatches()
     langs:
@@ -592,6 +682,10 @@ items:
 
       var fruits = Office.context.mailbox.item.getRegExMatchesByName("fruits");
       var veggies = Office.context.mailbox.item.getRegExMatchesByName("veggies");
+      ```
+      ```javascript
+      // This API would only work when you click on highlighted word "ScriptLab".
+      console.log(Office.context.mailbox.item.getRegExMatchesByName("sampleRegexName"));
       ```
     name: getRegExMatchesByName(name)
     fullName: getRegExMatchesByName(name)
@@ -748,6 +842,24 @@ items:
       function saveCallback(asyncResult) {
       }
       ```
+      ```javascript
+      Office.context.mailbox.item.loadCustomPropertiesAsync(function (result) {
+        if (result.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Loaded following custom properties:");
+          customProps = result.value;
+          var dataKey = Object.keys(customProps)[0];
+          var data = customProps[dataKey];
+          for (var propertyName in data)
+          {
+            var propertyValue = data[propertyName];
+            console.log(`${propertyName}: ${propertyValue}`);
+          }              
+        }
+        else {
+          console.error(`loadCustomPropertiesAsync failed with message ${result.error.message}`);
+        }
+      });
+      ```
     name: 'loadCustomPropertiesAsync(callback, userContext)'
     fullName: 'loadCustomPropertiesAsync(callback, userContext)'
     langs:
@@ -836,6 +948,19 @@ items:
       var optionalAttendees = Office.context.mailbox.item.optionalAttendees;
       console.log("Optional attendees: " + JSON.stringify(optionalAttendees));
       ```
+      ```javascript
+      var apptOptionalAttendees = Office.context.mailbox.item.optionalAttendees;
+      console.log("Optional attendees:");
+      for (var i = 0; i < apptOptionalAttendees.length; i++) {
+        console.log(
+          apptOptionalAttendees[i].displayName +
+            " (" +
+            apptOptionalAttendees[i].emailAddress +
+            ") - response: " +
+            apptOptionalAttendees[i].appointmentResponse
+        );
+      }
+      ```
     name: optionalAttendees
     fullName: optionalAttendees
     langs:
@@ -859,6 +984,10 @@ items:
       var organizerName = Office.context.mailbox.item.organizer.displayName;
       var organizerAddress = Office.context.mailbox.item.organizer.emailAddress;
       console.log("Organizer: " + organizerName + " (" + organizerAddress + ")");
+      ```
+      ```javascript
+      var apptOrganizer = Office.context.mailbox.item.organizer;
+      console.log("Organizer: " + apptOrganizer.displayName + " (" + apptOrganizer.emailAddress + ")");
       ```
     name: organizer
     fullName: organizer
@@ -885,6 +1014,19 @@ items:
       ```javascript
       var requiredAttendees = Office.context.mailbox.item.requiredAttendees;
       console.log("Required attendees: " + JSON.stringify(requiredAttendees));
+      ```
+      ```javascript
+      var apptRequiredAttendees = Office.context.mailbox.item.requiredAttendees;
+      console.log("Required attendees:");
+      for (var i = 0; i < apptRequiredAttendees.length; i++) {
+        console.log(
+          apptRequiredAttendees[i].displayName +
+            " (" +
+            apptRequiredAttendees[i].emailAddress +
+            ") - response: " +
+            apptRequiredAttendees[i].appointmentResponse
+        );
+      }
       ```
     name: requiredAttendees
     fullName: requiredAttendees

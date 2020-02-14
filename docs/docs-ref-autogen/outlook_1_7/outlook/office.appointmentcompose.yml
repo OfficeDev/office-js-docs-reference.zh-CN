@@ -94,6 +94,14 @@ items:
           Office.context.mailbox.item.addFileAttachmentAsync(attachmentURL, attachmentURL, options, callback);
       }
       ```
+      ```javascript
+      var attachmentUrl = $("#attachmentUrl").val();
+      Office.context.mailbox.item.addFileAttachmentAsync(
+          attachmentUrl,
+          getFileName(attachmentUrl),
+          { "asyncContext" : { var1: 1, var2: true } },
+          function(result) { console.log(result); });
+      ```
     name: 'addFileAttachmentAsync(uri, attachmentName, options, callback)'
     fullName: 'addFileAttachmentAsync(uri, attachmentName, options, callback)'
     langs:
@@ -300,6 +308,14 @@ items:
           Office.context.mailbox.item.addItemAttachmentAsync(itemId, "My Attachment", options, callback);
       }
       ```
+      ```javascript
+      var attachmentItemId = $("#attachmentItemId").val();
+      Office.context.mailbox.item.addItemAttachmentAsync(
+          attachmentItemId,
+          "My attachment",
+          { "asyncContext" : { var3: 3, var4: false } },
+          function(result) { console.log(result); });
+      ```
     name: 'addItemAttachmentAsync(itemId, attachmentName, options, callback)'
     fullName: 'addItemAttachmentAsync(itemId, attachmentName, options, callback)'
     langs:
@@ -424,6 +440,12 @@ items:
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**：受限
 
       **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**：约会组织者
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      Office.context.mailbox.item.close();
+      ```
     name: close()
     fullName: close()
     langs:
@@ -542,6 +564,20 @@ items:
       **[最低权限级别](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**： ReadItem
 
       **[适用的 Outlook 模式](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**：约会组织者
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      Office.context.mailbox.item.getSelectedDataAsync(Office.CoercionType.Text, function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          var text = asyncResult.value.data;
+          var prop = asyncResult.value.sourceProperty;
+          console.log("Selected text in " + prop + ": " + text);
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
+      ```
     name: 'getSelectedDataAsync(coercionType, callback)'
     fullName: 'getSelectedDataAsync(coercionType, callback)'
     langs:
@@ -633,6 +669,24 @@ items:
       function saveCallback(asyncResult) {
       }
       ```
+      ```javascript
+      Office.context.mailbox.item.loadCustomPropertiesAsync(function (result) {
+        if (result.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Loaded following custom properties:");
+          customProps = result.value;
+          var dataKey = Object.keys(customProps)[0];
+          var data = customProps[dataKey];
+          for (var propertyName in data)
+          {
+            var propertyValue = data[propertyName];
+            console.log(`${propertyName}: ${propertyValue}`);
+          }              
+        }
+        else {
+          console.error(`loadCustomPropertiesAsync failed with message ${result.error.message}`);
+        }
+      });
+      ```
     name: 'loadCustomPropertiesAsync(callback, userContext)'
     fullName: 'loadCustomPropertiesAsync(callback, userContext)'
     langs:
@@ -701,6 +755,56 @@ items:
           }
       );
       ```
+      ```javascript
+      var id = $("#notificationId").val();
+      var details =
+        {
+          type: "progressIndicator",
+          message: "Progress indicator with id = " + id
+        };
+      Office.context.mailbox.item.notificationMessages.addAsync(id, details, handleResult);
+      ```
+      ```javascript
+      var id = $("#notificationId").val();
+      var details =
+        {
+          type: "informationalMessage",
+          message: "Non-persistent informational notification message with id = " + id,
+          icon: "icon1",
+          persistent: false
+        };
+      Office.context.mailbox.item.notificationMessages.addAsync(id, details, handleResult);
+      ```
+      ```javascript
+      var id = $("#notificationId").val();
+      var details =
+        {
+          type: "informationalMessage",
+          message: "Persistent informational notification message with id = " + id,
+          icon: "icon1",
+          persistent: true
+        };
+      Office.context.mailbox.item.notificationMessages.addAsync(id, details, handleResult);
+      ```
+      ```javascript
+      Office.context.mailbox.item.notificationMessages.getAllAsync(handleResult);          
+      ```
+      ```javascript
+      var id = $("#notificationId").val();
+      Office.context.mailbox.item.notificationMessages.replaceAsync(
+        id,
+        {
+          type: "informationalMessage",
+          message: "Notification message with id = " + id + " has been replaced with an informational message.",
+          icon: "icon2",
+          persistent: false
+        },
+        handleResult);
+      ```
+      ```javascript
+      var id = $("#notificationId").val();
+      Office.context.mailbox.item.notificationMessages.removeAsync(id, handleResult);
+      ```
     name: notificationMessages
     fullName: notificationMessages
     langs:
@@ -736,6 +840,25 @@ items:
           var arrayOfOptionalAttendeesRecipients = asyncResult.value;
       }
       ```
+      ```javascript
+      Office.context.mailbox.item.optionalAttendees.getAsync(function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          var apptOptionalAttendees = asyncResult.value;
+          for (var i = 0; i < apptOptionalAttendees.length; i++) {
+            console.log(
+              "Optional attendees: " +
+                apptOptionalAttendees[i].displayName +
+                " (" +
+                apptOptionalAttendees[i].emailAddress +
+                ") - response: " +
+                apptOptionalAttendees[i].appointmentResponse
+            );
+          }
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
+      ```
     name: optionalAttendees
     fullName: optionalAttendees
     langs:
@@ -766,6 +889,16 @@ items:
               console.log(JSON.stringify(asyncResult));
           }
       );
+      ```
+      ```javascript
+      Office.context.mailbox.item.organizer.getAsync(function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          var apptOrganizer = asyncResult.value;
+          console.log("Organizer: " + apptOrganizer.displayName + " (" + apptOrganizer.emailAddress + ")");
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
       ```
     name: organizer
     fullName: organizer
@@ -820,6 +953,20 @@ items:
           "recurrenceTimeZone": {"name": "Pacific Standard Time", "offset": -480}
       }
       ```
+      ```javascript
+      Office.context.mailbox.item.recurrence.getAsync(function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          var recurrence = asyncResult.value;
+          if (recurrence === null) {
+            console.log("This is a single appointment.");
+          } else {
+            console.log(recurrence);
+          }
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
+      ```
     name: recurrence
     fullName: recurrence
     langs:
@@ -856,6 +1003,20 @@ items:
           function (asyncResult)
           {
               console.log(asyncResult.status);
+          }
+      );
+      ```
+      ```javascript
+      Office.context.mailbox.item.removeAttachmentAsync(
+          $("#attachmentId").val(),
+          { asyncContext : null },
+          function(result)
+          {
+              if (result.status !== Office.AsyncResultStatus.Succeeded) {
+                  console.error(`${result.error.message}`);
+              } else {
+                  console.log(`Attachment removed successfully.`);
+              }
           }
       );
       ```
@@ -1010,6 +1171,25 @@ items:
           console.log(JSON.stringify(arrayOfRequiredAttendeesRecipients));
       }
       ```
+      ```javascript
+      Office.context.mailbox.item.requiredAttendees.getAsync(function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          var apptRequiredAttendees = asyncResult.value;
+          for (var i = 0; i < apptRequiredAttendees.length; i++) {
+            console.log(
+              "Required attendees: " +
+                apptRequiredAttendees[i].displayName +
+                " (" +
+                apptRequiredAttendees[i].emailAddress +
+                ") - response: " +
+                apptRequiredAttendees[i].appointmentResponse
+            );
+          }
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
+      ```
     name: requiredAttendees
     fullName: requiredAttendees
     langs:
@@ -1032,7 +1212,7 @@ items:
 
       **注意**：在撰写模式下，以下客户端的 saveAsync 对约会的行为不同：
 
-      - Mac 版 Outlook 不支持保存会议。 在撰写模式下从会议中调用时，saveAsync 方法将失败。 若需解决办法，请参阅[无法在 Outlook for Mac 中使用 Office JS API 将会议另存为草稿](https://support.microsoft.com/help/4505745)。
+      - 在 Mac 上的 Outlook 中，仅预览内部版本16.35.205.0 或更高版本的 Office 365 订阅支持保存会议。 否则，在撰写模式下从会议中调用时，saveAsync 方法将失败。 有关解决方法，请参阅[在 Outlook For Mac 中使用 OFFICE JS API 无法将会议另存为草稿](https://support.microsoft.com/help/4505745)<!-- -->.
 
       - 在撰写模式下对约会调用 saveAsync 时，web 上的 Outlook 将始终发送邀请或更新。
 
@@ -1045,6 +1225,19 @@ items:
       **错误**：
 
       - InvalidAttachmentId：附件标识符不存在。
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      Office.context.mailbox.item.saveAsync(function (result) {
+        if (result.status === Office.AsyncResultStatus.Succeeded) {
+          console.log(`saveAsync succeeded, itemId is ${result.value}`);
+        }
+        else {
+          console.error(`saveAsync failed with message ${result.error.message}`);
+        }
+      });
+      ```
     name: 'saveAsync(options, callback)'
     fullName: 'saveAsync(options, callback)'
     langs:
@@ -1077,7 +1270,7 @@ items:
 
       **注意**：在撰写模式下，以下客户端的 saveAsync 对约会的行为不同：
 
-      - Mac 版 Outlook 不支持保存会议。 在撰写模式下从会议中调用时，saveAsync 方法将失败。 若需解决办法，请参阅[无法在 Outlook for Mac 中使用 Office JS API 将会议另存为草稿](https://support.microsoft.com/help/4505745)。
+      - 在 Mac 上的 Outlook 中，仅预览内部版本16.35.205.0 或更高版本的 Office 365 订阅支持保存会议。 否则，在撰写模式下从会议中调用时，saveAsync 方法将失败。 有关解决方法，请参阅[在 Outlook For Mac 中使用 OFFICE JS API 无法将会议另存为草稿](https://support.microsoft.com/help/4505745)<!-- -->.
 
       - 在撰写模式下对约会调用 saveAsync 时，web 上的 Outlook 将始终发送邀请或更新。
 
@@ -1154,6 +1347,17 @@ items:
       console.log("SeriesId is " + seriesId 
           + " and isSeriesInstance is " + isSeriesInstance);
       ```
+      ```javascript
+      var seriesId = Office.context.mailbox.item.seriesId;
+
+      if (seriesId === undefined) {
+        console.log("This is a message that's not a meeting request.");
+      } else if (seriesId === null) {
+        console.log("This is a single appointment, a parent series, or a meeting request for a series or single meeting.");
+      } else {
+        console.log("This is an instance belonging to series with ID " + seriesId);
+      }
+      ```
     name: seriesId
     fullName: seriesId
     langs:
@@ -1229,6 +1433,15 @@ items:
 
       ```javascript
       Office.context.mailbox.item.setSelectedDataAsync("Hello World!");
+      ```
+      ```javascript
+      Office.context.mailbox.item.setSelectedDataAsync("Replaced", function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Selected text has been updated successfully.");
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
       ```
     name: 'setSelectedDataAsync(data, callback)'
     fullName: 'setSelectedDataAsync(data, callback)'
