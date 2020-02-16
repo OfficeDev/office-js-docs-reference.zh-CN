@@ -82,53 +82,7 @@ items:
       return:
         type:
           - 'excel!Excel.RangeBorder:class'
-        description: |-
-
-
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          Excel.run(function (ctx) { 
-              var sheetName = "Sheet1";
-              var rangeAddress = "A1:F8";
-              var worksheet = ctx.workbook.worksheets.getItem(sheetName);
-              var range = worksheet.getRange(rangeAddress);
-              var borders = range.format.borders;
-              borders.load('items');
-              return ctx.sync().then(function() {
-                  console.log(borders.count);
-                  for (var i = 0; i < borders.items.length; i++)
-                  {
-                      console.log(borders.items[i].sideIndex);
-                  }
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-          ```javascript
-          // The example below adds grid border around the range.
-          Excel.run(function (ctx) { 
-              var sheetName = "Sheet1";
-              var rangeAddress = "A1:F8";
-              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
-              range.format.borders.getItem('InsideHorizontal').style = 'Continuous';
-              range.format.borders.getItem('InsideVertical').style = 'Continuous';
-              range.format.borders.getItem('EdgeBottom').style = 'Continuous';
-              range.format.borders.getItem('EdgeLeft').style = 'Continuous';
-              range.format.borders.getItem('EdgeRight').style = 'Continuous';
-              range.format.borders.getItem('EdgeTop').style = 'Continuous';
-              return ctx.sync(); 
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
+        description: ''
       parameters:
         - id: propertyNames
           description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
@@ -234,6 +188,31 @@ items:
       return:
         type:
           - 'excel!Excel.RangeBorder#style~0:complex'
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // The example below adds grid border around the range.
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "A1:F8";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+              range.format.borders.getItem('InsideHorizontal').style = 'Continuous';
+              range.format.borders.getItem('InsideVertical').style = 'Continuous';
+              range.format.borders.getItem('EdgeBottom').style = 'Continuous';
+              range.format.borders.getItem('EdgeLeft').style = 'Continuous';
+              range.format.borders.getItem('EdgeRight').style = 'Continuous';
+              range.format.borders.getItem('EdgeTop').style = 'Continuous';
+              return ctx.sync(); 
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
   - uid: 'excel!Excel.RangeBorder#toJSON:member(1)'
     summary: 重写 JavaScript `toJSON()`方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也会调用传递`toJSON`给它的对象的方法。尽管原始 RangeBorder 对象是 API 对象，但`toJSON`方法返回一个无格式的 JavaScript 对象（类型为`Excel.Interfaces.RangeBorderData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
     name: toJSON()

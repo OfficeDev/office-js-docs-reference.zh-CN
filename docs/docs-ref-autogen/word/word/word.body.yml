@@ -377,11 +377,11 @@ items:
           ```
       parameters:
         - id: breakType
-          description: 必需。 要添加到正文的分隔符类型。
+          description: 必填。 要添加到正文的分隔符类型。
           type:
             - 'word!Word.BreakType:enum'
         - id: insertLocation
-          description: 必需。 此值可以为“Start”或“End”。
+          description: 必填。 此值可以为“Start”或“End”。
           type:
             - 'word!Word.InsertLocation:enum'
   - uid: 'word!Word.Body#insertBreak:member(2)'
@@ -402,11 +402,11 @@ items:
         description: ''
       parameters:
         - id: breakTypeString
-          description: 必需。 要添加到正文的分隔符类型。
+          description: 必填。 要添加到正文的分隔符类型。
           type:
             - '"Page" | "Next" | "SectionNext" | "SectionContinuous" | "SectionEven" | "SectionOdd" | "Line"'
         - id: insertLocation
-          description: 必需。 此值可以为“Start”或“End”。
+          description: 必填。 此值可以为“Start”或“End”。
           type:
             - '"Before" | "After" | "Start" | "End" | "Replace"'
   - uid: 'word!Word.Body#insertContentControl:member(1)'
@@ -498,7 +498,7 @@ items:
           ```
       parameters:
         - id: base64File
-          description: 必需。 .Docx 文件的 base64 编码内容。
+          description: 必填。 .Docx 文件的 base64 编码内容。
           type:
             - string
         - id: insertLocation
@@ -523,7 +523,7 @@ items:
         description: ''
       parameters:
         - id: base64File
-          description: 必需。 .Docx 文件的 base64 编码内容。
+          description: 必填。 .Docx 文件的 base64 编码内容。
           type:
             - string
         - id: insertLocationString
@@ -576,7 +576,7 @@ items:
           ```
       parameters:
         - id: html
-          description: 必需。 要插入到文档中的 HTML。
+          description: 必填。 要插入到文档中的 HTML。
           type:
             - string
         - id: insertLocation
@@ -601,7 +601,7 @@ items:
         description: ''
       parameters:
         - id: html
-          description: 必需。 要插入到文档中的 HTML。
+          description: 必填。 要插入到文档中的 HTML。
           type:
             - string
         - id: insertLocationString
@@ -659,11 +659,11 @@ items:
           ```
       parameters:
         - id: base64EncodedImage
-          description: 必需。 将 base64 编码的图像插入正文中。
+          description: 必填。 将 base64 编码的图像插入正文中。
           type:
             - string
         - id: insertLocation
-          description: 必需。 此值可以为“Start”或“End”。
+          description: 必填。 此值可以为“Start”或“End”。
           type:
             - 'word!Word.InsertLocation:enum'
   - uid: 'word!Word.Body#insertInlinePictureFromBase64:member(2)'
@@ -684,11 +684,11 @@ items:
         description: ''
       parameters:
         - id: base64EncodedImage
-          description: 必需。 将 base64 编码的图像插入正文中。
+          description: 必填。 将 base64 编码的图像插入正文中。
           type:
             - string
         - id: insertLocationString
-          description: 必需。 此值可以为“Start”或“End”。
+          description: 必填。 此值可以为“Start”或“End”。
           type:
             - '"Before" | "After" | "Start" | "End" | "Replace"'
   - uid: 'word!Word.Body#insertOoxml:member(1)'
@@ -709,7 +709,7 @@ items:
         description: ''
       parameters:
         - id: ooxml
-          description: 必需。 要插入的 OOXML。
+          description: 必填。 要插入的 OOXML。
           type:
             - string
         - id: insertLocation
@@ -734,11 +734,11 @@ items:
         description: ''
       parameters:
         - id: ooxml
-          description: 必需。 要插入的 OOXML。
+          description: 必填。 要插入的 OOXML。
           type:
             - string
         - id: insertLocationString
-          description: 必需。 此值可以为“Replace”、“Start”或“End”。
+          description: 必填。 此值可以为“Replace”、“Start”或“End”。
           type:
             - '"Before" | "After" | "Start" | "End" | "Replace"'
   - uid: 'word!Word.Body#insertParagraph:member(1)'
@@ -787,44 +787,13 @@ items:
           // The Word-Add-in-DocumentAssembly sample shows how you can use the insertParagraph method to assemble a document.
           // https://github.com/OfficeDev/Word-Add-in-DocumentAssembly
           ```
-          ```typescript
-          await Word.run(async (context) => {
-              let paragraph = context.document.body.insertParagraph("Timeline", "End");
-              paragraph.style = "Heading 2";
-              let paragraph2 = context.document.body.insertParagraph("The Services shall commence on July 31, 2015, and shall continue through July 29, 2015.", "End");
-              paragraph2.style = "Normal";
-              let paragraph3 = context.document.body.insertParagraph("Project Costs by Phase", "End");
-              paragraph3.style = "Heading 2";
-              // Note a content control with the title of "ProjectCosts" is added. Content will be replaced later.
-              let paragraph4 = context.document.body.insertParagraph("<Add Project Costs Here>", "End");
-              paragraph4.style = "Normal";
-              paragraph4.font.highlightColor = "#FFFF00";
-              let contentControl = paragraph4.insertContentControl();
-              contentControl.title = "ProjectCosts";
-              let paragraph5 = context.document.body.insertParagraph("Project Team", "End");
-              paragraph5.style = "Heading 2";
-              paragraph5.font.highlightColor = "#FFFFFF";
-              let paragraph6 = context.document.body.insertParagraph("Terms of Work", "End");
-              paragraph6.style = "Heading 1";
-              let paragraph7 = context.document.body.insertParagraph("Contractor shall provide the Services and Deliverable(s) as follows:", "End");
-              paragraph7.style = "Normal";
-              let paragraph8 = context.document.body.insertParagraph("Out-of-Pocket Expenses / Invoice Procedures", "End");
-              paragraph8.style = "Heading 2";
-              let paragraph9 = context.document.body.insertParagraph("Client will be invoiced monthly for the consulting services and T&L expenses. Standard Contractor invoicing is assumed to be acceptable. Invoices are due upon receipt. client will be invoiced all costs associated with out-of-pocket expenses (including, without limitation, costs and expenses associated with meals, lodging, local transportation and any other applicable business expenses) listed on the invoice as a separate line item. Reimbursement for out-of-pocket expenses in connection with performance of this SOW, when authorized and up to the limits set forth in this SOW, shall be in accordance with Client's then-current published policies governing travel and associated business expenses, which information shall be provided by the Client Project Manager.", "End");
-              paragraph9.style = "Normal";
-              // Insert a page break at the end of the document.
-              context.document.body.insertBreak("Page", "End");
-
-              await context.sync();
-          });
-          ```
       parameters:
         - id: paragraphText
-          description: 必需。 要插入的段落文本。
+          description: 必填。 要插入的段落文本。
           type:
             - string
         - id: insertLocation
-          description: 必需。 此值可以为“Start”或“End”。
+          description: 必填。 此值可以为“Start”或“End”。
           type:
             - 'word!Word.InsertLocation:enum'
   - uid: 'word!Word.Body#insertParagraph:member(2)'
@@ -845,11 +814,11 @@ items:
         description: ''
       parameters:
         - id: paragraphText
-          description: 必需。 要插入的段落文本。
+          description: 必填。 要插入的段落文本。
           type:
             - string
         - id: insertLocationString
-          description: 必需。 此值可以为“Start”或“End”。
+          description: 必填。 此值可以为“Start”或“End”。
           type:
             - '"Before" | "After" | "Start" | "End" | "Replace"'
   - uid: 'word!Word.Body#insertTable:member(1)'
@@ -888,15 +857,15 @@ items:
           ```
       parameters:
         - id: rowCount
-          description: 必需。 表格的行数。
+          description: 必填。 表格的行数。
           type:
             - number
         - id: columnCount
-          description: 必需。 表格的列数。
+          description: 必填。 表格的列数。
           type:
             - number
         - id: insertLocation
-          description: 必需。 此值可以为“Start”或“End”。
+          description: 必填。 此值可以为“Start”或“End”。
           type:
             - 'word!Word.InsertLocation:enum'
         - id: values
@@ -921,15 +890,15 @@ items:
         description: ''
       parameters:
         - id: rowCount
-          description: 必需。 表格的行数。
+          description: 必填。 表格的行数。
           type:
             - number
         - id: columnCount
-          description: 必需。 表格的列数。
+          description: 必填。 表格的列数。
           type:
             - number
         - id: insertLocationString
-          description: 必需。 此值可以为“Start”或“End”。
+          description: 必填。 此值可以为“Start”或“End”。
           type:
             - '"Before" | "After" | "Start" | "End" | "Replace"'
         - id: values
@@ -981,11 +950,11 @@ items:
           ```
       parameters:
         - id: text
-          description: 必需。 要插入的文本。
+          description: 必填。 要插入的文本。
           type:
             - string
         - id: insertLocation
-          description: 必需。 此值可以为“Replace”、“Start”或“End”。
+          description: 必填。 此值可以为“Replace”、“Start”或“End”。
           type:
             - 'word!Word.InsertLocation:enum'
   - uid: 'word!Word.Body#insertText:member(2)'
@@ -1006,11 +975,11 @@ items:
         description: ''
       parameters:
         - id: text
-          description: 必需。 要插入的文本。
+          description: 必填。 要插入的文本。
           type:
             - string
         - id: insertLocationString
-          description: 必需。 此值可以为“Replace”、“Start”或“End”。
+          description: 必填。 此值可以为“Replace”、“Start”或“End”。
           type:
             - '"Before" | "After" | "Start" | "End" | "Replace"'
   - uid: 'word!Word.Body#lists:member'
@@ -1275,49 +1244,6 @@ items:
 
           #### <a name="examples"></a>示例
 
-          ```javascript
-          // Run a batch operation against the Word object model.
-          Word.run(function (context) {
-
-              // Create a proxy object for the document body.
-              var body = context.document.body;
-
-              // Queue a command to search the document.
-              var searchResults = context.document.body.search('video', {matchCase: false});
-
-              // Queue a command to load the results.
-              context.load(searchResults, 'text, font');
-
-              // Synchronize the document state by executing the queued commands,
-              // and return a promise to indicate task completion.
-              return context.sync().then(function () {
-                  var results = 'Found count: ' + searchResults.items.length +
-                                '; we highlighted the results.';
-
-                  // Queue a command to change the font for each found item.
-                  for (var i = 0; i < searchResults.items.length; i++) {
-                    searchResults.items[i].font.color = '#FF0000'    // Change color to Red
-                    searchResults.items[i].font.highlightColor = '#FFFF00';
-                    searchResults.items[i].font.bold = true;
-                  }
-
-                  // Synchronize the document state by executing the queued commands,
-                  // and return a promise to indicate task completion.
-                  return context.sync().then(function () {
-                      console.log(results);
-                  });
-              });
-          })
-          .catch(function (error) {
-              console.log('Error: ' + JSON.stringify(error));
-              if (error instanceof OfficeExtension.Error) {
-                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-              }
-          });
-
-          // The Word-Add-in-DocumentAssembly sample provides another example of how to search a document.
-          // https://github.com/OfficeDev/Word-Add-in-DocumentAssembly
-          ```
           ```typescript
           await Word.run(async (context) => {
             let results = context.document.body.search("Online");
