@@ -1,7 +1,7 @@
 ### YamlMime:UniversalReference
 items:
   - uid: 'word!Word.RequestContext:class'
-    summary: '<span data-ttu-id="245db-101">RequestContext 对象可促进对 Word 应用程序的请求。</span><span class="sxs-lookup"><span data-stu-id="245db-101">The RequestContext object facilitates requests to the Word application.</span></span> <span data-ttu-id="245db-102">由于 Office 加载项和 Word 应用程序在两个不同的进程中运行，因此需要请求上下文才能从外接程序获取对 Word 对象模型的访问权限。</span><span class="sxs-lookup"><span data-stu-id="245db-102">Since the Office add-in and the Word application run in two different processes, the request context is required to get access to the Word object model from the add-in.</span></span>'
+    summary: RequestContext 对象可促进对 Word 应用程序的请求。 由于 Office 加载项和 Word 应用程序在两个不同的进程中运行，因此需要请求上下文才能从外接程序获取对 Word 对象模型的访问权限。
     name: Word.RequestContext
     fullName: Word.RequestContext
     langs:
@@ -10,88 +10,11 @@ items:
     extends:
       - 'word!OfficeExtension.ClientRequestContext:class'
     package: word!
-    remarks: |-
-
-
-      #### <a name="examples"></a><span data-ttu-id="245db-103">示例</span><span class="sxs-lookup"><span data-stu-id="245db-103">Examples</span></span>
-
-      ```javascript
-      // The following example shows how the request context is used to load the text property on a paragraph collection.
-      // Run a batch operation against the Word object model.
-      Word.run(function (context) {
-
-          // Create a proxy object for the paragraphs collection.
-          var paragraphs = context.document.body.paragraphs;
-
-          // Queue a command to load the text property for all of the paragraphs.
-          context.load(paragraphs, 'text');
-
-          // Synchronize the document state by executing the queued commands,
-          // and return a promise to indicate task completion.
-          return context.sync().then(function () {
-
-              // Queue a a set of commands to get the HTML of the first paragraph.
-              var html = paragraphs.items[0].getHtml();
-
-              // Synchronize the document state by executing the queued commands,
-              // and return a promise to indicate task completion.
-              return context.sync().then(function () {
-                  console.log('Paragraph HTML: ' + html.value);
-              });
-          });
-      })
-      .catch(function (error) {
-          console.log('Error: ' + JSON.stringify(error));
-          if (error instanceof OfficeExtension.Error) {
-              console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-          }
-      });
-      // Note: You must call load() after adding tracked objects.    
-      ```
-      ```javascript
-      // The following example shows the sync method used twice: 
-      //   1) load the content controls collection with the text property for each content control, and
-      //   2) clearing the contents of the first content control in the collection.
-      // Run a batch operation against the Word object model.
-      Word.run(function (context) {
-
-          // Create a proxy object for the content controls collection.
-          var contentControls = context.document.contentControls;
-
-          // Queue a command to load the content controls collection.
-          contentControls.load('text');
-
-          // Synchronize the document state by executing the queued commands,
-          // and return a promise to indicate task completion.
-          return context.sync().then(function () {
-
-              if (contentControls.items.length === 0) {
-                  console.log("There isn't a content control in this document.");
-              } else {
-
-                  // Queue a command to clear the contents of the first content control.
-                  contentControls.items[0].clear();
-                  // Synchronize the document state by executing the queued commands,
-                  // and return a promise to indicate task completion.
-                  return context.sync().then(function () {
-                      console.log('Content control cleared of contents.');
-                  });
-              }
-
-          });
-      })
-      .catch(function (error) {
-          console.log('Error: ' + JSON.stringify(error));
-          if (error instanceof OfficeExtension.Error) {
-              console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-          }
-      });
-      ```
     children:
       - 'word!Word.RequestContext:constructor(1)'
       - 'word!Word.RequestContext#document:member'
   - uid: 'word!Word.RequestContext:constructor(1)'
-    summary: <span data-ttu-id="245db-104">构造`RequestContext`类的新实例</span><span class="sxs-lookup"><span data-stu-id="245db-104">Constructs a new instance of the `RequestContext` class</span></span>
+    summary: 构造`RequestContext`类的新实例
     name: (constructor)(url)
     fullName: (constructor)(url)
     langs:
