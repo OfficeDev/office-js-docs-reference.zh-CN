@@ -2,7 +2,7 @@
 items:
   - uid: 'excel!Excel.Table:class'
     summary: |-
-      表示一个 Excel 表。 若要了解有关表对象模型的详细信息，请参阅[使用 Excel JAVASCRIPT API 处理表](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-tables)<!-- -->.
+      表示 Excel 表格。 若要了解有关表对象模型的详细信息，请参阅[使用 Excel JAVASCRIPT API 处理表](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-tables)<!-- -->.
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: Excel.Table
@@ -40,6 +40,7 @@ items:
       - 'excel!Excel.Table#rows:member'
       - 'excel!Excel.Table#set:member(1)'
       - 'excel!Excel.Table#set:member(2)'
+      - 'excel!Excel.Table#setStyle:member(1)'
       - 'excel!Excel.Table#showBandedColumns:member'
       - 'excel!Excel.Table#showBandedRows:member'
       - 'excel!Excel.Table#showFilterButton:member'
@@ -47,6 +48,7 @@ items:
       - 'excel!Excel.Table#showTotals:member'
       - 'excel!Excel.Table#sort:member'
       - 'excel!Excel.Table#style:member'
+      - 'excel!Excel.Table#tableStyle:member'
       - 'excel!Excel.Table#toJSON:member(1)'
       - 'excel!Excel.Table#worksheet:member'
   - uid: 'excel!Excel.Table#autoFilter:member'
@@ -494,7 +496,9 @@ items:
                       }
   - uid: 'excel!Excel.Table#name:member'
     summary: |-
-      表的名称。 在设置表的名称时，必须遵循 "[重命名 Excel 表" 一](https://support.office.com/article/Rename-an-Excel-table-FBF49A4F-82A3-43EB-8BA2-44D21233B114)文中指定的准则。
+      表的名称。
+
+      表的集名称必须遵循 "[重命名 Excel 表" 一](https://support.office.com/article/Rename-an-Excel-table-FBF49A4F-82A3-43EB-8BA2-44D21233B114)文中指定的准则。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: name
@@ -656,6 +660,28 @@ items:
           description: ''
           type:
             - 'excel!Excel.Table:class'
+  - uid: 'excel!Excel.Table#setStyle:member(1)'
+    summary: |-
+      设置应用于切片器的样式。
+
+      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: setStyle(style)
+    fullName: setStyle(style)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setStyle(style: string | PivotTableStyle | BuiltInTableStyle): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: style
+          description: 要应用于数据透视表的样式。 如果`InvalidArgumentException`提供的字符串与任何样式的名称都不匹配，则会引发此异常。
+          type:
+            - 'excel!Excel.Table#setStyle~0:complex'
   - uid: 'excel!Excel.Table#showBandedColumns:member'
     summary: |-
       指明列是否采用镶边格式来以不同的方式突出显示奇数列与偶数列，让表更易于阅读。
@@ -785,6 +811,22 @@ items:
               }
           });
           ```
+  - uid: 'excel!Excel.Table#tableStyle:member'
+    summary: |-
+      应用于表的样式。
+
+      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: tableStyle
+    fullName: tableStyle
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly tableStyle: Excel.TableStyle;'
+      return:
+        type:
+          - 'excel!Excel.TableStyle:class'
   - uid: 'excel!Excel.Table#toJSON:member(1)'
     summary: 重写 JavaScript `toJSON()`方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也会调用传递`toJSON`给它的对象的方法。尽管原始的 Excel 表对象是 API 对象，但`toJSON`方法返回一个简单的 JavaScript 对象（类型为`Excel.Interfaces.TableData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
     name: toJSON()
@@ -876,8 +918,24 @@ references:
     name: Interfaces.TableUpdateData
   - uid: 'excel!OfficeExtension.UpdateOptions:interface'
     name: OfficeExtension.UpdateOptions
+  - uid: 'excel!Excel.Table#setStyle~0:complex'
+    name: string | PivotTableStyle | BuiltInTableStyle
+    fullName: string | Excel.PivotTableStyle | Excel.BuiltInTableStyle
+    spec.typeScript:
+      - name: 'string | '
+        fullName: 'string | '
+      - uid: 'excel!Excel.PivotTableStyle:class'
+        name: PivotTableStyle
+        fullName: Excel.PivotTableStyle
+      - name: ' | '
+        fullName: ' | '
+      - uid: 'excel!Excel.BuiltInTableStyle:enum'
+        name: BuiltInTableStyle
+        fullName: Excel.BuiltInTableStyle
   - uid: 'excel!Excel.TableSort:class'
     name: Excel.TableSort
+  - uid: 'excel!Excel.TableStyle:class'
+    name: Excel.TableStyle
   - uid: 'excel!Excel.Interfaces.TableData:interface'
     name: Excel.Interfaces.TableData
   - uid: 'excel!Excel.Worksheet:class'
