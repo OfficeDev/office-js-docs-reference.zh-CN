@@ -31,7 +31,9 @@ items:
       - 'excel!Excel.Slicer#selectItems:member(1)'
       - 'excel!Excel.Slicer#set:member(1)'
       - 'excel!Excel.Slicer#set:member(2)'
+      - 'excel!Excel.Slicer#setStyle:member(1)'
       - 'excel!Excel.Slicer#slicerItems:member'
+      - 'excel!Excel.Slicer#slicerStyle:member'
       - 'excel!Excel.Slicer#sortBy:member'
       - 'excel!Excel.Slicer#style:member'
       - 'excel!Excel.Slicer#toJSON:member(1)'
@@ -364,6 +366,28 @@ items:
           description: ''
           type:
             - 'excel!Excel.Slicer:class'
+  - uid: 'excel!Excel.Slicer#setStyle:member(1)'
+    summary: |-
+      设置应用于切片器的样式。
+
+      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: setStyle(style)
+    fullName: setStyle(style)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setStyle(style: string | PivotTableStyle | BuiltInSlicerStyle): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: style
+          description: 要应用于数据透视表的样式。 如果`InvalidArgumentException`提供的字符串与任何样式的名称都不匹配，则会引发此异常。
+          type:
+            - 'excel!Excel.Slicer#setStyle~0:complex'
   - uid: 'excel!Excel.Slicer#slicerItems:member'
     summary: |-
       表示作为切片器一部分的 SlicerItems 的集合。 只读。
@@ -379,6 +403,22 @@ items:
       return:
         type:
           - 'excel!Excel.SlicerItemCollection:class'
+  - uid: 'excel!Excel.Slicer#slicerStyle:member'
+    summary: |-
+      应用于切片器的样式。
+
+      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: slicerStyle
+    fullName: slicerStyle
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly slicerStyle: Excel.SlicerStyle;'
+      return:
+        type:
+          - 'excel!Excel.SlicerStyle:class'
   - uid: 'excel!Excel.Slicer#sortBy:member'
     summary: |-
       表示切片器中的项目的排序顺序。 可能的值为： "DataSourceOrder"、"升序"、"降序"。
@@ -501,8 +541,24 @@ references:
     name: Interfaces.SlicerUpdateData
   - uid: 'excel!OfficeExtension.UpdateOptions:interface'
     name: OfficeExtension.UpdateOptions
+  - uid: 'excel!Excel.Slicer#setStyle~0:complex'
+    name: string | PivotTableStyle | BuiltInSlicerStyle
+    fullName: string | Excel.PivotTableStyle | Excel.BuiltInSlicerStyle
+    spec.typeScript:
+      - name: 'string | '
+        fullName: 'string | '
+      - uid: 'excel!Excel.PivotTableStyle:class'
+        name: PivotTableStyle
+        fullName: Excel.PivotTableStyle
+      - name: ' | '
+        fullName: ' | '
+      - uid: 'excel!Excel.BuiltInSlicerStyle:enum'
+        name: BuiltInSlicerStyle
+        fullName: Excel.BuiltInSlicerStyle
   - uid: 'excel!Excel.SlicerItemCollection:class'
     name: Excel.SlicerItemCollection
+  - uid: 'excel!Excel.SlicerStyle:class'
+    name: Excel.SlicerStyle
   - uid: 'excel!Excel.Slicer#sortBy~0:complex'
     name: Excel.SlicerSortType | "DataSourceOrder" | "Ascending" | "Descending"
     fullName: Excel.SlicerSortType | "DataSourceOrder" | "Ascending" | "Descending"
