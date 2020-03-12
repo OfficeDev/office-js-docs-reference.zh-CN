@@ -16,6 +16,8 @@ items:
     type: interface
     package: outlook!
     children:
+      - 'outlook!Office.Body#appendOnSendAsync:member(1)'
+      - 'outlook!Office.Body#appendOnSendAsync:member(2)'
       - 'outlook!Office.Body#getAsync:member(1)'
       - 'outlook!Office.Body#getAsync:member(2)'
       - 'outlook!Office.Body#getTypeAsync:member(1)'
@@ -26,6 +28,108 @@ items:
       - 'outlook!Office.Body#setAsync:member(2)'
       - 'outlook!Office.Body#setSelectedDataAsync:member(1)'
       - 'outlook!Office.Body#setSelectedDataAsync:member(2)'
+  - uid: 'outlook!Office.Body#appendOnSendAsync:member(1)'
+    summary: |-
+      追加在将指定内容发送到项目正文的末尾（在任何签名之后）。
+
+      如果用户运行的外接程序[使用\`清单中的 ItemSend\`实现了发送功能](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-on-send-addins?tabs=windows)，则<!-- -->，附加在发送前运行，在发送前功能之前。
+
+      **重要说明**：若要使用`appendOnSendAsync`<!-- -->，必须`AppendOnSend`将扩展权限包括在清单的`ExtendedPermissions`节点中。
+
+      **注意**：若要清除以前`appendOnSendAsync`调用中的数据，可以将`data`参数设置为`null`<!-- -->.
+
+      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**：`ReadWriteItem`
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)<!-- -->**：撰写
+
+      **错误**：
+
+      - `DataExceedsMaximumSize`<!-- -->：参数`data`的长度超过5000个字符。
+
+      - `InvalidFormatError`<!-- -->：此`options.coercionType`参数设置为， `Office.CoercionType.Html`但邮件正文为纯文本格式。
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      Office.context.mailbox.item.body.appendOnSendAsync(
+          "P.S. This text was appended on send.",
+          {coercionType: Office.CoercionType.Html},
+          function (asyncResult) {
+              if (asyncResult.status === Office.AsyncResultStatus.Failed) {
+                  console.log("Action failed with error: " + asyncResult.error.message);
+              }
+          }
+      );
+      ```
+    isPreview: true
+    name: 'appendOnSendAsync(data, options, callback)'
+    fullName: 'appendOnSendAsync(data, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'appendOnSendAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: data
+          description: 要添加到正文末尾的字符串。 该字符串限制为5000个字符。
+          type:
+            - string
+        - id: options
+          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。 `coercionType`<!-- -->：要追加的数据的所需格式。 参数中的字符串将转换为此格式。
+          type:
+            - 'outlook!Office.Body#appendOnSendAsync~0:complex'
+        - id: callback
+          description: 可选。 方法完成后，使用单个参数类型调用在`callback`参数中传递的函数`Office.AsyncResult`<!-- -->. `asyncResult.error` 属性中将提供遇到的所有错误。
+          type:
+            - 'outlook!Office.Body#appendOnSendAsync~1:complex'
+  - uid: 'outlook!Office.Body#appendOnSendAsync:member(2)'
+    summary: |-
+      追加在将指定内容发送到项目正文的末尾（在任何签名之后）。
+
+      如果用户运行的外接程序[使用\`清单中的 ItemSend\`实现了发送功能](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-on-send-addins?tabs=windows)，则<!-- -->，附加在发送前运行，在发送前功能之前。
+
+      **重要说明**：若要使用`appendOnSendAsync`<!-- -->，必须`AppendOnSend`将扩展权限包括在清单的`ExtendedPermissions`节点中。
+
+      **注意**：若要清除以前`appendOnSendAsync`调用中的数据，可以将`data`参数设置为`null`<!-- -->.
+
+      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**：`ReadWriteItem`
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)<!-- -->**：撰写
+
+      **错误**：
+
+      - `DataExceedsMaximumSize`<!-- -->：参数`data`的长度超过5000个字符。
+
+      - `InvalidFormatError`<!-- -->：此`options.coercionType`参数设置为， `Office.CoercionType.Html`但邮件正文为纯文本格式。
+    isPreview: true
+    name: 'appendOnSendAsync(data, callback)'
+    fullName: 'appendOnSendAsync(data, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'appendOnSendAsync(data: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: data
+          description: 要添加到正文末尾的字符串。 该字符串限制为5000个字符。
+          type:
+            - string
+        - id: callback
+          description: 可选。 方法完成后，使用单个参数类型调用在`callback`参数中传递的函数`Office.AsyncResult`<!-- -->. `asyncResult.error` 属性中将提供遇到的所有错误。
+          type:
+            - 'outlook!Office.Body#appendOnSendAsync~2:complex'
   - uid: 'outlook!Office.Body#getAsync:member(1)'
     summary: |-
       使用指定的格式返回当前正文。
@@ -288,7 +392,7 @@ items:
 
       - `DataExceedsMaximumSize`<!-- -->： Data 参数的长度超过1000000个字符。
 
-      - `InvalidFormatError`<!-- -->： CoercionType 参数设置为`Office.CoercionType.Html` ，邮件正文为纯文本格式。
+      - `InvalidFormatError`<!-- -->：此`options.coercionType`参数设置为`Office.CoercionType.Html` ，邮件正文为纯文本格式。
 
       #### <a name="examples"></a>示例
 
@@ -470,6 +574,40 @@ items:
           type:
             - 'outlook!Office.Body#setSelectedDataAsync~2:complex'
 references:
+  - uid: 'outlook!Office.Body#appendOnSendAsync~0:complex'
+    name: Office.AsyncContextOptions & CoercionTypeOptions
+    fullName: Office.AsyncContextOptions & Office.CoercionTypeOptions
+    spec.typeScript:
+      - uid: 'outlook!Office.AsyncContextOptions:interface'
+        name: Office.AsyncContextOptions
+        fullName: Office.AsyncContextOptions
+      - name: ' & '
+        fullName: ' & '
+      - uid: 'outlook!Office.CoercionTypeOptions:interface'
+        name: CoercionTypeOptions
+        fullName: Office.CoercionTypeOptions
+  - uid: 'outlook!Office.Body#appendOnSendAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
+  - uid: 'outlook!Office.Body#appendOnSendAsync~2:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
   - uid: 'outlook!Office.Body#getAsync~0:complex'
     name: Office.CoercionType | string
     fullName: Office.CoercionType | string
