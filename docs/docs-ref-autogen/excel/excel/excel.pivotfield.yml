@@ -2,9 +2,9 @@
 items:
   - uid: 'excel!Excel.PivotField:class'
     summary: |-
-      <span data-ttu-id="7cecc-101">表示 Excel 透视字段。</span><span class="sxs-lookup"><span data-stu-id="7cecc-101">Represents the Excel PivotField.</span></span>
+      表示 Excel 透视字段。
 
-      <span data-ttu-id="7cecc-102">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="7cecc-102">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+      \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: Excel.PivotField
     fullName: Excel.PivotField
     langs:
@@ -14,8 +14,15 @@ items:
       - 'excel!OfficeExtension.ClientObject:class'
     package: excel!
     children:
+      - 'excel!Excel.PivotField#applyFilter:member(1)'
+      - 'excel!Excel.PivotField#clearAllFilters:member(1)'
+      - 'excel!Excel.PivotField#clearFilter:member(1)'
+      - 'excel!Excel.PivotField#clearFilter:member(2)'
       - 'excel!Excel.PivotField#context:member'
+      - 'excel!Excel.PivotField#getFilters:member(1)'
       - 'excel!Excel.PivotField#id:member'
+      - 'excel!Excel.PivotField#isFiltered:member(1)'
+      - 'excel!Excel.PivotField#isFiltered:member(2)'
       - 'excel!Excel.PivotField#items:member'
       - 'excel!Excel.PivotField#load:member(1)'
       - 'excel!Excel.PivotField#load:member(2)'
@@ -29,8 +36,90 @@ items:
       - 'excel!Excel.PivotField#sortByValues:member(2)'
       - 'excel!Excel.PivotField#subtotals:member'
       - 'excel!Excel.PivotField#toJSON:member(1)'
+  - uid: 'excel!Excel.PivotField#applyFilter:member(1)'
+    summary: |-
+      设置字段的当前 PivotFilters 的一个或多个，并将它们应用于字段。 如果提供的筛选器无效或无法应用，则会引发异常。
+
+      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: applyFilter(filter)
+    fullName: applyFilter(filter)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'applyFilter(filter: PivotValueFilter | PivotLabelFilter | PivotManualFilter | PivotDateFilter | PivotFilters): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: filter
+          description: 配置的特定 PivotFilter 或包含多个配置的筛选器的 PivotFilters 接口。
+          type:
+            - 'excel!Excel.PivotField#applyFilter~0:complex'
+  - uid: 'excel!Excel.PivotField#clearAllFilters:member(1)'
+    summary: |-
+      从字段的所有筛选器中清除所有条件。 这将删除对字段的任何活动筛选。
+
+      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: clearAllFilters()
+    fullName: clearAllFilters()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clearAllFilters(): void;'
+      return:
+        type:
+          - void
+        description: ''
+  - uid: 'excel!Excel.PivotField#clearFilter:member(1)'
+    summary: |-
+      清除给定类型的字段筛选器中的所有现有条件（如果当前应用了一个条件）。
+
+      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: clearFilter(filterType)
+    fullName: clearFilter(filterType)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clearFilter(filterType: Excel.PivotFilterType): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: filterType
+          description: 要清除其所有条件的字段的筛选器类型。
+          type:
+            - 'excel!Excel.PivotFilterType:enum'
+  - uid: 'excel!Excel.PivotField#clearFilter:member(2)'
+    summary: |-
+      清除给定类型的字段筛选器中的所有现有条件（如果当前应用了一个条件）。
+
+      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: clearFilter(filterTypeString)
+    fullName: clearFilter(filterTypeString)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clearFilter(filterTypeString: "Unknown" | "Value" | "Manual" | "Label" | "Date"): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: filterTypeString
+          description: 要清除其所有条件的字段的筛选器类型。
+          type:
+            - '"Unknown" | "Value" | "Manual" | "Label" | "Date"'
   - uid: 'excel!Excel.PivotField#context:member'
-    summary: <span data-ttu-id="7cecc-103">与该对象关联的请求上下文。</span><span class="sxs-lookup"><span data-stu-id="7cecc-103">The request context associated with the object.</span></span> <span data-ttu-id="7cecc-104">这会将加载项的进程连接到 Office 主机应用程序的进程。</span><span class="sxs-lookup"><span data-stu-id="7cecc-104">This connects the add-in's process to the Office host application's process.</span></span>
+    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
     name: context
     fullName: context
     langs:
@@ -41,11 +130,28 @@ items:
       return:
         type:
           - 'excel!Excel.RequestContext:class'
+  - uid: 'excel!Excel.PivotField#getFilters:member(1)'
+    summary: |-
+      获取当前应用于字段的所有筛选器。
+
+      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: getFilters()
+    fullName: getFilters()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getFilters(): OfficeExtension.ClientResult<Excel.PivotFilters>;'
+      return:
+        type:
+          - 'excel!Excel.PivotField#getFilters~0:complex'
+        description: 包含所有活动筛选器的 PivotFilters 接口。
   - uid: 'excel!Excel.PivotField#id:member'
     summary: |-
-      <span data-ttu-id="7cecc-105">PivotField 的 ID。</span><span class="sxs-lookup"><span data-stu-id="7cecc-105">Id of the PivotField.</span></span>
+      PivotField 的 ID。
 
-      <span data-ttu-id="7cecc-106">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="7cecc-106">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+      \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: id
     fullName: id
     langs:
@@ -56,11 +162,54 @@ items:
       return:
         type:
           - string
+  - uid: 'excel!Excel.PivotField#isFiltered:member(1)'
+    summary: |-
+      检查字段上是否有任何已应用的筛选器。
+
+      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: isFiltered(filterType)
+    fullName: isFiltered(filterType)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'isFiltered(filterType?: Excel.PivotFilterType): OfficeExtension.ClientResult<boolean>;'
+      return:
+        type:
+          - 'excel!Excel.PivotField#isFiltered~0:complex'
+        description: 如果字段具有已应用类型`filterType`的筛选器，则为 True。 如果未指定 filterType，则返回 true （如果该字段包含任何已应用的筛选器）。
+      parameters:
+        - id: filterType
+          description: 要检查的筛选器类型。 如果未提供任何类型，此方法将检查是否应用了任何筛选器。
+          type:
+            - 'excel!Excel.PivotFilterType:enum'
+  - uid: 'excel!Excel.PivotField#isFiltered:member(2)'
+    summary: |-
+      检查字段上是否有任何已应用的筛选器。
+
+      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: isFiltered(filterTypeString)
+    fullName: isFiltered(filterTypeString)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'isFiltered(filterTypeString?: "Unknown" | "Value" | "Manual" | "Label" | "Date"): OfficeExtension.ClientResult<boolean>;'
+      return:
+        type:
+          - 'excel!Excel.PivotField#isFiltered~1:complex'
+        description: 如果字段具有已应用类型`filterType`的筛选器，则为 True。 如果未指定 filterType，则返回 true （如果该字段包含任何已应用的筛选器）。
+      parameters:
+        - id: filterTypeString
+          description: 要检查的筛选器类型。 如果未提供任何类型，此方法将检查是否应用了任何筛选器。
+          type:
+            - '"Unknown" | "Value" | "Manual" | "Label" | "Date"'
   - uid: 'excel!Excel.PivotField#items:member'
     summary: |-
-      <span data-ttu-id="7cecc-107">返回与 PivotField 相关联的 PivotFields。</span><span class="sxs-lookup"><span data-stu-id="7cecc-107">Returns the PivotFields associated with the PivotField.</span></span>
+      返回与 PivotField 相关联的 PivotFields。
 
-      <span data-ttu-id="7cecc-108">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="7cecc-108">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+      \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: items
     fullName: items
     langs:
@@ -72,7 +221,7 @@ items:
         type:
           - 'excel!Excel.PivotItemCollection:class'
   - uid: 'excel!Excel.PivotField#load:member(1)'
-    summary: <span data-ttu-id="7cecc-109">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="7cecc-109">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="7cecc-110">在读取属性`context.sync()`之前，必须先调用。</span><span class="sxs-lookup"><span data-stu-id="7cecc-110">You must call `context.sync()` before reading the properties.</span></span>
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
     name: load(options)
     fullName: load(options)
     langs:
@@ -86,11 +235,11 @@ items:
         description: ''
       parameters:
         - id: options
-          description: <span data-ttu-id="7cecc-111">提供要加载的对象的属性的选项。</span><span class="sxs-lookup"><span data-stu-id="7cecc-111">Provides options for which properties of the object to load.</span></span>
+          description: 提供要加载的对象的属性的选项。
           type:
             - 'excel!Excel.Interfaces.PivotFieldLoadOptions:interface'
   - uid: 'excel!Excel.PivotField#load:member(2)'
-    summary: <span data-ttu-id="7cecc-112">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="7cecc-112">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="7cecc-113">在读取属性`context.sync()`之前，必须先调用。</span><span class="sxs-lookup"><span data-stu-id="7cecc-113">You must call `context.sync()` before reading the properties.</span></span>
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
     name: load(propertyNames)
     fullName: load(propertyNames)
     langs:
@@ -104,11 +253,11 @@ items:
         description: ''
       parameters:
         - id: propertyNames
-          description: <span data-ttu-id="7cecc-114">一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。</span><span class="sxs-lookup"><span data-stu-id="7cecc-114">A comma-delimited string or an array of strings that specify the properties to load.</span></span>
+          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
           type:
             - 'string | string[]'
   - uid: 'excel!Excel.PivotField#load:member(3)'
-    summary: <span data-ttu-id="7cecc-115">将命令加入队列以加载对象的指定属性。</span><span class="sxs-lookup"><span data-stu-id="7cecc-115">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="7cecc-116">在读取属性`context.sync()`之前，必须先调用。</span><span class="sxs-lookup"><span data-stu-id="7cecc-116">You must call `context.sync()` before reading the properties.</span></span>
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
     name: load(propertyNamesAndPaths)
     fullName: load(propertyNamesAndPaths)
     langs:
@@ -126,7 +275,7 @@ items:
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: '<span data-ttu-id="7cecc-117">`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性`propertyNamesAndPaths.expand` ，并且是一个以逗号分隔的字符串，用于指定要加载的导航属性。</span><span class="sxs-lookup"><span data-stu-id="7cecc-117">`propertyNamesAndPaths.select` is a comma-delimited string that specifies the properties to load, and `propertyNamesAndPaths.expand` is a comma-delimited string that specifies the navigation properties to load.</span></span>'
+          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性`propertyNamesAndPaths.expand` ，并且是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
           type:
             - |-
               {
@@ -135,9 +284,9 @@ items:
                       }
   - uid: 'excel!Excel.PivotField#name:member'
     summary: |-
-      <span data-ttu-id="7cecc-118">PivotField 的名称。</span><span class="sxs-lookup"><span data-stu-id="7cecc-118">Name of the PivotField.</span></span>
+      PivotField 的名称。
 
-      <span data-ttu-id="7cecc-119">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="7cecc-119">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+      \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: name
     fullName: name
     langs:
@@ -149,9 +298,9 @@ items:
         type:
           - string
   - uid: 'excel!Excel.PivotField#set:member(1)'
-    summary: '<span data-ttu-id="7cecc-120">同时设置一个对象的多个属性。</span><span class="sxs-lookup"><span data-stu-id="7cecc-120">Sets multiple properties of an object at the same time.</span></span> <span data-ttu-id="7cecc-121">您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。</span><span class="sxs-lookup"><span data-stu-id="7cecc-121">You can pass either a plain object with the appropriate properties, or another API object of the same type.</span></span>'
+    summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
     remarks: |-
-      <span data-ttu-id="7cecc-122">此方法具有以下附加签名：</span><span class="sxs-lookup"><span data-stu-id="7cecc-122">This method has the following additional signature:</span></span>
+      此方法具有以下附加签名：
 
       `set(properties: Excel.PivotField): void`
     name: 'set(properties, options)'
@@ -167,15 +316,15 @@ items:
         description: ''
       parameters:
         - id: properties
-          description: <span data-ttu-id="7cecc-123">一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。</span><span class="sxs-lookup"><span data-stu-id="7cecc-123">A JavaScript object with properties that are structured isomorphically to the properties of the object on which the method is called.</span></span>
+          description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
           type:
             - 'excel!Excel.Interfaces.PivotFieldUpdateData:interface'
         - id: options
-          description: <span data-ttu-id="7cecc-124">提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。</span><span class="sxs-lookup"><span data-stu-id="7cecc-124">Provides an option to suppress errors if the properties object tries to set any read-only properties.</span></span>
+          description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
           type:
             - 'excel!OfficeExtension.UpdateOptions:interface'
   - uid: 'excel!Excel.PivotField#set:member(2)'
-    summary: '<span data-ttu-id="7cecc-125">基于现有加载的对象同时设置该对象的多个属性。</span><span class="sxs-lookup"><span data-stu-id="7cecc-125">Sets multiple properties on the object at the same time, based on an existing loaded object.</span></span>'
+    summary: 基于现有加载的对象同时设置该对象的多个属性。
     name: set(properties)
     fullName: set(properties)
     langs:
@@ -194,9 +343,9 @@ items:
             - 'excel!Excel.PivotField:class'
   - uid: 'excel!Excel.PivotField#showAllItems:member'
     summary: |-
-      <span data-ttu-id="7cecc-126">确定是否显示 PivotField 的所有项。</span><span class="sxs-lookup"><span data-stu-id="7cecc-126">Determines whether to show all items of the PivotField.</span></span>
+      确定是否显示 PivotField 的所有项。
 
-      <span data-ttu-id="7cecc-127">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="7cecc-127">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+      \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: showAllItems
     fullName: showAllItems
     langs:
@@ -209,9 +358,9 @@ items:
           - boolean
   - uid: 'excel!Excel.PivotField#sortByLabels:member(1)'
     summary: |-
-      <span data-ttu-id="7cecc-128">PivotField 排序。</span><span class="sxs-lookup"><span data-stu-id="7cecc-128">Sorts the PivotField.</span></span> <span data-ttu-id="7cecc-129">如果指定 DataPivotHierarchy，则会基于它进行排序，如果未指定，则会基于 PivotField 本身进行排序。</span><span class="sxs-lookup"><span data-stu-id="7cecc-129">If a DataPivotHierarchy is specified, then sort will be applied based on it, if not sort will be based on the PivotField itself.</span></span>
+      PivotField 排序。 如果指定 DataPivotHierarchy，则会基于它进行排序，如果未指定，则会基于 PivotField 本身进行排序。
 
-      <span data-ttu-id="7cecc-130">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="7cecc-130">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+      \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: sortByLabels(sortBy)
     fullName: sortByLabels(sortBy)
     langs:
@@ -225,14 +374,14 @@ items:
         description: ''
       parameters:
         - id: sortBy
-          description: <span data-ttu-id="7cecc-131">表示按升序还是降序进行排序。</span><span class="sxs-lookup"><span data-stu-id="7cecc-131">Represents whether the sorting is done in an ascending or descending order.</span></span>
+          description: 表示按升序还是降序进行排序。
           type:
             - 'excel!Excel.SortBy:enum'
   - uid: 'excel!Excel.PivotField#sortByValues:member(1)'
     summary: |-
-      <span data-ttu-id="7cecc-132">按给定范围中的指定值对 PivotField 进行排序。</span><span class="sxs-lookup"><span data-stu-id="7cecc-132">Sorts the PivotField by specified values in a given scope.</span></span> <span data-ttu-id="7cecc-133">作用域定义在具有相同 DataPivotHierarchy 中的多个值时，将使用哪些特定值进行排序。</span><span class="sxs-lookup"><span data-stu-id="7cecc-133">The scope defines which specific values will be used to sort when there are multiple values from the same DataPivotHierarchy.</span></span>
+      按给定范围中的指定值对 PivotField 进行排序。 作用域定义在具有相同 DataPivotHierarchy 中的多个值时，将使用哪些特定值进行排序。
 
-      <span data-ttu-id="7cecc-134">\[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="7cecc-134">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'sortByValues(sortBy, valuesHierarchy, pivotItemScope)'
     fullName: 'sortByValues(sortBy, valuesHierarchy, pivotItemScope)'
     langs:
@@ -246,22 +395,22 @@ items:
         description: ''
       parameters:
         - id: sortBy
-          description: <span data-ttu-id="7cecc-135">表示按升序还是降序进行排序。</span><span class="sxs-lookup"><span data-stu-id="7cecc-135">Represents whether the sorting is done in an ascending or descending order.</span></span>
+          description: 表示按升序还是降序进行排序。
           type:
             - 'excel!Excel.SortBy:enum'
         - id: valuesHierarchy
-          description: <span data-ttu-id="7cecc-136">指定要用于排序的数据轴上的值层次结构。</span><span class="sxs-lookup"><span data-stu-id="7cecc-136">Specifies the values hierarchy on the data axis to be used for sorting.</span></span>
+          description: 指定要用于排序的数据轴上的值层次结构。
           type:
             - 'excel!Excel.DataPivotHierarchy:class'
         - id: pivotItemScope
-          description: '<span data-ttu-id="7cecc-137">应在排序范围中使用的项。</span><span class="sxs-lookup"><span data-stu-id="7cecc-137">The items that should be used for the scope of the sorting.</span></span> <span data-ttu-id="7cecc-138">这些项目将构成要作为排序依据的行或列。</span><span class="sxs-lookup"><span data-stu-id="7cecc-138">These will be the items that make up the row or column that you want to sort on.</span></span> <span data-ttu-id="7cecc-139">如果使用字符串而不是 PivotItem，则该字符串表示 PivotItem 的 ID。</span><span class="sxs-lookup"><span data-stu-id="7cecc-139">If a string is used instead of a PivotItem, the string represents the ID of the PivotItem.</span></span> <span data-ttu-id="7cecc-140">如果您要对其进行排序的轴上没有数据层次结构以外的任何项目，则可以为空。</span><span class="sxs-lookup"><span data-stu-id="7cecc-140">If there are no items other than data hierarchy on the axis you want to sort on, this can be empty.</span></span>'
+          description: 应在排序范围中使用的项。 这些项目将构成要作为排序依据的行或列。 如果使用字符串而不是 PivotItem，则该字符串表示 PivotItem 的 ID。 如果您要对其进行排序的轴上没有数据层次结构以外的任何项目，则可以为空。
           type:
             - 'excel!Excel.PivotField#sortByValues~0:complex'
   - uid: 'excel!Excel.PivotField#sortByValues:member(2)'
     summary: |-
-      <span data-ttu-id="7cecc-141">按给定范围中的指定值对 PivotField 进行排序。</span><span class="sxs-lookup"><span data-stu-id="7cecc-141">Sorts the PivotField by specified values in a given scope.</span></span> <span data-ttu-id="7cecc-142">作用域定义在具有相同 DataPivotHierarchy 中的多个值时，将使用哪些特定值进行排序。</span><span class="sxs-lookup"><span data-stu-id="7cecc-142">The scope defines which specific values will be used to sort when there are multiple values from the same DataPivotHierarchy.</span></span>
+      按给定范围中的指定值对 PivotField 进行排序。 作用域定义在具有相同 DataPivotHierarchy 中的多个值时，将使用哪些特定值进行排序。
 
-      <span data-ttu-id="7cecc-143">\[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="7cecc-143">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'sortByValues(sortByString, valuesHierarchy, pivotItemScope)'
     fullName: 'sortByValues(sortByString, valuesHierarchy, pivotItemScope)'
     langs:
@@ -275,22 +424,22 @@ items:
         description: ''
       parameters:
         - id: sortByString
-          description: <span data-ttu-id="7cecc-144">表示按升序还是降序进行排序。</span><span class="sxs-lookup"><span data-stu-id="7cecc-144">Represents whether the sorting is done in an ascending or descending order.</span></span>
+          description: 表示按升序还是降序进行排序。
           type:
             - '"Ascending" | "Descending"'
         - id: valuesHierarchy
-          description: <span data-ttu-id="7cecc-145">指定要用于排序的数据轴上的值层次结构。</span><span class="sxs-lookup"><span data-stu-id="7cecc-145">Specifies the values hierarchy on the data axis to be used for sorting.</span></span>
+          description: 指定要用于排序的数据轴上的值层次结构。
           type:
             - 'excel!Excel.DataPivotHierarchy:class'
         - id: pivotItemScope
-          description: '<span data-ttu-id="7cecc-146">应在排序范围中使用的项。</span><span class="sxs-lookup"><span data-stu-id="7cecc-146">The items that should be used for the scope of the sorting.</span></span> <span data-ttu-id="7cecc-147">这些项目将构成要作为排序依据的行或列。</span><span class="sxs-lookup"><span data-stu-id="7cecc-147">These will be the items that make up the row or column that you want to sort on.</span></span> <span data-ttu-id="7cecc-148">如果使用字符串而不是 PivotItem，则该字符串表示 PivotItem 的 ID。</span><span class="sxs-lookup"><span data-stu-id="7cecc-148">If a string is used instead of a PivotItem, the string represents the ID of the PivotItem.</span></span> <span data-ttu-id="7cecc-149">如果您要对其进行排序的轴上没有数据层次结构以外的任何项目，则可以为空。</span><span class="sxs-lookup"><span data-stu-id="7cecc-149">If there are no items other than data hierarchy on the axis you want to sort on, this can be empty.</span></span>'
+          description: 应在排序范围中使用的项。 这些项目将构成要作为排序依据的行或列。 如果使用字符串而不是 PivotItem，则该字符串表示 PivotItem 的 ID。 如果您要对其进行排序的轴上没有数据层次结构以外的任何项目，则可以为空。
           type:
             - 'excel!Excel.PivotField#sortByValues~1:complex'
   - uid: 'excel!Excel.PivotField#subtotals:member'
     summary: |-
-      <span data-ttu-id="7cecc-150">PivotField 小计。</span><span class="sxs-lookup"><span data-stu-id="7cecc-150">Subtotals of the PivotField.</span></span>
+      PivotField 小计。
 
-      <span data-ttu-id="7cecc-151">\[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="7cecc-151">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+      \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: subtotals
     fullName: subtotals
     langs:
@@ -302,7 +451,7 @@ items:
         type:
           - 'excel!Excel.Subtotals:interface'
   - uid: 'excel!Excel.PivotField#toJSON:member(1)'
-    summary: '<span data-ttu-id="7cecc-152">重写 JavaScript `toJSON()`方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`</span><span class="sxs-lookup"><span data-stu-id="7cecc-152">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`</span></span><!-- --><span data-ttu-id="7cecc-153">.</span><span class="sxs-lookup"><span data-stu-id="7cecc-153"></span></span> <span data-ttu-id="7cecc-154">(`JSON.stringify`</span><span class="sxs-lookup"><span data-stu-id="7cecc-154"></span></span><!-- --><span data-ttu-id="7cecc-155">反过来，也会调用传递`toJSON`给它的对象的方法。尽管原始的 Excel. 透视字段对象是 API 对象，但`toJSON`方法返回一个简单的 JavaScript 对象（类型为`Excel.Interfaces.PivotFieldData`</span><span class="sxs-lookup"><span data-stu-id="7cecc-155">, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original Excel.PivotField object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Excel.Interfaces.PivotFieldData`</span></span><!-- --><span data-ttu-id="7cecc-156">），其中包含原始对象中所有已加载的子属性的浅表副本。</span><span class="sxs-lookup"><span data-stu-id="7cecc-156">) that contains shallow copies of any loaded child properties from the original object.</span></span>'
+    summary: 重写 JavaScript `toJSON()`方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也会调用传递`toJSON`给它的对象的方法。尽管原始的 Excel. 透视字段对象是 API 对象，但`toJSON`方法返回一个简单的 JavaScript 对象（类型为`Excel.Interfaces.PivotFieldData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
     name: toJSON()
     fullName: toJSON()
     langs:
@@ -317,8 +466,69 @@ items:
 references:
   - uid: 'excel!OfficeExtension.ClientObject:class'
     name: OfficeExtension.ClientObject
+  - uid: 'excel!Excel.PivotField#applyFilter~0:complex'
+    name: PivotValueFilter | PivotLabelFilter | PivotManualFilter | PivotDateFilter | PivotFilters
+    fullName: Excel.PivotValueFilter | Excel.PivotLabelFilter | Excel.PivotManualFilter | Excel.PivotDateFilter | Excel.PivotFilters
+    spec.typeScript:
+      - uid: 'excel!Excel.PivotValueFilter:interface'
+        name: PivotValueFilter
+        fullName: Excel.PivotValueFilter
+      - name: ' | '
+        fullName: ' | '
+      - uid: 'excel!Excel.PivotLabelFilter:interface'
+        name: PivotLabelFilter
+        fullName: Excel.PivotLabelFilter
+      - name: ' | '
+        fullName: ' | '
+      - uid: 'excel!Excel.PivotManualFilter:interface'
+        name: PivotManualFilter
+        fullName: Excel.PivotManualFilter
+      - name: ' | '
+        fullName: ' | '
+      - uid: 'excel!Excel.PivotDateFilter:interface'
+        name: PivotDateFilter
+        fullName: Excel.PivotDateFilter
+      - name: ' | '
+        fullName: ' | '
+      - uid: 'excel!Excel.PivotFilters:interface'
+        name: PivotFilters
+        fullName: Excel.PivotFilters
+  - uid: 'excel!Excel.PivotFilterType:enum'
+    name: Excel.PivotFilterType
   - uid: 'excel!Excel.RequestContext:class'
     name: RequestContext
+  - uid: 'excel!Excel.PivotField#getFilters~0:complex'
+    name: OfficeExtension.ClientResult<Excel.PivotFilters>
+    fullName: OfficeExtension.ClientResult<Excel.PivotFilters>
+    spec.typeScript:
+      - uid: 'excel!OfficeExtension.ClientResult:class'
+        name: OfficeExtension.ClientResult
+        fullName: OfficeExtension.ClientResult
+      - name: <
+        fullName: <
+      - uid: 'excel!Excel.PivotFilters:interface'
+        name: Excel.PivotFilters
+        fullName: Excel.PivotFilters
+      - name: '>'
+        fullName: '>'
+  - uid: 'excel!Excel.PivotField#isFiltered~0:complex'
+    name: OfficeExtension.ClientResult<boolean>
+    fullName: OfficeExtension.ClientResult<boolean>
+    spec.typeScript:
+      - uid: 'excel!OfficeExtension.ClientResult:class'
+        name: OfficeExtension.ClientResult
+        fullName: OfficeExtension.ClientResult
+      - name: <boolean>
+        fullName: <boolean>
+  - uid: 'excel!Excel.PivotField#isFiltered~1:complex'
+    name: OfficeExtension.ClientResult<boolean>
+    fullName: OfficeExtension.ClientResult<boolean>
+    spec.typeScript:
+      - uid: 'excel!OfficeExtension.ClientResult:class'
+        name: OfficeExtension.ClientResult
+        fullName: OfficeExtension.ClientResult
+      - name: <boolean>
+        fullName: <boolean>
   - uid: 'excel!Excel.PivotItemCollection:class'
     name: Excel.PivotItemCollection
   - uid: 'excel!Excel.PivotField:class'

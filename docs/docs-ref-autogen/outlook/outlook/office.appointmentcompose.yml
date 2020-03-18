@@ -32,6 +32,8 @@ items:
       - 'outlook!Office.AppointmentCompose#body:member'
       - 'outlook!Office.AppointmentCompose#categories:member'
       - 'outlook!Office.AppointmentCompose#close:member(1)'
+      - 'outlook!Office.AppointmentCompose#disableClientSignatureAsync:member(1)'
+      - 'outlook!Office.AppointmentCompose#disableClientSignatureAsync:member(2)'
       - 'outlook!Office.AppointmentCompose#end:member'
       - 'outlook!Office.AppointmentCompose#enhancedLocation:member'
       - 'outlook!Office.AppointmentCompose#getAttachmentContentAsync:member(1)'
@@ -46,6 +48,8 @@ items:
       - 'outlook!Office.AppointmentCompose#getSelectedDataAsync:member(2)'
       - 'outlook!Office.AppointmentCompose#getSharedPropertiesAsync:member(1)'
       - 'outlook!Office.AppointmentCompose#getSharedPropertiesAsync:member(2)'
+      - 'outlook!Office.AppointmentCompose#isClientSignatureEnabledAsync:member(1)'
+      - 'outlook!Office.AppointmentCompose#isClientSignatureEnabledAsync:member(2)'
       - 'outlook!Office.AppointmentCompose#itemType:member'
       - 'outlook!Office.AppointmentCompose#loadCustomPropertiesAsync:member(1)'
       - 'outlook!Office.AppointmentCompose#location:member'
@@ -642,6 +646,78 @@ items:
         type:
           - void
         description: ''
+  - uid: 'outlook!Office.AppointmentCompose#disableClientSignatureAsync:member(1)'
+    summary: |-
+      禁用 Outlook 客户端签名。
+
+      对于 Windows 和 Mac 富客户端，此 API 会将发送帐户的 "新建邮件" 和 "答复/转发" 部分的签名设置为 "（无）"，从而有效地禁用该签名。 对于 web 上的 Outlook，API 应禁用新邮件、答复和转发的签名选项。 如果选择了签名，此 API 调用应禁用它。
+
+      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**：`ReadWriteItem`
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**：约会组织者
+    name: 'disableClientSignatureAsync(options, callback)'
+    fullName: 'disableClientSignatureAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'disableClientSignatureAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+          type:
+            - 'outlook!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 可选。 方法完成后，使用单个参数调用在 callback 参数中传递的函数。`asyncResult`<!-- -->，它是一个`Office.AsyncResult`对象。
+          type:
+            - 'outlook!Office.AppointmentCompose#disableClientSignatureAsync~0:complex'
+  - uid: 'outlook!Office.AppointmentCompose#disableClientSignatureAsync:member(2)'
+    summary: |-
+      禁用 Outlook 客户端签名。
+
+      对于 Windows 和 Mac 富客户端，此 API 会将发送帐户的 "新建邮件" 和 "答复/转发" 部分的签名设置为 "（无）"，从而有效地禁用该签名。 对于 web 上的 Outlook，API 应禁用新邮件、答复和转发的签名选项。 如果选择了签名，此 API 调用应禁用它。
+
+      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**：`ReadWriteItem`
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**：约会组织者
+    name: disableClientSignatureAsync(callback)
+    fullName: disableClientSignatureAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'disableClientSignatureAsync(callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Disable the client signature.
+          Office.context.mailbox.item.disableClientSignatureAsync(function(asyncResult) {
+            if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+              console.log("disableClientSignatureAsync succeeded");
+            } else {
+              console.error(asyncResult.error);
+            }
+          });
+          ```
+      parameters:
+        - id: callback
+          description: 可选。 方法完成后，使用单个参数调用在 callback 参数中传递的函数。`asyncResult`<!-- -->，它是一个`Office.AsyncResult`对象。
+          type:
+            - 'outlook!Office.AppointmentCompose#disableClientSignatureAsync~1:complex'
   - uid: 'outlook!Office.AppointmentCompose#end:member'
     summary: |-
       获取或设置约会结束的日期和时间。
@@ -1378,6 +1454,77 @@ items:
           description: 方法完成后，使用单个参数类型调用在 callback 参数中传递的函数`Office.AsyncResult`<!-- -->. 结果`value`的属性是共享项的属性。
           type:
             - 'outlook!Office.AppointmentCompose#getSharedPropertiesAsync~1:complex'
+  - uid: 'outlook!Office.AppointmentCompose#isClientSignatureEnabledAsync:member(1)'
+    summary: |-
+      获取客户端签名是否已启用。
+
+      对于 Windows 和 Mac 富客户端，如果新邮件、 `true`答复或转发的默认签名设置为发送 Outlook 帐户的模板，则 API 调用应返回。 对于 web 上的 Outlook，如果为撰写类型启用`true`了签名，API 调用应返回`newMail`<!-- -->, `reply`<!-- -->，或者`forward`<!-- -->. 如果 Mac 或 Windows 富客户端中的设置设置为 "（无）" 或在 Web 上的 Outlook 中禁用，API 调用应返回`false`<!-- -->.
+
+      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**：`ReadItem`
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**：约会组织者
+    name: 'isClientSignatureEnabledAsync(options, callback)'
+    fullName: 'isClientSignatureEnabledAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'isClientSignatureEnabledAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<boolean>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+          type:
+            - 'outlook!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 方法完成后，使用单个参数类型调用在`callback`参数中传递的函数`Office.AsyncResult`<!-- -->.
+          type:
+            - 'outlook!Office.AppointmentCompose#isClientSignatureEnabledAsync~0:complex'
+  - uid: 'outlook!Office.AppointmentCompose#isClientSignatureEnabledAsync:member(2)'
+    summary: |-
+      获取客户端签名是否已启用。
+
+      对于 Windows 和 Mac 富客户端，如果新邮件、 `true`答复或转发的默认签名设置为发送 Outlook 帐户的模板，则 API 调用应返回。 对于 web 上的 Outlook，如果为撰写类型启用`true`了签名，API 调用应返回`newMail`<!-- -->, `reply`<!-- -->，或者`forward`<!-- -->. 如果 Mac 或 Windows 富客户端中的设置设置为 "（无）" 或在 Web 上的 Outlook 中禁用，API 调用应返回`false`<!-- -->.
+
+      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**：`ReadItem`
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**：约会组织者
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // Check if the client signature is currently enabled.
+      Office.context.mailbox.item.isClientSignatureEnabledAsync(function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("isClientSignatureEnabledAsync succeeded with result: " + asyncResult.value);
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
+      ```
+    name: isClientSignatureEnabledAsync(callback)
+    fullName: isClientSignatureEnabledAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'isClientSignatureEnabledAsync(callback: (asyncResult: Office.AsyncResult<boolean>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: 方法完成后，使用单个参数类型调用在`callback`参数中传递的函数`Office.AsyncResult`<!-- -->.
+          type:
+            - 'outlook!Office.AppointmentCompose#isClientSignatureEnabledAsync~1:complex'
   - uid: 'outlook!Office.AppointmentCompose#itemType:member'
     summary: |-
       获取实例表示的项的类型。
@@ -2450,6 +2597,28 @@ references:
     name: Body
   - uid: 'outlook!Office.Categories:interface'
     name: Categories
+  - uid: 'outlook!Office.AppointmentCompose#disableClientSignatureAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
+  - uid: 'outlook!Office.AppointmentCompose#disableClientSignatureAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
   - uid: 'outlook!Office.Time:interface'
     name: Time
   - uid: 'outlook!Office.EnhancedLocation:interface'
@@ -2634,6 +2803,28 @@ references:
         fullName: Office.SharedProperties
       - name: '>) => void'
         fullName: '>) => void'
+  - uid: 'outlook!Office.AppointmentCompose#isClientSignatureEnabledAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<boolean>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<boolean>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <boolean>) => void
+        fullName: <boolean>) => void
+  - uid: 'outlook!Office.AppointmentCompose#isClientSignatureEnabledAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<boolean>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<boolean>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <boolean>) => void
+        fullName: <boolean>) => void
   - uid: 'outlook!Office.AppointmentCompose#itemType~0:complex'
     name: MailboxEnums.ItemType | string
     fullName: Office.MailboxEnums.ItemType | string
