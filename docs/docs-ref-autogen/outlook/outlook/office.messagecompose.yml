@@ -10,7 +10,7 @@ items:
 
       - [ItemCompose](xref:outlook!Office.ItemCompose:interface)
 
-      - [Message](xref:outlook!Office.Message:interface)
+      - [邮件](xref:outlook!Office.Message:interface)
     name: Office.MessageCompose
     fullName: Office.MessageCompose
     langs:
@@ -35,11 +35,15 @@ items:
       - 'outlook!Office.MessageCompose#cc:member'
       - 'outlook!Office.MessageCompose#close:member(1)'
       - 'outlook!Office.MessageCompose#conversationId:member'
+      - 'outlook!Office.MessageCompose#disableClientSignatureAsync:member(1)'
+      - 'outlook!Office.MessageCompose#disableClientSignatureAsync:member(2)'
       - 'outlook!Office.MessageCompose#from:member'
       - 'outlook!Office.MessageCompose#getAttachmentContentAsync:member(1)'
       - 'outlook!Office.MessageCompose#getAttachmentContentAsync:member(2)'
       - 'outlook!Office.MessageCompose#getAttachmentsAsync:member(1)'
       - 'outlook!Office.MessageCompose#getAttachmentsAsync:member(2)'
+      - 'outlook!Office.MessageCompose#getComposeTypeAsync:member(1)'
+      - 'outlook!Office.MessageCompose#getComposeTypeAsync:member(2)'
       - 'outlook!Office.MessageCompose#getInitializationContextAsync:member(1)'
       - 'outlook!Office.MessageCompose#getInitializationContextAsync:member(2)'
       - 'outlook!Office.MessageCompose#getItemIdAsync:member(1)'
@@ -49,6 +53,8 @@ items:
       - 'outlook!Office.MessageCompose#getSharedPropertiesAsync:member(1)'
       - 'outlook!Office.MessageCompose#getSharedPropertiesAsync:member(2)'
       - 'outlook!Office.MessageCompose#internetHeaders:member'
+      - 'outlook!Office.MessageCompose#isClientSignatureEnabledAsync:member(1)'
+      - 'outlook!Office.MessageCompose#isClientSignatureEnabledAsync:member(2)'
       - 'outlook!Office.MessageCompose#itemType:member'
       - 'outlook!Office.MessageCompose#loadCustomPropertiesAsync:member(1)'
       - 'outlook!Office.MessageCompose#notificationMessages:member'
@@ -787,6 +793,78 @@ items:
       return:
         type:
           - string
+  - uid: 'outlook!Office.MessageCompose#disableClientSignatureAsync:member(1)'
+    summary: |-
+      禁用 Outlook 客户端签名。
+
+      对于 Windows 和 Mac 富客户端，此 API 会将发送帐户的 "新建邮件" 和 "答复/转发" 部分的签名设置为 "（无）"，从而有效地禁用该签名。 对于 web 上的 Outlook，API 应禁用新邮件、答复和转发的签名选项。 如果选择了签名，此 API 调用应禁用它。
+
+      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**：`ReadWriteItem`
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**：邮件撰写
+    name: 'disableClientSignatureAsync(options, callback)'
+    fullName: 'disableClientSignatureAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'disableClientSignatureAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+          type:
+            - 'outlook!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 可选。 方法完成后，使用单个参数调用在 callback 参数中传递的函数。`asyncResult`<!-- -->，它是一个`Office.AsyncResult`对象。
+          type:
+            - 'outlook!Office.MessageCompose#disableClientSignatureAsync~0:complex'
+  - uid: 'outlook!Office.MessageCompose#disableClientSignatureAsync:member(2)'
+    summary: |-
+      禁用 Outlook 客户端签名。
+
+      对于 Windows 和 Mac 富客户端，此 API 会将发送帐户的 "新建邮件" 和 "答复/转发" 部分的签名设置为 "（无）"，从而有效地禁用该签名。 对于 web 上的 Outlook，API 应禁用新邮件、答复和转发的签名选项。 如果选择了签名，此 API 调用应禁用它。
+
+      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**：`ReadWriteItem`
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**：邮件撰写
+    name: disableClientSignatureAsync(callback)
+    fullName: disableClientSignatureAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'disableClientSignatureAsync(callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Disable the client signature.
+          Office.context.mailbox.item.disableClientSignatureAsync(function(asyncResult) {
+            if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+              console.log("disableClientSignatureAsync succeeded");
+            } else {
+              console.error(asyncResult.error);
+            }
+          });
+          ```
+      parameters:
+        - id: callback
+          description: 可选。 方法完成后，使用单个参数调用在 callback 参数中传递的函数。`asyncResult`<!-- -->，它是一个`Office.AsyncResult`对象。
+          type:
+            - 'outlook!Office.MessageCompose#disableClientSignatureAsync~1:complex'
   - uid: 'outlook!Office.MessageCompose#from:member'
     summary: |-
       获取邮件发件人的电子邮件地址。
@@ -1078,6 +1156,78 @@ items:
           description: 可选。 方法完成后，使用单个参数类型调用在 callback 参数中传递的函数`Office.AsyncResult`<!-- -->. 如果调用失败，该`asyncResult.error`属性将包含错误代码和失败原因。
           type:
             - 'outlook!Office.MessageCompose#getAttachmentsAsync~1:complex'
+  - uid: 'outlook!Office.MessageCompose#getComposeTypeAsync:member(1)'
+    summary: 指定邮件撰写的类型及其强制类型。 邮件可以是新邮件，也可以是答复或转发邮件。 强制类型可以是 HTML 格式，也可以是纯文本。
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**：`ReadItem`
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**：邮件撰写
+    name: 'getComposeTypeAsync(options, callback)'
+    fullName: 'getComposeTypeAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getComposeTypeAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<any>) => void): void;'
+      return:
+        type:
+          - void
+        description: 一个对象， `ComposeType`包含`CoercionType`和枚举该邮件项目的枚举值。
+      parameters:
+        - id: options
+          description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+          type:
+            - 'outlook!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: |-
+            方法完成后，使用单个参数类型调用在`callback`参数中传递的函数`Office.AsyncResult`<!-- -->. 如果成功，该`asyncResult.value`属性将包含具有项目的撰写类型和强制类型的对象。
+
+            \[Api 集：邮箱预览\]
+          type:
+            - 'outlook!Office.MessageCompose#getComposeTypeAsync~0:complex'
+  - uid: 'outlook!Office.MessageCompose#getComposeTypeAsync:member(2)'
+    summary: 指定邮件撰写的类型及其强制类型。 邮件可以是新邮件，也可以是答复或转发邮件。 强制类型可以是 HTML 格式，也可以是纯文本。
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**：`ReadItem`
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**：邮件撰写
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // Get the compose type of the current item (mail only).
+      Office.context.mailbox.item.getComposeTypeAsync(function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log(
+            "getComposeTypeAsync succeeded with composeType: " +
+              asyncResult.value.composeType +
+              " and coercionType: " +
+              asyncResult.value.coercionType
+          );
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
+      ```
+    name: getComposeTypeAsync(callback)
+    fullName: getComposeTypeAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getComposeTypeAsync(callback: (asyncResult: Office.AsyncResult<any>) => void): void;'
+      return:
+        type:
+          - void
+        description: 一个对象， `ComposeType`包含`CoercionType`和枚举该邮件项目的枚举值。
+      parameters:
+        - id: callback
+          description: |-
+            方法完成后，使用单个参数类型调用在`callback`参数中传递的函数`Office.AsyncResult`<!-- -->. 如果成功，该`asyncResult.value`属性将包含具有项目的撰写类型和强制类型的对象。
+
+            \[Api 集：邮箱预览\]
+          type:
+            - 'outlook!Office.MessageCompose#getComposeTypeAsync~1:complex'
   - uid: 'outlook!Office.MessageCompose#getInitializationContextAsync:member(1)'
     summary: |-
       获取通过可操作邮件激活加载项时传递的初始化数据。
@@ -1505,6 +1655,77 @@ items:
       return:
         type:
           - 'outlook!Office.InternetHeaders:interface'
+  - uid: 'outlook!Office.MessageCompose#isClientSignatureEnabledAsync:member(1)'
+    summary: |-
+      获取客户端签名是否已启用。
+
+      对于 Windows 和 Mac 富客户端，如果新邮件、 `true`答复或转发的默认签名设置为发送 Outlook 帐户的模板，则 API 调用应返回。 对于 web 上的 Outlook，如果为撰写类型启用`true`了签名，API 调用应返回`newMail`<!-- -->, `reply`<!-- -->，或者`forward`<!-- -->. 如果 Mac 或 Windows 富客户端中的设置设置为 "（无）" 或在 Web 上的 Outlook 中禁用，API 调用应返回`false`<!-- -->.
+
+      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**：`ReadItem`
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**：邮件撰写
+    name: 'isClientSignatureEnabledAsync(options, callback)'
+    fullName: 'isClientSignatureEnabledAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'isClientSignatureEnabledAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<boolean>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+          type:
+            - 'outlook!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 方法完成后，使用单个参数类型调用在`callback`参数中传递的函数`Office.AsyncResult`<!-- -->.
+          type:
+            - 'outlook!Office.MessageCompose#isClientSignatureEnabledAsync~0:complex'
+  - uid: 'outlook!Office.MessageCompose#isClientSignatureEnabledAsync:member(2)'
+    summary: |-
+      获取客户端签名是否已启用。
+
+      对于 Windows 和 Mac 富客户端，如果新邮件、 `true`答复或转发的默认签名设置为发送 Outlook 帐户的模板，则 API 调用应返回。 对于 web 上的 Outlook，如果为撰写类型启用`true`了签名，API 调用应返回`newMail`<!-- -->, `reply`<!-- -->，或者`forward`<!-- -->. 如果 Mac 或 Windows 富客户端中的设置设置为 "（无）" 或在 Web 上的 Outlook 中禁用，API 调用应返回`false`<!-- -->.
+
+      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**：`ReadItem`
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**：邮件撰写
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // Check if the client signature is currently enabled.
+      Office.context.mailbox.item.isClientSignatureEnabledAsync(function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("isClientSignatureEnabledAsync succeeded with result: " + asyncResult.value);
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
+      ```
+    name: isClientSignatureEnabledAsync(callback)
+    fullName: isClientSignatureEnabledAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'isClientSignatureEnabledAsync(callback: (asyncResult: Office.AsyncResult<boolean>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: 方法完成后，使用单个参数类型调用在`callback`参数中传递的函数`Office.AsyncResult`<!-- -->.
+          type:
+            - 'outlook!Office.MessageCompose#isClientSignatureEnabledAsync~1:complex'
   - uid: 'outlook!Office.MessageCompose#itemType:member'
     summary: |-
       获取实例表示的项的类型。
@@ -2316,6 +2537,28 @@ references:
     name: Body
   - uid: 'outlook!Office.Categories:interface'
     name: Categories
+  - uid: 'outlook!Office.MessageCompose#disableClientSignatureAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
+  - uid: 'outlook!Office.MessageCompose#disableClientSignatureAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
   - uid: 'outlook!Office.From:interface'
     name: From
   - uid: 'outlook!Office.MessageCompose#getAttachmentContentAsync~0:complex'
@@ -2382,6 +2625,28 @@ references:
         fullName: Office.AttachmentDetails
       - name: '[]>) => void'
         fullName: '[]>) => void'
+  - uid: 'outlook!Office.MessageCompose#getComposeTypeAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<any>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<any>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <any>) => void
+        fullName: <any>) => void
+  - uid: 'outlook!Office.MessageCompose#getComposeTypeAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<any>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<any>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <any>) => void
+        fullName: <any>) => void
   - uid: 'outlook!Office.MessageCompose#getInitializationContextAsync~0:complex'
     name: '(asyncResult: Office.AsyncResult<string>) => void'
     fullName: '(asyncResult: Office.AsyncResult<string>) => void'
@@ -2500,6 +2765,28 @@ references:
         fullName: '>) => void'
   - uid: 'outlook!Office.InternetHeaders:interface'
     name: InternetHeaders
+  - uid: 'outlook!Office.MessageCompose#isClientSignatureEnabledAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<boolean>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<boolean>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <boolean>) => void
+        fullName: <boolean>) => void
+  - uid: 'outlook!Office.MessageCompose#isClientSignatureEnabledAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<boolean>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<boolean>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <boolean>) => void
+        fullName: <boolean>) => void
   - uid: 'outlook!Office.MessageCompose#itemType~0:complex'
     name: MailboxEnums.ItemType | string
     fullName: Office.MailboxEnums.ItemType | string

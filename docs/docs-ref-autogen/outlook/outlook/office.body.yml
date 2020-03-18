@@ -28,6 +28,8 @@ items:
       - 'outlook!Office.Body#setAsync:member(2)'
       - 'outlook!Office.Body#setSelectedDataAsync:member(1)'
       - 'outlook!Office.Body#setSelectedDataAsync:member(2)'
+      - 'outlook!Office.Body#setSignatureAsync:member(1)'
+      - 'outlook!Office.Body#setSignatureAsync:member(2)'
   - uid: 'outlook!Office.Body#appendOnSendAsync:member(1)'
     summary: |-
       追加在将指定内容发送到项目正文的末尾（在任何签名之后）。
@@ -573,6 +575,95 @@ items:
           description: 可选。 方法完成后，使用单个参数类型调用在`callback`参数中传递的函数`Office.AsyncResult`<!-- -->. `asyncResult.error` 属性中将提供遇到的所有错误。
           type:
             - 'outlook!Office.Body#setSelectedDataAsync~2:complex'
+  - uid: 'outlook!Office.Body#setSignatureAsync:member(1)'
+    summary: |-
+      添加或替换电子邮件正文的签名。
+
+      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**：`ReadWriteItem`
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**：撰写
+
+      **错误**：
+
+      - `DataExceedsMaximumSize`<!-- -->：参数`data`的长度超过30000个字符。
+
+      - `InvalidFormatError`<!-- -->：此`options.coercionType`参数设置为`Office.CoercionType.Html` ，邮件正文为纯文本格式。
+    name: 'setSignatureAsync(data, options, callback)'
+    fullName: 'setSignatureAsync(data, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setSignatureAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: data
+          description: 表示要在邮件正文中设置的签名的字符串。 此字符串限制为30000个字符。
+          type:
+            - string
+        - id: options
+          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。 `coercionType`<!-- -->：签名应设置为的格式。 如果为 Text，则该方法将签名设置为纯文本，并删除存在的任何 HTML 标记。 如果为 Html，则该方法将签名设置为 HTML。
+          type:
+            - 'outlook!Office.Body#setSignatureAsync~0:complex'
+        - id: callback
+          description: 可选。 方法完成后，使用单个参数类型调用在`callback`参数中传递的函数`Office.AsyncResult`<!-- -->.
+          type:
+            - 'outlook!Office.Body#setSignatureAsync~1:complex'
+  - uid: 'outlook!Office.Body#setSignatureAsync:member(2)'
+    summary: |-
+      添加或替换电子邮件正文的签名。
+
+      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**：`ReadWriteItem`
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**：撰写
+
+      **错误**：
+
+      - `DataExceedsMaximumSize`<!-- -->：参数`data`的长度超过30000个字符。
+
+      - `InvalidFormatError`<!-- -->：此`options.coercionType`参数设置为`Office.CoercionType.Html` ，邮件正文为纯文本格式。
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // Set the signature for the current item.
+      var signature = $("#signature").val();
+      console.log(`Setting signature to "${signature}".`);
+      Office.context.mailbox.item.body.setSignatureAsync(signature, function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("setSignatureAsync succeeded");
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
+      ```
+    name: 'setSignatureAsync(data, callback)'
+    fullName: 'setSignatureAsync(data, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setSignatureAsync(data: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: data
+          description: 表示要在邮件正文中设置的签名的字符串。 此字符串限制为30000个字符。
+          type:
+            - string
+        - id: callback
+          description: 可选。 方法完成后，使用单个参数类型调用在`callback`参数中传递的函数`Office.AsyncResult`<!-- -->.
+          type:
+            - 'outlook!Office.Body#setSignatureAsync~2:complex'
 references:
   - uid: 'outlook!Office.Body#appendOnSendAsync~0:complex'
     name: Office.AsyncContextOptions & CoercionTypeOptions
@@ -774,6 +865,40 @@ references:
       - name: <void>) => void
         fullName: <void>) => void
   - uid: 'outlook!Office.Body#setSelectedDataAsync~2:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
+  - uid: 'outlook!Office.Body#setSignatureAsync~0:complex'
+    name: Office.AsyncContextOptions & CoercionTypeOptions
+    fullName: Office.AsyncContextOptions & Office.CoercionTypeOptions
+    spec.typeScript:
+      - uid: 'outlook!Office.AsyncContextOptions:interface'
+        name: Office.AsyncContextOptions
+        fullName: Office.AsyncContextOptions
+      - name: ' & '
+        fullName: ' & '
+      - uid: 'outlook!Office.CoercionTypeOptions:interface'
+        name: CoercionTypeOptions
+        fullName: Office.CoercionTypeOptions
+  - uid: 'outlook!Office.Body#setSignatureAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
+  - uid: 'outlook!Office.Body#setSignatureAsync~2:complex'
     name: '(asyncResult: Office.AsyncResult<void>) => void'
     fullName: '(asyncResult: Office.AsyncResult<void>) => void'
     spec.typeScript:
