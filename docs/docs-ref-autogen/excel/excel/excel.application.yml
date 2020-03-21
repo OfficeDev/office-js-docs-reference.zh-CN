@@ -179,6 +179,36 @@ items:
       return:
         type:
           - string
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+            context.application.load("decimalSeparator,thousandsSeparator");
+            context.application.cultureInfo.numberFormat.load("numberDecimalSeparator,numberGroupSeparator");
+            await context.sync();
+
+            // Local settings are set under the "Options > Advanced" menu.
+            const localDecimalSeparator = context.application.decimalSeparator;
+            const localThousandsSeparator = context.application.thousandsSeparator;
+
+            const systemDecimalSeparator = context.application.cultureInfo.numberFormat.numberDecimalSeparator;
+            const systemThousandsSeparator = context.application.cultureInfo.numberFormat.numberGroupSeparator;
+
+            console.log("Local character settings: ");
+            console.log(`  Local decimal separator: ${localDecimalSeparator}`);
+            console.log(`  Local thousands separator: ${localThousandsSeparator}`);
+
+            console.log("System culture settings: ");
+            console.log(`  System decimal separator: ${systemDecimalSeparator}`);
+            console.log(`  System thousands separator: ${systemThousandsSeparator}`);
+            console.log(`  `);
+
+            await context.sync();
+          });
+          ```
   - uid: 'excel!Excel.Application#iterativeCalculation:member'
     summary: |-
       返回“迭代计算”设置。 在 Windows 和 Mac 上的 Excel 中，这些设置将应用于 Excel 应用程序。 在 Excel 中的 web 和其他平台上，这些设置将应用于活动工作簿。

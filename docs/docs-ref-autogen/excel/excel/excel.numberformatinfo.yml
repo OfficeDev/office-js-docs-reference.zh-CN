@@ -116,6 +116,33 @@ items:
       return:
         type:
           - string
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          // This will convert a number like "14,37" to "14.37"
+          // (assuming the system decimal separator is ".").
+            await Excel.run(async (context) => {
+          const sheet = context.workbook.worksheets.getItem("Sample");
+          const decimalSource = sheet.getRange("B2");
+          decimalSource.load("values");
+          context.application.cultureInfo.numberFormat.load("numberDecimalSeparator");
+          await context.sync();
+
+          const systemDecimalSeparator = context.application.cultureInfo.numberFormat.numberDecimalSeparator;
+          const oldDecimalString: string = decimalSource.values[0][0];
+
+          // This assumes the input column is standardized to use "," as the decimal separator. 
+          const newDecimalString = oldDecimalString.replace(",", systemDecimalSeparator);
+
+          const resultRange = sheet.getRange("C2");
+          resultRange.values = [[newDecimalString]];
+          resultRange.format.autofitColumns();
+          await context.sync();
+            });
+          ```
   - uid: 'excel!Excel.NumberFormatInfo#numberGroupSeparator:member'
     summary: |-
       获取一个字符串，用于将数字值的小数位数与小数的左边隔开。 这取决于当前的系统设置。
@@ -132,6 +159,33 @@ items:
       return:
         type:
           - string
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          await Excel.run(async (context) => {
+            // This will convert a number like "123-456-789" to "123,456,789"
+            // (assuming the system thousands separator is ",").
+            const sheet = context.workbook.worksheets.getItem("Sample");
+            const bigNumberSource = sheet.getRange("B3");
+            bigNumberSource.load("values");
+            context.application.cultureInfo.numberFormat.load("numberGroupSeparator");
+            await context.sync();
+
+            const systemThousandsSeparator = context.application.cultureInfo.numberFormat.numberGroupSeparator;
+            const oldBigNumberString: string = bigNumberSource.values[0][0];
+            
+            // This assumes the input column is standardized to use "-" as the number group separator. 
+            const newBigNumberString = oldBigNumberString.replace(/-/g, systemThousandsSeparator);
+
+            const resultRange = sheet.getRange("C3");
+            resultRange.values = [[newBigNumberString]];
+            resultRange.format.autofitColumns();
+            await context.sync();
+          });
+          ```
   - uid: 'excel!Excel.NumberFormatInfo#toJSON:member(1)'
     summary: 重写 JavaScript `toJSON()`方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也会调用传递`toJSON`给它的对象的方法。尽管原始 NumberFormatInfo 对象是 API 对象，但`toJSON`方法返回一个无格式的 JavaScript 对象（类型为`Excel.Interfaces.NumberFormatInfoData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
     isPreview: true
