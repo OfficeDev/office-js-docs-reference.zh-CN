@@ -45,6 +45,7 @@ items:
       - 'outlook!Office.AppointmentRead#getSelectedRegExMatches:member(1)'
       - 'outlook!Office.AppointmentRead#getSharedPropertiesAsync:member(1)'
       - 'outlook!Office.AppointmentRead#getSharedPropertiesAsync:member(2)'
+      - 'outlook!Office.AppointmentRead#isAllDayEvent:member'
       - 'outlook!Office.AppointmentRead#itemClass:member'
       - 'outlook!Office.AppointmentRead#itemId:member'
       - 'outlook!Office.AppointmentRead#itemType:member'
@@ -58,6 +59,7 @@ items:
       - 'outlook!Office.AppointmentRead#removeHandlerAsync:member(1)'
       - 'outlook!Office.AppointmentRead#removeHandlerAsync:member(2)'
       - 'outlook!Office.AppointmentRead#requiredAttendees:member'
+      - 'outlook!Office.AppointmentRead#sensitivity:member'
       - 'outlook!Office.AppointmentRead#seriesId:member'
       - 'outlook!Office.AppointmentRead#start:member'
       - 'outlook!Office.AppointmentRead#subject:member'
@@ -1366,6 +1368,33 @@ items:
           description: 方法完成后，使用单个参数类型调用在 callback 参数中传递的函数`Office.AsyncResult`<!-- -->. 结果`value`的属性是共享项的属性。
           type:
             - 'outlook!Office.AppointmentRead#getSharedPropertiesAsync~1:complex'
+  - uid: 'outlook!Office.AppointmentRead#isAllDayEvent:member'
+    summary: |-
+      返回一个布尔值，该值指示事件是否全天。
+
+      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**：`ReadItem`
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)<!-- -->**：约会与会者
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      var isAllDayEvent = Office.context.mailbox.item.isAllDayEvent;
+      console.log("Is this an all-day event? " + isAllDayEvent);
+      ```
+    isPreview: true
+    name: isAllDayEvent
+    fullName: isAllDayEvent
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'isAllDayEvent: boolean;'
+      return:
+        type:
+          - boolean
   - uid: 'outlook!Office.AppointmentRead#itemClass:member'
     summary: |-
       获取选定项目的 Exchange Web 服务项目类。
@@ -1378,7 +1407,7 @@ items:
 
       `itemClass` 属性指定所选项目的邮件类别。以下是邮件或约会项目的默认邮件类别。
 
-      <table> <tr> <th>类型</th> <th>说明</th> <th>Item 类</th> </tr> <tr> <td>约会项目</td> <td>这些是项目类 IPM 的日历项目。约会或 IPM。约会。</td> <td>IPM.NOTE.约会、IPM。约会事件</td> </tr> <tr> <td>邮件项目</td> <td>其中包括具有默认邮件类别 IPM 的电子邮件。注意，以及使用 IPM 的会议请求、响应和取消。Schedule：作为基本邮件类的会议。</td> <td>IPM.NOTE.请注意，IPM。Schedule （会议）请求，IPM。Schedule. Neg、IPM。Schedule、IPM、IPM。日程安排：会议，IPM。日程安排. 会议. 已取消</td> </tr> </table>
+      <table> <tr> <th>类型</th> <th>Description</th> <th>Item 类</th> </tr> <tr> <td>约会项目</td> <td>这些是项目类 IPM 的日历项目。约会或 IPM。约会。</td> <td>IPM.NOTE.约会、IPM。约会事件</td> </tr> <tr> <td>邮件项目</td> <td>其中包括具有默认邮件类别 IPM 的电子邮件。注意，以及使用 IPM 的会议请求、响应和取消。Schedule：作为基本邮件类的会议。</td> <td>IPM.NOTE.请注意，IPM。Schedule （会议）请求，IPM。Schedule. Neg、IPM。Schedule、IPM、IPM。日程安排：会议，IPM。日程安排. 会议. 已取消</td> </tr> </table>
 
       #### <a name="examples"></a>示例
 
@@ -1890,6 +1919,33 @@ items:
       return:
         type:
           - 'outlook!Office.AppointmentRead#requiredAttendees~0:complex'
+  - uid: 'outlook!Office.AppointmentRead#sensitivity:member'
+    summary: |-
+      提供约会的敏感度值。
+
+      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permission)<!-- -->**：`ReadItem`
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)<!-- -->**：约会与会者
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      var sensitivity = Office.context.mailbox.item.sensitivity;
+      console.log("Sensitivity: " + sensitivity);
+      ```
+    isPreview: true
+    name: sensitivity
+    fullName: sensitivity
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'sensitivity: MailboxEnums.AppointmentSensitivityType;'
+      return:
+        type:
+          - 'outlook!Office.MailboxEnums.AppointmentSensitivityType:enum'
   - uid: 'outlook!Office.AppointmentRead#seriesId:member'
     summary: |-
       获取实例所属的系列的 ID。
@@ -2326,3 +2382,5 @@ references:
         fullName: Office.EmailAddressDetails
       - name: '[]'
         fullName: '[]'
+  - uid: 'outlook!Office.MailboxEnums.AppointmentSensitivityType:enum'
+    name: MailboxEnums.AppointmentSensitivityType
