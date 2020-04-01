@@ -53,13 +53,6 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      // Get an item's ID from a REST API.
-      var restId = 'AAMkAGVlOTZjNTM3LW...';
-
-      // Treat restId as coming from the v2.0 version of the Outlook Mail API.
-      var ewsId = Office.context.mailbox.convertToEwsId(restId, Office.MailboxEnums.RestVersion.v2_0);
-      ```
-      ```javascript
       console.log("EWS URL: " + Office.context.mailbox.ewsUrl);
       var ewsId = Office.context.mailbox.item.itemId;
       console.log("EWS item ID: " + Office.context.mailbox.item.itemId);
@@ -134,13 +127,6 @@ items:
 
       #### <a name="examples"></a>示例
 
-      ```javascript
-      // Get the currently selected item's ID.
-      var ewsId = Office.context.mailbox.item.itemId;
-
-      // Convert to a REST ID for the v2.0 version of the Outlook Mail API.
-      var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);
-      ```
       ```javascript
       Office.context.mailbox.getCallbackTokenAsync({ isRest: true }, function (result) {
           var ewsId = Office.context.mailbox.item.itemId;
@@ -284,9 +270,6 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      Office.context.mailbox.displayAppointmentForm(appointmentId);
-      ```
-      ```javascript
       var itemId = $("#itemId").val();
       Office.context.mailbox.displayAppointmentForm(itemId);
       ```
@@ -327,9 +310,6 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      Office.context.mailbox.displayMessageForm(messageId);
-      ```
-      ```javascript
       var itemId = $("#itemId").val();
       Office.context.mailbox.displayMessageForm(itemId);
       ```
@@ -369,23 +349,6 @@ items:
 
       #### <a name="examples"></a>示例
 
-      ```javascript
-      var start = new Date();
-      var end = new Date();
-      end.setHours(start.getHours() + 1);
-
-      Office.context.mailbox.displayNewAppointmentForm(
-      {
-          requiredAttendees: ['bob@contoso.com'],
-          optionalAttendees: ['sam@contoso.com'],
-          start: start,
-          end: end,
-          location: 'Home',
-          resources: ['projector@contoso.com'],
-          subject: 'meeting',
-          body: 'Hello World!'
-      });
-      ```
       ```javascript
       var start = new Date();
       var end = new Date();
@@ -490,20 +453,6 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      function getCallbackToken() {
-          var options = {
-              isRest: true,
-              asyncContext: { message: 'Hello World!' }
-          };
-
-          Office.context.mailbox.getCallbackTokenAsync(options, cb);
-      }
-
-      function cb(asyncResult) {
-          var token = asyncResult.value;
-      }
-      ```
-      ```javascript
       Office.context.mailbox.getCallbackTokenAsync({ isRest: true }, function (result) {
           var ewsId = Office.context.mailbox.item.itemId;
           var token = result.value;
@@ -561,15 +510,6 @@ items:
 
       #### <a name="examples"></a>示例
 
-      ```javascript
-      function getIdentityToken() {
-          Office.context.mailbox.getUserIdentityTokenAsync(cb);
-      }
-
-      function cb(asyncResult) {
-          var token = asyncResult.value;
-      }
-      ```
       ```javascript
       Office.context.mailbox.getUserIdentityTokenAsync(function (result) {
           if (result.status !== Office.AsyncResultStatus.Succeeded) {
