@@ -10,7 +10,7 @@ items:
 
       - [ItemCompose](xref:outlook!Office.ItemCompose:interface)
 
-      - [Message](xref:outlook!Office.Message:interface)
+      - [消息](xref:outlook!Office.Message:interface)
     name: Office.MessageCompose
     fullName: Office.MessageCompose
     langs:
@@ -334,10 +334,23 @@ items:
       Office.context.mailbox.item.bcc.getAsync(function(asyncResult) {
         if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
           var msgBcc = asyncResult.value;
-          console.log("Message being bcc'd to:");
+          console.log("Message being blind-copied to:");
           for (var i = 0; i < msgBcc.length; i++) {
             console.log(msgBcc[i].displayName + " (" + msgBcc[i].emailAddress + ")");
           }
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
+      ```
+      ```javascript
+      var email = $("#emailBcc")
+        .val()
+        .toString();
+      var emailArray = [email];
+      Office.context.mailbox.item.bcc.setAsync(emailArray, function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Succeeded in setting Bcc field.");
         } else {
           console.error(asyncResult.error);
         }
@@ -424,6 +437,19 @@ items:
           for (var i = 0; i < msgCc.length; i++) {
             console.log(msgCc[i].displayName + " (" + msgCc[i].emailAddress + ")");
           }
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
+      ```
+      ```javascript
+      var email = $("#emailCc")
+        .val()
+        .toString();
+      var emailArray = [email];
+      Office.context.mailbox.item.cc.setAsync(emailArray, function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Succeeded in setting Cc field.");
         } else {
           console.error(asyncResult.error);
         }
@@ -742,6 +768,19 @@ items:
           for (var i = 0; i < msgTo.length; i++) {
             console.log(msgTo[i].displayName + " (" + msgTo[i].emailAddress + ")");
           }
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
+      ```
+      ```javascript
+      var email = $("#emailTo")
+        .val()
+        .toString();
+      var emailArray = [email];
+      Office.context.mailbox.item.to.setAsync(emailArray, function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Succeeded in setting To field.");
         } else {
           console.error(asyncResult.error);
         }

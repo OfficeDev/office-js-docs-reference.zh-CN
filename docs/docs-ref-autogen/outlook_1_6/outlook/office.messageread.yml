@@ -10,7 +10,7 @@ items:
 
       - [ItemRead](xref:outlook!Office.ItemRead:interface)
 
-      - [邮件](xref:outlook!Office.Message:interface)
+      - [消息](xref:outlook!Office.Message:interface)
     name: Office.MessageRead
     fullName: Office.MessageRead
     langs:
@@ -145,9 +145,6 @@ items:
 
       #### <a name="examples"></a>示例
 
-      ```javascript
-      console.log(JSON.stringify(Office.context.mailbox.item.cc));
-      ```
       ```javascript
       var msgCc = Office.context.mailbox.item.cc;
       console.log("Message copied to:");
@@ -507,10 +504,6 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      var from = Office.context.mailbox.item.from;
-      console.log("From " + from);
-      ```
-      ```javascript
       var msgFrom = Office.context.mailbox.item.from;
       console.log("Message received from: " + msgFrom.displayName + " (" + msgFrom.emailAddress + ")");
       ```
@@ -536,11 +529,6 @@ items:
 
       #### <a name="examples"></a>示例
 
-      ```javascript
-      // The following example accesses the contacts entities in the current item's body.
-
-      var contacts = Office.context.mailbox.item.getEntities().contacts;
-      ```
       ```javascript
       var entities = Office.context.mailbox.item.getEntities();
       var entityTypesFound = 0;
@@ -608,22 +596,6 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      // The following example shows how to access an array of strings that represent postal addresses
-      // in the current item's body.
-
-      // The initialize function is required for all apps.
-      Office.initialize = function () {
-          // Checks for the DOM to load using the jQuery ready function.
-          $(document).ready(function () {
-              // After the DOM is loaded, app-specific code can run.
-              var item = Office.context.mailbox.item;
-              // Get an array of strings that represent postal addresses in the current item's body.
-              var addresses = item.getEntitiesByType(Office.MailboxEnums.EntityType.Address);
-              // Continue processing the array of addresses.
-          });
-      };
-      ```
-      ```javascript
       console.log(Office.context.mailbox.item.getEntitiesByType(Office.MailboxEnums.EntityType.Address));
       ```
     name: getEntitiesByType(entityType)
@@ -644,7 +616,7 @@ items:
 
             使用此方法的最小权限级别是`Restricted`<!-- -->，需要`ReadItem`访问一些实体类型，如下表所示。
 
-            <table> <tr> <th>EntityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需权限级别</th> </tr> <tr> <td>地址</td> <td>String</td> <td>受限</td> </tr> <tr> <td>Contact</td> <td>Contact</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>String</td> <td>受限</td> </tr> </table>
+            <table> <tr> <th>EntityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需权限级别</th> </tr> <tr> <td>地址</td> <td>字符串</td> <td>受限</td> </tr> <tr> <td>Contact</td> <td>Contact</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>字符串</td> <td>受限</td> </tr> </table>
           type:
             - 'outlook!Office.MessageRead#getEntitiesByType~1:complex'
   - uid: 'outlook!Office.MessageRead#getFilteredEntitiesByName:member(1)'
@@ -804,11 +776,6 @@ items:
 
       #### <a name="examples"></a>示例
 
-      ```javascript
-      // The following example accesses the addresses entities in the highlighted
-      // match selected by the user.
-      var addresses = Office.context.mailbox.item.getSelectedEntities().addresses;
-      ```
       ```javascript
       var entities = Office.context.mailbox.item.getSelectedEntities();
       var entityTypesFound = 0;
@@ -1182,14 +1149,6 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      // Get all notifications.
-      Office.context.mailbox.item.notificationMessages.getAllAsync(
-          function (asyncResult) {
-              console.log(JSON.stringify(asyncResult));
-          }
-      );
-      ```
-      ```javascript
       var id = $("#notificationId").val();
       var details =
         {
@@ -1263,11 +1222,6 @@ items:
 
       #### <a name="examples"></a>示例
 
-      ```javascript
-      var senderName = Office.context.mailbox.item.sender.displayName;
-      var senderAddress = Office.context.mailbox.item.sender.emailAddress;
-      console.log("Sender: " + senderName + " (" + senderAddress + ")");
-      ```
       ```javascript
       var msgSender = Office.context.mailbox.item.sender;
       console.log("Sender: " + msgSender.displayName + " (" + msgSender.emailAddress + ")");
@@ -1353,9 +1307,6 @@ items:
 
       #### <a name="examples"></a>示例
 
-      ```javascript
-      console.log(JSON.stringify(Office.context.mailbox.item.to));
-      ```
       ```javascript
       var msgTo = Office.context.mailbox.item.to;
       console.log("Message sent to:");

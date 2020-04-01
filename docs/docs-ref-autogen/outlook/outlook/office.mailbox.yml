@@ -154,13 +154,6 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      // Get an item's ID from a REST API.
-      var restId = 'AAMkAGVlOTZjNTM3LW...';
-
-      // Treat restId as coming from the v2.0 version of the Outlook Mail API.
-      var ewsId = Office.context.mailbox.convertToEwsId(restId, Office.MailboxEnums.RestVersion.v2_0);
-      ```
-      ```javascript
       console.log("EWS URL: " + Office.context.mailbox.ewsUrl);
       var ewsId = Office.context.mailbox.item.itemId;
       console.log("EWS item ID: " + Office.context.mailbox.item.itemId);
@@ -235,13 +228,6 @@ items:
 
       #### <a name="examples"></a>示例
 
-      ```javascript
-      // Get the currently selected item's ID.
-      var ewsId = Office.context.mailbox.item.itemId;
-
-      // Convert to a REST ID for the v2.0 version of the Outlook Mail API.
-      var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);
-      ```
       ```javascript
       Office.context.mailbox.getCallbackTokenAsync({ isRest: true }, function (result) {
           var ewsId = Office.context.mailbox.item.itemId;
@@ -385,9 +371,6 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      Office.context.mailbox.displayAppointmentForm(appointmentId);
-      ```
-      ```javascript
       var itemId = $("#itemId").val();
       Office.context.mailbox.displayAppointmentForm(itemId);
       ```
@@ -427,9 +410,6 @@ items:
 
       #### <a name="examples"></a>示例
 
-      ```javascript
-      Office.context.mailbox.displayMessageForm(messageId);
-      ```
       ```javascript
       var itemId = $("#itemId").val();
       Office.context.mailbox.displayMessageForm(itemId);
@@ -482,23 +462,6 @@ items:
           start: start,
           end: end,
           location: 'Home',
-          resources: ['projector@contoso.com'],
-          subject: 'meeting',
-          body: 'Hello World!'
-      });
-      ```
-      ```javascript
-      var start = new Date();
-      var end = new Date();
-      end.setHours(start.getHours() + 1);
-
-      Office.context.mailbox.displayNewAppointmentForm(
-      {
-          requiredAttendees: ['bob@contoso.com'],
-          optionalAttendees: ['sam@contoso.com'],
-          start: start,
-          end: end,
-          location: 'Home',
           subject: 'meeting',
           resources: ['projector@contoso.com'],
           body: 'Hello World!'
@@ -536,24 +499,6 @@ items:
 
       #### <a name="examples"></a>示例
 
-      ```javascript
-      Office.context.mailbox.displayNewMessageForm(
-      {
-          // Copy the To line from current item.
-          toRecipients: Office.context.mailbox.item.to,
-          ccRecipients: ['sam@contoso.com'],
-          subject: 'Outlook add-ins are cool!',
-          htmlBody: 'Hello <b>World</b>!<br/><img src="cid:image.png"></i>',
-          attachments: [
-          {
-              type: 'file',
-              name: 'image.png',
-              url: 'http://contoso.com/image.png',
-              isInline: true
-          }
-          ]
-      });
-      ```
       ```javascript
       Office.context.mailbox.displayNewMessageForm(
       {
@@ -707,20 +652,6 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      function getCallbackToken() {
-          var options = {
-              isRest: true,
-              asyncContext: { message: 'Hello World!' }
-          };
-
-          Office.context.mailbox.getCallbackTokenAsync(options, cb);
-      }
-
-      function cb(asyncResult) {
-          var token = asyncResult.value;
-      }
-      ```
-      ```javascript
       Office.context.mailbox.getCallbackTokenAsync({ isRest: true }, function (result) {
           var ewsId = Office.context.mailbox.item.itemId;
           var token = result.value;
@@ -787,15 +718,6 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      function getCallbackToken() {
-          Office.context.mailbox.getCallbackTokenAsync(cb);
-      }
-
-      function cb(asyncResult) {
-          var token = asyncResult.value;
-      }
-      ```
-      ```javascript
       Office.context.mailbox.getCallbackTokenAsync(function (result) {
           if (result.status !== Office.AsyncResultStatus.Succeeded) {
               console.error(`Token retrieval failed with message: ${result.error.message}`);
@@ -846,15 +768,6 @@ items:
 
       #### <a name="examples"></a>示例
 
-      ```javascript
-      function getIdentityToken() {
-          Office.context.mailbox.getUserIdentityTokenAsync(cb);
-      }
-
-      function cb(asyncResult) {
-          var token = asyncResult.value;
-      }
-      ```
       ```javascript
       Office.context.mailbox.getUserIdentityTokenAsync(function (result) {
           if (result.status !== Office.AsyncResultStatus.Succeeded) {
@@ -1058,29 +971,44 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      Office.context.mailbox.masterCategories.getAsync(function (asyncResult) {
-          if (asyncResult.status === Office.AsyncResultStatus.Failed) {
-              console.log("Action failed with error: " + asyncResult.error.message);
-          } else {
-              var masterCategories = asyncResult.value;
-              console.log("Master categories:");
-              masterCategories.forEach(function (item) {
-                  console.log("-- " + JSON.stringify(item));
-              });
-          }
-      });
-      ```
-      ```javascript
       Office.context.mailbox.masterCategories.getAsync(function(asyncResult) {
         if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
           var categories = asyncResult.value;
-          if (categories) {
-            console.log(categories);
+          if (categories && categories.length > 0) {
+            console.log("Master categories:");
+            console.log(JSON.stringify(categories));
           } else {
             console.log("There are no categories in the master list.");
           }
         } else {
           console.error(asyncResult.error);
+        }
+      });
+      ```
+      ```javascript
+      var masterCategoriesToAdd = [
+        {
+          displayName: "TestCategory",
+          color: Office.MailboxEnums.CategoryColor.Preset0
+        }
+      ];
+
+      Office.context.mailbox.masterCategories.addAsync(masterCategoriesToAdd, function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Successfully added categories to master list");
+        } else {
+          console.log("masterCategories.addAsync call failed with error: " + asyncResult.error.message);
+        }
+      });
+      ```
+      ```javascript
+      var masterCategoriesToRemove = ["TestCategory"];
+
+      Office.context.mailbox.masterCategories.removeAsync(masterCategoriesToRemove, function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Successfully removed categories from master list");
+        } else {
+          console.log("masterCategories.removeAsync call failed with error: " + asyncResult.error.message);
         }
       });
       ```

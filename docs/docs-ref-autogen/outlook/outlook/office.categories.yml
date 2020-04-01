@@ -83,14 +83,25 @@ items:
       // Note: In order for you to successfully add a category,
       // it must be in the mailbox categories master list.
 
-      var categoriesToAdd = ["Urgent!"];
-
-      Office.context.mailbox.item.categories.addAsync(categoriesToAdd, function (asyncResult) {
-          if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-              console.log("Successfully added categories");
+      Office.context.mailbox.masterCategories.getAsync(function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          var masterCategories = asyncResult.value;
+          if (masterCategories && masterCategories.length > 0) {
+            // Grab the first category from the master list.
+            var categoryToAdd = [masterCategories[0].displayName];
+            Office.context.mailbox.item.categories.addAsync(categoryToAdd, function(asyncResult) {
+              if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+                console.log(`Successfully assigned category '${categoryToAdd}' to item.`);
+              } else {
+                console.log("categories.addAsync call failed with error: " + asyncResult.error.message);
+              }
+            });
           } else {
-              console.log("categories.addAsync call failed with error: " + asyncResult.error.message);
+            console.log("There are no categories in the master list on this mailbox. You can add categories using Office.context.mailbox.masterCategories.addAsync.");
           }
+        } else {
+          console.error(asyncResult.error);
+        }
       });
       ```
     name: 'addAsync(categories, callback)'
@@ -155,26 +166,14 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      Office.context.mailbox.item.categories.getAsync(function (asyncResult) {
-          if (asyncResult.status === Office.AsyncResultStatus.Failed) {
-              console.log("Action failed with error: " + asyncResult.error.message);
-          } else {
-              var categories = asyncResult.value;
-              console.log("Categories:");
-              categories.forEach(function (item) {
-                  console.log("-- " + JSON.stringify(item));
-              });
-          }
-      });
-      ```
-      ```javascript
       Office.context.mailbox.item.categories.getAsync(function(asyncResult) {
         if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
           var categories = asyncResult.value;
-          if (categories) {
-            console.log(categories);
+          if (categories && categories.length > 0) {
+            console.log("Categories assigned to this item:");
+            console.log(JSON.stringify(categories));
           } else {
-            console.log("There are no categories.");
+            console.log("There are no categories assigned to this item.");
           }
         } else {
           console.error(asyncResult.error);
@@ -243,14 +242,25 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      var categoriesToRemove = ["Urgent!"];
-
-      Office.context.mailbox.item.categories.removeAsync(categoriesToRemove, function (asyncResult) {
-          if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-              console.log("Successfully removed categories");
+      Office.context.mailbox.item.categories.getAsync(function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          var categories = asyncResult.value;
+          if (categories && categories.length > 0) {
+            // Grab the first category assigned to this item.
+            var categoryToRemove = [categories[0].displayName];
+            Office.context.mailbox.item.categories.removeAsync(categoryToRemove, function(asyncResult) {
+              if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+                console.log(`Successfully unassigned category '${categoryToRemove}' from this item.`);
+              } else {
+                console.log("categories.removeAsync call failed with error: " + asyncResult.error.message);
+              }
+            });
           } else {
-              console.log("categories.removeAsync call failed with error: " + asyncResult.error.message);
+            console.log("There are no categories assigned to this item.");
           }
+        } else {
+          console.error(asyncResult.error);
+        }
       });
       ```
     name: 'removeAsync(categories, callback)'
