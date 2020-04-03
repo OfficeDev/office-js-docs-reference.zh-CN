@@ -627,7 +627,7 @@ items:
 
             使用此方法的最小权限级别是`Restricted`<!-- -->，需要`ReadItem`访问一些实体类型，如下表所示。
 
-            <table> <tr> <th>EntityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需权限级别</th> </tr> <tr> <td>地址</td> <td>字符串</td> <td>受限</td> </tr> <tr> <td>Contact</td> <td>Contact</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>字符串</td> <td>受限</td> </tr> </table>
+            <table> <tr> <th>EntityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需权限级别</th> </tr> <tr> <td>地址</td> <td>String</td> <td>受限</td> </tr> <tr> <td>Contact</td> <td>Contact</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>String</td> <td>受限</td> </tr> </table>
           type:
             - 'outlook!Office.AppointmentRead#getEntitiesByType~1:complex'
   - uid: 'outlook!Office.AppointmentRead#getFilteredEntitiesByName:member(1)'
@@ -919,8 +919,7 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      var itemClass = Office.context.mailbox.item.itemClass;
-      console.log("Item class: " + itemClass);
+      console.log(`Item class: ${Office.context.mailbox.item.itemClass}`);
       ```
     name: itemClass
     fullName: itemClass
@@ -983,11 +982,7 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      if (Office.context.mailbox.item.itemType === Office.MailboxEnums.ItemType.Appointment) {
-          // Do something.
-      } else {
-          // Do something else.
-      }
+      console.log(`Item type: ${Office.context.mailbox.item.itemType}`);
       ```
     name: itemType
     fullName: itemType
@@ -1453,8 +1448,7 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      var start = Office.context.mailbox.item.start;
-      console.log("Appointment start: " + JSON.stringify(start));
+      console.log(`Appointment starts: ${Office.context.mailbox.item.start}`);
       ```
     name: start
     fullName: start
@@ -1481,20 +1475,7 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      // The following JavaScript code example shows how to access the
-      // `subject` property of the current item in Outlook.
-
-      // The initialize function is required for all apps.
-      Office.initialize = function () {
-          // Checks for the DOM to load using the jQuery ready function.
-          $(document).ready(function () {
-              // After the DOM is loaded, app-specific code can run.
-              var item = Office.context.mailbox.item;
-              var subject = item.subject;
-              // Continue with processing the subject of the
-              // current item, which can be a message or appointment.
-          });
-      };
+      console.log(`Subject: ${Office.context.mailbox.item.subject}`);
       ```
     name: subject
     fullName: subject
