@@ -1404,11 +1404,7 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      if (Office.context.mailbox.item.itemType === Office.MailboxEnums.ItemType.Message) {
-          // Do something.
-      } else {
-          // Do something else.
-      }
+      console.log(`Item type: ${Office.context.mailbox.item.itemType}`);
       ```
     name: itemType
     fullName: itemType
@@ -1982,11 +1978,23 @@ items:
       #### <a name="examples"></a>示例
 
       ```javascript
-      Office.context.mailbox.item.subject.getAsync(callback);
-
-      function callback(asyncResult) {
-          var subject = asyncResult.value;
-      }
+      Office.context.mailbox.item.subject.getAsync((result) => {
+        if (result.status !== Office.AsyncResultStatus.Succeeded) {
+          console.error(`Action failed with message ${result.error.message}`);
+          return;
+        }
+        console.log(`Subject: ${result.value}`);
+      });
+      ```
+      ```javascript
+      let subject = "Hello World!";
+      Office.context.mailbox.item.subject.setAsync(subject, (result) => {
+        if (result.status !== Office.AsyncResultStatus.Succeeded) {
+          console.error(`Action failed with message ${result.error.message}`);
+          return;
+        }
+        console.log(`Successfully set subject to ${subject}`);
+      });
       ```
     name: subject
     fullName: subject
