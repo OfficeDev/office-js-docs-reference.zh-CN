@@ -1,13 +1,13 @@
 ---
 title: Office JavaScript API 参考
-description: 每个主机要求集的 Office JavaScript Api
-ms.date: 11/19/2019
-ms.openlocfilehash: f4072c23cb0d6e0d5375cf79d92b4f6dd9b35f0f
-ms.sourcegitcommit: d37268ff5254061632a886b196ec28f2f4087377
+description: Office JavaScript Api 要求由主机进行设置。
+ms.date: 04/17/2020
+ms.openlocfilehash: 765b2ee6108f6433ffe17d3ca15ba9c68fbd9617
+ms.sourcegitcommit: 6dd770ff4893a67c625e1e4fd06ee197a3992ae0
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/21/2019
-ms.locfileid: "38758706"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "43603942"
 ---
 # <a name="office-javascript-api-reference"></a>Office JavaScript API 参考
 
@@ -75,3 +75,4 @@ ms.locfileid: "38758706"
 - [关于 Office 加载项](/office/dev/add-ins/overview)
 - [Office 加载项主机和平台可用性](/office/dev/add-ins/overview/office-add-in-availability)
 - [Office 版本和要求集](/office/dev/add-ins/develop/office-versions-and-requirement-sets)
+- [使用 Script Lab 探索 Office JavaScript API](/office/dev/add-ins/overview/explore-with-script-lab)
