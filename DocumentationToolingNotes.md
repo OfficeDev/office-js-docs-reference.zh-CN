@@ -46,7 +46,7 @@ Office JavaScript API 的任何文档更改都可以通过编辑上面提到的�
 
 本地代码段位于特定于主机的 yaml 文件中。 其内容按类和字段进行组织，以便可以将其映射到参考页中的适当位置。 使用 await 语句可推断代码段（JavaScript 或 TypeScript）的语言。
 
-脚本实验室代码段是从工作示例中提取的。 目前，Excel 和 Word 示例通过一[对映射文件](https://github.com/OfficeDev/office-js-snippets/tree/master/snippet-extractor-metadata)映射到参考文档部分。 这些方法将各个示例方法与 API 中的属性或方法相匹配。 在`yarn start`运行 office js 存储库时，将创建一个包含所有已映射代码段的[yaml 文件](https://github.com/OfficeDev/office-js-snippets/blob/master/snippet-extractor-output/snippets.yaml)。 此 yaml 文件是参考文档工具中的输入。
+脚本实验室代码段是从工作示例中提取的。 当前，Excel、Outlook 和 Word 示例通过[映射文件](https://github.com/OfficeDev/office-js-snippets/tree/master/snippet-extractor-metadata)映射到参考文档部分。 这些方法将各个示例方法与 API 中的属性或方法相匹配。 在`yarn start`运行 office js 存储库时，将创建一个包含所有已映射代码段的[yaml 文件](https://github.com/OfficeDev/office-js-snippets/blob/master/snippet-extractor-output/snippets.yaml)。 此 yaml 文件是参考文档工具中的输入。
 
 ## <a name="tooling-pipeline"></a>刀具管道
 
@@ -64,7 +64,7 @@ Office JavaScript API 的任何文档更改都可以通过编辑上面提到的�
 
 API 提取程序将 d. ts 文件转换为 JSON 数据。 此 tokenizes 所有类型数据，从而便于进行分析。
 
-Midprocessor 检索代码段并将它们与适当的主机配对。
+Midprocessor 检索代码段并将它们与适当的主机配对，并清理 Outlook 和常见 API 对象之间的 crosslinking。
 
 API 文档管理器将 JSON 数据转换为 yml 文件。 将文档发布到 docs.microsoft.com 的开放发布系统会将. yml 文件转换为 markdown。 API 文档管理器还包含一个特定于 Office 的扩展，用于插入代码段。
 
