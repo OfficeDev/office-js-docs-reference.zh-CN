@@ -11,7 +11,7 @@ items:
       - typeScript
     type: class
     extends:
-      - 'excel!OfficeExtension.ClientObject:class'
+      - 'office!OfficeExtension.ClientObject:class'
     package: excel!
     children:
       - 'excel!Excel.CommentReply#authorEmail:member'
@@ -26,12 +26,9 @@ items:
       - 'excel!Excel.CommentReply#load:member(1)'
       - 'excel!Excel.CommentReply#load:member(2)'
       - 'excel!Excel.CommentReply#load:member(3)'
-      - 'excel!Excel.CommentReply#mentions:member'
-      - 'excel!Excel.CommentReply#richContent:member'
       - 'excel!Excel.CommentReply#set:member(1)'
       - 'excel!Excel.CommentReply#set:member(2)'
       - 'excel!Excel.CommentReply#toJSON:member(1)'
-      - 'excel!Excel.CommentReply#updateMentions:member(1)'
   - uid: 'excel!Excel.CommentReply#authorEmail:member'
     summary: |-
       获取批注回复作者的电子邮件。
@@ -64,7 +61,7 @@ items:
           - string
   - uid: 'excel!Excel.CommentReply#content:member'
     summary: |-
-      获取或设置批注回复的内容。 字符串为纯文本。
+      批注答复的内容。 字符串为纯文本。
 
       \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: content
@@ -188,7 +185,7 @@ items:
         description: ''
   - uid: 'excel!Excel.CommentReply#id:member'
     summary: |-
-      表示批注回复标识符。 只读。
+      指定批注答复标识符。
 
       \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: id
@@ -263,36 +260,6 @@ items:
                           select?: string;
                           expand?: string;
                       }
-  - uid: 'excel!Excel.CommentReply#mentions:member'
-    summary: |-
-      获取注释中提到的实体（如人员）。
-
-      \[[API 集： ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: mentions
-    fullName: mentions
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly mentions: Excel.CommentMention[];'
-      return:
-        type:
-          - 'excel!Excel.CommentReply#mentions~0:complex'
-  - uid: 'excel!Excel.CommentReply#richContent:member'
-    summary: |-
-      获取丰富的注释内容（例如，注释中的提及）。 此字符串不应显示给最终用户。 您的外接程序应仅使用此信息分析丰富的注释内容。
-
-      \[[API 集： ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: richContent
-    fullName: richContent
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly richContent: string;'
-      return:
-        type:
-          - string
   - uid: 'excel!Excel.CommentReply#set:member(1)'
     summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
     remarks: |-
@@ -318,7 +285,7 @@ items:
         - id: options
           description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
           type:
-            - 'excel!OfficeExtension.UpdateOptions:interface'
+            - 'office!OfficeExtension.UpdateOptions:interface'
   - uid: 'excel!Excel.CommentReply#set:member(2)'
     summary: 基于现有加载的对象同时设置该对象的多个属性。
     name: set(properties)
@@ -350,29 +317,8 @@ items:
         type:
           - 'excel!Excel.Interfaces.CommentReplyData:interface'
         description: ''
-  - uid: 'excel!Excel.CommentReply#updateMentions:member(1)'
-    summary: |-
-      使用特殊格式的字符串和提及列表更新注释内容。
-
-      \[[API 集： ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: updateMentions(contentWithMentions)
-    fullName: updateMentions(contentWithMentions)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'updateMentions(contentWithMentions: Excel.CommentRichContent): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: contentWithMentions
-          description: 批注的内容。 这包含一个特殊格式的字符串和在 Excel 显示时将解析为字符串的提及的列表。
-          type:
-            - 'excel!Excel.CommentRichContent:interface'
 references:
-  - uid: 'excel!OfficeExtension.ClientObject:class'
+  - uid: 'office!OfficeExtension.ClientObject:class'
     name: OfficeExtension.ClientObject
   - uid: 'excel!Excel.RequestContext:class'
     name: RequestContext
@@ -386,20 +332,9 @@ references:
     name: Excel.CommentReply
   - uid: 'excel!Excel.Interfaces.CommentReplyLoadOptions:interface'
     name: Excel.Interfaces.CommentReplyLoadOptions
-  - uid: 'excel!Excel.CommentReply#mentions~0:complex'
-    name: 'Excel.CommentMention[]'
-    fullName: 'Excel.CommentMention[]'
-    spec.typeScript:
-      - uid: 'excel!Excel.CommentMention:interface'
-        name: Excel.CommentMention
-        fullName: Excel.CommentMention
-      - name: '[]'
-        fullName: '[]'
   - uid: 'excel!Excel.Interfaces.CommentReplyUpdateData:interface'
     name: Interfaces.CommentReplyUpdateData
-  - uid: 'excel!OfficeExtension.UpdateOptions:interface'
+  - uid: 'office!OfficeExtension.UpdateOptions:interface'
     name: OfficeExtension.UpdateOptions
   - uid: 'excel!Excel.Interfaces.CommentReplyData:interface'
     name: Excel.Interfaces.CommentReplyData
-  - uid: 'excel!Excel.CommentRichContent:interface'
-    name: Excel.CommentRichContent
