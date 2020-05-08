@@ -11,7 +11,7 @@ items:
       - typeScript
     type: class
     extends:
-      - 'excel!OfficeExtension.ClientObject:class'
+      - 'office!OfficeExtension.ClientObject:class'
     package: excel!
     children:
       - 'excel!Excel.Application#calculate:member(1)'
@@ -20,6 +20,8 @@ items:
       - 'excel!Excel.Application#calculationMode:member'
       - 'excel!Excel.Application#calculationState:member'
       - 'excel!Excel.Application#context:member'
+      - 'excel!Excel.Application#cultureInfo:member'
+      - 'excel!Excel.Application#decimalSeparator:member'
       - 'excel!Excel.Application#iterativeCalculation:member'
       - 'excel!Excel.Application#load:member(1)'
       - 'excel!Excel.Application#load:member(2)'
@@ -28,7 +30,9 @@ items:
       - 'excel!Excel.Application#set:member(2)'
       - 'excel!Excel.Application#suspendApiCalculationUntilNextSync:member(1)'
       - 'excel!Excel.Application#suspendScreenUpdatingUntilNextSync:member(1)'
+      - 'excel!Excel.Application#thousandsSeparator:member'
       - 'excel!Excel.Application#toJSON:member(1)'
+      - 'excel!Excel.Application#useSystemSeparators:member'
   - uid: 'excel!Excel.Application#calculate:member(1)'
     summary: |-
       重新计算 Excel 中当前打开的所有工作簿。
@@ -88,7 +92,7 @@ items:
             - '"Recalculate" | "Full" | "FullRebuild"'
   - uid: 'excel!Excel.Application#calculationEngineVersion:member'
     summary: |-
-      返回用于上次完整重新计算的 Excel 计算引擎版本。 只读。
+      返回用于上次完整重新计算的 Excel 计算引擎版本。
 
       \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: calculationEngineVersion
@@ -118,7 +122,7 @@ items:
           - 'excel!Excel.Application#calculationMode~0:complex'
   - uid: 'excel!Excel.Application#calculationState:member'
     summary: |-
-      返回应用程序的计算状态。 有关详细信息，请参阅 Excel.CalculationState。 只读。
+      返回应用程序的计算状态。 有关详细信息，请参阅 Excel.CalculationState。
 
       \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: calculationState
@@ -143,6 +147,67 @@ items:
       return:
         type:
           - 'excel!Excel.RequestContext:class'
+  - uid: 'excel!Excel.Application#cultureInfo:member'
+    summary: |-
+      基于当前系统区域性设置提供信息。 这包括区域性名称、数字格式和其他区域性相关设置。
+
+      \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: cultureInfo
+    fullName: cultureInfo
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly cultureInfo: Excel.CultureInfo;'
+      return:
+        type:
+          - 'excel!Excel.CultureInfo:class'
+  - uid: 'excel!Excel.Application#decimalSeparator:member'
+    summary: |-
+      获取用作数值的小数分隔符的字符串。 这是基于 Excel 的本地设置。
+
+      \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: decimalSeparator
+    fullName: decimalSeparator
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly decimalSeparator: string;'
+      return:
+        type:
+          - string
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/culture-info.yaml
+          await Excel.run(async (context) => {
+            context.application.load("decimalSeparator,thousandsSeparator");
+            context.application.cultureInfo.numberFormat.load("numberDecimalSeparator,numberGroupSeparator");
+            await context.sync();
+
+            // Local settings are set under the "Options > Advanced" menu.
+            const localDecimalSeparator = context.application.decimalSeparator;
+            const localThousandsSeparator = context.application.thousandsSeparator;
+
+            const systemDecimalSeparator = context.application.cultureInfo.numberFormat.numberDecimalSeparator;
+            const systemThousandsSeparator = context.application.cultureInfo.numberFormat.numberGroupSeparator;
+
+            console.log("Local character settings: ");
+            console.log(`  Local decimal separator: ${localDecimalSeparator}`);
+            console.log(`  Local thousands separator: ${localThousandsSeparator}`);
+
+            console.log("System culture settings: ");
+            console.log(`  System decimal separator: ${systemDecimalSeparator}`);
+            console.log(`  System thousands separator: ${systemThousandsSeparator}`);
+            console.log(`  `);
+
+            await context.sync();
+          });
+          ```
   - uid: 'excel!Excel.Application#iterativeCalculation:member'
     summary: |-
       返回“迭代计算”设置。 在 Windows 和 Mac 上的 Excel 中，这些设置将应用于 Excel 应用程序。 在 Excel 中的 web 和其他平台上，这些设置将应用于活动工作簿。
@@ -263,7 +328,7 @@ items:
         - id: options
           description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
           type:
-            - 'excel!OfficeExtension.UpdateOptions:interface'
+            - 'office!OfficeExtension.UpdateOptions:interface'
   - uid: 'excel!Excel.Application#set:member(2)'
     summary: 基于现有加载的对象同时设置该对象的多个属性。
     name: set(properties)
@@ -300,9 +365,9 @@ items:
         description: ''
   - uid: 'excel!Excel.Application#suspendScreenUpdatingUntilNextSync:member(1)'
     summary: |-
-      挂起屏幕更新，直到下一个`context.sync()`<!-- -->被调用。
+      在调用下一步`context.sync()`之前挂起屏幕更新。
 
-      **注意**：请勿重复`suspendScreenUpdatingUntilNextSync`调用（如在循环中）。 重复调用将导致 Excel 窗口闪烁。
+      * 注意 * *：请勿重复`suspendScreenUpdatingUntilNextSync`调用（如在循环中）。 重复调用将导致 Excel 窗口闪烁。
 
       \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: suspendScreenUpdatingUntilNextSync()
@@ -351,6 +416,21 @@ items:
               console.log(`Ending. Adding ${rowCount * columnCount} cells took ${Date.now() - startTime} milliseconds`);
           });
           ```
+  - uid: 'excel!Excel.Application#thousandsSeparator:member'
+    summary: |-
+      获取一个字符串，用于将数字值的小数位数与小数的左边隔开。 这是基于 Excel 的本地设置。
+
+      \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: thousandsSeparator
+    fullName: thousandsSeparator
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly thousandsSeparator: string;'
+      return:
+        type:
+          - string
   - uid: 'excel!Excel.Application#toJSON:member(1)'
     summary: 重写 JavaScript `toJSON()`方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也会调用传递`toJSON`给它的对象的方法。尽管原始的 Excel 应用程序对象是 API 对象，但`toJSON`方法返回一个简单的 JavaScript 对象（类型为`Excel.Interfaces.ApplicationData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
     name: toJSON()
@@ -364,8 +444,23 @@ items:
         type:
           - 'excel!Excel.Interfaces.ApplicationData:interface'
         description: ''
+  - uid: 'excel!Excel.Application#useSystemSeparators:member'
+    summary: |-
+      指定是否启用 Excel 的系统分隔符。 系统分隔符包括小数分隔符和千位分隔符。
+
+      \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: useSystemSeparators
+    fullName: useSystemSeparators
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly useSystemSeparators: boolean;'
+      return:
+        type:
+          - boolean
 references:
-  - uid: 'excel!OfficeExtension.ClientObject:class'
+  - uid: 'office!OfficeExtension.ClientObject:class'
     name: OfficeExtension.ClientObject
   - uid: 'excel!Excel.CalculationType:enum'
     name: Excel.CalculationType
@@ -389,6 +484,8 @@ references:
         fullName: ' | "Done" | "Calculating" | "Pending"'
   - uid: 'excel!Excel.RequestContext:class'
     name: RequestContext
+  - uid: 'excel!Excel.CultureInfo:class'
+    name: Excel.CultureInfo
   - uid: 'excel!Excel.IterativeCalculation:class'
     name: Excel.IterativeCalculation
   - uid: 'excel!Excel.Application:class'
@@ -397,7 +494,7 @@ references:
     name: Excel.Interfaces.ApplicationLoadOptions
   - uid: 'excel!Excel.Interfaces.ApplicationUpdateData:interface'
     name: Interfaces.ApplicationUpdateData
-  - uid: 'excel!OfficeExtension.UpdateOptions:interface'
+  - uid: 'office!OfficeExtension.UpdateOptions:interface'
     name: OfficeExtension.UpdateOptions
   - uid: 'excel!Excel.Interfaces.ApplicationData:interface'
     name: Excel.Interfaces.ApplicationData
