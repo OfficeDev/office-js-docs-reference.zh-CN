@@ -1,0 +1,130 @@
+### YamlMime:UniversalReference
+items:
+  - uid: 'excel!Excel.ChartFill:class'
+    summary: |-
+      表示图表元素的格式填充。
+
+      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.ChartFill
+    fullName: Excel.ChartFill
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'office!OfficeExtension.ClientObject:class'
+    package: excel!
+    children:
+      - 'excel!Excel.ChartFill#clear:member(1)'
+      - 'excel!Excel.ChartFill#context:member'
+      - 'excel!Excel.ChartFill#setSolidColor:member(1)'
+      - 'excel!Excel.ChartFill#toJSON:member(1)'
+  - uid: 'excel!Excel.ChartFill#clear:member(1)'
+    summary: |-
+      清除图表元素的填充颜色。
+
+      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: clear()
+    fullName: clear()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clear(): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          // Clear the line format of the major Gridlines on value axis of the Chart named "Chart1"
+          Excel.run(function (ctx) { 
+              var gridlines = ctx.workbook.worksheets.getItem("Sheet1").charts.getItem("Chart1").axes.valueAxis.majorGridlines;
+              gridlines.format.line.clear();
+              return ctx.sync().then(function() {
+                      console.log("Chart Major Gridlines Format Cleared");
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: 'excel!Excel.ChartFill#context:member'
+    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - 'excel!Excel.RequestContext:class'
+  - uid: 'excel!Excel.ChartFill#setSolidColor:member(1)'
+    summary: |-
+      将图表元素的填充格式设置为统一颜色。
+
+      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: setSolidColor(color)
+    fullName: setSolidColor(color)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setSolidColor(color: string): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/10-chart/chart-point.yaml
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+
+              let pointsCollection = sheet.charts.getItemAt(0).series.getItemAt(0).points;
+              let point = pointsCollection.getItemAt(2);
+
+              // Set color for chart point.
+              point.format.fill.setSolidColor('red');
+
+              await context.sync();        
+          });
+          ```
+      parameters:
+        - id: color
+          description: '代表\#RRGGBB （例如，"FFA500"）或命名的 HTML 颜色（例如 "橙色"）的背景色的 HTML 颜色代码。'
+          type:
+            - string
+  - uid: 'excel!Excel.ChartFill#toJSON:member(1)'
+    summary: 重写 JavaScript `toJSON()`方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也会调用传递`toJSON`给它的对象的方法。尽管原始 ChartFill 对象是 API 对象，但`toJSON`方法返回一个无格式的 JavaScript 对象（类型为`Excel.Interfaces.ChartFillData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: |-
+        toJSON(): {
+                    [key: string]: string;
+                };
+      return:
+        type:
+          - |-
+            {
+                        [key: string]: string;
+                    }
+        description: ''
+references:
+  - uid: 'office!OfficeExtension.ClientObject:class'
+    name: OfficeExtension.ClientObject
+  - uid: 'excel!Excel.RequestContext:class'
+    name: RequestContext
