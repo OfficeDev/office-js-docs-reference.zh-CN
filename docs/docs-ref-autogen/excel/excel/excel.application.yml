@@ -11,7 +11,7 @@ items:
       - typeScript
     type: class
     extends:
-      - 'excel!OfficeExtension.ClientObject:class'
+      - 'office!OfficeExtension.ClientObject:class'
     package: excel!
     children:
       - 'excel!Excel.Application#calculate:member(1)'
@@ -92,7 +92,7 @@ items:
             - '"Recalculate" | "Full" | "FullRebuild"'
   - uid: 'excel!Excel.Application#calculationEngineVersion:member'
     summary: |-
-      返回用于上次完整重新计算的 Excel 计算引擎版本。 只读。
+      返回用于上次完整重新计算的 Excel 计算引擎版本。
 
       \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: calculationEngineVersion
@@ -122,7 +122,7 @@ items:
           - 'excel!Excel.Application#calculationMode~0:complex'
   - uid: 'excel!Excel.Application#calculationState:member'
     summary: |-
-      返回应用程序的计算状态。 有关详细信息，请参阅 Excel.CalculationState。 只读。
+      返回应用程序的计算状态。 有关详细信息，请参阅 Excel.CalculationState。
 
       \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: calculationState
@@ -151,8 +151,7 @@ items:
     summary: |-
       基于当前系统区域性设置提供信息。 这包括区域性名称、数字格式和其他区域性相关设置。
 
-      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: cultureInfo
     fullName: cultureInfo
     langs:
@@ -167,8 +166,7 @@ items:
     summary: |-
       获取用作数值的小数分隔符的字符串。 这是基于 Excel 的本地设置。
 
-      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: decimalSeparator
     fullName: decimalSeparator
     langs:
@@ -185,7 +183,7 @@ items:
           #### <a name="examples"></a>示例
 
           ```typescript
-          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/85-preview-apis/culture-info.yaml
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/culture-info.yaml
           await Excel.run(async (context) => {
             context.application.load("decimalSeparator,thousandsSeparator");
             context.application.cultureInfo.numberFormat.load("numberDecimalSeparator,numberGroupSeparator");
@@ -330,7 +328,7 @@ items:
         - id: options
           description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
           type:
-            - 'excel!OfficeExtension.UpdateOptions:interface'
+            - 'office!OfficeExtension.UpdateOptions:interface'
   - uid: 'excel!Excel.Application#set:member(2)'
     summary: 基于现有加载的对象同时设置该对象的多个属性。
     name: set(properties)
@@ -369,7 +367,7 @@ items:
     summary: |-
       在调用下一步`context.sync()`之前挂起屏幕更新。
 
-      **注意**：请勿重复`suspendScreenUpdatingUntilNextSync`调用（如在循环中）。 重复调用将导致 Excel 窗口闪烁。
+      * 注意 * *：请勿重复`suspendScreenUpdatingUntilNextSync`调用（如在循环中）。 重复调用将导致 Excel 窗口闪烁。
 
       \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: suspendScreenUpdatingUntilNextSync()
@@ -422,8 +420,7 @@ items:
     summary: |-
       获取一个字符串，用于将数字值的小数位数与小数的左边隔开。 这是基于 Excel 的本地设置。
 
-      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: thousandsSeparator
     fullName: thousandsSeparator
     langs:
@@ -449,10 +446,9 @@ items:
         description: ''
   - uid: 'excel!Excel.Application#useSystemSeparators:member'
     summary: |-
-      指定是否启用 Microsoft Excel 的系统分隔符。 系统分隔符包括小数分隔符和千位分隔符。
+      指定是否启用 Excel 的系统分隔符。 系统分隔符包括小数分隔符和千位分隔符。
 
-      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: useSystemSeparators
     fullName: useSystemSeparators
     langs:
@@ -464,7 +460,7 @@ items:
         type:
           - boolean
 references:
-  - uid: 'excel!OfficeExtension.ClientObject:class'
+  - uid: 'office!OfficeExtension.ClientObject:class'
     name: OfficeExtension.ClientObject
   - uid: 'excel!Excel.CalculationType:enum'
     name: Excel.CalculationType
@@ -498,7 +494,7 @@ references:
     name: Excel.Interfaces.ApplicationLoadOptions
   - uid: 'excel!Excel.Interfaces.ApplicationUpdateData:interface'
     name: Interfaces.ApplicationUpdateData
-  - uid: 'excel!OfficeExtension.UpdateOptions:interface'
+  - uid: 'office!OfficeExtension.UpdateOptions:interface'
     name: OfficeExtension.UpdateOptions
   - uid: 'excel!Excel.Interfaces.ApplicationData:interface'
     name: Excel.Interfaces.ApplicationData
