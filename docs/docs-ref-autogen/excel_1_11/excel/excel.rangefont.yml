@@ -1,0 +1,375 @@
+### YamlMime:UniversalReference
+items:
+  - uid: 'excel!Excel.RangeFont:class'
+    summary: |-
+      此对象表示对象的字体属性（字体名称、字体大小、颜色等）。
+
+      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.RangeFont
+    fullName: Excel.RangeFont
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'office!OfficeExtension.ClientObject:class'
+    package: excel!
+    children:
+      - 'excel!Excel.RangeFont#bold:member'
+      - 'excel!Excel.RangeFont#color:member'
+      - 'excel!Excel.RangeFont#context:member'
+      - 'excel!Excel.RangeFont#italic:member'
+      - 'excel!Excel.RangeFont#load:member(1)'
+      - 'excel!Excel.RangeFont#load:member(2)'
+      - 'excel!Excel.RangeFont#load:member(3)'
+      - 'excel!Excel.RangeFont#name:member'
+      - 'excel!Excel.RangeFont#set:member(1)'
+      - 'excel!Excel.RangeFont#set:member(2)'
+      - 'excel!Excel.RangeFont#size:member'
+      - 'excel!Excel.RangeFont#strikethrough:member'
+      - 'excel!Excel.RangeFont#subscript:member'
+      - 'excel!Excel.RangeFont#superscript:member'
+      - 'excel!Excel.RangeFont#tintAndShade:member'
+      - 'excel!Excel.RangeFont#toJSON:member(1)'
+      - 'excel!Excel.RangeFont#underline:member'
+  - uid: 'excel!Excel.RangeFont#bold:member'
+    summary: |-
+      表示字体的加粗状态。
+
+      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: bold
+    fullName: bold
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'bold: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: 'excel!Excel.RangeFont#color:member'
+    summary: |-
+      文本颜色的 HTML 颜色代码表示形式（例如， \#FF0000 表示红色）。
+
+      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: color
+    fullName: color
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'color: string;'
+      return:
+        type:
+          - string
+  - uid: 'excel!Excel.RangeFont#context:member'
+    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - 'excel!Excel.RequestContext:class'
+  - uid: 'excel!Excel.RangeFont#italic:member'
+    summary: |-
+      指定字体的斜体状态。
+
+      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: italic
+    fullName: italic
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'italic: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: 'excel!Excel.RangeFont#load:member(1)'
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
+    name: load(options)
+    fullName: load(options)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(options?: Excel.Interfaces.RangeFontLoadOptions): Excel.RangeFont;'
+      return:
+        type:
+          - 'excel!Excel.RangeFont:class'
+        description: ''
+      parameters:
+        - id: options
+          description: 提供要加载的对象的属性的选项。
+          type:
+            - 'excel!Excel.Interfaces.RangeFontLoadOptions:interface'
+  - uid: 'excel!Excel.RangeFont#load:member(2)'
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.RangeFont;'
+      return:
+        type:
+          - 'excel!Excel.RangeFont:class'
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "F:G";
+              var worksheet = ctx.workbook.worksheets.getItem(sheetName);
+              var range = worksheet.getRange(rangeAddress);
+              var rangeFont = range.format.font;
+              rangeFont.load('name');
+              return ctx.sync().then(function() {
+                  console.log(rangeFont.name);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          // The example below sets font name. 
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "F:G";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+              range.format.font.name = 'Times New Roman';
+              return ctx.sync(); 
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+          type:
+            - 'string | string[]'
+  - uid: 'excel!Excel.RangeFont#load:member(3)'
+    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: |-
+        load(propertyNamesAndPaths?: {
+                    select?: string;
+                    expand?: string;
+                }): Excel.RangeFont;
+      return:
+        type:
+          - 'excel!Excel.RangeFont:class'
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性`propertyNamesAndPaths.expand` ，并且是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+          type:
+            - |-
+              {
+                          select?: string;
+                          expand?: string;
+                      }
+  - uid: 'excel!Excel.RangeFont#name:member'
+    summary: |-
+      字体名称（例如，"Calibri"）
+
+      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: name
+    fullName: name
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'name: string;'
+      return:
+        type:
+          - string
+  - uid: 'excel!Excel.RangeFont#set:member(1)'
+    summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+    remarks: |-
+      此方法具有以下附加签名：
+
+      `set(properties: Excel.RangeFont): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.RangeFontUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
+          type:
+            - 'excel!Excel.Interfaces.RangeFontUpdateData:interface'
+        - id: options
+          description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
+          type:
+            - 'office!OfficeExtension.UpdateOptions:interface'
+  - uid: 'excel!Excel.RangeFont#set:member(2)'
+    summary: 基于现有加载的对象同时设置该对象的多个属性。
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Excel.RangeFont): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - 'excel!Excel.RangeFont:class'
+  - uid: 'excel!Excel.RangeFont#size:member'
+    summary: |-
+      字号
+
+      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: size
+    fullName: size
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'size: number;'
+      return:
+        type:
+          - number
+  - uid: 'excel!Excel.RangeFont#strikethrough:member'
+    summary: |-
+      指定字体的删除线状态。 Null 值表示整个区域没有统一的删除线设置。
+
+      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: strikethrough
+    fullName: strikethrough
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'strikethrough: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: 'excel!Excel.RangeFont#subscript:member'
+    summary: |-
+      指定字体的下标状态。 如果区域中的所有字体均为下标，则返回 True。 如果区域的所有字体都是上标或 normal （既不是上标，也不是下标），则返回 False。 否则返回 Null。
+
+      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: subscript
+    fullName: subscript
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'subscript: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: 'excel!Excel.RangeFont#superscript:member'
+    summary: |-
+      指定字体的上标状态。 如果区域中的所有字体均为上标，则返回 True。 如果区域的所有字体为下标或普通（既不是上标，也不是下标），则返回 False。 否则返回 Null。
+
+      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: superscript
+    fullName: superscript
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'superscript: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: 'excel!Excel.RangeFont#tintAndShade:member'
+    summary: |-
+      指定将区域字体的颜色变浅或变暗的双精度值，该值介于-1 （最暗）和1（最亮）之间，0表示原始颜色。 空值表示整个区域没有统一的字体 tintAndShade 设置。
+
+      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: tintAndShade
+    fullName: tintAndShade
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'tintAndShade: number;'
+      return:
+        type:
+          - number
+  - uid: 'excel!Excel.RangeFont#toJSON:member(1)'
+    summary: 重写 JavaScript `toJSON()`方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也会调用传递`toJSON`给它的对象的方法。尽管原始 RangeFont 对象是 API 对象，但`toJSON`方法返回一个无格式的 JavaScript 对象（类型为`Excel.Interfaces.RangeFontData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.RangeFontData;'
+      return:
+        type:
+          - 'excel!Excel.Interfaces.RangeFontData:interface'
+        description: ''
+  - uid: 'excel!Excel.RangeFont#underline:member'
+    summary: |-
+      应用于字体的下划线类型。 有关详细信息，请参阅 RangeUnderlineStyle。
+
+      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: underline
+    fullName: underline
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'underline: Excel.RangeUnderlineStyle | "None" | "Single" | "Double" | "SingleAccountant" | "DoubleAccountant";'
+      return:
+        type:
+          - 'excel!Excel.RangeFont#underline~0:complex'
+references:
+  - uid: 'office!OfficeExtension.ClientObject:class'
+    name: OfficeExtension.ClientObject
+  - uid: 'excel!Excel.RequestContext:class'
+    name: RequestContext
+  - uid: 'excel!Excel.RangeFont:class'
+    name: Excel.RangeFont
+  - uid: 'excel!Excel.Interfaces.RangeFontLoadOptions:interface'
+    name: Excel.Interfaces.RangeFontLoadOptions
+  - uid: 'excel!Excel.Interfaces.RangeFontUpdateData:interface'
+    name: Interfaces.RangeFontUpdateData
+  - uid: 'office!OfficeExtension.UpdateOptions:interface'
+    name: OfficeExtension.UpdateOptions
+  - uid: 'excel!Excel.Interfaces.RangeFontData:interface'
+    name: Excel.Interfaces.RangeFontData
+  - uid: 'excel!Excel.RangeFont#underline~0:complex'
+    name: Excel.RangeUnderlineStyle | "None" | "Single" | "Double" | "SingleAccountant" | "DoubleAccountant"
+    fullName: Excel.RangeUnderlineStyle | "None" | "Single" | "Double" | "SingleAccountant" | "DoubleAccountant"
+    spec.typeScript:
+      - uid: 'excel!Excel.RangeUnderlineStyle:enum'
+        name: Excel.RangeUnderlineStyle
+        fullName: Excel.RangeUnderlineStyle
+      - name: ' | "None" | "Single" | "Double" | "SingleAccountant" | "DoubleAccountant"'
+        fullName: ' | "None" | "Single" | "Double" | "SingleAccountant" | "DoubleAccountant"'
