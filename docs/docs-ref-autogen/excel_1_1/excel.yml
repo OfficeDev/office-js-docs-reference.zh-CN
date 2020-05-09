@@ -47,8 +47,6 @@ items:
       - 'excel!Excel.ChartType:enum'
       - 'excel!Excel.ChartUnderlineStyle:enum'
       - 'excel!Excel.ClearApplyTo:enum'
-      - 'excel!Excel.CommentMention:interface'
-      - 'excel!Excel.CommentRichContent:interface'
       - 'excel!Excel.DeleteShiftDirection:enum'
       - 'excel!Excel.ErrorCodes:enum'
       - 'excel!Excel.getDataCommonPostprocess:function(1)'
@@ -204,6 +202,7 @@ items:
       - 'excel!Excel.Interfaces.ConditionalRangeFontUpdateData:interface'
       - 'excel!Excel.Interfaces.ConditionalRangeFormatData:interface'
       - 'excel!Excel.Interfaces.ConditionalRangeFormatUpdateData:interface'
+      - 'excel!Excel.Interfaces.CultureInfoData:interface'
       - 'excel!Excel.Interfaces.CustomConditionalFormatData:interface'
       - 'excel!Excel.Interfaces.CustomConditionalFormatUpdateData:interface'
       - 'excel!Excel.Interfaces.CustomPropertyCollectionData:interface'
@@ -254,6 +253,7 @@ items:
       - 'excel!Excel.Interfaces.NamedItemData:interface'
       - 'excel!Excel.Interfaces.NamedItemLoadOptions:interface'
       - 'excel!Excel.Interfaces.NamedItemUpdateData:interface'
+      - 'excel!Excel.Interfaces.NumberFormatInfoData:interface'
       - 'excel!Excel.Interfaces.PageBreakCollectionData:interface'
       - 'excel!Excel.Interfaces.PageBreakCollectionUpdateData:interface'
       - 'excel!Excel.Interfaces.PageBreakData:interface'
@@ -276,6 +276,8 @@ items:
       - 'excel!Excel.Interfaces.PivotTableCollectionData:interface'
       - 'excel!Excel.Interfaces.PivotTableCollectionUpdateData:interface'
       - 'excel!Excel.Interfaces.PivotTableData:interface'
+      - 'excel!Excel.Interfaces.PivotTableScopedCollectionData:interface'
+      - 'excel!Excel.Interfaces.PivotTableScopedCollectionUpdateData:interface'
       - 'excel!Excel.Interfaces.PivotTableStyleCollectionData:interface'
       - 'excel!Excel.Interfaces.PivotTableStyleCollectionUpdateData:interface'
       - 'excel!Excel.Interfaces.PivotTableStyleData:interface'
@@ -502,7 +504,7 @@ items:
         - id: object
           description: 以前创建的 API 对象。 批处理将使用与传入的对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由 "context" （）来选取。
           type:
-            - 'excel!OfficeExtension.ClientObject:class'
+            - 'office!OfficeExtension.ClientObject:class'
         - id: batch
           description: 一个采用 RequestContext 的函数，并返回一个承诺（通常只是 "context. sync （）" 的结果）。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。
           type:
@@ -574,7 +576,7 @@ items:
         - id: context
           description: 以前创建的对象。 批处理将使用与传入的对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由 "context" （）来选取。
           type:
-            - 'excel!OfficeExtension.ClientRequestContext:class'
+            - 'office!OfficeExtension.ClientRequestContext:class'
         - id: batch
           description: 一个采用 RequestContext 的函数，并返回一个承诺（通常只是 "context. sync （）" 的结果）。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。
           type:
@@ -662,10 +664,6 @@ references:
     name: Excel.ChartUnderlineStyle
   - uid: 'excel!Excel.ClearApplyTo:enum'
     name: Excel.ClearApplyTo
-  - uid: 'excel!Excel.CommentMention:interface'
-    name: Excel.CommentMention
-  - uid: 'excel!Excel.CommentRichContent:interface'
-    name: Excel.CommentRichContent
   - uid: 'excel!Excel.DeleteShiftDirection:enum'
     name: Excel.DeleteShiftDirection
   - uid: 'excel!Excel.ErrorCodes:enum'
@@ -974,6 +972,8 @@ references:
     name: Excel.Interfaces.ConditionalRangeFormatData
   - uid: 'excel!Excel.Interfaces.ConditionalRangeFormatUpdateData:interface'
     name: Excel.Interfaces.ConditionalRangeFormatUpdateData
+  - uid: 'excel!Excel.Interfaces.CultureInfoData:interface'
+    name: Excel.Interfaces.CultureInfoData
   - uid: 'excel!Excel.Interfaces.CustomConditionalFormatData:interface'
     name: Excel.Interfaces.CustomConditionalFormatData
   - uid: 'excel!Excel.Interfaces.CustomConditionalFormatUpdateData:interface'
@@ -1074,6 +1074,8 @@ references:
     name: Excel.Interfaces.NamedItemLoadOptions
   - uid: 'excel!Excel.Interfaces.NamedItemUpdateData:interface'
     name: Excel.Interfaces.NamedItemUpdateData
+  - uid: 'excel!Excel.Interfaces.NumberFormatInfoData:interface'
+    name: Excel.Interfaces.NumberFormatInfoData
   - uid: 'excel!Excel.Interfaces.PageBreakCollectionData:interface'
     name: Excel.Interfaces.PageBreakCollectionData
   - uid: 'excel!Excel.Interfaces.PageBreakCollectionUpdateData:interface'
@@ -1118,6 +1120,10 @@ references:
     name: Excel.Interfaces.PivotTableCollectionUpdateData
   - uid: 'excel!Excel.Interfaces.PivotTableData:interface'
     name: Excel.Interfaces.PivotTableData
+  - uid: 'excel!Excel.Interfaces.PivotTableScopedCollectionData:interface'
+    name: Excel.Interfaces.PivotTableScopedCollectionData
+  - uid: 'excel!Excel.Interfaces.PivotTableScopedCollectionUpdateData:interface'
+    name: Excel.Interfaces.PivotTableScopedCollectionUpdateData
   - uid: 'excel!Excel.Interfaces.PivotTableStyleCollectionData:interface'
     name: Excel.Interfaces.PivotTableStyleCollectionData
   - uid: 'excel!Excel.Interfaces.PivotTableStyleCollectionUpdateData:interface'
@@ -1416,7 +1422,7 @@ references:
         fullName: Promise
       - name: <T>
         fullName: <T>
-  - uid: 'excel!OfficeExtension.ClientObject:class'
+  - uid: 'office!OfficeExtension.ClientObject:class'
     name: OfficeExtension.ClientObject
   - uid: 'excel!Excel.run~3:complex'
     name: '(context: Excel.RequestContext) => Promise<T>'
@@ -1447,7 +1453,7 @@ references:
     name: 'OfficeExtension.ClientObject[]'
     fullName: 'OfficeExtension.ClientObject[]'
     spec.typeScript:
-      - uid: 'excel!OfficeExtension.ClientObject:class'
+      - uid: 'office!OfficeExtension.ClientObject:class'
         name: OfficeExtension.ClientObject
         fullName: OfficeExtension.ClientObject
       - name: '[]'
@@ -1504,7 +1510,7 @@ references:
         fullName: Promise
       - name: <T>
         fullName: <T>
-  - uid: 'excel!OfficeExtension.ClientRequestContext:class'
+  - uid: 'office!OfficeExtension.ClientRequestContext:class'
     name: OfficeExtension.ClientRequestContext
   - uid: 'excel!Excel.run~10:complex'
     name: '(context: Excel.RequestContext) => Promise<T>'
