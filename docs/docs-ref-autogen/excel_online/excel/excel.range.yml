@@ -11,7 +11,7 @@ items:
       - typeScript
     type: class
     extends:
-      - 'excel!OfficeExtension.ClientObject:class'
+      - 'office!OfficeExtension.ClientObject:class'
     package: excel!
     children:
       - 'excel!Excel.Range#address:member'
@@ -58,6 +58,7 @@ items:
       - 'excel!Excel.Range#getLastColumn:member(1)'
       - 'excel!Excel.Range#getLastRow:member(1)'
       - 'excel!Excel.Range#getOffsetRange:member(1)'
+      - 'excel!Excel.Range#getPivotTables:member(1)'
       - 'excel!Excel.Range#getResizedRange:member(1)'
       - 'excel!Excel.Range#getRow:member(1)'
       - 'excel!Excel.Range#getRowProperties:member(1)'
@@ -123,7 +124,7 @@ items:
       - 'excel!Excel.Range#worksheet:member'
   - uid: 'excel!Excel.Range#address:member'
     summary: |-
-      表示 A1 样式的区域引用。 Address 值将包含工作表引用（例如，"Sheet1！A1： B4 "）。 只读。
+      指定 A1 样式中的区域引用。 Address 值将包含工作表引用（例如，"Sheet1！A1： B4 "）。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: address
@@ -138,7 +139,7 @@ items:
           - string
   - uid: 'excel!Excel.Range#addressLocal:member'
     summary: |-
-      以用户语言表示对指定区域的区域引用。 只读。
+      以用户语言指定区域的区域引用。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: addressLocal
@@ -239,7 +240,7 @@ items:
         description: ''
   - uid: 'excel!Excel.Range#cellCount:member'
     summary: |-
-      范围中的单元格数。 如果单元格数超过 2^31-1 (2,147,483,647)，此 API 返回 -1。 只读。
+      指定区域中的单元格的数目。 如果单元格数超过 2^31-1 (2,147,483,647)，此 API 返回 -1。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: cellCount
@@ -315,7 +316,7 @@ items:
             - '"All" | "Formats" | "Contents" | "Hyperlinks" | "RemoveHyperlinks"'
   - uid: 'excel!Excel.Range#columnCount:member'
     summary: |-
-      表示区域中的列总数。 只读。
+      指定区域中的总列数。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: columnCount
@@ -345,7 +346,7 @@ items:
           - boolean
   - uid: 'excel!Excel.Range#columnIndex:member'
     summary: |-
-      表示区域中第一个单元格的列编号。 从零开始编制索引。 只读。
+      指定区域中的第一个单元格的列号。 从零开始编制索引。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: columnIndex
@@ -360,7 +361,7 @@ items:
           - number
   - uid: 'excel!Excel.Range#conditionalFormats:member'
     summary: |-
-      与该范围相交的 ConditionalFormats 的集合。 只读。
+      与该范围相交的 ConditionalFormats 的集合。
 
       \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: conditionalFormats
@@ -704,7 +705,7 @@ items:
         description: ''
   - uid: 'excel!Excel.Range#format:member'
     summary: |-
-      返回一个格式对象，其中封装了区域的字体、填充、边框、对齐方式和其他属性。 只读。
+      返回一个格式对象，其中封装了区域的字体、填充、边框、对齐方式和其他属性。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: format
@@ -1406,6 +1407,27 @@ items:
           description: 区域偏移的列数（正数、负数或 0）。正数表示向右偏移，负数表示向左偏移。
           type:
             - number
+  - uid: 'excel!Excel.Range#getPivotTables:member(1)'
+    summary: |-
+      获取与区域重叠的数据透视表的限定集合。
+
+      \[[API 集： ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getPivotTables(fullyContained)
+    fullName: getPivotTables(fullyContained)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getPivotTables(fullyContained?: boolean): Excel.PivotTableScopedCollection;'
+      return:
+        type:
+          - 'excel!Excel.PivotTableScopedCollection:class'
+        description: ''
+      parameters:
+        - id: fullyContained
+          description: 如果为 true，则仅返回完全包含在区域边界内的数据透视表。 默认值为 false。
+          type:
+            - boolean
   - uid: 'excel!Excel.Range#getResizedRange:member(1)'
     summary: |-
       获取与当前范围对象类似的范围对象，但其右下角可通过一定数量的行和列进行展开（或合拢）。
@@ -1912,7 +1934,7 @@ items:
             - '"ByRows" | "ByColumns"'
   - uid: 'excel!Excel.Range#height:member'
     summary: |-
-      返回从区域的上边缘到区域的下边缘的 100％ 缩放的距离（以磅为单位）。 只读。
+      返回从区域的上边缘到区域的下边缘的 100％ 缩放的距离（以磅为单位）。
 
       \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: height
@@ -1927,7 +1949,7 @@ items:
           - number
   - uid: 'excel!Excel.Range#hidden:member'
     summary: |-
-      表示当前区域中的所有单元格是否隐藏。 只读。
+      表示当前区域中的所有单元格是否隐藏。
 
       \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: hidden
@@ -2092,7 +2114,7 @@ items:
             - '"Down" | "Right"'
   - uid: 'excel!Excel.Range#isEntireColumn:member'
     summary: |-
-      表示当前区域是否为整列。 只读。
+      表示当前区域是否为整列。
 
       \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: isEntireColumn
@@ -2107,7 +2129,7 @@ items:
           - boolean
   - uid: 'excel!Excel.Range#isEntireRow:member'
     summary: |-
-      表示当前区域是否为整行。 只读。
+      表示当前区域是否为整行。
 
       \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: isEntireRow
@@ -2122,7 +2144,7 @@ items:
           - boolean
   - uid: 'excel!Excel.Range#left:member'
     summary: |-
-      返回从工作表的左边缘到区域的左边缘的 100％ 缩放的距离（以磅为单位）。 只读。
+      返回从工作表的左边缘到区域的左边缘的 100％ 缩放的距离（以磅为单位）。
 
       \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: left
@@ -2137,7 +2159,7 @@ items:
           - number
   - uid: 'excel!Excel.Range#linkedDataTypeState:member'
     summary: |-
-      表示每个单元格的数据类型状态。 只读。
+      表示每个单元格的数据类型状态。
 
       \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: linkedDataTypeState
@@ -2277,7 +2299,7 @@ items:
     summary: |-
       将单元格的值、格式和公式从当前区域移动到目标区域，替换这些单元格中的旧信息。 如果目标区域小于当前区域，则将自动扩展目标区域。 原始区域区域以外的目标区域中的任何单元格都不会更改。
 
-      \[[API 集： ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: moveTo(destinationRange)
     fullName: moveTo(destinationRange)
     langs:
@@ -2442,7 +2464,7 @@ items:
             - 'excel!Excel.ReplaceCriteria:interface'
   - uid: 'excel!Excel.Range#rowCount:member'
     summary: |-
-      返回区域中的总行数。 只读。
+      返回区域中的总行数。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: rowCount
@@ -2472,7 +2494,7 @@ items:
           - boolean
   - uid: 'excel!Excel.Range#rowIndex:member'
     summary: |-
-      返回区域中第一个单元格的行编号。 从零开始编制索引。 只读。
+      返回区域中第一个单元格的行编号。 从零开始编制索引。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: rowIndex
@@ -2585,7 +2607,7 @@ items:
         - id: options
           description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
           type:
-            - 'excel!OfficeExtension.UpdateOptions:interface'
+            - 'office!OfficeExtension.UpdateOptions:interface'
   - uid: 'excel!Excel.Range#set:member(2)'
     summary: 基于现有加载的对象同时设置该对象的多个属性。
     name: set(properties)
@@ -2821,7 +2843,7 @@ items:
             - '"ByRows" | "ByColumns"'
   - uid: 'excel!Excel.Range#sort:member'
     summary: |-
-      表示当前 range 的区域排序。 只读。
+      表示当前 range 的区域排序。
 
       \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: sort
@@ -2902,7 +2924,7 @@ items:
           ```
   - uid: 'excel!Excel.Range#text:member'
     summary: |-
-      指定区域的文本值。 文本值与单元格宽度无关。 Excel \# UI 中发生的符号替换不会影响 API 返回的文本值。 只读。
+      指定区域的文本值。 文本值与单元格宽度无关。 Excel \# UI 中发生的符号替换不会影响 API 返回的文本值。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: text
@@ -2930,7 +2952,7 @@ items:
         description: ''
   - uid: 'excel!Excel.Range#top:member'
     summary: |-
-      返回从工作表的上边缘到区域的上边缘的 100％ 缩放的距离（以磅为单位）。 只读。
+      返回从工作表的上边缘到区域的上边缘的 100％ 缩放的距离（以磅为单位）。
 
       \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: top
@@ -3103,7 +3125,7 @@ items:
           - 'any[][]'
   - uid: 'excel!Excel.Range#valueTypes:member'
     summary: |-
-      表示每个单元格的数据类型。 只读。
+      指定每个单元格中的数据类型。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: valueTypes
@@ -3118,7 +3140,7 @@ items:
           - 'excel!Excel.Range#valueTypes~0:complex'
   - uid: 'excel!Excel.Range#width:member'
     summary: |-
-      返回从区域的左边缘到区域的右边缘的 100％ 缩放的距离（以磅为单位）。 只读。
+      返回从区域的左边缘到区域的右边缘的 100％ 缩放的距离（以磅为单位）。
 
       \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: width
@@ -3133,7 +3155,7 @@ items:
           - number
   - uid: 'excel!Excel.Range#worksheet:member'
     summary: |-
-      包含当前区域的工作表。 只读。
+      包含当前区域的工作表。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: worksheet
@@ -3147,7 +3169,7 @@ items:
         type:
           - 'excel!Excel.Worksheet:class'
 references:
-  - uid: 'excel!OfficeExtension.ClientObject:class'
+  - uid: 'office!OfficeExtension.ClientObject:class'
     name: OfficeExtension.ClientObject
   - uid: 'excel!Excel.Range#autoFill~0:complex'
     name: Range | string
@@ -3228,7 +3250,7 @@ references:
     name: 'OfficeExtension.ClientResult<CellProperties[][]>'
     fullName: 'OfficeExtension.ClientResult<Excel.CellProperties[][]>'
     spec.typeScript:
-      - uid: 'excel!OfficeExtension.ClientResult:class'
+      - uid: 'office!OfficeExtension.ClientResult:class'
         name: OfficeExtension.ClientResult
         fullName: OfficeExtension.ClientResult
       - name: <
@@ -3244,7 +3266,7 @@ references:
     name: 'OfficeExtension.ClientResult<ColumnProperties[]>'
     fullName: 'OfficeExtension.ClientResult<Excel.ColumnProperties[]>'
     spec.typeScript:
-      - uid: 'excel!OfficeExtension.ClientResult:class'
+      - uid: 'office!OfficeExtension.ClientResult:class'
         name: OfficeExtension.ClientResult
         fullName: OfficeExtension.ClientResult
       - name: <
@@ -3260,7 +3282,7 @@ references:
     name: OfficeExtension.ClientResult<string>
     fullName: OfficeExtension.ClientResult<string>
     spec.typeScript:
-      - uid: 'excel!OfficeExtension.ClientResult:class'
+      - uid: 'office!OfficeExtension.ClientResult:class'
         name: OfficeExtension.ClientResult
         fullName: OfficeExtension.ClientResult
       - name: <string>
@@ -3283,11 +3305,13 @@ references:
         fullName: Excel.Range
       - name: ' | string'
         fullName: ' | string'
+  - uid: 'excel!Excel.PivotTableScopedCollection:class'
+    name: Excel.PivotTableScopedCollection
   - uid: 'excel!Excel.Range#getRowProperties~0:complex'
     name: 'OfficeExtension.ClientResult<RowProperties[]>'
     fullName: 'OfficeExtension.ClientResult<Excel.RowProperties[]>'
     spec.typeScript:
-      - uid: 'excel!OfficeExtension.ClientResult:class'
+      - uid: 'office!OfficeExtension.ClientResult:class'
         name: OfficeExtension.ClientResult
         fullName: OfficeExtension.ClientResult
       - name: <
@@ -3341,7 +3365,7 @@ references:
     name: OfficeExtension.ClientResult<number>
     fullName: OfficeExtension.ClientResult<number>
     spec.typeScript:
-      - uid: 'excel!OfficeExtension.ClientResult:class'
+      - uid: 'office!OfficeExtension.ClientResult:class'
         name: OfficeExtension.ClientResult
         fullName: OfficeExtension.ClientResult
       - name: <number>
@@ -3350,7 +3374,7 @@ references:
     name: Excel.ReplaceCriteria
   - uid: 'excel!Excel.Interfaces.RangeUpdateData:interface'
     name: Interfaces.RangeUpdateData
-  - uid: 'excel!OfficeExtension.UpdateOptions:interface'
+  - uid: 'office!OfficeExtension.UpdateOptions:interface'
     name: OfficeExtension.UpdateOptions
   - uid: 'excel!Excel.Range#setCellProperties~0:complex'
     name: 'SettableCellProperties[][]'
