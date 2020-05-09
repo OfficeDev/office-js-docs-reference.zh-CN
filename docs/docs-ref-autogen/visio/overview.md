@@ -1,13 +1,13 @@
 ---
 title: Office JavaScript API 参考
 description: Office JavaScript Api 要求由主机进行设置。
-ms.date: 04/17/2020
-ms.openlocfilehash: 765b2ee6108f6433ffe17d3ca15ba9c68fbd9617
-ms.sourcegitcommit: 6dd770ff4893a67c625e1e4fd06ee197a3992ae0
+ms.date: 05/05/2020
+ms.openlocfilehash: 3a32c47b23fd6635c4c2b44b58ee9b351fffd8d5
+ms.sourcegitcommit: 23d9a58660cb1dedf0bc414849a5aec519b419b3
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "43604239"
+ms.lasthandoff: 05/07/2020
+ms.locfileid: "44143928"
 ---
 # <a name="office-javascript-api-reference"></a>Office JavaScript API 参考
 
@@ -24,6 +24,7 @@ ms.locfileid: "43604239"
 
 - [ExcelApi 预览](/javascript/api/excel?view=excel-js-preview)
 - [ExcelApiOnline 1。1](/javascript/api/excel?view=excel-js-online)
+- [ExcelApi 1.11](/javascript/api/excel?view=excel-js-1.11)
 - [ExcelApi 1.10](/javascript/api/excel?view=excel-js-1.10)
 - [ExcelApi 1.9](/javascript/api/excel?view=excel-js-1.9)
 - [ExcelApi 1.8](/javascript/api/excel?view=excel-js-1.8)
