@@ -4,11 +4,13 @@ items:
     summary: |-
       表示服务器中一个项目上的附件。 仅限阅读模式。
 
-      `AttachmentDetails`对象的数组作为约会或邮件项目的附件属性返回。
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**：`ReadItem`
+      对象的数组 `AttachmentDetails` 作为约会或邮件项目的附件属性返回。
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)<!-- -->**：读取
+      \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：读取
 
       #### <a name="examples"></a>示例
 
@@ -46,7 +48,6 @@ items:
       - 'outlook!Office.AttachmentDetails#isInline:member'
       - 'outlook!Office.AttachmentDetails#name:member'
       - 'outlook!Office.AttachmentDetails#size:member'
-      - 'outlook!Office.AttachmentDetails#url:member'
   - uid: 'outlook!Office.AttachmentDetails#attachmentType:member'
     summary: 获取一个指示附件类型的值。
     name: attachmentType
@@ -60,10 +61,7 @@ items:
         type:
           - 'outlook!Office.AttachmentDetails#attachmentType~0:complex'
   - uid: 'outlook!Office.AttachmentDetails#contentType:member'
-    summary: |-
-      获取附件的 MIME 内容类型。
-
-      此属性仅在读取模式下可用。
+    summary: 获取附件的 MIME 内容类型。
     name: contentType
     fullName: contentType
     langs:
@@ -75,7 +73,7 @@ items:
         type:
           - string
   - uid: 'outlook!Office.AttachmentDetails#id:member'
-    summary: 获取附件的 Exchange 附件 ID。
+    summary: 获取附件的 Exchange 附件 ID。 但是，如果附件类型为`MailboxEnums.AttachmentType.Cloud`<!-- -->，则返回该文件的 URL。
     name: id
     fullName: id
     langs:
@@ -102,7 +100,7 @@ items:
     summary: |-
       获取附件的名称。
 
-      **重要说明**：对于通过拖放或 "附加项目" 附加的邮件或约会项目， `name`在 Mac 上的 Outlook 中包含文件扩展名，但在 web 或 Windows 上排除该扩展名。
+      **重要说明**：对于通过拖放或 "附加项目" 附加的邮件或约会项目，在 `name` Mac 上的 Outlook 中包含文件扩展名，但在 web 或 Windows 上排除该扩展名。
     name: name
     fullName: name
     langs:
@@ -125,21 +123,6 @@ items:
       return:
         type:
           - number
-  - uid: 'outlook!Office.AttachmentDetails#url:member'
-    summary: |-
-      获取附件的 url （如果附件的类型为`MailboxEnums.AttachmentType.Cloud`<!-- -->.
-
-      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    name: url
-    fullName: url
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'url: string;'
-      return:
-        type:
-          - string
 references:
   - uid: 'outlook!Office.AttachmentDetails#attachmentType~0:complex'
     name: MailboxEnums.AttachmentType | string
