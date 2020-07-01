@@ -605,7 +605,7 @@ items:
           - string
   - uid: 'outlook!Office.Mailbox#getCallbackTokenAsync:member(1)'
     summary: |-
-      获取一个包含用于调用 REST API 或 Exchange Web 服务的令牌的字符串。
+      获取一个包含用于调用 REST Api 或 Exchange Web 服务（EWS）的令牌的字符串。
 
       The `getCallbackTokenAsync` method makes an asynchronous call to get an opaque token from the Exchange Server that hosts the user's mailbox. The lifetime of the callback token is 5 minutes.
 
@@ -615,9 +615,11 @@ items:
 
       `getCallbackTokenAsync`在撰写模式下调用方法需要您保存项目。 `saveAsync`方法要求的最低权限级别为`ReadWriteItem`<!-- -->.
 
+      **重要说明**：有关委派或共享方案的指导，请参阅[代理访问](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access)文章。
+
       *REST 令牌*
 
-      当请求 REST 令牌时（`options.isRest` = `true`<!-- -->），生成的令牌将无法用于对 Exchange Web 服务调用进行身份验证。 令牌的作用域限制为对当前项及其附件的只读访问，除非外接程序在其清单中指定了 `ReadWriteMailbox` 权限。 如果指定了 `ReadWriteMailbox` 权限，则生成的令牌将授予对邮件、日历和联系人的读/写权限，包括发送邮件的功能。
+      当请求 REST 令牌时（`options.isRest` = `true`<!-- -->），则生成的令牌将不能用于对 EWS 调用进行身份验证。 令牌的作用域限制为对当前项及其附件的只读访问，除非外接程序在其清单中指定了 `ReadWriteMailbox` 权限。 如果指定了 `ReadWriteMailbox` 权限，则生成的令牌将授予对邮件、日历和联系人的读/写权限，包括发送邮件的功能。
 
       在进行 REST API 调用时，外接程序应使用 `restUrl` 属性来确定要使用的正确 URL。
 
@@ -707,6 +709,8 @@ items:
       `getCallbackTokenAsync`在读取模式下调用方法要求最低权限级别为`ReadItem`<!-- -->.
 
       `getCallbackTokenAsync`在撰写模式下调用方法需要您保存项目。 `saveAsync`方法要求的最低权限级别为`ReadWriteItem`<!-- -->.
+
+      **重要说明**：有关委派或共享方案的指导，请参阅[代理访问](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access)文章。
 
       \[[API 集： All 支持读取模式;邮箱1.3 引入了撰写模式支持](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
