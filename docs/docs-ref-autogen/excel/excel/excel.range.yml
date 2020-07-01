@@ -49,6 +49,7 @@ items:
       - 'excel!Excel.Range#getColumnProperties:member(1)'
       - 'excel!Excel.Range#getColumnsAfter:member(1)'
       - 'excel!Excel.Range#getColumnsBefore:member(1)'
+      - 'excel!Excel.Range#getDirectPrecedents:member(1)'
       - 'excel!Excel.Range#getEntireColumn:member(1)'
       - 'excel!Excel.Range#getEntireRow:member(1)'
       - 'excel!Excel.Range#getImage:member(1)'
@@ -57,8 +58,10 @@ items:
       - 'excel!Excel.Range#getLastCell:member(1)'
       - 'excel!Excel.Range#getLastColumn:member(1)'
       - 'excel!Excel.Range#getLastRow:member(1)'
+      - 'excel!Excel.Range#getMergedAreas:member(1)'
       - 'excel!Excel.Range#getOffsetRange:member(1)'
       - 'excel!Excel.Range#getPivotTables:member(1)'
+      - 'excel!Excel.Range#getPrecedents:member(1)'
       - 'excel!Excel.Range#getResizedRange:member(1)'
       - 'excel!Excel.Range#getRow:member(1)'
       - 'excel!Excel.Range#getRowProperties:member(1)'
@@ -165,7 +168,7 @@ items:
 
       有关详细信息，请参阅[使用自动填充和快速填充](https://support.office.com/article/video-use-autofill-and-flash-fill-2e79a709-c814-4b27-8bc2-c4dc84d49464)<!-- -->.
 
-      \[[API 集： ExcelApi 1.9、ExcelApi Preview for null `destinationRange` ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API 集： ExcelApi 1.9、ExcelApi Preview for null `destinationRange` <!-- --> ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'autoFill(destinationRange, autoFillType)'
     fullName: 'autoFill(destinationRange, autoFillType)'
     langs:
@@ -208,7 +211,7 @@ items:
 
       有关详细信息，请参阅[使用自动填充和快速填充](https://support.office.com/article/video-use-autofill-and-flash-fill-2e79a709-c814-4b27-8bc2-c4dc84d49464)<!-- -->.
 
-      \[[API 集： ExcelApi 1.9、ExcelApi Preview for null `destinationRange` ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API 集： ExcelApi 1.9、ExcelApi Preview for null `destinationRange` <!-- --> ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'autoFill(destinationRange, autoFillTypeString)'
     fullName: 'autoFill(destinationRange, autoFillTypeString)'
     langs:
@@ -742,7 +745,7 @@ items:
           - 'any[][]'
   - uid: 'excel!Excel.Range#formulasLocal:member'
     summary: |-
-      表示采用 A1 表示法的公式，使用用户语言和数字格式区域设置。例如，英语中的公式 "=SUM(A1, 1.5)" 在德语中变为 "=SUMME(A1; 1,5)"。
+      Represents the formula in A1-style notation, in the user's language and number-formatting locale. For example, the English "=SUM(A1, 1.5)" formula would become "=SUMME(A1; 1,5)" in German.
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: formulasLocal
@@ -1015,7 +1018,7 @@ items:
         description: ''
       parameters:
         - id: count
-          description: 可选。生成的范围中要包含的列数。一般来说，使用正数可以在当前范围之外创建一个范围。也可以使用负数在当前范围之内创建一个范围。默认值为 1。
+          description: 'Optional. The number of columns to include in the resulting range. In general, use a positive number to create a range outside the current range. You can also use a negative number to create a range within the current range. The default value is 1.'
           type:
             - number
   - uid: 'excel!Excel.Range#getColumnsBefore:member(1)'
@@ -1036,12 +1039,29 @@ items:
         description: ''
       parameters:
         - id: count
-          description: 可选。生成的范围中要包含的列数。一般来说，使用正数可以在当前范围之外创建一个范围。也可以使用负数在当前范围之内创建一个范围。默认值为 1。
+          description: 'Optional. The number of columns to include in the resulting range. In general, use a positive number to create a range outside the current range. You can also use a negative number to create a range within the current range. The default value is 1.'
           type:
             - number
+  - uid: 'excel!Excel.Range#getDirectPrecedents:member(1)'
+    summary: |-
+      返回一个 `WorkbookRangeAreas` object 类型的对象，该对象代表包含同一工作表或多个工作表中的单元格的所有直接引用单元格的区域。
+
+      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: getDirectPrecedents()
+    fullName: getDirectPrecedents()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getDirectPrecedents(): Excel.WorkbookRangeAreas;'
+      return:
+        type:
+          - 'excel!Excel.WorkbookRangeAreas:class'
+        description: ''
   - uid: 'excel!Excel.Range#getEntireColumn:member(1)'
     summary: |-
-      获取一个对象，该对象代表区域的整列（例如，如果当前区域表示单元格 "B4： E11"，则它`getEntireColumn`是表示列 "B:E" 的区域）。
+      获取一个对象，该对象代表区域的整列（例如，如果当前区域表示单元格 "B4： E11"，则它 `getEntireColumn` 是表示列 "B:E" 的区域）。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: getEntireColumn()
@@ -1080,7 +1100,7 @@ items:
           ```
   - uid: 'excel!Excel.Range#getEntireRow:member(1)'
     summary: |-
-      获取一个对象，该对象表示区域的整行（例如，如果当前区域表示单元格 "B4： E11"，则它`GetEntireRow`是表示行 "4:11" 的区域）。
+      获取一个对象，该对象表示区域的整行（例如，如果当前区域表示单元格 "B4： E11"，则它 `GetEntireRow` 是表示行 "4:11" 的区域）。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: getEntireRow()
@@ -1122,7 +1142,7 @@ items:
     summary: |-
       将区域呈现为 base64 编码的 png 图像。
 
-      **重要说明**： Excel for Mac 中目前不支持此 API。 访问\[OfficeDev/office-js 问题\#235\]（https://github.com/OfficeDev/office-js/issues/235)适用于当前状态。
+      **重要说明**： Excel for Mac 中目前不支持此 API。 访问 \[ OfficeDev/office-Js 问题 \# 235 \] （ https://github.com/OfficeDev/office-js/issues/235) 适用于当前状态。
 
       \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: getImage()
@@ -1368,9 +1388,26 @@ items:
               }
           });
           ```
+  - uid: 'excel!Excel.Range#getMergedAreas:member(1)'
+    summary: |-
+      返回一个 RangeAreas 对象，该对象代表此区域中的合并区域。 请注意，如果此范围中的合并区域计数超过512，API 将无法返回结果。
+
+      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: getMergedAreas()
+    fullName: getMergedAreas()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getMergedAreas(): Excel.RangeAreas;'
+      return:
+        type:
+          - 'excel!Excel.RangeAreas:class'
+        description: ''
   - uid: 'excel!Excel.Range#getOffsetRange:member(1)'
     summary: |-
-      获取表示与指定区域偏移的区域的对象。返回的区域的尺寸将与此区域一致。如果强制在工作表网格的边界之外生成区域，将引发错误。
+      Gets an object which represents a range that's offset from the specified range. The dimension of the returned range will match this range. If the resulting range is forced outside the bounds of the worksheet grid, an error will be thrown.
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'getOffsetRange(rowOffset, columnOffset)'
@@ -1407,11 +1444,11 @@ items:
           ```
       parameters:
         - id: rowOffset
-          description: 区域偏移的行数（正数、负数或 0）。正数表示向下偏移，负数表示向上偏移。
+          description: 'The number of rows (positive, negative, or 0) by which the range is to be offset. Positive values are offset downward, and negative values are offset upward.'
           type:
             - number
         - id: columnOffset
-          description: 区域偏移的列数（正数、负数或 0）。正数表示向右偏移，负数表示向左偏移。
+          description: 'The number of columns (positive, negative, or 0) by which the range is to be offset. Positive values are offset to the right, and negative values are offset to the left.'
           type:
             - number
   - uid: 'excel!Excel.Range#getPivotTables:member(1)'
@@ -1435,6 +1472,23 @@ items:
           description: 如果为 true，则仅返回完全包含在区域边界内的数据透视表。 默认值为 false。
           type:
             - boolean
+  - uid: 'excel!Excel.Range#getPrecedents:member(1)'
+    summary: |-
+      返回一个 `WorkbookRangeAreas` 对象，表示包含同一工作表或多个工作表中的单元格的所有引用单元格的区域。
+
+      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: getPrecedents()
+    fullName: getPrecedents()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getPrecedents(): Excel.WorkbookRangeAreas;'
+      return:
+        type:
+          - 'excel!Excel.WorkbookRangeAreas:class'
+        description: ''
   - uid: 'excel!Excel.Range#getResizedRange:member(1)'
     summary: |-
       获取与当前范围对象类似的范围对象，但其右下角可通过一定数量的行和列进行展开（或合拢）。
@@ -1453,7 +1507,7 @@ items:
         description: ''
       parameters:
         - id: deltaRows
-          description: 相对于当前范围，展开右下角的行数。使用正数可展开范围，使用负数可合拢范围。
+          description: 'The number of rows by which to expand the bottom-right corner, relative to the current range. Use a positive number to expand the range, or a negative number to decrease it.'
           type:
             - number
         - id: deltaColumns
@@ -1540,7 +1594,7 @@ items:
         description: ''
       parameters:
         - id: count
-          description: 可选。生成的范围中要包含的行数。一般来说，使用正数可以在当前范围之外创建一个范围。也可以使用负数在当前范围之内创建一个范围。默认值为 1。
+          description: 'Optional. The number of rows to include in the resulting range. In general, use a positive number to create a range outside the current range. You can also use a negative number to create a range within the current range. The default value is 1.'
           type:
             - number
   - uid: 'excel!Excel.Range#getRowsBelow:member(1)'
@@ -1561,7 +1615,7 @@ items:
         description: ''
       parameters:
         - id: count
-          description: 可选。生成的范围中要包含的行数。一般来说，使用正数可以在当前范围之外创建一个范围。也可以使用负数在当前范围之内创建一个范围。默认值为 1。
+          description: 'Optional. The number of rows to include in the resulting range. In general, use a positive number to create a range outside the current range. You can also use a negative number to create a range within the current range. The default value is 1.'
           type:
             - number
   - uid: 'excel!Excel.Range#getSpecialCells:member(1)'
@@ -1789,7 +1843,7 @@ items:
             - boolean
   - uid: 'excel!Excel.Range#getUsedRange:member(1)'
     summary: |-
-      返回指定 Range 对象的所用区域。如果区域内没有使用单元格，此函数将引发 ItemNotFound 错误。
+      Returns the used range of the given range object. If there are no used cells within the range, this function will throw an ItemNotFound error.
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: getUsedRange(valuesOnly)
@@ -1871,7 +1925,7 @@ items:
             - boolean
   - uid: 'excel!Excel.Range#getUsedRangeOrNullObject:member(1)'
     summary: |-
-      返回指定 Range 对象的所用区域。如果区域内没有使用单元格，此函数将返回 NULL 对象。
+      Returns the used range of the given range object. If there are no used cells within the range, this function will return a null object.
 
       \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: getUsedRangeOrNullObject(valuesOnly)
@@ -1983,7 +2037,7 @@ items:
           ```
       parameters:
         - id: groupOption
-          description: 指定如何按行或列对区域进行分组。 当`InvalidArgument`组选项与范围`isEntireRow`或`isEntireColumn`属性不同时（即， `range.isEntireRow`为 true 且`groupOption`为 "ByColumns"，或者`range.isEntireColumn` `groupOption`为 "ByRows"）时，将引发错误。
+          description: 指定如何按行或列对区域进行分组。 `InvalidArgument`当组选项与范围 `isEntireRow` 或 `isEntireColumn` 属性不同时（即，为 `range.isEntireRow` True 且 `groupOption` 为 "ByColumns"，或者为 `range.isEntireColumn` `groupOption` "ByRows"）时，将引发错误。
           type:
             - 'excel!Excel.GroupOption:enum'
   - uid: 'excel!Excel.Range#group:member(2)'
@@ -2004,7 +2058,7 @@ items:
         description: ''
       parameters:
         - id: groupOptionString
-          description: 指定如何按行或列对区域进行分组。 当`InvalidArgument`组选项与范围`isEntireRow`或`isEntireColumn`属性不同时（即， `range.isEntireRow`为 true 且`groupOption`为 "ByColumns"，或者`range.isEntireColumn` `groupOption`为 "ByRows"）时，将引发错误。
+          description: 指定如何按行或列对区域进行分组。 `InvalidArgument`当组选项与范围 `isEntireRow` 或 `isEntireColumn` 属性不同时（即，为 `range.isEntireRow` True 且 `groupOption` 为 "ByColumns"，或者为 `range.isEntireColumn` `groupOption` "ByRows"）时，将引发错误。
           type:
             - '"ByRows" | "ByColumns"'
   - uid: 'excel!Excel.Range#hasSpill:member'
@@ -2144,7 +2198,7 @@ items:
           ```
   - uid: 'excel!Excel.Range#insert:member(1)'
     summary: |-
-      将单个单元格或一系列单元格插入到工作表中取代此区域，并移动其他单元格以留出空间。在现在空白的空间返回新的 Range 对象。
+      Inserts a cell or a range of cells into the worksheet in place of this range, and shifts the other cells to make space. Returns a new Range object at the now blank space.
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: insert(shift)
@@ -2184,7 +2238,7 @@ items:
             - 'excel!Excel.InsertShiftDirection:enum'
   - uid: 'excel!Excel.Range#insert:member(2)'
     summary: |-
-      将单个单元格或一系列单元格插入到工作表中取代此区域，并移动其他单元格以留出空间。在现在空白的空间返回新的 Range 对象。
+      Inserts a cell or a range of cells into the worksheet in place of this range, and shifts the other cells to make space. Returns a new Range object at the now blank space.
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: insert(shiftString)
@@ -2264,7 +2318,7 @@ items:
         type:
           - 'excel!Excel.Range#linkedDataTypeState~0:complex'
   - uid: 'excel!Excel.Range#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
+    summary: 将命令加入队列以加载对象的指定属性。 在 `context.sync()` 读取属性之前，必须先调用。
     name: load(options)
     fullName: load(options)
     langs:
@@ -2282,7 +2336,7 @@ items:
           type:
             - 'excel!Excel.Interfaces.RangeLoadOptions:interface'
   - uid: 'excel!Excel.Range#load:member(2)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
+    summary: 将命令加入队列以加载对象的指定属性。 在 `context.sync()` 读取属性之前，必须先调用。
     name: load(propertyNames)
     fullName: load(propertyNames)
     langs:
@@ -2322,7 +2376,7 @@ items:
           type:
             - 'string | string[]'
   - uid: 'excel!Excel.Range#load:member(3)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
+    summary: 将命令加入队列以加载对象的指定属性。 在 `context.sync()` 读取属性之前，必须先调用。
     name: load(propertyNamesAndPaths)
     fullName: load(propertyNamesAndPaths)
     langs:
@@ -2340,7 +2394,7 @@ items:
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性`propertyNamesAndPaths.expand` ，并且是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
           type:
             - |-
               {
@@ -2484,7 +2538,7 @@ items:
           - 'excel!Excel.Range#numberFormatCategories~0:complex'
   - uid: 'excel!Excel.Range#numberFormatLocal:member'
     summary: |-
-      根据用户的语言设置，表示给定范围的 Excel 数字格式代码。 在获取或设置`numberFormatLocal`属性时，Excel 不会执行任何语言或格式强制。 任何返回的文本将根据系统设置中指定的语言使用本地格式化的字符串。
+      根据用户的语言设置，表示给定范围的 Excel 数字格式代码。 在获取或设置属性时，Excel 不会执行任何语言或格式强制 `numberFormatLocal` 。 任何返回的文本将根据系统设置中指定的语言使用本地格式化的字符串。
 
       \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: numberFormatLocal
@@ -3047,7 +3101,7 @@ items:
           ```
   - uid: 'excel!Excel.Range#text:member'
     summary: |-
-      指定区域的文本值。 文本值与单元格宽度无关。 Excel \# UI 中发生的符号替换不会影响 API 返回的文本值。
+      指定区域的文本值。 文本值与单元格宽度无关。 \#EXCEL UI 中发生的符号替换不会影响 API 返回的文本值。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: text
@@ -3061,7 +3115,7 @@ items:
         type:
           - 'string[][]'
   - uid: 'excel!Excel.Range#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()`方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也会调用传递`toJSON`给它的对象的方法。尽管原始的 Excel Range 对象是 API 对象，但`toJSON`方法返回一个简单的 JavaScript 对象（类型为`Excel.Interfaces.RangeData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
+    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始的 Excel Range 对象是 API 对象，但 `toJSON` 方法返回一个简单的 JavaScript 对象（类型为`Excel.Interfaces.RangeData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
     name: toJSON()
     fullName: toJSON()
     langs:
@@ -3089,7 +3143,7 @@ items:
         type:
           - number
   - uid: 'excel!Excel.Range#track:member(1)'
-    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是的简写`context.trackedObjects.add(thisObject)`<!-- -->. 如果要在多`.sync`个调用中使用此对象，并在 "运行" 批处理的顺序执行之外使用此对象，并在设置属性或对对象调用方法时获取 "InvalidObjectPath" 错误，则需要在首次创建对象时将该对象添加到跟踪的对象集合中。
+    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是的简写`context.trackedObjects.add(thisObject)`<!-- -->. 如果要在多个调用中使用此对象 `.sync` ，并在 "运行" 批处理的顺序执行之外使用此对象，并在设置属性或对对象调用方法时获取 "InvalidObjectPath" 错误，则需要在首次创建对象时将该对象添加到跟踪的对象集合中。
     name: track()
     fullName: track()
     langs:
@@ -3196,7 +3250,7 @@ items:
           });
           ```
   - uid: 'excel!Excel.Range#untrack:member(1)'
-    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是的简写`context.trackedObjects.remove(thisObject)`<!-- -->. 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前`context.sync()` ，您需要调用该过程。
+    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是的简写`context.trackedObjects.remove(thisObject)`<!-- -->. 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在 `context.sync()` 内存释放生效之前，您需要调用该过程。
     name: untrack()
     fullName: untrack()
     langs:
@@ -3401,6 +3455,8 @@ references:
         fullName: '[]>'
   - uid: 'excel!Excel.ColumnPropertiesLoadOptions:interface'
     name: ColumnPropertiesLoadOptions
+  - uid: 'excel!Excel.WorkbookRangeAreas:class'
+    name: Excel.WorkbookRangeAreas
   - uid: 'excel!Excel.Range#getImage~0:complex'
     name: OfficeExtension.ClientResult<string>
     fullName: OfficeExtension.ClientResult<string>
@@ -3428,6 +3484,8 @@ references:
         fullName: Excel.Range
       - name: ' | string'
         fullName: ' | string'
+  - uid: 'excel!Excel.RangeAreas:class'
+    name: Excel.RangeAreas
   - uid: 'excel!Excel.PivotTableScopedCollection:class'
     name: Excel.PivotTableScopedCollection
   - uid: 'excel!Excel.Range#getRowProperties~0:complex'
@@ -3446,8 +3504,6 @@ references:
         fullName: '[]>'
   - uid: 'excel!Excel.RowPropertiesLoadOptions:interface'
     name: RowPropertiesLoadOptions
-  - uid: 'excel!Excel.RangeAreas:class'
-    name: Excel.RangeAreas
   - uid: 'excel!Excel.SpecialCellType:enum'
     name: Excel.SpecialCellType
   - uid: 'excel!Excel.SpecialCellValueType:enum'
