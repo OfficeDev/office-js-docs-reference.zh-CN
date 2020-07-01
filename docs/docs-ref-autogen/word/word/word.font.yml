@@ -80,7 +80,7 @@ items:
           ```
   - uid: 'word!Word.Font#color:member'
     summary: |-
-      获取或设置指定字体的颜色。 您可以提供 "\#RRGGBB" 格式的值或颜色名称。
+      获取或设置指定字体的颜色。 您可以提供 " \# RRGGBB" 格式的值或颜色名称。
 
       \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: color
@@ -151,7 +151,7 @@ items:
           - boolean
   - uid: 'word!Word.Font#highlightColor:member'
     summary: |-
-      获取或设置突出显示颜色。 若要对其进行设置，请使用 "\#RRGGBB" 格式的值或颜色名称。 若要删除突出显示颜色，请将其设置为 null。 返回的突出显示颜色可以是 "\#RRGGBB" 格式、用于混合突出显示颜色的空字符串或 null （无突出显示颜色）。 * 注意 * *：只有默认的突出显示颜色在 Office for Windows Desktop 中可用。 这些是 "黄色"、"酸橙色"、"青绿色"、"浅绿"、"浅绿"、"Blue"、"Red"、"DarkBlue"、"青色"、"绿色"、"紫色"、"DarkRed"、"橄榄色"、"灰色"、"LightGray" 和 "黑色"。 当外接程序在 Office for Windows Desktop 中运行时，应用于该字体的任何其他颜色将转换为最接近的颜色。
+      获取或设置突出显示颜色。 若要对其进行设置，请使用 " \# RRGGBB" 格式的值或颜色名称。 若要删除突出显示颜色，请将其设置为 null。 返回的突出显示颜色可以是 " \# RRGGBB" 格式、用于混合突出显示颜色的空字符串或 null （无突出显示颜色）。 * 注意 * *：只有默认的突出显示颜色在 Office for Windows Desktop 中可用。 这些是 "黄色"、"酸橙色"、"青绿色"、"浅绿"、"浅绿"、"Blue"、"Red"、"DarkBlue"、"青色"、"绿色"、"紫色"、"DarkRed"、"橄榄色"、"灰色"、"LightGray" 和 "黑色"。 当外接程序在 Office for Windows Desktop 中运行时，应用于该字体的任何其他颜色将转换为最接近的颜色。
 
       \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: highlightColor
@@ -209,33 +209,25 @@ items:
         type:
           - boolean
   - uid: 'word!Word.Font#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
-    remarks: |-
-      除了此签名之外，此方法还具有以下签名：
-
-      `load(option?: string | string[]): Word.Font`-Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
-
-      `load(option?: { select?: string; expand?: string; }): Word.Font`-Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.Font`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
-    name: load(option)
-    fullName: load(option)
+    summary: 将命令加入队列以加载对象的指定属性。 在 `context.sync()` 读取属性之前，必须先调用。
+    name: load(options)
+    fullName: load(options)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: Word.Interfaces.FontLoadOptions): Word.Font;'
+      content: 'load(options?: Word.Interfaces.FontLoadOptions): Word.Font;'
       return:
         type:
           - 'word!Word.Font:class'
         description: ''
       parameters:
-        - id: option
-          description: ''
+        - id: options
+          description: 提供要加载的对象的属性的选项。
           type:
             - 'word!Word.Interfaces.FontLoadOptions:interface'
   - uid: 'word!Word.Font#load:member(2)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
+    summary: 将命令加入队列以加载对象的指定属性。 在 `context.sync()` 读取属性之前，必须先调用。
     name: load(propertyNames)
     fullName: load(propertyNames)
     langs:
@@ -253,23 +245,31 @@ items:
           type:
             - 'string | string[]'
   - uid: 'word!Word.Font#load:member(3)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性`context.sync()`之前，必须先调用。
+    summary: 将命令加入队列以加载对象的指定属性。 在 `context.sync()` 读取属性之前，必须先调用。
     name: load(propertyNamesAndPaths)
     fullName: load(propertyNamesAndPaths)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Word.Font;'
+      content: |-
+        load(propertyNamesAndPaths?: {
+                    select?: string;
+                    expand?: string;
+                }): Word.Font;
       return:
         type:
           - 'word!Word.Font:class'
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: 其中，propertyNamesAndPaths 是用逗号分隔的字符串，用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
           type:
-            - '{ select?: string; expand?: string; }'
+            - |-
+              {
+                          select?: string;
+                          expand?: string;
+                      }
   - uid: 'word!Word.Font#name:member'
     summary: |-
       获取或设置表示字体名称的值。
@@ -477,7 +477,7 @@ items:
         type:
           - boolean
   - uid: 'word!Word.Font#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()`方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也会调用传递`toJSON`给它的对象的方法。尽管原始的 Word Font 对象是 API 对象，但`toJSON`方法返回一个无格式的 JavaScript 对象（类型为`Word.Interfaces.FontData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
+    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始的 Word Font 对象是 API 对象，但 `toJSON` 方法返回一个无格式的 JavaScript 对象（类型为`Word.Interfaces.FontData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
     name: toJSON()
     fullName: toJSON()
     langs:
@@ -490,7 +490,7 @@ items:
           - 'word!Word.Interfaces.FontData:interface'
         description: ''
   - uid: 'word!Word.Font#track:member(1)'
-    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。
+    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是的简写`context.trackedObjects.add(thisObject)`<!-- -->. 如果要在多个调用中使用此对象 `.sync` ，并在 "运行" 批处理的顺序执行之外使用此对象，并在设置属性或对对象调用方法时获取 "InvalidObjectPath" 错误，则需要在首次创建对象时将该对象添加到跟踪的对象集合中。
     name: track()
     fullName: track()
     langs:
@@ -547,7 +547,7 @@ items:
           });
           ```
   - uid: 'word!Word.Font#untrack:member(1)'
-    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前，你需要调用“context.sync()”。
+    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是的简写`context.trackedObjects.remove(thisObject)`<!-- -->. 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在 `context.sync()` 内存释放生效之前，您需要调用该过程。
     name: untrack()
     fullName: untrack()
     langs:
