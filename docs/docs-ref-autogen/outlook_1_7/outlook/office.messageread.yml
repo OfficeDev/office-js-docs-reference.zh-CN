@@ -419,10 +419,8 @@ items:
       });
       ```
       ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/55-display-items/display-reply-forms.yaml
-      Office.context.mailbox.item.displayReplyAllForm(
-        "This is a reply ALL with <b>some bold text</b>."
-      );
+      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/99-preview-apis/display-reply-forms.yaml
+      Office.context.mailbox.item.displayReplyAllForm("This is a reply ALL with <b>some bold text</b>.");
       ```
     name: displayReplyAllForm(formData)
     fullName: displayReplyAllForm(formData)
@@ -524,29 +522,23 @@ items:
       });
       ```
       ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/55-display-items/display-reply-forms.yaml
-      Office.context.mailbox.item.displayReplyForm(
-        "This is a reply with <i>some text in italics</i>."
-      );
+      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/99-preview-apis/display-reply-forms.yaml
+      Office.context.mailbox.item.displayReplyForm("This is a reply with <i>some text in italics</i>.");
       ```
       ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/55-display-items/display-reply-with-attachments.yaml
-      Office.context.mailbox.item.displayReplyForm(
-      {
-          htmlBody : "This is a reply with a couple of attachments - an inline image and an item<br><img src='cid:dog.jpg'>",
-          attachments :
-          [
-              { type: "file", url: "http://i.imgur.com/9S36xvA.jpg", name: "dog.jpg", isInline: true },
-              { type: "item", itemId : Office.context.mailbox.item.itemId, name: "test_email.msg" }
-          ],
-          options : { asyncContext: null },
-          callback : function (result)
-          {
-              if (result.status !== Office.AsyncResultStatus.Succeeded)
-              {
-                  console.error(`Action failed with message ${result.error.message}`);
-              }
+      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/99-preview-apis/display-reply-with-attachments.yaml
+      Office.context.mailbox.item.displayReplyForm({
+        htmlBody: "This is a reply with a couple of attachments - an inline image and an item<br><img src='cid:dog.jpg'>",
+        attachments: [
+          { type: "file", url: "http://i.imgur.com/9S36xvA.jpg", name: "dog.jpg", isInline: true },
+          { type: "item", itemId: Office.context.mailbox.item.itemId, name: "test_email.msg" }
+        ],
+        options: { asyncContext: null },
+        callback: function(result) {
+          if (result.status !== Office.AsyncResultStatus.Succeeded) {
+            console.error(`Action failed with message ${result.error.message}`);
           }
+        }
       });
       ```
     name: displayReplyForm(formData)
@@ -569,7 +561,7 @@ items:
     summary: |-
       获取约会结束的日期和时间。
 
-      `end`属性是 `Date` 表示为协调世界时（UTC）日期和时间值的对象。 可以使用 `convertToLocalClientTime` 方法将 `end` 属性值转换为客户端的本地日期和时间。
+      `end`属性是 `Date` 表示为协调通用时间 (UTC) 日期和时间值的对象。 可以使用 `convertToLocalClientTime` 方法将 `end` 属性值转换为客户端的本地日期和时间。
 
       使用 `Time.setAsync` 方法设置结束时间时，应使用 `convertToUtcClientTime` 方法将客户端的本地时间转换为服务器的 UTC。
     remarks: |-
@@ -1231,9 +1223,9 @@ items:
           - string
   - uid: 'outlook!Office.MessageRead#normalizedSubject:member'
     summary: |-
-      获取项目的主题，删除所有前缀（包括 RE：和 FWD：）。
+      获取项目的主题，其中删除了所有前缀 (包括 RE：和 FWD： ) 。
 
-      `normalizedSubject`属性获取项目的主题，其中包含任何标准前缀（如 RE：和 FW：）由电子邮件程序添加的。 若要获取包含完整前缀的项目主题，请使用 `subject` 属性。
+      `normalizedSubject`属性获取项目的主题，其中包含由电子邮件程序添加的任何标准前缀 (例如 RE：和 FW： ) 。 若要获取包含完整前缀的项目主题，请使用 `subject` 属性。
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
 
@@ -1472,7 +1464,7 @@ items:
     summary: |-
       获取实例所属的系列的 id。
 
-      在 web 上的 Outlook 和桌面客户端中， `seriesId` 返回此项所属的父（系列）项的 Exchange Web 服务（EWS） ID。 但是，在 iOS 和 Android 上，将 `seriesId` 返回父项的 REST ID。
+      在 web 上的 Outlook 和桌面客户端中，将 `seriesId` 返回此项所属的父 (系列) 项的 Exchange Web 服务 (EWS) ID。 但是，在 iOS 和 Android 上，将 `seriesId` 返回父项的 REST ID。
 
       **注意**：属性返回的标识符与 `seriesId` Exchange Web 服务项目标识符相同。 `seriesId`属性与 OUTLOOK REST API 使用的 Outlook id 不相同。 使用此值进行 REST API 调用之前，应使用此值进行转换`Office.context.mailbox.convertToRestId`<!-- -->. 有关更多详细信息，请参阅[使用 outlook 外接程序中的 OUTLOOK REST api](https://docs.microsoft.com/office/dev/add-ins/outlook/use-rest-api)<!-- -->.
 
@@ -1512,7 +1504,7 @@ items:
     summary: |-
       获取约会开始的日期和时间。
 
-      `start`属性是 `Date` 表示为协调世界时（UTC）日期和时间值的对象。 可以使用 `convertToLocalClientTime` 方法将值转换为客户端的本地日期和时间。
+      `start`属性是 `Date` 表示为协调通用时间 (UTC) 日期和时间值的对象。 可以使用 `convertToLocalClientTime` 方法将值转换为客户端的本地日期和时间。
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
 
