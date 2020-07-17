@@ -262,9 +262,9 @@ items:
     summary: |-
       获取包含特定消息的电子邮件会话的标识符。
 
-      You can get an integer for this property if your mail app is activated in read forms or responses in compose forms. If subsequently the user changes the subject of the reply message, upon sending the reply, the conversation ID for that message will change and that value you obtained earlier will no longer apply.
+      如果在阅读窗体或撰写窗体的回复中激活邮件应用程序，则此属性可以获得一个整数值。如果用户随后更改了回复邮件的主题（若发送回复），则该邮件的对话 ID 将改变且之前获取的值将不适用。
 
-      You get null for this property for a new item in a compose form. If the user sets a subject and saves the item, the `conversationId` property will return a value.
+      对于撰写窗体的新项目，此属性获得一个 null 值。如果用户设置一个主题并保存该项目，`conversationId` 属性将返回一个值。
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
 
@@ -759,7 +759,7 @@ items:
     summary: |-
       返回所选项目中匹配在清单 XML 文件中定义的正则表达式的字符串值。
 
-      The `getRegExMatches` method returns the strings that match the regular expression defined in each `ItemHasRegularExpressionMatch` or `ItemHasKnownEntity` rule element in the manifest XML file. For an `ItemHasRegularExpressionMatch` rule, a matching string has to occur in the property of the item that is specified by that rule. The `PropertyName` simple type defines the supported properties.
+      `getRegExMatches` 方法返回匹配在清单 XML 文件中的每个 `ItemHasRegularExpressionMatch` 或 `ItemHasKnownEntity` 规则元素中定义的正则表达式的字符串。对于 `ItemHasRegularExpressionMatch` 规则，匹配字符串必须发生在该规则指定的项目的属性中。`PropertyName` 简单类型定义支持的属性。
 
       如果在项目的正文属性上指定 `ItemHasRegularExpressionMatch` 规则，则正则表达式应进一步筛选正文，不应尝试返回该项目的整个正文。 使用正则表达式（如. *）获取项目的整个正文并不总是返回预期的结果。 而是使用 `Body.getAsync` 方法检索整个正文。
 
@@ -809,7 +809,7 @@ items:
       return:
         type:
           - any
-        description: An object that contains arrays of strings that match the regular expressions defined in the manifest XML file. The name of each array is equal to the corresponding value of the `RegExName` attribute of the matching `ItemHasRegularExpressionMatch` rule or the `FilterName` attribute of the matching `ItemHasKnownEntity` rule.
+        description: 一个包含匹配在清单 XML 文件中定义的正则表达式的字符串数组的对象。每个数组的名称等于匹配 `ItemHasRegularExpressionMatch` 规则的 `RegExName` 属性或匹配 `ItemHasKnownEntity` 规则的 `FilterName` 属性的相应值。
   - uid: 'outlook!Office.MessageRead#getRegExMatchesByName:member(1)'
     summary: |-
       返回匹配在清单 XML 文件中定义的命名正则表达式的所选项目中的字符串值。
@@ -939,7 +939,7 @@ items:
     summary: |-
       返回突出显示匹配项中匹配在清单 XML 文件中定义的正则表达式的字符串值。 突出显示的匹配项适用于上下文外接程序。
 
-      The `getSelectedRegExMatches` method returns the strings that match the regular expression defined in each `ItemHasRegularExpressionMatch` or `ItemHasKnownEntity` rule element in the manifest XML file. For an `ItemHasRegularExpressionMatch` rule, a matching string has to occur in the property of the item that is specified by that rule. The `PropertyName` simple type defines the supported properties.
+      `getSelectedRegExMatches` 方法返回匹配在清单 XML 文件中的每个 `ItemHasRegularExpressionMatch` 或 `ItemHasKnownEntity` 规则元素中定义的正则表达式的字符串。对于 `ItemHasRegularExpressionMatch` 规则，匹配字符串必须发生在该规则指定的项目的属性中。`PropertyName` 简单类型定义支持的属性。
 
       如果在项目的正文属性上指定 `ItemHasRegularExpressionMatch` 规则，则正则表达式应进一步筛选正文，不应尝试返回该项目的整个正文。 使用正则表达式（如. *）获取项目的整个正文并不总是返回预期的结果。 而是使用 `Body.getAsync` 方法检索整个正文。
 
@@ -996,7 +996,7 @@ items:
       return:
         type:
           - any
-        description: An object that contains arrays of strings that match the regular expressions defined in the manifest XML file. The name of each array is equal to the corresponding value of the `RegExName` attribute of the matching `ItemHasRegularExpressionMatch` rule or the `FilterName` attribute of the matching `ItemHasKnownEntity` rule.
+        description: 一个包含匹配在清单 XML 文件中定义的正则表达式的字符串数组的对象。每个数组的名称等于匹配 `ItemHasRegularExpressionMatch` 规则的 `RegExName` 属性或匹配 `ItemHasKnownEntity` 规则的 `FilterName` 属性的相应值。
   - uid: 'outlook!Office.MessageRead#internetMessageId:member'
     summary: 获取电子邮件的 internet 邮件标识符。
     remarks: |-
@@ -1030,7 +1030,7 @@ items:
 
       **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件已阅读
 
-      The `itemClass` property specifies the message class of the selected item. The following are the default message classes for the message or appointment item.
+      `itemClass` 属性指定所选项目的邮件类别。以下是邮件或约会项目的默认邮件类别。
 
       <table> <tr> <th>类型</th> <th>说明</th> <th>Item 类</th> </tr> <tr> <td>约会项目</td> <td>这些是项目类 IPM 的日历项目。约会或 IPM。约会。</td> <td>IPM.NOTE.约会、IPM。约会事件</td> </tr> <tr> <td>邮件项目</td> <td>其中包括具有默认邮件类别 IPM 的电子邮件。注意，以及使用 IPM 的会议请求、响应和取消。Schedule：作为基本邮件类的会议。</td> <td>IPM.NOTE.请注意，IPM。Schedule （会议）请求，IPM。Schedule. Neg、IPM。Schedule、IPM、IPM。日程安排：会议，IPM。日程安排. 会议. 已取消</td> </tr> </table>
 
@@ -1118,7 +1118,7 @@ items:
     summary: |-
       异步加载所选项目上此外接程序的自定义属性。
 
-      Custom properties are stored as key/value pairs on a per-app, per-item basis. This method returns a `CustomProperties` object in the callback, which provides methods to access the custom properties specific to the current item and the current add-in. Custom properties are not encrypted on the item, so this should not be used as secure storage.
+      自定义属性基于每个应用、每个项目存储为键/值对。此方法在回调中返回 `CustomProperties` 对象，该回调提供访问特定于当前项目和当前外接程序的自定义属性的方法。自定义属性未在项目上加密，因此这不应用作安全存储。
 
       自定义属性作为 `asyncResult.value` 属性中的 `CustomProperties` 对象提供。 此对象可用于获取、设置以及从项目中删除自定义属性，并将自定义属性集的更改重新保存到服务器。
     remarks: |-
