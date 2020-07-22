@@ -6,9 +6,9 @@ items:
 
       \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)<!-- -->**：撰写或阅读
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
     name: Office.NotificationMessageDetails
     fullName: Office.NotificationMessageDetails
     langs:
@@ -16,11 +16,29 @@ items:
     type: interface
     package: outlook!
     children:
+      - 'outlook!Office.NotificationMessageDetails#actions:member'
       - 'outlook!Office.NotificationMessageDetails#icon:member'
       - 'outlook!Office.NotificationMessageDetails#key:member'
       - 'outlook!Office.NotificationMessageDetails#message:member'
       - 'outlook!Office.NotificationMessageDetails#persistent:member'
       - 'outlook!Office.NotificationMessageDetails#type:member'
+  - uid: 'outlook!Office.NotificationMessageDetails#actions:member'
+    summary: |-
+      指定邮件的操作。 限制：2个操作。 此限制不会计算默认情况下包含的 "消除" 操作的数目。 仅当类型为时才适用`InsightMessage`<!-- -->. 为不受支持的类型指定此属性或包含过多的操作将引发错误。
+
+      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: '**[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写'
+    isPreview: true
+    name: actions
+    fullName: actions
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'actions?: NotificationMessageAction[];'
+      return:
+        type:
+          - 'outlook!Office.NotificationMessageDetails#actions~0:complex'
   - uid: 'outlook!Office.NotificationMessageDetails#icon:member'
     summary: |-
       对在清单的 `Resources` 部分中定义的图标的引用。 它将显示在信息栏区域。 仅当类型为时，才适用`InformationalMessage`<!-- -->. 为不受支持的类型指定此参数将导致异常。
@@ -61,7 +79,7 @@ items:
         type:
           - string
   - uid: 'outlook!Office.NotificationMessageDetails#persistent:member'
-    summary: 仅当类型为时适用`InformationalMessage`<!-- -->. 如果为 true，则邮件将一直保留到此加载项删除或由用户解除。 如果为 false，则当用户导航到其他项目时将其删除。 对于错误通知，邮件将一直保留，直到用户看过一次。 为不受支持的类型指定此参数将引发异常。
+    summary: 指定邮件是否应为永久性。 仅当类型为时适用`InformationalMessage`<!-- -->. 如果为 true，则邮件将一直保留到此加载项删除或由用户解除。 如果为 false，则当用户导航到其他项目时将其删除。 对于错误通知，邮件将一直保留，直到用户看过一次。 为不受支持的类型指定此参数将引发异常。
     name: persistent
     fullName: persistent
     langs:
@@ -73,7 +91,12 @@ items:
         type:
           - '!Boolean:interface'
   - uid: 'outlook!Office.NotificationMessageDetails#type:member'
-    summary: '`ItemNotificationMessageType`指定邮件。 如果 type 为`ProgressIndicator`或`ErrorMessage`<!-- -->，将自动提供图标，并且邮件不是永久性的。 因此，图标和持久性的属性对于这些类型的邮件都是无效的。 包括它们将导致`ArgumentException`<!-- -->. 如果 type 为`ProgressIndicator`<!-- -->，开发人员应在操作完成时删除或替换进度指示器。'
+    summary: |-
+      指定 `ItemNotificationMessageType` 邮件。
+
+      如果 type 为 `ProgressIndicator` 或`ErrorMessage`<!-- -->，将自动提供图标，并且邮件不是永久性的。 因此，图标和持久性的属性对于这些类型的邮件都是无效的。 包括它们将导致`ArgumentException`<!-- -->.
+
+      如果 type 为`ProgressIndicator`<!-- -->，开发人员应在操作完成时删除或替换进度指示器。
     name: type
     fullName: type
     langs:
@@ -85,6 +108,15 @@ items:
         type:
           - 'outlook!Office.NotificationMessageDetails#type~0:complex'
 references:
+  - uid: 'outlook!Office.NotificationMessageDetails#actions~0:complex'
+    name: 'NotificationMessageAction[]'
+    fullName: 'Office.NotificationMessageAction[]'
+    spec.typeScript:
+      - uid: 'outlook!Office.NotificationMessageAction:interface'
+        name: NotificationMessageAction
+        fullName: Office.NotificationMessageAction
+      - name: '[]'
+        fullName: '[]'
   - uid: '!Boolean:interface'
     name: Boolean
   - uid: 'outlook!Office.NotificationMessageDetails#type~0:complex'
