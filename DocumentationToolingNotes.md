@@ -35,7 +35,7 @@ Office JavaScript 参考文档页面由类型定义文件和示例代码段生�
 
 Office JavaScript API 的任何文档更改都可以通过编辑上面提到的四个 d. ts 文件来完成。 但是，可以在向 Jquery.typescript.definitelytyped 提交 PR 之前测试更改（例如，如果需要，请通过在[生成-文档/脚本输入](https://github.com/OfficeDev/office-js-docs-reference/tree/master/generate-docs/script-inputs)和运行[GenerateDocs](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/GenerateDocs.cmd)中编辑相应的文件来测试格式将转换为 markdown 的方式）。 出现提示时，选择 "本地文件" 选项。
 
-将更改推送到此存储库的远程分支会导致 docs.microsoft.com 平台生成测试分支。 此分支在 review.docs.microsoft.com 中呈现，仅供内部 Microsoft 人员访问。 查看你的 PR 的任何人都将检查评审网站的准确性。
+将更改推送到此存储库的远程分支会导致 docs.microsoft.com 平台生成测试分支。 此分支在 review.docs.microsoft.com 上呈现，仅供内部 Microsoft 人员访问。 查看你的 PR 的任何人都将检查评审网站的准确性。
 
 ### <a name="code-snippets"></a>代码段
 
@@ -46,7 +46,7 @@ Office JavaScript API 的任何文档更改都可以通过编辑上面提到的�
 
 本地代码段位于特定于主机的 yaml 文件中。 其内容按类和字段进行组织，以便可以将其映射到参考页中的适当位置。 使用 await 语句可推断代码段（JavaScript 或 TypeScript）的语言。
 
-脚本实验室代码段是从工作示例中提取的。 当前，Excel、Outlook 和 Word 示例通过[映射文件](https://github.com/OfficeDev/office-js-snippets/tree/master/snippet-extractor-metadata)映射到参考文档部分。 这些方法将各个示例方法与 API 中的属性或方法相匹配。 在`yarn start`运行 office js 存储库时，将创建一个包含所有已映射代码段的[yaml 文件](https://github.com/OfficeDev/office-js-snippets/blob/master/snippet-extractor-output/snippets.yaml)。 此 yaml 文件是参考文档工具中的输入。
+脚本实验室代码段是从工作示例中提取的。 当前，Excel、Outlook 和 Word 示例通过[映射文件](https://github.com/OfficeDev/office-js-snippets/tree/master/snippet-extractor-metadata)映射到参考文档部分。 这些方法将各个示例方法与 API 中的属性或方法相匹配。 在运行 office js 存储库时，将 `yarn start` 创建一个包含所有已映射代码段的[yaml 文件](https://github.com/OfficeDev/office-js-snippets/blob/master/snippet-extractor-output/snippets.yaml)。 此 yaml 文件是参考文档工具中的输入。
 
 ## <a name="tooling-pipeline"></a>刀具管道
 

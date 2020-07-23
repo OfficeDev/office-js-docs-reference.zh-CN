@@ -20,11 +20,11 @@
 
 ## <a name="contribute-using-github"></a>通过 GitHub 参与
 
-> **重要说明**: 此存储库中的引用内容将自动生成。 在编辑文件之前, 请阅读[文档工具注释](https://github.com/OfficeDev/office-js-docs-reference/blob/master/DocumentationToolingNotes.md)。
+> **重要说明**：此存储库中的引用内容将自动生成。 在编辑文件之前，请阅读[文档工具注释](https://github.com/OfficeDev/office-js-docs-reference/blob/master/DocumentationToolingNotes.md)。
 
 通过 GitHub 参与此文档无需将报告复制到桌面。这是在存储库中创建拉取请求的最简单的方法。使用此方法进行不涉及代码更改的少量改动。
 
-通过使用此方法, 您可以一次参与一篇文章。
+通过使用此方法，您可以一次参与一篇文章。
 
 ### <a name="to-contribute-using-github"></a>通过 GitHub 参与
 
