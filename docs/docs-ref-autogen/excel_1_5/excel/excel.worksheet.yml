@@ -382,7 +382,7 @@ items:
             - string
   - uid: 'excel!Excel.Worksheet#getUsedRange:member(1)'
     summary: |-
-      使用的区域是包含分配了值或格式化的任何单元格的最小区域。 如果整个工作表为空，则此函数将返回左上角单元格（即，它*不*会引发错误）。
+      使用的区域是包含分配了值或格式化的任何单元格的最小区域。 如果整个工作表为空，则此函数将返回左上角的单元格 (即它将*不*会引发错误) 。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: getUsedRange(valuesOnly)
@@ -418,7 +418,7 @@ items:
           ```
       parameters:
         - id: valuesOnly
-          description: '可选。 如果为 true，则仅考虑值为已使用单元格的单元格（忽略格式设置）。 \[Api 集： ExcelApi 1。2\]'
+          description: '可选。 如果为 true，则仅将包含值的单元格视为已使用的单元格 (忽略格式设置) 。 \[Api 集： ExcelApi 1。2\]'
           type:
             - boolean
   - uid: 'excel!Excel.Worksheet#getUsedRangeOrNullObject:member(1)'
@@ -584,6 +584,26 @@ items:
       return:
         type:
           - 'excel!Excel.PivotTableCollection:class'
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/85-preview-apis/pivottable-get-pivottables.yaml
+          await Excel.run(async (context) => {
+            // Get the names of all the PivotTables in the current worksheet.
+            const pivotTables = context.workbook.worksheets.getActiveWorksheet().pivotTables;
+            pivotTables.load("name");
+            await context.sync();
+
+            // Display the names in the console.
+            console.log("PivotTables in the current worksheet:")
+            pivotTables.items.forEach((pivotTable) => {
+              console.log(`\t${pivotTable.name}`);
+            });
+          });
+          ```
   - uid: 'excel!Excel.Worksheet#position:member'
     summary: |-
       工作表在工作簿中的位置，从零开始。
@@ -730,7 +750,7 @@ items:
         type:
           - 'excel!Excel.TableCollection:class'
   - uid: 'excel!Excel.Worksheet#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始的 Excel 工作表对象是 API 对象，但 `toJSON` 方法返回一个简单的 JavaScript 对象（类型为`Excel.Interfaces.WorksheetData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
+    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始的 Excel 工作表对象是一个 API 对象，则该 `toJSON` 方法返回一个简单的 JavaScript 对象 (键入为`Excel.Interfaces.WorksheetData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
     name: toJSON()
     fullName: toJSON()
     langs:

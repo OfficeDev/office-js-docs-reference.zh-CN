@@ -534,6 +534,26 @@ items:
       return:
         type:
           - 'excel!Excel.PivotTableCollection:class'
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/85-preview-apis/pivottable-get-pivottables.yaml
+          await Excel.run(async (context) => {
+            // Get the names of all the PivotTables in the workbook.
+            const pivotTables = context.workbook.pivotTables;
+            pivotTables.load("name");
+            await context.sync();
+
+            // Display the names in the console.
+            console.log("PivotTables in the workbook:")
+            pivotTables.items.forEach((pivotTable) => {
+              console.log(`\t${pivotTable.name}`);
+            });
+          });
+          ```
   - uid: 'excel!Excel.Workbook#pivotTableStyles:member'
     summary: |-
       表示一组与工作簿相关联的 PivotTableStyles。
@@ -819,7 +839,7 @@ items:
         type:
           - 'excel!Excel.TimelineStyleCollection:class'
   - uid: 'excel!Excel.Workbook#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始的 Excel 工作簿对象是 API 对象，但 `toJSON` 方法返回一个简单的 JavaScript 对象（类型为`Excel.Interfaces.WorkbookData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
+    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始的 Excel 工作簿对象是一个 API 对象，则该 `toJSON` 方法返回一个简单的 JavaScript 对象 (键入为`Excel.Interfaces.WorkbookData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
     name: toJSON()
     fullName: toJSON()
     langs:
