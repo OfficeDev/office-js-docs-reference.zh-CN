@@ -27,20 +27,20 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'addEventHandler(eventType: Office.EventType, handler: Function): void;'
+      content: 'addEventHandler(eventType: Office.EventType, handler: (args: {message: string | boolean} | {error: number}) => void): void;'
       return:
         type:
           - void
         description: ''
       parameters:
         - id: eventType
-          description: ''
+          description: 必须是 DialogMessageReceived 或 DialogEventReceived。
           type:
             - 'office!Office.EventType:enum'
         - id: handler
-          description: ''
+          description: 接受具有属性的对象的函数 `message` （如果 DialogEventReceived 为 DialogMessageReceived）或具有属性的对象 `error` （如果事件选择为）。
           type:
-            - '!Function:interface'
+            - '(args: {message: string | boolean} | {error: number}) => void'
   - uid: 'office!Office.Dialog#close:member(1)'
     summary: 从父页调用以关闭相应的对话框。
     name: close()
@@ -95,5 +95,3 @@ items:
 references:
   - uid: 'office!Office.EventType:enum'
     name: Office.EventType
-  - uid: '!Function:interface'
-    name: Function
