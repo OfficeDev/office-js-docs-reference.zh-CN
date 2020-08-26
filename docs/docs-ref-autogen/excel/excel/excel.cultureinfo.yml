@@ -38,7 +38,7 @@ items:
     summary: |-
       定义适当的区域性格式，以显示日期和时间。 这取决于当前的系统区域性设置。
 
-      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API 集： EXCELAPI BETA (仅预览) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: datetimeFormat
     fullName: datetimeFormat
@@ -50,6 +50,49 @@ items:
       return:
         type:
           - 'excel!Excel.DatetimeFormatInfo:class'
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/85-preview-apis/culture-info-date-time.yaml
+          await Excel.run(async (context) => {
+            context.application.cultureInfo.datetimeFormat.load([
+              "longDatePattern",
+              "shortDatePattern",
+              "dateSeparator",
+              "longTimePattern",
+              "timeSeparator"
+            ]);
+            await context.sync();
+
+            // Use the cultural settings API to retrieve the user's system date and time settings.
+            const systemLongDatePattern = context.application.cultureInfo.datetimeFormat.longDatePattern;
+            const systemShortDatePattern = context.application.cultureInfo.datetimeFormat.shortDatePattern;
+            const systemDateSeparator = context.application.cultureInfo.datetimeFormat.dateSeparator;
+            const systemLongTimePattern = context.application.cultureInfo.datetimeFormat.longTimePattern;
+            const systemTimeSeparator = context.application.cultureInfo.datetimeFormat.timeSeparator;
+
+            // Write the date and time settings in your table. 
+            const sheet = context.workbook.worksheets.getActiveWorksheet();
+            const dateTimeData = sheet.getRange("A2:B6");
+            dateTimeData.values = [
+              ["Long date", systemLongDatePattern], 
+              ["Short date", systemShortDatePattern], 
+              ["Date separator", systemDateSeparator], 
+              ["Long time format", systemLongTimePattern],
+              ["Time separator", systemTimeSeparator]
+            ];
+
+            sheet.tables
+              .getItemAt(0)
+              .getRange()
+              .format.autofitColumns();
+
+            await context.sync();
+          });
+          ```
   - uid: 'excel!Excel.CultureInfo#load:member(1)'
     summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
     name: load(options)
@@ -105,7 +148,7 @@ items:
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+          description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
           type:
             - |-
               {
@@ -114,7 +157,7 @@ items:
                       }
   - uid: 'excel!Excel.CultureInfo#name:member'
     summary: |-
-      以 languagecode2/regioncode2 格式获取区域性名称（例如，"zh-tw-cn" 或 "en-us"）。 这取决于当前的系统设置。
+      以 languagecode2/regioncode2 (格式获取区域性名称，例如 "zh-tw-cn" or "en-us" ) 。 这取决于当前的系统设置。
 
       \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: name
@@ -143,7 +186,7 @@ items:
         type:
           - 'excel!Excel.NumberFormatInfo:class'
   - uid: 'excel!Excel.CultureInfo#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。原始的 Excel CultureInfo 对象是一个 API 对象，但该 `toJSON` 方法返回一个简单的 JavaScript 对象（类型为`Excel.Interfaces.CultureInfoData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
+    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，将调用 `toJSON` 传递给它的对象的方法。 ) 而原始的 Excel CultureInfo 对象是一个 API 对象，则该 `toJSON` 方法返回一个简单的 JavaScript 对象 (键入为 `Excel.Interfaces.CultureInfoData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
     name: toJSON()
     fullName: toJSON()
     langs:
