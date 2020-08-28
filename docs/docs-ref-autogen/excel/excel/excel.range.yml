@@ -730,7 +730,7 @@ items:
           - 'excel!Excel.RangeFormat:class'
   - uid: 'excel!Excel.Range#formulas:member'
     summary: |-
-      表示采用 A1 表示法的公式。
+      表示采用 A1 表示法的公式。 如果单元格没有公式，则改为返回它的值。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: formulas
@@ -745,7 +745,7 @@ items:
           - 'any[][]'
   - uid: 'excel!Excel.Range#formulasLocal:member'
     summary: |-
-      表示采用 A1 表示法的公式，使用用户语言和数字格式区域设置。例如，英语中的公式 "=SUM(A1, 1.5)" 在德语中变为 "=SUMME(A1; 1,5)"。
+      表示采用 A1 样式表示法的公式，使用用户的语言和数字格式区域设置。 例如，英语中的公式 "=SUM(A1, 1.5)" 在德语中将变为 "=SUMME(A1; 1,5)"。 如果单元格没有公式，则改为返回它的值。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: formulasLocal
@@ -760,7 +760,7 @@ items:
           - 'any[][]'
   - uid: 'excel!Excel.Range#formulasR1C1:member'
     summary: |-
-      表示采用 R1C1 样式表示法的公式。
+      表示采用 R1C1 样式表示法的公式。 如果单元格没有公式，则改为返回它的值。
 
       \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: formulasR1C1
@@ -1068,18 +1068,18 @@ items:
           await Excel.run(async (context) => {
             // Precedents are cells referenced by the formula in a cell.
             let range = context.workbook.getActiveCell();
-            let directPredecents = range.getDirectPrecedents();
+            let directPrecedents = range.getDirectPrecedents();
             range.load("address");
-            directPredecents.areas.load("address");
+            directPrecedents.areas.load("address");
             await context.sync();
 
             console.log(`Direct precedent cells of ${range.address}:`);
 
             // Use the direct precedents API to loop through precedents of the active cell. 
-            for (var i = 0; i < directPredecents.areas.items.length; i++) {
+            for (var i = 0; i < directPrecedents.areas.items.length; i++) {
               // Highlight and console the address of each precedent cell.
-              directPredecents.areas.items[i].format.fill.color = "Yellow";
-              console.log(`  ${directPredecents.areas.items[i].address}`);
+              directPrecedents.areas.items[i].format.fill.color = "Yellow";
+              console.log(`  ${directPrecedents.areas.items[i].address}`);
             }
             await context.sync();
           });
