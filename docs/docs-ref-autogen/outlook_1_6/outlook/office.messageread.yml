@@ -4,13 +4,13 @@ items:
     summary: |-
       Office 的邮件读取模式： "[邮箱](xref:outlook!Office.Item:interface)"。<!-- -->.
 
-      **重要说明**：这是一个内部 Outlook 对象，而不是直接通过现有接口公开。 应将此视为的模式`Office.context.mailbox.item`<!-- -->. 有关详细信息，请参阅[对象模型](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.6/office.context.mailbox.item)页。
+      **重要说明**：这是一个内部 Outlook 对象，而不是直接通过现有接口公开。 应将此视为的模式 `Office.context.mailbox.item`<!-- -->. 有关详细信息，请参阅 [对象模型](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.6/office.context.mailbox.item) 页。
 
       父接口：
 
       - [ItemRead](xref:outlook!Office.ItemRead:interface)
 
-      - [消息](xref:outlook!Office.Message:interface)
+      - [邮件](xref:outlook!Office.Message:interface)
     name: Office.MessageRead
     fullName: Office.MessageRead
     langs:
@@ -57,7 +57,7 @@ items:
 
       **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件已阅读
 
-      **注意**：由于潜在的安全问题，Outlook 阻止了某些类型的文件，因此不会返回这些文件。 有关详细信息，请参阅[Outlook 中阻止的附件](https://support.office.com/article/Blocked-attachments-in-Outlook-434752E1-02D3-4E90-9124-8B81E49A8519)<!-- -->.
+      **注意**：由于潜在的安全问题，Outlook 阻止了某些类型的文件，因此不会返回这些文件。 有关详细信息，请参阅 [Outlook 中阻止的附件](https://support.office.com/article/Blocked-attachments-in-Outlook-434752E1-02D3-4E90-9124-8B81E49A8519)<!-- -->.
 
       #### <a name="examples"></a>示例
 
@@ -341,7 +341,7 @@ items:
         description: ''
       parameters:
         - id: formData
-          description: '一个包含文本和 HTML 且表示答复窗体的正文的字符串。 该字符串限制为 32 KB 或包含 body 或附件数据以及回调函数的[ReplyFormData](xref:outlook!Office.ReplyFormData:interface)对象。'
+          description: '一个包含文本和 HTML 且表示答复窗体的正文的字符串。 该字符串限制为 32 KB 或包含 body 或附件数据以及回调函数的 [ReplyFormData](xref:outlook!Office.ReplyFormData:interface) 对象。'
           type:
             - 'outlook!Office.MessageRead#displayReplyAllForm~0:complex'
   - uid: 'outlook!Office.MessageRead#displayReplyForm:member(1)'
@@ -460,14 +460,14 @@ items:
         description: ''
       parameters:
         - id: formData
-          description: '一个包含文本和 HTML 且表示答复窗体的正文的字符串。 该字符串限制为 32 KB 或包含 body 或附件数据以及回调函数的[ReplyFormData](xref:outlook!Office.ReplyFormData:interface)对象。'
+          description: '一个包含文本和 HTML 且表示答复窗体的正文的字符串。 该字符串限制为 32 KB 或包含 body 或附件数据以及回调函数的 [ReplyFormData](xref:outlook!Office.ReplyFormData:interface) 对象。'
           type:
             - 'outlook!Office.MessageRead#displayReplyForm~0:complex'
   - uid: 'outlook!Office.MessageRead#end:member'
     summary: |-
       获取约会结束的日期和时间。
 
-      `end`属性是 `Date` 表示为协调世界时（UTC）日期和时间值的对象。 可以使用 `convertToLocalClientTime` 方法将 `end` 属性值转换为客户端的本地日期和时间。
+      `end`属性是 `Date` 表示为协调通用时间 (UTC) 日期和时间值的对象。 可以使用 `convertToLocalClientTime` 方法将 `end` 属性值转换为客户端的本地日期和时间。
 
       使用 `Time.setAsync` 方法设置结束时间时，应使用 `convertToUtcClientTime` 方法将客户端的本地时间转换为服务器的 UTC。
     remarks: |-
@@ -615,15 +615,15 @@ items:
       return:
         type:
           - 'outlook!Office.MessageRead#getEntitiesByType~0:complex'
-        description: 如果传入的值 `entityType` 不是枚举的有效成员 `EntityType` ，则该方法返回`null`<!-- -->. 如果指定类型的任何实体都不存在于该项目的正文中，该方法将返回空数组。 否则，返回的数组中对象的类型取决于 `entityType` 参数中请求实体的类型。
+        description: 如果传入的值 `entityType` 不是枚举的有效成员 `EntityType` ，则该方法返回 `null`<!-- -->. 如果指定类型的任何实体都不存在于该项目的正文中，该方法将返回空数组。 否则，返回的数组中对象的类型取决于 `entityType` 参数中请求实体的类型。
       parameters:
         - id: entityType
           description: |-
             `EntityType`枚举值之一。
 
-            使用此方法的最小权限级别是`Restricted`<!-- -->，需要访问一些实体类型 `ReadItem` ，如下表所示。
+            使用此方法的最小权限级别是 `Restricted`<!-- -->，需要访问一些实体类型 `ReadItem` ，如下表所示。
 
-            <table> <tr> <th>EntityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需权限级别</th> </tr> <tr> <td>地址</td> <td>字符串</td> <td>受限</td> </tr> <tr> <td>Contact</td> <td>Contact</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>字符串</td> <td>受限</td> </tr> </table>
+            <table> <tr> <th>EntityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需权限级别</th> </tr> <tr> <td>地址</td> <td>String</td> <td>受限</td> </tr> <tr> <td>Contact</td> <td>Contact</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>String</td> <td>受限</td> </tr> </table>
           type:
             - 'outlook!Office.MessageRead#getEntitiesByType~1:complex'
   - uid: 'outlook!Office.MessageRead#getFilteredEntitiesByName:member(1)'
@@ -655,7 +655,7 @@ items:
       return:
         type:
           - 'outlook!Office.MessageRead#getFilteredEntitiesByName~0:complex'
-        description: 如果 `ItemHasKnownEntity` 清单中没有元素的 `FilterName` 元素值与参数相匹配 `name` ，则该方法返回`null`<!-- -->. 如果 `name` 参数匹配清单中的 `ItemHasKnownEntity` 元素，但在匹配的当前项目中没有实体，则该方法返回一个空数组。
+        description: 如果 `ItemHasKnownEntity` 清单中没有元素的 `FilterName` 元素值与参数相匹配 `name` ，则该方法返回 `null`<!-- -->. 如果 `name` 参数匹配清单中的 `ItemHasKnownEntity` 元素，但在匹配的当前项目中没有实体，则该方法返回一个空数组。
       parameters:
         - id: name
           description: 定义筛选器匹配的 `ItemHasKnownEntity` 规则元素的名称。
@@ -904,7 +904,10 @@ items:
           - any
         description: 一个包含匹配在清单 XML 文件中定义的正则表达式的字符串数组的对象。每个数组的名称等于匹配 `ItemHasRegularExpressionMatch` 规则的 `RegExName` 属性或匹配 `ItemHasKnownEntity` 规则的 `FilterName` 属性的相应值。
   - uid: 'outlook!Office.MessageRead#internetMessageId:member'
-    summary: 获取电子邮件的 internet 邮件标识符。
+    summary: |-
+      获取电子邮件的 internet 邮件标识符。
+
+      **重要说明**：在 " **已发送邮件** " 文件夹中， `internetMessageId` 可能尚未提供 "最近发送的邮件"。 在这种情况下，请考虑使用[Exchange Web 服务](https://docs.microsoft.com/office/dev/add-ins/outlook/web-services)[从服务器](https://docs.microsoft.com/exchange/client-developer/web-service-reference/internetmessageid)获取此属性<!-- -->.
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
 
@@ -930,7 +933,7 @@ items:
     summary: |-
       获取选定项目的 Exchange Web 服务项目类。
 
-      您可以创建扩展默认邮件类别的自定义邮件类别，例如，自定义约会邮件类别`IPM.Appointment.Contoso`<!-- -->.
+      您可以创建扩展默认邮件类别的自定义邮件类别，例如，自定义约会邮件类别 `IPM.Appointment.Contoso`<!-- -->.
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
 
@@ -938,7 +941,7 @@ items:
 
       `itemClass` 属性指定所选项目的邮件类别。以下是邮件或约会项目的默认邮件类别。
 
-      <table> <tr> <th>类型</th> <th>说明</th> <th>Item 类</th> </tr> <tr> <td>约会项目</td> <td>这些是项目类 IPM 的日历项目。约会或 IPM。约会。</td> <td>IPM.NOTE.约会、IPM。约会事件</td> </tr> <tr> <td>邮件项目</td> <td>其中包括具有默认邮件类别 IPM 的电子邮件。注意，以及使用 IPM 的会议请求、响应和取消。Schedule：作为基本邮件类的会议。</td> <td>IPM.NOTE.请注意，IPM。Schedule （会议）请求，IPM。Schedule. Neg、IPM。Schedule、IPM、IPM。日程安排：会议，IPM。日程安排. 会议. 已取消</td> </tr> </table>
+      <table> <tr> <th>类型</th> <th>Description</th> <th>Item 类</th> </tr> <tr> <td>约会项目</td> <td>这些是项目类 IPM 的日历项目。约会或 IPM。约会。</td> <td>IPM.NOTE.约会、IPM。约会事件</td> </tr> <tr> <td>邮件项目</td> <td>其中包括具有默认邮件类别 IPM 的电子邮件。注意，以及使用 IPM 的会议请求、响应和取消。Schedule：作为基本邮件类的会议。</td> <td>IPM.NOTE.请注意，IPM。Schedule （会议）请求，IPM。Schedule. Neg、IPM。Schedule、IPM、IPM。日程安排：会议，IPM。日程安排. 会议. 已取消</td> </tr> </table>
 
       #### <a name="examples"></a>示例
 
@@ -958,11 +961,11 @@ items:
           - string
   - uid: 'outlook!Office.MessageRead#itemId:member'
     summary: |-
-      获取当前项的[Exchange Web 服务项标识符](https://docs.microsoft.com/exchange/client-developer/exchange-web-services/ews-identifiers-in-exchange)。
+      获取当前项的 [Exchange Web 服务项标识符](https://docs.microsoft.com/exchange/client-developer/exchange-web-services/ews-identifiers-in-exchange) 。
 
       `itemId` 属性在撰写模式下不可用。 如果需要项目标识符，`saveAsync` 方法可用于将项目保存到存储，这将在回调函数的 `asyncResult.value` 参数中返回项目标识符。
 
-      **注意**：属性返回的标识符与 `itemId` [Exchange Web 服务项目标识符](https://docs.microsoft.com/exchange/client-developer/exchange-web-services/ews-identifiers-in-exchange)相同。<!-- -->. `itemId` 属性与 Outlook 条目 ID 或 Outlook REST API 使用的 ID 不同。 使用此值进行 REST API 调用之前，应使用此值进行转换`Office.context.mailbox.convertToRestId`<!-- -->. 有关更多详细信息，请参阅[使用 outlook 外接程序中的 OUTLOOK REST api](https://docs.microsoft.com/office/dev/add-ins/outlook/use-rest-api#get-the-item-id)<!-- -->.
+      **注意**：属性返回的标识符与 `itemId` [Exchange Web 服务项目标识符](https://docs.microsoft.com/exchange/client-developer/exchange-web-services/ews-identifiers-in-exchange)相同。<!-- -->. `itemId` 属性与 Outlook 条目 ID 或 Outlook REST API 使用的 ID 不同。 使用此值进行 REST API 调用之前，应使用此值进行转换 `Office.context.mailbox.convertToRestId`<!-- -->. 有关更多详细信息，请参阅 [使用 outlook 外接程序中的 OUTLOOK REST api](https://docs.microsoft.com/office/dev/add-ins/outlook/use-rest-api#get-the-item-id)<!-- -->.
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
 
@@ -1094,7 +1097,7 @@ items:
         description: ''
       parameters:
         - id: callback
-          description: 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数`Office.AsyncResult`<!-- -->.
+          description: 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
           type:
             - 'outlook!Office.MessageRead#loadCustomPropertiesAsync~0:complex'
         - id: userContext
@@ -1129,9 +1132,9 @@ items:
           - string
   - uid: 'outlook!Office.MessageRead#normalizedSubject:member'
     summary: |-
-      获取项目的主题，删除所有前缀（包括 RE：和 FWD：）。
+      获取项目的主题，其中删除了所有前缀 (包括 RE：和 FWD： ) 。
 
-      `normalizedSubject`属性获取项目的主题，其中包含任何标准前缀（如 RE：和 FW：）由电子邮件程序添加的。 若要获取包含完整前缀的项目主题，请使用 `subject` 属性。
+      `normalizedSubject`属性获取项目的主题，其中包含由电子邮件程序添加的任何标准前缀 (例如 RE：和 FW： ) 。 若要获取包含完整前缀的项目主题，请使用 `subject` 属性。
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
 
@@ -1264,7 +1267,7 @@ items:
     summary: |-
       获取约会开始的日期和时间。
 
-      `start`属性是 `Date` 表示为协调世界时（UTC）日期和时间值的对象。 可以使用 `convertToLocalClientTime` 方法将值转换为客户端的本地日期和时间。
+      `start`属性是 `Date` 表示为协调通用时间 (UTC) 日期和时间值的对象。 可以使用 `convertToLocalClientTime` 方法将值转换为客户端的本地日期和时间。
     remarks: |-
       **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
 
