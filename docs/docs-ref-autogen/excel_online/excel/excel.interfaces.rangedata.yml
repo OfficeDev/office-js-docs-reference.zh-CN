@@ -1,7 +1,7 @@
 ### YamlMime:UniversalReference
 items:
   - uid: 'excel!Excel.Interfaces.RangeData:interface'
-    summary: 描述通过调用返回的数据的接口`range.toJSON()`<!-- -->.
+    summary: 描述通过调用返回的数据的接口 `range.toJSON()`<!-- -->.
     name: Excel.Interfaces.RangeData
     fullName: Excel.Interfaces.RangeData
     langs:
@@ -21,6 +21,7 @@ items:
       - 'excel!Excel.Interfaces.RangeData#formulas:member'
       - 'excel!Excel.Interfaces.RangeData#formulasLocal:member'
       - 'excel!Excel.Interfaces.RangeData#formulasR1C1:member'
+      - 'excel!Excel.Interfaces.RangeData#hasSpill:member'
       - 'excel!Excel.Interfaces.RangeData#height:member'
       - 'excel!Excel.Interfaces.RangeData#hidden:member'
       - 'excel!Excel.Interfaces.RangeData#hyperlink:member'
@@ -29,10 +30,12 @@ items:
       - 'excel!Excel.Interfaces.RangeData#left:member'
       - 'excel!Excel.Interfaces.RangeData#linkedDataTypeState:member'
       - 'excel!Excel.Interfaces.RangeData#numberFormat:member'
+      - 'excel!Excel.Interfaces.RangeData#numberFormatCategories:member'
       - 'excel!Excel.Interfaces.RangeData#numberFormatLocal:member'
       - 'excel!Excel.Interfaces.RangeData#rowCount:member'
       - 'excel!Excel.Interfaces.RangeData#rowHidden:member'
       - 'excel!Excel.Interfaces.RangeData#rowIndex:member'
+      - 'excel!Excel.Interfaces.RangeData#savedAsArray:member'
       - 'excel!Excel.Interfaces.RangeData#style:member'
       - 'excel!Excel.Interfaces.RangeData#text:member'
       - 'excel!Excel.Interfaces.RangeData#top:member'
@@ -41,7 +44,7 @@ items:
       - 'excel!Excel.Interfaces.RangeData#width:member'
   - uid: 'excel!Excel.Interfaces.RangeData#address:member'
     summary: |-
-      指定 A1 样式中的区域引用。 Address 值将包含工作表引用（例如，"Sheet1！A1： B4 "）。
+      指定 A1 样式中的区域引用。 Address 值将包含工作表引用 (例如，"Sheet1！A1： B4 ") 。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: address
@@ -219,6 +222,21 @@ items:
       return:
         type:
           - 'any[][]'
+  - uid: 'excel!Excel.Interfaces.RangeData#hasSpill:member'
+    summary: |-
+      表示所有单元格是否都具有溢出边框。 如果所有单元格都有溢出边框，则返回 true; 如果所有单元格都没有溢出边框，则返回 false。 如果区域中有和没有溢出边框的单元格，则返回 null。
+
+      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: hasSpill
+    fullName: hasSpill
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'hasSpill?: boolean;'
+      return:
+        type:
+          - boolean
   - uid: 'excel!Excel.Interfaces.RangeData#height:member'
     summary: |-
       返回从区域的上边缘到区域的下边缘的 100％ 缩放的距离（以磅为单位）。
@@ -339,6 +357,21 @@ items:
       return:
         type:
           - 'any[][]'
+  - uid: 'excel!Excel.Interfaces.RangeData#numberFormatCategories:member'
+    summary: |-
+      表示每个单元格的数字格式的类别。
+
+      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: numberFormatCategories
+    fullName: numberFormatCategories
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'numberFormatCategories?: Excel.NumberFormatCategory[][];'
+      return:
+        type:
+          - 'excel!Excel.Interfaces.RangeData#numberFormatCategories~0:complex'
   - uid: 'excel!Excel.Interfaces.RangeData#numberFormatLocal:member'
     summary: |-
       根据用户的语言设置，表示给定范围的 Excel 数字格式代码。 在获取或设置属性时，Excel 不会执行任何语言或格式强制 `numberFormatLocal` 。 任何返回的文本将根据系统设置中指定的语言使用本地格式化的字符串。
@@ -399,6 +432,21 @@ items:
       return:
         type:
           - number
+  - uid: 'excel!Excel.Interfaces.RangeData#savedAsArray:member'
+    summary: |-
+      表示是否将所有单元格都保存为数组公式。 如果所有单元格都将保存为数组公式，则返回 true; 如果不将所有单元格保存为数组公式，则返回 false。 如果某些单元格将另存为数组公式，则返回 null，而某些单元格则不是。
+
+      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: savedAsArray
+    fullName: savedAsArray
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'savedAsArray?: boolean;'
+      return:
+        type:
+          - boolean
   - uid: 'excel!Excel.Interfaces.RangeData#style:member'
     summary: |-
       表示当前区域的样式。 如果单元格的样式不一致，则将返回 null。 对于自定义样式，将返回样式名称。 对于内置样式，将返回一个表示 BuiltInStyle 枚举中的值的字符串。
@@ -512,6 +560,15 @@ references:
       - uid: 'excel!Excel.LinkedDataTypeState:enum'
         name: Excel.LinkedDataTypeState
         fullName: Excel.LinkedDataTypeState
+      - name: '[][]'
+        fullName: '[][]'
+  - uid: 'excel!Excel.Interfaces.RangeData#numberFormatCategories~0:complex'
+    name: 'Excel.NumberFormatCategory[][]'
+    fullName: 'Excel.NumberFormatCategory[][]'
+    spec.typeScript:
+      - uid: 'excel!Excel.NumberFormatCategory:enum'
+        name: Excel.NumberFormatCategory
+        fullName: Excel.NumberFormatCategory
       - name: '[][]'
         fullName: '[][]'
   - uid: 'excel!Excel.Interfaces.RangeData#valueTypes~0:complex'
