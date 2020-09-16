@@ -14,8 +14,15 @@ items:
       - 'office!OfficeExtension.ClientObject:class'
     package: excel!
     children:
+      - 'excel!Excel.PivotField#applyFilter:member(1)'
+      - 'excel!Excel.PivotField#clearAllFilters:member(1)'
+      - 'excel!Excel.PivotField#clearFilter:member(1)'
+      - 'excel!Excel.PivotField#clearFilter:member(2)'
       - 'excel!Excel.PivotField#context:member'
+      - 'excel!Excel.PivotField#getFilters:member(1)'
       - 'excel!Excel.PivotField#id:member'
+      - 'excel!Excel.PivotField#isFiltered:member(1)'
+      - 'excel!Excel.PivotField#isFiltered:member(2)'
       - 'excel!Excel.PivotField#items:member'
       - 'excel!Excel.PivotField#load:member(1)'
       - 'excel!Excel.PivotField#load:member(2)'
@@ -29,6 +36,85 @@ items:
       - 'excel!Excel.PivotField#sortByValues:member(2)'
       - 'excel!Excel.PivotField#subtotals:member'
       - 'excel!Excel.PivotField#toJSON:member(1)'
+  - uid: 'excel!Excel.PivotField#applyFilter:member(1)'
+    summary: |-
+      设置一个或多个字段的当前 PivotFilters，并将其应用于字段。 如果提供的筛选器无效或无法应用，则会引发异常。
+
+      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: applyFilter(filter)
+    fullName: applyFilter(filter)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'applyFilter(filter: Excel.PivotFilters): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: filter
+          description: 配置的特定 PivotFilter 或包含多个配置的筛选器的 PivotFilters 接口。
+          type:
+            - 'excel!Excel.PivotFilters:interface'
+  - uid: 'excel!Excel.PivotField#clearAllFilters:member(1)'
+    summary: |-
+      从字段的所有筛选器中清除所有条件。 这将删除对字段的任何活动筛选。
+
+      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: clearAllFilters()
+    fullName: clearAllFilters()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clearAllFilters(): void;'
+      return:
+        type:
+          - void
+        description: ''
+  - uid: 'excel!Excel.PivotField#clearFilter:member(1)'
+    summary: |-
+      清除给定类型的字段筛选器中的所有现有条件 (如果当前已将其应用) 。
+
+      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: clearFilter(filterType)
+    fullName: clearFilter(filterType)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clearFilter(filterType: Excel.PivotFilterType): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: filterType
+          description: 要清除其所有条件的字段的筛选器类型。
+          type:
+            - 'excel!Excel.PivotFilterType:enum'
+  - uid: 'excel!Excel.PivotField#clearFilter:member(2)'
+    summary: |-
+      清除给定类型的字段筛选器中的所有现有条件 (如果当前已将其应用) 。
+
+      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: clearFilter(filterTypeString)
+    fullName: clearFilter(filterTypeString)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clearFilter(filterTypeString: "Unknown" | "Value" | "Manual" | "Label" | "Date"): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: filterTypeString
+          description: 要清除其所有条件的字段的筛选器类型。
+          type:
+            - '"Unknown" | "Value" | "Manual" | "Label" | "Date"'
   - uid: 'excel!Excel.PivotField#context:member'
     summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
     name: context
@@ -41,6 +127,22 @@ items:
       return:
         type:
           - 'excel!Excel.RequestContext:class'
+  - uid: 'excel!Excel.PivotField#getFilters:member(1)'
+    summary: |-
+      获取当前应用于字段的所有筛选器。
+
+      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getFilters()
+    fullName: getFilters()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getFilters(): OfficeExtension.ClientResult<Excel.PivotFilters>;'
+      return:
+        type:
+          - 'excel!Excel.PivotField#getFilters~0:complex'
+        description: 包含所有活动筛选器的 PivotFilters 接口。
   - uid: 'excel!Excel.PivotField#id:member'
     summary: |-
       PivotField 的 ID。
@@ -56,6 +158,48 @@ items:
       return:
         type:
           - string
+  - uid: 'excel!Excel.PivotField#isFiltered:member(1)'
+    summary: |-
+      检查字段上是否有任何已应用的筛选器。
+
+      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: isFiltered(filterType)
+    fullName: isFiltered(filterType)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'isFiltered(filterType?: Excel.PivotFilterType): OfficeExtension.ClientResult<boolean>;'
+      return:
+        type:
+          - 'excel!Excel.PivotField#isFiltered~0:complex'
+        description: 如果字段具有已应用类型的筛选器，则为 True `filterType` 。 如果未指定 filterType，则返回 true （如果该字段包含任何已应用的筛选器）。
+      parameters:
+        - id: filterType
+          description: 要检查的筛选器类型。 如果未提供任何类型，此方法将检查是否应用了任何筛选器。
+          type:
+            - 'excel!Excel.PivotFilterType:enum'
+  - uid: 'excel!Excel.PivotField#isFiltered:member(2)'
+    summary: |-
+      检查字段上是否有任何已应用的筛选器。
+
+      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: isFiltered(filterTypeString)
+    fullName: isFiltered(filterTypeString)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'isFiltered(filterTypeString?: "Unknown" | "Value" | "Manual" | "Label" | "Date"): OfficeExtension.ClientResult<boolean>;'
+      return:
+        type:
+          - 'excel!Excel.PivotField#isFiltered~1:complex'
+        description: 如果字段具有已应用类型的筛选器，则为 True `filterType` 。 如果未指定 filterType，则返回 true （如果该字段包含任何已应用的筛选器）。
+      parameters:
+        - id: filterTypeString
+          description: 要检查的筛选器类型。 如果未提供任何类型，此方法将检查是否应用了任何筛选器。
+          type:
+            - '"Unknown" | "Value" | "Manual" | "Label" | "Date"'
   - uid: 'excel!Excel.PivotField#items:member'
     summary: |-
       返回与 PivotField 相关联的 PivotFields。
@@ -126,7 +270,7 @@ items:
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+          description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
           type:
             - |-
               {
@@ -302,7 +446,7 @@ items:
         type:
           - 'excel!Excel.Subtotals:interface'
   - uid: 'excel!Excel.PivotField#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始的 Excel. 透视字段对象是 API 对象，但 `toJSON` 方法返回一个简单的 JavaScript 对象（类型为`Excel.Interfaces.PivotFieldData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
+    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始的 Excel. 透视字段对象是 API 对象，则该 `toJSON` 方法返回一个简单的 JavaScript 对象 (类型化为 `Excel.Interfaces.PivotFieldData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
     name: toJSON()
     fullName: toJSON()
     langs:
@@ -317,8 +461,44 @@ items:
 references:
   - uid: 'office!OfficeExtension.ClientObject:class'
     name: OfficeExtension.ClientObject
+  - uid: 'excel!Excel.PivotFilters:interface'
+    name: Excel.PivotFilters
+  - uid: 'excel!Excel.PivotFilterType:enum'
+    name: Excel.PivotFilterType
   - uid: 'excel!Excel.RequestContext:class'
     name: RequestContext
+  - uid: 'excel!Excel.PivotField#getFilters~0:complex'
+    name: OfficeExtension.ClientResult<Excel.PivotFilters>
+    fullName: OfficeExtension.ClientResult<Excel.PivotFilters>
+    spec.typeScript:
+      - uid: 'office!OfficeExtension.ClientResult:class'
+        name: OfficeExtension.ClientResult
+        fullName: OfficeExtension.ClientResult
+      - name: <
+        fullName: <
+      - uid: 'excel!Excel.PivotFilters:interface'
+        name: Excel.PivotFilters
+        fullName: Excel.PivotFilters
+      - name: '>'
+        fullName: '>'
+  - uid: 'excel!Excel.PivotField#isFiltered~0:complex'
+    name: OfficeExtension.ClientResult<boolean>
+    fullName: OfficeExtension.ClientResult<boolean>
+    spec.typeScript:
+      - uid: 'office!OfficeExtension.ClientResult:class'
+        name: OfficeExtension.ClientResult
+        fullName: OfficeExtension.ClientResult
+      - name: <boolean>
+        fullName: <boolean>
+  - uid: 'excel!Excel.PivotField#isFiltered~1:complex'
+    name: OfficeExtension.ClientResult<boolean>
+    fullName: OfficeExtension.ClientResult<boolean>
+    spec.typeScript:
+      - uid: 'office!OfficeExtension.ClientResult:class'
+        name: OfficeExtension.ClientResult
+        fullName: OfficeExtension.ClientResult
+      - name: <boolean>
+        fullName: <boolean>
   - uid: 'excel!Excel.PivotItemCollection:class'
     name: Excel.PivotItemCollection
   - uid: 'excel!Excel.PivotField:class'
