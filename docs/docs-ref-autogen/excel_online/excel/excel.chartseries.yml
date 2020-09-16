@@ -28,6 +28,8 @@ items:
       - 'excel!Excel.ChartSeries#firstSliceAngle:member'
       - 'excel!Excel.ChartSeries#format:member'
       - 'excel!Excel.ChartSeries#gapWidth:member'
+      - 'excel!Excel.ChartSeries#getDimensionValues:member(1)'
+      - 'excel!Excel.ChartSeries#getDimensionValues:member(2)'
       - 'excel!Excel.ChartSeries#gradientMaximumColor:member'
       - 'excel!Excel.ChartSeries#gradientMaximumType:member'
       - 'excel!Excel.ChartSeries#gradientMaximumValue:member'
@@ -258,7 +260,7 @@ items:
           - boolean
   - uid: 'excel!Excel.ChartSeries#firstSliceAngle:member'
     summary: |-
-      指定第一个饼图或圆环图的扇区的角度（以度为单位（从垂直方向顺时针方向）。 只适用于饼图、三维饼图和圆环图。 可以是 0 到 360 之间的值。
+      指定第一个饼图或圆环图的扇区的角度，以度为单位从垂直) 顺时针 (。 只适用于饼图、三维饼图和圆环图。 可以是 0 到 360 之间的值。
 
       \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: firstSliceAngle
@@ -301,6 +303,48 @@ items:
       return:
         type:
           - number
+  - uid: 'excel!Excel.ChartSeries#getDimensionValues:member(1)'
+    summary: |-
+      从图表系列的单个维中获取值。 这些值可以是类别值，也可以是数据值，具体取决于指定的维度和为图表系列映射数据的方式。
+
+      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getDimensionValues(dimension)
+    fullName: getDimensionValues(dimension)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getDimensionValues(dimension: Excel.ChartSeriesDimension): OfficeExtension.ClientResult<string[]>;'
+      return:
+        type:
+          - 'excel!Excel.ChartSeries#getDimensionValues~0:complex'
+        description: ''
+      parameters:
+        - id: dimension
+          description: 数据从其开始的轴的维度
+          type:
+            - 'excel!Excel.ChartSeriesDimension:enum'
+  - uid: 'excel!Excel.ChartSeries#getDimensionValues:member(2)'
+    summary: |-
+      从图表系列的单个维中获取值。 这些值可以是类别值，也可以是数据值，具体取决于指定的维度和为图表系列映射数据的方式。
+
+      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getDimensionValues(dimensionString)
+    fullName: getDimensionValues(dimensionString)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getDimensionValues(dimensionString: "Categories" | "Values" | "XValues" | "YValues" | "BubbleSizes"): OfficeExtension.ClientResult<string[]>;'
+      return:
+        type:
+          - 'excel!Excel.ChartSeries#getDimensionValues~1:complex'
+        description: ''
+      parameters:
+        - id: dimensionString
+          description: 数据从其开始的轴的维度
+          type:
+            - '"Categories" | "Values" | "XValues" | "YValues" | "BubbleSizes"'
   - uid: 'excel!Excel.ChartSeries#gradientMaximumColor:member'
     summary: |-
       指定区域地图图表系列的最大值的颜色。
@@ -570,7 +614,7 @@ items:
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+          description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
           type:
             - |-
               {
@@ -794,7 +838,7 @@ items:
           ```
   - uid: 'excel!Excel.ChartSeries#name:member'
     summary: |-
-      指定图表中系列的名称。
+      指定图表中系列的名称。 名称的长度不应超过255个字符。
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: name
@@ -1101,7 +1145,7 @@ items:
         type:
           - number
   - uid: 'excel!Excel.ChartSeries#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始 ChartSeries 对象是 API 对象，但 `toJSON` 方法返回一个无格式的 JavaScript 对象（类型为`Excel.Interfaces.ChartSeriesData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
+    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始 ChartSeries 对象是 API 对象，则该 `toJSON` 方法返回一个 (类型为的纯 JavaScript 对象。 `Excel.Interfaces.ChartSeriesData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
     name: toJSON()
     fullName: toJSON()
     langs:
@@ -1204,6 +1248,26 @@ references:
     name: Excel.ChartDataLabels
   - uid: 'excel!Excel.ChartSeriesFormat:class'
     name: Excel.ChartSeriesFormat
+  - uid: 'excel!Excel.ChartSeries#getDimensionValues~0:complex'
+    name: 'OfficeExtension.ClientResult<string[]>'
+    fullName: 'OfficeExtension.ClientResult<string[]>'
+    spec.typeScript:
+      - uid: 'office!OfficeExtension.ClientResult:class'
+        name: OfficeExtension.ClientResult
+        fullName: OfficeExtension.ClientResult
+      - name: '<string[]>'
+        fullName: '<string[]>'
+  - uid: 'excel!Excel.ChartSeriesDimension:enum'
+    name: Excel.ChartSeriesDimension
+  - uid: 'excel!Excel.ChartSeries#getDimensionValues~1:complex'
+    name: 'OfficeExtension.ClientResult<string[]>'
+    fullName: 'OfficeExtension.ClientResult<string[]>'
+    spec.typeScript:
+      - uid: 'office!OfficeExtension.ClientResult:class'
+        name: OfficeExtension.ClientResult
+        fullName: OfficeExtension.ClientResult
+      - name: '<string[]>'
+        fullName: '<string[]>'
   - uid: 'excel!Excel.ChartSeries#gradientMaximumType~0:complex'
     name: Excel.ChartGradientStyleType | "ExtremeValue" | "Number" | "Percent"
     fullName: Excel.ChartGradientStyleType | "ExtremeValue" | "Number" | "Percent"
