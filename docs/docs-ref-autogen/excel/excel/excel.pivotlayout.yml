@@ -14,9 +14,14 @@ items:
       - 'office!OfficeExtension.ClientObject:class'
     package: excel!
     children:
+      - 'excel!Excel.PivotLayout#altTextDescription:member'
+      - 'excel!Excel.PivotLayout#altTextTitle:member'
       - 'excel!Excel.PivotLayout#autoFormat:member'
       - 'excel!Excel.PivotLayout#context:member'
+      - 'excel!Excel.PivotLayout#displayBlankLineAfterEachItem:member(1)'
+      - 'excel!Excel.PivotLayout#emptyCellText:member'
       - 'excel!Excel.PivotLayout#enableFieldList:member'
+      - 'excel!Excel.PivotLayout#fillEmptyCells:member'
       - 'excel!Excel.PivotLayout#getCell:member(1)'
       - 'excel!Excel.PivotLayout#getColumnLabelRange:member(1)'
       - 'excel!Excel.PivotLayout#getDataBodyRange:member(1)'
@@ -32,15 +37,53 @@ items:
       - 'excel!Excel.PivotLayout#load:member(3)'
       - 'excel!Excel.PivotLayout#pivotStyle:member'
       - 'excel!Excel.PivotLayout#preserveFormatting:member'
+      - 'excel!Excel.PivotLayout#repeatAllItemLabels:member(1)'
       - 'excel!Excel.PivotLayout#set:member(1)'
       - 'excel!Excel.PivotLayout#set:member(2)'
       - 'excel!Excel.PivotLayout#setAutoSortOnCell:member(1)'
       - 'excel!Excel.PivotLayout#setAutoSortOnCell:member(2)'
       - 'excel!Excel.PivotLayout#setStyle:member(1)'
       - 'excel!Excel.PivotLayout#showColumnGrandTotals:member'
+      - 'excel!Excel.PivotLayout#showFieldHeaders:member'
       - 'excel!Excel.PivotLayout#showRowGrandTotals:member'
       - 'excel!Excel.PivotLayout#subtotalLocation:member'
       - 'excel!Excel.PivotLayout#toJSON:member(1)'
+  - uid: 'excel!Excel.PivotLayout#altTextDescription:member'
+    summary: |-
+      数据透视表的替换文字说明。
+
+      Alt 文本提供数据透视表中所含信息的基于文本的替代表示形式。 此信息对有视觉或认知障碍且可能无法看到或理解表的人很有用。 可以使用残疾人士阅读标题，并将其用于确定是否希望听到内容的说明。
+
+      \[[API 集： EXCELAPI BETA (仅预览) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: altTextDescription
+    fullName: altTextDescription
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'altTextDescription: string;'
+      return:
+        type:
+          - string
+  - uid: 'excel!Excel.PivotLayout#altTextTitle:member'
+    summary: |-
+      数据透视表的 alt 文本标题。
+
+      Alt 文本提供数据透视表中所含信息的基于文本的替代表示形式。 此信息对有视觉或认知障碍且可能无法看到或理解表的人很有用。 可以使用残疾人士阅读标题，并将其用于确定是否希望听到内容的说明。
+
+      \[[API 集： EXCELAPI BETA (仅预览) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: altTextTitle
+    fullName: altTextTitle
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'altTextTitle: string;'
+      return:
+        type:
+          - string
   - uid: 'excel!Excel.PivotLayout#autoFormat:member'
     summary: |-
       指定在刷新或移动域时是否自动设置格式。
@@ -68,6 +111,44 @@ items:
       return:
         type:
           - 'excel!Excel.RequestContext:class'
+  - uid: 'excel!Excel.PivotLayout#displayBlankLineAfterEachItem:member(1)'
+    summary: |-
+      设置是否在每个项目后显示一个空行。 这是在数据透视表的全局级别上设置的，并应用于各个透视字段。 此函数将数据透视表中所有字段的设置覆盖为参数的值 `display` 。
+
+      \[[API 集： EXCELAPI BETA (仅预览) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: displayBlankLineAfterEachItem(display)
+    fullName: displayBlankLineAfterEachItem(display)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'displayBlankLineAfterEachItem(display: boolean): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: display
+          description: 如果为 True，则打开 "空白行显示" 设置。 False 将关闭该功能。
+          type:
+            - boolean
+  - uid: 'excel!Excel.PivotLayout#emptyCellText:member'
+    summary: |-
+      自动填充到数据透视表的任何空单元格中的文本（如果 `fillEmptyCells == true`<!-- -->. 请注意，如果将此值设置 `fillEmptyCells` 为 false，并且设置此值不会将该属性设置为 true，则此值将保持不变。 默认情况下，这是一个空字符串。
+
+      \[[API 集： EXCELAPI BETA (仅预览) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: emptyCellText
+    fullName: emptyCellText
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'emptyCellText: string;'
+      return:
+        type:
+          - string
   - uid: 'excel!Excel.PivotLayout#enableFieldList:member'
     summary: |-
       指定是否可以在 UI 中显示字段列表。
@@ -83,11 +164,27 @@ items:
       return:
         type:
           - boolean
+  - uid: 'excel!Excel.PivotLayout#fillEmptyCells:member'
+    summary: |-
+      指定是否应使用数据透视表中的空单元格填充 `emptyCellText`<!-- -->. 默认值为 False。 请注意， `emptyCellText` 当此属性设置为 false 时，将保持值不变。
+
+      \[[API 集： EXCELAPI BETA (仅预览) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: fillEmptyCells
+    fullName: fillEmptyCells
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'fillEmptyCells: boolean;'
+      return:
+        type:
+          - boolean
   - uid: 'excel!Excel.PivotLayout#getCell:member(1)'
     summary: |-
       根据数据层次结构以及各自层次结构的行和列项，获取数据透视表中的唯一单元格。 返回的单元格是给定行和列的交集，其中包含来自给定层次结构的数据。 此方法与在特定单元格上调用 getPivotItems 和 getDataHierarchy 相反。
 
-      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API 集： EXCELAPI BETA (仅预览) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: 'getCell(dataHierarchy, rowItems, columnItems)'
     fullName: 'getCell(dataHierarchy, rowItems, columnItems)'
@@ -357,7 +454,7 @@ items:
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+          description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
           type:
             - |-
               {
@@ -368,8 +465,7 @@ items:
     summary: |-
       应用于数据透视表的样式。
 
-      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[API 集： EXCELAPI BETA (仅预览) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: pivotStyle
     fullName: pivotStyle
     langs:
@@ -395,6 +491,28 @@ items:
       return:
         type:
           - boolean
+  - uid: 'excel!Excel.PivotLayout#repeatAllItemLabels:member(1)'
+    summary: |-
+      在数据透视表中的所有字段之间设置 "重复所有项目标签" 设置。
+
+      \[[API 集： EXCELAPI BETA (仅预览) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: repeatAllItemLabels(repeatLabels)
+    fullName: repeatAllItemLabels(repeatLabels)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'repeatAllItemLabels(repeatLabels: boolean): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: repeatLabels
+          description: 如果为 True，则启用标签重复显示设置。 False 将关闭该功能。
+          type:
+            - boolean
   - uid: 'excel!Excel.PivotLayout#set:member(1)'
     summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
     remarks: |-
@@ -493,7 +611,7 @@ items:
     summary: |-
       设置应用于数据透视表的样式。
 
-      \[[API 集： EXCELAPI BETA （仅限预览）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API 集： EXCELAPI BETA (仅预览) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: setStyle(style)
     fullName: setStyle(style)
@@ -523,6 +641,22 @@ items:
     type: property
     syntax:
       content: 'showColumnGrandTotals: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: 'excel!Excel.PivotLayout#showFieldHeaders:member'
+    summary: |-
+      指定数据透视表是否显示字段标题 (字段标题和筛选下拉) 。
+
+      \[[API 集： EXCELAPI BETA (仅预览) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: showFieldHeaders
+    fullName: showFieldHeaders
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'showFieldHeaders: boolean;'
       return:
         type:
           - boolean
@@ -557,7 +691,7 @@ items:
         type:
           - 'excel!Excel.PivotLayout#subtotalLocation~0:complex'
   - uid: 'excel!Excel.PivotLayout#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始 PivotLayout 对象是 API 对象，但 `toJSON` 方法返回一个无格式的 JavaScript 对象（类型为`Excel.Interfaces.PivotLayoutData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
+    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始 PivotLayout 对象是 API 对象，则该 `toJSON` 方法返回一个 (类型为的纯 JavaScript 对象。 `Excel.Interfaces.PivotLayoutData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
     name: toJSON()
     fullName: toJSON()
     langs:

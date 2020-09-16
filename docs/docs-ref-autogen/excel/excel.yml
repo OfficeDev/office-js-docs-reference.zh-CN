@@ -505,6 +505,11 @@ items:
       - 'excel!Excel.Interfaces.LineData:interface'
       - 'excel!Excel.Interfaces.LineLoadOptions:interface'
       - 'excel!Excel.Interfaces.LineUpdateData:interface'
+      - 'excel!Excel.Interfaces.LinkedDataTypeCollectionData:interface'
+      - 'excel!Excel.Interfaces.LinkedDataTypeCollectionLoadOptions:interface'
+      - 'excel!Excel.Interfaces.LinkedDataTypeCollectionUpdateData:interface'
+      - 'excel!Excel.Interfaces.LinkedDataTypeData:interface'
+      - 'excel!Excel.Interfaces.LinkedDataTypeLoadOptions:interface'
       - 'excel!Excel.Interfaces.NamedItemArrayValuesData:interface'
       - 'excel!Excel.Interfaces.NamedItemArrayValuesLoadOptions:interface'
       - 'excel!Excel.Interfaces.NamedItemCollectionData:interface'
@@ -731,6 +736,10 @@ items:
       - 'excel!Excel.IterativeCalculation:class'
       - 'excel!Excel.LabelFilterCondition:enum'
       - 'excel!Excel.Line:class'
+      - 'excel!Excel.LinkedDataType:class'
+      - 'excel!Excel.LinkedDataTypeAddedEventArgs:interface'
+      - 'excel!Excel.LinkedDataTypeCollection:class'
+      - 'excel!Excel.LinkedDataTypeRefreshMode:enum'
       - 'excel!Excel.LinkedDataTypeState:enum'
       - 'excel!Excel.ListDataValidation:interface'
       - 'excel!Excel.NamedItem:class'
@@ -797,6 +806,8 @@ items:
       - 'excel!Excel.RangeView:class'
       - 'excel!Excel.RangeViewCollection:class'
       - 'excel!Excel.ReadingOrder:enum'
+      - 'excel!Excel.RefreshModeChangedEventArgs:interface'
+      - 'excel!Excel.RefreshRequestCompletedEventArgs:interface'
       - 'excel!Excel.RemoveDuplicatesResult:class'
       - 'excel!Excel.ReplaceCriteria:interface'
       - 'excel!Excel.RequestContext:class'
@@ -817,7 +828,7 @@ items:
       - 'excel!Excel.SearchCriteria:interface'
       - 'excel!Excel.SearchDirection:enum'
       - 'excel!Excel.SelectionChangedEventArgs:interface'
-      - 'excel!Excel.Session:class'
+      - 'excel!Excel.Session:interface'
       - 'excel!Excel.SettableCellProperties:interface'
       - 'excel!Excel.SettableColumnProperties:interface'
       - 'excel!Excel.SettableRowProperties:interface'
@@ -1023,7 +1034,7 @@ items:
         description: ''
       parameters:
         - id: batch
-          description: 一个采用 RequestContext 的函数，并返回一个承诺（通常只是 "context. sync （）" 的结果）。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。
+          description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
           type:
             - 'excel!Excel.run~1:complex'
       typeParameters:
@@ -1043,11 +1054,11 @@ items:
         description: ''
       parameters:
         - id: object
-          description: 以前创建的 API 对象。 批处理将使用与传入的对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由 "context" （）来选取。
+          description: '以前创建的 API 对象。 批处理将使用与传入的对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由 "context. sync ( # A1" 选取。'
           type:
             - 'office!OfficeExtension.ClientObject:class'
         - id: batch
-          description: 一个采用 RequestContext 的函数，并返回一个承诺（通常只是 "context. sync （）" 的结果）。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。
+          description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
           type:
             - 'excel!Excel.run~3:complex'
       typeParameters:
@@ -1067,11 +1078,11 @@ items:
         description: ''
       parameters:
         - id: objects
-          description: 以前创建的 API 对象的数组。 将验证该数组，以确保所有对象都共享相同的上下文。 批处理将使用此共享 RequestContext，这意味着应用于这些对象的任何更改都将由 "context. sync （）" 选取。
+          description: '以前创建的 API 对象的数组。 将验证该数组，以确保所有对象都共享相同的上下文。 批处理将使用此共享 RequestContext，这意味着，应用于这些对象的任何更改都将由 "context. sync ( # A1" 选取。'
           type:
             - 'excel!Excel.run~5:complex'
         - id: batch
-          description: 一个采用 RequestContext 的函数，并返回一个承诺（通常只是 "context. sync （）" 的结果）。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。
+          description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
           type:
             - 'excel!Excel.run~6:complex'
       typeParameters:
@@ -1095,7 +1106,7 @@ items:
           type:
             - 'excel!Excel.RunOptions:interface'
         - id: batch
-          description: 一个采用 RequestContext 的函数，并返回一个承诺（通常只是 "context. sync （）" 的结果）。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。
+          description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
           type:
             - 'excel!Excel.run~8:complex'
       typeParameters:
@@ -1115,11 +1126,11 @@ items:
         description: ''
       parameters:
         - id: context
-          description: 以前创建的对象。 批处理将使用与传入的对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由 "context" （）来选取。
+          description: '以前创建的对象。 批处理将使用与传入的对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由 "context. sync ( # A1" 选取。'
           type:
             - 'office!OfficeExtension.ClientRequestContext:class'
         - id: batch
-          description: 一个采用 RequestContext 的函数，并返回一个承诺（通常只是 "context. sync （）" 的结果）。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。
+          description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
           type:
             - 'excel!Excel.run~10:complex'
       typeParameters:
@@ -2126,6 +2137,16 @@ references:
     name: Excel.Interfaces.LineLoadOptions
   - uid: 'excel!Excel.Interfaces.LineUpdateData:interface'
     name: Excel.Interfaces.LineUpdateData
+  - uid: 'excel!Excel.Interfaces.LinkedDataTypeCollectionData:interface'
+    name: Excel.Interfaces.LinkedDataTypeCollectionData
+  - uid: 'excel!Excel.Interfaces.LinkedDataTypeCollectionLoadOptions:interface'
+    name: Excel.Interfaces.LinkedDataTypeCollectionLoadOptions
+  - uid: 'excel!Excel.Interfaces.LinkedDataTypeCollectionUpdateData:interface'
+    name: Excel.Interfaces.LinkedDataTypeCollectionUpdateData
+  - uid: 'excel!Excel.Interfaces.LinkedDataTypeData:interface'
+    name: Excel.Interfaces.LinkedDataTypeData
+  - uid: 'excel!Excel.Interfaces.LinkedDataTypeLoadOptions:interface'
+    name: Excel.Interfaces.LinkedDataTypeLoadOptions
   - uid: 'excel!Excel.Interfaces.NamedItemArrayValuesData:interface'
     name: Excel.Interfaces.NamedItemArrayValuesData
   - uid: 'excel!Excel.Interfaces.NamedItemArrayValuesLoadOptions:interface'
@@ -2578,6 +2599,14 @@ references:
     name: Excel.LabelFilterCondition
   - uid: 'excel!Excel.Line:class'
     name: Excel.Line
+  - uid: 'excel!Excel.LinkedDataType:class'
+    name: Excel.LinkedDataType
+  - uid: 'excel!Excel.LinkedDataTypeAddedEventArgs:interface'
+    name: Excel.LinkedDataTypeAddedEventArgs
+  - uid: 'excel!Excel.LinkedDataTypeCollection:class'
+    name: Excel.LinkedDataTypeCollection
+  - uid: 'excel!Excel.LinkedDataTypeRefreshMode:enum'
+    name: Excel.LinkedDataTypeRefreshMode
   - uid: 'excel!Excel.LinkedDataTypeState:enum'
     name: Excel.LinkedDataTypeState
   - uid: 'excel!Excel.ListDataValidation:interface'
@@ -2708,6 +2737,10 @@ references:
     name: Excel.RangeViewCollection
   - uid: 'excel!Excel.ReadingOrder:enum'
     name: Excel.ReadingOrder
+  - uid: 'excel!Excel.RefreshModeChangedEventArgs:interface'
+    name: Excel.RefreshModeChangedEventArgs
+  - uid: 'excel!Excel.RefreshRequestCompletedEventArgs:interface'
+    name: Excel.RefreshRequestCompletedEventArgs
   - uid: 'excel!Excel.RemoveDuplicatesResult:class'
     name: Excel.RemoveDuplicatesResult
   - uid: 'excel!Excel.ReplaceCriteria:interface'
@@ -2876,7 +2909,7 @@ references:
     name: Excel.SearchDirection
   - uid: 'excel!Excel.SelectionChangedEventArgs:interface'
     name: Excel.SelectionChangedEventArgs
-  - uid: 'excel!Excel.Session:class'
+  - uid: 'excel!Excel.Session:interface'
     name: Excel.Session
   - uid: 'excel!Excel.SettableCellProperties:interface'
     name: Excel.SettableCellProperties

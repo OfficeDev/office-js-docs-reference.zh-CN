@@ -222,6 +222,7 @@ items:
       - 'excel!Excel.Interfaces.DataPivotHierarchyUpdateData:interface'
       - 'excel!Excel.Interfaces.DataValidationData:interface'
       - 'excel!Excel.Interfaces.DataValidationUpdateData:interface'
+      - 'excel!Excel.Interfaces.DatetimeFormatInfoData:interface'
       - 'excel!Excel.Interfaces.DocumentPropertiesData:interface'
       - 'excel!Excel.Interfaces.DocumentPropertiesUpdateData:interface'
       - 'excel!Excel.Interfaces.FilterData:interface'
@@ -285,6 +286,8 @@ items:
       - 'excel!Excel.Interfaces.PivotTableUpdateData:interface'
       - 'excel!Excel.Interfaces.PresetCriteriaConditionalFormatData:interface'
       - 'excel!Excel.Interfaces.PresetCriteriaConditionalFormatUpdateData:interface'
+      - 'excel!Excel.Interfaces.RangeAreasCollectionData:interface'
+      - 'excel!Excel.Interfaces.RangeAreasCollectionUpdateData:interface'
       - 'excel!Excel.Interfaces.RangeAreasData:interface'
       - 'excel!Excel.Interfaces.RangeAreasUpdateData:interface'
       - 'excel!Excel.Interfaces.RangeBorderCollectionData:interface'
@@ -390,10 +393,15 @@ items:
       - 'excel!Excel.Interfaces.WorkbookData:interface'
       - 'excel!Excel.Interfaces.WorkbookLoadOptions:interface'
       - 'excel!Excel.Interfaces.WorkbookProtectionData:interface'
+      - 'excel!Excel.Interfaces.WorkbookRangeAreasData:interface'
       - 'excel!Excel.Interfaces.WorkbookUpdateData:interface'
       - 'excel!Excel.Interfaces.WorksheetCollectionData:interface'
       - 'excel!Excel.Interfaces.WorksheetCollectionLoadOptions:interface'
       - 'excel!Excel.Interfaces.WorksheetCollectionUpdateData:interface'
+      - 'excel!Excel.Interfaces.WorksheetCustomPropertyCollectionData:interface'
+      - 'excel!Excel.Interfaces.WorksheetCustomPropertyCollectionUpdateData:interface'
+      - 'excel!Excel.Interfaces.WorksheetCustomPropertyData:interface'
+      - 'excel!Excel.Interfaces.WorksheetCustomPropertyUpdateData:interface'
       - 'excel!Excel.Interfaces.WorksheetData:interface'
       - 'excel!Excel.Interfaces.WorksheetLoadOptions:interface'
       - 'excel!Excel.Interfaces.WorksheetProtectionData:interface'
@@ -417,7 +425,7 @@ items:
       - 'excel!Excel.run:function(4)'
       - 'excel!Excel.run:function(5)'
       - 'excel!Excel.RunOptions:interface'
-      - 'excel!Excel.Session:class'
+      - 'excel!Excel.Session:interface'
       - 'excel!Excel.SheetVisibility:enum'
       - 'excel!Excel.Table:class'
       - 'excel!Excel.TableCollection:class'
@@ -482,7 +490,7 @@ items:
         description: ''
       parameters:
         - id: batch
-          description: 一个采用 RequestContext 的函数，并返回一个承诺（通常只是 "context. sync （）" 的结果）。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。
+          description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
           type:
             - 'excel!Excel.run~1:complex'
       typeParameters:
@@ -502,11 +510,11 @@ items:
         description: ''
       parameters:
         - id: object
-          description: 以前创建的 API 对象。 批处理将使用与传入的对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由 "context" （）来选取。
+          description: '以前创建的 API 对象。 批处理将使用与传入的对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由 "context. sync ( # A1" 选取。'
           type:
             - 'office!OfficeExtension.ClientObject:class'
         - id: batch
-          description: 一个采用 RequestContext 的函数，并返回一个承诺（通常只是 "context. sync （）" 的结果）。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。
+          description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
           type:
             - 'excel!Excel.run~3:complex'
       typeParameters:
@@ -526,11 +534,11 @@ items:
         description: ''
       parameters:
         - id: objects
-          description: 以前创建的 API 对象的数组。 将验证该数组，以确保所有对象都共享相同的上下文。 批处理将使用此共享 RequestContext，这意味着应用于这些对象的任何更改都将由 "context. sync （）" 选取。
+          description: '以前创建的 API 对象的数组。 将验证该数组，以确保所有对象都共享相同的上下文。 批处理将使用此共享 RequestContext，这意味着，应用于这些对象的任何更改都将由 "context. sync ( # A1" 选取。'
           type:
             - 'excel!Excel.run~5:complex'
         - id: batch
-          description: 一个采用 RequestContext 的函数，并返回一个承诺（通常只是 "context. sync （）" 的结果）。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。
+          description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
           type:
             - 'excel!Excel.run~6:complex'
       typeParameters:
@@ -554,7 +562,7 @@ items:
           type:
             - 'excel!Excel.RunOptions:interface'
         - id: batch
-          description: 一个采用 RequestContext 的函数，并返回一个承诺（通常只是 "context. sync （）" 的结果）。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。
+          description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
           type:
             - 'excel!Excel.run~8:complex'
       typeParameters:
@@ -574,11 +582,11 @@ items:
         description: ''
       parameters:
         - id: context
-          description: 以前创建的对象。 批处理将使用与传入的对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由 "context" （）来选取。
+          description: '以前创建的对象。 批处理将使用与传入的对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由 "context. sync ( # A1" 选取。'
           type:
             - 'office!OfficeExtension.ClientRequestContext:class'
         - id: batch
-          description: 一个采用 RequestContext 的函数，并返回一个承诺（通常只是 "context. sync （）" 的结果）。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。
+          description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
           type:
             - 'excel!Excel.run~10:complex'
       typeParameters:
@@ -1012,6 +1020,8 @@ references:
     name: Excel.Interfaces.DataValidationData
   - uid: 'excel!Excel.Interfaces.DataValidationUpdateData:interface'
     name: Excel.Interfaces.DataValidationUpdateData
+  - uid: 'excel!Excel.Interfaces.DatetimeFormatInfoData:interface'
+    name: Excel.Interfaces.DatetimeFormatInfoData
   - uid: 'excel!Excel.Interfaces.DocumentPropertiesData:interface'
     name: Excel.Interfaces.DocumentPropertiesData
   - uid: 'excel!Excel.Interfaces.DocumentPropertiesUpdateData:interface'
@@ -1138,6 +1148,10 @@ references:
     name: Excel.Interfaces.PresetCriteriaConditionalFormatData
   - uid: 'excel!Excel.Interfaces.PresetCriteriaConditionalFormatUpdateData:interface'
     name: Excel.Interfaces.PresetCriteriaConditionalFormatUpdateData
+  - uid: 'excel!Excel.Interfaces.RangeAreasCollectionData:interface'
+    name: Excel.Interfaces.RangeAreasCollectionData
+  - uid: 'excel!Excel.Interfaces.RangeAreasCollectionUpdateData:interface'
+    name: Excel.Interfaces.RangeAreasCollectionUpdateData
   - uid: 'excel!Excel.Interfaces.RangeAreasData:interface'
     name: Excel.Interfaces.RangeAreasData
   - uid: 'excel!Excel.Interfaces.RangeAreasUpdateData:interface'
@@ -1348,6 +1362,8 @@ references:
     name: Excel.Interfaces.WorkbookLoadOptions
   - uid: 'excel!Excel.Interfaces.WorkbookProtectionData:interface'
     name: Excel.Interfaces.WorkbookProtectionData
+  - uid: 'excel!Excel.Interfaces.WorkbookRangeAreasData:interface'
+    name: Excel.Interfaces.WorkbookRangeAreasData
   - uid: 'excel!Excel.Interfaces.WorkbookUpdateData:interface'
     name: Excel.Interfaces.WorkbookUpdateData
   - uid: 'excel!Excel.Interfaces.WorksheetCollectionData:interface'
@@ -1356,6 +1372,14 @@ references:
     name: Excel.Interfaces.WorksheetCollectionLoadOptions
   - uid: 'excel!Excel.Interfaces.WorksheetCollectionUpdateData:interface'
     name: Excel.Interfaces.WorksheetCollectionUpdateData
+  - uid: 'excel!Excel.Interfaces.WorksheetCustomPropertyCollectionData:interface'
+    name: Excel.Interfaces.WorksheetCustomPropertyCollectionData
+  - uid: 'excel!Excel.Interfaces.WorksheetCustomPropertyCollectionUpdateData:interface'
+    name: Excel.Interfaces.WorksheetCustomPropertyCollectionUpdateData
+  - uid: 'excel!Excel.Interfaces.WorksheetCustomPropertyData:interface'
+    name: Excel.Interfaces.WorksheetCustomPropertyData
+  - uid: 'excel!Excel.Interfaces.WorksheetCustomPropertyUpdateData:interface'
+    name: Excel.Interfaces.WorksheetCustomPropertyUpdateData
   - uid: 'excel!Excel.Interfaces.WorksheetData:interface'
     name: Excel.Interfaces.WorksheetData
   - uid: 'excel!Excel.Interfaces.WorksheetLoadOptions:interface'
@@ -1528,7 +1552,7 @@ references:
         fullName: Promise
       - name: <T>
         fullName: <T>
-  - uid: 'excel!Excel.Session:class'
+  - uid: 'excel!Excel.Session:interface'
     name: Excel.Session
   - uid: 'excel!Excel.SheetVisibility:enum'
     name: Excel.SheetVisibility

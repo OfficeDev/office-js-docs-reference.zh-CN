@@ -2,7 +2,7 @@
 items:
   - uid: 'excel!Excel.Workbook:class'
     summary: |-
-      工作簿是顶级对象，其中包含相关的工作簿对象，如工作表、表、范围等。若要了解有关工作簿对象模型的详细信息，请参阅[使用 Excel JAVASCRIPT API 处理工作簿](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-workbooks)<!-- -->.
+      工作簿是顶级对象，其中包含相关的工作簿对象，如工作表、表、范围等。若要了解有关工作簿对象模型的详细信息，请参阅 [使用 Excel JAVASCRIPT API 处理工作簿](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-workbooks)<!-- -->.
 
       \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: Excel.Workbook
@@ -35,6 +35,7 @@ items:
       - 'excel!Excel.Workbook#getSelectedRange:member(1)'
       - 'excel!Excel.Workbook#getSelectedRanges:member(1)'
       - 'excel!Excel.Workbook#isDirty:member'
+      - 'excel!Excel.Workbook#linkedDataTypes:member'
       - 'excel!Excel.Workbook#load:member(1)'
       - 'excel!Excel.Workbook#load:member(2)'
       - 'excel!Excel.Workbook#load:member(3)'
@@ -455,6 +456,22 @@ items:
       return:
         type:
           - boolean
+  - uid: 'excel!Excel.Workbook#linkedDataTypes:member'
+    summary: |-
+      返回属于工作簿的链接数据类型的集合。
+
+      \[[API 集： EXCELAPI BETA (仅预览) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: linkedDataTypes
+    fullName: linkedDataTypes
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly linkedDataTypes: Excel.LinkedDataTypeCollection;'
+      return:
+        type:
+          - 'excel!Excel.LinkedDataTypeCollection:class'
   - uid: 'excel!Excel.Workbook#load:member(1)'
     summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
     name: load(options)
@@ -510,7 +527,7 @@ items:
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+          description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
           type:
             - |-
               {
@@ -965,7 +982,7 @@ items:
         type:
           - 'excel!Excel.TimelineStyleCollection:class'
   - uid: 'excel!Excel.Workbook#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始的 Excel 工作簿对象是一个 API 对象，则该 `toJSON` 方法返回一个简单的 JavaScript 对象 (键入为`Excel.Interfaces.WorkbookData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始的 Excel 工作簿对象是一个 API 对象，则该 `toJSON` 方法返回一个简单的 JavaScript 对象 (键入为 `Excel.Interfaces.WorkbookData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
     name: toJSON()
     fullName: toJSON()
     langs:
@@ -1059,6 +1076,8 @@ references:
         fullName: <boolean>
   - uid: 'excel!Excel.RangeAreas:class'
     name: Excel.RangeAreas
+  - uid: 'excel!Excel.LinkedDataTypeCollection:class'
+    name: Excel.LinkedDataTypeCollection
   - uid: 'excel!Excel.Workbook:class'
     name: Excel.Workbook
   - uid: 'excel!Excel.Interfaces.WorkbookLoadOptions:interface'
