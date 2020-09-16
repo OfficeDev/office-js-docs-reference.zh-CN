@@ -1,0 +1,206 @@
+### YamlMime:UniversalReference
+items:
+  - uid: 'excel!Excel.RangeHyperlink:interface'
+    summary: |-
+      表示获取/设置超链接 (XHL) 对象所需的字符串。
+
+      \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.RangeHyperlink
+    fullName: Excel.RangeHyperlink
+    langs:
+      - typeScript
+    type: interface
+    package: excel!
+    children:
+      - 'excel!Excel.RangeHyperlink#address:member'
+      - 'excel!Excel.RangeHyperlink#documentReference:member'
+      - 'excel!Excel.RangeHyperlink#screenTip:member'
+      - 'excel!Excel.RangeHyperlink#textToDisplay:member'
+  - uid: 'excel!Excel.RangeHyperlink#address:member'
+    summary: |-
+      表示超链接的 URL 目标。
+
+      \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: address
+    fullName: address
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'address?: string;'
+      return:
+        type:
+          - string
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/42-range/range-hyperlink.yaml
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Orders");
+
+              let productsRange = sheet.getRange("A3:A5");
+              productsRange.load("values");
+
+              await context.sync();
+
+              // Create a hyperlink to a URL 
+              // for each product name in the first table.
+              for (let i = 0; i < productsRange.values.length; i++) {
+                  let cellRange = productsRange.getCell(i, 0);
+                  let cellText = productsRange.values[i][0];
+
+                  let hyperlink = {
+                      textToDisplay: cellText,
+                      screenTip: "Search Bing for '" + cellText + "'",
+                      address: "https://www.bing.com?q=" + cellText
+                  }
+                  cellRange.hyperlink = hyperlink;
+              }
+
+              await context.sync();
+          });
+          ```
+  - uid: 'excel!Excel.RangeHyperlink#documentReference:member'
+    summary: |-
+      表示超链接的文档引用目标。
+
+      \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: documentReference
+    fullName: documentReference
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'documentReference?: string;'
+      return:
+        type:
+          - string
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/42-range/range-hyperlink.yaml
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Orders");
+
+              let productsRange = sheet.getRange("A9:A11");
+              productsRange.load("values");
+
+              await context.sync();
+
+              // Create a hyperlink to a location within the workbook
+              // for each product name in the second table.
+              for (let i = 0; i < productsRange.values.length; i++) {
+                  let cellRange = productsRange.getCell(i, 0);
+                  let cellText = productsRange.values[i][0];
+
+                  let hyperlink = {
+                      textToDisplay: cellText,
+                      screenTip: "Navigate to the '" + cellText + "' worksheet",
+                      documentReference: cellText + "!A1"
+                  }
+                  cellRange.hyperlink = hyperlink;
+              }
+
+              await context.sync();
+          });
+          ```
+  - uid: 'excel!Excel.RangeHyperlink#screenTip:member'
+    summary: |-
+      表示鼠标悬停在超链接上时显示的字符串。
+
+      \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: screenTip
+    fullName: screenTip
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'screenTip?: string;'
+      return:
+        type:
+          - string
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/42-range/range-hyperlink.yaml
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Orders");
+
+              let productsRange = sheet.getRange("A3:A5");
+              productsRange.load("values");
+
+              await context.sync();
+
+              // Create a hyperlink to a URL 
+              // for each product name in the first table.
+              for (let i = 0; i < productsRange.values.length; i++) {
+                  let cellRange = productsRange.getCell(i, 0);
+                  let cellText = productsRange.values[i][0];
+
+                  let hyperlink = {
+                      textToDisplay: cellText,
+                      screenTip: "Search Bing for '" + cellText + "'",
+                      address: "https://www.bing.com?q=" + cellText
+                  }
+                  cellRange.hyperlink = hyperlink;
+              }
+
+              await context.sync();
+          });
+          ```
+  - uid: 'excel!Excel.RangeHyperlink#textToDisplay:member'
+    summary: |-
+      表示区域最左上方单元格中显示的字符串。
+
+      \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: textToDisplay
+    fullName: textToDisplay
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'textToDisplay?: string;'
+      return:
+        type:
+          - string
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/42-range/range-hyperlink.yaml
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Orders");
+
+              let productsRange = sheet.getRange("A3:A5");
+              productsRange.load("values");
+
+              await context.sync();
+
+              // Create a hyperlink to a URL 
+              // for each product name in the first table.
+              for (let i = 0; i < productsRange.values.length; i++) {
+                  let cellRange = productsRange.getCell(i, 0);
+                  let cellText = productsRange.values[i][0];
+
+                  let hyperlink = {
+                      textToDisplay: cellText,
+                      screenTip: "Search Bing for '" + cellText + "'",
+                      address: "https://www.bing.com?q=" + cellText
+                  }
+                  cellRange.hyperlink = hyperlink;
+              }
+
+              await context.sync();
+          });
+          ```
