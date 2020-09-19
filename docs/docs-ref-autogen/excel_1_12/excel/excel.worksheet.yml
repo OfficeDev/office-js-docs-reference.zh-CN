@@ -22,6 +22,7 @@ items:
       - 'excel!Excel.Worksheet#context:member'
       - 'excel!Excel.Worksheet#copy:member(1)'
       - 'excel!Excel.Worksheet#copy:member(2)'
+      - 'excel!Excel.Worksheet#customProperties:member'
       - 'excel!Excel.Worksheet#delete:member(1)'
       - 'excel!Excel.Worksheet#enableCalculation:member'
       - 'excel!Excel.Worksheet#findAll:member(1)'
@@ -270,6 +271,41 @@ items:
           description: 确定新创建的工作表位置的现有工作表。 仅当 `positionType` 为 "Before" 或 "After" 时才需要这样做。
           type:
             - 'excel!Excel.Worksheet:class'
+  - uid: 'excel!Excel.Worksheet#customProperties:member'
+    summary: |-
+      获取工作表级自定义属性的集合。
+
+      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: customProperties
+    fullName: customProperties
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly customProperties: Excel.WorksheetCustomPropertyCollection;'
+      return:
+        type:
+          - 'excel!Excel.WorksheetCustomPropertyCollection:class'
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/85-preview-apis/custom-properties.yaml
+          await Excel.run(async (context) => {
+            // Load the keys and values of all custom properties in the current worksheet.
+            const customWorksheetProperties = context.workbook.worksheets.getActiveWorksheet().customProperties;
+            customWorksheetProperties.load(["key", "value"]);
+            await context.sync();
+
+            // Log each custom property to the console.
+            // Note that your document may have more properties than those you have set using this snippet.
+            customWorksheetProperties.items.forEach((property) => {
+              console.log(`${property.key}:${property.value}`);
+            });
+          });
+          ```
   - uid: 'excel!Excel.Worksheet#delete:member(1)'
     summary: |-
       从工作簿中删除工作表。 请注意，如果工作表的可见性设置为 "VeryHidden"，则删除操作将失败，并出现 `InvalidOperation` 异常。 应首先将其可见性更改为隐藏或可见，然后再将其删除。
@@ -1737,6 +1773,8 @@ references:
     name: Excel.Worksheet
   - uid: 'excel!Excel.WorksheetPositionType:enum'
     name: Excel.WorksheetPositionType
+  - uid: 'excel!Excel.WorksheetCustomPropertyCollection:class'
+    name: Excel.WorksheetCustomPropertyCollection
   - uid: 'excel!Excel.RangeAreas:class'
     name: Excel.RangeAreas
   - uid: 'excel!Excel.WorksheetSearchCriteria:interface'

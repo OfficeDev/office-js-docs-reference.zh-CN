@@ -8,12 +8,12 @@ ms.author: o365devx
 ms.prod: non-product-specific
 localization_priority: Priority
 ms.date: 06/17/2020
-ms.openlocfilehash: aff744f62d55449200a821634510ac3da5ea41c0
-ms.sourcegitcommit: e94c95582f58781bf193461f1b8148fac833dba0
+ms.openlocfilehash: f3591e0707f20a448f20eb6a444c4c655612f966
+ms.sourcegitcommit: 538c15a77b09cf4bf87911e81991d784aeae4ab0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "45365088"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "47824529"
 ---
 # <a name="office-add-ins-javascript-api-reference"></a>Office 加载项 JavaScript API 参考
 
@@ -41,6 +41,7 @@ ms.locfileid: "45365088"
                 <ul>
                     <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-preview">ExcelApi 预览</a></li>
                     <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-online">ExcelApiOnline 1.1</a></li>
+                    <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.12">ExcelApi 1.12</a></li>
                     <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.11">ExcelApi 1.11</a></li>
                     <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.10">ExcelApi 1.10</a></li>
                     <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.9">ExcelApi 1.9</a></li>

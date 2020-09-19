@@ -72,7 +72,28 @@ items:
       return:
         type:
           - void
-        description: ''
+        description: |-
+
+
+          #### <a name="examples"></a>示例
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/85-preview-apis/pivottable-pivotfilters.yaml
+          await Excel.run(async (context) => {
+            // Clear all the PivotFilters.
+
+            // Get the PivotTable.
+            const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem("Farm Sales");
+            pivotTable.hierarchies.load("name");
+            await context.sync();
+
+            // Clear the filters on each PivotField.
+            pivotTable.hierarchies.items.forEach((hierarchy) => {
+              hierarchy.fields.getItem(hierarchy.name).clearAllFilters();
+            });
+            await context.sync();
+          });
+          ```
   - uid: 'excel!Excel.PivotField#clearFilter:member(1)'
     summary: |-
       清除给定类型的字段筛选器中的所有现有条件 (如果当前已将其应用) 。
