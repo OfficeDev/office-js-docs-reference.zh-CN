@@ -881,7 +881,7 @@ items:
 
             使用此方法的最小权限级别是 `Restricted`<!-- -->，需要访问一些实体类型 `ReadItem` ，如下表所示。
 
-            <table> <tr> <th>EntityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需权限级别</th> </tr> <tr> <td>地址</td> <td>String</td> <td>受限</td> </tr> <tr> <td>Contact</td> <td>Contact</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>String</td> <td>受限</td> </tr> </table>
+            <table> <tr> <th>EntityType 的值</th> <th>返回的数组中对象的类型</th> <th>所需权限级别</th> </tr> <tr> <td>地址</td> <td>字符串</td> <td>受限</td> </tr> <tr> <td>Contact</td> <td>Contact</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>受限</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>字符串</td> <td>受限</td> </tr> </table>
           type:
             - 'outlook!Office.AppointmentRead#getEntitiesByType~1:complex'
   - uid: 'outlook!Office.AppointmentRead#getFilteredEntitiesByName:member(1)'
@@ -1180,7 +1180,7 @@ items:
       ```javascript
       // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/65-delegates-and-shared-folders/get-shared-properties.yaml
       if (!Office.context.mailbox.item.getSharedPropertiesAsync) {
-        console.error("Try this sample on a message from a shared folder.");
+        console.error("Try this sample on an appointment from a shared folder.");
         return;
       }
 
@@ -1195,12 +1195,12 @@ items:
               let sharedProperties = result2.value;
               let delegatePermissions = sharedProperties.delegatePermissions;
 
-              // Determine if user can do the expected operation, e.g., do they have Write permission?
+              // Determine if user has the appropriate permission to do the operation.
               if ((delegatePermissions & Office.MailboxEnums.DelegatePermissions.Read) != 0) {
                 var ewsId = Office.context.mailbox.item.itemId;
                 var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);
                 let rest_url =
-                  sharedProperties.targetRestUrl + "/v2.0/users/" + sharedProperties.targetMailbox + "/messages/" + restId;
+                  sharedProperties.targetRestUrl + "/v2.0/users/" + sharedProperties.targetMailbox + "/events/" + restId;
 
                 $.ajax({
                   url: rest_url,
@@ -1258,7 +1258,7 @@ items:
       ```javascript
       // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/65-delegates-and-shared-folders/get-shared-properties.yaml
       if (!Office.context.mailbox.item.getSharedPropertiesAsync) {
-        console.error("Try this sample on a message from a shared folder.");
+        console.error("Try this sample on an item from a shared folder.");
         return;
       }
 

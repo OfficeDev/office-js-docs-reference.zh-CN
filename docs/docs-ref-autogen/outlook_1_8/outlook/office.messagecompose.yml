@@ -10,7 +10,7 @@ items:
 
       - [ItemCompose](xref:outlook!Office.ItemCompose:interface)
 
-      - [消息](xref:outlook!Office.Message:interface)
+      - [邮件](xref:outlook!Office.Message:interface)
     name: Office.MessageCompose
     fullName: Office.MessageCompose
     langs:
@@ -1280,6 +1280,14 @@ items:
     summary: |-
       获取共享文件夹、日历或邮箱中的约会或邮件的属性。
 
+      **重要说明**：在邮件撰写模式下，此 API 在 web 上的 Outlook 或 Windows 中不受支持，除非满足以下条件。
+
+      1. 所有者至少与委派共享一个邮箱文件夹。
+
+      2. 代理将邮件草稿共享到共享文件夹中。
+
+      邮件发送后，通常会在代理的 " **已发送邮件** " 文件夹中找到。
+
       有关使用此 API 的详细信息，请参阅 [代理访问](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) 文章。
 
       **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
@@ -1310,7 +1318,7 @@ items:
               let sharedProperties = result2.value;
               let delegatePermissions = sharedProperties.delegatePermissions;
 
-              // Determine if user can do the expected operation, e.g., do they have Write permission?
+              // Determine if user has the appropriate permission to do the operation.
               if ((delegatePermissions & Office.MailboxEnums.DelegatePermissions.Read) != 0) {
                 var ewsId = Office.context.mailbox.item.itemId;
                 var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);
@@ -1358,6 +1366,14 @@ items:
     summary: |-
       获取共享文件夹、日历或邮箱中的约会或邮件的属性。
 
+      **重要说明**：在邮件撰写模式下，此 API 在 web 上的 Outlook 或 Windows 中不受支持，除非满足以下条件。
+
+      1. 所有者至少与委派共享一个邮箱文件夹。
+
+      2. 代理将邮件草稿共享到共享文件夹中。
+
+      邮件发送后，通常会在代理的 " **已发送邮件** " 文件夹中找到。
+
       有关使用此 API 的详细信息，请参阅 [代理访问](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) 文章。
 
       **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
@@ -1373,7 +1389,7 @@ items:
       ```javascript
       // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/65-delegates-and-shared-folders/get-shared-properties.yaml
       if (!Office.context.mailbox.item.getSharedPropertiesAsync) {
-        console.error("Try this sample on a message from a shared folder.");
+        console.error("Try this sample on an item from a shared folder.");
         return;
       }
 
