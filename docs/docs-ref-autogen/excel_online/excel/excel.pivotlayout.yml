@@ -29,7 +29,6 @@ items:
       - 'excel!Excel.PivotLayout#load:member(1)'
       - 'excel!Excel.PivotLayout#load:member(2)'
       - 'excel!Excel.PivotLayout#load:member(3)'
-      - 'excel!Excel.PivotLayout#pivotStyle:member'
       - 'excel!Excel.PivotLayout#preserveFormatting:member'
       - 'excel!Excel.PivotLayout#set:member(1)'
       - 'excel!Excel.PivotLayout#set:member(2)'
@@ -184,11 +183,11 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'getPivotItems(axis: Excel.PivotAxis, cell: Range | string): OfficeExtension.ClientResult<Excel.PivotItem[]>;'
+      content: 'getPivotItems(axis: Excel.PivotAxis, cell: Range | string): Excel.PivotItemCollection;'
       return:
         type:
-          - 'excel!Excel.PivotLayout#getPivotItems~0:complex'
-        description: 用于计算指定行中的值的 PivotItems 的集合。
+          - 'excel!Excel.PivotItemCollection:class'
+        description: 用于计算指定行中的值的 PivotItems 的 PivotItemCollection。
       parameters:
         - id: axis
           description: 要从其获取 PivotItems 的轴。 必须是 "行" 或 "列"。
@@ -197,7 +196,7 @@ items:
         - id: cell
           description: 数据透视表的数据正文中的单个单元格。
           type:
-            - 'excel!Excel.PivotLayout#getPivotItems~1:complex'
+            - 'excel!Excel.PivotLayout#getPivotItems~0:complex'
   - uid: 'excel!Excel.PivotLayout#getPivotItems:member(2)'
     summary: |-
       从构成数据透视表中指定区域内的值的轴获取 PivotItems。
@@ -209,11 +208,11 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'getPivotItems(axisString: "Unknown" | "Row" | "Column" | "Data" | "Filter", cell: Range | string): OfficeExtension.ClientResult<Excel.PivotItem[]>;'
+      content: 'getPivotItems(axisString: "Unknown" | "Row" | "Column" | "Data" | "Filter", cell: Range | string): Excel.PivotItemCollection;'
       return:
         type:
-          - 'excel!Excel.PivotLayout#getPivotItems~2:complex'
-        description: 用于计算指定行中的值的 PivotItems 的集合。
+          - 'excel!Excel.PivotItemCollection:class'
+        description: 用于计算指定行中的值的 PivotItems 的 PivotItemCollection。
       parameters:
         - id: axisString
           description: 要从其获取 PivotItems 的轴。 必须是 "行" 或 "列"。
@@ -222,7 +221,7 @@ items:
         - id: cell
           description: 数据透视表的数据正文中的单个单元格。
           type:
-            - 'excel!Excel.PivotLayout#getPivotItems~3:complex'
+            - 'excel!Excel.PivotLayout#getPivotItems~1:complex'
   - uid: 'excel!Excel.PivotLayout#getRange:member(1)'
     summary: |-
       返回存在数据透视表的区域，不包括筛选区。
@@ -332,21 +331,6 @@ items:
                           select?: string;
                           expand?: string;
                       }
-  - uid: 'excel!Excel.PivotLayout#pivotStyle:member'
-    summary: |-
-      应用于数据透视表的样式。
-
-      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: pivotStyle
-    fullName: pivotStyle
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly pivotStyle: Excel.PivotTableStyle;'
-      return:
-        type:
-          - 'excel!Excel.PivotTableStyle:class'
   - uid: 'excel!Excel.PivotLayout#preserveFormatting:member'
     summary: |-
       指定当通过透视、排序或更改页字段项等操作刷新或重新计算报表时，是否保留格式设置。
@@ -532,23 +516,11 @@ references:
         fullName: Excel.Range
       - name: ' | string'
         fullName: ' | string'
-  - uid: 'excel!Excel.PivotLayout#getPivotItems~0:complex'
-    name: 'OfficeExtension.ClientResult<Excel.PivotItem[]>'
-    fullName: 'OfficeExtension.ClientResult<Excel.PivotItem[]>'
-    spec.typeScript:
-      - uid: 'office!OfficeExtension.ClientResult:class'
-        name: OfficeExtension.ClientResult
-        fullName: OfficeExtension.ClientResult
-      - name: <
-        fullName: <
-      - uid: 'excel!Excel.PivotItem:class'
-        name: Excel.PivotItem
-        fullName: Excel.PivotItem
-      - name: '[]>'
-        fullName: '[]>'
+  - uid: 'excel!Excel.PivotItemCollection:class'
+    name: Excel.PivotItemCollection
   - uid: 'excel!Excel.PivotAxis:enum'
     name: Excel.PivotAxis
-  - uid: 'excel!Excel.PivotLayout#getPivotItems~1:complex'
+  - uid: 'excel!Excel.PivotLayout#getPivotItems~0:complex'
     name: Range | string
     fullName: Excel.Range | string
     spec.typeScript:
@@ -557,21 +529,7 @@ references:
         fullName: Excel.Range
       - name: ' | string'
         fullName: ' | string'
-  - uid: 'excel!Excel.PivotLayout#getPivotItems~2:complex'
-    name: 'OfficeExtension.ClientResult<Excel.PivotItem[]>'
-    fullName: 'OfficeExtension.ClientResult<Excel.PivotItem[]>'
-    spec.typeScript:
-      - uid: 'office!OfficeExtension.ClientResult:class'
-        name: OfficeExtension.ClientResult
-        fullName: OfficeExtension.ClientResult
-      - name: <
-        fullName: <
-      - uid: 'excel!Excel.PivotItem:class'
-        name: Excel.PivotItem
-        fullName: Excel.PivotItem
-      - name: '[]>'
-        fullName: '[]>'
-  - uid: 'excel!Excel.PivotLayout#getPivotItems~3:complex'
+  - uid: 'excel!Excel.PivotLayout#getPivotItems~1:complex'
     name: Range | string
     fullName: Excel.Range | string
     spec.typeScript:
@@ -593,8 +551,6 @@ references:
     name: Excel.PivotLayout
   - uid: 'excel!Excel.Interfaces.PivotLayoutLoadOptions:interface'
     name: Excel.Interfaces.PivotLayoutLoadOptions
-  - uid: 'excel!Excel.PivotTableStyle:class'
-    name: Excel.PivotTableStyle
   - uid: 'excel!Excel.Interfaces.PivotLayoutUpdateData:interface'
     name: Interfaces.PivotLayoutUpdateData
   - uid: 'office!OfficeExtension.UpdateOptions:interface'
