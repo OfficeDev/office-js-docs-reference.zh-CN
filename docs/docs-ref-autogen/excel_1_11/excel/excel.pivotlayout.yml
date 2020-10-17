@@ -183,11 +183,11 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'getPivotItems(axis: Excel.PivotAxis, cell: Range | string): OfficeExtension.ClientResult<Excel.PivotItem[]>;'
+      content: 'getPivotItems(axis: Excel.PivotAxis, cell: Range | string): Excel.PivotItemCollection;'
       return:
         type:
-          - 'excel!Excel.PivotLayout#getPivotItems~0:complex'
-        description: 用于计算指定行中的值的 PivotItems 的集合。
+          - 'excel!Excel.PivotItemCollection:class'
+        description: 用于计算指定行中的值的 PivotItems 的 PivotItemCollection。
       parameters:
         - id: axis
           description: 要从其获取 PivotItems 的轴。 必须是 "行" 或 "列"。
@@ -196,7 +196,7 @@ items:
         - id: cell
           description: 数据透视表的数据正文中的单个单元格。
           type:
-            - 'excel!Excel.PivotLayout#getPivotItems~1:complex'
+            - 'excel!Excel.PivotLayout#getPivotItems~0:complex'
   - uid: 'excel!Excel.PivotLayout#getPivotItems:member(2)'
     summary: |-
       从构成数据透视表中指定区域内的值的轴获取 PivotItems。
@@ -208,11 +208,11 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'getPivotItems(axisString: "Unknown" | "Row" | "Column" | "Data" | "Filter", cell: Range | string): OfficeExtension.ClientResult<Excel.PivotItem[]>;'
+      content: 'getPivotItems(axisString: "Unknown" | "Row" | "Column" | "Data" | "Filter", cell: Range | string): Excel.PivotItemCollection;'
       return:
         type:
-          - 'excel!Excel.PivotLayout#getPivotItems~2:complex'
-        description: 用于计算指定行中的值的 PivotItems 的集合。
+          - 'excel!Excel.PivotItemCollection:class'
+        description: 用于计算指定行中的值的 PivotItems 的 PivotItemCollection。
       parameters:
         - id: axisString
           description: 要从其获取 PivotItems 的轴。 必须是 "行" 或 "列"。
@@ -221,7 +221,7 @@ items:
         - id: cell
           description: 数据透视表的数据正文中的单个单元格。
           type:
-            - 'excel!Excel.PivotLayout#getPivotItems~3:complex'
+            - 'excel!Excel.PivotLayout#getPivotItems~1:complex'
   - uid: 'excel!Excel.PivotLayout#getRange:member(1)'
     summary: |-
       返回存在数据透视表的区域，不包括筛选区。
@@ -324,7 +324,7 @@ items:
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+          description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
           type:
             - |-
               {
@@ -486,7 +486,7 @@ items:
         type:
           - 'excel!Excel.PivotLayout#subtotalLocation~0:complex'
   - uid: 'excel!Excel.PivotLayout#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始 PivotLayout 对象是 API 对象，但 `toJSON` 方法返回一个无格式的 JavaScript 对象（类型为`Excel.Interfaces.PivotLayoutData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
+    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始 PivotLayout 对象是 API 对象，则该 `toJSON` 方法返回一个 (类型为的纯 JavaScript 对象。 `Excel.Interfaces.PivotLayoutData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
     name: toJSON()
     fullName: toJSON()
     langs:
@@ -516,23 +516,11 @@ references:
         fullName: Excel.Range
       - name: ' | string'
         fullName: ' | string'
-  - uid: 'excel!Excel.PivotLayout#getPivotItems~0:complex'
-    name: 'OfficeExtension.ClientResult<Excel.PivotItem[]>'
-    fullName: 'OfficeExtension.ClientResult<Excel.PivotItem[]>'
-    spec.typeScript:
-      - uid: 'office!OfficeExtension.ClientResult:class'
-        name: OfficeExtension.ClientResult
-        fullName: OfficeExtension.ClientResult
-      - name: <
-        fullName: <
-      - uid: 'excel!Excel.PivotItem:class'
-        name: Excel.PivotItem
-        fullName: Excel.PivotItem
-      - name: '[]>'
-        fullName: '[]>'
+  - uid: 'excel!Excel.PivotItemCollection:class'
+    name: Excel.PivotItemCollection
   - uid: 'excel!Excel.PivotAxis:enum'
     name: Excel.PivotAxis
-  - uid: 'excel!Excel.PivotLayout#getPivotItems~1:complex'
+  - uid: 'excel!Excel.PivotLayout#getPivotItems~0:complex'
     name: Range | string
     fullName: Excel.Range | string
     spec.typeScript:
@@ -541,21 +529,7 @@ references:
         fullName: Excel.Range
       - name: ' | string'
         fullName: ' | string'
-  - uid: 'excel!Excel.PivotLayout#getPivotItems~2:complex'
-    name: 'OfficeExtension.ClientResult<Excel.PivotItem[]>'
-    fullName: 'OfficeExtension.ClientResult<Excel.PivotItem[]>'
-    spec.typeScript:
-      - uid: 'office!OfficeExtension.ClientResult:class'
-        name: OfficeExtension.ClientResult
-        fullName: OfficeExtension.ClientResult
-      - name: <
-        fullName: <
-      - uid: 'excel!Excel.PivotItem:class'
-        name: Excel.PivotItem
-        fullName: Excel.PivotItem
-      - name: '[]>'
-        fullName: '[]>'
-  - uid: 'excel!Excel.PivotLayout#getPivotItems~3:complex'
+  - uid: 'excel!Excel.PivotLayout#getPivotItems~1:complex'
     name: Range | string
     fullName: Excel.Range | string
     spec.typeScript:
