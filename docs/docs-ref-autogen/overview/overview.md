@@ -7,13 +7,13 @@ author: o365devx
 ms.author: o365devx
 ms.prod: non-product-specific
 localization_priority: Priority
-ms.date: 06/17/2020
-ms.openlocfilehash: f3591e0707f20a448f20eb6a444c4c655612f966
-ms.sourcegitcommit: 538c15a77b09cf4bf87911e81991d784aeae4ab0
+ms.date: 10/14/2020
+ms.openlocfilehash: 04a686fe17222e6ddff53bd5e90f96d2e765da70
+ms.sourcegitcommit: b292535480a6b95e10ebbdd7da30f2858d8b7b82
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/16/2020
-ms.locfileid: "47824529"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "48626328"
 ---
 # <a name="office-add-ins-javascript-api-reference"></a>Office 加载项 JavaScript API 参考
 
@@ -69,6 +69,7 @@ ms.locfileid: "47824529"
                 <h3>Outlook API</h3>
                 <ul>
                     <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-preview">邮箱预览</a></li>
+                    <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.9">Mailbox 1.9</a></li>
                     <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.8">Mailbox 1.8</a></li>
                     <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.7">Mailbox 1.7</a></li>
                     <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.6">Mailbox 1.6</a></li>
