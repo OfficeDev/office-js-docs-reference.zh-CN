@@ -4,7 +4,7 @@ items:
     summary: |-
       [Office](xref:outlook!Office.Item:interface)的邮件撰写模式。<!-- -->.
 
-      **重要说明**：这是一个内部 Outlook 对象，而不是直接通过现有接口公开。 应将此视为的模式 `Office.context.mailbox.item`<!-- -->. 有关详细信息，请参阅 [对象模型](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.8/office.context.mailbox.item) 页。
+      **重要说明** ：这是一个内部 Outlook 对象，而不是直接通过现有接口公开。 应将此视为的模式 `Office.context.mailbox.item`<!-- -->. 有关详细信息，请参阅 [对象模型](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.8/office.context.mailbox.item) 页。
 
       父接口：
 
@@ -22,13 +22,9 @@ items:
     package: outlook!
     children:
       - 'outlook!Office.MessageCompose#addFileAttachmentAsync:member(1)'
-      - 'outlook!Office.MessageCompose#addFileAttachmentAsync:member(2)'
       - 'outlook!Office.MessageCompose#addFileAttachmentFromBase64Async:member(1)'
-      - 'outlook!Office.MessageCompose#addFileAttachmentFromBase64Async:member(2)'
       - 'outlook!Office.MessageCompose#addHandlerAsync:member(1)'
-      - 'outlook!Office.MessageCompose#addHandlerAsync:member(2)'
       - 'outlook!Office.MessageCompose#addItemAttachmentAsync:member(1)'
-      - 'outlook!Office.MessageCompose#addItemAttachmentAsync:member(2)'
       - 'outlook!Office.MessageCompose#bcc:member'
       - 'outlook!Office.MessageCompose#body:member'
       - 'outlook!Office.MessageCompose#categories:member'
@@ -37,9 +33,7 @@ items:
       - 'outlook!Office.MessageCompose#conversationId:member'
       - 'outlook!Office.MessageCompose#from:member'
       - 'outlook!Office.MessageCompose#getAttachmentContentAsync:member(1)'
-      - 'outlook!Office.MessageCompose#getAttachmentContentAsync:member(2)'
       - 'outlook!Office.MessageCompose#getAttachmentsAsync:member(1)'
-      - 'outlook!Office.MessageCompose#getAttachmentsAsync:member(2)'
       - 'outlook!Office.MessageCompose#getItemIdAsync:member(1)'
       - 'outlook!Office.MessageCompose#getItemIdAsync:member(2)'
       - 'outlook!Office.MessageCompose#getSelectedDataAsync:member(1)'
@@ -51,14 +45,11 @@ items:
       - 'outlook!Office.MessageCompose#loadCustomPropertiesAsync:member(1)'
       - 'outlook!Office.MessageCompose#notificationMessages:member'
       - 'outlook!Office.MessageCompose#removeAttachmentAsync:member(1)'
-      - 'outlook!Office.MessageCompose#removeAttachmentAsync:member(2)'
       - 'outlook!Office.MessageCompose#removeHandlerAsync:member(1)'
-      - 'outlook!Office.MessageCompose#removeHandlerAsync:member(2)'
       - 'outlook!Office.MessageCompose#saveAsync:member(1)'
       - 'outlook!Office.MessageCompose#saveAsync:member(2)'
       - 'outlook!Office.MessageCompose#seriesId:member'
       - 'outlook!Office.MessageCompose#setSelectedDataAsync:member(1)'
-      - 'outlook!Office.MessageCompose#setSelectedDataAsync:member(2)'
       - 'outlook!Office.MessageCompose#subject:member'
       - 'outlook!Office.MessageCompose#to:member'
   - uid: 'outlook!Office.MessageCompose#addFileAttachmentAsync:member(1)'
@@ -69,15 +60,15 @@ items:
 
       随后可以将该标识符与 `removeAttachmentAsync` 方法一同使用，以删除同一个会话中的附件。
 
-      **重要说明**：在 Windows 上的 Outlook 的最新内部版本中，引入了一个错误，该错误会错误地 `Authorization: Bearer` 将标头追加到此操作 (是否使用此 API 或 Outlook UI) 。 若要解决此问题，您可以尝试使用 `addFileAttachmentFromBase64` 由要求集1.8 引入的 API。
+      **重要说明** ：在 Windows 上的 Outlook 的最新内部版本中，引入了一个错误，该错误会错误地 `Authorization: Bearer` 将标头追加到此操作 (是否使用此 API 或 Outlook UI) 。 若要解决此问题，您可以尝试使用 `addFileAttachmentFromBase64` 由要求集1.8 引入的 API。
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
-      **错误**：
+      **错误** ：
 
       - `AttachmentSizeExceeded`<!-- -->：附件大于允许的大小。
 
@@ -161,53 +152,6 @@ items:
           description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果成功，附件标识符将在 `asyncResult.value` 属性中提供。 如果上传附件失败，`asyncResult` 对象将包含一个提供错误说明的 `Error` 对象。
           type:
             - 'outlook!Office.MessageCompose#addFileAttachmentAsync~1:complex'
-  - uid: 'outlook!Office.MessageCompose#addFileAttachmentAsync:member(2)'
-    summary: |-
-      将文件作为附件添加到邮件或约会。
-
-      `addFileAttachmentAsync` 方法在指定的 URI 上载文件并将其附加到撰写窗体中的项目。
-
-      随后可以将该标识符与 `removeAttachmentAsync` 方法一同使用，以删除同一个会话中的附件。
-
-      **重要说明**：在 Windows 上的 Outlook 的最新内部版本中，引入了一个错误，该错误会错误地 `Authorization: Bearer` 将标头追加到此操作 (是否使用此 API 或 Outlook UI) 。 若要解决此问题，您可以尝试使用 `addFileAttachmentFromBase64` 由要求集1.8 引入的 API。
-
-      \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
-
-      **错误**：
-
-      - `AttachmentSizeExceeded`<!-- -->：附件大于允许的大小。
-
-      - `FileTypeNotSupported`<!-- -->：附件的分机号码不允许。
-
-      - `NumberOfAttachmentsExceeded`<!-- -->：邮件或约会的附件过多。
-    name: 'addFileAttachmentAsync(uri, attachmentName, callback)'
-    fullName: 'addFileAttachmentAsync(uri, attachmentName, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addFileAttachmentAsync(uri: string, attachmentName: string, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: uri
-          description: 提供附加到邮件或约会的文件的位置的 URI。 最大长度为 2048 个字符。
-          type:
-            - string
-        - id: attachmentName
-          description: 在附件上载过程中显示的附件名称。 最大长度为 255 个字符。
-          type:
-            - string
-        - id: callback
-          description: 可选。 方法完成后，使用单个参数类型调用在 callback 参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果成功，附件标识符将在 `asyncResult.value` 属性中提供。 如果上传附件失败，`asyncResult` 对象将包含一个提供错误说明的 `Error` 对象。
-          type:
-            - 'outlook!Office.MessageCompose#addFileAttachmentAsync~2:complex'
   - uid: 'outlook!Office.MessageCompose#addFileAttachmentFromBase64Async:member(1)'
     summary: |-
       将文件作为附件添加到邮件或约会。
@@ -216,15 +160,15 @@ items:
 
       随后可以将该标识符与 `removeAttachmentAsync` 方法一同使用，以删除同一个会话中的附件。
 
-      **注意**：如果使用的是数据 URL API (例如， `readAsDataURL`<!-- -->) ，您需要先去除数据 URL 前缀，然后再将字符串的其余部分发送到此 API。 例如，如果完整的字符串由 `data:image/svg+xml;base64,<rest of base64 string>`<!-- -->，请删除 `data:image/svg+xml;base64,`<!-- -->.
+      **注意** ：如果使用的是数据 URL API (例如， `readAsDataURL`<!-- -->) ，您需要先去除数据 URL 前缀，然后再将字符串的其余部分发送到此 API。 例如，如果完整的字符串由 `data:image/svg+xml;base64,<rest of base64 string>`<!-- -->，请删除 `data:image/svg+xml;base64,`<!-- -->.
 
       \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
-      **错误**：
+      **错误** ：
 
       - `AttachmentSizeExceeded`<!-- -->：附件大于允许的大小。
 
@@ -297,64 +241,31 @@ items:
           description: 可选。 方法完成后， `callback` 使用类型为 AsyncResult 的单个参数调用在参数中传递的函数。 如果成功，附件标识符将在 `asyncResult.value` 属性中提供。 如果上传附件失败，`asyncResult` 对象将包含一个提供错误说明的 `Error` 对象。
           type:
             - 'outlook!Office.MessageCompose#addFileAttachmentFromBase64Async~1:complex'
-  - uid: 'outlook!Office.MessageCompose#addFileAttachmentFromBase64Async:member(2)'
-    summary: |-
-      将文件作为附件添加到邮件或约会。
-
-      该 `addFileAttachmentFromBase64Async` 方法从 base64 编码中上载文件，并将其附加到撰写窗体中的项目。 此方法返回对象中的附件标识符 `asyncResult.value` 。
-
-      随后可以将该标识符与 `removeAttachmentAsync` 方法一同使用，以删除同一个会话中的附件。
-
-      **注意**：如果使用的是数据 URL API (例如， `readAsDataURL`<!-- -->) ，您需要先去除数据 URL 前缀，然后再将字符串的其余部分发送到此 API。 例如，如果完整的字符串由 `data:image/svg+xml;base64,<rest of base64 string>`<!-- -->，请删除 `data:image/svg+xml;base64,`<!-- -->.
-
-      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
-
-      **错误**：
-
-      - `AttachmentSizeExceeded`<!-- -->：附件大于允许的大小。
-
-      - `FileTypeNotSupported`<!-- -->：附件的分机号码不允许。
-
-      - `NumberOfAttachmentsExceeded`<!-- -->：邮件或约会的附件过多。
-    name: 'addFileAttachmentFromBase64Async(base64File, attachmentName, callback)'
-    fullName: 'addFileAttachmentFromBase64Async(base64File, attachmentName, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addFileAttachmentFromBase64Async(base64File: string, attachmentName: string, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: base64File
-          description: 要添加到电子邮件或事件的图像或文件的 base64 编码内容。
-          type:
-            - string
-        - id: attachmentName
-          description: 在附件上载过程中显示的附件名称。 最大长度为 255 个字符。
-          type:
-            - string
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用类型为 AsyncResult 的单个参数调用在参数中传递的函数。 如果成功，附件标识符将在 `asyncResult.value` 属性中提供。 如果上传附件失败，`asyncResult` 对象将包含一个提供错误说明的 `Error` 对象。
-          type:
-            - 'outlook!Office.MessageCompose#addFileAttachmentFromBase64Async~2:complex'
   - uid: 'outlook!Office.MessageCompose#addHandlerAsync:member(1)'
     summary: |-
-      添加支持事件的事件处理程序。 **注意**：事件仅在任务窗格中可用。
+      添加支持事件的事件处理程序。 **注意** ：事件仅在任务窗格中可用。
 
       有关受支持的事件，请参阅 Item object model [events 部分](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.8/office.context.mailbox.item#events) 。
 
       \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      function myHandlerFunction(eventarg) {
+          if (eventarg.attachmentStatus === Office.MailboxEnums.AttachmentStatus.Added) {
+              var attachment = eventarg.attachmentDetails;
+              console.log("Event Fired and Attachment Added!");
+              getAttachmentContentAsync(attachment.id, options, callback);
+          }
+      }
+
+      Office.context.mailbox.item.addHandlerAsync(Office.EventType.AttachmentsChanged, myHandlerFunction, myCallback);
+      ```
     name: 'addHandlerAsync(eventType, handler, options, callback)'
     fullName: 'addHandlerAsync(eventType, handler, options, callback)'
     langs:
@@ -383,55 +294,6 @@ items:
           description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
           type:
             - 'outlook!Office.MessageCompose#addHandlerAsync~1:complex'
-  - uid: 'outlook!Office.MessageCompose#addHandlerAsync:member(2)'
-    summary: |-
-      添加支持事件的事件处理程序。 **注意**：事件仅在任务窗格中可用。
-
-      有关受支持的事件，请参阅 Item object model [events 部分](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.8/office.context.mailbox.item#events) 。
-
-      \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      function myHandlerFunction(eventarg) {
-          if (eventarg.attachmentStatus === Office.MailboxEnums.AttachmentStatus.Added) {
-              var attachment = eventarg.attachmentDetails;
-              console.log("Event Fired and Attachment Added!");
-              getAttachmentContentAsync(attachment.id, options, callback);
-          }
-      }
-
-      Office.context.mailbox.item.addHandlerAsync(Office.EventType.AttachmentsChanged, myHandlerFunction, myCallback);
-      ```
-    name: 'addHandlerAsync(eventType, handler, callback)'
-    fullName: 'addHandlerAsync(eventType, handler, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addHandlerAsync(eventType: Office.EventType | string, handler: any, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: eventType
-          description: 应调用处理程序的事件。
-          type:
-            - 'outlook!Office.MessageCompose#addHandlerAsync~2:complex'
-        - id: handler
-          description: 用于处理事件的函数。 此函数必须接受一个参数，即对象文本。 参数的 type 属性将与 `eventType` 传递给的参数相匹配 `addHandlerAsync`<!-- -->.
-          type:
-            - any
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
-          type:
-            - 'outlook!Office.MessageCompose#addHandlerAsync~3:complex'
   - uid: 'outlook!Office.MessageCompose#addItemAttachmentAsync:member(1)'
     summary: |-
       将 Exchange 项目（如邮件）作为附件添加到邮件或约会。
@@ -444,11 +306,11 @@ items:
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
-      **错误**：
+      **错误** ：
 
       - `NumberOfAttachmentsExceeded`<!-- -->：邮件或约会的附件过多。
 
@@ -512,49 +374,6 @@ items:
           description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果成功，附件标识符将在 `asyncResult.value` 属性中提供。 如果添加附件失败，`asyncResult` 对象将包含一个提供错误说明的 `Error` 对象。
           type:
             - 'outlook!Office.MessageCompose#addItemAttachmentAsync~0:complex'
-  - uid: 'outlook!Office.MessageCompose#addItemAttachmentAsync:member(2)'
-    summary: |-
-      将 Exchange 项目（如邮件）作为附件添加到邮件或约会。
-
-      `addItemAttachmentAsync` 方法将包含指定 Exchange 标识符的项目附加到撰写窗体中的项目。 如果指定了回调方法，则使用一个参数调用方法， `asyncResult`<!-- -->，其中包含附件标识符或指示附加项目时出现的任何错误的代码。 如果需要，可以使用 options 参数将状态信息传递给回调方法。
-
-      随后可以将该标识符与 `removeAttachmentAsync` 方法一同使用，以删除同一个会话中的附件。
-
-      如果 Office 加载项是在 Outlook 网页版中运行，`addItemAttachmentAsync` 方法可以将项附加到除正在编辑的项外的项；但既不支持也不建议这样做。
-
-      \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
-
-      **错误**：
-
-      - `NumberOfAttachmentsExceeded`<!-- -->：邮件或约会的附件过多。
-    name: 'addItemAttachmentAsync(itemId, attachmentName, callback)'
-    fullName: 'addItemAttachmentAsync(itemId, attachmentName, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addItemAttachmentAsync(itemId: any, attachmentName: string, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: itemId
-          description: 要附加的项目的 Exchange 标识符。 最大长度为 100 个字符。
-          type:
-            - any
-        - id: attachmentName
-          description: 在附件上载过程中显示的附件名称。 最大长度为 255 个字符。
-          type:
-            - string
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果成功，附件标识符将在 `asyncResult.value` 属性中提供。 如果添加附件失败，`asyncResult` 对象将包含一个提供错误说明的 `Error` 对象。
-          type:
-            - 'outlook!Office.MessageCompose#addItemAttachmentAsync~1:complex'
   - uid: 'outlook!Office.MessageCompose#bcc:member'
     summary: |-
       获取一个对象，该对象提供用于获取或更新邮件的 **密件抄送** (密件抄送) 行上的收件人的方法。
@@ -563,9 +382,9 @@ items:
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -622,9 +441,9 @@ items:
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -658,13 +477,13 @@ items:
     summary: |-
       获取一个对象，该对象提供用于管理项的类别的方法。
 
-      **重要说明**：在 web 上的 Outlook 中，不能在撰写模式下使用 API 来管理邮件的类别。
+      **重要说明** ：在 web 上的 Outlook 中，不能在撰写模式下使用 API 来管理邮件的类别。
 
       \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -747,11 +566,11 @@ items:
     summary: |-
       提供对邮件的抄送 (Cc) 收件人的访问权限。 对象的类型和访问权限级别取决于当前项目的模式。
 
-      `cc` 属性返回一个 `Recipients` 对象，该对象提供用于获取或更新邮件的“**抄送**”行上收件人的方法。 但是，根据客户端/平台 (（即 Windows、Mac 等） ) ，限制可能适用于可以获取或更新的收件人数。 有关更多详细信息，请参阅 [收件人](xref:outlook!Office.Recipients:interface) 对象。
+      `cc` 属性返回一个 `Recipients` 对象，该对象提供用于获取或更新邮件的“ **抄送** ”行上收件人的方法。 但是，根据客户端/平台 (（即 Windows、Mac 等） ) ，限制可能适用于可以获取或更新的收件人数。 有关更多详细信息，请参阅 [收件人](xref:outlook!Office.Recipients:interface) 对象。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -810,13 +629,13 @@ items:
 
       在 Outlook 桌面客户端中，如果邮件是内嵌答复，则 close 方法将不起作用。
 
-      **注意**：在 web 上的 Outlook 中，如果该项目是一个约会，并且以前使用它进行了保存 `saveAsync`<!-- -->，即使自上次保存项目后未发生更改，也会提示用户保存、放弃或取消。
+      **注意** ：在 web 上的 Outlook 中，如果该项目是一个约会，并且以前使用它进行了保存 `saveAsync`<!-- -->，即使自上次保存项目后未发生更改，也会提示用户保存、放弃或取消。
 
       \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`Restricted`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`Restricted`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -843,9 +662,9 @@ items:
 
       对于撰写窗体的新项目，此属性获得一个 null 值。如果用户设置一个主题并保存该项目，`conversationId` 属性将返回一个值。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -871,9 +690,9 @@ items:
 
       \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -906,11 +725,11 @@ items:
 
       \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
-      **错误**：
+      **错误** ：
 
       - `AttachmentTypeNotSupported`<!-- -->：不支持该附件类型。 不受支持的类型包括 Rtf 格式的嵌入图像或电子邮件或日历项目之外的项目附件类型 (如联系人或任务项) 。
 
@@ -980,81 +799,15 @@ items:
           description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。 如果调用失败，该 `asyncResult.error` 属性将包含错误代码和失败原因。
           type:
             - 'outlook!Office.MessageCompose#getAttachmentContentAsync~0:complex'
-  - uid: 'outlook!Office.MessageCompose#getAttachmentContentAsync:member(2)'
-    summary: |-
-      从邮件或约会中获取附件并将其作为对象返回 `AttachmentContent` 。
-
-      该 `getAttachmentContentAsync` 方法从项目中获取具有指定标识符的附件。 作为最佳实践，应使用标识符在与 or 调用一起检索附件 Id 的同一会话中检索附件 `getAttachmentsAsync` `item.attachments` 。 在 Outlook 网页版和移动设备上，附件标识符只在同一个会话中才有效。 当用户关闭应用程序时，或者如果用户开始撰写内嵌窗体，随后弹出窗体以继续在单独的窗口中。
-
-      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
-
-      **错误**：
-
-      - `AttachmentTypeNotSupported`<!-- -->：不支持该附件类型。 不受支持的类型包括 Rtf 格式的嵌入图像或电子邮件或日历项目之外的项目附件类型 (如联系人或任务项) 。
-
-      - `InvalidAttachmentId`<!-- -->：附件标识符不存在。
-    name: 'getAttachmentContentAsync(attachmentId, callback)'
-    fullName: 'getAttachmentContentAsync(attachmentId, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getAttachmentContentAsync(attachmentId: string, callback?: (asyncResult: Office.AsyncResult<AttachmentContent>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: attachmentId
-          description: 要获取的附件的标识符。
-          type:
-            - string
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。 如果调用失败，该 `asyncResult.error` 属性将包含错误代码和失败原因。
-          type:
-            - 'outlook!Office.MessageCompose#getAttachmentContentAsync~1:complex'
   - uid: 'outlook!Office.MessageCompose#getAttachmentsAsync:member(1)'
     summary: |-
       以数组的形式获取项目的附件。
 
       \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
-    name: 'getAttachmentsAsync(options, callback)'
-    fullName: 'getAttachmentsAsync(options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getAttachmentsAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<AttachmentDetailsCompose[]>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果调用失败，该 `asyncResult.error` 属性将包含错误代码和失败原因。
-          type:
-            - 'outlook!Office.MessageCompose#getAttachmentsAsync~0:complex'
-  - uid: 'outlook!Office.MessageCompose#getAttachmentsAsync:member(2)'
-    summary: |-
-      以数组的形式获取项目的附件。
-
-      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -1076,37 +829,41 @@ items:
           }
       });
       ```
-    name: getAttachmentsAsync(callback)
-    fullName: getAttachmentsAsync(callback)
+    name: 'getAttachmentsAsync(options, callback)'
+    fullName: 'getAttachmentsAsync(options, callback)'
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'getAttachmentsAsync(callback?: (asyncResult: Office.AsyncResult<AttachmentDetailsCompose[]>) => void): void;'
+      content: 'getAttachmentsAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<AttachmentDetailsCompose[]>) => void): void;'
       return:
         type:
           - void
         description: ''
       parameters:
-        - id: callback
-          description: 可选。 方法完成后，使用单个参数类型调用在 callback 参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果调用失败，该 `asyncResult.error` 属性将包含错误代码和失败原因。
+        - id: options
+          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
           type:
-            - 'outlook!Office.MessageCompose#getAttachmentsAsync~1:complex'
+            - 'office!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果调用失败，该 `asyncResult.error` 属性将包含错误代码和失败原因。
+          type:
+            - 'outlook!Office.MessageCompose#getAttachmentsAsync~0:complex'
   - uid: 'outlook!Office.MessageCompose#getItemIdAsync:member(1)'
     summary: |-
       异步获取已保存项的 ID。
 
       调用此方法时，此方法通过回调方法返回项 ID。
 
-      **注意**：如果外接程序对 `getItemIdAsync` 撰写模式中的项目调用 (例如，若要获取 `itemId` 与 EWS 或 REST API) 的配合使用，请注意，当 Outlook 处于缓存模式下时，可能需要一段时间才能将项目同步到服务器。 在同步项目之前， `itemId` 无法识别该项目并使用它将返回错误。
+      **注意** ：如果外接程序对 `getItemIdAsync` 撰写模式中的项目调用 (例如，若要获取 `itemId` 与 EWS 或 REST API) 的配合使用，请注意，当 Outlook 处于缓存模式下时，可能需要一段时间才能将项目同步到服务器。 在同步项目之前， `itemId` 无法识别该项目并使用它将返回错误。
 
       \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
-      **错误**：
+      **错误** ：
 
       - `ItemNotSaved`<!-- -->：在保存项目之前无法检索该 id。
     name: 'getItemIdAsync(options, callback)'
@@ -1135,15 +892,15 @@ items:
 
       调用此方法时，此方法通过回调方法返回项 ID。
 
-      **注意**：如果外接程序对 `getItemIdAsync` 撰写模式中的项目调用 (例如，若要获取 `itemId` 与 EWS 或 REST API) 的配合使用，请注意，当 Outlook 处于缓存模式下时，可能需要一段时间才能将项目同步到服务器。 在同步项目之前， `itemId` 无法识别该项目并使用它将返回错误。
+      **注意** ：如果外接程序对 `getItemIdAsync` 撰写模式中的项目调用 (例如，若要获取 `itemId` 与 EWS 或 REST API) 的配合使用，请注意，当 Outlook 处于缓存模式下时，可能需要一段时间才能将项目同步到服务器。 在同步项目之前， `itemId` 无法识别该项目并使用它将返回错误。
 
       \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
-      **错误**：
+      **错误** ：
 
       - `ItemNotSaved`<!-- -->：在保存项目之前无法检索该 id。
 
@@ -1185,9 +942,9 @@ items:
 
       \[[API 集：邮箱 1.2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -1238,9 +995,9 @@ items:
 
       \[[API 集：邮箱 1.2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -1280,7 +1037,7 @@ items:
     summary: |-
       获取共享文件夹、日历或邮箱中的约会或邮件的属性。
 
-      **重要说明**：在邮件撰写模式下，此 API 在 web 上的 Outlook 或 Windows 中不受支持，除非满足以下条件。
+      **重要说明** ：在邮件撰写模式下，此 API 在 web 上的 Outlook 或 Windows 中不受支持，除非满足以下条件。
 
       1. 所有者至少与委派共享一个邮箱文件夹。
 
@@ -1290,13 +1047,13 @@ items:
 
       有关使用此 API 的详细信息，请参阅 [代理访问](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) 文章。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此方法。
 
       \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -1366,7 +1123,7 @@ items:
     summary: |-
       获取共享文件夹、日历或邮箱中的约会或邮件的属性。
 
-      **重要说明**：在邮件撰写模式下，此 API 在 web 上的 Outlook 或 Windows 中不受支持，除非满足以下条件。
+      **重要说明** ：在邮件撰写模式下，此 API 在 web 上的 Outlook 或 Windows 中不受支持，除非满足以下条件。
 
       1. 所有者至少与委派共享一个邮箱文件夹。
 
@@ -1376,13 +1133,13 @@ items:
 
       有关使用此 API 的详细信息，请参阅 [代理访问](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) 文章。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此方法。
 
       \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -1421,9 +1178,9 @@ items:
 
       \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -1451,9 +1208,9 @@ items:
 
       该 `itemType` 属性返回一个 `ItemType` 枚举值，指示 item 对象实例是邮件还是约会。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -1479,9 +1236,9 @@ items:
 
       自定义属性作为 `CustomProperties` asyncResult 属性中的对象提供。 此对象可用于获取、设置以及从项目中删除自定义属性，并将自定义属性集的更改重新保存到服务器。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -1558,9 +1315,9 @@ items:
 
       \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -1638,11 +1395,11 @@ items:
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
-      **错误**：
+      **错误** ：
 
       - `InvalidAttachmentId`<!-- -->：附件标识符不存在。
 
@@ -1698,52 +1455,17 @@ items:
           description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果删除附件失败，`asyncResult.error` 属性将包含一个说明失败原因的错误代码。
           type:
             - 'outlook!Office.MessageCompose#removeAttachmentAsync~0:complex'
-  - uid: 'outlook!Office.MessageCompose#removeAttachmentAsync:member(2)'
-    summary: |-
-      将附件从邮件或约会中删除。
-
-      `removeAttachmentAsync` 方法删除项目中带指定标识符的附件。 最佳做法是，仅当同一个邮件应用程序在同一会话中添加了一个附件时，你才应使用该附件标识符来删除该附件。 在 Outlook 网页版和移动设备上，附件标识符只在同一个会话中才有效。 当用户关闭应用程序时，或者如果用户开始撰写内嵌窗体，随后弹出窗体以继续在单独的窗口中。
-
-      \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
-
-      **错误**：
-
-      - `InvalidAttachmentId`<!-- -->：附件标识符不存在。
-    name: 'removeAttachmentAsync(attachmentId, callback)'
-    fullName: 'removeAttachmentAsync(attachmentId, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'removeAttachmentAsync(attachmentId: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: attachmentId
-          description: 要删除的附件的标识符。
-          type:
-            - string
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果删除附件失败，`asyncResult.error` 属性将包含一个说明失败原因的错误代码。
-          type:
-            - 'outlook!Office.MessageCompose#removeAttachmentAsync~1:complex'
   - uid: 'outlook!Office.MessageCompose#removeHandlerAsync:member(1)'
     summary: |-
-      删除受支持事件类型的事件处理程序。 **注意**：事件仅在任务窗格中可用。
+      删除受支持事件类型的事件处理程序。 **注意** ：事件仅在任务窗格中可用。
 
       有关受支持的事件，请参阅 Item object model [events 部分](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.8/office.context.mailbox.item#events) 。
 
       \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
     name: 'removeHandlerAsync(eventType, options, callback)'
     fullName: 'removeHandlerAsync(eventType, options, callback)'
     langs:
@@ -1768,37 +1490,6 @@ items:
           description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
           type:
             - 'outlook!Office.MessageCompose#removeHandlerAsync~1:complex'
-  - uid: 'outlook!Office.MessageCompose#removeHandlerAsync:member(2)'
-    summary: |-
-      删除受支持事件类型的事件处理程序。 **注意**：事件仅在任务窗格中可用。
-
-      有关受支持的事件，请参阅 Item object model [events 部分](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.8/office.context.mailbox.item#events) 。
-
-      \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
-    name: 'removeHandlerAsync(eventType, callback)'
-    fullName: 'removeHandlerAsync(eventType, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'removeHandlerAsync(eventType: Office.EventType | string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: eventType
-          description: 应撤销处理程序的事件。
-          type:
-            - 'outlook!Office.MessageCompose#removeHandlerAsync~2:complex'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
-          type:
-            - 'outlook!Office.MessageCompose#removeHandlerAsync~3:complex'
   - uid: 'outlook!Office.MessageCompose#saveAsync:member(1)'
     summary: |-
       异步保存项目。
@@ -1807,15 +1498,15 @@ items:
 
       由于约会没有草稿状态，如果以撰写模式在约会中调用 `saveAsync`，则该项将被保存为用户日历中的正常约会。对于之前未保存过的新约会，则不会发送邀请。保存现有约会将向添加或删除的与会者发送更新。
 
-      **注意**：如果外接程序对 `saveAsync` 撰写模式中的项目调用，以便获取要用于 EWS 或 REST API 的项目 ID，请注意，当 Outlook 处于缓存模式下时，可能需要一段时间才能将项目实际同步到服务器。 在同步项目之前，使用 itemId 将返回错误。
+      **注意** ：如果外接程序对 `saveAsync` 撰写模式中的项目调用，以便获取要用于 EWS 或 REST API 的项目 ID，请注意，当 Outlook 处于缓存模式下时，可能需要一段时间才能将项目实际同步到服务器。 在同步项目之前，使用 itemId 将返回错误。
 
       \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
-      **错误**：
+      **错误** ：
 
       - `InvalidAttachmentId`<!-- -->：附件标识符不存在。
     name: 'saveAsync(options, callback)'
@@ -1846,15 +1537,15 @@ items:
 
       由于约会没有草稿状态，如果以撰写模式在约会中调用 `saveAsync`，则该项将被保存为用户日历中的正常约会。对于之前未保存过的新约会，则不会发送邀请。保存现有约会将向添加或删除的与会者发送更新。
 
-      **注意**：如果外接程序对 `saveAsync` 撰写模式中的项目调用，以便获取要用于 EWS 或 REST API 的项目 ID，请注意，当 Outlook 处于缓存模式下时，可能需要一段时间才能将项目实际同步到服务器。 在项目同步前，使用 `itemId` 将返回一个错误。
+      **注意** ：如果外接程序对 `saveAsync` 撰写模式中的项目调用，以便获取要用于 EWS 或 REST API 的项目 ID，请注意，当 Outlook 处于缓存模式下时，可能需要一段时间才能将项目实际同步到服务器。 在项目同步前，使用 `itemId` 将返回一个错误。
 
       \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
-      **错误**：
+      **错误** ：
 
       - `InvalidAttachmentId`<!-- -->：附件标识符不存在。
 
@@ -1898,15 +1589,15 @@ items:
 
       在 web 上的 Outlook 和桌面客户端中，将 `seriesId` 返回此项所属的父 (系列) 项的 Exchange Web 服务 (EWS) ID。 但是，在 iOS 和 Android 上，Webcasts&seriesid 返回父项的 REST ID。
 
-      **注意**：属性返回的标识符与 `seriesId` Exchange Web 服务项目标识符相同。 `seriesId`属性与 OUTLOOK REST API 使用的 Outlook id 不相同。 使用此值进行 REST API 调用之前，应使用此值进行转换 `Office.context.mailbox.convertToRestId`<!-- -->. 有关更多详细信息，请参阅 [使用 outlook 外接程序中的 OUTLOOK REST api](https://docs.microsoft.com/office/dev/add-ins/outlook/use-rest-api)<!-- -->.
+      **注意** ：属性返回的标识符与 `seriesId` Exchange Web 服务项目标识符相同。 `seriesId`属性与 OUTLOOK REST API 使用的 Outlook id 不相同。 使用此值进行 REST API 调用之前，应使用此值进行转换 `Office.context.mailbox.convertToRestId`<!-- -->. 有关更多详细信息，请参阅 [使用 outlook 外接程序中的 OUTLOOK REST api](https://docs.microsoft.com/office/dev/add-ins/outlook/use-rest-api)<!-- -->.
 
       `seriesId` `null` 对于不包含父项（如单个约会、系列项或会议请求）的项，该属性将返回， `undefined` 对于不是会议请求的任何其他项，该属性返回。
 
       \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -1940,11 +1631,11 @@ items:
 
       \[[API 集：邮箱 1.2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
-      **错误**：
+      **错误** ：
 
       - `InvalidAttachmentId`<!-- -->：附件标识符不存在。
 
@@ -1952,6 +1643,19 @@ items:
 
       ```javascript
       Office.context.mailbox.item.setSelectedDataAsync("<b>Hello World!</b>", { coercionType : "html" });
+      ```
+      ```javascript
+      Office.context.mailbox.item.setSelectedDataAsync("Hello World!");
+      ```
+      ```javascript
+      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/20-item-body/set-selected-data.yaml
+      Office.context.mailbox.item.setSelectedDataAsync("Replaced", function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Selected text has been updated successfully.");
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
       ```
     name: 'setSelectedDataAsync(data, options, callback)'
     fullName: 'setSelectedDataAsync(data, options, callback)'
@@ -1977,57 +1681,6 @@ items:
           description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
           type:
             - 'outlook!Office.MessageCompose#setSelectedDataAsync~1:complex'
-  - uid: 'outlook!Office.MessageCompose#setSelectedDataAsync:member(2)'
-    summary: |-
-      以异步方式将数据插入到邮件的正文或主题中。
-
-      `setSelectedDataAsync` 方法将指定字符串插入到项目主题或正文的光标位置，或者，如果在编辑器中已选择文本，则该方法将替换选择的文本。如果光标不在正文或主题字段中，则返回错误。插入之后，光标会位于插入内容的末尾。
-
-      \[[API 集：邮箱 1.2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
-
-      **错误**：
-
-      - `InvalidAttachmentId`<!-- -->：附件标识符不存在。
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      Office.context.mailbox.item.setSelectedDataAsync("Hello World!");
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/20-item-body/set-selected-data.yaml
-      Office.context.mailbox.item.setSelectedDataAsync("Replaced", function(asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-          console.log("Selected text has been updated successfully.");
-        } else {
-          console.error(asyncResult.error);
-        }
-      });
-      ```
-    name: 'setSelectedDataAsync(data, callback)'
-    fullName: 'setSelectedDataAsync(data, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setSelectedDataAsync(data: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: data
-          description: '要插入的数据。数据不得超过 1,000,000 个字符。如果传入的数据超过 1,000,000 个字符，则会引发 `ArgumentOutOfRange` 异常。'
-          type:
-            - string
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
-          type:
-            - 'outlook!Office.MessageCompose#setSelectedDataAsync~2:complex'
   - uid: 'outlook!Office.MessageCompose#subject:member'
     summary: |-
       获取或设置显示在项目的主题字段中的说明。
@@ -2036,9 +1689,9 @@ items:
 
       `subject` 属性返回一个 `Subject` 对象，该对象提供用于获取和设置主题的方法。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -2075,13 +1728,13 @@ items:
           - 'outlook!Office.Subject:interface'
   - uid: 'outlook!Office.MessageCompose#to:member'
     summary: |-
-      提供对邮件的“**收件人**”行上的收件人的访问权限。 对象的类型和访问权限级别取决于当前项目的模式。
+      提供对邮件的“ **收件人** ”行上的收件人的访问权限。 对象的类型和访问权限级别取决于当前项目的模式。
 
-      `to` 属性返回一个 `Recipients` 对象，该对象提供用于获取或更新邮件的“**收件人**”行上收件人的方法。 但是，根据客户端/平台 (（即 Windows、Mac 等） ) ，限制可能适用于可以获取或更新的收件人数。 有关更多详细信息，请参阅 [收件人](xref:outlook!Office.Recipients:interface) 对象。
+      `to` 属性返回一个 `Recipients` 对象，该对象提供用于获取或更新邮件的“ **收件人** ”行上收件人的方法。 但是，根据客户端/平台 (（即 Windows、Mac 等） ) ，限制可能适用于可以获取或更新的收件人数。 有关更多详细信息，请参阅 [收件人](xref:outlook!Office.Recipients:interface) 对象。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：邮件撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：邮件撰写
 
       #### <a name="examples"></a>示例
 
@@ -2157,17 +1810,6 @@ references:
         fullName: Office.AsyncResult
       - name: <string>) => void
         fullName: <string>) => void
-  - uid: 'outlook!Office.MessageCompose#addFileAttachmentAsync~2:complex'
-    name: '(asyncResult: Office.AsyncResult<string>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<string>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <string>) => void
-        fullName: <string>) => void
   - uid: 'outlook!Office.MessageCompose#addFileAttachmentFromBase64Async~0:complex'
     name: 'Office.AsyncContextOptions & { isInline: boolean }'
     fullName: 'Office.AsyncContextOptions & { isInline: boolean }'
@@ -2178,17 +1820,6 @@ references:
       - name: ' & { isInline: boolean }'
         fullName: ' & { isInline: boolean }'
   - uid: 'outlook!Office.MessageCompose#addFileAttachmentFromBase64Async~1:complex'
-    name: '(asyncResult: Office.AsyncResult<string>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<string>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <string>) => void
-        fullName: <string>) => void
-  - uid: 'outlook!Office.MessageCompose#addFileAttachmentFromBase64Async~2:complex'
     name: '(asyncResult: Office.AsyncResult<string>) => void'
     fullName: '(asyncResult: Office.AsyncResult<string>) => void'
     spec.typeScript:
@@ -2221,38 +1852,7 @@ references:
         fullName: Office.AsyncResult
       - name: <void>) => void
         fullName: <void>) => void
-  - uid: 'outlook!Office.MessageCompose#addHandlerAsync~2:complex'
-    name: Office.EventType | string
-    fullName: Office.EventType | string
-    spec.typeScript:
-      - uid: 'office!Office.EventType:enum'
-        name: Office.EventType
-        fullName: Office.EventType
-      - name: ' | string'
-        fullName: ' | string'
-  - uid: 'outlook!Office.MessageCompose#addHandlerAsync~3:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
   - uid: 'outlook!Office.MessageCompose#addItemAttachmentAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<string>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<string>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <string>) => void
-        fullName: <string>) => void
-  - uid: 'outlook!Office.MessageCompose#addItemAttachmentAsync~1:complex'
     name: '(asyncResult: Office.AsyncResult<string>) => void'
     fullName: '(asyncResult: Office.AsyncResult<string>) => void'
     spec.typeScript:
@@ -2287,39 +1887,7 @@ references:
         fullName: Office.AttachmentContent
       - name: '>) => void'
         fullName: '>) => void'
-  - uid: 'outlook!Office.MessageCompose#getAttachmentContentAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<AttachmentContent>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<Office.AttachmentContent>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <
-        fullName: <
-      - uid: 'outlook!Office.AttachmentContent:interface'
-        name: AttachmentContent
-        fullName: Office.AttachmentContent
-      - name: '>) => void'
-        fullName: '>) => void'
   - uid: 'outlook!Office.MessageCompose#getAttachmentsAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<AttachmentDetailsCompose[]>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<Office.AttachmentDetailsCompose[]>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <
-        fullName: <
-      - uid: 'outlook!Office.AttachmentDetailsCompose:interface'
-        name: AttachmentDetailsCompose
-        fullName: Office.AttachmentDetailsCompose
-      - name: '[]>) => void'
-        fullName: '[]>) => void'
-  - uid: 'outlook!Office.MessageCompose#getAttachmentsAsync~1:complex'
     name: '(asyncResult: Office.AsyncResult<AttachmentDetailsCompose[]>) => void'
     fullName: '(asyncResult: Office.AsyncResult<Office.AttachmentDetailsCompose[]>) => void'
     spec.typeScript:
@@ -2469,17 +2037,6 @@ references:
         fullName: Office.AsyncResult
       - name: <void>) => void
         fullName: <void>) => void
-  - uid: 'outlook!Office.MessageCompose#removeAttachmentAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
   - uid: 'outlook!Office.MessageCompose#removeHandlerAsync~0:complex'
     name: Office.EventType | string
     fullName: Office.EventType | string
@@ -2490,26 +2047,6 @@ references:
       - name: ' | string'
         fullName: ' | string'
   - uid: 'outlook!Office.MessageCompose#removeHandlerAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.MessageCompose#removeHandlerAsync~2:complex'
-    name: Office.EventType | string
-    fullName: Office.EventType | string
-    spec.typeScript:
-      - uid: 'office!Office.EventType:enum'
-        name: Office.EventType
-        fullName: Office.EventType
-      - name: ' | string'
-        fullName: ' | string'
-  - uid: 'outlook!Office.MessageCompose#removeHandlerAsync~3:complex'
     name: '(asyncResult: Office.AsyncResult<void>) => void'
     fullName: '(asyncResult: Office.AsyncResult<void>) => void'
     spec.typeScript:
@@ -2555,17 +2092,6 @@ references:
         name: CoercionTypeOptions
         fullName: Office.CoercionTypeOptions
   - uid: 'outlook!Office.MessageCompose#setSelectedDataAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.MessageCompose#setSelectedDataAsync~2:complex'
     name: '(asyncResult: Office.AsyncResult<void>) => void'
     fullName: '(asyncResult: Office.AsyncResult<void>) => void'
     spec.typeScript:
