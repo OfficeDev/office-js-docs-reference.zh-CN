@@ -6,7 +6,7 @@ items:
 
       Internet 标头以项/值对的形式存储在每个项的基础上。
 
-      **注意**：此对象用于设置和获取邮件项目的自定义标头。
+      **注意** ：此对象用于设置和获取邮件项目的自定义标头。
 
       \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -20,9 +20,9 @@ items:
 
       - 名称标头，以便以后可以重复使用和更新其值。 因此，请避免以变量方式命名标头 (例如，基于用户输入、时间戳等 ) 。
 
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
     name: Office.InternetHeaders
     fullName: Office.InternetHeaders
     langs:
@@ -31,22 +31,30 @@ items:
     package: outlook!
     children:
       - 'outlook!Office.InternetHeaders#getAsync:member(1)'
-      - 'outlook!Office.InternetHeaders#getAsync:member(2)'
       - 'outlook!Office.InternetHeaders#removeAsync:member(1)'
-      - 'outlook!Office.InternetHeaders#removeAsync:member(2)'
       - 'outlook!Office.InternetHeaders#setAsync:member(1)'
-      - 'outlook!Office.InternetHeaders#setAsync:member(2)'
   - uid: 'outlook!Office.InternetHeaders#getAsync:member(1)'
     summary: |-
       已知 internet 标头名称的数组，此方法将返回包含这些 internet 标头及其值的字典。 如果外接程序请求的 x 标头不可用，则结果中不会返回该 x 标头。
 
-      **注意**：此方法用于返回使用方法设置的自定义标头的值 `setAsync` 。
+      **注意** ：此方法用于返回使用方法设置的自定义标头的值 `setAsync` 。
 
       \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      Office.context.mailbox.item.internetHeaders.getAsync(["header1", "header2"], callback);
+
+      function callback(asyncResult) {
+          var dictionary = asyncResult.value;
+          var header1_value = dictionary["header1"];
+      }
+      ```
     name: 'getAsync(names, options, callback)'
     fullName: 'getAsync(names, options, callback)'
     langs:
@@ -71,59 +79,23 @@ items:
           description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
           type:
             - 'outlook!Office.InternetHeaders#getAsync~0:complex'
-  - uid: 'outlook!Office.InternetHeaders#getAsync:member(2)'
-    summary: |-
-      已知 internet 标头名称的数组，此方法将返回包含这些 internet 标头及其值的字典。 如果外接程序请求的 x 标头不可用，则结果中不会返回该 x 标头。
-
-      **注意**：此方法用于返回使用方法设置的自定义标头的值 `setAsync` 。
-
-      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      Office.context.mailbox.item.internetHeaders.getAsync(["header1", "header2"], callback);
-
-      function callback(asyncResult) {
-          var dictionary = asyncResult.value;
-          var header1_value = dictionary["header1"];
-      }
-      ```
-    name: 'getAsync(names, callback)'
-    fullName: 'getAsync(names, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getAsync(names: string[], callback?: (asyncResult: Office.AsyncResult<InternetHeaders>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: names
-          description: 要返回的 internet 标头的名称。
-          type:
-            - 'string[]'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
-          type:
-            - 'outlook!Office.InternetHeaders#getAsync~1:complex'
   - uid: 'outlook!Office.InternetHeaders#removeAsync:member(1)'
     summary: |-
       已知 internet 标头名称的数组，此方法将从 internet 头集合中移除指定的标头。
 
-      **注意**：此方法用于删除使用方法设置的自定义标头 `setAsync` 。
+      **注意** ：此方法用于删除使用方法设置的自定义标头 `setAsync` 。
 
       \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      Office.context.mailbox.item.internetHeaders.removeAsync(["header1", "header2"]);
+      ```
     name: 'removeAsync(names, options, callback)'
     fullName: 'removeAsync(names, options, callback)'
     langs:
@@ -148,56 +120,25 @@ items:
           description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
           type:
             - 'outlook!Office.InternetHeaders#removeAsync~0:complex'
-  - uid: 'outlook!Office.InternetHeaders#removeAsync:member(2)'
-    summary: |-
-      已知 internet 标头名称的数组，此方法将从 internet 头集合中移除指定的标头。
-
-      **注意**：此方法用于删除使用方法设置的自定义标头 `setAsync` 。
-
-      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      Office.context.mailbox.item.internetHeaders.removeAsync(["header1", "header2"]);
-      ```
-    name: 'removeAsync(names, callback)'
-    fullName: 'removeAsync(names, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'removeAsync(names: string[], callback?: (asyncResult: Office.AsyncResult<InternetHeaders>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: names
-          description: 要删除的 internet 标头的名称。
-          type:
-            - 'string[]'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
-          type:
-            - 'outlook!Office.InternetHeaders#removeAsync~1:complex'
   - uid: 'outlook!Office.InternetHeaders#setAsync:member(1)'
     summary: |-
       将指定的 internet 标头设置为指定的值。
 
       `setAsync`如果指定的标头尚不存在，则该方法将创建一个新的标头; 否则，现有值将替换为新值。
 
-      **注意**：此方法用于设置自定义标头的值。
+      **注意** ：此方法用于设置自定义标头的值。
 
       \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      Office.context.mailbox.item.internetHeaders.setAsync({"header1": "value1", "header2": "value2"});
+      ```
     name: 'setAsync(headers, options, callback)'
     fullName: 'setAsync(headers, options, callback)'
     langs:
@@ -222,65 +163,10 @@ items:
           description: 可选。 方法完成后， `callback` 使用类型为 AsyncResult 的单个参数调用在参数中传递的函数。 `asyncResult.error` 属性中将提供遇到的所有错误。
           type:
             - 'outlook!Office.InternetHeaders#setAsync~0:complex'
-  - uid: 'outlook!Office.InternetHeaders#setAsync:member(2)'
-    summary: |-
-      将指定的 internet 标头设置为指定的值。
-
-      `setAsync`如果指定的标头尚不存在，则该方法将创建一个新的标头; 否则，现有值将替换为新值。
-
-      **注意**：此方法用于设置自定义标头的值。
-
-      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      Office.context.mailbox.item.internetHeaders.setAsync({"header1": "value1", "header2": "value2"});
-      ```
-    name: 'setAsync(headers, callback)'
-    fullName: 'setAsync(headers, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setAsync(headers: Object, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: headers
-          description: 要设置的标头的名称和相应的值。 应为字典对象，其中的键为 internet 标头的名称，值为 internet 标头的值。
-          type:
-            - '!Object:interface'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用类型为 AsyncResult 的单个参数调用在参数中传递的函数。 `asyncResult.error` 属性中将提供遇到的所有错误。
-          type:
-            - 'outlook!Office.InternetHeaders#setAsync~1:complex'
 references:
   - uid: 'office!Office.AsyncContextOptions:interface'
     name: Office.AsyncContextOptions
   - uid: 'outlook!Office.InternetHeaders#getAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<InternetHeaders>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<Office.InternetHeaders>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <
-        fullName: <
-      - uid: 'outlook!Office.InternetHeaders:interface'
-        name: InternetHeaders
-        fullName: Office.InternetHeaders
-      - name: '>) => void'
-        fullName: '>) => void'
-  - uid: 'outlook!Office.InternetHeaders#getAsync~1:complex'
     name: '(asyncResult: Office.AsyncResult<InternetHeaders>) => void'
     fullName: '(asyncResult: Office.AsyncResult<Office.InternetHeaders>) => void'
     spec.typeScript:
@@ -312,36 +198,9 @@ references:
         fullName: Office.InternetHeaders
       - name: '>) => void'
         fullName: '>) => void'
-  - uid: 'outlook!Office.InternetHeaders#removeAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<InternetHeaders>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<Office.InternetHeaders>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <
-        fullName: <
-      - uid: 'outlook!Office.InternetHeaders:interface'
-        name: InternetHeaders
-        fullName: Office.InternetHeaders
-      - name: '>) => void'
-        fullName: '>) => void'
   - uid: '!Object:interface'
     name: Object
   - uid: 'outlook!Office.InternetHeaders#setAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.InternetHeaders#setAsync~1:complex'
     name: '(asyncResult: Office.AsyncResult<void>) => void'
     fullName: '(asyncResult: Office.AsyncResult<void>) => void'
     spec.typeScript:

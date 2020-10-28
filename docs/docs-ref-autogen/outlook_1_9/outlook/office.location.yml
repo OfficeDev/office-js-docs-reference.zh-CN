@@ -6,9 +6,9 @@ items:
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
     name: Office.Location
     fullName: Office.Location
     langs:
@@ -19,7 +19,6 @@ items:
       - 'outlook!Office.Location#getAsync:member(1)'
       - 'outlook!Office.Location#getAsync:member(2)'
       - 'outlook!Office.Location#setAsync:member(1)'
-      - 'outlook!Office.Location#setAsync:member(2)'
   - uid: 'outlook!Office.Location#getAsync:member(1)'
     summary: |-
       获取约会的位置。
@@ -28,9 +27,9 @@ items:
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
 
       #### <a name="examples"></a>示例
 
@@ -71,9 +70,9 @@ items:
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
 
       #### <a name="examples"></a>示例
 
@@ -111,13 +110,27 @@ items:
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
 
-      **错误**：
+      **错误** ：
 
       - DataExceedsMaximumSize： location 参数的长度超过255个字符。
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-set-location-appointment-organizer.yaml
+      var location = "my office";
+      Office.context.mailbox.item.location.setAsync(location, (result) => {
+        if (result.status !== Office.AsyncResultStatus.Succeeded) {
+          console.error(`Action failed with message ${result.error.message}`);
+          return;
+        }
+        console.log(`Successfully set location to ${location}`);
+      });
+      ```
     name: 'setAsync(location, options, callback)'
     fullName: 'setAsync(location, options, callback)'
     langs:
@@ -142,55 +155,6 @@ items:
           description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果设置位置失败，`asyncResult.error` 属性将包含一个错误代码。
           type:
             - 'outlook!Office.Location#setAsync~0:complex'
-  - uid: 'outlook!Office.Location#setAsync:member(2)'
-    summary: |-
-      设置约会的位置。
-
-      `setAsync` 方法开始对 Exchange 服务器进行异步调用，以设置约会的位置。设置约会的位置将覆盖当前位置。
-
-      \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
-
-      **错误**：
-
-      - `DataExceedsMaximumSize`<!-- -->： Location 参数的长度超过255个字符。
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-set-location-appointment-organizer.yaml
-      var location = "my office";
-      Office.context.mailbox.item.location.setAsync(location, (result) => {
-        if (result.status !== Office.AsyncResultStatus.Succeeded) {
-          console.error(`Action failed with message ${result.error.message}`);
-          return;
-        }
-        console.log(`Successfully set location to ${location}`);
-      });
-      ```
-    name: 'setAsync(location, callback)'
-    fullName: 'setAsync(location, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setAsync(location: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: location
-          description: 约会的位置。 字符串大小限制为 255 个字符。
-          type:
-            - string
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果设置位置失败，`asyncResult.error` 属性将包含一个错误代码。
-          type:
-            - 'outlook!Office.Location#setAsync~1:complex'
 references:
   - uid: 'office!Office.AsyncContextOptions:interface'
     name: Office.AsyncContextOptions
@@ -217,17 +181,6 @@ references:
       - name: <string>) => void
         fullName: <string>) => void
   - uid: 'outlook!Office.Location#setAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.Location#setAsync~1:complex'
     name: '(asyncResult: Office.AsyncResult<void>) => void'
     fullName: '(asyncResult: Office.AsyncResult<void>) => void'
     spec.typeScript:

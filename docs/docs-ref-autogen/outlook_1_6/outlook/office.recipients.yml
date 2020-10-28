@@ -6,9 +6,9 @@ items:
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
     name: Office.Recipients
     fullName: Office.Recipients
     langs:
@@ -17,7 +17,6 @@ items:
     package: outlook!
     children:
       - 'outlook!Office.Recipients#addAsync:member(1)'
-      - 'outlook!Office.Recipients#addAsync:member(2)'
       - 'outlook!Office.Recipients#getAsync:member(1)'
       - 'outlook!Office.Recipients#getAsync:member(2)'
       - 'outlook!Office.Recipients#setAsync:member(1)'
@@ -36,7 +35,7 @@ items:
 
       可添加的最大数量：
 
-      - Windows：100收件人。 **注意**：可以重复调用 API，但项目的目标字段中的最大收件人数为500个收件人。
+      - Windows：100收件人。 **注意** ：可以重复调用 API，但项目的目标字段中的最大收件人数为500个收件人。
 
       - Mac、web 浏览器：100收件人
 
@@ -44,64 +43,11 @@ items:
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
 
-      **错误**：
-
-      - `NumberOfRecipientsExceeded`<!-- -->：收件人数超过了100个条目。
-    name: 'addAsync(recipients, options, callback)'
-    fullName: 'addAsync(recipients, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addAsync(recipients: (string | EmailUser | EmailAddressDetails)[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: recipients
-          description: 要添加到收件人列表中的收件人。
-          type:
-            - 'outlook!Office.Recipients#addAsync~0:complex'
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果添加收件人失败，`asyncResult.error` 属性将包含一个错误代码。
-          type:
-            - 'outlook!Office.Recipients#addAsync~1:complex'
-  - uid: 'outlook!Office.Recipients#addAsync:member(2)'
-    summary: |-
-      将收件人列表添加到约会或邮件的现有收件人中。
-
-      收件人参数可以是以下项之一的数组：
-
-      - 包含 SMTP 电子邮件地址的字符串
-
-      - [Emailuser.displayname](xref:outlook!Office.EmailUser:interface) 对象
-
-      - [EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface) 对象
-
-      可添加的最大数量：
-
-      - Windows：100收件人。 **注意**：可以重复调用 API，但项目的目标字段中的最大收件人数为500个收件人。
-
-      - Mac、web 浏览器：100收件人
-
-      - 其他：无限制
-
-      \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
-
-      **错误**：
+      **错误** ：
 
       - `NumberOfRecipientsExceeded`<!-- -->：收件人数超过了100个条目。
 
@@ -129,13 +75,13 @@ items:
           }
       });
       ```
-    name: 'addAsync(recipients, callback)'
-    fullName: 'addAsync(recipients, callback)'
+    name: 'addAsync(recipients, options, callback)'
+    fullName: 'addAsync(recipients, options, callback)'
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'addAsync(recipients: (string | EmailUser | EmailAddressDetails)[], callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      content: 'addAsync(recipients: (string | EmailUser | EmailAddressDetails)[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
       return:
         type:
           - void
@@ -144,11 +90,15 @@ items:
         - id: recipients
           description: 要添加到收件人列表中的收件人。
           type:
-            - 'outlook!Office.Recipients#addAsync~2:complex'
+            - 'outlook!Office.Recipients#addAsync~0:complex'
+        - id: options
+          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+          type:
+            - 'office!Office.AsyncContextOptions:interface'
         - id: callback
           description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果添加收件人失败，`asyncResult.error` 属性将包含一个错误代码。
           type:
-            - 'outlook!Office.Recipients#addAsync~3:complex'
+            - 'outlook!Office.Recipients#addAsync~1:complex'
   - uid: 'outlook!Office.Recipients#getAsync:member(1)'
     summary: |-
       获取约会或邮件的收件人列表。
@@ -161,9 +111,9 @@ items:
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
     name: 'getAsync(options, callback)'
     fullName: 'getAsync(options, callback)'
     langs:
@@ -196,9 +146,9 @@ items:
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
 
       #### <a name="examples"></a>示例
 
@@ -322,11 +272,11 @@ items:
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
 
-      **错误**：
+      **错误** ：
 
       - `NumberOfRecipientsExceeded`<!-- -->：收件人数超过了100个条目。
     name: 'setAsync(recipients, options, callback)'
@@ -375,11 +325,11 @@ items:
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
 
-      **错误**：
+      **错误** ：
 
       - `NumberOfRecipientsExceeded`<!-- -->：收件人数超过了100个条目。
 
@@ -517,33 +467,6 @@ references:
   - uid: 'office!Office.AsyncContextOptions:interface'
     name: Office.AsyncContextOptions
   - uid: 'outlook!Office.Recipients#addAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.Recipients#addAsync~2:complex'
-    name: '(string | EmailUser | EmailAddressDetails)[]'
-    fullName: '(string | Office.EmailUser | Office.EmailAddressDetails)[]'
-    spec.typeScript:
-      - name: '(string | '
-        fullName: '(string | '
-      - uid: 'outlook!Office.EmailUser:interface'
-        name: EmailUser
-        fullName: Office.EmailUser
-      - name: ' | '
-        fullName: ' | '
-      - uid: 'outlook!Office.EmailAddressDetails:interface'
-        name: EmailAddressDetails
-        fullName: Office.EmailAddressDetails
-      - name: ')[]'
-        fullName: ')[]'
-  - uid: 'outlook!Office.Recipients#addAsync~3:complex'
     name: '(asyncResult: Office.AsyncResult<void>) => void'
     fullName: '(asyncResult: Office.AsyncResult<void>) => void'
     spec.typeScript:

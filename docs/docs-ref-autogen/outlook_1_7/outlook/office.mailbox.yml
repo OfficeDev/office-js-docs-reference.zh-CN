@@ -12,9 +12,9 @@ items:
 
       - `userProfile`<!-- -->：提供有关 Outlook 外接程序中的用户的信息。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`Restricted`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`Restricted`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
     name: Office.Mailbox
     fullName: Office.Mailbox
     langs:
@@ -23,7 +23,6 @@ items:
     package: outlook!
     children:
       - 'outlook!Office.Mailbox#addHandlerAsync:member(1)'
-      - 'outlook!Office.Mailbox#addHandlerAsync:member(2)'
       - 'outlook!Office.Mailbox#convertToEwsId:member(1)'
       - 'outlook!Office.Mailbox#convertToLocalClientTime:member(1)'
       - 'outlook!Office.Mailbox#convertToRestId:member(1)'
@@ -40,20 +39,38 @@ items:
       - 'outlook!Office.Mailbox#item:member'
       - 'outlook!Office.Mailbox#makeEwsRequestAsync:member(1)'
       - 'outlook!Office.Mailbox#removeHandlerAsync:member(1)'
-      - 'outlook!Office.Mailbox#removeHandlerAsync:member(2)'
       - 'outlook!Office.Mailbox#restUrl:member'
       - 'outlook!Office.Mailbox#userProfile:member'
   - uid: 'outlook!Office.Mailbox#addHandlerAsync:member(1)'
     summary: |-
-      添加支持事件的事件处理程序。 **注意**：事件仅在任务窗格中可用。
+      添加支持事件的事件处理程序。 **注意** ：事件仅在任务窗格中可用。
 
       有关受支持的事件，请参阅 "邮箱对象模型 [事件" 部分](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.7/office.context.mailbox#events) 。
 
       \[[API 集：邮箱 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      Office.initialize = function (reason) {
+          $(document).ready(function () {
+              Office.context.mailbox.addHandlerAsync(Office.EventType.ItemChanged, loadNewItem, function (result) {
+              if (result.status === Office.AsyncResultStatus.Failed) {
+                      // Handle error.
+                  }
+              });
+          });
+      };
+
+      function loadNewItem(eventArgs) {
+          // Load the properties of the newly selected item.
+          loadProps(Office.context.mailbox.item);
+      }
+      ```
     name: 'addHandlerAsync(eventType, handler, options, callback)'
     fullName: 'addHandlerAsync(eventType, handler, options, callback)'
     langs:
@@ -82,73 +99,19 @@ items:
           description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
           type:
             - 'outlook!Office.Mailbox#addHandlerAsync~2:complex'
-  - uid: 'outlook!Office.Mailbox#addHandlerAsync:member(2)'
-    summary: |-
-      添加支持事件的事件处理程序。 **注意**：事件仅在任务窗格中可用。
-
-      有关受支持的事件，请参阅 "邮箱对象模型 [事件" 部分](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.7/office.context.mailbox#events) 。
-
-      \[[API 集：邮箱 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      Office.initialize = function (reason) {
-          $(document).ready(function () {
-              Office.context.mailbox.addHandlerAsync(Office.EventType.ItemChanged, loadNewItem, function (result) {
-              if (result.status === Office.AsyncResultStatus.Failed) {
-                      // Handle error.
-                  }
-              });
-          });
-      };
-
-      function loadNewItem(eventArgs) {
-          // Load the properties of the newly selected item.
-          loadProps(Office.context.mailbox.item);
-      }
-      ```
-    name: 'addHandlerAsync(eventType, handler, callback)'
-    fullName: 'addHandlerAsync(eventType, handler, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addHandlerAsync(eventType: Office.EventType | string, handler: (type: Office.EventType) => void, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: eventType
-          description: 应调用处理程序的事件。
-          type:
-            - 'outlook!Office.Mailbox#addHandlerAsync~3:complex'
-        - id: handler
-          description: 用于处理事件的函数。 此函数必须接受一个参数，即对象文本。 参数的 type 属性将与 `eventType` 传递给的参数相匹配 `addHandlerAsync`<!-- -->.
-          type:
-            - 'outlook!Office.Mailbox#addHandlerAsync~4:complex'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
-          type:
-            - 'outlook!Office.Mailbox#addHandlerAsync~5:complex'
   - uid: 'outlook!Office.Mailbox#convertToEwsId:member(1)'
     summary: |-
       将项目 ID 格式化（从 REST 转换为 EWS 格式）。
 
       通过 REST API 检索的项 Id（如 Outlook 邮件 API 或 Microsoft Graph）使用与 Exchange Web 服务 (EWS) 所使用格式不同的格式。 方法将 REST 格式化的 ID 转换为正确的 EWS 格式。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此方法。
 
       \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`Restricted`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`Restricted`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
 
       #### <a name="examples"></a>示例
 
@@ -193,9 +156,9 @@ items:
 
       如果邮件应用程序在桌面客户端上的 Outlook 中运行，则该 `convertToLocalClientTime` 方法将返回一个 dictionary 对象，并将值设置为客户端计算机时区。 如果邮件应用程序在 web 上的 Outlook 中运行，则该 `convertToLocalClientTime` 方法将返回一个 dictionary 对象，其中的值设置为 EAC 中指定的时区。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
     name: convertToLocalClientTime(timeValue)
     fullName: convertToLocalClientTime(timeValue)
     langs:
@@ -216,13 +179,13 @@ items:
     summary: |-
       将项目 ID 格式化（从 EWS 转换为 REST 格式）。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此方法。
 
       \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`Restricted`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`Restricted`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
 
       通过 EWS 或通过属性检索的项目 Id `itemId` 使用的格式不同于 REST api 所使用的格式 (例如[OUTLOOK 邮件 API](https://docs.microsoft.com/previous-versions/office/office-365-api/api/version-2.0/mail-rest-operations)或[Microsoft Graph](https://graph.microsoft.io/) ）<!-- -->. 方法将 EWS 格式化的 ID 转换为正确的 REST 格式。
 
@@ -284,9 +247,9 @@ items:
 
       该 `convertToUtcClientTime` 方法将包含本地日期和时间的字典转换为 `Date` 具有本地日期和时间的正确值的对象。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
 
       #### <a name="examples"></a>示例
 
@@ -331,7 +294,7 @@ items:
 
       包含以下成员：
 
-      - `hostName` (字符串) ：一个表示主机应用程序的名称的字符串。 它应为下列值之一： `Outlook`<!-- -->, `OutlookWebApp`<!-- -->, `OutlookIOS`<!-- -->，或者 `OutlookAndroid`<!-- -->. **注意**：为 outlook 在桌面客户端上的 "outlook" 值返回 (即 Windows 和 Mac) 。
+      - `hostName` (字符串) ：一个表示主机应用程序的名称的字符串。 它应为下列值之一： `Outlook`<!-- -->, `OutlookWebApp`<!-- -->, `OutlookIOS`<!-- -->，或者 `OutlookAndroid`<!-- -->. **注意** ：为 outlook 在桌面客户端上的 "outlook" 值返回 (即 Windows 和 Mac) 。
 
       - `hostVersion` (字符串) ：一个字符串，表示主机应用程序或 Exchange Server 的版本 (例如，"15.0.468.0" ) 。 如果邮件外接程序在桌面或移动客户端上的 Outlook 中运行，则该 `hostVersion` 属性将返回主机应用程序（Outlook）的版本。 在 Outlook 网页版中，该属性返回的是 Exchange 服务器的版本。
 
@@ -339,9 +302,9 @@ items:
 
       有关详细信息，请与 [Office 诊断](xref:outlook!Office.Diagnostics:interface)<!-- -->.
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
     name: diagnostics
     fullName: diagnostics
     langs:
@@ -364,11 +327,11 @@ items:
 
       如果指定的项标识符未标识现有约会，则在客户端计算机或设备上打开一个空白窗格，并且不会返回任何错误消息。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此方法。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
 
       #### <a name="examples"></a>示例
 
@@ -405,11 +368,11 @@ items:
 
       请勿将 `displayMessageForm` 和与代表约会的 itemId 结合使用。 使用 `displayAppointmentForm` 方法显示现有的约会，并使用 `displayNewAppointmentForm` 显示窗体以新建约会。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此方法。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
 
       #### <a name="examples"></a>示例
 
@@ -440,17 +403,17 @@ items:
 
       `displayNewAppointmentForm` 方法打开可让用户新建约会或会议的窗体。如果指定了参数，将使用参数的内容自动填充约会窗体字段。
 
-      在 web 上的 Outlook 中，此方法始终显示一个包含 "与会者" 字段的窗体。 如果你未将任何与会者指定为输入参数，该方法将显示为一个包含“**保存**”按钮的窗体。 如果已指定与会者，窗体将包含与会者和“**发送**”按钮。
+      在 web 上的 Outlook 中，此方法始终显示一个包含 "与会者" 字段的窗体。 如果你未将任何与会者指定为输入参数，该方法将显示为一个包含“ **保存** ”按钮的窗体。 如果已指定与会者，窗体将包含与会者和“ **发送** ”按钮。
 
       在 Outlook 富客户端和 Outlook RT 中，如果您在中指定任何与会者或资源 `requiredAttendees`<!-- -->, `optionalAttendees`<!-- -->或 `resources` 参数，此方法显示带有 " **发送** " 按钮的会议窗体。 如果不指定任何收件人，此方法将显示带有 " **保存 &amp; 关闭** " 按钮的约会窗体。
 
       如果任何参数超过指定大小限制，或者指定了未知参数名称，则会引发异常。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此方法。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：读取
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：读取
 
       #### <a name="examples"></a>示例
 
@@ -497,9 +460,9 @@ items:
 
       \[[API 集：邮箱 1.6](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：读取
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：读取
 
       #### <a name="examples"></a>示例
 
@@ -536,11 +499,11 @@ items:
           description: |-
             包含要为新表单中的用户填充的所有值的词典。 所有参数都是可选的。
 
-            `toRecipients`<!-- -->：包含电子邮件地址的字符串数组或包含 **"收件人" 行中**每个收件人的[EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface)对象的数组。 数组限制为最多 100 个条目。
+            `toRecipients`<!-- -->：包含电子邮件地址的字符串数组或包含 **"收件人" 行中** 每个收件人的 [EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface)对象的数组。 数组限制为最多 100 个条目。
 
-            `ccRecipients`<!-- -->：包含电子邮件地址的字符串数组或包含 "**抄送**" 行上每个收件人的[EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface)对象的数组。 数组限制为最多 100 个条目。
+            `ccRecipients`<!-- -->：包含电子邮件地址的字符串数组或包含 " **抄送** " 行上每个收件人的 [EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface)对象的数组。 数组限制为最多 100 个条目。
 
-            `bccRecipients`<!-- -->：包含电子邮件地址的字符串数组或包含 "**密件抄送**" 行上每个收件人的[EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface)对象的数组。 数组限制为最多 100 个条目。
+            `bccRecipients`<!-- -->：包含电子邮件地址的字符串数组或包含 " **密件抄送** " 行上每个收件人的 [EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface)对象的数组。 数组限制为最多 100 个条目。
 
             `subject`<!-- -->：包含邮件主题的字符串。 字符串长度限制为最多 255 个字符。
 
@@ -567,11 +530,11 @@ items:
 
       在撰写模式中，必须调用 `saveAsync` 方法，才能使用 `ewsUrl` 成员。 您的应用程序必须具有 `ReadWriteItem` 调用该 `saveAsync` 方法的权限。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此成员。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此成员。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
 
       远程服务可使用 `ewsUrl` 值对用户邮箱进行 EWS 调用。 例如，可以创建远程服务以 [从所选项目中获取附件](https://docs.microsoft.com/office/dev/add-ins/outlook/get-attachments-of-an-outlook-item)<!-- -->.
 
@@ -612,7 +575,7 @@ items:
 
       `getCallbackTokenAsync`在撰写模式下调用方法需要您保存项目。 `saveAsync`方法要求的最低权限级别为`ReadWriteItem`<!-- -->.
 
-      **重要说明**：有关委派或共享方案的指导，请参阅 [代理访问](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) 文章。
+      **重要说明** ：有关委派或共享方案的指导，请参阅 [代理访问](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) 文章。
 
       *REST 令牌*
 
@@ -638,15 +601,15 @@ items:
 
       可以将令牌和附件标识符或项标识符传递到第三方系统。 第三方系统使用令牌作为持有者身份验证令牌调用 Exchange Web 服务 (EWS) [GetAttachment](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getattachment-operation) 操作或 [GetItem](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getitem-operation) 操作，以返回附件或项目。 例如，可以创建远程服务以 [从所选项目中获取附件](https://docs.microsoft.com/office/dev/add-ins/outlook/get-attachments-of-an-outlook-item)<!-- -->.
 
-      **注意**：建议外接程序尽可能使用 REST api 而不是 Exchange Web 服务。
+      **注意** ：建议外接程序尽可能使用 REST api 而不是 Exchange Web 服务。
 
       \[[API 集：邮箱 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
 
-      **错误**：
+      **错误** ：
 
       - `HTTPRequestFailure`<!-- -->：请求失败。 请查看诊断对象，了解 HTTP 错误代码。
 
@@ -707,15 +670,15 @@ items:
 
       `getCallbackTokenAsync`在撰写模式下调用方法需要您保存项目。 `saveAsync`方法要求的最低权限级别为`ReadWriteItem`<!-- -->.
 
-      **重要说明**：有关委派或共享方案的指导，请参阅 [代理访问](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) 文章。
+      **重要说明** ：有关委派或共享方案的指导，请参阅 [代理访问](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) 文章。
 
       \[[API 集： All 支持读取模式;邮箱1.3 引入了撰写模式支持](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
 
-      **错误**：
+      **错误** ：
 
       - `HTTPRequestFailure`<!-- -->：请求失败。 请查看诊断对象，了解 HTTP 错误代码。
 
@@ -761,13 +724,13 @@ items:
 
       令牌作为属性中的字符串返回 `asyncResult.value` 。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
 
       该 `getUserIdentityTokenAsync` 方法返回一个令牌，可用于 [通过第三方系统识别和验证外接程序和用户](https://docs.microsoft.com/office/dev/add-ins/outlook/authentication)<!-- -->.
 
-      **错误**：
+      **错误** ：
 
       - `HTTPRequestFailure`<!-- -->：请求失败。 请查看诊断对象，了解 HTTP 错误代码。
 
@@ -838,13 +801,13 @@ items:
 
       EWS 调用的 XML 结果作为 `asyncResult.value` 属性中的字符串提供。 如果结果大小超过 1 MB，则改为返回一条错误消息。
 
-      **注意**：在以下情况下，不支持此方法：
+      **注意** ：在以下情况下，不支持此方法：
 
       - 在 iOS 或 Android 上的 Outlook 中。
 
       - 将加载项加载到 Gmail 邮箱中时。
 
-      **注意**：服务器管理员必须 `OAuthAuthentication` `true` 在客户端访问服务器 EWS 目录上设置为，才能使 `makeEwsRequestAsync` 方法能够发出 EWS 请求。
+      **注意** ：服务器管理员必须 `OAuthAuthentication` `true` 在客户端访问服务器 EWS 目录上设置为，才能使 `makeEwsRequestAsync` 方法能够发出 EWS 请求。
 
       *版本差异*
 
@@ -854,9 +817,9 @@ items:
 
       当邮件应用程序运行在 Outlook 网页版中时，您不需要设置编码值。 您可以通过使用属性来确定您的邮件应用程序是在 Outlook 中运行还是在 web 上的 Outlook 中运行 `mailbox.diagnostics.hostName` 。 您可以通过使用属性来确定运行的是哪个版本的 Outlook `mailbox.diagnostics.hostVersion` 。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteMailbox`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteMailbox`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
 
       #### <a name="examples"></a>示例
 
@@ -972,15 +935,15 @@ items:
             - any
   - uid: 'outlook!Office.Mailbox#removeHandlerAsync:member(1)'
     summary: |-
-      删除受支持事件类型的事件处理程序。 **注意**：事件仅在任务窗格中可用。
+      删除受支持事件类型的事件处理程序。 **注意** ：事件仅在任务窗格中可用。
 
       有关受支持的事件，请参阅 "邮箱对象模型 [事件" 部分](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.7/office.context.mailbox#events) 。
 
       \[[API 集：邮箱 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
     name: 'removeHandlerAsync(eventType, options, callback)'
     fullName: 'removeHandlerAsync(eventType, options, callback)'
     langs:
@@ -1005,37 +968,6 @@ items:
           description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
           type:
             - 'outlook!Office.Mailbox#removeHandlerAsync~1:complex'
-  - uid: 'outlook!Office.Mailbox#removeHandlerAsync:member(2)'
-    summary: |-
-      删除受支持事件类型的事件处理程序。 **注意**：事件仅在任务窗格中可用。
-
-      有关受支持的事件，请参阅 "邮箱对象模型 [事件" 部分](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.7/office.context.mailbox#events) 。
-
-      \[[API 集：邮箱 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
-    name: 'removeHandlerAsync(eventType, callback)'
-    fullName: 'removeHandlerAsync(eventType, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'removeHandlerAsync(eventType: Office.EventType | string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: eventType
-          description: 应撤销处理程序的事件。
-          type:
-            - 'outlook!Office.Mailbox#removeHandlerAsync~2:complex'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
-          type:
-            - 'outlook!Office.Mailbox#removeHandlerAsync~3:complex'
   - uid: 'outlook!Office.Mailbox#restUrl:member'
     summary: |-
       获取此电子邮件帐户的 REST 终结点的 URL。
@@ -1048,9 +980,9 @@ items:
 
       \[[API 集：邮箱 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
 
       `restUrl` 值可用于对用户邮箱进行 [REST API](https://docs.microsoft.com/outlook/rest/) 调用。
 
@@ -1135,37 +1067,6 @@ references:
   - uid: 'office!Office.AsyncContextOptions:interface'
     name: Office.AsyncContextOptions
   - uid: 'outlook!Office.Mailbox#addHandlerAsync~2:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.Mailbox#addHandlerAsync~3:complex'
-    name: Office.EventType | string
-    fullName: Office.EventType | string
-    spec.typeScript:
-      - uid: 'office!Office.EventType:enum'
-        name: Office.EventType
-        fullName: Office.EventType
-      - name: ' | string'
-        fullName: ' | string'
-  - uid: 'outlook!Office.Mailbox#addHandlerAsync~4:complex'
-    name: '(type: Office.EventType) => void'
-    fullName: '(type: Office.EventType) => void'
-    spec.typeScript:
-      - name: '(type: '
-        fullName: '(type: '
-      - uid: 'office!Office.EventType:enum'
-        name: Office.EventType
-        fullName: Office.EventType
-      - name: ) => void
-        fullName: ) => void
-  - uid: 'outlook!Office.Mailbox#addHandlerAsync~5:complex'
     name: '(asyncResult: Office.AsyncResult<void>) => void'
     fullName: '(asyncResult: Office.AsyncResult<void>) => void'
     spec.typeScript:
@@ -1312,26 +1213,6 @@ references:
       - name: ' | string'
         fullName: ' | string'
   - uid: 'outlook!Office.Mailbox#removeHandlerAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.Mailbox#removeHandlerAsync~2:complex'
-    name: Office.EventType | string
-    fullName: Office.EventType | string
-    spec.typeScript:
-      - uid: 'office!Office.EventType:enum'
-        name: Office.EventType
-        fullName: Office.EventType
-      - name: ' | string'
-        fullName: ' | string'
-  - uid: 'outlook!Office.Mailbox#removeHandlerAsync~3:complex'
     name: '(asyncResult: Office.AsyncResult<void>) => void'
     fullName: '(asyncResult: Office.AsyncResult<void>) => void'
     spec.typeScript:

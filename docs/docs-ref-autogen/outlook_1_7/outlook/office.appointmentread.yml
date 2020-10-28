@@ -4,7 +4,7 @@ items:
     summary: |-
       "Office" 的约会与会者模式： "邮箱"。 [项目](xref:outlook!Office.Item:interface)<!-- -->.
 
-      **重要说明**：这是一个内部 Outlook 对象，而不是直接通过现有接口公开。 应将此视为的模式 `Office.context.mailbox.item`<!-- -->. 有关详细信息，请参阅 [对象模型](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.7/office.context.mailbox.item) 页。
+      **重要说明** ：这是一个内部 Outlook 对象，而不是直接通过现有接口公开。 应将此视为的模式 `Office.context.mailbox.item`<!-- -->. 有关详细信息，请参阅 [对象模型](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.7/office.context.mailbox.item) 页。
 
       父接口：
 
@@ -22,7 +22,6 @@ items:
     package: outlook!
     children:
       - 'outlook!Office.AppointmentRead#addHandlerAsync:member(1)'
-      - 'outlook!Office.AppointmentRead#addHandlerAsync:member(2)'
       - 'outlook!Office.AppointmentRead#attachments:member'
       - 'outlook!Office.AppointmentRead#body:member'
       - 'outlook!Office.AppointmentRead#dateTimeCreated:member'
@@ -48,22 +47,35 @@ items:
       - 'outlook!Office.AppointmentRead#organizer:member'
       - 'outlook!Office.AppointmentRead#recurrence:member'
       - 'outlook!Office.AppointmentRead#removeHandlerAsync:member(1)'
-      - 'outlook!Office.AppointmentRead#removeHandlerAsync:member(2)'
       - 'outlook!Office.AppointmentRead#requiredAttendees:member'
       - 'outlook!Office.AppointmentRead#seriesId:member'
       - 'outlook!Office.AppointmentRead#start:member'
       - 'outlook!Office.AppointmentRead#subject:member'
   - uid: 'outlook!Office.AppointmentRead#addHandlerAsync:member(1)'
     summary: |-
-      添加支持事件的事件处理程序。 **注意**：事件仅在任务窗格中可用。
+      添加支持事件的事件处理程序。 **注意** ：事件仅在任务窗格中可用。
 
       有关受支持的事件，请参阅 Item object model [events 部分](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.7/office.context.mailbox.item#events) 。
 
       \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
+
+      #### <a name="examples"></a>示例
+
+      ```javascript
+      function myHandlerFunction(eventarg) {
+          if (eventarg.attachmentStatus === Office.MailboxEnums.AttachmentStatus.Added) {
+              var attachment = eventarg.attachmentDetails;
+              console.log("Event Fired and Attachment Added!");
+              getAttachmentContentAsync(attachment.id, options, callback);
+          }
+      }
+
+      Office.context.mailbox.item.addHandlerAsync(Office.EventType.AttachmentsChanged, myHandlerFunction, myCallback);
+      ```
     name: 'addHandlerAsync(eventType, handler, options, callback)'
     fullName: 'addHandlerAsync(eventType, handler, options, callback)'
     langs:
@@ -92,63 +104,14 @@ items:
           description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
           type:
             - 'outlook!Office.AppointmentRead#addHandlerAsync~1:complex'
-  - uid: 'outlook!Office.AppointmentRead#addHandlerAsync:member(2)'
-    summary: |-
-      添加支持事件的事件处理程序。 **注意**：事件仅在任务窗格中可用。
-
-      有关受支持的事件，请参阅 Item object model [events 部分](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.7/office.context.mailbox.item#events) 。
-
-      \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      function myHandlerFunction(eventarg) {
-          if (eventarg.attachmentStatus === Office.MailboxEnums.AttachmentStatus.Added) {
-              var attachment = eventarg.attachmentDetails;
-              console.log("Event Fired and Attachment Added!");
-              getAttachmentContentAsync(attachment.id, options, callback);
-          }
-      }
-
-      Office.context.mailbox.item.addHandlerAsync(Office.EventType.AttachmentsChanged, myHandlerFunction, myCallback);
-      ```
-    name: 'addHandlerAsync(eventType, handler, callback)'
-    fullName: 'addHandlerAsync(eventType, handler, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addHandlerAsync(eventType: Office.EventType | string, handler: any, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: eventType
-          description: 应调用处理程序的事件。
-          type:
-            - 'outlook!Office.AppointmentRead#addHandlerAsync~2:complex'
-        - id: handler
-          description: 用于处理事件的函数。 此函数必须接受一个参数，即对象文本。 参数的 type 属性将与 `eventType` 传递给的参数相匹配 `addHandlerAsync`<!-- -->.
-          type:
-            - any
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
-          type:
-            - 'outlook!Office.AppointmentRead#addHandlerAsync~3:complex'
   - uid: 'outlook!Office.AppointmentRead#attachments:member'
     summary: 以数组的形式获取项目的附件。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
-      **注意**：由于潜在的安全问题，Outlook 阻止了某些类型的文件，因此不会返回这些文件。 有关详细信息，请参阅 [Outlook 中阻止的附件](https://support.office.com/article/Blocked-attachments-in-Outlook-434752E1-02D3-4E90-9124-8B81E49A8519)<!-- -->.
+      **注意** ：由于潜在的安全问题，Outlook 阻止了某些类型的文件，因此不会返回这些文件。 有关详细信息，请参阅 [Outlook 中阻止的附件](https://support.office.com/article/Blocked-attachments-in-Outlook-434752E1-02D3-4E90-9124-8B81E49A8519)<!-- -->.
 
       #### <a name="examples"></a>示例
 
@@ -193,9 +156,9 @@ items:
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -228,9 +191,9 @@ items:
   - uid: 'outlook!Office.AppointmentRead#dateTimeCreated:member'
     summary: 获取项目创建的日期和时间。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -252,11 +215,11 @@ items:
     summary: |-
       获取项目最近一次修改的日期和时间。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此成员。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此成员。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -284,11 +247,11 @@ items:
 
       如果在参数中指定了附件 `formData.attachments` ，Outlook 将尝试下载所有附件并将其附加到答复窗体。 如果无法添加任何附件，则在窗体 UI 中显示错误。 如果这不可能，则不引发错误消息。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此方法。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -387,11 +350,11 @@ items:
 
       如果在参数中指定了附件 `formData.attachments` ，Outlook 将尝试下载所有附件并将其附加到答复窗体。 如果无法添加任何附件，则在窗体 UI 中显示错误。 如果这不可能，则不引发错误消息。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此方法。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -504,9 +467,9 @@ items:
 
       使用 `Time.setAsync` 方法设置结束时间时，应使用 `convertToUtcClientTime` 方法将客户端的本地时间转换为服务器的 UTC。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -528,11 +491,11 @@ items:
     summary: |-
       获取在所选项目的正文中找到的实体。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此方法。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -595,11 +558,11 @@ items:
     summary: |-
       获取所选项目的正文中找到的指定实体类型的所有实体的数组。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此方法。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`Restricted`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`Restricted`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -634,11 +597,11 @@ items:
 
       `getFilteredEntitiesByName`方法返回与在 `ItemHasKnownEntity` 具有指定元素值的清单 XML 文件中的 rule 元素中定义的正则表达式匹配的实体 `FilterName` 。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此方法。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -671,11 +634,11 @@ items:
 
       如果在项目的正文属性上指定 `ItemHasRegularExpressionMatch` 规则，则正则表达式应进一步筛选正文，不应尝试返回该项目的整个正文。 使用正则表达式（如. *）获取项目的整个正文并不总是返回预期的结果。 而是使用 `Body.getAsync` 方法检索整个正文。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此方法。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -726,11 +689,11 @@ items:
 
       如果在项目的正文属性上指定 `ItemHasRegularExpressionMatch` 规则，则正则表达式应进一步筛选正文，不应尝试返回该项目的整个正文。 使用正则表达式（如. *）获取项目的整个正文并不总是返回预期的结果。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此方法。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -778,13 +741,13 @@ items:
     summary: |-
       获取在用户已选择的突出显示匹配项中找到的实体。 突出显示的匹配项适用于上下文外接程序。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此方法。
 
       \[[API 集：邮箱 1.6](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -851,13 +814,13 @@ items:
 
       如果在项目的正文属性上指定 `ItemHasRegularExpressionMatch` 规则，则正则表达式应进一步筛选正文，不应尝试返回该项目的整个正文。 使用正则表达式（如. *）获取项目的整个正文并不总是返回预期的结果。 而是使用 `Body.getAsync` 方法检索整个正文。
 
-      **注意**：在 IOS 或 Android 上的 Outlook 中不支持此方法。
+      **注意** ：在 IOS 或 Android 上的 Outlook 中不支持此方法。
 
       \[[API 集：邮箱 1.6](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -911,9 +874,9 @@ items:
 
       您可以创建扩展默认邮件类别的自定义邮件类别，例如，自定义约会邮件类别 `IPM.Appointment.Contoso`<!-- -->.
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       `itemClass` 属性指定所选项目的邮件类别。以下是邮件或约会项目的默认邮件类别。
 
@@ -941,11 +904,11 @@ items:
 
       `itemId` 属性在撰写模式下不可用。 如果需要项目标识符，`saveAsync` 方法可用于将项目保存到存储，这将在回调函数的 `asyncResult.value` 参数中返回项目标识符。
 
-      **注意**：属性返回的标识符与 `itemId` [Exchange Web 服务项目标识符](https://docs.microsoft.com/exchange/client-developer/exchange-web-services/ews-identifiers-in-exchange)相同。<!-- -->. `itemId` 属性与 Outlook 条目 ID 或 Outlook REST API 使用的 ID 不同。 使用此值进行 REST API 调用之前，应使用此值进行转换 `Office.context.mailbox.convertToRestId`<!-- -->. 有关更多详细信息，请参阅 [使用 outlook 外接程序中的 OUTLOOK REST api](https://docs.microsoft.com/office/dev/add-ins/outlook/use-rest-api#get-the-item-id)<!-- -->.
+      **注意** ：属性返回的标识符与 `itemId` [Exchange Web 服务项目标识符](https://docs.microsoft.com/exchange/client-developer/exchange-web-services/ews-identifiers-in-exchange)相同。<!-- -->. `itemId` 属性与 Outlook 条目 ID 或 Outlook REST API 使用的 ID 不同。 使用此值进行 REST API 调用之前，应使用此值进行转换 `Office.context.mailbox.convertToRestId`<!-- -->. 有关更多详细信息，请参阅 [使用 outlook 外接程序中的 OUTLOOK REST api](https://docs.microsoft.com/office/dev/add-ins/outlook/use-rest-api#get-the-item-id)<!-- -->.
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -979,9 +942,9 @@ items:
 
       该 `itemType` 属性返回一个 `ItemType` 枚举值，指示 item 对象实例是邮件还是约会。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -1007,9 +970,9 @@ items:
 
       自定义属性作为 `CustomProperties` asyncResult 属性中的对象提供。 此对象可用于获取、设置以及从项目中删除自定义属性，并将自定义属性集的更改重新保存到服务器。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -1086,9 +1049,9 @@ items:
 
       `location` 属性返回一个包含约会位置的字符串。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -1116,9 +1079,9 @@ items:
 
       `normalizedSubject`属性获取项目的主题，其中包含由电子邮件程序添加的任何标准前缀 (例如 RE：和 FW： ) 。 若要获取包含完整前缀的项目主题，请使用 `subject` 属性。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -1142,9 +1105,9 @@ items:
 
       \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -1226,9 +1189,9 @@ items:
 
       - 其他：无限制
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -1259,9 +1222,9 @@ items:
   - uid: 'outlook!Office.AppointmentRead#organizer:member'
     summary: 获取指定会议的会议组织者的电子邮件地址。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -1286,15 +1249,15 @@ items:
 
       `recurrence`如果项目是系列中的一个系列或一个实例，则该属性返回定期约会或会议请求的[定期](xref:outlook!Office.Recurrence:interface)对象。 `null` 返回单个约会的单个约会和会议请求。
 
-      **注意**：会议请求 `itemClass` 的值为 `IPM.Schedule.Meeting.Request`<!-- -->.
+      **注意** ：会议请求 `itemClass` 的值为 `IPM.Schedule.Meeting.Request`<!-- -->.
 
-      **注意**：如果定期对象为 null，则表示该对象是单个约会的单个约会或会议请求，而不是某个系列的一部分。
+      **注意** ：如果定期对象为 null，则表示该对象是单个约会的单个约会或会议请求，而不是某个系列的一部分。
 
       \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -1322,15 +1285,15 @@ items:
           - 'outlook!Office.Recurrence:interface'
   - uid: 'outlook!Office.AppointmentRead#removeHandlerAsync:member(1)'
     summary: |-
-      删除受支持事件类型的事件处理程序。 **注意**：事件仅在任务窗格中可用。
+      删除受支持事件类型的事件处理程序。 **注意** ：事件仅在任务窗格中可用。
 
       有关受支持的事件，请参阅 Item object model [events 部分](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.7/office.context.mailbox.item#events) 。
 
       \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
     name: 'removeHandlerAsync(eventType, options, callback)'
     fullName: 'removeHandlerAsync(eventType, options, callback)'
     langs:
@@ -1355,37 +1318,6 @@ items:
           description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
           type:
             - 'outlook!Office.AppointmentRead#removeHandlerAsync~1:complex'
-  - uid: 'outlook!Office.AppointmentRead#removeHandlerAsync:member(2)'
-    summary: |-
-      删除受支持事件类型的事件处理程序。 **注意**：事件仅在任务窗格中可用。
-
-      有关受支持的事件，请参阅 Item object model [events 部分](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.7/office.context.mailbox.item#events) 。
-
-      \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
-    name: 'removeHandlerAsync(eventType, callback)'
-    fullName: 'removeHandlerAsync(eventType, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'removeHandlerAsync(eventType: Office.EventType | string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: eventType
-          description: 应撤销处理程序的事件。
-          type:
-            - 'outlook!Office.AppointmentRead#removeHandlerAsync~2:complex'
-        - id: callback
-          description: 可选。 方法完成后，使用单个参数调用在 callback 参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
-          type:
-            - 'outlook!Office.AppointmentRead#removeHandlerAsync~3:complex'
   - uid: 'outlook!Office.AppointmentRead#requiredAttendees:member'
     summary: |-
       提供对事件的必需与会者的访问权限。 对象的类型和访问权限级别取决于当前项目的模式。
@@ -1398,9 +1330,9 @@ items:
 
       - 其他：无限制
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -1434,15 +1366,15 @@ items:
 
       在 web 上的 Outlook 和桌面客户端中，将 `seriesId` 返回此项所属的父 (系列) 项的 Exchange Web 服务 (EWS) ID。 但是，在 iOS 和 Android 上，Webcasts&seriesid 返回父项的 REST ID。
 
-      **注意**：属性返回的标识符与 `seriesId` Exchange Web 服务项目标识符相同。 `seriesId`属性与 OUTLOOK REST API 使用的 Outlook id 不相同。 使用此值进行 REST API 调用之前，应使用此值进行转换 `Office.context.mailbox.convertToRestId`<!-- -->. 有关更多详细信息，请参阅 [使用 outlook 外接程序中的 OUTLOOK REST api](https://docs.microsoft.com/office/dev/add-ins/outlook/use-rest-api)<!-- -->.
+      **注意** ：属性返回的标识符与 `seriesId` Exchange Web 服务项目标识符相同。 `seriesId`属性与 OUTLOOK REST API 使用的 Outlook id 不相同。 使用此值进行 REST API 调用之前，应使用此值进行转换 `Office.context.mailbox.convertToRestId`<!-- -->. 有关更多详细信息，请参阅 [使用 outlook 外接程序中的 OUTLOOK REST api](https://docs.microsoft.com/office/dev/add-ins/outlook/use-rest-api)<!-- -->.
 
       `seriesId` `null` 对于不包含父项（如单个约会、系列项或会议请求）的项，该属性将返回， `undefined` 对于不是会议请求的任何其他项，该属性返回。
 
       \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -1474,9 +1406,9 @@ items:
 
       `start`属性是 `Date` 表示为协调通用时间 (UTC) 日期和时间值的对象。 可以使用 `convertToLocalClientTime` 方法将值转换为客户端的本地日期和时间。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -1502,9 +1434,9 @@ items:
 
       `subject` 属性返回一个字符串。 使用 `normalizedSubject` 属性获取主题减去任何前导前缀，如 RE：和 FW：。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会与会者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会与会者
 
       #### <a name="examples"></a>示例
 
@@ -1539,26 +1471,6 @@ references:
   - uid: 'office!Office.AsyncContextOptions:interface'
     name: Office.AsyncContextOptions
   - uid: 'outlook!Office.AppointmentRead#addHandlerAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.AppointmentRead#addHandlerAsync~2:complex'
-    name: Office.EventType | string
-    fullName: Office.EventType | string
-    spec.typeScript:
-      - uid: 'office!Office.EventType:enum'
-        name: Office.EventType
-        fullName: Office.EventType
-      - name: ' | string'
-        fullName: ' | string'
-  - uid: 'outlook!Office.AppointmentRead#addHandlerAsync~3:complex'
     name: '(asyncResult: Office.AsyncResult<void>) => void'
     fullName: '(asyncResult: Office.AsyncResult<void>) => void'
     spec.typeScript:
@@ -1713,26 +1625,6 @@ references:
       - name: ' | string'
         fullName: ' | string'
   - uid: 'outlook!Office.AppointmentRead#removeHandlerAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.AppointmentRead#removeHandlerAsync~2:complex'
-    name: Office.EventType | string
-    fullName: Office.EventType | string
-    spec.typeScript:
-      - uid: 'office!Office.EventType:enum'
-        name: Office.EventType
-        fullName: Office.EventType
-      - name: ' | string'
-        fullName: ' | string'
-  - uid: 'outlook!Office.AppointmentRead#removeHandlerAsync~3:complex'
     name: '(asyncResult: Office.AsyncResult<void>) => void'
     fullName: '(asyncResult: Office.AsyncResult<void>) => void'
     spec.typeScript:

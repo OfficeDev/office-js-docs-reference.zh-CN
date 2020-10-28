@@ -4,7 +4,7 @@ items:
     summary: |-
       Office 的约会组织者模式。 [item](xref:outlook!Office.Item:interface)<!-- -->.
 
-      **重要说明**：这是一个内部 Outlook 对象，而不是直接通过现有接口公开。 应将此视为的模式 `Office.context.mailbox.item`<!-- -->. 有关详细信息，请参阅 [对象模型](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.2/office.context.mailbox.item) 页。
+      **重要说明** ：这是一个内部 Outlook 对象，而不是直接通过现有接口公开。 应将此视为的模式 `Office.context.mailbox.item`<!-- -->. 有关详细信息，请参阅 [对象模型](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.2/office.context.mailbox.item) 页。
 
       父接口：
 
@@ -22,9 +22,7 @@ items:
     package: outlook!
     children:
       - 'outlook!Office.AppointmentCompose#addFileAttachmentAsync:member(1)'
-      - 'outlook!Office.AppointmentCompose#addFileAttachmentAsync:member(2)'
       - 'outlook!Office.AppointmentCompose#addItemAttachmentAsync:member(1)'
-      - 'outlook!Office.AppointmentCompose#addItemAttachmentAsync:member(2)'
       - 'outlook!Office.AppointmentCompose#body:member'
       - 'outlook!Office.AppointmentCompose#end:member'
       - 'outlook!Office.AppointmentCompose#getSelectedDataAsync:member(1)'
@@ -34,10 +32,8 @@ items:
       - 'outlook!Office.AppointmentCompose#location:member'
       - 'outlook!Office.AppointmentCompose#optionalAttendees:member'
       - 'outlook!Office.AppointmentCompose#removeAttachmentAsync:member(1)'
-      - 'outlook!Office.AppointmentCompose#removeAttachmentAsync:member(2)'
       - 'outlook!Office.AppointmentCompose#requiredAttendees:member'
       - 'outlook!Office.AppointmentCompose#setSelectedDataAsync:member(1)'
-      - 'outlook!Office.AppointmentCompose#setSelectedDataAsync:member(2)'
       - 'outlook!Office.AppointmentCompose#start:member'
       - 'outlook!Office.AppointmentCompose#subject:member'
   - uid: 'outlook!Office.AppointmentCompose#addFileAttachmentAsync:member(1)'
@@ -48,15 +44,15 @@ items:
 
       随后可以将该标识符与 `removeAttachmentAsync` 方法一同使用，以删除同一个会话中的附件。
 
-      **重要说明**：在 Windows 上的 Outlook 的最新内部版本中，引入了一个错误，该错误会错误地 `Authorization: Bearer` 将标头追加到此操作 (是否使用此 API 或 Outlook UI) 。 若要解决此问题，您可以尝试使用 `addFileAttachmentFromBase64` 由要求集1.8 引入的 API。
+      **重要说明** ：在 Windows 上的 Outlook 的最新内部版本中，引入了一个错误，该错误会错误地 `Authorization: Bearer` 将标头追加到此操作 (是否使用此 API 或 Outlook UI) 。 若要解决此问题，您可以尝试使用 `addFileAttachmentFromBase64` 由要求集1.8 引入的 API。
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会组织者
 
-      **错误**：
+      **错误** ：
 
       - `AttachmentSizeExceeded`<!-- -->：附件大于允许的大小。
 
@@ -120,53 +116,6 @@ items:
           description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果成功，附件标识符将在 `asyncResult.value` 属性中提供。 如果上传附件失败，`asyncResult` 对象将包含一个提供错误说明的 `Error` 对象。
           type:
             - 'outlook!Office.AppointmentCompose#addFileAttachmentAsync~1:complex'
-  - uid: 'outlook!Office.AppointmentCompose#addFileAttachmentAsync:member(2)'
-    summary: |-
-      将文件作为附件添加到邮件或约会。
-
-      `addFileAttachmentAsync` 方法在指定的 URI 上载文件并将其附加到撰写窗体中的项目。
-
-      随后可以将该标识符与 `removeAttachmentAsync` 方法一同使用，以删除同一个会话中的附件。
-
-      **重要说明**：在 Windows 上的 Outlook 的最新内部版本中，引入了一个错误，该错误会错误地 `Authorization: Bearer` 将标头追加到此操作 (是否使用此 API 或 Outlook UI) 。 若要解决此问题，您可以尝试使用 `addFileAttachmentFromBase64` 由要求集1.8 引入的 API。
-
-      \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
-
-      **错误**：
-
-      - `AttachmentSizeExceeded`<!-- -->：附件大于允许的大小。
-
-      - `FileTypeNotSupported`<!-- -->：附件的分机号码不允许。
-
-      - `NumberOfAttachmentsExceeded`<!-- -->：邮件或约会的附件过多。
-    name: 'addFileAttachmentAsync(uri, attachmentName, callback)'
-    fullName: 'addFileAttachmentAsync(uri, attachmentName, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addFileAttachmentAsync(uri: string, attachmentName: string, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: uri
-          description: 提供附加到邮件或约会的文件的位置的 URI。 最大长度为 2048 个字符。
-          type:
-            - string
-        - id: attachmentName
-          description: 在附件上载过程中显示的附件名称。 最大长度为 255 个字符。
-          type:
-            - string
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果成功，附件标识符将在 `asyncResult.value` 属性中提供。 如果上传附件失败，`asyncResult` 对象将包含一个提供错误说明的 `Error` 对象。
-          type:
-            - 'outlook!Office.AppointmentCompose#addFileAttachmentAsync~2:complex'
   - uid: 'outlook!Office.AppointmentCompose#addItemAttachmentAsync:member(1)'
     summary: |-
       将 Exchange 项目（如邮件）作为附件添加到邮件或约会。
@@ -179,11 +128,11 @@ items:
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会组织者
 
-      **错误**：
+      **错误** ：
 
       - `NumberOfAttachmentsExceeded`<!-- -->：邮件或约会的附件过多。
 
@@ -247,58 +196,15 @@ items:
           description: 可选。 方法完成后，使用单个参数类型调用在 callback 参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果成功，附件标识符将在 `asyncResult.value` 属性中提供。 如果添加附件失败，`asyncResult` 对象将包含一个提供错误说明的 `Error` 对象。
           type:
             - 'outlook!Office.AppointmentCompose#addItemAttachmentAsync~0:complex'
-  - uid: 'outlook!Office.AppointmentCompose#addItemAttachmentAsync:member(2)'
-    summary: |-
-      将 Exchange 项目（如邮件）作为附件添加到邮件或约会。
-
-      `addItemAttachmentAsync` 方法将包含指定 Exchange 标识符的项目附加到撰写窗体中的项目。 如果指定了回调方法，则使用一个参数调用方法， `asyncResult`<!-- -->，其中包含附件标识符或指示附加项目时出现的任何错误的代码。 可以使用 `options` 参数将状态信息传递给回调方法（如果需要）。
-
-      随后可以将该标识符与 `removeAttachmentAsync` 方法一同使用，以删除同一个会话中的附件。
-
-      如果 Office 加载项是在 Outlook 网页版中运行，`addItemAttachmentAsync` 方法可以将项附加到除正在编辑的项外的项；但既不支持也不建议这样做。
-
-      \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
-
-      **错误**：
-
-      - `NumberOfAttachmentsExceeded`<!-- -->：邮件或约会的附件过多。
-    name: 'addItemAttachmentAsync(itemId, attachmentName, callback)'
-    fullName: 'addItemAttachmentAsync(itemId, attachmentName, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addItemAttachmentAsync(itemId: any, attachmentName: string, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: itemId
-          description: 要附加的项目的 Exchange 标识符。 最大长度为 100 个字符。
-          type:
-            - any
-        - id: attachmentName
-          description: 在附件上载过程中显示的附件名称。 最大长度为 255 个字符。
-          type:
-            - string
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果成功，附件标识符将在 `asyncResult.value` 属性中提供。 如果添加附件失败，`asyncResult` 对象将包含一个提供错误说明的 `Error` 对象。
-          type:
-            - 'outlook!Office.AppointmentCompose#addItemAttachmentAsync~1:complex'
   - uid: 'outlook!Office.AppointmentCompose#body:member'
     summary: |-
       获取一个提供用于处理项目正文的方法的对象。
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会组织者
 
       #### <a name="examples"></a>示例
 
@@ -336,11 +242,11 @@ items:
 
       使用 `Time.setAsync` 方法设置结束时间时，应使用 `convertToUtcClientTime` 方法将客户端的本地时间转换为服务器的 UTC。
 
-      **重要说明**：在 Windows 客户端中，不能使用此属性更新定期的结束日期。
+      **重要说明** ：在 Windows 客户端中，不能使用此属性更新定期的结束日期。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会组织者
 
       #### <a name="examples"></a>示例
 
@@ -410,9 +316,9 @@ items:
 
       \[[API 集：邮箱 1.2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会组织者
 
       #### <a name="examples"></a>示例
 
@@ -463,9 +369,9 @@ items:
 
       \[[API 集：邮箱 1.2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会组织者
 
       #### <a name="examples"></a>示例
 
@@ -507,9 +413,9 @@ items:
 
       `itemType` 属性返回其中一个 `ItemType` 枚举值，指示 `item` 对象实例是邮件还是约会。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会组织者
 
       #### <a name="examples"></a>示例
 
@@ -535,9 +441,9 @@ items:
 
       自定义属性作为 `asyncResult.value` 属性中的 `CustomProperties` 对象提供。 此对象可用于获取、设置以及从项目中删除自定义属性，并将自定义属性集的更改重新保存到服务器。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会组织者
 
       #### <a name="examples"></a>示例
 
@@ -611,9 +517,9 @@ items:
   - uid: 'outlook!Office.AppointmentCompose#location:member'
     summary: '获取或设置约会的位置。 该 `location` 属性返回一个 [Location](xref:outlook!Office.Location:interface) 对象，该对象提供用于获取和设置约会位置的方法。'
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会组织者
 
       #### <a name="examples"></a>示例
 
@@ -663,9 +569,9 @@ items:
 
       `optionalAttendees` 属性返回一个 `Recipients` 对象，该对象提供用于获取或更新可选与会者的方法。 但是，根据客户端/平台 (（即 Windows、Mac 等） ) ，限制可能适用于可以获取或更新的收件人数。 有关更多详细信息，请参阅 [收件人](xref:outlook!Office.Recipients:interface) 对象。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会组织者
 
       #### <a name="examples"></a>示例
 
@@ -730,11 +636,11 @@ items:
 
       \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会组织者
 
-      **错误**：
+      **错误** ：
 
       - `InvalidAttachmentId`<!-- -->：附件标识符不存在。
 
@@ -790,50 +696,15 @@ items:
           description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果删除附件失败，`asyncResult.error` 属性将包含一个说明失败原因的错误代码。
           type:
             - 'outlook!Office.AppointmentCompose#removeAttachmentAsync~0:complex'
-  - uid: 'outlook!Office.AppointmentCompose#removeAttachmentAsync:member(2)'
-    summary: |-
-      将附件从邮件或约会中删除。
-
-      `removeAttachmentAsync` 方法删除项目中带指定标识符的附件。 最佳做法是，仅当同一个邮件应用程序在同一会话中添加了一个附件时，你才应使用该附件标识符来删除该附件。 在 Outlook 网页版和移动设备上，附件标识符只在同一个会话中才有效。 当用户关闭应用程序时，或者如果用户开始撰写内嵌窗体，随后弹出窗体以继续在单独的窗口中。
-
-      \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
-
-      **错误**：
-
-      - `InvalidAttachmentId`<!-- -->：附件标识符不存在。
-    name: 'removeAttachmentAsync(attachmentId, callback)'
-    fullName: 'removeAttachmentAsync(attachmentId, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'removeAttachmentAsync(attachmentId: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: attachmentId
-          description: 要删除的附件的标识符。
-          type:
-            - string
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果删除附件失败，`asyncResult.error` 属性将包含一个说明失败原因的错误代码。
-          type:
-            - 'outlook!Office.AppointmentCompose#removeAttachmentAsync~1:complex'
   - uid: 'outlook!Office.AppointmentCompose#requiredAttendees:member'
     summary: |-
       提供对事件的必需与会者的访问权限。 对象的类型和访问权限级别取决于当前项目的模式。
 
       `requiredAttendees` 属性返回一个 `Recipients` 对象，该对象提供用于获取或更新必需与会者的方法。 但是，根据客户端/平台 (（即 Windows、Mac 等） ) ，限制可能适用于可以获取或更新的收件人数。 有关更多详细信息，请参阅 [收件人](xref:outlook!Office.Recipients:interface) 对象。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会组织者
 
       #### <a name="examples"></a>示例
 
@@ -899,11 +770,11 @@ items:
 
       \[[API 集：邮箱 1.2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会组织者
 
-      **错误**：
+      **错误** ：
 
       - `InvalidAttachmentId`<!-- -->：附件标识符不存在。
 
@@ -911,6 +782,19 @@ items:
 
       ```javascript
       Office.context.mailbox.item.setSelectedDataAsync("<b>Hello World!</b>", { coercionType : "html" });
+      ```
+      ```javascript
+      Office.context.mailbox.item.setSelectedDataAsync("Hello World!");
+      ```
+      ```javascript
+      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/20-item-body/set-selected-data.yaml
+      Office.context.mailbox.item.setSelectedDataAsync("Replaced", function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Selected text has been updated successfully.");
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
       ```
     name: 'setSelectedDataAsync(data, options, callback)'
     fullName: 'setSelectedDataAsync(data, options, callback)'
@@ -936,57 +820,6 @@ items:
           description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
           type:
             - 'outlook!Office.AppointmentCompose#setSelectedDataAsync~1:complex'
-  - uid: 'outlook!Office.AppointmentCompose#setSelectedDataAsync:member(2)'
-    summary: |-
-      以异步方式将数据插入到邮件的正文或主题中。
-
-      `setSelectedDataAsync` 方法将指定字符串插入到项目主题或正文的光标位置，或者，如果在编辑器中已选择文本，则该方法将替换选择的文本。如果光标不在正文或主题字段中，则返回错误。插入之后，光标会位于插入内容的末尾。
-
-      \[[API 集：邮箱 1.2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadWriteItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
-
-      **错误**：
-
-      - `InvalidAttachmentId`<!-- -->：附件标识符不存在。
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      Office.context.mailbox.item.setSelectedDataAsync("Hello World!");
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/20-item-body/set-selected-data.yaml
-      Office.context.mailbox.item.setSelectedDataAsync("Replaced", function(asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-          console.log("Selected text has been updated successfully.");
-        } else {
-          console.error(asyncResult.error);
-        }
-      });
-      ```
-    name: 'setSelectedDataAsync(data, callback)'
-    fullName: 'setSelectedDataAsync(data, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setSelectedDataAsync(data: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: data
-          description: '要插入的数据。数据不得超过 1,000,000 个字符。如果传入的数据超过 1,000,000 个字符，则会引发 `ArgumentOutOfRange` 异常。'
-          type:
-            - string
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
-          type:
-            - 'outlook!Office.AppointmentCompose#setSelectedDataAsync~2:complex'
   - uid: 'outlook!Office.AppointmentCompose#start:member'
     summary: |-
       获取或设置约会开始的日期和时间。
@@ -995,11 +828,11 @@ items:
 
       使用 `Time.setAsync` 方法设置开始时间时，应使用 `convertToUtcClientTime` 方法将客户端的本地时间转换为服务器的 UTC。
 
-      **重要说明**：在 Windows 客户端中，不能使用此属性更新定期的开始日期。
+      **重要说明** ：在 Windows 客户端中，不能使用此属性更新定期的开始日期。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会组织者
 
       #### <a name="examples"></a>示例
 
@@ -1043,9 +876,9 @@ items:
 
       `subject` 属性返回一个 `Subject` 对象，该对象提供用于获取和设置主题的方法。
     remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：约会组织者
+      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：约会组织者
 
       #### <a name="examples"></a>示例
 
@@ -1105,31 +938,9 @@ references:
         fullName: Office.AsyncResult
       - name: <string>) => void
         fullName: <string>) => void
-  - uid: 'outlook!Office.AppointmentCompose#addFileAttachmentAsync~2:complex'
-    name: '(asyncResult: Office.AsyncResult<string>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<string>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <string>) => void
-        fullName: <string>) => void
   - uid: 'office!Office.AsyncContextOptions:interface'
     name: Office.AsyncContextOptions
   - uid: 'outlook!Office.AppointmentCompose#addItemAttachmentAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<string>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<string>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <string>) => void
-        fullName: <string>) => void
-  - uid: 'outlook!Office.AppointmentCompose#addItemAttachmentAsync~1:complex'
     name: '(asyncResult: Office.AsyncResult<string>) => void'
     fullName: '(asyncResult: Office.AsyncResult<string>) => void'
     spec.typeScript:
@@ -1224,17 +1035,6 @@ references:
         fullName: Office.AsyncResult
       - name: <void>) => void
         fullName: <void>) => void
-  - uid: 'outlook!Office.AppointmentCompose#removeAttachmentAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
   - uid: 'outlook!Office.AppointmentCompose#setSelectedDataAsync~0:complex'
     name: Office.AsyncContextOptions & CoercionTypeOptions
     fullName: Office.AsyncContextOptions & Office.CoercionTypeOptions
@@ -1248,17 +1048,6 @@ references:
         name: CoercionTypeOptions
         fullName: Office.CoercionTypeOptions
   - uid: 'outlook!Office.AppointmentCompose#setSelectedDataAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.AppointmentCompose#setSelectedDataAsync~2:complex'
     name: '(asyncResult: Office.AsyncResult<void>) => void'
     fullName: '(asyncResult: Office.AsyncResult<void>) => void'
     spec.typeScript:
