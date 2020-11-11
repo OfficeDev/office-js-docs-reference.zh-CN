@@ -1,0 +1,8 @@
+| Class | 域 | 说明 |
+|:---|:---|:---|
+|[AppointmentCompose](/javascript/api/outlook/outlook.appointmentcompose)|[getSelectedDataAsync (coercionType： CoercionType \| string，回调： (asyncResult： <string>) => void) ](/javascript/api/outlook/outlook.appointmentcompose#getselecteddataasync-coerciontype--callback--asyncresult-)|以异步方式返回邮件的主题或正文中选定的数据。|
+||[getSelectedDataAsync (coercionType： CoercionType \| string，options： AsyncContextOptions，callback： (asyncResult： <any>) => void) ](/javascript/api/outlook/outlook.appointmentcompose#getselecteddataasync-coerciontype--options--callback--asyncresult-)|以异步方式返回邮件的主题或正文中选定的数据。|
+||[Document.setselecteddataasync (数据： string，options？： AsyncContextOptions & CoercionTypeOptions，callback？： (asyncResult： <void>) => void) ](/javascript/api/outlook/outlook.appointmentcompose#setselecteddataasync-data--options--callback--asyncresult-)|以异步方式将数据插入到邮件的正文或主题中。|
+|[MessageCompose](/javascript/api/outlook/outlook.messagecompose)|[getSelectedDataAsync (coercionType： CoercionType \| string，回调： (asyncResult： <any>) => void) ](/javascript/api/outlook/outlook.messagecompose#getselecteddataasync-coerciontype--callback--asyncresult-)|以异步方式返回邮件的主题或正文中选定的数据。|
+||[getSelectedDataAsync (coercionType： CoercionType \| string，options： AsyncContextOptions，callback： (asyncResult： <any>) => void) ](/javascript/api/outlook/outlook.messagecompose#getselecteddataasync-coerciontype--options--callback--asyncresult-)|以异步方式返回邮件的主题或正文中选定的数据。|
+||[Document.setselecteddataasync (数据： string，options？： AsyncContextOptions & CoercionTypeOptions，callback？： (asyncResult： <void>) => void) ](/javascript/api/outlook/outlook.messagecompose#setselecteddataasync-data--options--callback--asyncresult-)|以异步方式将数据插入到邮件的正文或主题中。|

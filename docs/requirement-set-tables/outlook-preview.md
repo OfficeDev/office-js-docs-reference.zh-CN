@@ -1,0 +1,44 @@
+| Class | 域 | 说明 |
+|:---|:---|:---|
+|[AppointmentCompose](/javascript/api/outlook/outlook.appointmentcompose)|[disableClientSignatureAsync (选项？： AsyncContextOptions，回呼？： (asyncResult： <void>) => void) ](/javascript/api/outlook/outlook.appointmentcompose#disableclientsignatureasync-options--callback--asyncresult-)|禁用 Outlook 客户端签名。|
+||[Office.context.mailbox.item.getinitializationcontextasync (选项？： AsyncContextOptions，回呼？： (asyncResult： <string>) => void) ](/javascript/api/outlook/outlook.appointmentcompose#getinitializationcontextasync-options--callback--asyncresult-)|获取通过可操作邮件激活加载项时传递的初始化数据。|
+||[isAllDayEvent](/javascript/api/outlook/outlook.appointmentcompose#isalldayevent)|获取或设置约会的 {@link IsAllDayEvent} 属性。|
+||[isClientSignatureEnabledAsync (回呼： (asyncResult： <boolean>) => void) ](/javascript/api/outlook/outlook.appointmentcompose#isclientsignatureenabledasync-callback--asyncresult-)|获取客户端签名是否已启用。|
+||[isClientSignatureEnabledAsync (选项： AsyncContextOptions、回拨： (asyncResult： <boolean>) => void) ](/javascript/api/outlook/outlook.appointmentcompose#isclientsignatureenabledasync-options--callback--asyncresult-)|获取客户端签名是否已启用。|
+||[敏感度](/javascript/api/outlook/outlook.appointmentcompose#sensitivity)|获取或设置 @link 的 Office 敏感性 | 对约会的敏感度。|
+||[sessionData](/javascript/api/outlook/outlook.appointmentcompose#sessiondata)|管理 {@link SessionData | 撰写模式下的项目的 SessionData。|
+|[AppointmentRead](/javascript/api/outlook/outlook.appointmentread)|[displayReplyAllFormAsync (formData： string \| ReplyFormData，options？： AsyncContextOptions，callback？： (asyncResult： <void>) => void) ](/javascript/api/outlook/outlook.appointmentread#displayreplyallformasync-formdata--options--callback--asyncresult-)|显示包含所选邮件的发件人和所有收件人的答复窗体、组织者和所有与会者的|
+||[displayReplyFormAsync (formData： string \| ReplyFormData，options？： AsyncContextOptions，callback？： (asyncResult： <void>) => void) ](/javascript/api/outlook/outlook.appointmentread#displayreplyformasync-formdata--options--callback--asyncresult-)|显示答复窗体，其中仅包括所选邮件的发件人或所选约会的组织者。|
+||[Office.context.mailbox.item.getinitializationcontextasync (选项？： AsyncContextOptions，回呼？： (asyncResult： <string>) => void) ](/javascript/api/outlook/outlook.appointmentread#getinitializationcontextasync-options--callback--asyncresult-)|获取加载项为 {@link 时传递的初始化数据 https://docs.microsoft.com/outlook/actionable-messages/invoke-add-in-from-actionable-message | 由可操作邮件激活}。|
+||[isAllDayEvent](/javascript/api/outlook/outlook.appointmentread#isalldayevent)|返回一个布尔值，该值指示事件是否全天。|
+||[敏感度](/javascript/api/outlook/outlook.appointmentread#sensitivity)|提供约会的敏感度值。|
+|[正文](/javascript/api/outlook/outlook.body)|[appendOnSendAsync (数据： string，options？： AsyncContextOptions & CoercionTypeOptions，callback？： (asyncResult： <void>) => void) ](/javascript/api/outlook/outlook.body#appendonsendasync-data--options--callback--asyncresult-)|追加在将指定内容发送到项目正文的末尾（在任何签名之后）。|
+||[setSignatureAsync (数据： string，options？： AsyncContextOptions & CoercionTypeOptions，callback？： (asyncResult： <void>) => void) ](/javascript/api/outlook/outlook.body#setsignatureasync-data--options--callback--asyncresult-)|添加或替换项目正文的签名。|
+|[CustomProperties](/javascript/api/outlook/outlook.customproperties)|[getAll ( # B1 ](/javascript/api/outlook/outlook.customproperties#getall--)|返回一个具有名称/值对集合中的所有自定义属性的对象。|
+|[IsAllDayEvent](/javascript/api/outlook/outlook.isalldayevent)|[getAsync (回呼： (asyncResult： <boolean>) => void) ](/javascript/api/outlook/outlook.isalldayevent#getasync-callback--asyncresult-)|获取一个布尔值，该值指示事件是否全天。|
+||[getAsync (选项： AsyncContextOptions、回拨： (asyncResult： <boolean>) => void) ](/javascript/api/outlook/outlook.isalldayevent#getasync-options--callback--asyncresult-)|获取一个布尔值，该值指示事件是否全天。|
+||[setAsync (isAllDayEvent： boolean，options？： AsyncContextOptions，callback？： (asyncResult： <void>) => void) ](/javascript/api/outlook/outlook.isalldayevent#setasync-isalldayevent--options--callback--asyncresult-)|设置约会的全天事件状态。|
+|[邮箱](/javascript/api/outlook/outlook.mailbox)|[displayAppointmentFormAsync (itemId： string，options？： AsyncContextOptions，callback？： (asyncResult： <void>) => void) ](/javascript/api/outlook/outlook.mailbox#displayappointmentformasync-itemid--options--callback--asyncresult-)|显示现有日历约会。|
+||[displayMessageFormAsync (itemId： string，options？： AsyncContextOptions，callback？： (asyncResult： <void>) => void) ](/javascript/api/outlook/outlook.mailbox#displaymessageformasync-itemid--options--callback--asyncresult-)|显示现有邮件。|
+||[displayNewAppointmentFormAsync (参数： AppointmentForm、options？： AsyncContextOptions、callback？： (asyncResult： <void>) => void) ](/javascript/api/outlook/outlook.mailbox#displaynewappointmentformasync-parameters--options--callback--asyncresult-)|显示用于新建日历约会的表单。|
+||[displayNewMessageFormAsync (参数： any、options？： AsyncContextOptions、callback？： (asyncResult： <void>) => void) ](/javascript/api/outlook/outlook.mailbox#displaynewmessageformasync-parameters--options--callback--asyncresult-)|显示用于创建新邮件的窗体。|
+|[MessageCompose](/javascript/api/outlook/outlook.messagecompose)|[disableClientSignatureAsync (选项？： AsyncContextOptions，回呼？： (asyncResult： <void>) => void) ](/javascript/api/outlook/outlook.messagecompose#disableclientsignatureasync-options--callback--asyncresult-)|禁用 Outlook 客户端签名。|
+||[getComposeTypeAsync (回呼： (asyncResult： <any>) => void) ](/javascript/api/outlook/outlook.messagecompose#getcomposetypeasync-callback--asyncresult-)|指定邮件撰写的类型及其强制类型。|
+||[getComposeTypeAsync (选项： AsyncContextOptions、回拨： (asyncResult： <any>) => void) ](/javascript/api/outlook/outlook.messagecompose#getcomposetypeasync-options--callback--asyncresult-)|指定邮件撰写的类型及其强制类型。|
+||[Office.context.mailbox.item.getinitializationcontextasync (选项？： AsyncContextOptions，回呼？： (asyncResult： <string>) => void) ](/javascript/api/outlook/outlook.messagecompose#getinitializationcontextasync-options--callback--asyncresult-)|获取通过可操作邮件激活加载项时传递的初始化数据。|
+||[isClientSignatureEnabledAsync (回呼： (asyncResult： <boolean>) => void) ](/javascript/api/outlook/outlook.messagecompose#isclientsignatureenabledasync-callback--asyncresult-)|获取客户端签名是否已启用。|
+||[isClientSignatureEnabledAsync (选项： AsyncContextOptions、回拨： (asyncResult： <boolean>) => void) ](/javascript/api/outlook/outlook.messagecompose#isclientsignatureenabledasync-options--callback--asyncresult-)|获取客户端签名是否已启用。|
+||[sessionData](/javascript/api/outlook/outlook.messagecompose#sessiondata)|管理 {@link SessionData | 撰写模式下的项目的 SessionData。|
+|[MessageRead](/javascript/api/outlook/outlook.messageread)|[displayReplyAllFormAsync (formData： string \| ReplyFormData，options？： AsyncContextOptions，callback？： (asyncResult： <void>) => void) ](/javascript/api/outlook/outlook.messageread#displayreplyallformasync-formdata--options--callback--asyncresult-)|显示包含所选邮件的发件人和所有收件人的答复窗体、组织者和所有与会者的|
+||[displayReplyFormAsync (formData： string \| ReplyFormData，options？： AsyncContextOptions，callback？： (asyncResult： <void>) => void) ](/javascript/api/outlook/outlook.messageread#displayreplyformasync-formdata--options--callback--asyncresult-)|显示答复窗体，其中仅包括所选邮件的发件人或所选约会的组织者。|
+||[Office.context.mailbox.item.getinitializationcontextasync (选项？： AsyncContextOptions，回呼？： (asyncResult： <string>) => void) ](/javascript/api/outlook/outlook.messageread#getinitializationcontextasync-options--callback--asyncresult-)|获取加载项时传递的初始化数据|
+|[NotificationMessageAction](/javascript/api/outlook/outlook.notificationmessageaction)|[actionText](/javascript/api/outlook/outlook.notificationmessageaction#actiontext)|操作链接的文本。|
+||[actionType](/javascript/api/outlook/outlook.notificationmessageaction#actiontype)|要执行的操作的类型。|
+||[commandId](/javascript/api/outlook/outlook.notificationmessageaction#commandid)|基于项目类型在清单中定义的按钮。|
+||[contextData](/javascript/api/outlook/outlook.notificationmessageaction#contextdata)|按钮需要传递的任何 JSON 数据。|
+|[NotificationMessageDetails](/javascript/api/outlook/outlook.notificationmessagedetails)|[actions](/javascript/api/outlook/outlook.notificationmessagedetails#actions)|指定邮件的操作。|
+|[OfficeThemeChangedEventArgs](/javascript/api/outlook/outlook.officethemechangedeventargs)|[officeTheme](/javascript/api/outlook/outlook.officethemechangedeventargs#officetheme)|获取已更新的 Office 主题。|
+||[type](/javascript/api/outlook/outlook.officethemechangedeventargs#type)|获取事件的类型。|
+|[Sensitivity](/javascript/api/outlook/outlook.sensitivity)|[getAsync (回呼： (asyncResult： MailboxEnums<AppointmentSensitivityType>) => void) ](/javascript/api/outlook/outlook.sensitivity#getasync-callback--asyncresult-)|获取约会敏感度的值。|
+||[getAsync (选项： AsyncContextOptions、回调： (asyncResult：<MailboxEnums AppointmentSensitivityType>) => void) ](/javascript/api/outlook/outlook.sensitivity#getasync-options--callback--asyncresult-)|获取约会敏感度的值。|
+||[setAsync (灵敏度： MailboxEnums，AppointmentSensitivityType \| string，options？： AsyncContextOptions，callback？： (asyncResult： <void>) => void) ](/javascript/api/outlook/outlook.sensitivity#setasync-sensitivity--options--callback--asyncresult-)|设置约会敏感度的值。|
