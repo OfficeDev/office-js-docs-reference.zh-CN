@@ -1,243 +1,229 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'visio!Visio.Comment:class'
-    summary: |-
-      表示 Comment 对象。
+### YamlMime:TSType
+name: Visio.Comment
+uid: visio!Visio.Comment:class
+package: visio!
+fullName: Visio.Comment
+summary: >-
+  表示 Comment 对象。
 
-      \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-    name: Visio.Comment
-    fullName: Visio.Comment
-    langs:
-      - typeScript
-    type: class
-    extends:
-      - 'office!OfficeExtension.ClientObject:class'
-    package: visio!
-    children:
-      - 'visio!Visio.Comment#author:member'
-      - 'visio!Visio.Comment#context:member'
-      - 'visio!Visio.Comment#date:member'
-      - 'visio!Visio.Comment#load:member(1)'
-      - 'visio!Visio.Comment#load:member(2)'
-      - 'visio!Visio.Comment#load:member(3)'
-      - 'visio!Visio.Comment#set:member(1)'
-      - 'visio!Visio.Comment#set:member(2)'
-      - 'visio!Visio.Comment#text:member'
-      - 'visio!Visio.Comment#toJSON:member(1)'
-  - uid: 'visio!Visio.Comment#author:member'
-    summary: |-
-      指定注释的作者姓名的字符串。
 
-      \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-    name: author
-    fullName: author
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'author: string;'
-      return:
-        type:
-          - string
-  - uid: 'visio!Visio.Comment#context:member'
-    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-    name: context
-    fullName: context
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'context: RequestContext;'
-      return:
-        type:
-          - 'visio!Visio.RequestContext:class'
-  - uid: 'visio!Visio.Comment#date:member'
-    summary: |-
-      指定注释创建日期的字符串。
+  \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: author
+  uid: visio!Visio.Comment#author:member
+  package: visio!
+  fullName: author
+  summary: >-
+    指定注释的作者姓名的字符串。
 
-      \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-    name: date
-    fullName: date
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'date: string;'
-      return:
-        type:
-          - string
-  - uid: 'visio!Visio.Comment#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
-    remarks: |-
-      除了此签名之外，此方法还具有以下签名：
 
-      `load(option?: string | string[]): Visio.Comment`-Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
+    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'author: string;'
+    return:
+      type: string
+- name: context
+  uid: visio!Visio.Comment#context:member
+  package: visio!
+  fullName: context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="visio!Visio.RequestContext:class" />
+- name: date
+  uid: visio!Visio.Comment#date:member
+  package: visio!
+  fullName: date
+  summary: >-
+    指定注释创建日期的字符串。
 
-      `load(option?: { select?: string; expand?: string; }): Visio.Comment`-Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
 
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.Comment`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
+    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'date: string;'
+    return:
+      type: string
+- name: text
+  uid: visio!Visio.Comment#text:member
+  package: visio!
+  fullName: text
+  summary: >-
+    包含注释文本的字符串。
 
-      #### <a name="examples"></a>示例
 
-      ```javascript
-      Visio.run(session, function (ctx) {
-          var activePage = ctx.document.getActivePage();
-          var shapeName = "Position Belt.41";
-          var shape = activePage.shapes.getItem(shapeName);
-          var shapeComments= shape.comments;
-          shapeComments.load(["author", "text"]);
-          return ctx.sync().then(function () {
-              for(var i = 0; i < shapeComments.items.length; i++)
-              {
-                  var comment = shapeComments.items[i];
-                  console.log("comment Author: " + comment.author);
-                  console.log("Comment Text: " + comment.text);
-                  console.log("Date " + comment.date);
-              }
-          });
-      }).catch(function(error) {
-          console.log("Error: " + error);
-          if (error instanceof OfficeExtension.Error) {
-              console.log("Debug info: " + JSON.stringify(error.debugInfo));
-          }
-      });
-      ```
-    name: load(option)
-    fullName: load(option)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(option?: Visio.Interfaces.CommentLoadOptions): Visio.Comment;'
-      return:
-        type:
-          - 'visio!Visio.Comment:class'
-        description: ''
-      parameters:
-        - id: option
-          description: ''
-          type:
-            - 'visio!Visio.Interfaces.CommentLoadOptions:interface'
-  - uid: 'visio!Visio.Comment#load:member(2)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNames)
-    fullName: load(propertyNames)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNames?: string | string[]): Visio.Comment;'
-      return:
-        type:
-          - 'visio!Visio.Comment:class'
-        description: ''
-      parameters:
-        - id: propertyNames
-          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
-          type:
-            - 'string | string[]'
-  - uid: 'visio!Visio.Comment#load:member(3)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNamesAndPaths)
-    fullName: load(propertyNamesAndPaths)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Visio.Comment;'
-      return:
-        type:
-          - 'visio!Visio.Comment:class'
-        description: ''
-      parameters:
-        - id: propertyNamesAndPaths
-          description: 其中，propertyNamesAndPaths 是用逗号分隔的字符串，用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串，用于指定要加载的导航属性。
-          type:
-            - '{ select?: string; expand?: string; }'
-  - uid: 'visio!Visio.Comment#set:member(1)'
-    summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
-    remarks: |-
-      此方法具有以下附加签名：
+    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'text: string;'
+    return:
+      type: string
+methods:
+- name: load(option)
+  uid: visio!Visio.Comment#load:member(1)
+  package: visio!
+  fullName: load(option)
+  summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+  remarks: >-
+    除了此签名之外，此方法还具有以下签名：
 
-      `set(properties: Visio.Comment): void`
-    name: 'set(properties, options)'
-    fullName: 'set(properties, options)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'set(properties: Interfaces.CommentUpdateData, options?: OfficeExtension.UpdateOptions): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: properties
-          description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
-          type:
-            - 'visio!Visio.Interfaces.CommentUpdateData:interface'
-        - id: options
-          description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
-          type:
-            - 'office!OfficeExtension.UpdateOptions:interface'
-  - uid: 'visio!Visio.Comment#set:member(2)'
-    summary: 基于现有加载的对象同时设置该对象的多个属性。
-    name: set(properties)
-    fullName: set(properties)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'set(properties: Visio.Comment): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: properties
-          description: ''
-          type:
-            - 'visio!Visio.Comment:class'
-  - uid: 'visio!Visio.Comment#text:member'
-    summary: |-
-      包含注释文本的字符串。
 
-      \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-    name: text
-    fullName: text
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'text: string;'
-      return:
-        type:
-          - string
-  - uid: 'visio!Visio.Comment#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始的 Visio Comment 对象是 API 对象，但该 `toJSON` 方法返回一个简单的 JavaScript 对象（类型为`Visio.Interfaces.CommentData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
-    name: toJSON()
-    fullName: toJSON()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'toJSON(): Visio.Interfaces.CommentData;'
-      return:
-        type:
-          - 'visio!Visio.Interfaces.CommentData:interface'
-        description: ''
-references:
-  - uid: 'office!OfficeExtension.ClientObject:class'
-    name: OfficeExtension.ClientObject
-  - uid: 'visio!Visio.RequestContext:class'
-    name: RequestContext
-  - uid: 'visio!Visio.Comment:class'
-    name: Visio.Comment
-  - uid: 'visio!Visio.Interfaces.CommentLoadOptions:interface'
-    name: Visio.Interfaces.CommentLoadOptions
-  - uid: 'visio!Visio.Interfaces.CommentUpdateData:interface'
-    name: Interfaces.CommentUpdateData
-  - uid: 'office!OfficeExtension.UpdateOptions:interface'
-    name: OfficeExtension.UpdateOptions
-  - uid: 'visio!Visio.Interfaces.CommentData:interface'
-    name: Visio.Interfaces.CommentData
+    `load(option?: string | string[]): Visio.Comment` -Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
+
+
+    `load(option?: { select?: string; expand?: string; }): Visio.Comment` -Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.Comment` -仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    Visio.run(session, function (ctx) {
+        var activePage = ctx.document.getActivePage();
+        var shapeName = "Position Belt.41";
+        var shape = activePage.shapes.getItem(shapeName);
+        var shapeComments= shape.comments;
+        shapeComments.load(["author", "text"]);
+        return ctx.sync().then(function () {
+            for(var i = 0; i < shapeComments.items.length; i++)
+            {
+                var comment = shapeComments.items[i];
+                console.log("comment Author: " + comment.author);
+                console.log("Comment Text: " + comment.text);
+                console.log("Date " + comment.date);
+            }
+        });
+    }).catch(function(error) {
+        console.log("Error: " + error);
+        if (error instanceof OfficeExtension.Error) {
+            console.log("Debug info: " + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(option?: Visio.Interfaces.CommentLoadOptions): Visio.Comment;'
+    parameters:
+    - id: option
+      description: ''
+      type: <xref uid="visio!Visio.Interfaces.CommentLoadOptions:interface" />
+    return:
+      type: <xref uid="visio!Visio.Comment:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: visio!Visio.Comment#load:member(2)
+  package: visio!
+  fullName: load(propertyNames)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Visio.Comment;'
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      type: string | string[]
+    return:
+      type: <xref uid="visio!Visio.Comment:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: visio!Visio.Comment#load:member(3)
+  package: visio!
+  fullName: load(propertyNamesAndPaths)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Visio.Comment;'
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中，propertyNamesAndPaths 是用逗号分隔的字符串，用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+      type: '{ select?: string; expand?: string; }'
+    return:
+      type: <xref uid="visio!Visio.Comment:class" />
+      description: ''
+- name: set(properties, options)
+  uid: visio!Visio.Comment#set:member(1)
+  package: visio!
+  fullName: set(properties, options)
+  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+  remarks: >-
+    此方法具有以下附加签名：
+
+
+    `set(properties: Visio.Comment): void`
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Interfaces.CommentUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    parameters:
+    - id: properties
+      description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
+      type: <xref uid="visio!Visio.Interfaces.CommentUpdateData:interface" />
+    - id: options
+      description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
+      type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
+    return:
+      type: void
+      description: ''
+- name: set(properties)
+  uid: visio!Visio.Comment#set:member(2)
+  package: visio!
+  fullName: set(properties)
+  summary: 基于现有加载的对象同时设置该对象的多个属性。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Visio.Comment): void;'
+    parameters:
+    - id: properties
+      description: ''
+      type: <xref uid="visio!Visio.Comment:class" />
+    return:
+      type: void
+      description: ''
+- name: toJSON()
+  uid: visio!Visio.Comment#toJSON:member(1)
+  package: visio!
+  fullName: toJSON()
+  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始的 Visio 对象是 API 对象，则该 `toJSON` 方法返回一个简单的 JavaScript 对象 (类型化为 `Visio.Interfaces.CommentData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Visio.Interfaces.CommentData;'
+    return:
+      type: <xref uid="visio!Visio.Interfaces.CommentData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 1f09da2904425924d8504372155914783a4142fd
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49142783"
