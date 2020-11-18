@@ -1,825 +1,363 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'office!Office.CustomXmlNode:interface'
-    summary: 表示文档中的树中的 XML 节点。
-    remarks: '**主机**： Word'
-    name: Office.CustomXmlNode
-    fullName: Office.CustomXmlNode
-    langs:
-      - typeScript
-    type: interface
-    package: office!
-    children:
-      - 'office!Office.CustomXmlNode#baseName:member'
-      - 'office!Office.CustomXmlNode#getNodesAsync:member(1)'
-      - 'office!Office.CustomXmlNode#getNodesAsync:member(2)'
-      - 'office!Office.CustomXmlNode#getNodeValueAsync:member(1)'
-      - 'office!Office.CustomXmlNode#getNodeValueAsync:member(2)'
-      - 'office!Office.CustomXmlNode#getTextAsync:member(1)'
-      - 'office!Office.CustomXmlNode#getTextAsync:member(2)'
-      - 'office!Office.CustomXmlNode#getXmlAsync:member(1)'
-      - 'office!Office.CustomXmlNode#getXmlAsync:member(2)'
-      - 'office!Office.CustomXmlNode#namespaceUri:member'
-      - 'office!Office.CustomXmlNode#nodeType:member'
-      - 'office!Office.CustomXmlNode#setNodeValueAsync:member(1)'
-      - 'office!Office.CustomXmlNode#setNodeValueAsync:member(2)'
-      - 'office!Office.CustomXmlNode#setTextAsync:member(1)'
-      - 'office!Office.CustomXmlNode#setTextAsync:member(2)'
-      - 'office!Office.CustomXmlNode#setXmlAsync:member(1)'
-      - 'office!Office.CustomXmlNode#setXmlAsync:member(2)'
-  - uid: 'office!Office.CustomXmlNode#baseName:member'
-    summary: 获取不带命名空间前缀的节点的基名称（如有）。
-    name: baseName
-    fullName: baseName
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'baseName: string;'
-      return:
-        type:
-          - string
-        description: |-
+### YamlMime:TSType
+name: Office.CustomXmlNode
+uid: office!Office.CustomXmlNode:interface
+package: office!
+fullName: Office.CustomXmlNode
+summary: 表示文档中的树中的 XML 节点。
+remarks: '**主机**： Word'
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+- name: baseName
+  uid: office!Office.CustomXmlNode#baseName:member
+  package: office!
+  fullName: baseName
+  summary: 获取不带命名空间前缀的节点的基名称（如有）。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'baseName: string;'
+    return:
+      type: string
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction showXmlNodeBaseNames() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*/*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                write(node.baseName);\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+- name: namespaceUri
+  uid: office!Office.CustomXmlNode#namespaceUri:member
+  package: office!
+  fullName: namespaceUri
+  summary: 检索 CustomXMLPart 的字符串 GUID。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'namespaceUri: string;'
+    return:
+      type: string
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction showXmlNamespaceUri() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*/*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                write(node.namespaceUri);\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+- name: nodeType
+  uid: office!Office.CustomXmlNode#nodeType:member
+  package: office!
+  fullName: nodeType
+  summary: 获取 CustomXMLNode 的类型。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'nodeType: string;'
+    return:
+      type: string
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction showXmlNodeType() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*/*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                write(node.nodeType);\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+methods:
+- name: getNodesAsync(xPath, options, callback)
+  uid: office!Office.CustomXmlNode#getNodesAsync:member(1)
+  package: office!
+  fullName: getNodesAsync(xPath, options, callback)
+  summary: 获取与 XPath 表达式关联的节点。
+  remarks: '**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getNodesAsync(xPath: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<CustomXmlNode[]>) => void): void;'
+    parameters:
+    - id: xPath
+      description: 指定要获取的节点的 XPath 表达式。 必需。
+      type: string
+    - id: options
+      description: 提供一个选项，用于保留任何类型的未更改的上下文数据，以供在回调中使用。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是 CustomXmlNode 对象的数组，这些对象代表传递给参数的 XPath 表达式指定的节点 `xPath` 。
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="office!Office.CustomXmlNode:interface" />[]&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getNodesAsync(xPath, callback)
+  uid: office!Office.CustomXmlNode#getNodesAsync:member(2)
+  package: office!
+  fullName: getNodesAsync(xPath, callback)
+  summary: 获取与 XPath 表达式关联的节点。
+  remarks: "**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction showXmlChildNodes() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                node.getNodesAsync('*', function (nodeResults) {\n                    write(nodeResults.value.length + \" childNodes\");\n                });\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getNodesAsync(xPath: string, callback?: (result: AsyncResult<CustomXmlNode[]>) => void): void;'
+    parameters:
+    - id: xPath
+      description: 指定要获取的节点的 XPath 表达式。 必需。
+      type: string
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是 CustomXmlNode 对象的数组，这些对象代表传递给参数的 XPath 表达式指定的节点 `xPath` 。
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="office!Office.CustomXmlNode:interface" />[]&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getNodeValueAsync(options, callback)
+  uid: office!Office.CustomXmlNode#getNodeValueAsync:member(1)
+  package: office!
+  fullName: getNodeValueAsync(options, callback)
+  summary: 获取节点值。
+  remarks: '**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getNodeValueAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    parameters:
+    - id: options
+      description: 提供一个选项，用于保留任何类型的未更改的上下文数据，以供在回调中使用。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是一个字符串，其中包含引用的节点的值。
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getNodeValueAsync(callback)
+  uid: office!Office.CustomXmlNode#getNodeValueAsync:member(2)
+  package: office!
+  fullName: getNodeValueAsync(callback)
+  summary: 获取节点值。
+  remarks: "**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction showXmlNodeValues() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*/*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                node.getNodeValueAsync(function (asyncResult) {\n                    write(asyncResult.value);\n                });\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getNodeValueAsync(callback?: (result: AsyncResult<string>) => void): void;'
+    parameters:
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是一个字符串，其中包含引用的节点的值。
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getTextAsync(options, callback)
+  uid: office!Office.CustomXmlNode#getTextAsync:member(1)
+  package: office!
+  fullName: getTextAsync(options, callback)
+  summary: 获取自定义 XML 部件中的 XML 节点的文本。
+  remarks: "**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Get the built-in core properties XML part by using its ID. This results in a call to Word.\nOffice.context.document.customXmlParts.getByIdAsync(\n    \"{6C3C8BC8-F283-45AE-878A-BAB7291924A1}\", function (getByIdAsyncResult) {\n    \n    // Access the XML part.\n    var xmlPart = getByIdAsyncResult.value;\n    \n    // Add namespaces to the namespace manager. These two calls result in two calls to Word.\n    xmlPart.namespaceManager.addNamespaceAsync(\n        'cp',\n        'http://schemas.openxmlformats.org/package/2006/metadata/core-properties',\n        function () {\n        xmlPart.namespaceManager.addNamespaceAsync(\n            'dc', \n            'http://purl.org/dc/elements/1.1/', \n            function () {\n\n            // Get XML nodes by using an Xpath expression. This results in a call to Word.\n            xmlPart.getNodesAsync(\"/cp:coreProperties/dc:title\", function (getNodesAsyncResult) {\n                \n                // Get the first node returned by using the Xpath expression. \n                var node = getNodesAsyncResult.value[0];\n                \n                // Get the text value of the node and use the asyncContext. This results in a call to Word. \n                // The results are logged to the browser console.\n                node.getTextAsync({asyncContext: \"StateNormal\"}, function (getTextAsyncResult) {\n                  console.log(\"Text of the title element = \" + getTextAsyncResult.value;\n                  console.log(\"The asyncContext value = \" + getTextAsyncResult.asyncContext;\n                });\n            });\n        });\n    });\n});\n```"
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getTextAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    parameters:
+    - id: options
+      description: 提供一个选项，用于保留任何类型的未更改的上下文数据，以供在回调中使用。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是一个字符串，其中包含引用节点的内部文本。
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getTextAsync(callback)
+  uid: office!Office.CustomXmlNode#getTextAsync:member(2)
+  package: office!
+  fullName: getTextAsync(callback)
+  summary: 获取自定义 XML 部件中的 XML 节点的文本。
+  remarks: '**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getTextAsync(callback?: (result: AsyncResult<string>) => void): void;'
+    parameters:
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是一个字符串，其中包含引用节点的内部文本。
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getXmlAsync(options, callback)
+  uid: office!Office.CustomXmlNode#getXmlAsync:member(1)
+  package: office!
+  fullName: getXmlAsync(options, callback)
+  summary: 获取节点的 XML。
+  remarks: '**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getXmlAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    parameters:
+    - id: options
+      description: 提供一个选项，用于保留任何类型的未更改的上下文数据，以供在回调中使用。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是一个字符串，其中包含引用的节点的 XML。
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getXmlAsync(callback)
+  uid: office!Office.CustomXmlNode#getXmlAsync:member(2)
+  package: office!
+  fullName: getXmlAsync(callback)
+  summary: 获取节点的 XML。
+  remarks: "**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction showXmlNodeInnerXml() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                node.getXmlAsync(function (asyncResult) {\n                    write(asyncResult.value);\n                });\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getXmlAsync(callback?: (result: AsyncResult<string>) => void): void;'
+    parameters:
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是一个字符串，其中包含引用的节点的 XML。
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: setNodeValueAsync(value, options, callback)
+  uid: office!Office.CustomXmlNode#setNodeValueAsync:member(1)
+  package: office!
+  fullName: setNodeValueAsync(value, options, callback)
+  summary: 设置节点值。
+  remarks: '**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setNodeValueAsync(value: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    parameters:
+    - id: value
+      description: 要在节点上设置的值
+      type: string
+    - id: options
+      description: 提供一个选项，用于保留任何类型的未更改的上下文数据，以供在回调中使用。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: setNodeValueAsync(value, callback)
+  uid: office!Office.CustomXmlNode#setNodeValueAsync:member(2)
+  package: office!
+  fullName: setNodeValueAsync(value, callback)
+  summary: 设置节点值。
+  remarks: "**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction setXmlNodeValue() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*/*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                write(node);\n                node.setNodeValueAsync(\"item number\" + i, function (result) { });\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setNodeValueAsync(value: string, callback?: (result: AsyncResult<void>) => void): void;'
+    parameters:
+    - id: value
+      description: 要在节点上设置的值
+      type: string
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: setTextAsync(text, options, callback)
+  uid: office!Office.CustomXmlNode#setTextAsync:member(1)
+  package: office!
+  fullName: setTextAsync(text, options, callback)
+  summary: 异步设置自定义 XML 部件中 XML 节点的文本。
+  remarks: "**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Learn how to set the text value of a node in a custom XML part from the following example.\n\n// Get the built-in core properties XML part by using its ID. This results in a call to Word.\nOffice.context.document.customXmlParts.getByIdAsync(\n    \"{6C3C8BC8-F283-45AE-878A-BAB7291924A1}\",\n    function (getByIdAsyncResult) {\n    \n    // Access the XML part.\n    var xmlPart = getByIdAsyncResult.value;\n    \n    // Add namespaces to the namespace manager. These two calls result in two calls to Word.\n    xmlPart.namespaceManager.addNamespaceAsync(\n        'cp', \n        'http://schemas.openxmlformats.org/package/2006/metadata/core-properties', \n        function () {\n        xmlPart.namespaceManager.addNamespaceAsync(\n            'dc', \n            'http://purl.org/dc/elements/1.1/', \n            function () {\n\n            // Get XML nodes by using an Xpath expression. This results in a call to the host.\n            xmlPart.getNodesAsync(\"/cp:coreProperties/dc:subject\", function (getNodesAsyncResult) {\n                \n                // Get the first node returned by using the Xpath expression.\n                // This will be the subject element in this example.\n                var subjectNode = getNodesAsyncResult.value[0];\n                \n                // Set the text value of the subject node and use the asyncContext. \n                // This results in a call to the host.  The results are logged to the browser console.\n                subjectNode.setTextAsync(\n                    \"newSubject\", \n                    {asyncContext: \"StateNormal\"}, \n                    function (setTextAsyncResult) {\n                        console.log(\"The status of the call: \" + setTextAsyncResult.status);\n                        console.log(\"The asyncContext value = \" + setTextAsyncResult.asyncContext);\n                });\n            });\n        });\n    });\n});\n```"
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setTextAsync(text: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    parameters:
+    - id: text
+      description: 必需。 XML 节点的文本值。
+      type: string
+    - id: options
+      description: 提供一个选项，用于保留任何类型的未更改的上下文数据，以供在回调中使用。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: setTextAsync(text, callback)
+  uid: office!Office.CustomXmlNode#setTextAsync:member(2)
+  package: office!
+  fullName: setTextAsync(text, callback)
+  summary: 异步设置自定义 XML 部件中 XML 节点的文本。
+  remarks: '**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setTextAsync(text: string, callback?: (result: AsyncResult<void>) => void): void;'
+    parameters:
+    - id: text
+      description: 必需。 XML 节点的文本值。
+      type: string
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: setXmlAsync(xml, options, callback)
+  uid: office!Office.CustomXmlNode#setXmlAsync:member(1)
+  package: office!
+  fullName: setXmlAsync(xml, options, callback)
+  summary: 设置节点 XML。
+  remarks: >-
+    **要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          function showXmlNodeBaseNames() {
-              Office.context.document.customXmlParts.getByIdAsync(
-                  "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
-                  var xmlPart = result.value;
-                  xmlPart.getNodesAsync('*/*', function (nodeResults) {
-                      for (i = 0; i < nodeResults.value.length; i++) {
-                          var node = nodeResults.value[i];
-                          write(node.baseName);
-                      }
-                  });
-              });
-          }
-          // Function that writes to a div with id='message' on the page.
-          function write(message){
-              document.getElementById('message').innerText += message; 
-          }
-          ```
-  - uid: 'office!Office.CustomXmlNode#getNodesAsync:member(1)'
-    summary: 获取与 XPath 表达式关联的节点。
-    remarks: '**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
-    name: 'getNodesAsync(xPath, options, callback)'
-    fullName: 'getNodesAsync(xPath, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getNodesAsync(xPath: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<CustomXmlNode[]>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: xPath
-          description: 指定要获取的节点的 XPath 表达式。 必需。
-          type:
-            - string
-        - id: options
-          description: 提供一个选项，用于保留任何类型的未更改的上下文数据，以供在回调中使用。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是 CustomXmlNode 对象的数组，这些对象代表传递给参数的 XPath 表达式指定的节点 `xPath` 。'
-          type:
-            - 'office!Office.CustomXmlNode#getNodesAsync~0:complex'
-  - uid: 'office!Office.CustomXmlNode#getNodesAsync:member(2)'
-    summary: 获取与 XPath 表达式关联的节点。
-    remarks: |-
-      **要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      function showXmlChildNodes() {
-          Office.context.document.customXmlParts.getByIdAsync(
-              "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
-              var xmlPart = result.value;
-              xmlPart.getNodesAsync('*', function (nodeResults) {
-                  for (i = 0; i < nodeResults.value.length; i++) {
-                      var node = nodeResults.value[i];
-                      node.getNodesAsync('*', function (nodeResults) {
-                          write(nodeResults.value.length + " childNodes");
-                      });
-                  }
-              });
-          });
-      }
-      // Function that writes to a div with id='message' on the page.
-      function write(message){
-          document.getElementById('message').innerText += message; 
-      }
-      ```
-    name: 'getNodesAsync(xPath, callback)'
-    fullName: 'getNodesAsync(xPath, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getNodesAsync(xPath: string, callback?: (result: AsyncResult<CustomXmlNode[]>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: xPath
-          description: 指定要获取的节点的 XPath 表达式。 必需。
-          type:
-            - string
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是 CustomXmlNode 对象的数组，这些对象代表传递给参数的 XPath 表达式指定的节点 `xPath` 。'
-          type:
-            - 'office!Office.CustomXmlNode#getNodesAsync~1:complex'
-  - uid: 'office!Office.CustomXmlNode#getNodeValueAsync:member(1)'
-    summary: 获取节点值。
-    remarks: '**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
-    name: 'getNodeValueAsync(options, callback)'
-    fullName: 'getNodeValueAsync(options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getNodeValueAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: options
-          description: 提供一个选项，用于保留任何类型的未更改的上下文数据，以供在回调中使用。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是一个字符串，其中包含引用的节点的值。'
-          type:
-            - 'office!Office.CustomXmlNode#getNodeValueAsync~0:complex'
-  - uid: 'office!Office.CustomXmlNode#getNodeValueAsync:member(2)'
-    summary: 获取节点值。
-    remarks: |-
-      **要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      function showXmlNodeValues() {
-          Office.context.document.customXmlParts.getByIdAsync(
-              "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
-              var xmlPart = result.value;
-              xmlPart.getNodesAsync('*/*', function (nodeResults) {
-                  for (i = 0; i < nodeResults.value.length; i++) {
-                      var node = nodeResults.value[i];
-                      node.getNodeValueAsync(function (asyncResult) {
-                          write(asyncResult.value);
-                      });
-                  }
-              });
-          });
-      }
-      // Function that writes to a div with id='message' on the page.
-      function write(message){
-          document.getElementById('message').innerText += message; 
-      }
-      ```
-    name: getNodeValueAsync(callback)
-    fullName: getNodeValueAsync(callback)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getNodeValueAsync(callback?: (result: AsyncResult<string>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是一个字符串，其中包含引用的节点的值。'
-          type:
-            - 'office!Office.CustomXmlNode#getNodeValueAsync~1:complex'
-  - uid: 'office!Office.CustomXmlNode#getTextAsync:member(1)'
-    summary: 获取自定义 XML 部件中的 XML 节点的文本。
-    remarks: |-
-      **要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      // Get the built-in core properties XML part by using its ID. This results in a call to Word.
-      Office.context.document.customXmlParts.getByIdAsync(
-          "{6C3C8BC8-F283-45AE-878A-BAB7291924A1}", function (getByIdAsyncResult) {
-          
-          // Access the XML part.
-          var xmlPart = getByIdAsyncResult.value;
-          
-          // Add namespaces to the namespace manager. These two calls result in two calls to Word.
-          xmlPart.namespaceManager.addNamespaceAsync(
-              'cp',
-              'http://schemas.openxmlformats.org/package/2006/metadata/core-properties',
-              function () {
-              xmlPart.namespaceManager.addNamespaceAsync(
-                  'dc', 
-                  'http://purl.org/dc/elements/1.1/', 
-                  function () {
-
-                  // Get XML nodes by using an Xpath expression. This results in a call to Word.
-                  xmlPart.getNodesAsync("/cp:coreProperties/dc:title", function (getNodesAsyncResult) {
-                      
-                      // Get the first node returned by using the Xpath expression. 
-                      var node = getNodesAsyncResult.value[0];
-                      
-                      // Get the text value of the node and use the asyncContext. This results in a call to Word. 
-                      // The results are logged to the browser console.
-                      node.getTextAsync({asyncContext: "StateNormal"}, function (getTextAsyncResult) {
-                        console.log("Text of the title element = " + getTextAsyncResult.value;
-                        console.log("The asyncContext value = " + getTextAsyncResult.asyncContext;
-                      });
-                  });
-              });
-          });
-      });
-      ```
-    name: 'getTextAsync(options, callback)'
-    fullName: 'getTextAsync(options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getTextAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: options
-          description: 提供一个选项，用于保留任何类型的未更改的上下文数据，以供在回调中使用。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是一个字符串，其中包含引用节点的内部文本。'
-          type:
-            - 'office!Office.CustomXmlNode#getTextAsync~0:complex'
-  - uid: 'office!Office.CustomXmlNode#getTextAsync:member(2)'
-    summary: 获取自定义 XML 部件中的 XML 节点的文本。
-    remarks: '**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
-    name: getTextAsync(callback)
-    fullName: getTextAsync(callback)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getTextAsync(callback?: (result: AsyncResult<string>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是一个字符串，其中包含引用节点的内部文本。'
-          type:
-            - 'office!Office.CustomXmlNode#getTextAsync~1:complex'
-  - uid: 'office!Office.CustomXmlNode#getXmlAsync:member(1)'
-    summary: 获取节点的 XML。
-    remarks: '**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
-    name: 'getXmlAsync(options, callback)'
-    fullName: 'getXmlAsync(options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getXmlAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: options
-          description: 提供一个选项，用于保留任何类型的未更改的上下文数据，以供在回调中使用。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是一个字符串，其中包含引用的节点的 XML。'
-          type:
-            - 'office!Office.CustomXmlNode#getXmlAsync~0:complex'
-  - uid: 'office!Office.CustomXmlNode#getXmlAsync:member(2)'
-    summary: 获取节点的 XML。
-    remarks: |-
-      **要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      function showXmlNodeInnerXml() {
-          Office.context.document.customXmlParts.getByIdAsync(
-              "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
-              var xmlPart = result.value;
-              xmlPart.getNodesAsync('*', function (nodeResults) {
-                  for (i = 0; i < nodeResults.value.length; i++) {
-                      var node = nodeResults.value[i];
-                      node.getXmlAsync(function (asyncResult) {
-                          write(asyncResult.value);
-                      });
-                  }
-              });
-          });
-      }
-      // Function that writes to a div with id='message' on the page.
-      function write(message){
-          document.getElementById('message').innerText += message; 
-      }
-      ```
-    name: getXmlAsync(callback)
-    fullName: getXmlAsync(callback)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getXmlAsync(callback?: (result: AsyncResult<string>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是一个字符串，其中包含引用的节点的 XML。'
-          type:
-            - 'office!Office.CustomXmlNode#getXmlAsync~1:complex'
-  - uid: 'office!Office.CustomXmlNode#namespaceUri:member'
-    summary: 检索 CustomXMLPart 的字符串 GUID。
-    name: namespaceUri
-    fullName: namespaceUri
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'namespaceUri: string;'
-      return:
-        type:
-          - string
-        description: |-
+    #### <a name="examples"></a>示例
 
 
-          #### <a name="examples"></a>示例
+    ```javascript
 
-          ```javascript
-          function showXmlNamespaceUri() {
-              Office.context.document.customXmlParts.getByIdAsync(
-                  "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
-                  var xmlPart = result.value;
-                  xmlPart.getNodesAsync('*/*', function (nodeResults) {
-                      for (i = 0; i < nodeResults.value.length; i++) {
-                          var node = nodeResults.value[i];
-                          write(node.namespaceUri);
-                      }
-                  });
-              });
-          }
-          // Function that writes to a div with id='message' on the page.
-          function write(message){
-              document.getElementById('message').innerText += message; 
-          }
-          ```
-  - uid: 'office!Office.CustomXmlNode#nodeType:member'
-    summary: 获取 CustomXMLNode 的类型。
-    name: nodeType
-    fullName: nodeType
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'nodeType: string;'
-      return:
-        type:
-          - string
-        description: |-
+    function setXmlNodeInnerXml() {
+        Office.context.document.customXmlParts.getByIdAsync(
+            "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
+            var xmlPart = result.value;
+            xmlPart.getNodesAsync('*', function (nodeResults) {
+                for (i = 0; i < nodeResults.value.length; i++) {
+                    var node = nodeResults.value[i];
+                    node.setXmlAsync("<childNode>" + i + "</childNode>");
+                }
+            });
+        });
+    }
 
-
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          function showXmlNodeType() {
-              Office.context.document.customXmlParts.getByIdAsync(
-                  "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
-                  var xmlPart = result.value;
-                  xmlPart.getNodesAsync('*/*', function (nodeResults) {
-                      for (i = 0; i < nodeResults.value.length; i++) {
-                          var node = nodeResults.value[i];
-                          write(node.nodeType);
-                      }
-                  });
-              });
-          }
-          // Function that writes to a div with id='message' on the page.
-          function write(message){
-              document.getElementById('message').innerText += message; 
-          }
-          ```
-  - uid: 'office!Office.CustomXmlNode#setNodeValueAsync:member(1)'
-    summary: 设置节点值。
-    remarks: '**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
-    name: 'setNodeValueAsync(value, options, callback)'
-    fullName: 'setNodeValueAsync(value, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setNodeValueAsync(value: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: value
-          description: 要在节点上设置的值
-          type:
-            - string
-        - id: options
-          description: 提供一个选项，用于保留任何类型的未更改的上下文数据，以供在回调中使用。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.'
-          type:
-            - 'office!Office.CustomXmlNode#setNodeValueAsync~0:complex'
-  - uid: 'office!Office.CustomXmlNode#setNodeValueAsync:member(2)'
-    summary: 设置节点值。
-    remarks: |-
-      **要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      function setXmlNodeValue() {
-          Office.context.document.customXmlParts.getByIdAsync(
-              "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
-              var xmlPart = result.value;
-              xmlPart.getNodesAsync('*/*', function (nodeResults) {
-                  for (i = 0; i < nodeResults.value.length; i++) {
-                      var node = nodeResults.value[i];
-                      write(node);
-                      node.setNodeValueAsync("item number" + i, function (result) { });
-                  }
-              });
-          });
-      }
-      // Function that writes to a div with id='message' on the page.
-      function write(message){
-          document.getElementById('message').innerText += message; 
-      }
-      ```
-    name: 'setNodeValueAsync(value, callback)'
-    fullName: 'setNodeValueAsync(value, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setNodeValueAsync(value: string, callback?: (result: AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: value
-          description: 要在节点上设置的值
-          type:
-            - string
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.'
-          type:
-            - 'office!Office.CustomXmlNode#setNodeValueAsync~1:complex'
-  - uid: 'office!Office.CustomXmlNode#setTextAsync:member(1)'
-    summary: 异步设置自定义 XML 部件中 XML 节点的文本。
-    remarks: |-
-      **要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      // Learn how to set the text value of a node in a custom XML part from the following example.
-
-      // Get the built-in core properties XML part by using its ID. This results in a call to Word.
-      Office.context.document.customXmlParts.getByIdAsync(
-          "{6C3C8BC8-F283-45AE-878A-BAB7291924A1}",
-          function (getByIdAsyncResult) {
-          
-          // Access the XML part.
-          var xmlPart = getByIdAsyncResult.value;
-          
-          // Add namespaces to the namespace manager. These two calls result in two calls to Word.
-          xmlPart.namespaceManager.addNamespaceAsync(
-              'cp', 
-              'http://schemas.openxmlformats.org/package/2006/metadata/core-properties', 
-              function () {
-              xmlPart.namespaceManager.addNamespaceAsync(
-                  'dc', 
-                  'http://purl.org/dc/elements/1.1/', 
-                  function () {
-
-                  // Get XML nodes by using an Xpath expression. This results in a call to the host.
-                  xmlPart.getNodesAsync("/cp:coreProperties/dc:subject", function (getNodesAsyncResult) {
-                      
-                      // Get the first node returned by using the Xpath expression.
-                      // This will be the subject element in this example.
-                      var subjectNode = getNodesAsyncResult.value[0];
-                      
-                      // Set the text value of the subject node and use the asyncContext. 
-                      // This results in a call to the host.  The results are logged to the browser console.
-                      subjectNode.setTextAsync(
-                          "newSubject", 
-                          {asyncContext: "StateNormal"}, 
-                          function (setTextAsyncResult) {
-                              console.log("The status of the call: " + setTextAsyncResult.status);
-                              console.log("The asyncContext value = " + setTextAsyncResult.asyncContext);
-                      });
-                  });
-              });
-          });
-      });
-      ```
-    name: 'setTextAsync(text, options, callback)'
-    fullName: 'setTextAsync(text, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setTextAsync(text: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: text
-          description: 必需。 XML 节点的文本值。
-          type:
-            - string
-        - id: options
-          description: 提供一个选项，用于保留任何类型的未更改的上下文数据，以供在回调中使用。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.'
-          type:
-            - 'office!Office.CustomXmlNode#setTextAsync~0:complex'
-  - uid: 'office!Office.CustomXmlNode#setTextAsync:member(2)'
-    summary: 异步设置自定义 XML 部件中 XML 节点的文本。
-    remarks: '**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
-    name: 'setTextAsync(text, callback)'
-    fullName: 'setTextAsync(text, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setTextAsync(text: string, callback?: (result: AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: text
-          description: 必需。 XML 节点的文本值。
-          type:
-            - string
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.'
-          type:
-            - 'office!Office.CustomXmlNode#setTextAsync~1:complex'
-  - uid: 'office!Office.CustomXmlNode#setXmlAsync:member(1)'
-    summary: 设置节点 XML。
-    remarks: |-
-      **要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      function setXmlNodeInnerXml() {
-          Office.context.document.customXmlParts.getByIdAsync(
-              "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
-              var xmlPart = result.value;
-              xmlPart.getNodesAsync('*', function (nodeResults) {
-                  for (i = 0; i < nodeResults.value.length; i++) {
-                      var node = nodeResults.value[i];
-                      node.setXmlAsync("<childNode>" + i + "</childNode>");
-                  }
-              });
-          });
-      }
-      ```
-    name: 'setXmlAsync(xml, options, callback)'
-    fullName: 'setXmlAsync(xml, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setXmlAsync(xml: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: xml
-          description: 要在节点上设置的 XML
-          type:
-            - string
-        - id: options
-          description: 提供一个选项，用于保留任何类型的未更改的上下文数据，以供在回调中使用。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.'
-          type:
-            - 'office!Office.CustomXmlNode#setXmlAsync~0:complex'
-  - uid: 'office!Office.CustomXmlNode#setXmlAsync:member(2)'
-    summary: 设置节点 XML。
-    remarks: '**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
-    name: 'setXmlAsync(xml, callback)'
-    fullName: 'setXmlAsync(xml, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setXmlAsync(xml: string, callback?: (result: AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: xml
-          description: 要在节点上设置的 XML
-          type:
-            - string
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.'
-          type:
-            - 'office!Office.CustomXmlNode#setXmlAsync~1:complex'
-references:
-  - uid: 'office!Office.AsyncContextOptions:interface'
-    name: Office.AsyncContextOptions
-  - uid: 'office!Office.CustomXmlNode#getNodesAsync~0:complex'
-    name: '(result: AsyncResult<CustomXmlNode[]>) => void'
-    fullName: '(result: Office.AsyncResult<Office.CustomXmlNode[]>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <
-        fullName: <
-      - uid: 'office!Office.CustomXmlNode:interface'
-        name: CustomXmlNode
-        fullName: Office.CustomXmlNode
-      - name: '[]>) => void'
-        fullName: '[]>) => void'
-  - uid: 'office!Office.CustomXmlNode#getNodesAsync~1:complex'
-    name: '(result: AsyncResult<CustomXmlNode[]>) => void'
-    fullName: '(result: Office.AsyncResult<Office.CustomXmlNode[]>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <
-        fullName: <
-      - uid: 'office!Office.CustomXmlNode:interface'
-        name: CustomXmlNode
-        fullName: Office.CustomXmlNode
-      - name: '[]>) => void'
-        fullName: '[]>) => void'
-  - uid: 'office!Office.CustomXmlNode#getNodeValueAsync~0:complex'
-    name: '(result: AsyncResult<string>) => void'
-    fullName: '(result: Office.AsyncResult<string>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <string>) => void
-        fullName: <string>) => void
-  - uid: 'office!Office.CustomXmlNode#getNodeValueAsync~1:complex'
-    name: '(result: AsyncResult<string>) => void'
-    fullName: '(result: Office.AsyncResult<string>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <string>) => void
-        fullName: <string>) => void
-  - uid: 'office!Office.CustomXmlNode#getTextAsync~0:complex'
-    name: '(result: AsyncResult<string>) => void'
-    fullName: '(result: Office.AsyncResult<string>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <string>) => void
-        fullName: <string>) => void
-  - uid: 'office!Office.CustomXmlNode#getTextAsync~1:complex'
-    name: '(result: AsyncResult<string>) => void'
-    fullName: '(result: Office.AsyncResult<string>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <string>) => void
-        fullName: <string>) => void
-  - uid: 'office!Office.CustomXmlNode#getXmlAsync~0:complex'
-    name: '(result: AsyncResult<string>) => void'
-    fullName: '(result: Office.AsyncResult<string>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <string>) => void
-        fullName: <string>) => void
-  - uid: 'office!Office.CustomXmlNode#getXmlAsync~1:complex'
-    name: '(result: AsyncResult<string>) => void'
-    fullName: '(result: Office.AsyncResult<string>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <string>) => void
-        fullName: <string>) => void
-  - uid: 'office!Office.CustomXmlNode#setNodeValueAsync~0:complex'
-    name: '(result: AsyncResult<void>) => void'
-    fullName: '(result: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'office!Office.CustomXmlNode#setNodeValueAsync~1:complex'
-    name: '(result: AsyncResult<void>) => void'
-    fullName: '(result: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'office!Office.CustomXmlNode#setTextAsync~0:complex'
-    name: '(result: AsyncResult<void>) => void'
-    fullName: '(result: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'office!Office.CustomXmlNode#setTextAsync~1:complex'
-    name: '(result: AsyncResult<void>) => void'
-    fullName: '(result: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'office!Office.CustomXmlNode#setXmlAsync~0:complex'
-    name: '(result: AsyncResult<void>) => void'
-    fullName: '(result: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'office!Office.CustomXmlNode#setXmlAsync~1:complex'
-    name: '(result: AsyncResult<void>) => void'
-    fullName: '(result: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setXmlAsync(xml: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    parameters:
+    - id: xml
+      description: 要在节点上设置的 XML
+      type: string
+    - id: options
+      description: 提供一个选项，用于保留任何类型的未更改的上下文数据，以供在回调中使用。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: setXmlAsync(xml, callback)
+  uid: office!Office.CustomXmlNode#setXmlAsync:member(2)
+  package: office!
+  fullName: setXmlAsync(xml, callback)
+  summary: 设置节点 XML。
+  remarks: '**要求集**： [CustomXmlParts](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#customxmlparts)'
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setXmlAsync(xml: string, callback?: (result: AsyncResult<void>) => void): void;'
+    parameters:
+    - id: xml
+      description: 要在节点上设置的 XML
+      type: string
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+metadata:
+  ms.openlocfilehash: b6b18e7e124e65d12b70f9e30d3b3a992b7f14d8
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49151357"
