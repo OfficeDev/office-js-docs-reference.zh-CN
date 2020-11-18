@@ -1,456 +1,302 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'onenote!OneNote.TableRow:class'
-    summary: |-
-      表示表中的行。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: OneNote.TableRow
-    fullName: OneNote.TableRow
-    langs:
-      - typeScript
-    type: class
-    extends:
-      - 'office!OfficeExtension.ClientObject:class'
-    package: onenote!
-    children:
-      - 'onenote!OneNote.TableRow#cellCount:member'
-      - 'onenote!OneNote.TableRow#cells:member'
-      - 'onenote!OneNote.TableRow#clear:member(1)'
-      - 'onenote!OneNote.TableRow#context:member'
-      - 'onenote!OneNote.TableRow#id:member'
-      - 'onenote!OneNote.TableRow#insertRowAsSibling:member(1)'
-      - 'onenote!OneNote.TableRow#insertRowAsSibling:member(2)'
-      - 'onenote!OneNote.TableRow#load:member(1)'
-      - 'onenote!OneNote.TableRow#load:member(2)'
-      - 'onenote!OneNote.TableRow#load:member(3)'
-      - 'onenote!OneNote.TableRow#parentTable:member'
-      - 'onenote!OneNote.TableRow#rowIndex:member'
-      - 'onenote!OneNote.TableRow#setShadingColor:member(1)'
-      - 'onenote!OneNote.TableRow#toJSON:member(1)'
-      - 'onenote!OneNote.TableRow#track:member(1)'
-      - 'onenote!OneNote.TableRow#untrack:member(1)'
-  - uid: 'onenote!OneNote.TableRow#cellCount:member'
-    summary: |-
-      获取行中的单元格数。 只读。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: cellCount
-    fullName: cellCount
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly cellCount: number;'
-      return:
-        type:
-          - number
-  - uid: 'onenote!OneNote.TableRow#cells:member'
-    summary: |-
-      获取行中的单元格。 只读。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: cells
-    fullName: cells
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly cells: OneNote.TableCellCollection;'
-      return:
-        type:
-          - 'onenote!OneNote.TableCellCollection:class'
-  - uid: 'onenote!OneNote.TableRow#clear:member(1)'
-    summary: |-
-      清除行内容。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: clear()
-    fullName: clear()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'clear(): void;'
-      return:
-        type:
-          - void
-        description: ''
-  - uid: 'onenote!OneNote.TableRow#context:member'
-    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-    name: context
-    fullName: context
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'context: RequestContext;'
-      return:
-        type:
-          - 'onenote!OneNote.RequestContext:class'
-  - uid: 'onenote!OneNote.TableRow#id:member'
-    summary: |-
-      获取行的 ID。 只读。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: id
-    fullName: id
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly id: string;'
-      return:
-        type:
-          - string
-  - uid: 'onenote!OneNote.TableRow#insertRowAsSibling:member(1)'
-    summary: |-
-      在当前行之前或之后插入一行。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: 'insertRowAsSibling(insertLocation, values)'
-    fullName: 'insertRowAsSibling(insertLocation, values)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'insertRowAsSibling(insertLocation: OneNote.InsertLocation, values?: string[]): OneNote.TableRow;'
-      return:
-        type:
-          - 'onenote!OneNote.TableRow:class'
-        description: |-
+### YamlMime:TSType
+name: OneNote.TableRow
+uid: onenote!OneNote.TableRow:class
+package: onenote!
+fullName: OneNote.TableRow
+summary: >-
+  表示表中的行。
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          OneNote.run(function(ctx) {
-              var app = ctx.application;
-              var outline = app.getActiveOutline();
-              
-              // Queue a command to load outline.paragraphs and their types.
-              ctx.load(outline, "paragraphs, paragraphs/type");
-              
-              // Run the queued commands, and return a promise to indicate task completion.
-              return ctx.sync().then(function () {
-                  var paragraphs = outline.paragraphs;
-                  
-                  // for each table, get table rows.
-                  for (var i = 0; i < paragraphs.items.length; i++) {
-                      var paragraph = paragraphs.items[i];
-                      if (paragraph.type == "Table") {
-                          var table = paragraph.table;
-                          
-                          // Queue a command to load table.rows.
-                          ctx.load(table, "rows");
-                          
-                          // Run the queued commands
-                          return ctx.sync().then(function() {
-                              var rows = table.rows;
-                              rows.items[1].insertRowAsSibling("Before", ["cell0", "cell1"]);
-                              return ctx.sync();
-                          });
-                      }
-                  }
-              })
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: insertLocation
-          description: 新行应插入的位置对应于当前行。
-          type:
-            - 'onenote!OneNote.InsertLocation:enum'
-        - id: values
-          description: 在新行中插入的字符串，指定为数组。 单元格不能多于当前行中的单元格。 可选。
-          type:
-            - 'string[]'
-  - uid: 'onenote!OneNote.TableRow#insertRowAsSibling:member(2)'
-    summary: |-
-      在当前行之前或之后插入一行。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: 'insertRowAsSibling(insertLocationString, values)'
-    fullName: 'insertRowAsSibling(insertLocationString, values)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'insertRowAsSibling(insertLocationString: "Before" | "After", values?: string[]): OneNote.TableRow;'
-      return:
-        type:
-          - 'onenote!OneNote.TableRow:class'
-        description: ''
-      parameters:
-        - id: insertLocationString
-          description: 新行应插入的位置对应于当前行。
-          type:
-            - '"Before" | "After"'
-        - id: values
-          description: 在新行中插入的字符串，指定为数组。 单元格不能多于当前行中的单元格。 可选。
-          type:
-            - 'string[]'
-  - uid: 'onenote!OneNote.TableRow#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
-    remarks: |-
-      除了此签名之外，此方法还具有以下签名：
-
-      `load(option?: string | string[]): OneNote.TableRow`-Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
-
-      `load(option?: { select?: string; expand?: string; }): OneNote.TableRow`-Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.TableRow`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
-    name: load(option)
-    fullName: load(option)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(option?: OneNote.Interfaces.TableRowLoadOptions): OneNote.TableRow;'
-      return:
-        type:
-          - 'onenote!OneNote.TableRow:class'
-        description: ''
-      parameters:
-        - id: option
-          description: ''
-          type:
-            - 'onenote!OneNote.Interfaces.TableRowLoadOptions:interface'
-  - uid: 'onenote!OneNote.TableRow#load:member(2)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNames)
-    fullName: load(propertyNames)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNames?: string | string[]): OneNote.TableRow;'
-      return:
-        type:
-          - 'onenote!OneNote.TableRow:class'
-        description: |-
+  \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: cellCount
+  uid: onenote!OneNote.TableRow#cellCount:member
+  package: onenote!
+  fullName: cellCount
+  summary: >-
+    获取行中的单元格数。 只读。
 
 
-          #### <a name="examples"></a>示例
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly cellCount: number;'
+    return:
+      type: number
+- name: cells
+  uid: onenote!OneNote.TableRow#cells:member
+  package: onenote!
+  fullName: cells
+  summary: >-
+    获取行中的单元格。 只读。
 
-          ```javascript
-          OneNote.run(function(ctx) {
-              var app = ctx.application;
-              var outline = app.getActiveOutline();
-              
-              // Queue a command to load outline.paragraphs and their types.
-              ctx.load(outline, "paragraphs, paragraphs/type");
-              
-              // Run the queued commands, and return a promise to indicate task completion.
-              return ctx.sync().then(function () {
-                  var paragraphs = outline.paragraphs;
-                  
-                  // for each table, get table rows.
-                  for (var i = 0; i < paragraphs.items.length; i++) {
-                      var paragraph = paragraphs.items[i];
-                      if (paragraph.type == "Table") {
-                          var table = paragraph.table;
-                          
-                          // Queue a command to load table.rows.
-                          ctx.load(table, "rows");
-                          return ctx.sync().then(function() {
-                              var rows = table.rows;
-                              
-                              // for each table row, log cell count and row index.
-                              for (var i = 0; i < rows.items.length; i++) {
-                                  console.log("Row " + i + " Id: " + rows.items[i].id);
-                                  console.log("Row " + i + " Cell Count: " + rows.items[i].cellCount);
-                                  console.log("Row " + i + " Row Index: " + rows.items[i].rowIndex);
-                              }
-                              return ctx.sync();
-                          });
-                      }
-                  }
-              })
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-          ```javascript
-          OneNote.run(function(ctx) {
-              var app = ctx.application;
-              var outline = app.getActiveOutline();
-              
-              // Queue a command to load outline.paragraphs and their types.
-              ctx.load(outline, "paragraphs, paragraphs/type");
-              
-              // Run the queued commands, and return a promise to indicate task completion.
-              return ctx.sync().then(function () {
-                  var paragraphs = outline.paragraphs;
-                  
-                  // for each table, get table rows.
-                  for (var i = 0; i < paragraphs.items.length; i++) {
-                      var paragraph = paragraphs.items[i];
-                      if (paragraph.type == "Table") {
-                          var table = paragraph.table;
-                          
-                          // Queue a command to load parentTable and cells of each row in the table.
-                          ctx.load(table, "rows/parentTable, rows/cells");
-                          return ctx.sync().then(function() {
-                              var rows = table.rows;
-                              
-                              // for each row, log parentTable and cells
-                              for (var i = 0; i < rows.items.length; i++) {
-                                  console.log("Row " + i + " Parent Table Id: " + rows.items[i].parentTable.id);
-                                  var cells = rows.items[i].cells;
-                                  for (var j = 0 ; j < cells.items.length; j++) {
-                                      console.log("Row " + i + " Cell " + j + " Id: " + cells.items[j].id);
-                                  }
-                              }
-                              return ctx.sync();
-                          });
-                      }
-                  }
-              })
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: propertyNames
-          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
-          type:
-            - 'string | string[]'
-  - uid: 'onenote!OneNote.TableRow#load:member(3)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNamesAndPaths)
-    fullName: load(propertyNamesAndPaths)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.TableRow;'
-      return:
-        type:
-          - 'onenote!OneNote.TableRow:class'
-        description: ''
-      parameters:
-        - id: propertyNamesAndPaths
-          description: 其中，propertyNamesAndPaths 是用逗号分隔的字符串，用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串，用于指定要加载的导航属性。
-          type:
-            - '{ select?: string; expand?: string; }'
-  - uid: 'onenote!OneNote.TableRow#parentTable:member'
-    summary: |-
-      获取父表。 只读。
 
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: parentTable
-    fullName: parentTable
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly parentTable: OneNote.Table;'
-      return:
-        type:
-          - 'onenote!OneNote.Table:class'
-  - uid: 'onenote!OneNote.TableRow#rowIndex:member'
-    summary: |-
-      获取其父表中的行索引。 只读。
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly cells: OneNote.TableCellCollection;'
+    return:
+      type: <xref uid="onenote!OneNote.TableCellCollection:class" />
+- name: context
+  uid: onenote!OneNote.TableRow#context:member
+  package: onenote!
+  fullName: context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="onenote!OneNote.RequestContext:class" />
+- name: id
+  uid: onenote!OneNote.TableRow#id:member
+  package: onenote!
+  fullName: id
+  summary: >-
+    获取行的 ID。 只读。
 
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: rowIndex
-    fullName: rowIndex
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly rowIndex: number;'
-      return:
-        type:
-          - number
-  - uid: 'onenote!OneNote.TableRow#setShadingColor:member(1)'
-    summary: |-
-      设置行中所有单元格的底纹色。 要为单元格设置的颜色代码。
 
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: setShadingColor(colorCode)
-    fullName: setShadingColor(colorCode)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setShadingColor(colorCode: string): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: colorCode
-          description: ''
-          type:
-            - string
-  - uid: 'onenote!OneNote.TableRow#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始 TableRow 对象是 API 对象，但 `toJSON` 方法返回一个无格式的 JavaScript 对象（类型为`OneNote.Interfaces.TableRowData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
-    name: toJSON()
-    fullName: toJSON()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'toJSON(): OneNote.Interfaces.TableRowData;'
-      return:
-        type:
-          - 'onenote!OneNote.Interfaces.TableRowData:interface'
-        description: ''
-  - uid: 'onenote!OneNote.TableRow#track:member(1)'
-    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。
-    name: track()
-    fullName: track()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'track(): OneNote.TableRow;'
-      return:
-        type:
-          - 'onenote!OneNote.TableRow:class'
-        description: ''
-  - uid: 'onenote!OneNote.TableRow#untrack:member(1)'
-    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前，你需要调用“context.sync()”。
-    name: untrack()
-    fullName: untrack()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'untrack(): OneNote.TableRow;'
-      return:
-        type:
-          - 'onenote!OneNote.TableRow:class'
-        description: ''
-references:
-  - uid: 'office!OfficeExtension.ClientObject:class'
-    name: OfficeExtension.ClientObject
-  - uid: 'onenote!OneNote.TableCellCollection:class'
-    name: OneNote.TableCellCollection
-  - uid: 'onenote!OneNote.RequestContext:class'
-    name: RequestContext
-  - uid: 'onenote!OneNote.TableRow:class'
-    name: OneNote.TableRow
-  - uid: 'onenote!OneNote.InsertLocation:enum'
-    name: OneNote.InsertLocation
-  - uid: 'onenote!OneNote.Interfaces.TableRowLoadOptions:interface'
-    name: OneNote.Interfaces.TableRowLoadOptions
-  - uid: 'onenote!OneNote.Table:class'
-    name: OneNote.Table
-  - uid: 'onenote!OneNote.Interfaces.TableRowData:interface'
-    name: OneNote.Interfaces.TableRowData
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly id: string;'
+    return:
+      type: string
+- name: parentTable
+  uid: onenote!OneNote.TableRow#parentTable:member
+  package: onenote!
+  fullName: parentTable
+  summary: >-
+    获取父表。 只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly parentTable: OneNote.Table;'
+    return:
+      type: <xref uid="onenote!OneNote.Table:class" />
+- name: rowIndex
+  uid: onenote!OneNote.TableRow#rowIndex:member
+  package: onenote!
+  fullName: rowIndex
+  summary: >-
+    获取其父表中的行索引。 只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly rowIndex: number;'
+    return:
+      type: number
+methods:
+- name: clear()
+  uid: onenote!OneNote.TableRow#clear:member(1)
+  package: onenote!
+  fullName: clear()
+  summary: >-
+    清除行内容。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'clear(): void;'
+    return:
+      type: void
+      description: ''
+- name: insertRowAsSibling(insertLocation, values)
+  uid: onenote!OneNote.TableRow#insertRowAsSibling:member(1)
+  package: onenote!
+  fullName: insertRowAsSibling(insertLocation, values)
+  summary: >-
+    在当前行之前或之后插入一行。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'insertRowAsSibling(insertLocation: OneNote.InsertLocation, values?: string[]): OneNote.TableRow;'
+    parameters:
+    - id: insertLocation
+      description: 新行应插入的位置对应于当前行。
+      type: <xref uid="onenote!OneNote.InsertLocation:enum" />
+    - id: values
+      description: 在新行中插入的字符串，指定为数组。 单元格不能多于当前行中的单元格。 可选。
+      type: string[]
+    return:
+      type: <xref uid="onenote!OneNote.TableRow:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    var outline = app.getActiveOutline();\n    \n    // Queue a command to load outline.paragraphs and their types.\n    ctx.load(outline, \"paragraphs, paragraphs/type\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync().then(function () {\n        var paragraphs = outline.paragraphs;\n        \n        // for each table, get table rows.\n        for (var i = 0; i < paragraphs.items.length; i++) {\n            var paragraph = paragraphs.items[i];\n            if (paragraph.type == \"Table\") {\n                var table = paragraph.table;\n                \n                // Queue a command to load table.rows.\n                ctx.load(table, \"rows\");\n                \n                // Run the queued commands\n                return ctx.sync().then(function() {\n                    var rows = table.rows;\n                    rows.items[1].insertRowAsSibling(\"Before\", [\"cell0\", \"cell1\"]);\n                    return ctx.sync();\n                });\n            }\n        }\n    })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: insertRowAsSibling(insertLocationString, values)
+  uid: onenote!OneNote.TableRow#insertRowAsSibling:member(2)
+  package: onenote!
+  fullName: insertRowAsSibling(insertLocationString, values)
+  summary: >-
+    在当前行之前或之后插入一行。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'insertRowAsSibling(insertLocationString: "Before" | "After", values?: string[]): OneNote.TableRow;'
+    parameters:
+    - id: insertLocationString
+      description: 新行应插入的位置对应于当前行。
+      type: "\"Before\" | \"After\""
+    - id: values
+      description: 在新行中插入的字符串，指定为数组。 单元格不能多于当前行中的单元格。 可选。
+      type: string[]
+    return:
+      type: <xref uid="onenote!OneNote.TableRow:class" />
+      description: ''
+- name: load(option)
+  uid: onenote!OneNote.TableRow#load:member(1)
+  package: onenote!
+  fullName: load(option)
+  summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+  remarks: >-
+    除了此签名之外，此方法还具有以下签名：
+
+
+    `load(option?: string | string[]): OneNote.TableRow` -Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
+
+
+    `load(option?: { select?: string; expand?: string; }): OneNote.TableRow` -Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.TableRow` -仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(option?: OneNote.Interfaces.TableRowLoadOptions): OneNote.TableRow;'
+    parameters:
+    - id: option
+      description: ''
+      type: <xref uid="onenote!OneNote.Interfaces.TableRowLoadOptions:interface" />
+    return:
+      type: <xref uid="onenote!OneNote.TableRow:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: onenote!OneNote.TableRow#load:member(2)
+  package: onenote!
+  fullName: load(propertyNames)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): OneNote.TableRow;'
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      type: string | string[]
+    return:
+      type: <xref uid="onenote!OneNote.TableRow:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    var outline = app.getActiveOutline();\n    \n    // Queue a command to load outline.paragraphs and their types.\n    ctx.load(outline, \"paragraphs, paragraphs/type\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync().then(function () {\n        var paragraphs = outline.paragraphs;\n        \n        // for each table, get table rows.\n        for (var i = 0; i < paragraphs.items.length; i++) {\n            var paragraph = paragraphs.items[i];\n            if (paragraph.type == \"Table\") {\n                var table = paragraph.table;\n                \n                // Queue a command to load table.rows.\n                ctx.load(table, \"rows\");\n                return ctx.sync().then(function() {\n                    var rows = table.rows;\n                    \n                    // for each table row, log cell count and row index.\n                    for (var i = 0; i < rows.items.length; i++) {\n                        console.log(\"Row \" + i + \" Id: \" + rows.items[i].id);\n                        console.log(\"Row \" + i + \" Cell Count: \" + rows.items[i].cellCount);\n                        console.log(\"Row \" + i + \" Row Index: \" + rows.items[i].rowIndex);\n                    }\n                    return ctx.sync();\n                });\n            }\n        }\n    })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    var outline = app.getActiveOutline();\n    \n    // Queue a command to load outline.paragraphs and their types.\n    ctx.load(outline, \"paragraphs, paragraphs/type\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync().then(function () {\n        var paragraphs = outline.paragraphs;\n        \n        // for each table, get table rows.\n        for (var i = 0; i < paragraphs.items.length; i++) {\n            var paragraph = paragraphs.items[i];\n            if (paragraph.type == \"Table\") {\n                var table = paragraph.table;\n                \n                // Queue a command to load parentTable and cells of each row in the table.\n                ctx.load(table, \"rows/parentTable, rows/cells\");\n                return ctx.sync().then(function() {\n                    var rows = table.rows;\n                    \n                    // for each row, log parentTable and cells\n                    for (var i = 0; i < rows.items.length; i++) {\n                        console.log(\"Row \" + i + \" Parent Table Id: \" + rows.items[i].parentTable.id);\n                        var cells = rows.items[i].cells;\n                        for (var j = 0 ; j < cells.items.length; j++) {\n                            console.log(\"Row \" + i + \" Cell \" + j + \" Id: \" + cells.items[j].id);\n                        }\n                    }\n                    return ctx.sync();\n                });\n            }\n        }\n    })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(propertyNamesAndPaths)
+  uid: onenote!OneNote.TableRow#load:member(3)
+  package: onenote!
+  fullName: load(propertyNamesAndPaths)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.TableRow;'
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中，propertyNamesAndPaths 是用逗号分隔的字符串，用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+      type: '{ select?: string; expand?: string; }'
+    return:
+      type: <xref uid="onenote!OneNote.TableRow:class" />
+      description: ''
+- name: setShadingColor(colorCode)
+  uid: onenote!OneNote.TableRow#setShadingColor:member(1)
+  package: onenote!
+  fullName: setShadingColor(colorCode)
+  summary: >-
+    设置行中所有单元格的底纹色。 要为单元格设置的颜色代码。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setShadingColor(colorCode: string): void;'
+    parameters:
+    - id: colorCode
+      description: ''
+      type: string
+    return:
+      type: void
+      description: ''
+- name: toJSON()
+  uid: onenote!OneNote.TableRow#toJSON:member(1)
+  package: onenote!
+  fullName: toJSON()
+  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始 TableRow 对象是 API 对象，则该 `toJSON` 方法返回一个 (类型为的纯 JavaScript 对象。 `OneNote.Interfaces.TableRowData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): OneNote.Interfaces.TableRowData;'
+    return:
+      type: <xref uid="onenote!OneNote.Interfaces.TableRowData:interface" />
+      description: ''
+- name: track()
+  uid: onenote!OneNote.TableRow#track:member(1)
+  package: onenote!
+  fullName: track()
+  summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'track(): OneNote.TableRow;'
+    return:
+      type: <xref uid="onenote!OneNote.TableRow:class" />
+      description: ''
+- name: untrack()
+  uid: onenote!OneNote.TableRow#untrack:member(1)
+  package: onenote!
+  fullName: untrack()
+  summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前，你需要调用“context.sync()”。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'untrack(): OneNote.TableRow;'
+    return:
+      type: <xref uid="onenote!OneNote.TableRow:class" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 70e968674fbb14f95157d4c6838363c890ea9027
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49150874"
