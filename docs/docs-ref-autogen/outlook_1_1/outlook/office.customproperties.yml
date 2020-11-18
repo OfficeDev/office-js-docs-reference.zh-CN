@@ -1,214 +1,242 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'outlook!Office.CustomProperties:interface'
-    summary: |-
-      `CustomProperties` 对象表示特定于某个特定项目和特定于 Outlook 的某个邮件外接程序的自定义属性。 例如，邮件外接程序可能有必要保存一些特定于激活外接程序的当前电子邮件的数据。 如果用户以后再次访问相同的邮件，并再次激活邮件外接程序，外接程序将能够检索作为自定义属性保存的数据。 **重要说明**： JSON 对象的最大长度 `CustomProperties` 为2500个字符。
+### YamlMime:TSType
+name: Office.CustomProperties
+uid: outlook!Office.CustomProperties:interface
+package: outlook!
+fullName: Office.CustomProperties
+summary: >-
+  `CustomProperties` 对象表示特定于某个特定项目和特定于 Outlook 的某个邮件外接程序的自定义属性。 例如，邮件外接程序可能有必要保存一些特定于激活外接程序的当前电子邮件的数据。 如果用户以后再次访问相同的邮件，并再次激活邮件外接程序，外接程序将能够检索作为自定义属性保存的数据。 **重要说明**： JSON 对象的最大长度 `CustomProperties` 为2500个字符。
 
-      由于 Mac 上的 Outlook 不缓存自定义属性，因此如果用户的网络出现故障，邮件外接程序将无法访问其自定义属性。
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
-    name: Office.CustomProperties
-    fullName: Office.CustomProperties
-    langs:
-      - typeScript
-    type: interface
-    package: outlook!
-    children:
-      - 'outlook!Office.CustomProperties#get:member(1)'
-      - 'outlook!Office.CustomProperties#remove:member(1)'
-      - 'outlook!Office.CustomProperties#saveAsync:member(1)'
-      - 'outlook!Office.CustomProperties#set:member(1)'
-  - uid: 'outlook!Office.CustomProperties#get:member(1)'
-    summary: 返回指定自定义属性的值。
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+  由于 Mac 上的 Outlook 不缓存自定义属性，因此如果用户的网络出现故障，邮件外接程序将无法访问其自定义属性。
+remarks: >-
+  **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
 
-      #### <a name="examples"></a>示例
+  **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+- name: get(name)
+  uid: outlook!Office.CustomProperties#get:member(1)
+  package: outlook!
+  fullName: get(name)
+  summary: 返回指定自定义属性的值。
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/15-item-custom-properties/load-set-get-save.yaml
-      var propertyName = $("#propertyName").val();
-      var propertyValue = customProps.get(propertyName);
-      $("#propertyValue").val(propertyValue);
-      console.log(`The value of custom property "${propertyName}" is "${propertyValue}".`);
-      ```
-    name: get(name)
-    fullName: get(name)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'get(name: string): any;'
-      return:
-        type:
-          - any
-        description: 指定的自定义属性的值。
-      parameters:
-        - id: name
-          description: 要返回的自定义属性的名称。
-          type:
-            - string
-  - uid: 'outlook!Office.CustomProperties#remove:member(1)'
-    summary: |-
-      从自定义属性集合中移除指定的属性。
 
-      若要永久移除属性，必须调用 `saveAsync` 对象的方法 `CustomProperties` 。
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
 
-      #### <a name="examples"></a>示例
+    #### <a name="examples"></a>示例
 
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/15-item-custom-properties/load-set-get-save.yaml
-      var propertyName = $("#propertyName").val();
-      customProps.remove(propertyName);
-      console.log(`Custom property "${propertyName}" removed.`);
-      ```
-    name: remove(name)
-    fullName: remove(name)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'remove(name: string): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: name
-          description: '`name`要删除的属性的。'
-          type:
-            - string
-  - uid: 'outlook!Office.CustomProperties#saveAsync:member(1)'
-    summary: |-
-      将特定于项目的自定义属性保存到服务器。
 
-      您必须调用 `saveAsync` 方法，以保存使用 `set` 方法或对象的方法所做的任何更改 `remove` `CustomProperties` 。 保存操作是异步操作。
+    ```javascript
 
-      最好让您的回调函数对错误进行检查和处理`saveAsync`<!-- -->. 尤其要注意的是，当用户在阅读窗体中处于连接状态时，可以激活阅读外接程序，随后用户将断开连接。 如果外接程序在断开状态下调用 `saveAsync`，`saveAsync` 将返回错误。 你的回调方法应该会相应地处理此错误。
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/15-item-custom-properties/load-set-get-save.yaml
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+    var propertyName = $("#propertyName").val();
 
-      #### <a name="examples"></a>示例
+    var propertyValue = customProps.get(propertyName);
 
-      ```javascript
-      // The following JavaScript code sample shows how to asynchronously use
-      // the loadCustomPropertiesAsync method to load custom properties that
-      // are specific to the current item, and the saveAsync method to save
-      // these properties back to the server. After loading the custom properties,
-      // the code sample uses the get method to read the custom property myProp,
-      // the set method to write the custom property myProp, and then finally
-      // calls the saveAsync method to save the custom properties.
+    $("#propertyValue").val(propertyValue);
 
-      // The initialize function is required for all add-ins.
-      Office.initialize = function () {
-          // Checks for the DOM to load using the jQuery ready function.
-          $(document).ready(function () {
-              // After the DOM is loaded, add-in-specific code can run.
-              var item = Office.context.mailbox.item;
-              item.loadCustomPropertiesAsync(customPropsCallback);
-          });
-      };
+    console.log(`The value of custom property "${propertyName}" is "${propertyValue}".`);
 
-      function customPropsCallback(asyncResult) {
-          var customProps = asyncResult.value;
-          var myProp = customProps.get("myProp");
-          console.log("myProp: " + myProp); // First run on current item will return `undefined`.
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'get(name: string): any;'
+    parameters:
+    - id: name
+      description: 要返回的自定义属性的名称。
+      type: string
+    return:
+      type: any
+      description: 指定的自定义属性的值。
+- name: remove(name)
+  uid: outlook!Office.CustomProperties#remove:member(1)
+  package: outlook!
+  fullName: remove(name)
+  summary: >-
+    从自定义属性集合中移除指定的属性。
 
-          // Set myProp custom property.
-          customProps.set("myProp", "value");
-          customProps.saveAsync(saveCallback);
-      }
 
-      function saveCallback(asyncResult) {
-          if (asyncResult.status === Office.AsyncResultStatus.Failed) {
-              console.error(asyncResult.error.message);
-          }
-          else {
-              // Async call to save custom properties completed.
-              // Proceed to do the appropriate for your add-in.
-          }
-      }
-      ```
-    name: 'saveAsync(callback, asyncContext)'
-    fullName: 'saveAsync(callback, asyncContext)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'saveAsync(callback?: (asyncResult: Office.AsyncResult<void>) => void, asyncContext?: any): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数`Office.AsyncResult`<!-- -->.
-          type:
-            - 'outlook!Office.CustomProperties#saveAsync~0:complex'
-        - id: asyncContext
-          description: 可选。 传递给回调方法的任何状态数据。
-          type:
-            - any
-  - uid: 'outlook!Office.CustomProperties#set:member(1)'
-    summary: |-
-      将指定属性设置为指定值。
+    若要永久移除属性，必须调用 `saveAsync` 对象的方法 `CustomProperties` 。
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
-      `set` 方法将指定属性设置为指定值。 必须使用 `saveAsync` 方法将该属性保存到服务器。
 
-      如果尚不存在指定属性，`set` 方法将创建一个新的属性；否则现有值将替换为新值。`value` 参数可以是任何类型；但是始终作为字符串传递给服务器。
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
 
-      #### <a name="examples"></a>示例
+    #### <a name="examples"></a>示例
 
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/15-item-custom-properties/load-set-get-save.yaml
-      var propertyName = $("#propertyName").val();
-      var propertyValue = $("#propertyValue").val();
-      customProps.set(propertyName, propertyValue);
-      console.log(`Custom property "${propertyName}" set to value "${propertyValue}".`);
-      ```
-    name: 'set(name, value)'
-    fullName: 'set(name, value)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'set(name: string, value: string): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: name
-          description: 要设置的属性的名称。
-          type:
-            - string
-        - id: value
-          description: 要设置的属性的值。
-          type:
-            - string
-references:
-  - uid: 'outlook!Office.CustomProperties#saveAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/15-item-custom-properties/load-set-get-save.yaml
+
+    var propertyName = $("#propertyName").val();
+
+    customProps.remove(propertyName);
+
+    console.log(`Custom property "${propertyName}" removed.`);
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'remove(name: string): void;'
+    parameters:
+    - id: name
+      description: '`name`要删除的属性的。'
+      type: string
+    return:
+      type: void
+      description: ''
+- name: saveAsync(callback, asyncContext)
+  uid: outlook!Office.CustomProperties#saveAsync:member(1)
+  package: outlook!
+  fullName: saveAsync(callback, asyncContext)
+  summary: >-
+    将特定于项目的自定义属性保存到服务器。
+
+
+    您必须调用 `saveAsync` 方法，以保存使用 `set` 方法或对象的方法所做的任何更改 `remove` `CustomProperties` 。 保存操作是异步操作。
+
+
+    最好让您的回调函数对错误进行检查和处理 `saveAsync`<!-- -->. 尤其要注意的是，当用户在阅读窗体中处于连接状态时，可以激活阅读外接程序，随后用户将断开连接。 如果外接程序在断开状态下调用 `saveAsync`，`saveAsync` 将返回错误。 你的回调方法应该会相应地处理此错误。
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // The following JavaScript code sample shows how to asynchronously use
+
+    // the loadCustomPropertiesAsync method to load custom properties that
+
+    // are specific to the current item, and the saveAsync method to save
+
+    // these properties back to the server. After loading the custom properties,
+
+    // the code sample uses the get method to read the custom property myProp,
+
+    // the set method to write the custom property myProp, and then finally
+
+    // calls the saveAsync method to save the custom properties.
+
+
+    // The initialize function is required for all add-ins.
+
+    Office.initialize = function () {
+        // Checks for the DOM to load using the jQuery ready function.
+        $(document).ready(function () {
+            // After the DOM is loaded, add-in-specific code can run.
+            var item = Office.context.mailbox.item;
+            item.loadCustomPropertiesAsync(customPropsCallback);
+        });
+    };
+
+
+    function customPropsCallback(asyncResult) {
+        var customProps = asyncResult.value;
+        var myProp = customProps.get("myProp");
+        console.log("myProp: " + myProp); // First run on current item will return `undefined`.
+
+        // Set myProp custom property.
+        customProps.set("myProp", "value");
+        customProps.saveAsync(saveCallback);
+    }
+
+
+    function saveCallback(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Failed) {
+            console.error(asyncResult.error.message);
+        }
+        else {
+            // Async call to save custom properties completed.
+            // Proceed to do the appropriate for your add-in.
+        }
+    }
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'saveAsync(callback?: (asyncResult: Office.AsyncResult<void>) => void, asyncContext?: any): void;'
+    parameters:
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    - id: asyncContext
+      description: 可选。 传递给回调方法的任何状态数据。
+      type: any
+    return:
+      type: void
+      description: ''
+- name: set(name, value)
+  uid: outlook!Office.CustomProperties#set:member(1)
+  package: outlook!
+  fullName: set(name, value)
+  summary: >-
+    将指定属性设置为指定值。
+
+
+    `set` 方法将指定属性设置为指定值。 必须使用 `saveAsync` 方法将该属性保存到服务器。
+
+
+    如果尚不存在指定属性，`set` 方法将创建一个新的属性；否则现有值将替换为新值。`value` 参数可以是任何类型；但是始终作为字符串传递给服务器。
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/15-item-custom-properties/load-set-get-save.yaml
+
+    var propertyName = $("#propertyName").val();
+
+    var propertyValue = $("#propertyValue").val();
+
+    customProps.set(propertyName, propertyValue);
+
+    console.log(`Custom property "${propertyName}" set to value "${propertyValue}".`);
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(name: string, value: string): void;'
+    parameters:
+    - id: name
+      description: 要设置的属性的名称。
+      type: string
+    - id: value
+      description: 要设置的属性的值。
+      type: string
+    return:
+      type: void
+      description: ''
+metadata:
+  ms.openlocfilehash: 8e649d61efcd410586efad2bf95e94df827f0985
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49143328"
