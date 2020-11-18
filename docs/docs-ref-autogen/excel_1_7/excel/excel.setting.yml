@@ -1,241 +1,198 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'excel!Excel.Setting:class'
-    summary: |-
-      Setting 表示保存在文档中的设置的键值对（每个加载项每个文件）。 这些自定义键值对可用于存储内容或任务窗格外接程序所需的状态或生命周期信息。 请注意，设置在文档中保持不变，因此不是存储任何敏感或受保护的信息（如用户信息和密码）的地方。
-
-      \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: Excel.Setting
-    fullName: Excel.Setting
-    langs:
-      - typeScript
-    type: class
-    extends:
-      - 'office!OfficeExtension.ClientObject:class'
-    package: excel!
-    children:
-      - 'excel!Excel.Setting#context:member'
-      - 'excel!Excel.Setting#delete:member(1)'
-      - 'excel!Excel.Setting#key:member'
-      - 'excel!Excel.Setting#load:member(1)'
-      - 'excel!Excel.Setting#load:member(2)'
-      - 'excel!Excel.Setting#load:member(3)'
-      - 'excel!Excel.Setting#set:member(1)'
-      - 'excel!Excel.Setting#set:member(2)'
-      - 'excel!Excel.Setting#toJSON:member(1)'
-      - 'excel!Excel.Setting#value:member'
-  - uid: 'excel!Excel.Setting#context:member'
-    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-    name: context
-    fullName: context
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'context: RequestContext;'
-      return:
-        type:
-          - 'excel!Excel.RequestContext:class'
-  - uid: 'excel!Excel.Setting#delete:member(1)'
-    summary: |-
-      删除 Setting 对象。
-
-      \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: delete()
-    fullName: delete()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'delete(): void;'
-      return:
-        type:
-          - void
-        description: |-
+### YamlMime:TSType
+name: Excel.Setting
+uid: excel!Excel.Setting:class
+package: excel!
+fullName: Excel.Setting
+summary: >-
+  Setting 表示设置为每个) 的加载项的每个文件的文档 (的键/值对。 这些自定义键值对可用于存储内容或任务窗格外接程序所需的状态或生命周期信息。 请注意，设置在文档中保持不变，因此不是存储任何敏感或受保护的信息（如用户信息和密码）的地方。
 
 
-          #### <a name="examples"></a>示例
+  \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.Setting#context:member
+  package: excel!
+  fullName: context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: key
+  uid: excel!Excel.Setting#key:member
+  package: excel!
+  fullName: key
+  summary: >-
+    表示设置的 id 的键。
 
-          ```typescript
-          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/create-get-change-delete-settings.yaml
-          await Excel.run(async (context) => {
-              const settings = context.workbook.settings;
-              let needsReview = settings.getItem("NeedsReview");
-              needsReview.delete();
-              needsReview = settings.getItemOrNullObject("NeedsReview");
 
-              await context.sync();
+    \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly key: string;'
+    return:
+      type: string
+- name: value
+  uid: excel!Excel.Setting#value:member
+  package: excel!
+  fullName: value
+  summary: >-
+    表示为此设置存储的值。
 
-              if (needsReview.isNullObject) {
-                  console.log("The setting has been deleted");
-              } else {
-                  console.log("The setting was not deleted");
-              }
 
-              await context.sync();
-          });
-          ```
-  - uid: 'excel!Excel.Setting#key:member'
-    summary: |-
-      表示设置的 id 的键。
+    \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'value: any;'
+    return:
+      type: any
+methods:
+- name: delete()
+  uid: excel!Excel.Setting#delete:member(1)
+  package: excel!
+  fullName: delete()
+  summary: >-
+    删除 Setting 对象。
 
-      \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: key
-    fullName: key
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly key: string;'
-      return:
-        type:
-          - string
-  - uid: 'excel!Excel.Setting#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(options)
-    fullName: load(options)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(options?: Excel.Interfaces.SettingLoadOptions): Excel.Setting;'
-      return:
-        type:
-          - 'excel!Excel.Setting:class'
-        description: ''
-      parameters:
-        - id: options
-          description: 提供要加载的对象的属性的选项。
-          type:
-            - 'excel!Excel.Interfaces.SettingLoadOptions:interface'
-  - uid: 'excel!Excel.Setting#load:member(2)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNames)
-    fullName: load(propertyNames)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNames?: string | string[]): Excel.Setting;'
-      return:
-        type:
-          - 'excel!Excel.Setting:class'
-        description: ''
-      parameters:
-        - id: propertyNames
-          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
-          type:
-            - 'string | string[]'
-  - uid: 'excel!Excel.Setting#load:member(3)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNamesAndPaths)
-    fullName: load(propertyNamesAndPaths)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: |-
-        load(propertyNamesAndPaths?: {
+
+    \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'delete(): void;'
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/create-get-change-delete-settings.yaml\nawait Excel.run(async (context) => {\n    const settings = context.workbook.settings;\n    let needsReview = settings.getItem(\"NeedsReview\");\n    needsReview.delete();\n    needsReview = settings.getItemOrNullObject(\"NeedsReview\");\n\n    await context.sync();\n\n    if (needsReview.isNullObject) {\n        console.log(\"The setting has been deleted\");\n    } else {\n        console.log(\"The setting was not deleted\");\n    }\n\n    await context.sync();\n});\n```"
+- name: load(options)
+  uid: excel!Excel.Setting#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.SettingLoadOptions): Excel.Setting;'
+    parameters:
+    - id: options
+      description: 提供要加载的对象的属性的选项。
+      type: <xref uid="excel!Excel.Interfaces.SettingLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.Setting:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.Setting#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.Setting;'
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.Setting:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.Setting#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): Excel.Setting;
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      type: >-
+        {
                     select?: string;
                     expand?: string;
-                }): Excel.Setting;
-      return:
-        type:
-          - 'excel!Excel.Setting:class'
-        description: ''
-      parameters:
-        - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
-          type:
-            - |-
-              {
-                          select?: string;
-                          expand?: string;
-                      }
-  - uid: 'excel!Excel.Setting#set:member(1)'
-    summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
-    remarks: |-
-      此方法具有以下附加签名：
+                }
+    return:
+      type: <xref uid="excel!Excel.Setting:class" />
+      description: ''
+- name: set(properties, options)
+  uid: excel!Excel.Setting#set:member(1)
+  package: excel!
+  fullName: set(properties, options)
+  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+  remarks: >-
+    此方法具有以下附加签名：
 
-      `set(properties: Excel.Setting): void`
-    name: 'set(properties, options)'
-    fullName: 'set(properties, options)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'set(properties: Interfaces.SettingUpdateData, options?: OfficeExtension.UpdateOptions): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: properties
-          description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
-          type:
-            - 'excel!Excel.Interfaces.SettingUpdateData:interface'
-        - id: options
-          description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
-          type:
-            - 'office!OfficeExtension.UpdateOptions:interface'
-  - uid: 'excel!Excel.Setting#set:member(2)'
-    summary: 基于现有加载的对象同时设置该对象的多个属性。
-    name: set(properties)
-    fullName: set(properties)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'set(properties: Excel.Setting): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: properties
-          description: ''
-          type:
-            - 'excel!Excel.Setting:class'
-  - uid: 'excel!Excel.Setting#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始的 Excel. 设置对象是一个 API 对象，但该 `toJSON` 方法返回一个简单的 JavaScript 对象（类型为`Excel.Interfaces.SettingData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
-    name: toJSON()
-    fullName: toJSON()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'toJSON(): Excel.Interfaces.SettingData;'
-      return:
-        type:
-          - 'excel!Excel.Interfaces.SettingData:interface'
-        description: ''
-  - uid: 'excel!Excel.Setting#value:member'
-    summary: |-
-      表示为此设置存储的值。
 
-      \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: value
-    fullName: value
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'value: any;'
-      return:
-        type:
-          - any
-references:
-  - uid: 'office!OfficeExtension.ClientObject:class'
-    name: OfficeExtension.ClientObject
-  - uid: 'excel!Excel.RequestContext:class'
-    name: RequestContext
-  - uid: 'excel!Excel.Setting:class'
-    name: Excel.Setting
-  - uid: 'excel!Excel.Interfaces.SettingLoadOptions:interface'
-    name: Excel.Interfaces.SettingLoadOptions
-  - uid: 'excel!Excel.Interfaces.SettingUpdateData:interface'
-    name: Interfaces.SettingUpdateData
-  - uid: 'office!OfficeExtension.UpdateOptions:interface'
-    name: OfficeExtension.UpdateOptions
-  - uid: 'excel!Excel.Interfaces.SettingData:interface'
-    name: Excel.Interfaces.SettingData
+    `set(properties: Excel.Setting): void`
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Interfaces.SettingUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    parameters:
+    - id: properties
+      description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
+      type: <xref uid="excel!Excel.Interfaces.SettingUpdateData:interface" />
+    - id: options
+      description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
+      type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
+    return:
+      type: void
+      description: ''
+- name: set(properties)
+  uid: excel!Excel.Setting#set:member(2)
+  package: excel!
+  fullName: set(properties)
+  summary: 基于现有加载的对象同时设置该对象的多个属性。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Excel.Setting): void;'
+    parameters:
+    - id: properties
+      description: ''
+      type: <xref uid="excel!Excel.Setting:class" />
+    return:
+      type: void
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.Setting#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始的 Excel。设置对象是一个 API 对象，该 `toJSON` 方法返回一个简单的 JavaScript 对象 (类型为 `Excel.Interfaces.SettingData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.SettingData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.SettingData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 98622d7d9f7c55063b574b02fbfbaee259f21b5d
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49146569"
