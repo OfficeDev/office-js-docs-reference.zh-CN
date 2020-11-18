@@ -2,8 +2,8 @@
 |:---|:---|:---|
 |[Binding](/javascript/api/excel/excel.binding)|[onDataChanged](/javascript/api/excel/excel.binding#ondatachanged)|当绑定内的数据或格式变化时发生。|
 ||[onSelectionChanged](/javascript/api/excel/excel.binding#onselectionchanged)|当绑定中的所选内容更改时发生。|
-|[BindingDataChangedEventArgs](/javascript/api/excel/excel.bindingdatachangedeventargs)|[binding](/javascript/api/excel/excel.bindingdatachangedeventargs#binding)|获取一个临时 `Binding` 对象，该对象包含 `Binding` 引发事件的对象的 ID。|
-|[BindingSelectionChangedEventArgs](/javascript/api/excel/excel.bindingselectionchangedeventargs)|[binding](/javascript/api/excel/excel.bindingselectionchangedeventargs#binding)|获取一个临时 `Binding` 对象，该对象包含 `Binding` 引发事件的对象的 ID。|
+|[BindingDataChangedEventArgs](/javascript/api/excel/excel.bindingdatachangedeventargs)|[binding](/javascript/api/excel/excel.bindingdatachangedeventargs#binding)|获取一个临时  `Binding`   对象，该对象包含  `Binding`   引发事件的对象的 ID。使用该 ID `BindingCollection.getItem(id)`   可获取绑定。|
+|[BindingSelectionChangedEventArgs](/javascript/api/excel/excel.bindingselectionchangedeventargs)|[binding](/javascript/api/excel/excel.bindingselectionchangedeventargs#binding)|获取一个临时  `Binding`   对象，该对象包含  `Binding`   引发事件的对象的 ID。使用该 ID `BindingCollection.getItem(id)`   可获取绑定。|
 ||[columnCount](/javascript/api/excel/excel.bindingselectionchangedeventargs#columncount)|获取选择的列数。|
 ||[rowCount](/javascript/api/excel/excel.bindingselectionchangedeventargs#rowcount)|获取选择的行数。|
 ||[startColumn](/javascript/api/excel/excel.bindingselectionchangedeventargs#startcolumn)|获取所选内容第一列的索引（从零开始）。|
