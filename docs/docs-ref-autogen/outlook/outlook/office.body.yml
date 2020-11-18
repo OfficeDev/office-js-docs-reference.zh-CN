@@ -1,598 +1,509 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'outlook!Office.Body:interface'
-    summary: |-
-      Body 对象提供用于添加和更新邮件或约会的内容的方法。 它在选定项的 body 属性中返回。
+### YamlMime:TSType
+name: Office.Body
+uid: outlook!Office.Body:interface
+package: outlook!
+fullName: Office.Body
+summary: >-
+  Body 对象提供用于添加和更新邮件或约会的内容的方法。 它在选定项的 body 属性中返回。
 
-      \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
-    name: Office.Body
-    fullName: Office.Body
-    langs:
-      - typeScript
-    type: interface
-    package: outlook!
-    children:
-      - 'outlook!Office.Body#appendOnSendAsync:member(1)'
-      - 'outlook!Office.Body#getAsync:member(1)'
-      - 'outlook!Office.Body#getTypeAsync:member(1)'
-      - 'outlook!Office.Body#prependAsync:member(1)'
-      - 'outlook!Office.Body#setAsync:member(1)'
-      - 'outlook!Office.Body#setSelectedDataAsync:member(1)'
-      - 'outlook!Office.Body#setSignatureAsync:member(1)'
-  - uid: 'outlook!Office.Body#appendOnSendAsync:member(1)'
-    summary: |-
-      追加在将指定内容发送到项目正文的末尾（在任何签名之后）。
+  \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+remarks: >-
+  **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
-      如果用户运行的外接程序[使用 \` \` 清单中的 ItemSend 实现了发送功能](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-on-send-addins?tabs=windows)，则<!-- -->、"追加-发送" 在发送前功能之前运行。
 
-      **重要说明** ：如果外接程序在处理程序中实现了发送前功能和调用 `appendOnSendAsync` `ItemSend` ，则 `appendOnSendAsync` 调用将返回错误，因为这种情况不受支持。
+  **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+- name: appendOnSendAsync(data, options, callback)
+  uid: outlook!Office.Body#appendOnSendAsync:member(1)
+  package: outlook!
+  fullName: appendOnSendAsync(data, options, callback)
+  summary: >-
+    追加在将指定内容发送到项目正文的末尾（在任何签名之后）。
 
-      **重要说明** ：若要使用 `appendOnSendAsync`<!-- -->， `ExtendedPermissions` 清单节点必须包含 `AppendOnSend` 扩展的权限。
 
-      **注意** ：若要清除以前调用中的数据 `appendOnSendAsync` ，可以 `data` 将参数设置为 `null`<!-- -->.
+    如果用户运行的外接程序[使用 \` \` 清单中的 ItemSend 实现了发送功能](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-on-send-addins?tabs=windows)，则<!-- -->、"追加-发送" 在发送前功能之前运行。
 
-      \[[API 集：邮箱 1.9](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
+    **重要说明**：如果外接程序在处理程序中实现了发送前功能和调用 `appendOnSendAsync` `ItemSend` ，则 `appendOnSendAsync` 调用将返回错误，因为这种情况不受支持。
 
-      **错误** ：
 
-      - `DataExceedsMaximumSize`<!-- -->： `data` 参数的长度超过5000个字符。
+    **重要说明**：若要使用 `appendOnSendAsync`<!-- -->， `ExtendedPermissions` 清单节点必须包含 `AppendOnSend` 扩展的权限。
 
-      - `InvalidFormatError`<!-- -->：此 `options.coercionType` 参数设置为， `Office.CoercionType.Html` 但邮件正文为纯文本格式。
 
-      #### <a name="examples"></a>示例
+    **注意**：若要清除以前调用中的数据 `appendOnSendAsync` ，可以 `data` 将参数设置为 `null`<!-- -->.
 
-      ```javascript
-      Office.context.mailbox.item.body.appendOnSendAsync(
-          "P.S. This text was appended on send.",
-          {coercionType: Office.CoercionType.Html},
-          function (asyncResult) {
-              if (asyncResult.status === Office.AsyncResultStatus.Failed) {
-                  console.log("Action failed with error: " + asyncResult.error.message);
-              }
-          }
-      );
-      ```
-    name: 'appendOnSendAsync(data, options, callback)'
-    fullName: 'appendOnSendAsync(data, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'appendOnSendAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: data
-          description: 要添加到正文末尾的字符串。 该字符串限制为5000个字符。
-          type:
-            - string
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。 `coercionType`<!-- -->：要追加的数据的所需格式。 参数中的字符串将转换为此格式。
-          type:
-            - 'outlook!Office.Body#appendOnSendAsync~0:complex'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. `asyncResult.error` 属性中将提供遇到的所有错误。
-          type:
-            - 'outlook!Office.Body#appendOnSendAsync~1:complex'
-  - uid: 'outlook!Office.Body#getAsync:member(1)'
-    summary: |-
-      使用指定的格式返回当前正文。
 
-      此方法以指定的格式返回整个当前正文。 `coercionType`<!-- -->.
+    \[[API 集：邮箱 1.9](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
 
-      使用 HTML 格式的正文时，请务必注意 `Body.getAsync` 和 `Body.setAsync` 方法不是幂等。 从方法返回的值 `getAsync` 并不一定与之前在方法中传递的值完全相同 `setAsync` 。 客户端可以修改传递给的值，以便 `setAsync` 它能够有效地呈现其呈现引擎。
 
-      \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
 
-      #### <a name="examples"></a>示例
+    **错误**：
 
-      ```javascript
-      // This example gets the body of the item as plain text.
-      Office.context.mailbox.item.body.getAsync(
-          "text",
-          { asyncContext: "This is passed to the callback" },
-          function callback(result) {
-              // Do something with the result.
-          });
 
-      // The following is an example of the result parameter passed to the callback function.
-      {
-          "value": "TEXT of whole body (including threads below)",
-          "status": "succeeded",
-          "asyncContext": "This is passed to the callback"
-      }
-      ```
-    name: 'getAsync(coercionType, options, callback)'
-    fullName: 'getAsync(coercionType, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getAsync(coercionType: Office.CoercionType | string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: coercionType
-          description: 用于返回的正文的格式。
-          type:
-            - 'outlook!Office.Body#getAsync~0:complex'
-        - id: options
-          description: 可选。 一个包含以下一个或多个属性的对象文字： `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用类型为 AsyncResult 的单个参数调用在参数中传递的函数。 主体在属性中以请求的格式提供 `asyncResult.value` 。
-          type:
-            - 'outlook!Office.Body#getAsync~1:complex'
-  - uid: 'outlook!Office.Body#getTypeAsync:member(1)'
-    summary: |-
-      获取一个值，该值指示内容采用 HTML 格式还是文本格式。
+    - `DataExceedsMaximumSize`<!-- -->： `data` 参数的长度超过5000个字符。
 
-      \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
+    - `InvalidFormatError`<!-- -->：此 `options.coercionType` 参数设置为， `Office.CoercionType.Html` 但邮件正文为纯文本格式。
 
-      #### <a name="examples"></a>示例
 
-      ```javascript
-      Office.context.mailbox.item.body.getTypeAsync(function (asyncResult) {
-          if (asyncResult.status === "failed") {
-              console.log("Action failed with error: " + asyncResult.error.message);
-          } else {
-              console.log("Body type: " + asyncResult.value);
-          }
-      });
-      ```
-    name: 'getTypeAsync(options, callback)'
-    fullName: 'getTypeAsync(options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getTypeAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<Office.CoercionType>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 内容类型作为属性中的值之一返回 `CoercionType` `asyncResult.value` 。
-          type:
-            - 'outlook!Office.Body#getTypeAsync~0:complex'
-  - uid: 'outlook!Office.Body#prependAsync:member(1)'
-    summary: |-
-      将指定内容添加到项目正文开头。
+    #### <a name="examples"></a>示例
 
-      `prependAsync` 方法将指定的字符串插入项目正文的开头。 插入后，光标将返回相对于插入内容的原始位置。
 
-      在 HTML 标记中添加链接时，您可以通过 `id` 在锚点上设置属性来禁用联机链接预览 (<!-- -->&lt;<!-- -->a<!-- -->&gt;<!-- -->) 到 "LPNoLP" (请参阅 **示例部分的示例)** 。
+    ```javascript
 
-      \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
-
-      **错误** ：
-
-      - `DataExceedsMaximumSize`<!-- -->： Data 参数的长度超过1000000个字符。
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      // When including links in HTML markup, you can disable online link preview
-      // by setting the id attribute on the anchor (<a>) to "LPNoLP".
-      Office.context.mailbox.item.body.prependAsync(
-          '<a id="LPNoLP" href="http://www.contoso.com">Click here!</a>',
-          {coercionType: Office.CoercionType.Html},
-          callback);
-      ```
-    name: 'prependAsync(data, options, callback)'
-    fullName: 'prependAsync(data, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'prependAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: data
-          description: '将插入到正文开头的字符串。 字符串大小限制为 1,000,000 个字符。'
-          type:
-            - string
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。 `coercionType`<!-- -->：所需的正文格式。 参数中的字符串将转换为此格式。
-          type:
-            - 'outlook!Office.Body#prependAsync~0:complex'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. `asyncResult.error` 属性中将提供遇到的所有错误。
-          type:
-            - 'outlook!Office.Body#prependAsync~1:complex'
-  - uid: 'outlook!Office.Body#setAsync:member(1)'
-    summary: |-
-      将整个正文替换为指定的文本。
-
-      使用 HTML 格式的正文时，请务必注意 `Body.getAsync` 和 `Body.setAsync` 方法不是幂等。 从方法返回的值 `getAsync` 并不一定与之前在方法中传递的值完全相同 `setAsync` 。 客户端可以修改传递给的值，以便 `setAsync` 它能够有效地呈现其呈现引擎。
-
-      在 HTML 标记中添加链接时，您可以通过 `id` 在锚点上设置属性来禁用联机链接预览 (<!-- -->&lt;<!-- -->a<!-- -->&gt;<!-- -->) 到 "LPNoLP" (请参阅 **示例部分的示例)** 。
-
-      \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
-
-      **错误** ：
-
-      - `DataExceedsMaximumSize`<!-- -->： Data 参数的长度超过1000000个字符。
-
-      - `InvalidFormatError`<!-- -->：此 `options.coercionType` 参数设置为 `Office.CoercionType.Html` ，邮件正文为纯文本格式。
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      // When including links in HTML markup, you can disable online link preview
-      // by setting the id attribute on the anchor (<a>) to "LPNoLP".
-      Office.context.mailbox.item.body.setAsync(
-          '<a id="LPNoLP" href="http://www.contoso.com">Click here!</a>',
-          {coercionType: Office.CoercionType.Html},
-          callback);
-      Office.context.mailbox.item.body.setAsync(
-          "<b>(replaces all body, including threads you are replying to that may be on the bottom)</b>",
-          { coercionType: "html", asyncContext: "This is passed to the callback" },
-          function callback(result) {
-              // Process the result.
-      });
-
-      // The following is an example of the result parameter passed to the callback function.
-      {
-          "value":null,
-          "status": "succeeded",
-          "asyncContext": "This is passed to the callback"
-      }
-      ```
-    name: 'setAsync(data, options, callback)'
-    fullName: 'setAsync(data, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: data
-          description: '将替换现有正文的字符串。 字符串限制为 1,000,000 个字符。'
-          type:
-            - string
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。 `coercionType`<!-- -->：所需的正文格式。 参数中的字符串将转换为此格式。
-          type:
-            - 'outlook!Office.Body#setAsync~0:complex'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用类型为 AsyncResult 的单个参数调用在参数中传递的函数。 `asyncResult.error` 属性中将提供遇到的所有错误。
-          type:
-            - 'outlook!Office.Body#setAsync~1:complex'
-  - uid: 'outlook!Office.Body#setSelectedDataAsync:member(1)'
-    summary: |-
-      将正文中的所选内容更换为指定文本。
-
-      `setSelectedDataAsync` 方法将指定的字符串插入项目正文中的光标位置，或者，如果在编辑器中选定了文本，它就会替换所选文本。 如果光标从未出现在项目正文中，或者如果该项目的正文不关注 UI，该字符串将插入到正文内容的顶部。 插入后，光标放置在插入内容的末尾。
-
-      在 HTML 标记中添加链接时，可以通过设置定位点上的 id 属性来禁用联机链接预览 (<!-- -->&lt;<!-- -->a<!-- -->&gt;<!-- -->) 到 "LPNoLP" (请参阅 **示例部分的示例)** 。
-
-      \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
-
-      **错误** ：
-
-      - `DataExceedsMaximumSize`<!-- -->： `data` 参数的长度超过1000000个字符。
-
-      - `InvalidFormatError`<!-- -->：此 `options.coercionType` 参数设置为 `Office.CoercionType.Html` ，邮件正文为纯文本格式。
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      // When including links in HTML markup, you can disable online link preview
-      // by setting the id attribute on the anchor (<a>) to "LPNoLP".
-      Office.context.mailbox.item.body.setSelectedDataAsync(
-          '<a id="LPNoLP" href="http://www.contoso.com">Click here!</a>',
-          {coercionType: Office.CoercionType.Html},
-          callback);
-      ```
-    name: 'setSelectedDataAsync(data, options, callback)'
-    fullName: 'setSelectedDataAsync(data, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setSelectedDataAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: data
-          description: '将替换现有正文的字符串。 字符串限制为 1,000,000 个字符。'
-          type:
-            - string
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。 `coercionType`<!-- -->：所需的正文格式。 参数中的字符串将转换为此格式。
-          type:
-            - 'outlook!Office.Body#setSelectedDataAsync~0:complex'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. `asyncResult.error` 属性中将提供遇到的所有错误。
-          type:
-            - 'outlook!Office.Body#setSelectedDataAsync~1:complex'
-  - uid: 'outlook!Office.Body#setSignatureAsync:member(1)'
-    summary: |-
-      添加或替换项目正文的签名。
-
-      **重要说明** ：在 web 上的 Outlook 中， `setSignatureAsync` 仅适用于邮件。
-
-      **重要说明** ：如果外接程序 [使用 \` \` 清单中的 LaunchEvent 实现基于事件的激活功能](https://docs.microsoft.com/office/dev/add-ins/outlook/autolaunch)<!-- -->，并且调用 `setSignatureAsync` 在事件处理程序中，以下行为适用。
-
-      - 当用户撰写包含 "答复" 或 "转发") 的新 (项目时，将设置该签名，但不修改该窗体。 这意味着，如果用户在不进行其他编辑的情况下关闭该窗体，则不会提示他们保存所做的更改。
-
-      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
-
-      **错误** ：
-
-      - `DataExceedsMaximumSize`<!-- -->： `data` 参数的长度超过30000个字符。
-
-      - `InvalidFormatError`<!-- -->：此 `options.coercionType` 参数设置为 `Office.CoercionType.Html` ，邮件正文为纯文本格式。
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/99-preview-apis/work-with-client-signatures.yaml
-      // Set the signature for the current item with inline image.
-      var modIcon1Base64 = "iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpDRDMxMDg1MjBCNDZFMTExODE2MkM1RUI2M0M4MDYxRCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFMTUxQjgyRjQ2MEQxMUUxODlFMkQwNTYzQ0YwMTUxMiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFMTUxQjgyRTQ2MEQxMUUxODlFMkQwNTYzQ0YwMTUxMiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1LjEgV2luZG93cyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkQxMzEwODUyMEI0NkUxMTE4MTYyQzVFQjYzQzgwNjFEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkNEMzEwODUyMEI0NkUxMTE4MTYyQzVFQjYzQzgwNjFEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+uC/WfAAAAehJREFUeNpilCzfwEAEkAbiECA2A2J1IOaHin8E4ptAfBaIVwLxU0IGMRKw0B6IW4DYhoE4cASIK6E0VsCEQ1wUiNcB8QESLGOAqj0MxBuhZhBloS4QnwHiQAbygR/UDF1CFupCXSjHQDmQg5qli8tCUBBsQUoQ1AD8UDNFsVk4n0o+w+bT+egWglKjNymmeGhLkqLcG2oHAwtUoIuQDj5OVgZPLUmwRe5aEmAxqYqNpFgKssOcCeplM0KqdST5GfpDDRm0JfkYrj3/SE7QguyQY4ImYYLgCtAS10kHGMw6dzNsv/qC7OwCClJXYlR++v6b4er3j5QmIFcmaNlIL6AOslCIjhYKMTHQGTBBqxh6gXcgC6/R0cKbIAv30dHCfaAKGJTxHxJSqS3Fz9DkowNmywpyMcgA8fF7b8D8VWcfM6w8+4gYC+VB+RCk8hSh0gaUD4/dewvlvUWRe/z+GzGWgex4BGtiOAHxXhoHpzMoSGHZAhSPW2lo2VZYWkHOh4nEtLrIAE+hZmNUwK+B2BOIv1PRsu9QM1/jatNcBtVZ0IREKXgENesyoVYbzNIdFFi2A5tl+NqlL6BB4QBNzsSCU1A9nlAzMAALAQMOQl0qB23qWwKxIlIrDBQ394H4OBCvISYqAAIMACVibHDqsO7zAAAAAElFTkSuQmCC";
-      Office.context.mailbox.item.addFileAttachmentFromBase64Async(
-        modIcon1Base64,
-        "myImage.png",
-        { isInline: true },
-        function(result) {
-          if (result.status == Office.AsyncResultStatus.Succeeded) {
-            var signature = $("#signature").val() + "<img src='cid:myImage.png'>";
-            console.log(`Setting signature to "${signature}".`);
-            // Important: setSignatureAsync is currently in preview.
-            Office.context.mailbox.item.body.setSignatureAsync(
-              signature,
-              { coercionType: "html" },
-              function(asyncResult) {
-                console.log(`setSignatureAsync: ${asyncResult.status}`);
-              }
-            );
-          } else {
-            console.error(`addFileAttachmentFromBase64Async: ${result.error}`);
-          }
+    Office.context.mailbox.item.body.appendOnSendAsync(
+        "P.S. This text was appended on send.",
+        {coercionType: Office.CoercionType.Html},
+        function (asyncResult) {
+            if (asyncResult.status === Office.AsyncResultStatus.Failed) {
+                console.log("Action failed with error: " + asyncResult.error.message);
+            }
         }
-      );
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/99-preview-apis/work-with-client-signatures.yaml
-      // Set the signature for the current item.
-      var signature = $("#signature").val();
-      console.log(`Setting signature to "${signature}".`);
-      Office.context.mailbox.item.body.setSignatureAsync(signature, function(asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-          console.log("setSignatureAsync succeeded");
+    );
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'appendOnSendAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: data
+      description: 要添加到正文末尾的字符串。 该字符串限制为5000个字符。
+      type: string
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。 `coercionType`<!-- -->：要追加的数据的所需格式。 参数中的字符串将转换为此格式。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" /> & <xref uid="outlook!Office.CoercionTypeOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. `asyncResult.error` 属性中将提供遇到的所有错误。
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getAsync(coercionType, options, callback)
+  uid: outlook!Office.Body#getAsync:member(1)
+  package: outlook!
+  fullName: getAsync(coercionType, options, callback)
+  summary: >-
+    使用指定的格式返回当前正文。
+
+
+    此方法以指定的格式返回整个当前正文。 `coercionType`<!-- -->.
+
+
+    使用 HTML 格式的正文时，请务必注意 `Body.getAsync` 和 `Body.setAsync` 方法不是幂等。 从方法返回的值 `getAsync` 并不一定与之前在方法中传递的值完全相同 `setAsync` 。 客户端可以修改传递给的值，以便 `setAsync` 它能够有效地呈现其呈现引擎。
+
+
+    \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // This example gets the body of the item as plain text.
+
+    Office.context.mailbox.item.body.getAsync(
+        "text",
+        { asyncContext: "This is passed to the callback" },
+        function callback(result) {
+            // Do something with the result.
+        });
+
+    // The following is an example of the result parameter passed to the callback function.
+
+    {
+        "value": "TEXT of whole body (including threads below)",
+        "status": "succeeded",
+        "asyncContext": "This is passed to the callback"
+    }
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getAsync(coercionType: Office.CoercionType | string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
+    parameters:
+    - id: coercionType
+      description: 用于返回的正文的格式。
+      type: <xref uid="office!Office.CoercionType:enum" /> | string
+    - id: options
+      description: 可选。 一个包含以下一个或多个属性的对象文字： `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用类型为 AsyncResult 的单个参数调用在参数中传递的函数。 主体在属性中以请求的格式提供 `asyncResult.value` 。
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getTypeAsync(options, callback)
+  uid: outlook!Office.Body#getTypeAsync:member(1)
+  package: outlook!
+  fullName: getTypeAsync(options, callback)
+  summary: >-
+    获取一个值，该值指示内容采用 HTML 格式还是文本格式。
+
+
+    \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    Office.context.mailbox.item.body.getTypeAsync(function (asyncResult) {
+        if (asyncResult.status === "failed") {
+            console.log("Action failed with error: " + asyncResult.error.message);
         } else {
-          console.error(asyncResult.error);
+            console.log("Body type: " + asyncResult.value);
         }
-      });
-      ```
-    isPreview: true
-    name: 'setSignatureAsync(data, options, callback)'
-    fullName: 'setSignatureAsync(data, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setSignatureAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: data
-          description: 表示要在邮件正文中设置的签名的字符串。 此字符串限制为30000个字符。
-          type:
-            - string
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。 `coercionType`<!-- -->：签名应设置为的格式。 如果为 Text，则该方法将签名设置为纯文本，并删除存在的任何 HTML 标记。 如果为 Html，则该方法将签名设置为 HTML。
-          type:
-            - 'outlook!Office.Body#setSignatureAsync~0:complex'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
-          type:
-            - 'outlook!Office.Body#setSignatureAsync~1:complex'
-references:
-  - uid: 'outlook!Office.Body#appendOnSendAsync~0:complex'
-    name: Office.AsyncContextOptions & CoercionTypeOptions
-    fullName: Office.AsyncContextOptions & Office.CoercionTypeOptions
-    spec.typeScript:
-      - uid: 'office!Office.AsyncContextOptions:interface'
-        name: Office.AsyncContextOptions
-        fullName: Office.AsyncContextOptions
-      - name: ' & '
-        fullName: ' & '
-      - uid: 'outlook!Office.CoercionTypeOptions:interface'
-        name: CoercionTypeOptions
-        fullName: Office.CoercionTypeOptions
-  - uid: 'outlook!Office.Body#appendOnSendAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.Body#getAsync~0:complex'
-    name: Office.CoercionType | string
-    fullName: Office.CoercionType | string
-    spec.typeScript:
-      - uid: 'office!Office.CoercionType:enum'
-        name: Office.CoercionType
-        fullName: Office.CoercionType
-      - name: ' | string'
-        fullName: ' | string'
-  - uid: 'office!Office.AsyncContextOptions:interface'
-    name: Office.AsyncContextOptions
-  - uid: 'outlook!Office.Body#getAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<string>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<string>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <string>) => void
-        fullName: <string>) => void
-  - uid: 'outlook!Office.Body#getTypeAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<Office.CoercionType>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<Office.CoercionType>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <
-        fullName: <
-      - uid: 'office!Office.CoercionType:enum'
-        name: Office.CoercionType
-        fullName: Office.CoercionType
-      - name: '>) => void'
-        fullName: '>) => void'
-  - uid: 'outlook!Office.Body#prependAsync~0:complex'
-    name: Office.AsyncContextOptions & CoercionTypeOptions
-    fullName: Office.AsyncContextOptions & Office.CoercionTypeOptions
-    spec.typeScript:
-      - uid: 'office!Office.AsyncContextOptions:interface'
-        name: Office.AsyncContextOptions
-        fullName: Office.AsyncContextOptions
-      - name: ' & '
-        fullName: ' & '
-      - uid: 'outlook!Office.CoercionTypeOptions:interface'
-        name: CoercionTypeOptions
-        fullName: Office.CoercionTypeOptions
-  - uid: 'outlook!Office.Body#prependAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.Body#setAsync~0:complex'
-    name: Office.AsyncContextOptions & CoercionTypeOptions
-    fullName: Office.AsyncContextOptions & Office.CoercionTypeOptions
-    spec.typeScript:
-      - uid: 'office!Office.AsyncContextOptions:interface'
-        name: Office.AsyncContextOptions
-        fullName: Office.AsyncContextOptions
-      - name: ' & '
-        fullName: ' & '
-      - uid: 'outlook!Office.CoercionTypeOptions:interface'
-        name: CoercionTypeOptions
-        fullName: Office.CoercionTypeOptions
-  - uid: 'outlook!Office.Body#setAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.Body#setSelectedDataAsync~0:complex'
-    name: Office.AsyncContextOptions & CoercionTypeOptions
-    fullName: Office.AsyncContextOptions & Office.CoercionTypeOptions
-    spec.typeScript:
-      - uid: 'office!Office.AsyncContextOptions:interface'
-        name: Office.AsyncContextOptions
-        fullName: Office.AsyncContextOptions
-      - name: ' & '
-        fullName: ' & '
-      - uid: 'outlook!Office.CoercionTypeOptions:interface'
-        name: CoercionTypeOptions
-        fullName: Office.CoercionTypeOptions
-  - uid: 'outlook!Office.Body#setSelectedDataAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.Body#setSignatureAsync~0:complex'
-    name: Office.AsyncContextOptions & CoercionTypeOptions
-    fullName: Office.AsyncContextOptions & Office.CoercionTypeOptions
-    spec.typeScript:
-      - uid: 'office!Office.AsyncContextOptions:interface'
-        name: Office.AsyncContextOptions
-        fullName: Office.AsyncContextOptions
-      - name: ' & '
-        fullName: ' & '
-      - uid: 'outlook!Office.CoercionTypeOptions:interface'
-        name: CoercionTypeOptions
-        fullName: Office.CoercionTypeOptions
-  - uid: 'outlook!Office.Body#setSignatureAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getTypeAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<Office.CoercionType>) => void): void;'
+    parameters:
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 内容类型作为属性中的值之一返回 `CoercionType` `asyncResult.value` 。
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="office!Office.CoercionType:enum" />&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: prependAsync(data, options, callback)
+  uid: outlook!Office.Body#prependAsync:member(1)
+  package: outlook!
+  fullName: prependAsync(data, options, callback)
+  summary: >-
+    将指定内容添加到项目正文开头。
+
+
+    `prependAsync` 方法将指定的字符串插入项目正文的开头。 插入后，光标将返回相对于插入内容的原始位置。
+
+
+    使用 HTML 格式的正文时，请务必注意，客户端可能会修改传递给的值， `prependAsync` 以使其能够通过其呈现引擎高效呈现。 这意味着，对方法的后续调用返回的值 `Body.getAsync` 不一定完全包含之前在方法中传递的值 `prependAsync` 。
+
+
+    在 HTML 标记中添加链接时，您可以通过 `id` 在锚点上设置属性来禁用联机链接预览 (<!-- -->&lt;<!-- -->a<!-- -->&gt;<!-- -->) 到 "LPNoLP" (请参阅 **示例部分的示例)** 。
+
+
+    \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写
+
+
+    **错误**：
+
+
+    - `DataExceedsMaximumSize`<!-- -->： Data 参数的长度超过1000000个字符。
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // When including links in HTML markup, you can disable online link preview
+
+    // by setting the id attribute on the anchor (<a>) to "LPNoLP".
+
+    Office.context.mailbox.item.body.prependAsync(
+        '<a id="LPNoLP" href="http://www.contoso.com">Click here!</a>',
+        {coercionType: Office.CoercionType.Html},
+        callback);
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'prependAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: data
+      description: 将插入到正文开头的字符串。 字符串大小限制为 1,000,000 个字符。
+      type: string
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。 `coercionType`<!-- -->：所需的正文格式。 参数中的字符串将转换为此格式。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" /> & <xref uid="outlook!Office.CoercionTypeOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. `asyncResult.error` 属性中将提供遇到的所有错误。
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: setAsync(data, options, callback)
+  uid: outlook!Office.Body#setAsync:member(1)
+  package: outlook!
+  fullName: setAsync(data, options, callback)
+  summary: >-
+    将整个正文替换为指定的文本。
+
+
+    使用 HTML 格式的正文时，请务必注意 `Body.getAsync` 和 `Body.setAsync` 方法不是幂等。 从方法返回的值 `getAsync` 并不一定与之前在方法中传递的值完全相同 `setAsync` 。 客户端可以修改传递给的值，以便 `setAsync` 它能够有效地呈现其呈现引擎。
+
+
+    在 HTML 标记中添加链接时，您可以通过 `id` 在锚点上设置属性来禁用联机链接预览 (<!-- -->&lt;<!-- -->a<!-- -->&gt;<!-- -->) 到 "LPNoLP" (请参阅 **示例部分的示例)** 。
+
+
+    \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写
+
+
+    **错误**：
+
+
+    - `DataExceedsMaximumSize`<!-- -->： Data 参数的长度超过1000000个字符。
+
+
+    - `InvalidFormatError`<!-- -->：此 `options.coercionType` 参数设置为 `Office.CoercionType.Html` ，邮件正文为纯文本格式。
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // When including links in HTML markup, you can disable online link preview
+
+    // by setting the id attribute on the anchor (<a>) to "LPNoLP".
+
+    Office.context.mailbox.item.body.setAsync(
+        '<a id="LPNoLP" href="http://www.contoso.com">Click here!</a>',
+        {coercionType: Office.CoercionType.Html},
+        callback);
+    Office.context.mailbox.item.body.setAsync(
+        "<b>(replaces all body, including threads you are replying to that may be on the bottom)</b>",
+        { coercionType: "html", asyncContext: "This is passed to the callback" },
+        function callback(result) {
+            // Process the result.
+    });
+
+
+    // The following is an example of the result parameter passed to the callback function.
+
+    {
+        "value":null,
+        "status": "succeeded",
+        "asyncContext": "This is passed to the callback"
+    }
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: data
+      description: 将替换现有正文的字符串。 字符串限制为 1,000,000 个字符。
+      type: string
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。 `coercionType`<!-- -->：所需的正文格式。 参数中的字符串将转换为此格式。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" /> & <xref uid="outlook!Office.CoercionTypeOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用类型为 AsyncResult 的单个参数调用在参数中传递的函数。 `asyncResult.error` 属性中将提供遇到的所有错误。
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: setSelectedDataAsync(data, options, callback)
+  uid: outlook!Office.Body#setSelectedDataAsync:member(1)
+  package: outlook!
+  fullName: setSelectedDataAsync(data, options, callback)
+  summary: >-
+    将正文中的所选内容更换为指定文本。
+
+
+    `setSelectedDataAsync` 方法将指定的字符串插入项目正文中的光标位置，或者，如果在编辑器中选定了文本，它就会替换所选文本。 如果光标从未出现在项目正文中，或者如果该项目的正文不关注 UI，该字符串将插入到正文内容的顶部。 插入后，光标放置在插入内容的末尾。
+
+
+    在 HTML 标记中添加链接时，可以通过设置定位点上的 id 属性来禁用联机链接预览 (<!-- -->&lt;<!-- -->a<!-- -->&gt;<!-- -->) 到 "LPNoLP" (请参阅 **示例部分的示例)** 。
+
+
+    \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写
+
+
+    **错误**：
+
+
+    - `DataExceedsMaximumSize`<!-- -->： `data` 参数的长度超过1000000个字符。
+
+
+    - `InvalidFormatError`<!-- -->：此 `options.coercionType` 参数设置为 `Office.CoercionType.Html` ，邮件正文为纯文本格式。
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // When including links in HTML markup, you can disable online link preview
+
+    // by setting the id attribute on the anchor (<a>) to "LPNoLP".
+
+    Office.context.mailbox.item.body.setSelectedDataAsync(
+        '<a id="LPNoLP" href="http://www.contoso.com">Click here!</a>',
+        {coercionType: Office.CoercionType.Html},
+        callback);
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setSelectedDataAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: data
+      description: 将替换现有正文的字符串。 字符串限制为 1,000,000 个字符。
+      type: string
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。 `coercionType`<!-- -->：所需的正文格式。 参数中的字符串将转换为此格式。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" /> & <xref uid="outlook!Office.CoercionTypeOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. `asyncResult.error` 属性中将提供遇到的所有错误。
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: setSignatureAsync(data, options, callback)
+  uid: outlook!Office.Body#setSignatureAsync:member(1)
+  package: outlook!
+  fullName: setSignatureAsync(data, options, callback)
+  summary: >-
+    添加或替换项目正文的签名。
+
+
+    **重要说明**：在 web 上的 Outlook 中， `setSignatureAsync` 仅适用于邮件。
+
+
+    **重要说明**：如果外接程序 [使用 \` \` 清单中的 LaunchEvent 实现基于事件的激活功能](https://docs.microsoft.com/office/dev/add-ins/outlook/autolaunch)<!-- -->，并且调用 `setSignatureAsync` 在事件处理程序中，以下行为适用。
+
+
+    - 当用户撰写包含 "答复" 或 "转发") 的新 (项目时，将设置该签名，但不修改该窗体。 这意味着，如果用户在不进行其他编辑的情况下关闭该窗体，则不会提示他们保存所做的更改。
+
+
+    \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写
+
+
+    **错误**：
+
+
+    - `DataExceedsMaximumSize`<!-- -->： `data` 参数的长度超过30000个字符。
+
+
+    - `InvalidFormatError`<!-- -->：此 `options.coercionType` 参数设置为 `Office.CoercionType.Html` ，邮件正文为纯文本格式。
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/99-preview-apis/work-with-client-signatures.yaml
+
+    // Set the signature for the current item with inline image.
+
+    var modIcon1Base64 = "iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpDRDMxMDg1MjBCNDZFMTExODE2MkM1RUI2M0M4MDYxRCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFMTUxQjgyRjQ2MEQxMUUxODlFMkQwNTYzQ0YwMTUxMiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFMTUxQjgyRTQ2MEQxMUUxODlFMkQwNTYzQ0YwMTUxMiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1LjEgV2luZG93cyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkQxMzEwODUyMEI0NkUxMTE4MTYyQzVFQjYzQzgwNjFEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkNEMzEwODUyMEI0NkUxMTE4MTYyQzVFQjYzQzgwNjFEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+uC/WfAAAAehJREFUeNpilCzfwEAEkAbiECA2A2J1IOaHin8E4ptAfBaIVwLxU0IGMRKw0B6IW4DYhoE4cASIK6E0VsCEQ1wUiNcB8QESLGOAqj0MxBuhZhBloS4QnwHiQAbygR/UDF1CFupCXSjHQDmQg5qli8tCUBBsQUoQ1AD8UDNFsVk4n0o+w+bT+egWglKjNymmeGhLkqLcG2oHAwtUoIuQDj5OVgZPLUmwRe5aEmAxqYqNpFgKssOcCeplM0KqdST5GfpDDRm0JfkYrj3/SE7QguyQY4ImYYLgCtAS10kHGMw6dzNsv/qC7OwCClJXYlR++v6b4er3j5QmIFcmaNlIL6AOslCIjhYKMTHQGTBBqxh6gXcgC6/R0cKbIAv30dHCfaAKGJTxHxJSqS3Fz9DkowNmywpyMcgA8fF7b8D8VWcfM6w8+4gYC+VB+RCk8hSh0gaUD4/dewvlvUWRe/z+GzGWgex4BGtiOAHxXhoHpzMoSGHZAhSPW2lo2VZYWkHOh4nEtLrIAE+hZmNUwK+B2BOIv1PRsu9QM1/jatNcBtVZ0IREKXgENesyoVYbzNIdFFi2A5tl+NqlL6BB4QBNzsSCU1A9nlAzMAALAQMOQl0qB23qWwKxIlIrDBQ394H4OBCvISYqAAIMACVibHDqsO7zAAAAAElFTkSuQmCC";
+
+    Office.context.mailbox.item.addFileAttachmentFromBase64Async(
+      modIcon1Base64,
+      "myImage.png",
+      { isInline: true },
+      function(result) {
+        if (result.status == Office.AsyncResultStatus.Succeeded) {
+          var signature = $("#signature").val() + "<img src='cid:myImage.png'>";
+          console.log(`Setting signature to "${signature}".`);
+          // Important: setSignatureAsync is currently in preview.
+          Office.context.mailbox.item.body.setSignatureAsync(
+            signature,
+            { coercionType: "html" },
+            function(asyncResult) {
+              console.log(`setSignatureAsync: ${asyncResult.status}`);
+            }
+          );
+        } else {
+          console.error(`addFileAttachmentFromBase64Async: ${result.error}`);
+        }
+      }
+    );
+
+    ```
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/99-preview-apis/work-with-client-signatures.yaml
+
+    // Set the signature for the current item.
+
+    var signature = $("#signature").val();
+
+    console.log(`Setting signature to "${signature}".`);
+
+    Office.context.mailbox.item.body.setSignatureAsync(signature, function(asyncResult) {
+      if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+        console.log("setSignatureAsync succeeded");
+      } else {
+        console.error(asyncResult.error);
+      }
+    });
+
+    ```
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'setSignatureAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: data
+      description: 表示要在邮件正文中设置的签名的字符串。 此字符串限制为30000个字符。
+      type: string
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。 `coercionType`<!-- -->：签名应设置为的格式。 如果为 Text，则该方法将签名设置为纯文本，并删除存在的任何 HTML 标记。 如果为 Html，则该方法将签名设置为 HTML。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" /> & <xref uid="outlook!Office.CoercionTypeOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+metadata:
+  ms.openlocfilehash: 90e1d5b3a6d5a5966df2f6ba19a4d2c85b687fa8
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49136503"

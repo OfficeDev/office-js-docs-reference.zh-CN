@@ -1,271 +1,225 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'excel!Excel.WorkbookRangeAreas:class'
-    summary: |-
-      代表多个工作表中的一个或多个矩形区域的集合。
-
-      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: Excel.WorkbookRangeAreas
-    fullName: Excel.WorkbookRangeAreas
-    langs:
-      - typeScript
-    type: class
-    extends:
-      - 'office!OfficeExtension.ClientObject:class'
-    package: excel!
-    children:
-      - 'excel!Excel.WorkbookRangeAreas#addresses:member'
-      - 'excel!Excel.WorkbookRangeAreas#areas:member'
-      - 'excel!Excel.WorkbookRangeAreas#context:member'
-      - 'excel!Excel.WorkbookRangeAreas#getRangeAreasBySheet:member(1)'
-      - 'excel!Excel.WorkbookRangeAreas#getRangeAreasOrNullObjectBySheet:member(1)'
-      - 'excel!Excel.WorkbookRangeAreas#load:member(1)'
-      - 'excel!Excel.WorkbookRangeAreas#load:member(2)'
-      - 'excel!Excel.WorkbookRangeAreas#load:member(3)'
-      - 'excel!Excel.WorkbookRangeAreas#ranges:member'
-      - 'excel!Excel.WorkbookRangeAreas#toJSON:member(1)'
-      - 'excel!Excel.WorkbookRangeAreas#track:member(1)'
-      - 'excel!Excel.WorkbookRangeAreas#untrack:member(1)'
-  - uid: 'excel!Excel.WorkbookRangeAreas#addresses:member'
-    summary: |-
-      返回 A1 样式的地址数组。 Address 值将包含单元格每个矩形块的工作表名称 (例如，"Sheet1！A1： B4、Sheet1！D1： D4 ") 。 只读。
-
-      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: addresses
-    fullName: addresses
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly addresses: string[];'
-      return:
-        type:
-          - 'string[]'
-  - uid: 'excel!Excel.WorkbookRangeAreas#areas:member'
-    summary: |-
-      返回 `RangeAreasCollection` 对象。 `RangeAreas`集合中的每个对象代表一张工作表中的一个或多个矩形区域。
-
-      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: areas
-    fullName: areas
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly areas: Excel.RangeAreasCollection;'
-      return:
-        type:
-          - 'excel!Excel.RangeAreasCollection:class'
-        description: |-
+### YamlMime:TSType
+name: Excel.WorkbookRangeAreas
+uid: excel!Excel.WorkbookRangeAreas:class
+package: excel!
+fullName: Excel.WorkbookRangeAreas
+summary: >-
+  代表多个工作表中的一个或多个矩形区域的集合。
 
 
-          #### <a name="examples"></a>示例
+  \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: addresses
+  uid: excel!Excel.WorkbookRangeAreas#addresses:member
+  package: excel!
+  fullName: addresses
+  summary: >-
+    返回 A1 样式的地址数组。 Address 值将包含单元格每个矩形块的工作表名称 (例如，"Sheet1！A1： B4、Sheet1！D1： D4 ") 。 只读。
 
-          ```typescript
-          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/42-range/direct-precedents.yaml
-          await Excel.run(async (context) => {
-            // Precedents are cells referenced by the formula in a cell.
-            let range = context.workbook.getActiveCell();
-            let directPrecedents = range.getDirectPrecedents();
-            range.load("address");
-            directPrecedents.areas.load("address");
-            await context.sync();
 
-            console.log(`Direct precedent cells of ${range.address}:`);
+    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly addresses: string[];'
+    return:
+      type: string[]
+- name: areas
+  uid: excel!Excel.WorkbookRangeAreas#areas:member
+  package: excel!
+  fullName: areas
+  summary: >-
+    返回 `RangeAreasCollection` 对象。 `RangeAreas`集合中的每个对象代表一张工作表中的一个或多个矩形区域。
 
-            // Use the direct precedents API to loop through precedents of the active cell. 
-            for (var i = 0; i < directPrecedents.areas.items.length; i++) {
-              // Highlight and console the address of each precedent cell.
-              directPrecedents.areas.items[i].format.fill.color = "Yellow";
-              console.log(`  ${directPrecedents.areas.items[i].address}`);
-            }
-            await context.sync();
-          });
-          ```
-  - uid: 'excel!Excel.WorkbookRangeAreas#context:member'
-    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-    name: context
-    fullName: context
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'context: RequestContext;'
-      return:
-        type:
-          - 'excel!Excel.RequestContext:class'
-  - uid: 'excel!Excel.WorkbookRangeAreas#getRangeAreasBySheet:member(1)'
-    summary: |-
-      `RangeAreas`基于集合中的工作表 id 或名称返回对象。
 
-      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: getRangeAreasBySheet(key)
-    fullName: getRangeAreasBySheet(key)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getRangeAreasBySheet(key: string): Excel.RangeAreas;'
-      return:
-        type:
-          - 'excel!Excel.RangeAreas:class'
-        description: ''
-      parameters:
-        - id: key
-          description: 工作表的名称或 id。
-          type:
-            - string
-  - uid: 'excel!Excel.WorkbookRangeAreas#getRangeAreasOrNullObjectBySheet:member(1)'
-    summary: |-
-      `RangeAreas`基于集合中的工作表名称或 id 返回对象。 如果没有 Worksheet 对象，将返回 NULL 对象。
+    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly areas: Excel.RangeAreasCollection;'
+    return:
+      type: <xref uid="excel!Excel.RangeAreasCollection:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/42-range/direct-precedents.yaml\nawait Excel.run(async (context) => {\n  // Precedents are cells referenced by the formula in a cell.\n  let range = context.workbook.getActiveCell();\n  let directPrecedents = range.getDirectPrecedents();\n  range.load(\"address\");\n  directPrecedents.areas.load(\"address\");\n  await context.sync();\n\n  console.log(`Direct precedent cells of ${range.address}:`);\n\n  // Use the direct precedents API to loop through precedents of the active cell. \n  for (var i = 0; i < directPrecedents.areas.items.length; i++) {\n    // Highlight and console the address of each precedent cell.\n    directPrecedents.areas.items[i].format.fill.color = \"Yellow\";\n    console.log(`  ${directPrecedents.areas.items[i].address}`);\n  }\n  await context.sync();\n});\n```"
+- name: context
+  uid: excel!Excel.WorkbookRangeAreas#context:member
+  package: excel!
+  fullName: context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: ranges
+  uid: excel!Excel.WorkbookRangeAreas#ranges:member
+  package: excel!
+  fullName: ranges
+  summary: >-
+    返回在对象中组成此对象的范围 `RangeCollection` 。
 
-      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: getRangeAreasOrNullObjectBySheet(key)
-    fullName: getRangeAreasOrNullObjectBySheet(key)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getRangeAreasOrNullObjectBySheet(key: string): Excel.RangeAreas;'
-      return:
-        type:
-          - 'excel!Excel.RangeAreas:class'
-        description: ''
-      parameters:
-        - id: key
-          description: 工作表的名称或 id。
-          type:
-            - string
-  - uid: 'excel!Excel.WorkbookRangeAreas#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(options)
-    fullName: load(options)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(options?: Excel.Interfaces.WorkbookRangeAreasLoadOptions): Excel.WorkbookRangeAreas;'
-      return:
-        type:
-          - 'excel!Excel.WorkbookRangeAreas:class'
-        description: ''
-      parameters:
-        - id: options
-          description: 提供要加载的对象的属性的选项。
-          type:
-            - 'excel!Excel.Interfaces.WorkbookRangeAreasLoadOptions:interface'
-  - uid: 'excel!Excel.WorkbookRangeAreas#load:member(2)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNames)
-    fullName: load(propertyNames)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNames?: string | string[]): Excel.WorkbookRangeAreas;'
-      return:
-        type:
-          - 'excel!Excel.WorkbookRangeAreas:class'
-        description: ''
-      parameters:
-        - id: propertyNames
-          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
-          type:
-            - 'string | string[]'
-  - uid: 'excel!Excel.WorkbookRangeAreas#load:member(3)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNamesAndPaths)
-    fullName: load(propertyNamesAndPaths)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: |-
-        load(propertyNamesAndPaths?: {
+
+    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly ranges: Excel.RangeCollection;'
+    return:
+      type: <xref uid="excel!Excel.RangeCollection:class" />
+methods:
+- name: getRangeAreasBySheet(key)
+  uid: excel!Excel.WorkbookRangeAreas#getRangeAreasBySheet:member(1)
+  package: excel!
+  fullName: getRangeAreasBySheet(key)
+  summary: >-
+    `RangeAreas`基于集合中的工作表 ID 或名称返回对象。
+
+
+    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getRangeAreasBySheet(key: string): Excel.RangeAreas;'
+    parameters:
+    - id: key
+      description: 工作表的名称或 id。
+      type: string
+    return:
+      type: <xref uid="excel!Excel.RangeAreas:class" />
+      description: ''
+- name: getRangeAreasOrNullObjectBySheet(key)
+  uid: excel!Excel.WorkbookRangeAreas#getRangeAreasOrNullObjectBySheet:member(1)
+  package: excel!
+  fullName: getRangeAreasOrNullObjectBySheet(key)
+  summary: >-
+    `RangeAreas`基于集合中的工作表名称或 ID 返回对象。 如果没有 Worksheet 对象，将返回 NULL 对象。
+
+
+    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getRangeAreasOrNullObjectBySheet(key: string): Excel.RangeAreas;'
+    parameters:
+    - id: key
+      description: 工作表的名称或 id。
+      type: string
+    return:
+      type: <xref uid="excel!Excel.RangeAreas:class" />
+      description: ''
+- name: load(options)
+  uid: excel!Excel.WorkbookRangeAreas#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.WorkbookRangeAreasLoadOptions): Excel.WorkbookRangeAreas;'
+    parameters:
+    - id: options
+      description: 提供要加载的对象的属性的选项。
+      type: <xref uid="excel!Excel.Interfaces.WorkbookRangeAreasLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.WorkbookRangeAreas:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.WorkbookRangeAreas#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.WorkbookRangeAreas;'
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.WorkbookRangeAreas:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.WorkbookRangeAreas#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): Excel.WorkbookRangeAreas;
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      type: >-
+        {
                     select?: string;
                     expand?: string;
-                }): Excel.WorkbookRangeAreas;
-      return:
-        type:
-          - 'excel!Excel.WorkbookRangeAreas:class'
-        description: ''
-      parameters:
-        - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
-          type:
-            - |-
-              {
-                          select?: string;
-                          expand?: string;
-                      }
-  - uid: 'excel!Excel.WorkbookRangeAreas#ranges:member'
-    summary: |-
-      返回在对象中组成此对象的范围 `RangeCollection` 。
-
-      \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: ranges
-    fullName: ranges
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly ranges: Excel.RangeCollection;'
-      return:
-        type:
-          - 'excel!Excel.RangeCollection:class'
-  - uid: 'excel!Excel.WorkbookRangeAreas#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始 WorkbookRangeAreas 对象是 API 对象，则该 `toJSON` 方法返回一个 (类型为的纯 JavaScript 对象。 `Excel.Interfaces.WorkbookRangeAreasData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
-    name: toJSON()
-    fullName: toJSON()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'toJSON(): Excel.Interfaces.WorkbookRangeAreasData;'
-      return:
-        type:
-          - 'excel!Excel.Interfaces.WorkbookRangeAreasData:interface'
-        description: ''
-  - uid: 'excel!Excel.WorkbookRangeAreas#track:member(1)'
-    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是的简写 `context.trackedObjects.add(thisObject)`<!-- -->. 如果要在多个调用中使用此对象 `.sync` ，并在 "运行" 批处理的顺序执行之外使用此对象，并在设置属性或对对象调用方法时获取 "InvalidObjectPath" 错误，则需要在首次创建对象时将该对象添加到跟踪的对象集合中。
-    name: track()
-    fullName: track()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'track(): Excel.WorkbookRangeAreas;'
-      return:
-        type:
-          - 'excel!Excel.WorkbookRangeAreas:class'
-        description: ''
-  - uid: 'excel!Excel.WorkbookRangeAreas#untrack:member(1)'
-    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是的简写 `context.trackedObjects.remove(thisObject)`<!-- -->. 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在 `context.sync()` 内存释放生效之前，您需要调用该过程。
-    name: untrack()
-    fullName: untrack()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'untrack(): Excel.WorkbookRangeAreas;'
-      return:
-        type:
-          - 'excel!Excel.WorkbookRangeAreas:class'
-        description: ''
-references:
-  - uid: 'office!OfficeExtension.ClientObject:class'
-    name: OfficeExtension.ClientObject
-  - uid: 'excel!Excel.RangeAreasCollection:class'
-    name: Excel.RangeAreasCollection
-  - uid: 'excel!Excel.RequestContext:class'
-    name: RequestContext
-  - uid: 'excel!Excel.RangeAreas:class'
-    name: Excel.RangeAreas
-  - uid: 'excel!Excel.WorkbookRangeAreas:class'
-    name: Excel.WorkbookRangeAreas
-  - uid: 'excel!Excel.Interfaces.WorkbookRangeAreasLoadOptions:interface'
-    name: Excel.Interfaces.WorkbookRangeAreasLoadOptions
-  - uid: 'excel!Excel.RangeCollection:class'
-    name: Excel.RangeCollection
-  - uid: 'excel!Excel.Interfaces.WorkbookRangeAreasData:interface'
-    name: Excel.Interfaces.WorkbookRangeAreasData
+                }
+    return:
+      type: <xref uid="excel!Excel.WorkbookRangeAreas:class" />
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.WorkbookRangeAreas#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始 WorkbookRangeAreas 对象是 API 对象，则该 `toJSON` 方法返回一个 (类型为的纯 JavaScript 对象。 `Excel.Interfaces.WorkbookRangeAreasData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.WorkbookRangeAreasData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.WorkbookRangeAreasData:interface" />
+      description: ''
+- name: track()
+  uid: excel!Excel.WorkbookRangeAreas#track:member(1)
+  package: excel!
+  fullName: track()
+  summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是的简写 `context.trackedObjects.add(thisObject)`<!-- -->. 如果要在多个调用中使用此对象 `.sync` ，并在 "运行" 批处理的顺序执行之外使用此对象，并在设置属性或对对象调用方法时获取 "InvalidObjectPath" 错误，则需要在首次创建对象时将该对象添加到跟踪的对象集合中。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'track(): Excel.WorkbookRangeAreas;'
+    return:
+      type: <xref uid="excel!Excel.WorkbookRangeAreas:class" />
+      description: ''
+- name: untrack()
+  uid: excel!Excel.WorkbookRangeAreas#untrack:member(1)
+  package: excel!
+  fullName: untrack()
+  summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是的简写 `context.trackedObjects.remove(thisObject)`<!-- -->. 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在 `context.sync()` 内存释放生效之前，您需要调用该过程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'untrack(): Excel.WorkbookRangeAreas;'
+    return:
+      type: <xref uid="excel!Excel.WorkbookRangeAreas:class" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 6603e5d6d3ae3bbba385d444ce8d2d1ee12f8eca
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49136951"
