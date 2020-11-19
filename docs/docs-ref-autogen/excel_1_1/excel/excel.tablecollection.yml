@@ -1,334 +1,194 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'excel!Excel.TableCollection:class'
-    summary: |-
-      表示属于工作簿或工作表（具有取决于限定到的范围）的所有表的集合。
-
-      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: Excel.TableCollection
-    fullName: Excel.TableCollection
-    langs:
-      - typeScript
-    type: class
-    extends:
-      - 'office!OfficeExtension.ClientObject:class'
-    package: excel!
-    children:
-      - 'excel!Excel.TableCollection#add:member(1)'
-      - 'excel!Excel.TableCollection#context:member'
-      - 'excel!Excel.TableCollection#count:member'
-      - 'excel!Excel.TableCollection#getItem:member(1)'
-      - 'excel!Excel.TableCollection#getItemAt:member(1)'
-      - 'excel!Excel.TableCollection#items:member'
-      - 'excel!Excel.TableCollection#load:member(1)'
-      - 'excel!Excel.TableCollection#load:member(2)'
-      - 'excel!Excel.TableCollection#load:member(3)'
-      - 'excel!Excel.TableCollection#toJSON:member(1)'
-  - uid: 'excel!Excel.TableCollection#add:member(1)'
-    summary: |-
-      新建表。范围对象或源地址决定了在哪个工作表下添加表。如果无法添加表（例如，由于地址无效，或者表与另一个表重叠），则会引发错误。
-
-      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: 'add(address, hasHeaders)'
-    fullName: 'add(address, hasHeaders)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'add(address: Range | string, hasHeaders: boolean): Excel.Table;'
-      return:
-        type:
-          - 'excel!Excel.Table:class'
-        description: |-
+### YamlMime:TSType
+name: Excel.TableCollection
+uid: excel!Excel.TableCollection:class
+package: excel!
+fullName: Excel.TableCollection
+summary: >-
+  表示属于工作簿或工作表（具有取决于限定到的范围）的所有表的集合。
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          Excel.run(function (ctx) { 
-              var table = ctx.workbook.tables.add('Sheet1!A1:E7', true);
-              table.load('name');
-              return ctx.sync().then(function() {
-                  console.log(table.name);
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: address
-          description: 'Range 对象或表示数据源的区域的字符串地址或名称。 如果地址不包含工作表名称，将使用当前活动的工作表。 \[Api 集： ExcelApi 1.1/1.3。 在 ExcelApi 1.3 之前，此参数必须是字符串。 从 Excel Api 1.3 开始，此参数可以是一个 Range 对象或一个字符串。\]'
-          type:
-            - 'excel!Excel.TableCollection#add~0:complex'
-        - id: hasHeaders
-          description: 指示导入的数据是否具有列标签的布尔值。如果源不包含标头（即，当此属性设置为 false 时），Excel 将自动生成标头，数据将向下移动一行。
-          type:
-            - boolean
-  - uid: 'excel!Excel.TableCollection#context:member'
-    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-    name: context
-    fullName: context
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'context: RequestContext;'
-      return:
-        type:
-          - 'excel!Excel.RequestContext:class'
-  - uid: 'excel!Excel.TableCollection#count:member'
-    summary: |-
-      返回工作簿中的表数目。
-
-      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: count
-    fullName: count
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly count: number;'
-      return:
-        type:
-          - number
-  - uid: 'excel!Excel.TableCollection#getItem:member(1)'
-    summary: |-
-      按名称或 ID 获取表。
-
-      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: getItem(key)
-    fullName: getItem(key)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getItem(key: string): Excel.Table;'
-      return:
-        type:
-          - 'excel!Excel.Table:class'
-        description: |-
+  \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.TableCollection#context:member
+  package: excel!
+  fullName: context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: count
+  uid: excel!Excel.TableCollection#count:member
+  package: excel!
+  fullName: count
+  summary: >-
+    返回工作簿中的表数目。
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          Excel.run(function (ctx) { 
-              var tableName = 'Table1';
-              var table = ctx.workbook.tables.getItem(tableName);
-              table.load('name');
-              return ctx.sync().then(function() {
-                      console.log(table.name);
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: key
-          description: 要检索的表的名称或 ID。
-          type:
-            - string
-  - uid: 'excel!Excel.TableCollection#getItemAt:member(1)'
-    summary: |-
-      根据其在集合中的位置获取表。
-
-      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: getItemAt(index)
-    fullName: getItemAt(index)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getItemAt(index: number): Excel.Table;'
-      return:
-        type:
-          - 'excel!Excel.Table:class'
-        description: |-
+    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly count: number;'
+    return:
+      type: number
+- name: items
+  uid: excel!Excel.TableCollection#items:member
+  package: excel!
+  fullName: items
+  summary: 获取此集合中已加载的子项。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly items: Excel.Table[];'
+    return:
+      type: <xref uid="excel!Excel.Table:class" />[]
+methods:
+- name: add(address, hasHeaders)
+  uid: excel!Excel.TableCollection#add:member(1)
+  package: excel!
+  fullName: add(address, hasHeaders)
+  summary: >-
+    新建表。范围对象或源地址决定了在哪个工作表下添加表。如果无法添加表（例如，由于地址无效，或者表与另一个表重叠），则会引发错误。
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          Excel.run(function (ctx) { 
-              var table = ctx.workbook.tables.getItemAt(0);
-              table.load('name');
-              return ctx.sync().then(function() {
-                      console.log(table.name);
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: index
-          description: 要检索的对象的索引值。 从零开始编制索引。
-          type:
-            - number
-  - uid: 'excel!Excel.TableCollection#items:member'
-    summary: 获取此集合中已加载的子项。
-    name: items
-    fullName: items
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly items: Excel.Table[];'
-      return:
-        type:
-          - 'excel!Excel.TableCollection#items~0:complex'
-  - uid: 'excel!Excel.TableCollection#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(options)
-    fullName: load(options)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(options?: Excel.Interfaces.TableCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.TableCollection;'
-      return:
-        type:
-          - 'excel!Excel.TableCollection:class'
-        description: ''
-      parameters:
-        - id: options
-          description: 提供要加载的对象的属性的选项。
-          type:
-            - 'excel!Excel.TableCollection#load~0:complex'
-  - uid: 'excel!Excel.TableCollection#load:member(2)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNames)
-    fullName: load(propertyNames)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNames?: string | string[]): Excel.TableCollection;'
-      return:
-        type:
-          - 'excel!Excel.TableCollection:class'
-        description: |-
+    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'add(address: Range | string, hasHeaders: boolean): Excel.Table;'
+    parameters:
+    - id: address
+      description: Range 对象或表示数据源的区域的字符串地址或名称。 如果地址不包含工作表名称，将使用当前活动的工作表。 \[Api 集： ExcelApi 1.1/1.3。 在 ExcelApi 1.3 之前，此参数必须是字符串。 从 Excel Api 1.3 开始，此参数可以是一个 Range 对象或一个字符串。\]
+      type: <xref uid="excel!Excel.Range:class" /> | string
+    - id: hasHeaders
+      description: 指示导入的数据是否具有列标签的布尔值。如果源不包含标头（即，当此属性设置为 false 时），Excel 将自动生成标头，数据将向下移动一行。
+      type: boolean
+    return:
+      type: <xref uid="excel!Excel.Table:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var table = ctx.workbook.tables.add('Sheet1!A1:E7', true);\n    table.load('name');\n    return ctx.sync().then(function() {\n        console.log(table.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: getItem(key)
+  uid: excel!Excel.TableCollection#getItem:member(1)
+  package: excel!
+  fullName: getItem(key)
+  summary: >-
+    按名称或 ID 获取表。
 
 
-          #### <a name="examples"></a>示例
+    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getItem(key: string): Excel.Table;'
+    parameters:
+    - id: key
+      description: 要检索的表的名称或 ID。
+      type: string
+    return:
+      type: <xref uid="excel!Excel.Table:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var table = ctx.workbook.tables.getItem(tableName);\n    table.load('name');\n    return ctx.sync().then(function() {\n            console.log(table.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: getItemAt(index)
+  uid: excel!Excel.TableCollection#getItemAt:member(1)
+  package: excel!
+  fullName: getItemAt(index)
+  summary: >-
+    根据其在集合中的位置获取表。
 
-          ```javascript
-          Excel.run(function (ctx) { 
-              var tables = ctx.workbook.tables;
-              tables.load();
-              return ctx.sync().then(function() {
-                  console.log("tables Count: " + tables.count);
-                  for (var i = 0; i < tables.items.length; i++)
-                  {
-                      console.log(tables.items[i].name);
-                  }
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-          ```javascript
-          // Get the number of tables
-          Excel.run(function (ctx) { 
-              var tables = ctx.workbook.tables;
-              tables.load('count');
-              return ctx.sync().then(function() {
-                  console.log(tables.count);
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: propertyNames
-          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
-          type:
-            - 'string | string[]'
-  - uid: 'excel!Excel.TableCollection#load:member(3)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNamesAndPaths)
-    fullName: load(propertyNamesAndPaths)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.TableCollection;'
-      return:
-        type:
-          - 'excel!Excel.TableCollection:class'
-        description: ''
-      parameters:
-        - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
-          type:
-            - 'office!OfficeExtension.LoadOption:interface'
-  - uid: 'excel!Excel.TableCollection#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始 `Excel.TableCollection` 对象是 API 对象，但 `toJSON` 方法返回一个无格式的 JavaScript 对象（类型为`Excel.Interfaces.TableCollectionData`<!-- -->），其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。
-    name: toJSON()
-    fullName: toJSON()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'toJSON(): Excel.Interfaces.TableCollectionData;'
-      return:
-        type:
-          - 'excel!Excel.Interfaces.TableCollectionData:interface'
-        description: ''
-references:
-  - uid: 'office!OfficeExtension.ClientObject:class'
-    name: OfficeExtension.ClientObject
-  - uid: 'excel!Excel.Table:class'
-    name: Excel.Table
-  - uid: 'excel!Excel.TableCollection#add~0:complex'
-    name: Range | string
-    fullName: Excel.Range | string
-    spec.typeScript:
-      - uid: 'excel!Excel.Range:class'
-        name: Range
-        fullName: Excel.Range
-      - name: ' | string'
-        fullName: ' | string'
-  - uid: 'excel!Excel.RequestContext:class'
-    name: RequestContext
-  - uid: 'excel!Excel.TableCollection#items~0:complex'
-    name: 'Excel.Table[]'
-    fullName: 'Excel.Table[]'
-    spec.typeScript:
-      - uid: 'excel!Excel.Table:class'
-        name: Excel.Table
-        fullName: Excel.Table
-      - name: '[]'
-        fullName: '[]'
-  - uid: 'excel!Excel.TableCollection:class'
-    name: Excel.TableCollection
-  - uid: 'excel!Excel.TableCollection#load~0:complex'
-    name: Excel.Interfaces.TableCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
-    fullName: Excel.Interfaces.TableCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
-    spec.typeScript:
-      - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions:interface'
-        name: Excel.Interfaces.TableCollectionLoadOptions
-        fullName: Excel.Interfaces.TableCollectionLoadOptions
-      - name: ' & '
-        fullName: ' & '
-      - uid: 'excel!Excel.Interfaces.CollectionLoadOptions:interface'
-        name: Excel.Interfaces.CollectionLoadOptions
-        fullName: Excel.Interfaces.CollectionLoadOptions
-  - uid: 'office!OfficeExtension.LoadOption:interface'
-    name: OfficeExtension.LoadOption
-  - uid: 'excel!Excel.Interfaces.TableCollectionData:interface'
-    name: Excel.Interfaces.TableCollectionData
+
+    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getItemAt(index: number): Excel.Table;'
+    parameters:
+    - id: index
+      description: 要检索的对象的索引值。 从零开始编制索引。
+      type: number
+    return:
+      type: <xref uid="excel!Excel.Table:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var table = ctx.workbook.tables.getItemAt(0);\n    table.load('name');\n    return ctx.sync().then(function() {\n            console.log(table.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(options)
+  uid: excel!Excel.TableCollection#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.TableCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.TableCollection;'
+    parameters:
+    - id: options
+      description: 提供要加载的对象的属性的选项。
+      type: <xref uid="excel!Excel.Interfaces.TableCollectionLoadOptions:interface" /> & <xref uid="excel!Excel.Interfaces.CollectionLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.TableCollection:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.TableCollection#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.TableCollection;'
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.TableCollection:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var tables = ctx.workbook.tables;\n    tables.load();\n    return ctx.sync().then(function() {\n        console.log(\"tables Count: \" + tables.count);\n        for (var i = 0; i < tables.items.length; i++)\n        {\n            console.log(tables.items[i].name);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Get the number of tables\nExcel.run(function (ctx) { \n    var tables = ctx.workbook.tables;\n    tables.load('count');\n    return ctx.sync().then(function() {\n        console.log(tables.count);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.TableCollection#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.TableCollection;'
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      type: <xref uid="office!OfficeExtension.LoadOption:interface" />
+    return:
+      type: <xref uid="excel!Excel.TableCollection:class" />
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.TableCollection#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始 `Excel.TableCollection` 对象是 API 对象，则该 `toJSON` 方法返回一个纯 JavaScript 对象 (类型为 `Excel.Interfaces.TableCollectionData`<!-- -->包含集合项中任何已加载属性的浅表的 "items" 数组 ) 。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.TableCollectionData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.TableCollectionData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 47a53ae160dffd40f0374ba8bdc31bcab77ac9de
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49167359"

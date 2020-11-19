@@ -1,183 +1,103 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'excel!Excel.CellPropertiesFill:interface'
-    summary: |-
-      表示 `format.fill` 的属性`getCellProperties`<!-- -->, `getRowProperties`<!-- -->，和 `getColumnProperties` 或的 `format.fill` 输入参数`setCellProperties`<!-- -->, `setRowProperties`<!-- -->，并`setColumnProperties`<!-- -->.
-
-      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: Excel.CellPropertiesFill
-    fullName: Excel.CellPropertiesFill
-    langs:
-      - typeScript
-    type: interface
-    package: excel!
-    children:
-      - 'excel!Excel.CellPropertiesFill#color:member'
-      - 'excel!Excel.CellPropertiesFill#pattern:member'
-      - 'excel!Excel.CellPropertiesFill#patternColor:member'
-      - 'excel!Excel.CellPropertiesFill#patternTintAndShade:member'
-      - 'excel!Excel.CellPropertiesFill#tintAndShade:member'
-  - uid: 'excel!Excel.CellPropertiesFill#color:member'
-    summary: |-
-      表示`format.fill.color`属性。
-
-      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: color
-    fullName: color
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'color?: string;'
-      return:
-        type:
-          - string
-        description: |-
+### YamlMime:TSType
+name: Excel.CellPropertiesFill
+uid: excel!Excel.CellPropertiesFill:interface
+package: excel!
+fullName: Excel.CellPropertiesFill
+summary: >-
+  表示 `format.fill` 的属性 `getCellProperties`<!-- -->, `getRowProperties`<!-- -->，和 `getColumnProperties` 或的 `format.fill` 输入参数 `setCellProperties`<!-- -->, `setRowProperties`<!-- -->，并 `setColumnProperties`<!-- -->.
 
 
-          #### <a name="examples"></a>示例
+  \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+- name: color
+  uid: excel!Excel.CellPropertiesFill#color:member
+  package: excel!
+  fullName: color
+  summary: >-
+    表示`format.fill.color`属性。
 
-          ```typescript
-          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/42-range/cell-properties.yaml
-          await Excel.run(async (context) => {
-              const sheet = context.workbook.worksheets.getActiveWorksheet();
 
-              // Creating the SettableCellProperties objects to use for the range.
-              // In your add-in, these should be created once, outside the function.
-              const topHeaderProps: Excel.SettableCellProperties = {
-                  // The style property takes a string matching the name of an Excel style.
-                  // Built-in style names are listed in the `BuiltInStyle` enum.
-                  // Note that a style will overwrite any formatting,
-                  // so do not use the format property with the style property.
-                  style: "Heading1"
-              };
+    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'color?: string;'
+    return:
+      type: string
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/42-range/cell-properties.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n    // Creating the SettableCellProperties objects to use for the range.\n    // In your add-in, these should be created once, outside the function.\n    const topHeaderProps: Excel.SettableCellProperties = {\n        // The style property takes a string matching the name of an Excel style.\n        // Built-in style names are listed in the `BuiltInStyle` enum.\n        // Note that a style will overwrite any formatting,\n        // so do not use the format property with the style property.\n        style: \"Heading1\"\n    };\n\n    const headerProps: Excel.SettableCellProperties = {\n        // Any subproperties of format that are not set will not be changed when these cell properties are set.\n        format: {\n            fill: {\n                color: \"Blue\"\n            },\n            font: {\n                color: \"White\",\n                bold: true\n            }\n        }\n    };\n\n    const nonApplicableProps: Excel.SettableCellProperties = {\n        format: {\n            fill: {\n                pattern: Excel.FillPattern.gray25\n            },\n            font: {\n                color: \"Gray\",\n                italic: true\n            }\n        }\n    };\n\n    const matchupScoreProps: Excel.SettableCellProperties = {\n        format: {\n            borders: {\n                bottom: {\n                    style: Excel.BorderLineStyle.continuous\n                },\n                left: {\n                    style: Excel.BorderLineStyle.continuous\n                },\n                right: {\n                    style: Excel.BorderLineStyle.continuous\n                },\n                top: {\n                    style: Excel.BorderLineStyle.continuous\n                }\n            }\n        }\n    };\n\n    const range = sheet.getRange(\"A1:E5\");\n\n    // You can use empty JSON objects to avoid changing a cell's properties.\n    range.setCellProperties([\n        [topHeaderProps, {}, {}, {}, {}],\n        [{}, {}, headerProps, headerProps, headerProps],\n        [{}, headerProps, nonApplicableProps, matchupScoreProps, matchupScoreProps],\n        [{}, headerProps, matchupScoreProps, nonApplicableProps, matchupScoreProps],\n        [{}, headerProps, matchupScoreProps, matchupScoreProps, nonApplicableProps]\n    ]);\n\n    sheet.getUsedRange().format.autofitColumns();\n    await context.sync();\n});\n```"
+- name: pattern
+  uid: excel!Excel.CellPropertiesFill#pattern:member
+  package: excel!
+  fullName: pattern
+  summary: >-
+    表示`format.fill.pattern`属性。
 
-              const headerProps: Excel.SettableCellProperties = {
-                  // Any subproperties of format that are not set will not be changed when these cell properties are set.
-                  format: {
-                      fill: {
-                          color: "Blue"
-                      },
-                      font: {
-                          color: "White",
-                          bold: true
-                      }
-                  }
-              };
 
-              const nonApplicableProps: Excel.SettableCellProperties = {
-                  format: {
-                      fill: {
-                          pattern: Excel.FillPattern.gray25
-                      },
-                      font: {
-                          color: "Gray",
-                          italic: true
-                      }
-                  }
-              };
+    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'pattern?: Excel.FillPattern | "None" | "Solid" | "Gray50" | "Gray75" | "Gray25" | "Horizontal" | "Vertical" | "Down" | "Up" | "Checker" | "SemiGray75" | "LightHorizontal" | "LightVertical" | "LightDown" | "LightUp" | "Grid" | "CrissCross" | "Gray16" | "Gray8" | "LinearGradient" | "RectangularGradient";'
+    return:
+      type: <xref uid="excel!Excel.FillPattern:enum" /> | "None" | "Solid" | "Gray50" | "Gray75" | "Gray25" | "Horizontal" | "Vertical" | "Down" | "Up" | "Checker" | "SemiGray75" | "LightHorizontal" | "LightVertical" | "LightDown" | "LightUp" | "Grid" | "CrissCross" | "Gray16" | "Gray8" | "LinearGradient" | "RectangularGradient"
+- name: patternColor
+  uid: excel!Excel.CellPropertiesFill#patternColor:member
+  package: excel!
+  fullName: patternColor
+  summary: >-
+    表示`format.fill.patternColor`属性。
 
-              const matchupScoreProps: Excel.SettableCellProperties = {
-                  format: {
-                      borders: {
-                          bottom: {
-                              style: Excel.BorderLineStyle.continuous
-                          },
-                          left: {
-                              style: Excel.BorderLineStyle.continuous
-                          },
-                          right: {
-                              style: Excel.BorderLineStyle.continuous
-                          },
-                          top: {
-                              style: Excel.BorderLineStyle.continuous
-                          }
-                      }
-                  }
-              };
 
-              const range = sheet.getRange("A1:E5");
+    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'patternColor?: string;'
+    return:
+      type: string
+- name: patternTintAndShade
+  uid: excel!Excel.CellPropertiesFill#patternTintAndShade:member
+  package: excel!
+  fullName: patternTintAndShade
+  summary: >-
+    表示`format.fill.patternTintAndShade`属性。
 
-              // You can use empty JSON objects to avoid changing a cell's properties.
-              range.setCellProperties([
-                  [topHeaderProps, {}, {}, {}, {}],
-                  [{}, {}, headerProps, headerProps, headerProps],
-                  [{}, headerProps, nonApplicableProps, matchupScoreProps, matchupScoreProps],
-                  [{}, headerProps, matchupScoreProps, nonApplicableProps, matchupScoreProps],
-                  [{}, headerProps, matchupScoreProps, matchupScoreProps, nonApplicableProps]
-              ]);
 
-              sheet.getUsedRange().format.autofitColumns();
-              await context.sync();
-          });
-          ```
-  - uid: 'excel!Excel.CellPropertiesFill#pattern:member'
-    summary: |-
-      表示`format.fill.pattern`属性。
+    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'patternTintAndShade?: number;'
+    return:
+      type: number
+- name: tintAndShade
+  uid: excel!Excel.CellPropertiesFill#tintAndShade:member
+  package: excel!
+  fullName: tintAndShade
+  summary: >-
+    表示`format.fill.tintAndShade`属性。
 
-      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: pattern
-    fullName: pattern
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'pattern?: Excel.FillPattern | "None" | "Solid" | "Gray50" | "Gray75" | "Gray25" | "Horizontal" | "Vertical" | "Down" | "Up" | "Checker" | "SemiGray75" | "LightHorizontal" | "LightVertical" | "LightDown" | "LightUp" | "Grid" | "CrissCross" | "Gray16" | "Gray8" | "LinearGradient" | "RectangularGradient";'
-      return:
-        type:
-          - 'excel!Excel.CellPropertiesFill#pattern~0:complex'
-  - uid: 'excel!Excel.CellPropertiesFill#patternColor:member'
-    summary: |-
-      表示`format.fill.patternColor`属性。
 
-      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: patternColor
-    fullName: patternColor
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'patternColor?: string;'
-      return:
-        type:
-          - string
-  - uid: 'excel!Excel.CellPropertiesFill#patternTintAndShade:member'
-    summary: |-
-      表示`format.fill.patternTintAndShade`属性。
-
-      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: patternTintAndShade
-    fullName: patternTintAndShade
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'patternTintAndShade?: number;'
-      return:
-        type:
-          - number
-  - uid: 'excel!Excel.CellPropertiesFill#tintAndShade:member'
-    summary: |-
-      表示`format.fill.tintAndShade`属性。
-
-      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: tintAndShade
-    fullName: tintAndShade
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'tintAndShade?: number;'
-      return:
-        type:
-          - number
-references:
-  - uid: 'excel!Excel.CellPropertiesFill#pattern~0:complex'
-    name: Excel.FillPattern | "None" | "Solid" | "Gray50" | "Gray75" | "Gray25" | "Horizontal" | "Vertical" | "Down" | "Up" | "Checker" | "SemiGray75" | "LightHorizontal" | "LightVertical" | "LightDown" | "LightUp" | "Grid" | "CrissCross" | "Gray16" | "Gray8" | "LinearGradient" | "RectangularGradient"
-    fullName: Excel.FillPattern | "None" | "Solid" | "Gray50" | "Gray75" | "Gray25" | "Horizontal" | "Vertical" | "Down" | "Up" | "Checker" | "SemiGray75" | "LightHorizontal" | "LightVertical" | "LightDown" | "LightUp" | "Grid" | "CrissCross" | "Gray16" | "Gray8" | "LinearGradient" | "RectangularGradient"
-    spec.typeScript:
-      - uid: 'excel!Excel.FillPattern:enum'
-        name: Excel.FillPattern
-        fullName: Excel.FillPattern
-      - name: ' | "None" | "Solid" | "Gray50" | "Gray75" | "Gray25" | "Horizontal" | "Vertical" | "Down" | "Up" | "Checker" | "SemiGray75" | "LightHorizontal" | "LightVertical" | "LightDown" | "LightUp" | "Grid" | "CrissCross" | "Gray16" | "Gray8" | "LinearGradient" | "RectangularGradient"'
-        fullName: ' | "None" | "Solid" | "Gray50" | "Gray75" | "Gray25" | "Horizontal" | "Vertical" | "Down" | "Up" | "Checker" | "SemiGray75" | "LightHorizontal" | "LightVertical" | "LightDown" | "LightUp" | "Grid" | "CrissCross" | "Gray16" | "Gray8" | "LinearGradient" | "RectangularGradient"'
+    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'tintAndShade?: number;'
+    return:
+      type: number
+metadata:
+  ms.openlocfilehash: 3d03c67dd6664fa21f79d0919a497092de124fe6
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49166785"
