@@ -1,420 +1,222 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'word!Word.ContentControlCollection:class'
-    summary: |-
-      包含[ContentControl](xref:word!Word.ContentControl:class)对象的集合。 内容控件是文档中绑定的、有可能添加标签的区域，它们充当特定类型的内容的容器。 单个内容控件可能包含诸如图片、表或格式化文本段落等内容。 当前仅支持富文本内容控件。
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: Word.ContentControlCollection
-    fullName: Word.ContentControlCollection
-    langs:
-      - typeScript
-    type: class
-    extends:
-      - 'office!OfficeExtension.ClientObject:class'
-    package: word!
-    children:
-      - 'word!Word.ContentControlCollection#context:member'
-      - 'word!Word.ContentControlCollection#getById:member(1)'
-      - 'word!Word.ContentControlCollection#getByTag:member(1)'
-      - 'word!Word.ContentControlCollection#getByTitle:member(1)'
-      - 'word!Word.ContentControlCollection#getItem:member(1)'
-      - 'word!Word.ContentControlCollection#items:member'
-      - 'word!Word.ContentControlCollection#load:member(1)'
-      - 'word!Word.ContentControlCollection#load:member(2)'
-      - 'word!Word.ContentControlCollection#load:member(3)'
-      - 'word!Word.ContentControlCollection#toJSON:member(1)'
-      - 'word!Word.ContentControlCollection#track:member(1)'
-      - 'word!Word.ContentControlCollection#untrack:member(1)'
-  - uid: 'word!Word.ContentControlCollection#context:member'
-    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-    name: context
-    fullName: context
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'context: RequestContext;'
-      return:
-        type:
-          - 'word!Word.RequestContext:class'
-  - uid: 'word!Word.ContentControlCollection#getById:member(1)'
-    summary: |-
-      按其标识符获取内容控件。 如果此集合中没有带有标识符的内容控件，则会引发错误。
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: getById(id)
-    fullName: getById(id)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getById(id: number): Word.ContentControl;'
-      return:
-        type:
-          - 'word!Word.ContentControl:class'
-        description: |-
+### YamlMime:TSType
+name: Word.ContentControlCollection
+uid: word!Word.ContentControlCollection:class
+package: word!
+fullName: Word.ContentControlCollection
+summary: >-
+  包含 [ContentControl](xref:word!Word.ContentControl:class) 对象的集合。 内容控件是文档中绑定的、有可能添加标签的区域，它们充当特定类型的内容的容器。 单个内容控件可能包含诸如图片、表或格式化文本段落等内容。 当前仅支持富文本内容控件。
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          // Run a batch operation against the Word object model.
-          Word.run(function (context) {
-
-              // Create a proxy object for the content control that contains a specific id.
-              var contentControl = context.document.contentControls.getById(30086310);
-
-              // Queue a command to load the text property for a content control.
-              context.load(contentControl, 'text');
-
-              // Synchronize the document state by executing the queued commands,
-              // and return a promise to indicate task completion.
-              return context.sync().then(function () {
-                  console.log('The content control with that Id has been found in this document.');
-              });
-          })
-          .catch(function (error) {
-              console.log('Error: ' + JSON.stringify(error));
-              if (error instanceof OfficeExtension.Error) {
-                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: id
-          description: 必需。 内容控件的标识符。
-          type:
-            - number
-  - uid: 'word!Word.ContentControlCollection#getByTag:member(1)'
-    summary: |-
-      获取具有指定标记的内容控件。
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: getByTag(tag)
-    fullName: getByTag(tag)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getByTag(tag: string): Word.ContentControlCollection;'
-      return:
-        type:
-          - 'word!Word.ContentControlCollection:class'
-        description: |-
+  \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: word!Word.ContentControlCollection#context:member
+  package: word!
+  fullName: context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="word!Word.RequestContext:class" />
+- name: items
+  uid: word!Word.ContentControlCollection#items:member
+  package: word!
+  fullName: items
+  summary: 获取此集合中已加载的子项。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly items: Word.ContentControl[];'
+    return:
+      type: <xref uid="word!Word.ContentControl:class" />[]
+methods:
+- name: getById(id)
+  uid: word!Word.ContentControlCollection#getById:member(1)
+  package: word!
+  fullName: getById(id)
+  summary: >-
+    按其标识符获取内容控件。 如果此集合中没有带有标识符的内容控件，则会引发错误。
 
 
-          #### <a name="examples"></a>示例
-
-          ```typescript
-          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/word/90-scenarios/doc-assembly.yaml
-          await Word.run(async (context) => {
-              let contentControls = context.document.contentControls.getByTag("customer");
-              contentControls.load("text");
-
-              await context.sync();
-
-              for (let i = 0; i < contentControls.items.length; i++) {
-                contentControls.items[i].insertText("Fabrikam", "Replace");
-              }
-
-              await context.sync();
-          });
-          ```
-      parameters:
-        - id: tag
-          description: 必需。 在内容控件上设置的标记。
-          type:
-            - string
-  - uid: 'word!Word.ContentControlCollection#getByTitle:member(1)'
-    summary: |-
-      获取具有指定标题的内容控件。
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: getByTitle(title)
-    fullName: getByTitle(title)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getByTitle(title: string): Word.ContentControlCollection;'
-      return:
-        type:
-          - 'word!Word.ContentControlCollection:class'
-        description: |-
+    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getById(id: number): Word.ContentControl;'
+    parameters:
+    - id: id
+      description: 必需。 内容控件的标识符。
+      type: number
+    return:
+      type: <xref uid="word!Word.ContentControl:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n\n    // Create a proxy object for the content control that contains a specific id.\n    var contentControl = context.document.contentControls.getById(30086310);\n\n    // Queue a command to load the text property for a content control.\n    context.load(contentControl, 'text');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        console.log('The content control with that Id has been found in this document.');\n    });\n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: getByTag(tag)
+  uid: word!Word.ContentControlCollection#getByTag:member(1)
+  package: word!
+  fullName: getByTag(tag)
+  summary: >-
+    获取具有指定标记的内容控件。
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          // Run a batch operation against the Word object model.
-          Word.run(function (context) {
-
-              // Create a proxy object for the content controls collection that contains a specific title.
-              var contentControlsWithTitle = context.document.contentControls.getByTitle('Enter Customer Address Here');
-
-              // Queue a command to load the text property for all of content controls with a specific title.
-              context.load(contentControlsWithTitle, 'text');
-
-              // Synchronize the document state by executing the queued commands,
-              // and return a promise to indicate task completion.
-              return context.sync().then(function () {
-                  if (contentControlsWithTitle.items.length === 0) {
-                      console.log(
-                          "There isn't a content control with a title of 'Enter Customer Address Here' in this document.");
-                  } else {
-                      console.log(
-                          "The first content control with the title of 'Enter Customer Address Here' has this text: " + 
-                          contentControlsWithTitle.items[0].text);
-                  }
-
-              });
-          })
-          .catch(function (error) {
-              console.log('Error: ' + JSON.stringify(error));
-              if (error instanceof OfficeExtension.Error) {
-                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-              }
-          });
-
-          // The Word-Add-in-DocumentAssembly sample has another example of using the getByTitle method.
-          // https://github.com/OfficeDev/Word-Add-in-DocumentAssembly
-          ```
-      parameters:
-        - id: title
-          description: 必需。 内容控件的标题。
-          type:
-            - string
-  - uid: 'word!Word.ContentControlCollection#getItem:member(1)'
-    summary: |-
-      按其在集合中的索引获取内容控件。
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: getItem(index)
-    fullName: getItem(index)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getItem(index: number): Word.ContentControl;'
-      return:
-        type:
-          - 'word!Word.ContentControl:class'
-        description: ''
-      parameters:
-        - id: index
-          description: 索引。
-          type:
-            - number
-  - uid: 'word!Word.ContentControlCollection#items:member'
-    summary: 获取此集合中已加载的子项。
-    name: items
-    fullName: items
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly items: Word.ContentControl[];'
-      return:
-        type:
-          - 'word!Word.ContentControlCollection#items~0:complex'
-  - uid: 'word!Word.ContentControlCollection#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(options)
-    fullName: load(options)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(options?: Word.Interfaces.ContentControlCollectionLoadOptions & Word.Interfaces.CollectionLoadOptions): Word.ContentControlCollection;'
-      return:
-        type:
-          - 'word!Word.ContentControlCollection:class'
-        description: |-
+    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getByTag(tag: string): Word.ContentControlCollection;'
+    parameters:
+    - id: tag
+      description: 必需。 在内容控件上设置的标记。
+      type: string
+    return:
+      type: <xref uid="word!Word.ContentControlCollection:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/word/90-scenarios/doc-assembly.yaml\nawait Word.run(async (context) => {\n    let contentControls = context.document.contentControls.getByTag(\"customer\");\n    contentControls.load(\"text\");\n\n    await context.sync();\n\n    for (let i = 0; i < contentControls.items.length; i++) {\n      contentControls.items[i].insertText(\"Fabrikam\", \"Replace\");\n    }\n\n    await context.sync();\n});\n```"
+- name: getByTitle(title)
+  uid: word!Word.ContentControlCollection#getByTitle:member(1)
+  package: word!
+  fullName: getByTitle(title)
+  summary: >-
+    获取具有指定标题的内容控件。
 
 
-          #### <a name="examples"></a>示例
+    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getByTitle(title: string): Word.ContentControlCollection;'
+    parameters:
+    - id: title
+      description: 必需。 内容控件的标题。
+      type: string
+    return:
+      type: <xref uid="word!Word.ContentControlCollection:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n\n    // Create a proxy object for the content controls collection that contains a specific title.\n    var contentControlsWithTitle = context.document.contentControls.getByTitle('Enter Customer Address Here');\n\n    // Queue a command to load the text property for all of content controls with a specific title.\n    context.load(contentControlsWithTitle, 'text');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        if (contentControlsWithTitle.items.length === 0) {\n            console.log(\n                \"There isn't a content control with a title of 'Enter Customer Address Here' in this document.\");\n        } else {\n            console.log(\n                \"The first content control with the title of 'Enter Customer Address Here' has this text: \" + \n                contentControlsWithTitle.items[0].text);\n        }\n\n    });\n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n\n// The Word-Add-in-DocumentAssembly sample has another example of using the getByTitle method.\n// https://github.com/OfficeDev/Word-Add-in-DocumentAssembly\n```"
+- name: getItem(index)
+  uid: word!Word.ContentControlCollection#getItem:member(1)
+  package: word!
+  fullName: getItem(index)
+  summary: >-
+    按其在集合中的索引获取内容控件。
 
-          ```javascript
-          // Run a batch operation against the Word object model.
-          Word.run(function (context) {
 
-              // Create a proxy object for the content controls collection.
-              var contentControls = context.document.contentControls;
-
-              // Queue a command to load the id property for all of the content controls.
-              context.load(contentControls, 'id');
-
-              // Synchronize the document state by executing the queued commands,
-              // and return a promise to indicate task completion.
-              return context.sync().then(function () {
-                  if (contentControls.items.length === 0) {
-                      console.log('No content control found.');
-                  }
-                  else {
-                      // Queue a command to load the properties on the first content control.
-                      contentControls.items[0].load(  'appearance,' +
-                                                      'cannotDelete,' +
-                                                      'cannotEdit,' +
-                                                      'color,' +
-                                                      'id,' +
-                                                      'placeHolderText,' +
-                                                      'removeWhenEdited,' +
-                                                      'title,' +
-                                                      'text,' +
-                                                      'type,' +
-                                                      'style,' +
-                                                      'tag,' +
-                                                      'font/size,' +
-                                                      'font/name,' +
-                                                      'font/color');
-
-                      // Synchronize the document state by executing the queued commands,
-                      // and return a promise to indicate task completion.
-                      return context.sync()
-                          .then(function () {
-                              console.log('Property values of the first content control:' +
-                                  '   ----- appearance: ' + contentControls.items[0].appearance +
-                                  '   ----- cannotDelete: ' + contentControls.items[0].cannotDelete +
-                                  '   ----- cannotEdit: ' + contentControls.items[0].cannotEdit +
-                                  '   ----- color: ' + contentControls.items[0].color +
-                                  '   ----- id: ' + contentControls.items[0].id +
-                                  '   ----- placeHolderText: ' + contentControls.items[0].placeholderText +
-                                  '   ----- removeWhenEdited: ' + contentControls.items[0].removeWhenEdited +
-                                  '   ----- title: ' + contentControls.items[0].title +
-                                  '   ----- text: ' + contentControls.items[0].text +
-                                  '   ----- type: ' + contentControls.items[0].type +
-                                  '   ----- style: ' + contentControls.items[0].style +
-                                  '   ----- tag: ' + contentControls.items[0].tag +
-                                  '   ----- font size: ' + contentControls.items[0].font.size +
-                                  '   ----- font name: ' + contentControls.items[0].font.name +
-                                  '   ----- font color: ' + contentControls.items[0].font.color);
-                      });
-                  }
-              });
-          })
-          .catch(function (error) {
-              console.log('Error: ' + JSON.stringify(error));
-              if (error instanceof OfficeExtension.Error) {
-                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-              }
-          });
-
-          // The Silly stories add-in sample shows how the load method is used
-          // to load the content control collection with the tag and title properties.
-          // https://aka.ms/sillystorywordaddin
-          ```
-      parameters:
-        - id: options
-          description: 提供要加载的对象的属性的选项。
-          type:
-            - 'word!Word.ContentControlCollection#load~0:complex'
-  - uid: 'word!Word.ContentControlCollection#load:member(2)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNames)
-    fullName: load(propertyNames)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNames?: string | string[]): Word.ContentControlCollection;'
-      return:
-        type:
-          - 'word!Word.ContentControlCollection:class'
-        description: ''
-      parameters:
-        - id: propertyNames
-          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
-          type:
-            - 'string | string[]'
-  - uid: 'word!Word.ContentControlCollection#load:member(3)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNamesAndPaths)
-    fullName: load(propertyNamesAndPaths)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Word.ContentControlCollection;'
-      return:
-        type:
-          - 'word!Word.ContentControlCollection:class'
-        description: ''
-      parameters:
-        - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
-          type:
-            - 'office!OfficeExtension.LoadOption:interface'
-  - uid: 'word!Word.ContentControlCollection#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始 `Word.ContentControlCollection` 对象是 API 对象，但 `toJSON` 方法返回一个无格式的 JavaScript 对象（类型为`Word.Interfaces.ContentControlCollectionData`<!-- -->），其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。
-    name: toJSON()
-    fullName: toJSON()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'toJSON(): Word.Interfaces.ContentControlCollectionData;'
-      return:
-        type:
-          - 'word!Word.Interfaces.ContentControlCollectionData:interface'
-        description: ''
-  - uid: 'word!Word.ContentControlCollection#track:member(1)'
-    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是的简写`context.trackedObjects.add(thisObject)`<!-- -->. 如果要在多个调用中使用此对象 `.sync` ，并在 "运行" 批处理的顺序执行之外使用此对象，并在设置属性或对对象调用方法时获取 "InvalidObjectPath" 错误，则需要在首次创建对象时将该对象添加到跟踪的对象集合中。
-    name: track()
-    fullName: track()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'track(): Word.ContentControlCollection;'
-      return:
-        type:
-          - 'word!Word.ContentControlCollection:class'
-        description: ''
-  - uid: 'word!Word.ContentControlCollection#untrack:member(1)'
-    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是的简写`context.trackedObjects.remove(thisObject)`<!-- -->. 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在 `context.sync()` 内存释放生效之前，您需要调用该过程。
-    name: untrack()
-    fullName: untrack()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'untrack(): Word.ContentControlCollection;'
-      return:
-        type:
-          - 'word!Word.ContentControlCollection:class'
-        description: ''
-references:
-  - uid: 'office!OfficeExtension.ClientObject:class'
-    name: OfficeExtension.ClientObject
-  - uid: 'word!Word.RequestContext:class'
-    name: RequestContext
-  - uid: 'word!Word.ContentControl:class'
-    name: Word.ContentControl
-  - uid: 'word!Word.ContentControlCollection:class'
-    name: Word.ContentControlCollection
-  - uid: 'word!Word.ContentControlCollection#items~0:complex'
-    name: 'Word.ContentControl[]'
-    fullName: 'Word.ContentControl[]'
-    spec.typeScript:
-      - uid: 'word!Word.ContentControl:class'
-        name: Word.ContentControl
-        fullName: Word.ContentControl
-      - name: '[]'
-        fullName: '[]'
-  - uid: 'word!Word.ContentControlCollection#load~0:complex'
-    name: Word.Interfaces.ContentControlCollectionLoadOptions & Word.Interfaces.CollectionLoadOptions
-    fullName: Word.Interfaces.ContentControlCollectionLoadOptions & Word.Interfaces.CollectionLoadOptions
-    spec.typeScript:
-      - uid: 'word!Word.Interfaces.ContentControlCollectionLoadOptions:interface'
-        name: Word.Interfaces.ContentControlCollectionLoadOptions
-        fullName: Word.Interfaces.ContentControlCollectionLoadOptions
-      - name: ' & '
-        fullName: ' & '
-      - uid: 'word!Word.Interfaces.CollectionLoadOptions:interface'
-        name: Word.Interfaces.CollectionLoadOptions
-        fullName: Word.Interfaces.CollectionLoadOptions
-  - uid: 'office!OfficeExtension.LoadOption:interface'
-    name: OfficeExtension.LoadOption
-  - uid: 'word!Word.Interfaces.ContentControlCollectionData:interface'
-    name: Word.Interfaces.ContentControlCollectionData
+    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getItem(index: number): Word.ContentControl;'
+    parameters:
+    - id: index
+      description: 索引。
+      type: number
+    return:
+      type: <xref uid="word!Word.ContentControl:class" />
+      description: ''
+- name: load(options)
+  uid: word!Word.ContentControlCollection#load:member(1)
+  package: word!
+  fullName: load(options)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Word.Interfaces.ContentControlCollectionLoadOptions & Word.Interfaces.CollectionLoadOptions): Word.ContentControlCollection;'
+    parameters:
+    - id: options
+      description: 提供要加载的对象的属性的选项。
+      type: <xref uid="word!Word.Interfaces.ContentControlCollectionLoadOptions:interface" /> & <xref uid="word!Word.Interfaces.CollectionLoadOptions:interface" />
+    return:
+      type: <xref uid="word!Word.ContentControlCollection:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n\n    // Create a proxy object for the content controls collection.\n    var contentControls = context.document.contentControls;\n\n    // Queue a command to load the id property for all of the content controls.\n    context.load(contentControls, 'id');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        if (contentControls.items.length === 0) {\n            console.log('No content control found.');\n        }\n        else {\n            // Queue a command to load the properties on the first content control.\n            contentControls.items[0].load(  'appearance,' +\n                                            'cannotDelete,' +\n                                            'cannotEdit,' +\n                                            'color,' +\n                                            'id,' +\n                                            'placeHolderText,' +\n                                            'removeWhenEdited,' +\n                                            'title,' +\n                                            'text,' +\n                                            'type,' +\n                                            'style,' +\n                                            'tag,' +\n                                            'font/size,' +\n                                            'font/name,' +\n                                            'font/color');\n\n            // Synchronize the document state by executing the queued commands,\n            // and return a promise to indicate task completion.\n            return context.sync()\n                .then(function () {\n                    console.log('Property values of the first content control:' +\n                        '   ----- appearance: ' + contentControls.items[0].appearance +\n                        '   ----- cannotDelete: ' + contentControls.items[0].cannotDelete +\n                        '   ----- cannotEdit: ' + contentControls.items[0].cannotEdit +\n                        '   ----- color: ' + contentControls.items[0].color +\n                        '   ----- id: ' + contentControls.items[0].id +\n                        '   ----- placeHolderText: ' + contentControls.items[0].placeholderText +\n                        '   ----- removeWhenEdited: ' + contentControls.items[0].removeWhenEdited +\n                        '   ----- title: ' + contentControls.items[0].title +\n                        '   ----- text: ' + contentControls.items[0].text +\n                        '   ----- type: ' + contentControls.items[0].type +\n                        '   ----- style: ' + contentControls.items[0].style +\n                        '   ----- tag: ' + contentControls.items[0].tag +\n                        '   ----- font size: ' + contentControls.items[0].font.size +\n                        '   ----- font name: ' + contentControls.items[0].font.name +\n                        '   ----- font color: ' + contentControls.items[0].font.color);\n            });\n        }\n    });\n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n\n// The Silly stories add-in sample shows how the load method is used\n// to load the content control collection with the tag and title properties.\n// https://aka.ms/sillystorywordaddin\n```"
+- name: load(propertyNames)
+  uid: word!Word.ContentControlCollection#load:member(2)
+  package: word!
+  fullName: load(propertyNames)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Word.ContentControlCollection;'
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      type: string | string[]
+    return:
+      type: <xref uid="word!Word.ContentControlCollection:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: word!Word.ContentControlCollection#load:member(3)
+  package: word!
+  fullName: load(propertyNamesAndPaths)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Word.ContentControlCollection;'
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      type: <xref uid="office!OfficeExtension.LoadOption:interface" />
+    return:
+      type: <xref uid="word!Word.ContentControlCollection:class" />
+      description: ''
+- name: toJSON()
+  uid: word!Word.ContentControlCollection#toJSON:member(1)
+  package: word!
+  fullName: toJSON()
+  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始 `Word.ContentControlCollection` 对象是 API 对象，则该 `toJSON` 方法返回一个纯 JavaScript 对象 (类型为 `Word.Interfaces.ContentControlCollectionData`<!-- -->包含集合项中任何已加载属性的浅表的 "items" 数组 ) 。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Word.Interfaces.ContentControlCollectionData;'
+    return:
+      type: <xref uid="word!Word.Interfaces.ContentControlCollectionData:interface" />
+      description: ''
+- name: track()
+  uid: word!Word.ContentControlCollection#track:member(1)
+  package: word!
+  fullName: track()
+  summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是的简写 `context.trackedObjects.add(thisObject)`<!-- -->. 如果要在多个调用中使用此对象 `.sync` ，并在 "运行" 批处理的顺序执行之外使用此对象，并在设置属性或对对象调用方法时获取 "InvalidObjectPath" 错误，则需要在首次创建对象时将该对象添加到跟踪的对象集合中。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'track(): Word.ContentControlCollection;'
+    return:
+      type: <xref uid="word!Word.ContentControlCollection:class" />
+      description: ''
+- name: untrack()
+  uid: word!Word.ContentControlCollection#untrack:member(1)
+  package: word!
+  fullName: untrack()
+  summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是的简写 `context.trackedObjects.remove(thisObject)`<!-- -->. 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在 `context.sync()` 内存释放生效之前，您需要调用该过程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'untrack(): Word.ContentControlCollection;'
+    return:
+      type: <xref uid="word!Word.ContentControlCollection:class" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 51eb07f2f99accd14832bae6756c16c44eb0bc1f
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49263384"
