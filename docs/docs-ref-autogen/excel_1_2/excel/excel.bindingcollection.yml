@@ -1,308 +1,170 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'excel!Excel.BindingCollection:class'
-    summary: |-
-      表示属于工作簿的所有绑定对象的集合。
-
-      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: Excel.BindingCollection
-    fullName: Excel.BindingCollection
-    langs:
-      - typeScript
-    type: class
-    extends:
-      - 'office!OfficeExtension.ClientObject:class'
-    package: excel!
-    children:
-      - 'excel!Excel.BindingCollection#context:member'
-      - 'excel!Excel.BindingCollection#count:member'
-      - 'excel!Excel.BindingCollection#getItem:member(1)'
-      - 'excel!Excel.BindingCollection#getItemAt:member(1)'
-      - 'excel!Excel.BindingCollection#items:member'
-      - 'excel!Excel.BindingCollection#load:member(1)'
-      - 'excel!Excel.BindingCollection#load:member(2)'
-      - 'excel!Excel.BindingCollection#load:member(3)'
-      - 'excel!Excel.BindingCollection#toJSON:member(1)'
-  - uid: 'excel!Excel.BindingCollection#context:member'
-    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-    name: context
-    fullName: context
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'context: RequestContext;'
-      return:
-        type:
-          - 'excel!Excel.RequestContext:class'
-  - uid: 'excel!Excel.BindingCollection#count:member'
-    summary: |-
-      返回集合中绑定的数量。
-
-      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: count
-    fullName: count
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly count: number;'
-      return:
-        type:
-          - number
-  - uid: 'excel!Excel.BindingCollection#getItem:member(1)'
-    summary: |-
-      按 ID 获取绑定对象。
-
-      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: getItem(id)
-    fullName: getItem(id)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getItem(id: string): Excel.Binding;'
-      return:
-        type:
-          - 'excel!Excel.Binding:class'
-        description: |-
+### YamlMime:TSType
+name: Excel.BindingCollection
+uid: excel!Excel.BindingCollection:class
+package: excel!
+fullName: Excel.BindingCollection
+summary: >-
+  表示属于工作簿的所有绑定对象的集合。
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          // Create a table binding to monitor data changes in the table. 
-          // When data is changed, the background color of the table will be changed to orange.
-          function addEventHandler() {
-              // Create Table1
-              Excel.run(function (ctx) { 
-                  ctx.workbook.tables.add("Sheet1!A1:C4", true);
-                  return ctx.sync().then(function() {
-                          console.log("My Diet Data Inserted!");
-                  })
-                  .catch(function (error) {
-                          console.log(JSON.stringify(error));
-                  });
-              });
-              //Create a new table binding for Table1
-              Office.context.document.bindings.addFromNamedItemAsync(
-                  "Table1", Office.CoercionType.Table, { id: "myBinding" }, function (asyncResult) {
-                  if (asyncResult.status == "failed") {
-                      console.log("Action failed with error: " + asyncResult.error.message);
-                  }
-                  else {
-                      // If succeeded, then add event handler to the table binding.
-                      Office.select("bindings#myBinding").addHandlerAsync(
-                          Office.EventType.BindingDataChanged, onBindingDataChanged);
-                  }
-              });
-          }
-              
-          // when data in the table is changed, this event will be triggered.
-          function onBindingDataChanged(eventArgs) {
-              Excel.run(function (ctx) { 
-                  // highlight the table in orange to indicate data has been changed.
-                  ctx.workbook.bindings.getItem(eventArgs.binding.id).getTable().getDataBodyRange().format.fill.color = "Orange";
-                  return ctx.sync().then(function() {
-                          console.log("The value in this table got changed!");
-                  })
-                  .catch(function (error) {
-                          console.log(JSON.stringify(error));
-                  });
-              });
-          }
-          ```
-      parameters:
-        - id: id
-          description: 要检索的绑定对象的 ID。
-          type:
-            - string
-  - uid: 'excel!Excel.BindingCollection#getItemAt:member(1)'
-    summary: |-
-      根据其在项目数组中的位置获取绑定对象。
-
-      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: getItemAt(index)
-    fullName: getItemAt(index)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getItemAt(index: number): Excel.Binding;'
-      return:
-        type:
-          - 'excel!Excel.Binding:class'
-        description: |-
+  \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.BindingCollection#context:member
+  package: excel!
+  fullName: context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: count
+  uid: excel!Excel.BindingCollection#count:member
+  package: excel!
+  fullName: count
+  summary: >-
+    返回集合中绑定的数量。
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          Excel.run(function (ctx) { 
-              var lastPosition = ctx.workbook.bindings.count - 1;
-              var binding = ctx.workbook.bindings.getItemAt(lastPosition);
-              binding.load('type')
-              return ctx.sync().then(function() {
-                      console.log(binding.type); 
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: index
-          description: 要检索的对象的索引值。 从零开始编制索引。
-          type:
-            - number
-  - uid: 'excel!Excel.BindingCollection#items:member'
-    summary: 获取此集合中已加载的子项。
-    name: items
-    fullName: items
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly items: Excel.Binding[];'
-      return:
-        type:
-          - 'excel!Excel.BindingCollection#items~0:complex'
-  - uid: 'excel!Excel.BindingCollection#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(options)
-    fullName: load(options)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(options?: Excel.Interfaces.BindingCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.BindingCollection;'
-      return:
-        type:
-          - 'excel!Excel.BindingCollection:class'
-        description: ''
-      parameters:
-        - id: options
-          description: 提供要加载的对象的属性的选项。
-          type:
-            - 'excel!Excel.BindingCollection#load~0:complex'
-  - uid: 'excel!Excel.BindingCollection#load:member(2)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNames)
-    fullName: load(propertyNames)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNames?: string | string[]): Excel.BindingCollection;'
-      return:
-        type:
-          - 'excel!Excel.BindingCollection:class'
-        description: |-
+    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly count: number;'
+    return:
+      type: number
+- name: items
+  uid: excel!Excel.BindingCollection#items:member
+  package: excel!
+  fullName: items
+  summary: 获取此集合中已加载的子项。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly items: Excel.Binding[];'
+    return:
+      type: <xref uid="excel!Excel.Binding:class" />[]
+methods:
+- name: getItem(id)
+  uid: excel!Excel.BindingCollection#getItem:member(1)
+  package: excel!
+  fullName: getItem(id)
+  summary: >-
+    按 ID 获取绑定对象。
 
 
-          #### <a name="examples"></a>示例
+    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getItem(id: string): Excel.Binding;'
+    parameters:
+    - id: id
+      description: 要检索的绑定对象的 ID。
+      type: string
+    return:
+      type: <xref uid="excel!Excel.Binding:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Create a table binding to monitor data changes in the table. \n// When data is changed, the background color of the table will be changed to orange.\nfunction addEventHandler() {\n    // Create Table1\n    Excel.run(function (ctx) { \n        ctx.workbook.tables.add(\"Sheet1!A1:C4\", true);\n        return ctx.sync().then(function() {\n                console.log(\"My Diet Data Inserted!\");\n        })\n        .catch(function (error) {\n                console.log(JSON.stringify(error));\n        });\n    });\n    //Create a new table binding for Table1\n    Office.context.document.bindings.addFromNamedItemAsync(\n        \"Table1\", Office.CoercionType.Table, { id: \"myBinding\" }, function (asyncResult) {\n        if (asyncResult.status == \"failed\") {\n            console.log(\"Action failed with error: \" + asyncResult.error.message);\n        }\n        else {\n            // If succeeded, then add event handler to the table binding.\n            Office.select(\"bindings#myBinding\").addHandlerAsync(\n                Office.EventType.BindingDataChanged, onBindingDataChanged);\n        }\n    });\n}\n    \n// when data in the table is changed, this event will be triggered.\nfunction onBindingDataChanged(eventArgs) {\n    Excel.run(function (ctx) { \n        // highlight the table in orange to indicate data has been changed.\n        ctx.workbook.bindings.getItem(eventArgs.binding.id).getTable().getDataBodyRange().format.fill.color = \"Orange\";\n        return ctx.sync().then(function() {\n                console.log(\"The value in this table got changed!\");\n        })\n        .catch(function (error) {\n                console.log(JSON.stringify(error));\n        });\n    });\n}\n```"
+- name: getItemAt(index)
+  uid: excel!Excel.BindingCollection#getItemAt:member(1)
+  package: excel!
+  fullName: getItemAt(index)
+  summary: >-
+    根据其在项目数组中的位置获取绑定对象。
 
-          ```javascript
-          Excel.run(function (ctx) { 
-              var bindings = ctx.workbook.bindings;
-              bindings.load('items');
-              return ctx.sync().then(function() {
-                  for (var i = 0; i < bindings.items.length; i++)
-                  {
-                      console.log(bindings.items[i].id);
-                  }
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-          ```javascript
-          // Get the number of bindings
-          Excel.run(function (ctx) { 
-              var bindings = ctx.workbook.bindings;
-              bindings.load('count');
-              return ctx.sync().then(function() {
-                  console.log("Bindings: Count= " + bindings.count);
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: propertyNames
-          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
-          type:
-            - 'string | string[]'
-  - uid: 'excel!Excel.BindingCollection#load:member(3)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNamesAndPaths)
-    fullName: load(propertyNamesAndPaths)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.BindingCollection;'
-      return:
-        type:
-          - 'excel!Excel.BindingCollection:class'
-        description: ''
-      parameters:
-        - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
-          type:
-            - 'office!OfficeExtension.LoadOption:interface'
-  - uid: 'excel!Excel.BindingCollection#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始 `Excel.BindingCollection` 对象是 API 对象，但 `toJSON` 方法返回一个无格式的 JavaScript 对象（类型为`Excel.Interfaces.BindingCollectionData`<!-- -->），其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。
-    name: toJSON()
-    fullName: toJSON()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'toJSON(): Excel.Interfaces.BindingCollectionData;'
-      return:
-        type:
-          - 'excel!Excel.Interfaces.BindingCollectionData:interface'
-        description: ''
-references:
-  - uid: 'office!OfficeExtension.ClientObject:class'
-    name: OfficeExtension.ClientObject
-  - uid: 'excel!Excel.RequestContext:class'
-    name: RequestContext
-  - uid: 'excel!Excel.Binding:class'
-    name: Excel.Binding
-  - uid: 'excel!Excel.BindingCollection#items~0:complex'
-    name: 'Excel.Binding[]'
-    fullName: 'Excel.Binding[]'
-    spec.typeScript:
-      - uid: 'excel!Excel.Binding:class'
-        name: Excel.Binding
-        fullName: Excel.Binding
-      - name: '[]'
-        fullName: '[]'
-  - uid: 'excel!Excel.BindingCollection:class'
-    name: Excel.BindingCollection
-  - uid: 'excel!Excel.BindingCollection#load~0:complex'
-    name: Excel.Interfaces.BindingCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
-    fullName: Excel.Interfaces.BindingCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
-    spec.typeScript:
-      - uid: 'excel!Excel.Interfaces.BindingCollectionLoadOptions:interface'
-        name: Excel.Interfaces.BindingCollectionLoadOptions
-        fullName: Excel.Interfaces.BindingCollectionLoadOptions
-      - name: ' & '
-        fullName: ' & '
-      - uid: 'excel!Excel.Interfaces.CollectionLoadOptions:interface'
-        name: Excel.Interfaces.CollectionLoadOptions
-        fullName: Excel.Interfaces.CollectionLoadOptions
-  - uid: 'office!OfficeExtension.LoadOption:interface'
-    name: OfficeExtension.LoadOption
-  - uid: 'excel!Excel.Interfaces.BindingCollectionData:interface'
-    name: Excel.Interfaces.BindingCollectionData
+
+    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getItemAt(index: number): Excel.Binding;'
+    parameters:
+    - id: index
+      description: 要检索的对象的索引值。 从零开始编制索引。
+      type: number
+    return:
+      type: <xref uid="excel!Excel.Binding:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var lastPosition = ctx.workbook.bindings.count - 1;\n    var binding = ctx.workbook.bindings.getItemAt(lastPosition);\n    binding.load('type')\n    return ctx.sync().then(function() {\n            console.log(binding.type); \n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(options)
+  uid: excel!Excel.BindingCollection#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.BindingCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.BindingCollection;'
+    parameters:
+    - id: options
+      description: 提供要加载的对象的属性的选项。
+      type: <xref uid="excel!Excel.Interfaces.BindingCollectionLoadOptions:interface" /> & <xref uid="excel!Excel.Interfaces.CollectionLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.BindingCollection:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.BindingCollection#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.BindingCollection;'
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.BindingCollection:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) { \n    var bindings = ctx.workbook.bindings;\n    bindings.load('items');\n    return ctx.sync().then(function() {\n        for (var i = 0; i < bindings.items.length; i++)\n        {\n            console.log(bindings.items[i].id);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Get the number of bindings\nExcel.run(function (ctx) { \n    var bindings = ctx.workbook.bindings;\n    bindings.load('count');\n    return ctx.sync().then(function() {\n        console.log(\"Bindings: Count= \" + bindings.count);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.BindingCollection#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.BindingCollection;'
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      type: <xref uid="office!OfficeExtension.LoadOption:interface" />
+    return:
+      type: <xref uid="excel!Excel.BindingCollection:class" />
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.BindingCollection#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始 `Excel.BindingCollection` 对象是 API 对象，则该 `toJSON` 方法返回一个纯 JavaScript 对象 (类型为 `Excel.Interfaces.BindingCollectionData`<!-- -->包含集合项中任何已加载属性的浅表的 "items" 数组 ) 。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.BindingCollectionData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.BindingCollectionData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: f64ad4757a72c246150bbbbfe1f44769ee3f8317
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49279995"
