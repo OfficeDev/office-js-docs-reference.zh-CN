@@ -1,738 +1,381 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'onenote!OneNote.Application:class'
-    summary: |-
-      表示包含所有全局可寻址的 OneNote 对象的顶级对象，例如笔记本、活动笔记本和活动分区。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: OneNote.Application
-    fullName: OneNote.Application
-    langs:
-      - typeScript
-    type: class
-    extends:
-      - 'office!OfficeExtension.ClientObject:class'
-    package: onenote!
-    children:
-      - 'onenote!OneNote.Application#context:member'
-      - 'onenote!OneNote.Application#getActiveNotebook:member(1)'
-      - 'onenote!OneNote.Application#getActiveNotebookOrNull:member(1)'
-      - 'onenote!OneNote.Application#getActiveOutline:member(1)'
-      - 'onenote!OneNote.Application#getActiveOutlineOrNull:member(1)'
-      - 'onenote!OneNote.Application#getActivePage:member(1)'
-      - 'onenote!OneNote.Application#getActivePageOrNull:member(1)'
-      - 'onenote!OneNote.Application#getActiveParagraph:member(1)'
-      - 'onenote!OneNote.Application#getActiveParagraphOrNull:member(1)'
-      - 'onenote!OneNote.Application#getActiveSection:member(1)'
-      - 'onenote!OneNote.Application#getActiveSectionOrNull:member(1)'
-      - 'onenote!OneNote.Application#getWindowSize:member(1)'
-      - 'onenote!OneNote.Application#insertHtmlAtCurrentPosition:member(1)'
-      - 'onenote!OneNote.Application#isViewingDeletedNotes:member(1)'
-      - 'onenote!OneNote.Application#load:member(1)'
-      - 'onenote!OneNote.Application#load:member(2)'
-      - 'onenote!OneNote.Application#load:member(3)'
-      - 'onenote!OneNote.Application#navigateToPage:member(1)'
-      - 'onenote!OneNote.Application#navigateToPageWithClientUrl:member(1)'
-      - 'onenote!OneNote.Application#notebooks:member'
-      - 'onenote!OneNote.Application#toJSON:member(1)'
-  - uid: 'onenote!OneNote.Application#context:member'
-    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-    name: context
-    fullName: context
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'context: RequestContext;'
-      return:
-        type:
-          - 'onenote!OneNote.RequestContext:class'
-  - uid: 'onenote!OneNote.Application#getActiveNotebook:member(1)'
-    summary: |-
-      如果活动笔记本存在，则对其获取。 如果没有处于活动状态的部分，则引发 ItemNotFound。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: getActiveNotebook()
-    fullName: getActiveNotebook()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getActiveNotebook(): OneNote.Notebook;'
-      return:
-        type:
-          - 'onenote!OneNote.Notebook:class'
-        description: |-
-
-
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          OneNote.run(function (context) {
-                  
-              // Get the active notebook.
-              var notebook = context.application.getActiveNotebook();
-                      
-              // Queue a command to load the notebook. 
-              // For best performance, request specific properties.           
-              notebook.load('id,name');
-                      
-              // Run the queued commands, and return a promise to indicate task completion.
-              return context.sync()
-                  .then(function () {
-                              
-                      // Show some properties.
-                      console.log("Notebook name: " + notebook.name);
-                      console.log("Notebook ID: " + notebook.id);
-                      
-                  });
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-  - uid: 'onenote!OneNote.Application#getActiveNotebookOrNull:member(1)'
-    summary: |-
-      如果活动笔记本存在，则对其获取。 如果没有处于活动状态的部分，则返回 null。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: getActiveNotebookOrNull()
-    fullName: getActiveNotebookOrNull()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getActiveNotebookOrNull(): OneNote.Notebook;'
-      return:
-        type:
-          - 'onenote!OneNote.Notebook:class'
-        description: |-
-
-
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          OneNote.run(function (context) {
-
-              // Get the active notebook.
-              var notebook = context.application.getActiveNotebookOrNull();
-
-              // Queue a command to load the notebook. 
-              // For best performance, request specific properties.           
-              notebook.load('id,name');
-
-              // Run the queued commands, and return a promise to indicate task completion.
-              return context.sync()
-                  .then(function () {
-
-                      // check if active notebook is set.
-                      if (!notebook.isNull) {
-                          console.log("Notebook name: " + notebook.name);
-                          console.log("Notebook ID: " + notebook.id);
-                      }
-                  });
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-  - uid: 'onenote!OneNote.Application#getActiveOutline:member(1)'
-    summary: |-
-      如果活动边框存在，则对其获取，如果没有处于活动状态的边框，则引发 ItemNotFound。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: getActiveOutline()
-    fullName: getActiveOutline()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getActiveOutline(): OneNote.Outline;'
-      return:
-        type:
-          - 'onenote!OneNote.Outline:class'
-        description: |-
-
-
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          OneNote.run(function (context) {
-
-              // get active outline.
-              var outline = context.application.getActiveOutline();
-
-              // Queue a command to load the id of the outline.         
-              outline.load('id');
-
-              // Run the queued commands, and return a promise to indicate task completion.
-              return context.sync()
-                  .then(function () {
-
-                      // Show some properties.
-                      console.log("outline id: " + outline.id);
-                  });
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-  - uid: 'onenote!OneNote.Application#getActiveOutlineOrNull:member(1)'
-    summary: |-
-      如果活动边框存在，则对其获取，否则，返回 null。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: getActiveOutlineOrNull()
-    fullName: getActiveOutlineOrNull()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getActiveOutlineOrNull(): OneNote.Outline;'
-      return:
-        type:
-          - 'onenote!OneNote.Outline:class'
-        description: |-
-
-
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          OneNote.run(function (context) {
-
-              // get active outline.
-              var outline = context.application.getActiveOutlineOrNull();
-
-              // Queue a command to load the id of the outline.         
-              outline.load('id');
-
-              // Run the queued commands, and return a promise to indicate task completion.
-              return context.sync()
-                  .then(function () {
-
-                      if (!outline.isNull) {
-                          console.log("outline id: " + outline.id);
-                      }
-                  });
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-  - uid: 'onenote!OneNote.Application#getActivePage:member(1)'
-    summary: |-
-      如果活动页面存在，则对其获取。 如果没有处于活动状态的页面，则引发 ItemNotFound。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: getActivePage()
-    fullName: getActivePage()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getActivePage(): OneNote.Page;'
-      return:
-        type:
-          - 'onenote!OneNote.Page:class'
-        description: |-
-
-
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          OneNote.run(function (context) {
-                  
-              // Get the active page.
-              var page = context.application.getActivePage();
-                      
-              // Queue a command to load the page. 
-              // For best performance, request specific properties.           
-              page.load('id,title');
-                      
-              // Run the queued commands, and return a promise to indicate task completion.
-              return context.sync()
-                  .then(function () {
-                              
-                      // Show some properties.
-                      console.log("Page title: " + page.title);
-                      console.log("Page ID: " + page.id);
-                      
-                  });
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-  - uid: 'onenote!OneNote.Application#getActivePageOrNull:member(1)'
-    summary: |-
-      如果活动页面存在，则对其获取。 如果没有处于活动状态的页面，则返回 null。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: getActivePageOrNull()
-    fullName: getActivePageOrNull()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getActivePageOrNull(): OneNote.Page;'
-      return:
-        type:
-          - 'onenote!OneNote.Page:class'
-        description: |-
-
-
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          OneNote.run(function (context) {
-
-              // Get the active page.
-              var page = context.application.getActivePageOrNull();
-
-              // Queue a command to load the page. 
-              // For best performance, request specific properties.           
-              page.load('id,title');
-
-              // Run the queued commands, and return a promise to indicate task completion.
-              return context.sync()
-                  .then(function () {
-                      
-                      if (!page.isNull) {
-                          // Show some properties.
-                          console.log("Page title: " + page.title);
-                          console.log("Page ID: " + page.id);
-                      }
-                  });
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-  - uid: 'onenote!OneNote.Application#getActiveParagraph:member(1)'
-    summary: |-
-      如果活动段落存在，则获取该段落（如果没有任何段落处于活动状态）将引发 ItemNotFound。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: getActiveParagraph()
-    fullName: getActiveParagraph()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getActiveParagraph(): OneNote.Paragraph;'
-      return:
-        type:
-          - 'onenote!OneNote.Paragraph:class'
-        description: ''
-  - uid: 'onenote!OneNote.Application#getActiveParagraphOrNull:member(1)'
-    summary: |-
-      获取活动段落（如果有），否则返回 null。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: getActiveParagraphOrNull()
-    fullName: getActiveParagraphOrNull()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getActiveParagraphOrNull(): OneNote.Paragraph;'
-      return:
-        type:
-          - 'onenote!OneNote.Paragraph:class'
-        description: ''
-  - uid: 'onenote!OneNote.Application#getActiveSection:member(1)'
-    summary: |-
-      如果活动分区存在，则对其获取。 如果没有处于活动状态的分区，则引发 ItemNotFound。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: getActiveSection()
-    fullName: getActiveSection()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getActiveSection(): OneNote.Section;'
-      return:
-        type:
-          - 'onenote!OneNote.Section:class'
-        description: |-
-
-
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          OneNote.run(function (context) {
-                  
-              // Get the active section.
-              var section = context.application.getActiveSection();
-                      
-              // Queue a command to load the section. 
-              // For best performance, request specific properties.           
-              section.load('id,name');
-                      
-              // Run the queued commands, and return a promise to indicate task completion.
-              return context.sync()
-                  .then(function () {
-                              
-                      // Show some properties.
-                      console.log("Section name: " + section.name);
-                      console.log("Section ID: " + section.id);
-                      
-                  });
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-  - uid: 'onenote!OneNote.Application#getActiveSectionOrNull:member(1)'
-    summary: |-
-      如果活动分区存在，则对其获取。 如果没有处于活动状态的分区，则返回 null。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: getActiveSectionOrNull()
-    fullName: getActiveSectionOrNull()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getActiveSectionOrNull(): OneNote.Section;'
-      return:
-        type:
-          - 'onenote!OneNote.Section:class'
-        description: |-
-
-
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          OneNote.run(function (context) {
-
-              // Get the active section.
-              var section = context.application.getActiveSectionOrNull();
-
-              // Queue a command to load the section. 
-              // For best performance, request specific properties.           
-              section.load('id,name');
-
-              // Run the queued commands, and return a promise to indicate task completion.
-              return context.sync()
-                  .then(function () {
-                      if (!section.isNull) {
-                          // Show some properties.
-                          console.log("Section name: " + section.name);
-                          console.log("Section ID: " + section.id);
-                      }
-                  });
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-  - uid: 'onenote!OneNote.Application#getWindowSize:member(1)'
-    name: getWindowSize()
-    fullName: getWindowSize()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getWindowSize(): OfficeExtension.ClientResult<number[]>;'
-      return:
-        type:
-          - 'onenote!OneNote.Application#getWindowSize~0:complex'
-        description: ''
-  - uid: 'onenote!OneNote.Application#insertHtmlAtCurrentPosition:member(1)'
-    name: insertHtmlAtCurrentPosition(html)
-    fullName: insertHtmlAtCurrentPosition(html)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'insertHtmlAtCurrentPosition(html: string): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: html
-          description: ''
-          type:
-            - string
-  - uid: 'onenote!OneNote.Application#isViewingDeletedNotes:member(1)'
-    name: isViewingDeletedNotes()
-    fullName: isViewingDeletedNotes()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'isViewingDeletedNotes(): OfficeExtension.ClientResult<boolean>;'
-      return:
-        type:
-          - 'onenote!OneNote.Application#isViewingDeletedNotes~0:complex'
-        description: ''
-  - uid: 'onenote!OneNote.Application#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
-    remarks: |-
-      除了此签名之外，此方法还具有以下签名：
-
-      `load(option?: string | string[]): OneNote.Application`-Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
-
-      `load(option?: { select?: string; expand?: string; }): OneNote.Application`-Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Application`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
-    name: load(option)
-    fullName: load(option)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(option?: OneNote.Interfaces.ApplicationLoadOptions): OneNote.Application;'
-      return:
-        type:
-          - 'onenote!OneNote.Application:class'
-        description: ''
-      parameters:
-        - id: option
-          description: ''
-          type:
-            - 'onenote!OneNote.Interfaces.ApplicationLoadOptions:interface'
-  - uid: 'onenote!OneNote.Application#load:member(2)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNames)
-    fullName: load(propertyNames)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNames?: string | string[]): OneNote.Application;'
-      return:
-        type:
-          - 'onenote!OneNote.Application:class'
-        description: ''
-      parameters:
-        - id: propertyNames
-          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
-          type:
-            - 'string | string[]'
-  - uid: 'onenote!OneNote.Application#load:member(3)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNamesAndPaths)
-    fullName: load(propertyNamesAndPaths)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.Application;'
-      return:
-        type:
-          - 'onenote!OneNote.Application:class'
-        description: ''
-      parameters:
-        - id: propertyNamesAndPaths
-          description: 其中，propertyNamesAndPaths 是用逗号分隔的字符串，用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串，用于指定要加载的导航属性。
-          type:
-            - '{ select?: string; expand?: string; }'
-  - uid: 'onenote!OneNote.Application#navigateToPage:member(1)'
-    summary: |-
-      打开应用程序实例中指定的页面。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: navigateToPage(page)
-    fullName: navigateToPage(page)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'navigateToPage(page: OneNote.Page): void;'
-      return:
-        type:
-          - void
-        description: |-
-
-
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          OneNote.run(function (context) {
-                  
-              // Get the pages in the current section.
-              var pages = context.application.getActiveSection().pages;
-                      
-              // Queue a command to load the pages. 
-              // For best performance, request specific properties.           
-              pages.load('id');
-                      
-              // Run the queued commands, and return a promise to indicate task completion.
-              return context.sync()
-                  .then(function () {
-                              
-                      // This example loads the first page in the section.
-                      var page = pages.items[0];
-                                  
-                      // Open the page in the application.                    
-                      context.application.navigateToPage(page);
-                              
-                      // Run the queued command.
-                      return context.sync();
-                  });
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: page
-          description: 要打开的页面。
-          type:
-            - 'onenote!OneNote.Page:class'
-  - uid: 'onenote!OneNote.Application#navigateToPageWithClientUrl:member(1)'
-    summary: |-
-      获取特定页面，并在应用程序实例中将其打开。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: navigateToPageWithClientUrl(url)
-    fullName: navigateToPageWithClientUrl(url)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'navigateToPageWithClientUrl(url: string): OneNote.Page;'
-      return:
-        type:
-          - 'onenote!OneNote.Page:class'
-        description: |-
-
-
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          OneNote.run(function (context) {
-
-              // Get the pages in the current section.
-              var pages = context.application.getActiveSection().pages;
-
-              // Queue a command to load the pages. 
-              // For best performance, request specific properties.           
-              pages.load('clientUrl');
-
-              // Run the queued commands, and return a promise to indicate task completion.
-              return context.sync()
-                  .then(function () {
-
-                      // This example loads the first page in the section.
-                      var page = pages.items[0];
-
-                      // Open the page in the application.                    
-                      context.application.navigateToPageWithClientUrl(page.clientUrl);
-
-                      // Run the queued command.
-                      return context.sync();
-                  });
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: url
-          description: 要打开页面的客户端 url。
-          type:
-            - string
-  - uid: 'onenote!OneNote.Application#notebooks:member'
-    summary: |-
-      获取 OneNote 应用程序实例中打开的笔记本集合。 在 web 上的 OneNote 中，在应用程序实例中一次仅打开一个笔记本。 只读。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: notebooks
-    fullName: notebooks
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly notebooks: OneNote.NotebookCollection;'
-      return:
-        type:
-          - 'onenote!OneNote.NotebookCollection:class'
-  - uid: 'onenote!OneNote.Application#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始的 OneNote. Application 对象是一个 API 对象，但该 `toJSON` 方法返回一个简单的 JavaScript 对象（类型为`OneNote.Interfaces.ApplicationData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
-    name: toJSON()
-    fullName: toJSON()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'toJSON(): OneNote.Interfaces.ApplicationData;'
-      return:
-        type:
-          - 'onenote!OneNote.Interfaces.ApplicationData:interface'
-        description: ''
-references:
-  - uid: 'office!OfficeExtension.ClientObject:class'
-    name: OfficeExtension.ClientObject
-  - uid: 'onenote!OneNote.RequestContext:class'
-    name: RequestContext
-  - uid: 'onenote!OneNote.Notebook:class'
-    name: OneNote.Notebook
-  - uid: 'onenote!OneNote.Outline:class'
-    name: OneNote.Outline
-  - uid: 'onenote!OneNote.Page:class'
-    name: OneNote.Page
-  - uid: 'onenote!OneNote.Paragraph:class'
-    name: OneNote.Paragraph
-  - uid: 'onenote!OneNote.Section:class'
-    name: OneNote.Section
-  - uid: 'onenote!OneNote.Application#getWindowSize~0:complex'
-    name: 'OfficeExtension.ClientResult<number[]>'
-    fullName: 'OfficeExtension.ClientResult<number[]>'
-    spec.typeScript:
-      - uid: 'office!OfficeExtension.ClientResult:class'
-        name: OfficeExtension.ClientResult
-        fullName: OfficeExtension.ClientResult
-      - name: '<number[]>'
-        fullName: '<number[]>'
-  - uid: 'onenote!OneNote.Application#isViewingDeletedNotes~0:complex'
-    name: OfficeExtension.ClientResult<boolean>
-    fullName: OfficeExtension.ClientResult<boolean>
-    spec.typeScript:
-      - uid: 'office!OfficeExtension.ClientResult:class'
-        name: OfficeExtension.ClientResult
-        fullName: OfficeExtension.ClientResult
-      - name: <boolean>
-        fullName: <boolean>
-  - uid: 'onenote!OneNote.Application:class'
-    name: OneNote.Application
-  - uid: 'onenote!OneNote.Interfaces.ApplicationLoadOptions:interface'
-    name: OneNote.Interfaces.ApplicationLoadOptions
-  - uid: 'onenote!OneNote.NotebookCollection:class'
-    name: OneNote.NotebookCollection
-  - uid: 'onenote!OneNote.Interfaces.ApplicationData:interface'
-    name: OneNote.Interfaces.ApplicationData
+### YamlMime:TSType
+name: OneNote.Application
+uid: onenote!OneNote.Application:class
+package: onenote!
+fullName: OneNote.Application
+summary: >-
+  表示包含所有全局可寻址的 OneNote 对象的顶级对象，例如笔记本、活动笔记本和活动分区。
+
+
+  \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: onenote!OneNote.Application#context:member
+  package: onenote!
+  fullName: context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="onenote!OneNote.RequestContext:class" />
+- name: notebooks
+  uid: onenote!OneNote.Application#notebooks:member
+  package: onenote!
+  fullName: notebooks
+  summary: >-
+    获取 OneNote 应用程序实例中打开的笔记本集合。 在 web 上的 OneNote 中，在应用程序实例中一次仅打开一个笔记本。 只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly notebooks: OneNote.NotebookCollection;'
+    return:
+      type: <xref uid="onenote!OneNote.NotebookCollection:class" />
+methods:
+- name: getActiveNotebook()
+  uid: onenote!OneNote.Application#getActiveNotebook:member(1)
+  package: onenote!
+  fullName: getActiveNotebook()
+  summary: >-
+    如果活动笔记本存在，则对其获取。 如果没有处于活动状态的部分，则引发 ItemNotFound。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getActiveNotebook(): OneNote.Notebook;'
+    return:
+      type: <xref uid="onenote!OneNote.Notebook:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n        \n    // Get the active notebook.\n    var notebook = context.application.getActiveNotebook();\n            \n    // Queue a command to load the notebook. \n    // For best performance, request specific properties.           \n    notebook.load('id,name');\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n                    \n            // Show some properties.\n            console.log(\"Notebook name: \" + notebook.name);\n            console.log(\"Notebook ID: \" + notebook.id);\n            \n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: getActiveNotebookOrNull()
+  uid: onenote!OneNote.Application#getActiveNotebookOrNull:member(1)
+  package: onenote!
+  fullName: getActiveNotebookOrNull()
+  summary: >-
+    如果活动笔记本存在，则对其获取。 如果没有处于活动状态的部分，则返回 null。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getActiveNotebookOrNull(): OneNote.Notebook;'
+    return:
+      type: <xref uid="onenote!OneNote.Notebook:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the active notebook.\n    var notebook = context.application.getActiveNotebookOrNull();\n\n    // Queue a command to load the notebook. \n    // For best performance, request specific properties.           \n    notebook.load('id,name');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            // check if active notebook is set.\n            if (!notebook.isNull) {\n                console.log(\"Notebook name: \" + notebook.name);\n                console.log(\"Notebook ID: \" + notebook.id);\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: getActiveOutline()
+  uid: onenote!OneNote.Application#getActiveOutline:member(1)
+  package: onenote!
+  fullName: getActiveOutline()
+  summary: >-
+    如果活动边框存在，则对其获取，如果没有处于活动状态的边框，则引发 ItemNotFound。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getActiveOutline(): OneNote.Outline;'
+    return:
+      type: <xref uid="onenote!OneNote.Outline:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // get active outline.\n    var outline = context.application.getActiveOutline();\n\n    // Queue a command to load the id of the outline.         \n    outline.load('id');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            // Show some properties.\n            console.log(\"outline id: \" + outline.id);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: getActiveOutlineOrNull()
+  uid: onenote!OneNote.Application#getActiveOutlineOrNull:member(1)
+  package: onenote!
+  fullName: getActiveOutlineOrNull()
+  summary: >-
+    如果活动边框存在，则对其获取，否则，返回 null。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getActiveOutlineOrNull(): OneNote.Outline;'
+    return:
+      type: <xref uid="onenote!OneNote.Outline:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // get active outline.\n    var outline = context.application.getActiveOutlineOrNull();\n\n    // Queue a command to load the id of the outline.         \n    outline.load('id');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            if (!outline.isNull) {\n                console.log(\"outline id: \" + outline.id);\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: getActivePage()
+  uid: onenote!OneNote.Application#getActivePage:member(1)
+  package: onenote!
+  fullName: getActivePage()
+  summary: >-
+    如果活动页面存在，则对其获取。 如果没有处于活动状态的页面，则引发 ItemNotFound。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getActivePage(): OneNote.Page;'
+    return:
+      type: <xref uid="onenote!OneNote.Page:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n        \n    // Get the active page.\n    var page = context.application.getActivePage();\n            \n    // Queue a command to load the page. \n    // For best performance, request specific properties.           \n    page.load('id,title');\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n                    \n            // Show some properties.\n            console.log(\"Page title: \" + page.title);\n            console.log(\"Page ID: \" + page.id);\n            \n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: getActivePageOrNull()
+  uid: onenote!OneNote.Application#getActivePageOrNull:member(1)
+  package: onenote!
+  fullName: getActivePageOrNull()
+  summary: >-
+    如果活动页面存在，则对其获取。 如果没有处于活动状态的页面，则返回 null。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getActivePageOrNull(): OneNote.Page;'
+    return:
+      type: <xref uid="onenote!OneNote.Page:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the active page.\n    var page = context.application.getActivePageOrNull();\n\n    // Queue a command to load the page. \n    // For best performance, request specific properties.           \n    page.load('id,title');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            \n            if (!page.isNull) {\n                // Show some properties.\n                console.log(\"Page title: \" + page.title);\n                console.log(\"Page ID: \" + page.id);\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: getActiveParagraph()
+  uid: onenote!OneNote.Application#getActiveParagraph:member(1)
+  package: onenote!
+  fullName: getActiveParagraph()
+  summary: >-
+    如果活动段落存在，则获取该段落（如果没有任何段落处于活动状态）将引发 ItemNotFound。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getActiveParagraph(): OneNote.Paragraph;'
+    return:
+      type: <xref uid="onenote!OneNote.Paragraph:class" />
+      description: ''
+- name: getActiveParagraphOrNull()
+  uid: onenote!OneNote.Application#getActiveParagraphOrNull:member(1)
+  package: onenote!
+  fullName: getActiveParagraphOrNull()
+  summary: >-
+    获取活动段落（如果有），否则返回 null。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getActiveParagraphOrNull(): OneNote.Paragraph;'
+    return:
+      type: <xref uid="onenote!OneNote.Paragraph:class" />
+      description: ''
+- name: getActiveSection()
+  uid: onenote!OneNote.Application#getActiveSection:member(1)
+  package: onenote!
+  fullName: getActiveSection()
+  summary: >-
+    如果活动分区存在，则对其获取。 如果没有处于活动状态的分区，则引发 ItemNotFound。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getActiveSection(): OneNote.Section;'
+    return:
+      type: <xref uid="onenote!OneNote.Section:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n        \n    // Get the active section.\n    var section = context.application.getActiveSection();\n            \n    // Queue a command to load the section. \n    // For best performance, request specific properties.           \n    section.load('id,name');\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n                    \n            // Show some properties.\n            console.log(\"Section name: \" + section.name);\n            console.log(\"Section ID: \" + section.id);\n            \n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: getActiveSectionOrNull()
+  uid: onenote!OneNote.Application#getActiveSectionOrNull:member(1)
+  package: onenote!
+  fullName: getActiveSectionOrNull()
+  summary: >-
+    如果活动分区存在，则对其获取。 如果没有处于活动状态的分区，则返回 null。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getActiveSectionOrNull(): OneNote.Section;'
+    return:
+      type: <xref uid="onenote!OneNote.Section:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the active section.\n    var section = context.application.getActiveSectionOrNull();\n\n    // Queue a command to load the section. \n    // For best performance, request specific properties.           \n    section.load('id,name');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            if (!section.isNull) {\n                // Show some properties.\n                console.log(\"Section name: \" + section.name);\n                console.log(\"Section ID: \" + section.id);\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: getWindowSize()
+  uid: onenote!OneNote.Application#getWindowSize:member(1)
+  package: onenote!
+  fullName: getWindowSize()
+  summary: ''
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getWindowSize(): OfficeExtension.ClientResult<number[]>;'
+    return:
+      type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;number[]&gt;
+      description: ''
+- name: insertHtmlAtCurrentPosition(html)
+  uid: onenote!OneNote.Application#insertHtmlAtCurrentPosition:member(1)
+  package: onenote!
+  fullName: insertHtmlAtCurrentPosition(html)
+  summary: ''
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'insertHtmlAtCurrentPosition(html: string): void;'
+    parameters:
+    - id: html
+      description: ''
+      type: string
+    return:
+      type: void
+      description: ''
+- name: isViewingDeletedNotes()
+  uid: onenote!OneNote.Application#isViewingDeletedNotes:member(1)
+  package: onenote!
+  fullName: isViewingDeletedNotes()
+  summary: ''
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'isViewingDeletedNotes(): OfficeExtension.ClientResult<boolean>;'
+    return:
+      type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;boolean&gt;
+      description: ''
+- name: load(option)
+  uid: onenote!OneNote.Application#load:member(1)
+  package: onenote!
+  fullName: load(option)
+  summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+  remarks: >-
+    除了此签名之外，此方法还具有以下签名：
+
+
+    `load(option?: string | string[]): OneNote.Application` -Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
+
+
+    `load(option?: { select?: string; expand?: string; }): OneNote.Application` -Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Application` -仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(option?: OneNote.Interfaces.ApplicationLoadOptions): OneNote.Application;'
+    parameters:
+    - id: option
+      description: ''
+      type: <xref uid="onenote!OneNote.Interfaces.ApplicationLoadOptions:interface" />
+    return:
+      type: <xref uid="onenote!OneNote.Application:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: onenote!OneNote.Application#load:member(2)
+  package: onenote!
+  fullName: load(propertyNames)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): OneNote.Application;'
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      type: string | string[]
+    return:
+      type: <xref uid="onenote!OneNote.Application:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: onenote!OneNote.Application#load:member(3)
+  package: onenote!
+  fullName: load(propertyNamesAndPaths)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.Application;'
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中，propertyNamesAndPaths 是用逗号分隔的字符串，用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+      type: '{ select?: string; expand?: string; }'
+    return:
+      type: <xref uid="onenote!OneNote.Application:class" />
+      description: ''
+- name: navigateToPage(page)
+  uid: onenote!OneNote.Application#navigateToPage:member(1)
+  package: onenote!
+  fullName: navigateToPage(page)
+  summary: >-
+    打开应用程序实例中指定的页面。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'navigateToPage(page: OneNote.Page): void;'
+    parameters:
+    - id: page
+      description: 要打开的页面。
+      type: <xref uid="onenote!OneNote.Page:class" />
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n        \n    // Get the pages in the current section.\n    var pages = context.application.getActiveSection().pages;\n            \n    // Queue a command to load the pages. \n    // For best performance, request specific properties.           \n    pages.load('id');\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n                    \n            // This example loads the first page in the section.\n            var page = pages.items[0];\n                        \n            // Open the page in the application.                    \n            context.application.navigateToPage(page);\n                    \n            // Run the queued command.\n            return context.sync();\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: navigateToPageWithClientUrl(url)
+  uid: onenote!OneNote.Application#navigateToPageWithClientUrl:member(1)
+  package: onenote!
+  fullName: navigateToPageWithClientUrl(url)
+  summary: >-
+    获取特定页面，并在应用程序实例中将其打开。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'navigateToPageWithClientUrl(url: string): OneNote.Page;'
+    parameters:
+    - id: url
+      description: 要打开页面的客户端 url。
+      type: string
+    return:
+      type: <xref uid="onenote!OneNote.Page:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the pages in the current section.\n    var pages = context.application.getActiveSection().pages;\n\n    // Queue a command to load the pages. \n    // For best performance, request specific properties.           \n    pages.load('clientUrl');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            // This example loads the first page in the section.\n            var page = pages.items[0];\n\n            // Open the page in the application.                    \n            context.application.navigateToPageWithClientUrl(page.clientUrl);\n\n            // Run the queued command.\n            return context.sync();\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: toJSON()
+  uid: onenote!OneNote.Application#toJSON:member(1)
+  package: onenote!
+  fullName: toJSON()
+  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，将调用 `toJSON` 传递给它的对象的方法。 ) 而原始的 OneNote. Application 对象是 API 对象，则该 `toJSON` 方法返回一个纯 JavaScript 对象 (类型为 `OneNote.Interfaces.ApplicationData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): OneNote.Interfaces.ApplicationData;'
+    return:
+      type: <xref uid="onenote!OneNote.Interfaces.ApplicationData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 82caaf93ae1162bc79ab11bde88a836d1327950a
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49183081"

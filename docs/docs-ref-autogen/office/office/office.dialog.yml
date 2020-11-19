@@ -1,103 +1,102 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'office!Office.Dialog:interface'
-    summary: 调用时返回的对象 `UI.displayDialogAsync` 。 它公开用于注册事件处理程序和关闭对话框的方法。
-    remarks: '**要求集**： [DialogAPI](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)'
-    name: Office.Dialog
-    fullName: Office.Dialog
-    langs:
-      - typeScript
-    type: interface
-    package: office!
-    children:
-      - 'office!Office.Dialog#addEventHandler:member(1)'
-      - 'office!Office.Dialog#close:member(1)'
-      - 'office!Office.Dialog#messageChild:member(1)'
-      - 'office!Office.Dialog#sendMessage:member(1)'
-  - uid: 'office!Office.Dialog#addEventHandler:member(1)'
-    summary: |-
-      注册事件处理程序。支持两种类型的事件：
+### YamlMime:TSType
+name: Office.Dialog
+uid: office!Office.Dialog:interface
+package: office!
+fullName: Office.Dialog
+summary: 调用时返回的对象 `UI.displayDialogAsync` 。 它公开用于注册事件处理程序和关闭对话框的方法。
+remarks: '**要求集**： [DialogAPI](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)'
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+- name: addEventHandler(eventType, handler)
+  uid: office!Office.Dialog#addEventHandler:member(1)
+  package: office!
+  fullName: addEventHandler(eventType, handler)
+  summary: >-
+    注册事件处理程序。支持两种类型的事件：
 
-      - DialogMessageReceived。在对话框向其父级发送消息时触发。
 
-      - DialogEventReceived。在对话框已关闭或以其他方式卸载时触发。
-    name: 'addEventHandler(eventType, handler)'
-    fullName: 'addEventHandler(eventType, handler)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addEventHandler(eventType: Office.EventType, handler: (args: {message: string | boolean} | {error: number}) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: eventType
-          description: 必须是 DialogMessageReceived 或 DialogEventReceived。
-          type:
-            - 'office!Office.EventType:enum'
-        - id: handler
-          description: 接受具有属性的对象的函数 `message` （如果 DialogEventReceived 为 DialogMessageReceived）或具有属性的对象 `error` （如果事件选择为）。
-          type:
-            - '(args: {message: string | boolean} | {error: number}) => void'
-  - uid: 'office!Office.Dialog#close:member(1)'
-    summary: 从父页调用以关闭相应的对话框。
-    name: close()
-    fullName: close()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'close(): void;'
-      return:
-        type:
-          - void
-        description: ''
-  - uid: 'office!Office.Dialog#messageChild:member(1)'
-    summary: 将来自主机页（如任务窗格或无 UI 的函数文件）的消息传递到从页面打开的对话框。
-    remarks: |-
-      **主机**： Excel、Outlook (最低要求集：邮箱 1.9) 、PowerPoint、Word
+    - DialogMessageReceived。在对话框向其父级发送消息时触发。
 
-      **要求集**：
 
-      - [DialogAPI 1。2](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)
+    - DialogEventReceived。在对话框已关闭或以其他方式卸载时触发。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addEventHandler(eventType: Office.EventType, handler: (args: {message: string | boolean} | {error: number}) => void): void;'
+    parameters:
+    - id: eventType
+      description: 必须是 DialogMessageReceived 或 DialogEventReceived。
+      type: <xref uid="office!Office.EventType:enum" />
+    - id: handler
+      description: 接受具有属性的对象的函数 `message` （如果 DialogEventReceived 为 DialogMessageReceived）或具有属性的对象 `error` （如果事件选择为）。
+      type: '(args: {message: string | boolean} | {error: number}) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: close()
+  uid: office!Office.Dialog#close:member(1)
+  package: office!
+  fullName: close()
+  summary: 从父页调用以关闭相应的对话框。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'close(): void;'
+    return:
+      type: void
+      description: ''
+- name: messageChild(message)
+  uid: office!Office.Dialog#messageChild:member(1)
+  package: office!
+  fullName: messageChild(message)
+  summary: 将来自主机页（如任务窗格或无 UI 的函数文件）的消息传递到从页面打开的对话框。
+  remarks: >-
+    **主机**： Excel、Outlook (最低要求集：邮箱 1.9) 、PowerPoint、Word
 
-      - [Mailbox 1.9](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)
-    name: messageChild(message)
-    fullName: messageChild(message)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'messageChild(message: string): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: message
-          description: 接受来自主机页面的一条消息以传递到对话框。 可以将任何可序列化为字符串的内容（包括 JSON 和 XML）都发送。
-          type:
-            - string
-  - uid: 'office!Office.Dialog#sendMessage:member(1)'
-    summary: 仅供内部使用。 请勿在代码中调用。
-    name: sendMessage(name)
-    fullName: sendMessage(name)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'sendMessage(name: string): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: name
-          description: ''
-          type:
-            - string
-references:
-  - uid: 'office!Office.EventType:enum'
-    name: Office.EventType
+
+    **要求集**：
+
+
+    - [DialogAPI 1。2](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)
+
+
+    - [Mailbox 1.9](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'messageChild(message: string): void;'
+    parameters:
+    - id: message
+      description: 接受来自主机页面的一条消息以传递到对话框。 可以将任何可序列化为字符串的内容（包括 JSON 和 XML）都发送。
+      type: string
+    return:
+      type: void
+      description: ''
+- name: sendMessage(name)
+  uid: office!Office.Dialog#sendMessage:member(1)
+  package: office!
+  fullName: sendMessage(name)
+  summary: 仅供内部使用。 请勿在代码中调用。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'sendMessage(name: string): void;'
+    parameters:
+    - id: name
+      description: ''
+      type: string
+    return:
+      type: void
+      description: ''
+metadata:
+  ms.openlocfilehash: c007533112e45e4ffec29b45883add8161532d6c
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49183361"

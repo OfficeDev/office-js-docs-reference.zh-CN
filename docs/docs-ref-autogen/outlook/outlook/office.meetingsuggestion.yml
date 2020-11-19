@@ -1,125 +1,126 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'outlook!Office.MeetingSuggestion:interface'
-    summary: |-
-      表示在项目中找到的建议会议。 仅限阅读模式。
+### YamlMime:TSType
+name: Office.MeetingSuggestion
+uid: outlook!Office.MeetingSuggestion:interface
+package: outlook!
+fullName: Office.MeetingSuggestion
+summary: >-
+  表示在项目中找到的建议会议。 仅限阅读模式。
 
-      在电子邮件中建议的会议列表在对 `meetingSuggestions` `Entities` `getEntities` 活动项调用或方法时返回的对象的属性中返回 `getEntitiesByType` 。
 
-      开始和结束值是对象的字符串表示形式 `Date` ，包含建议会议开始和结束的日期和时间。 这些值用为当前用户指定的默认时区表示。
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
+  在电子邮件中建议的会议列表在对 `meetingSuggestions` `Entities` `getEntities` 活动项调用或方法时返回的对象的属性中返回 `getEntitiesByType` 。
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：读取
 
-      #### <a name="examples"></a>示例
+  开始和结束值是对象的字符串表示形式 `Date` ，包含建议会议开始和结束的日期和时间。 这些值用为当前用户指定的默认时区表示。
+remarks: >-
+  **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
-      ```javascript
-      var item = Office.context.mailbox.item;
-      // Get an array of strings that represent meeting suggestions in the current item's body.
-      var meetingSuggestions = item.getEntitiesByType(Office.MailboxEnums.EntityType.MeetingSuggestion);
-      console.log("There are " + meetingSuggestions.length + " meeting suggestions.")
-      meetingSuggestions.forEach(function (meetingSuggestion) {
-          console.log("Subject: " + JSON.stringify(meetingSuggestion.subject));
-          console.log("Attendees: " + JSON.stringify(meetingSuggestion.attendees));
-          console.log("Location: " + JSON.stringify(meetingSuggestion.location));
-          console.log("Start: " + JSON.stringify(meetingSuggestion.start));
-          console.log("End: " + JSON.stringify(meetingSuggestion.end));
-          console.log("Meeting: " + JSON.stringify(meetingSuggestion.meetingString));
-      });
-      ```
-    name: Office.MeetingSuggestion
-    fullName: Office.MeetingSuggestion
-    langs:
-      - typeScript
-    type: interface
-    package: outlook!
-    children:
-      - 'outlook!Office.MeetingSuggestion#attendees:member'
-      - 'outlook!Office.MeetingSuggestion#end:member'
-      - 'outlook!Office.MeetingSuggestion#location:member'
-      - 'outlook!Office.MeetingSuggestion#meetingString:member'
-      - 'outlook!Office.MeetingSuggestion#start:member'
-      - 'outlook!Office.MeetingSuggestion#subject:member'
-  - uid: 'outlook!Office.MeetingSuggestion#attendees:member'
-    summary: 获取建议会议的与会者。
-    name: attendees
-    fullName: attendees
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'attendees: EmailUser[];'
-      return:
-        type:
-          - 'outlook!Office.MeetingSuggestion#attendees~0:complex'
-  - uid: 'outlook!Office.MeetingSuggestion#end:member'
-    summary: 获取建议会议结束的日期和时间。
-    name: end
-    fullName: end
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'end: string;'
-      return:
-        type:
-          - string
-  - uid: 'outlook!Office.MeetingSuggestion#location:member'
-    summary: 获取建议会议的位置。
-    name: location
-    fullName: location
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'location: string;'
-      return:
-        type:
-          - string
-  - uid: 'outlook!Office.MeetingSuggestion#meetingString:member'
-    summary: 获取标识为会议建议的字符串。
-    name: meetingString
-    fullName: meetingString
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'meetingString: string;'
-      return:
-        type:
-          - string
-  - uid: 'outlook!Office.MeetingSuggestion#start:member'
-    summary: 获取建议会议开始的日期和时间。
-    name: start
-    fullName: start
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'start: string;'
-      return:
-        type:
-          - string
-  - uid: 'outlook!Office.MeetingSuggestion#subject:member'
-    summary: 获取建议会议的主题。
-    name: subject
-    fullName: subject
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'subject: string;'
-      return:
-        type:
-          - string
-references:
-  - uid: 'outlook!Office.MeetingSuggestion#attendees~0:complex'
-    name: 'EmailUser[]'
-    fullName: 'Office.EmailUser[]'
-    spec.typeScript:
-      - uid: 'outlook!Office.EmailUser:interface'
-        name: EmailUser
-        fullName: Office.EmailUser
-      - name: '[]'
-        fullName: '[]'
+
+  **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：读取
+
+
+  #### <a name="examples"></a>示例
+
+
+  ```javascript
+
+  var item = Office.context.mailbox.item;
+
+  // Get an array of strings that represent meeting suggestions in the current item's body.
+
+  var meetingSuggestions = item.getEntitiesByType(Office.MailboxEnums.EntityType.MeetingSuggestion);
+
+  console.log("There are " + meetingSuggestions.length + " meeting suggestions.")
+
+  meetingSuggestions.forEach(function (meetingSuggestion) {
+      console.log("Subject: " + JSON.stringify(meetingSuggestion.subject));
+      console.log("Attendees: " + JSON.stringify(meetingSuggestion.attendees));
+      console.log("Location: " + JSON.stringify(meetingSuggestion.location));
+      console.log("Start: " + JSON.stringify(meetingSuggestion.start));
+      console.log("End: " + JSON.stringify(meetingSuggestion.end));
+      console.log("Meeting: " + JSON.stringify(meetingSuggestion.meetingString));
+  });
+
+  ```
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+- name: attendees
+  uid: outlook!Office.MeetingSuggestion#attendees:member
+  package: outlook!
+  fullName: attendees
+  summary: 获取建议会议的与会者。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'attendees: EmailUser[];'
+    return:
+      type: <xref uid="outlook!Office.EmailUser:interface" />[]
+- name: end
+  uid: outlook!Office.MeetingSuggestion#end:member
+  package: outlook!
+  fullName: end
+  summary: 获取建议会议结束的日期和时间。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'end: string;'
+    return:
+      type: string
+- name: location
+  uid: outlook!Office.MeetingSuggestion#location:member
+  package: outlook!
+  fullName: location
+  summary: 获取建议会议的位置。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'location: string;'
+    return:
+      type: string
+- name: meetingString
+  uid: outlook!Office.MeetingSuggestion#meetingString:member
+  package: outlook!
+  fullName: meetingString
+  summary: 获取标识为会议建议的字符串。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'meetingString: string;'
+    return:
+      type: string
+- name: start
+  uid: outlook!Office.MeetingSuggestion#start:member
+  package: outlook!
+  fullName: start
+  summary: 获取建议会议开始的日期和时间。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'start: string;'
+    return:
+      type: string
+- name: subject
+  uid: outlook!Office.MeetingSuggestion#subject:member
+  package: outlook!
+  fullName: subject
+  summary: 获取建议会议的主题。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'subject: string;'
+    return:
+      type: string
+metadata:
+  ms.openlocfilehash: 14915c9790b2a1c8ac76e6460f93dd71cbad6947
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49182744"
