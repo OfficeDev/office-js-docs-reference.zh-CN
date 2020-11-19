@@ -1,130 +1,113 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'outlook!Office.NotificationMessageDetails:interface'
-    summary: |-
-      `NotificationMessageDetails` 对象的数组由 `NotificationMessages.getAllAsync` 方法返回。
+### YamlMime:TSType
+name: Office.NotificationMessageDetails
+uid: outlook!Office.NotificationMessageDetails:interface
+package: outlook!
+fullName: Office.NotificationMessageDetails
+summary: >-
+  `NotificationMessageDetails` 对象的数组由 `NotificationMessages.getAllAsync` 方法返回。
 
-      \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
-    name: Office.NotificationMessageDetails
-    fullName: Office.NotificationMessageDetails
-    langs:
-      - typeScript
-    type: interface
-    package: outlook!
-    children:
-      - 'outlook!Office.NotificationMessageDetails#actions:member'
-      - 'outlook!Office.NotificationMessageDetails#icon:member'
-      - 'outlook!Office.NotificationMessageDetails#key:member'
-      - 'outlook!Office.NotificationMessageDetails#message:member'
-      - 'outlook!Office.NotificationMessageDetails#persistent:member'
-      - 'outlook!Office.NotificationMessageDetails#type:member'
-  - uid: 'outlook!Office.NotificationMessageDetails#actions:member'
-    summary: |-
-      指定邮件的操作。 限制：1个操作。 此限制不会计算默认情况下包含的 "消除" 操作。 仅当类型为时才适用`InsightMessage`<!-- -->. 为不受支持的类型指定此属性或包含过多的操作将引发错误。
+  \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+remarks: >-
+  **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
-      \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: '**[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写'
-    isPreview: true
-    name: actions
-    fullName: actions
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'actions?: NotificationMessageAction[];'
-      return:
-        type:
-          - 'outlook!Office.NotificationMessageDetails#actions~0:complex'
-  - uid: 'outlook!Office.NotificationMessageDetails#icon:member'
-    summary: |-
-      对在清单的 `Resources` 部分中定义的图标的引用。 它将显示在信息栏区域。 仅当类型为时，才适用`InformationalMessage`<!-- -->. 为不受支持的类型指定此参数将导致异常。
 
-      **注意**：目前，自定义图标仅显示在 Windows 上的 Outlook 中，而不是在其他客户端（例如，Mac、web 浏览器）上显示。
-    name: icon
-    fullName: icon
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'icon?: string;'
-      return:
-        type:
-          - string
-  - uid: 'outlook!Office.NotificationMessageDetails#key:member'
-    summary: 通知邮件标识符。
-    name: key
-    fullName: key
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'key?: string;'
-      return:
-        type:
-          - string
-  - uid: 'outlook!Office.NotificationMessageDetails#message:member'
-    summary: 通知邮件的文本。最大长度为 150 个字符。如果开发人员传入更长的字符串，则会引发 `ArgumentOutOfRange` 异常。
-    name: message
-    fullName: message
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'message: string;'
-      return:
-        type:
-          - string
-  - uid: 'outlook!Office.NotificationMessageDetails#persistent:member'
-    summary: 指定邮件是否应为永久性。 仅当类型为时适用`InformationalMessage`<!-- -->. 如果为 true，则邮件将一直保留到此加载项删除或由用户解除。 如果为 false，则当用户导航到其他项目时将其删除。 对于错误通知，邮件将一直保留，直到用户看过一次。 为不受支持的类型指定此参数将引发异常。
-    name: persistent
-    fullName: persistent
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'persistent?: Boolean;'
-      return:
-        type:
-          - '!Boolean:interface'
-  - uid: 'outlook!Office.NotificationMessageDetails#type:member'
-    summary: |-
-      指定 `ItemNotificationMessageType` 邮件。
+  **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+- name: actions
+  uid: outlook!Office.NotificationMessageDetails#actions:member
+  package: outlook!
+  fullName: actions
+  summary: >-
+    指定邮件的操作。 限制：1个操作。 此限制不会计算默认情况下包含的 "消除" 操作。 仅当类型为时才适用 `InsightMessage`<!-- -->. 为不受支持的类型指定此属性或包含过多的操作将引发错误。
 
-      如果 type 为 `ProgressIndicator` 或`ErrorMessage`<!-- -->，将自动提供图标，并且邮件不是永久性的。 因此，图标和持久性的属性对于这些类型的邮件都是无效的。 包括它们将导致`ArgumentException`<!-- -->.
 
-      如果 type 为`ProgressIndicator`<!-- -->，开发人员应在操作完成时删除或替换进度指示器。
-    name: type
-    fullName: type
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'type: MailboxEnums.ItemNotificationMessageType | string;'
-      return:
-        type:
-          - 'outlook!Office.NotificationMessageDetails#type~0:complex'
-references:
-  - uid: 'outlook!Office.NotificationMessageDetails#actions~0:complex'
-    name: 'NotificationMessageAction[]'
-    fullName: 'Office.NotificationMessageAction[]'
-    spec.typeScript:
-      - uid: 'outlook!Office.NotificationMessageAction:interface'
-        name: NotificationMessageAction
-        fullName: Office.NotificationMessageAction
-      - name: '[]'
-        fullName: '[]'
-  - uid: '!Boolean:interface'
-    name: Boolean
-  - uid: 'outlook!Office.NotificationMessageDetails#type~0:complex'
-    name: MailboxEnums.ItemNotificationMessageType | string
-    fullName: Office.MailboxEnums.ItemNotificationMessageType | string
-    spec.typeScript:
-      - uid: 'outlook!Office.MailboxEnums.ItemNotificationMessageType:enum'
-        name: MailboxEnums.ItemNotificationMessageType
-        fullName: Office.MailboxEnums.ItemNotificationMessageType
-      - name: ' | string'
-        fullName: ' | string'
+    \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: '**[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'actions?: NotificationMessageAction[];'
+    return:
+      type: <xref uid="outlook!Office.NotificationMessageAction:interface" />[]
+- name: icon
+  uid: outlook!Office.NotificationMessageDetails#icon:member
+  package: outlook!
+  fullName: icon
+  summary: >-
+    对在清单的 `Resources` 部分中定义的图标的引用。 它将显示在信息栏区域。 仅当类型为时，才适用 `InformationalMessage`<!-- -->. 为不受支持的类型指定此参数将导致异常。
+
+
+    **注意**：目前，自定义图标仅显示在 Windows 上的 Outlook 中，而不是在其他客户端上显示 (例如，Mac、web 浏览器) 。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'icon?: string;'
+    return:
+      type: string
+- name: key
+  uid: outlook!Office.NotificationMessageDetails#key:member
+  package: outlook!
+  fullName: key
+  summary: 通知邮件标识符。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'key?: string;'
+    return:
+      type: string
+- name: message
+  uid: outlook!Office.NotificationMessageDetails#message:member
+  package: outlook!
+  fullName: message
+  summary: 通知邮件的文本。最大长度为 150 个字符。如果开发人员传入更长的字符串，则会引发 `ArgumentOutOfRange` 异常。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'message: string;'
+    return:
+      type: string
+- name: persistent
+  uid: outlook!Office.NotificationMessageDetails#persistent:member
+  package: outlook!
+  fullName: persistent
+  summary: 指定邮件是否应为永久性。 仅当类型为时适用 `InformationalMessage`<!-- -->. 如果为 true，则邮件将一直保留到此加载项删除或由用户解除。 如果为 false，则当用户导航到其他项目时将其删除。 对于错误通知，邮件将一直保留，直到用户看过一次。 为不受支持的类型指定此参数将引发异常。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'persistent?: Boolean;'
+    return:
+      type: Boolean
+- name: type
+  uid: outlook!Office.NotificationMessageDetails#type:member
+  package: outlook!
+  fullName: type
+  summary: >-
+    指定 `ItemNotificationMessageType` 邮件。
+
+
+    如果 type 为 `ProgressIndicator` 或 `ErrorMessage`<!-- -->，将自动提供图标，并且邮件不是永久性的。 因此，图标和持久性的属性对于这些类型的邮件都是无效的。 包括它们将导致 `ArgumentException`<!-- -->.
+
+
+    如果 type 为 `ProgressIndicator`<!-- -->，开发人员应在操作完成时删除或替换进度指示器。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'type: MailboxEnums.ItemNotificationMessageType | string;'
+    return:
+      type: <xref uid="outlook!Office.MailboxEnums.ItemNotificationMessageType:enum" /> | string
+metadata:
+  ms.openlocfilehash: 627ec1652fa0c7e86bda54aaaf846cbc5efc612d
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49329283"
