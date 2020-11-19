@@ -1,318 +1,274 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'outlook!Office.NotificationMessages:interface'
-    summary: |-
-      `NotificationMessages` 对象作为项目的 `notificationMessages` 属性返回。
+### YamlMime:TSType
+name: Office.NotificationMessages
+uid: outlook!Office.NotificationMessages:interface
+package: outlook!
+fullName: Office.NotificationMessages
+summary: >-
+  `NotificationMessages` 对象作为项目的 `notificationMessages` 属性返回。
 
-      \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
-    name: Office.NotificationMessages
-    fullName: Office.NotificationMessages
-    langs:
-      - typeScript
-    type: interface
-    package: outlook!
-    children:
-      - 'outlook!Office.NotificationMessages#addAsync:member(1)'
-      - 'outlook!Office.NotificationMessages#getAllAsync:member(1)'
-      - 'outlook!Office.NotificationMessages#removeAsync:member(1)'
-      - 'outlook!Office.NotificationMessages#replaceAsync:member(1)'
-  - uid: 'outlook!Office.NotificationMessages#addAsync:member(1)'
-    summary: |-
-      向项目添加通知。
+  \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+remarks: >-
+  **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
-      每封邮件中最多有 5 个通知。设置过多的通知将返回 `NumberOfNotificationMessagesExceeded` 错误。
 
-      **重要说明** ： `InsightMessage` 每个加载项只允许一个类型的通知。  (该 `InsightMessage` 类型当前处于预览阶段。尝试添加的 ) 会引发错误。
+  **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+- name: addAsync(key, JSONmessage, options, callback)
+  uid: outlook!Office.NotificationMessages#addAsync:member(1)
+  package: outlook!
+  fullName: addAsync(key, JSONmessage, options, callback)
+  summary: >-
+    向项目添加通知。
 
-      \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
+    每封邮件中最多有 5 个通知。设置过多的通知将返回 `NumberOfNotificationMessagesExceeded` 错误。
 
-      #### <a name="examples"></a>示例
 
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/35-notifications/add-getall-remove.yaml
-      var id = $("#notificationId").val();
-      var details =
-        {
-          type: "progressIndicator",
-          message: "Progress indicator with id = " + id
-        };
-      Office.context.mailbox.item.notificationMessages.addAsync(id, details, handleResult);
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/35-notifications/add-getall-remove.yaml
-      var id = $("#notificationId").val();
-      var details =
-        {
-          type: "informationalMessage",
-          message: "Non-persistent informational notification message with id = " + id,
-          icon: "icon1",
-          persistent: false
-        };
-      Office.context.mailbox.item.notificationMessages.addAsync(id, details, handleResult);
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/35-notifications/add-getall-remove.yaml
-      var id = $("#notificationId").val();
-      var details =
-        {
-          type: "informationalMessage",
-          message: "Persistent informational notification message with id = " + id,
-          icon: "icon1",
-          persistent: true
-        };
-      Office.context.mailbox.item.notificationMessages.addAsync(id, details, handleResult);
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/35-notifications/add-getall-remove.yaml
-      var id = $("#notificationId").val();
-      var details =
-        {
-          type: "errorMessage",
-          message: "Error notification message with id = " + id
-        };
-      Office.context.mailbox.item.notificationMessages.addAsync(id, details, handleResult);
-      ```
-    name: 'addAsync(key, JSONmessage, options, callback)'
-    fullName: 'addAsync(key, JSONmessage, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addAsync(key: string, JSONmessage: NotificationMessageDetails, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: key
-          description: 用于引用此通知邮件的开发人员指定的项。开发人员可以在以后用它来修改此邮件。其长度不能超过 32 个字符。
-          type:
-            - string
-        - id: JSONmessage
-          description: 一个包含要添加到项目的通知邮件的 JSON 对象。 它包含一个 `NotificationMessageDetails` 对象。
-          type:
-            - 'outlook!Office.NotificationMessageDetails:interface'
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
-          type:
-            - 'outlook!Office.NotificationMessages#addAsync~0:complex'
-  - uid: 'outlook!Office.NotificationMessages#getAllAsync:member(1)'
-    summary: |-
-      返回某个项目的所有项和邮件。
+    **重要说明**： `InsightMessage` 每个加载项只允许一个类型的通知。  (该 `InsightMessage` 类型当前处于预览阶段。尝试添加的 ) 会引发错误。
 
-      \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
+    \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
-      #### <a name="examples"></a>示例
 
-      ```javascript
-      // Get all notifications.
-      Office.context.mailbox.item.notificationMessages.getAllAsync(function (asyncResult) {
-          if (asyncResult.status != "failed") {
-              Office.context.mailbox.item.notificationMessages.replaceAsync( "notifications", {
-                  type: "informationalMessage",
-                  message : "Found " + asyncResult.value.length + " notifications.",
-                  icon : "iconid",
-                  persistent: false
-              });
-          }
-      });
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/35-notifications/add-getall-remove.yaml
-      Office.context.mailbox.item.notificationMessages.getAllAsync(handleResult);          
-      ```
-    name: 'getAllAsync(options, callback)'
-    fullName: 'getAllAsync(options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getAllAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<NotificationMessageDetails[]>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. `value`结果的属性是对象的数组 `NotificationMessageDetails` 。
-          type:
-            - 'outlook!Office.NotificationMessages#getAllAsync~0:complex'
-  - uid: 'outlook!Office.NotificationMessages#removeAsync:member(1)'
-    summary: |-
-      删除某个项目的通知邮件。
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
 
-      \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
+    #### <a name="examples"></a>示例
 
-      #### <a name="examples"></a>示例
 
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/35-notifications/add-getall-remove.yaml
-      var id = $("#notificationId").val();
-      Office.context.mailbox.item.notificationMessages.removeAsync(id, handleResult);
-      ```
-    name: 'removeAsync(key, options, callback)'
-    fullName: 'removeAsync(key, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'removeAsync(key: string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: key
-          description: 要删除的通知邮件的项。
-          type:
-            - string
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
-          type:
-            - 'outlook!Office.NotificationMessages#removeAsync~0:complex'
-  - uid: 'outlook!Office.NotificationMessages#replaceAsync:member(1)'
-    summary: |-
-      将带有给定项的通知邮件替换为另一封邮件。
+    ```javascript
 
-      如果带有指定项的通知邮件不存在，`replaceAsync` 将添加通知。
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/35-notifications/add-getall-remove.yaml
 
-      \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
+    var id = $("#notificationId").val();
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
+    var details =
+      {
+        type: "progressIndicator",
+        message: "Progress indicator with id = " + id
+      };
+    Office.context.mailbox.item.notificationMessages.addAsync(id, details, handleResult);
 
-      #### <a name="examples"></a>示例
+    ```
 
-      ```javascript
-      // Replace a notification with an informational notification.
-      Office.context.mailbox.item.notificationMessages.replaceAsync("progress", {
-          type: "informationalMessage",
-          message : "The message was processed successfully.",
-          icon : "iconid",
-          persistent: false
-      });
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/35-notifications/add-getall-remove.yaml
-      var id = $("#notificationId").val();
-      Office.context.mailbox.item.notificationMessages.replaceAsync(
-        id,
-        {
-          type: "informationalMessage",
-          message: "Notification message with id = " + id + " has been replaced with an informational message.",
-          icon: "icon2",
-          persistent: false
-        },
-        handleResult);
-      ```
-    name: 'replaceAsync(key, JSONmessage, options, callback)'
-    fullName: 'replaceAsync(key, JSONmessage, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'replaceAsync(key: string, JSONmessage: NotificationMessageDetails, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: key
-          description: 要替换的通知邮件的项。 长度不能超过 32 个字符。
-          type:
-            - string
-        - id: JSONmessage
-          description: 一个包含要替换现有邮件的新通知邮件的 JSON 对象。 它包含一个 `NotificationMessageDetails` 对象。
-          type:
-            - 'outlook!Office.NotificationMessageDetails:interface'
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
-          type:
-            - 'outlook!Office.NotificationMessages#replaceAsync~0:complex'
-references:
-  - uid: 'outlook!Office.NotificationMessageDetails:interface'
-    name: NotificationMessageDetails
-  - uid: 'office!Office.AsyncContextOptions:interface'
-    name: Office.AsyncContextOptions
-  - uid: 'outlook!Office.NotificationMessages#addAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.NotificationMessages#getAllAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<NotificationMessageDetails[]>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<Office.NotificationMessageDetails[]>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <
-        fullName: <
-      - uid: 'outlook!Office.NotificationMessageDetails:interface'
-        name: NotificationMessageDetails
-        fullName: Office.NotificationMessageDetails
-      - name: '[]>) => void'
-        fullName: '[]>) => void'
-  - uid: 'outlook!Office.NotificationMessages#removeAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.NotificationMessages#replaceAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/35-notifications/add-getall-remove.yaml
+
+    var id = $("#notificationId").val();
+
+    var details =
+      {
+        type: "informationalMessage",
+        message: "Non-persistent informational notification message with id = " + id,
+        icon: "icon1",
+        persistent: false
+      };
+    Office.context.mailbox.item.notificationMessages.addAsync(id, details, handleResult);
+
+    ```
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/35-notifications/add-getall-remove.yaml
+
+    var id = $("#notificationId").val();
+
+    var details =
+      {
+        type: "informationalMessage",
+        message: "Persistent informational notification message with id = " + id,
+        icon: "icon1",
+        persistent: true
+      };
+    Office.context.mailbox.item.notificationMessages.addAsync(id, details, handleResult);
+
+    ```
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/35-notifications/add-getall-remove.yaml
+
+    var id = $("#notificationId").val();
+
+    var details =
+      {
+        type: "errorMessage",
+        message: "Error notification message with id = " + id
+      };
+    Office.context.mailbox.item.notificationMessages.addAsync(id, details, handleResult);
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addAsync(key: string, JSONmessage: NotificationMessageDetails, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: key
+      description: 用于引用此通知邮件的开发人员指定的项。开发人员可以在以后用它来修改此邮件。其长度不能超过 32 个字符。
+      type: string
+    - id: JSONmessage
+      description: 一个包含要添加到项目的通知邮件的 JSON 对象。 它包含一个 `NotificationMessageDetails` 对象。
+      type: <xref uid="outlook!Office.NotificationMessageDetails:interface" />
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getAllAsync(options, callback)
+  uid: outlook!Office.NotificationMessages#getAllAsync:member(1)
+  package: outlook!
+  fullName: getAllAsync(options, callback)
+  summary: >-
+    返回某个项目的所有项和邮件。
+
+
+    \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: "**[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`\n\n**[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Get all notifications.\nOffice.context.mailbox.item.notificationMessages.getAllAsync(function (asyncResult) {\n    if (asyncResult.status != \"failed\") {\n        Office.context.mailbox.item.notificationMessages.replaceAsync( \"notifications\", {\n            type: \"informationalMessage\",\n            message : \"Found \" + asyncResult.value.length + \" notifications.\",\n            icon : \"iconid\",\n            persistent: false\n        });\n    }\n});\n```\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/35-notifications/add-getall-remove.yaml\nOffice.context.mailbox.item.notificationMessages.getAllAsync(handleResult);          \n```"
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getAllAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<NotificationMessageDetails[]>) => void): void;'
+    parameters:
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. `value`结果的属性是对象的数组 `NotificationMessageDetails` 。
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.NotificationMessageDetails:interface" />[]&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: removeAsync(key, options, callback)
+  uid: outlook!Office.NotificationMessages#removeAsync:member(1)
+  package: outlook!
+  fullName: removeAsync(key, options, callback)
+  summary: >-
+    删除某个项目的通知邮件。
+
+
+    \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/35-notifications/add-getall-remove.yaml
+
+    var id = $("#notificationId").val();
+
+    Office.context.mailbox.item.notificationMessages.removeAsync(id, handleResult);
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'removeAsync(key: string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: key
+      description: 要删除的通知邮件的项。
+      type: string
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: replaceAsync(key, JSONmessage, options, callback)
+  uid: outlook!Office.NotificationMessages#replaceAsync:member(1)
+  package: outlook!
+  fullName: replaceAsync(key, JSONmessage, options, callback)
+  summary: >-
+    将带有给定项的通知邮件替换为另一封邮件。
+
+
+    如果带有指定项的通知邮件不存在，`replaceAsync` 将添加通知。
+
+
+    \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // Replace a notification with an informational notification.
+
+    Office.context.mailbox.item.notificationMessages.replaceAsync("progress", {
+        type: "informationalMessage",
+        message : "The message was processed successfully.",
+        icon : "iconid",
+        persistent: false
+    });
+
+    ```
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/35-notifications/add-getall-remove.yaml
+
+    var id = $("#notificationId").val();
+
+    Office.context.mailbox.item.notificationMessages.replaceAsync(
+      id,
+      {
+        type: "informationalMessage",
+        message: "Notification message with id = " + id + " has been replaced with an informational message.",
+        icon: "icon2",
+        persistent: false
+      },
+      handleResult);
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'replaceAsync(key: string, JSONmessage: NotificationMessageDetails, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: key
+      description: 要替换的通知邮件的项。 长度不能超过 32 个字符。
+      type: string
+    - id: JSONmessage
+      description: 一个包含要替换现有邮件的新通知邮件的 JSON 对象。 它包含一个 `NotificationMessageDetails` 对象。
+      type: <xref uid="outlook!Office.NotificationMessageDetails:interface" />
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+metadata:
+  ms.openlocfilehash: 382d8862a51317b052f6dfd272d0c675244919d1
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49319076"
