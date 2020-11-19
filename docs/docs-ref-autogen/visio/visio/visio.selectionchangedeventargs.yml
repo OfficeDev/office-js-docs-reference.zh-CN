@@ -1,96 +1,54 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'visio!Visio.SelectionChangedEventArgs:interface'
-    summary: |-
-      提供有关引发了 SelectionChanged 事件的形状集合的信息。
-
-      \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-    name: Visio.SelectionChangedEventArgs
-    fullName: Visio.SelectionChangedEventArgs
-    langs:
-      - typeScript
-    type: interface
-    package: visio!
-    remarks: |-
+### YamlMime:TSType
+name: Visio.SelectionChangedEventArgs
+uid: visio!Visio.SelectionChangedEventArgs:interface
+package: visio!
+fullName: Visio.SelectionChangedEventArgs
+summary: >-
+  提供有关引发了 SelectionChanged 事件的形状集合的信息。
 
 
-      #### <a name="examples"></a>示例
+  \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+remarks: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nvar eventResult; // Global Variable to store the EventHandlerResult returned on attaching handler.\n\nfunction AttachHandler() {\n    Visio.run(session, function(ctx) {\n        var doc = ctx.document;\n        eventResult = doc.onSelectionChanged.add(\n            function (args) {\n                console.log(\"Selected Shape Name: \"+args.shapeNames[0]);\n            });\n        return ctx.sync().then(function(){\n            console.log(\"Handler attached\");\n        });\n    }).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n    });\n\n    function onSelectionChanged(args) {\n        console.log(Date.now() + \"Selection Changes Event\" + JSON.stringify(args));\n    }\n}\n\nfunction RemoveHandler() {\n    if (!eventResult || !eventResult.context) {\n        console.log(\"Handler has not been attached\");\n        return;\n    }\n\n    Visio.run(eventResult.context, function(ctx) {\n        eventResult.remove();\n        return ctx.sync().then(function (){\n            eventResult = null;\n            console.log(\"Handler removed\");\n        });\n    }).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n    });\n}\n```"
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+- name: pageName
+  uid: visio!Visio.SelectionChangedEventArgs#pageName:member
+  package: visio!
+  fullName: pageName
+  summary: >-
+    获取页面名称，其中包含引发了 SelectionChanged 事件的 ShapeCollection 对象。
 
-      ```javascript
-      var eventResult; // Global Variable to store the EventHandlerResult returned on attaching handler.
 
-      function AttachHandler() {
-          Visio.run(session, function(ctx) {
-              var doc = ctx.document;
-              eventResult = doc.onSelectionChanged.add(
-                  function (args) {
-                      console.log("Selected Shape Name: "+args.shapeNames[0]);
-                  });
-              return ctx.sync().then(function(){
-                  console.log("Handler attached");
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
+    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'pageName: string;'
+    return:
+      type: string
+- name: shapeNames
+  uid: visio!Visio.SelectionChangedEventArgs#shapeNames:member
+  package: visio!
+  fullName: shapeNames
+  summary: >-
+    获取引发了 SelectionChanged 事件的形状名称数组。
 
-          function onSelectionChanged(args) {
-              console.log(Date.now() + "Selection Changes Event" + JSON.stringify(args));
-          }
-      }
 
-      function RemoveHandler() {
-          if (!eventResult || !eventResult.context) {
-              console.log("Handler has not been attached");
-              return;
-          }
-
-          Visio.run(eventResult.context, function(ctx) {
-              eventResult.remove();
-              return ctx.sync().then(function (){
-                  eventResult = null;
-                  console.log("Handler removed");
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-      }
-      ```
-    children:
-      - 'visio!Visio.SelectionChangedEventArgs#pageName:member'
-      - 'visio!Visio.SelectionChangedEventArgs#shapeNames:member'
-  - uid: 'visio!Visio.SelectionChangedEventArgs#pageName:member'
-    summary: |-
-      获取页面名称，其中包含引发了 SelectionChanged 事件的 ShapeCollection 对象。
-
-      \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-    name: pageName
-    fullName: pageName
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'pageName: string;'
-      return:
-        type:
-          - string
-  - uid: 'visio!Visio.SelectionChangedEventArgs#shapeNames:member'
-    summary: |-
-      获取引发了 SelectionChanged 事件的形状名称数组。
-
-      \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-    name: shapeNames
-    fullName: shapeNames
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'shapeNames: string[];'
-      return:
-        type:
-          - 'string[]'
+    \[[API 集： 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'shapeNames: string[];'
+    return:
+      type: string[]
+metadata:
+  ms.openlocfilehash: a7a3d22daba7e8e9fc5165f98874830793213684
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49249486"
