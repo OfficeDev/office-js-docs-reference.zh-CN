@@ -105,8 +105,8 @@
 ||[标尺](/javascript/api/excel/excel.presetcriteriaconditionalformat#rule)|条件格式的规则。|
 |[Range](/javascript/api/excel/excel.range)|[calculate()](/javascript/api/excel/excel.range#calculate--)|计算工作表上的单元格区域。|
 ||[conditionalFormats](/javascript/api/excel/excel.range#conditionalformats)|与该范围相交的 ConditionalFormats 的集合。|
-|[TextConditionalFormat](/javascript/api/excel/excel.textconditionalformat)|[format](/javascript/api/excel/excel.textconditionalformat#format)|返回一个 format 对象，该对象封装条件格式字体、填充、边框和其他属性。|
+|[TextConditionalFormat](/javascript/api/excel/excel.textconditionalformat)|[format](/javascript/api/excel/excel.textconditionalformat#format)|返回一个 format 对象，该对象封装条件格式的字体、填充、边框和其他属性。|
 ||[标尺](/javascript/api/excel/excel.textconditionalformat#rule)|条件格式的规则。|
-|[TopBottomConditionalFormat](/javascript/api/excel/excel.topbottomconditionalformat)|[format](/javascript/api/excel/excel.topbottomconditionalformat#format)|返回一个 format 对象，该对象封装条件格式字体、填充、边框和其他属性。|
+|[TopBottomConditionalFormat](/javascript/api/excel/excel.topbottomconditionalformat)|[format](/javascript/api/excel/excel.topbottomconditionalformat#format)|返回一个 format 对象，该对象封装条件格式的字体、填充、边框和其他属性。|
 ||[标尺](/javascript/api/excel/excel.topbottomconditionalformat#rule)|顶部/底部条件格式的条件。|
 |[Worksheet](/javascript/api/excel/excel.worksheet)|[计算 (markAllDirty： boolean) ](/javascript/api/excel/excel.worksheet#calculate-markalldirty-)|计算工作表上的所有单元格。|
