@@ -1,338 +1,227 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'onenote!OneNote.PageCollection:class'
-    summary: |-
-      表示页面的集合。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: OneNote.PageCollection
-    fullName: OneNote.PageCollection
-    langs:
-      - typeScript
-    type: class
-    extends:
-      - 'office!OfficeExtension.ClientObject:class'
-    package: onenote!
-    children:
-      - 'onenote!OneNote.PageCollection#context:member'
-      - 'onenote!OneNote.PageCollection#count:member'
-      - 'onenote!OneNote.PageCollection#getByTitle:member(1)'
-      - 'onenote!OneNote.PageCollection#getItem:member(1)'
-      - 'onenote!OneNote.PageCollection#getItemAt:member(1)'
-      - 'onenote!OneNote.PageCollection#items:member'
-      - 'onenote!OneNote.PageCollection#load:member(1)'
-      - 'onenote!OneNote.PageCollection#load:member(2)'
-      - 'onenote!OneNote.PageCollection#load:member(3)'
-      - 'onenote!OneNote.PageCollection#toJSON:member(1)'
-      - 'onenote!OneNote.PageCollection#track:member(1)'
-      - 'onenote!OneNote.PageCollection#untrack:member(1)'
-  - uid: 'onenote!OneNote.PageCollection#context:member'
-    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-    name: context
-    fullName: context
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'context: RequestContext;'
-      return:
-        type:
-          - 'onenote!OneNote.RequestContext:class'
-  - uid: 'onenote!OneNote.PageCollection#count:member'
-    summary: |-
-      返回集合中页面的数目。 只读。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: count
-    fullName: count
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly count: number;'
-      return:
-        type:
-          - number
-  - uid: 'onenote!OneNote.PageCollection#getByTitle:member(1)'
-    summary: |-
-      获取具有指定标题的页面集合。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: getByTitle(title)
-    fullName: getByTitle(title)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getByTitle(title: string): OneNote.PageCollection;'
-      return:
-        type:
-          - 'onenote!OneNote.PageCollection:class'
-        description: |-
+### YamlMime:TSType
+name: OneNote.PageCollection
+uid: onenote!OneNote.PageCollection:class
+package: onenote!
+fullName: OneNote.PageCollection
+summary: >-
+  表示页面的集合。
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          OneNote.run(function (context) {
-
-              // Get all the pages in the current section.
-              var allPages = context.application.getActiveSection().pages;
-
-              // Queue a command to load the pages. 
-              // For best performance, request specific properties.
-              allPages.load("id"); 
-
-              // Run the queued commands, and return a promise to indicate task completion.
-              return context.sync()
-                  .then(function () {
-
-                      // Get the sections with the specified name.
-                      var todoPages = allPages.getByTitle("Todo list");
-
-                      // Queue a command to load the section. 
-                      // For best performance, request specific properties.
-                      todoPages.load("id,title"); 
-
-                      return context.sync()
-                          .then(function () {
-
-                              // Iterate through the collection or access items individually by index.
-                              if (todoPages.items.length > 0) {
-                                  console.log("Page title: " + todoPages.items[0].title);
-                                  console.log("Page ID: " + todoPages.items[0].id);
-                              }
-                          });
-                  });
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: title
-          description: 页面的标题。
-          type:
-            - string
-  - uid: 'onenote!OneNote.PageCollection#getItem:member(1)'
-    summary: |-
-      按其在集合中的 ID 或索引获取页面。 只读。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: getItem(index)
-    fullName: getItem(index)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getItem(index: number | string): OneNote.Page;'
-      return:
-        type:
-          - 'onenote!OneNote.Page:class'
-        description: ''
-      parameters:
-        - id: index
-          description: 页面的 ID 或集合中页面的索引位置。
-          type:
-            - number | string
-  - uid: 'onenote!OneNote.PageCollection#getItemAt:member(1)'
-    summary: |-
-      按其在集合中的位置获取页面。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: getItemAt(index)
-    fullName: getItemAt(index)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getItemAt(index: number): OneNote.Page;'
-      return:
-        type:
-          - 'onenote!OneNote.Page:class'
-        description: ''
-      parameters:
-        - id: index
-          description: 要检索的对象的索引值。 从零开始编制索引。
-          type:
-            - number
-  - uid: 'onenote!OneNote.PageCollection#items:member'
-    summary: 获取此集合中已加载的子项。
-    name: items
-    fullName: items
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly items: OneNote.Page[];'
-      return:
-        type:
-          - 'onenote!OneNote.PageCollection#items~0:complex'
-  - uid: 'onenote!OneNote.PageCollection#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
-    remarks: |-
-      除了此签名之外，此方法还具有以下签名：
-
-      `load(option?: string | string[]): OneNote.PageCollection`-Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
-
-      `load(option?: { select?: string; expand?: string; }): OneNote.PageCollection`-Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.PageCollection`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
-    name: load(option)
-    fullName: load(option)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(option?: OneNote.Interfaces.PageCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions): OneNote.PageCollection;'
-      return:
-        type:
-          - 'onenote!OneNote.PageCollection:class'
-        description: ''
-      parameters:
-        - id: option
-          description: ''
-          type:
-            - 'onenote!OneNote.PageCollection#load~0:complex'
-  - uid: 'onenote!OneNote.PageCollection#load:member(2)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNames)
-    fullName: load(propertyNames)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNames?: string | string[]): OneNote.PageCollection;'
-      return:
-        type:
-          - 'onenote!OneNote.PageCollection:class'
-        description: |-
+  \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: onenote!OneNote.PageCollection#context:member
+  package: onenote!
+  fullName: context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="onenote!OneNote.RequestContext:class" />
+- name: count
+  uid: onenote!OneNote.PageCollection#count:member
+  package: onenote!
+  fullName: count
+  summary: >-
+    返回集合中页面的数目。 只读。
 
 
-          #### <a name="examples"></a>示例
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly count: number;'
+    return:
+      type: number
+- name: items
+  uid: onenote!OneNote.PageCollection#items:member
+  package: onenote!
+  fullName: items
+  summary: 获取此集合中已加载的子项。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly items: OneNote.Page[];'
+    return:
+      type: <xref uid="onenote!OneNote.Page:class" />[]
+methods:
+- name: getByTitle(title)
+  uid: onenote!OneNote.PageCollection#getByTitle:member(1)
+  package: onenote!
+  fullName: getByTitle(title)
+  summary: >-
+    获取具有指定标题的页面集合。
 
-          ```javascript
-          OneNote.run(function (context) {
-              
-              // Get the pages in the current section.
-              var pages = context.application.getActiveSection().pages;
-              
-              // Queue a command to load the id and title for each page.            
-              pages.load('id,title');
-              
-              // Run the queued commands, and return a promise to indicate task completion.
-              return context.sync()
-                  .then(function () {
-                      
-                      // Display the properties.
-                      $.each(pages.items, function(index, page) {
-                          console.log(page.title);
-                          console.log(page.id);
-                      });
-                  }); 
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: propertyNames
-          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
-          type:
-            - 'string | string[]'
-  - uid: 'onenote!OneNote.PageCollection#load:member(3)'
-    name: load(option)
-    fullName: load(option)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(option?: OfficeExtension.LoadOption): OneNote.PageCollection;'
-      return:
-        type:
-          - 'onenote!OneNote.PageCollection:class'
-        description: ''
-      parameters:
-        - id: option
-          description: ''
-          type:
-            - 'office!OfficeExtension.LoadOption:interface'
-  - uid: 'onenote!OneNote.PageCollection#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始 `OneNote.PageCollection` 对象是 API 对象，但 `toJSON` 方法返回一个无格式的 JavaScript 对象（类型为`OneNote.Interfaces.PageCollectionData`<!-- -->），其中包含集合的项中所有加载属性的浅表副本的 "items" 数组。
-    name: toJSON()
-    fullName: toJSON()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'toJSON(): OneNote.Interfaces.PageCollectionData;'
-      return:
-        type:
-          - 'onenote!OneNote.Interfaces.PageCollectionData:interface'
-        description: ''
-  - uid: 'onenote!OneNote.PageCollection#track:member(1)'
-    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。
-    name: track()
-    fullName: track()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'track(): OneNote.PageCollection;'
-      return:
-        type:
-          - 'onenote!OneNote.PageCollection:class'
-        description: ''
-  - uid: 'onenote!OneNote.PageCollection#untrack:member(1)'
-    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前，你需要调用“context.sync()”。
-    name: untrack()
-    fullName: untrack()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'untrack(): OneNote.PageCollection;'
-      return:
-        type:
-          - 'onenote!OneNote.PageCollection:class'
-        description: ''
-references:
-  - uid: 'office!OfficeExtension.ClientObject:class'
-    name: OfficeExtension.ClientObject
-  - uid: 'onenote!OneNote.RequestContext:class'
-    name: RequestContext
-  - uid: 'onenote!OneNote.PageCollection:class'
-    name: OneNote.PageCollection
-  - uid: 'onenote!OneNote.Page:class'
-    name: OneNote.Page
-  - uid: 'onenote!OneNote.PageCollection#items~0:complex'
-    name: 'OneNote.Page[]'
-    fullName: 'OneNote.Page[]'
-    spec.typeScript:
-      - uid: 'onenote!OneNote.Page:class'
-        name: OneNote.Page
-        fullName: OneNote.Page
-      - name: '[]'
-        fullName: '[]'
-  - uid: 'onenote!OneNote.PageCollection#load~0:complex'
-    name: OneNote.Interfaces.PageCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions
-    fullName: OneNote.Interfaces.PageCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions
-    spec.typeScript:
-      - uid: 'onenote!OneNote.Interfaces.PageCollectionLoadOptions:interface'
-        name: OneNote.Interfaces.PageCollectionLoadOptions
-        fullName: OneNote.Interfaces.PageCollectionLoadOptions
-      - name: ' & '
-        fullName: ' & '
-      - uid: 'onenote!OneNote.Interfaces.CollectionLoadOptions:interface'
-        name: OneNote.Interfaces.CollectionLoadOptions
-        fullName: OneNote.Interfaces.CollectionLoadOptions
-  - uid: 'office!OfficeExtension.LoadOption:interface'
-    name: OfficeExtension.LoadOption
-  - uid: 'onenote!OneNote.Interfaces.PageCollectionData:interface'
-    name: OneNote.Interfaces.PageCollectionData
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getByTitle(title: string): OneNote.PageCollection;'
+    parameters:
+    - id: title
+      description: 页面的标题。
+      type: string
+    return:
+      type: <xref uid="onenote!OneNote.PageCollection:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get all the pages in the current section.\n    var allPages = context.application.getActiveSection().pages;\n\n    // Queue a command to load the pages. \n    // For best performance, request specific properties.\n    allPages.load(\"id\"); \n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            // Get the sections with the specified name.\n            var todoPages = allPages.getByTitle(\"Todo list\");\n\n            // Queue a command to load the section. \n            // For best performance, request specific properties.\n            todoPages.load(\"id,title\"); \n\n            return context.sync()\n                .then(function () {\n\n                    // Iterate through the collection or access items individually by index.\n                    if (todoPages.items.length > 0) {\n                        console.log(\"Page title: \" + todoPages.items[0].title);\n                        console.log(\"Page ID: \" + todoPages.items[0].id);\n                    }\n                });\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: getItem(index)
+  uid: onenote!OneNote.PageCollection#getItem:member(1)
+  package: onenote!
+  fullName: getItem(index)
+  summary: >-
+    按其在集合中的 ID 或索引获取页面。 只读。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getItem(index: number | string): OneNote.Page;'
+    parameters:
+    - id: index
+      description: 页面的 ID 或集合中页面的索引位置。
+      type: number | string
+    return:
+      type: <xref uid="onenote!OneNote.Page:class" />
+      description: ''
+- name: getItemAt(index)
+  uid: onenote!OneNote.PageCollection#getItemAt:member(1)
+  package: onenote!
+  fullName: getItemAt(index)
+  summary: >-
+    按其在集合中的位置获取页面。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getItemAt(index: number): OneNote.Page;'
+    parameters:
+    - id: index
+      description: 要检索的对象的索引值。 从零开始编制索引。
+      type: number
+    return:
+      type: <xref uid="onenote!OneNote.Page:class" />
+      description: ''
+- name: load(option)
+  uid: onenote!OneNote.PageCollection#load:member(1)
+  package: onenote!
+  fullName: load(option)
+  summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+  remarks: >-
+    除了此签名之外，此方法还具有以下签名：
+
+
+    `load(option?: string | string[]): OneNote.PageCollection` -Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
+
+
+    `load(option?: { select?: string; expand?: string; }): OneNote.PageCollection` -Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.PageCollection` -仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(option?: OneNote.Interfaces.PageCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions): OneNote.PageCollection;'
+    parameters:
+    - id: option
+      description: ''
+      type: <xref uid="onenote!OneNote.Interfaces.PageCollectionLoadOptions:interface" /> & <xref uid="onenote!OneNote.Interfaces.CollectionLoadOptions:interface" />
+    return:
+      type: <xref uid="onenote!OneNote.PageCollection:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: onenote!OneNote.PageCollection#load:member(2)
+  package: onenote!
+  fullName: load(propertyNames)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): OneNote.PageCollection;'
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      type: string | string[]
+    return:
+      type: <xref uid="onenote!OneNote.PageCollection:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n    \n    // Get the pages in the current section.\n    var pages = context.application.getActiveSection().pages;\n    \n    // Queue a command to load the id and title for each page.            \n    pages.load('id,title');\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            \n            // Display the properties.\n            $.each(pages.items, function(index, page) {\n                console.log(page.title);\n                console.log(page.id);\n            });\n        }); \n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(option)
+  uid: onenote!OneNote.PageCollection#load:member(3)
+  package: onenote!
+  fullName: load(option)
+  summary: ''
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(option?: OfficeExtension.LoadOption): OneNote.PageCollection;'
+    parameters:
+    - id: option
+      description: ''
+      type: <xref uid="office!OfficeExtension.LoadOption:interface" />
+    return:
+      type: <xref uid="onenote!OneNote.PageCollection:class" />
+      description: ''
+- name: toJSON()
+  uid: onenote!OneNote.PageCollection#toJSON:member(1)
+  package: onenote!
+  fullName: toJSON()
+  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始 `OneNote.PageCollection` 对象是 API 对象，则该 `toJSON` 方法返回一个纯 JavaScript 对象 (类型为 `OneNote.Interfaces.PageCollectionData`<!-- -->包含集合项中任何已加载属性的浅表的 "items" 数组 ) 。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): OneNote.Interfaces.PageCollectionData;'
+    return:
+      type: <xref uid="onenote!OneNote.Interfaces.PageCollectionData:interface" />
+      description: ''
+- name: track()
+  uid: onenote!OneNote.PageCollection#track:member(1)
+  package: onenote!
+  fullName: track()
+  summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'track(): OneNote.PageCollection;'
+    return:
+      type: <xref uid="onenote!OneNote.PageCollection:class" />
+      description: ''
+- name: untrack()
+  uid: onenote!OneNote.PageCollection#untrack:member(1)
+  package: onenote!
+  fullName: untrack()
+  summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前，你需要调用“context.sync()”。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'untrack(): OneNote.PageCollection;'
+    return:
+      type: <xref uid="onenote!OneNote.PageCollection:class" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 7d0327069b406eb1c76ec29da6963f1668da1b66
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49193928"

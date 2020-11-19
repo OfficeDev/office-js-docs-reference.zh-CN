@@ -1,176 +1,192 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'outlook!Office.RoamingSettings:interface'
-    summary: |-
-      通过使用 `RoamingSettings` 对象的方法创建的设置将按外接程序和按用户进行保存。即，这些设置仅供创建它们的外接程序使用，并且仅来自保存它们的用户邮箱。
+### YamlMime:TSType
+name: Office.RoamingSettings
+uid: outlook!Office.RoamingSettings:interface
+package: outlook!
+fullName: Office.RoamingSettings
+summary: >-
+  通过使用 `RoamingSettings` 对象的方法创建的设置将按外接程序和按用户进行保存。即，这些设置仅供创建它们的外接程序使用，并且仅来自保存它们的用户邮箱。
 
-      虽然 Outlook 外接程序 API 仅允许创建它们的外接程序访问这些设置，但这些设置不应被视为安全存储。可以通过 Exchange Web 服务或扩展 MAPI 访问这些设置。它们不应用于存储敏感信息，如用户凭据或安全令牌。
 
-      设置的名称是一个字符串，而值可以是字符串、数字、布尔值、null 值、对象或数组。
+  虽然 Outlook 外接程序 API 仅允许创建它们的外接程序访问这些设置，但这些设置不应被视为安全存储。可以通过 Exchange Web 服务或扩展 MAPI 访问这些设置。它们不应用于存储敏感信息，如用户凭据或安全令牌。
 
-      可通过 `RoamingSettings` 命名空间中的 `roamingSettings` 属性访问 `Office.context` 对象。
 
-      **重要说明**： `RoamingSettings` 只有在首次加载加载项时，才会从持久化存储初始化对象。 对于任务窗格，这意味着仅在第一次打开任务窗格时才会对其进行初始化。 如果任务窗格导航到另一个页面或重新加载当前页面，则内存中的对象将重置为其初始值，即使您的外接程序具有持续的更改也是如此。 在关闭并重新打开任务窗格（或在 UI 较少的加载项的情况下）之前，保留的更改将不可用。
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`Restricted`
+  设置的名称是一个字符串，而值可以是字符串、数字、布尔值、null 值、对象或数组。
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
-    name: Office.RoamingSettings
-    fullName: Office.RoamingSettings
-    langs:
-      - typeScript
-    type: interface
-    package: outlook!
-    children:
-      - 'outlook!Office.RoamingSettings#get:member(1)'
-      - 'outlook!Office.RoamingSettings#remove:member(1)'
-      - 'outlook!Office.RoamingSettings#saveAsync:member(1)'
-      - 'outlook!Office.RoamingSettings#set:member(1)'
-  - uid: 'outlook!Office.RoamingSettings#get:member(1)'
-    summary: 检索指定设置。
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`Restricted`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+  可通过 `RoamingSettings` 命名空间中的 `roamingSettings` 属性访问 `Office.context` 对象。
 
-      #### <a name="examples"></a>示例
 
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/10-roaming-settings/roaming-settings.yaml
-      var settingName = $("#settingName").val();
-      var settingValue = Office.context.roamingSettings.get(settingName);
-      $("#settingValue").val(settingValue);
-      console.log(`The value of setting "${settingName}" is "${settingValue}".`);
-      ```
-    name: get(name)
-    fullName: get(name)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'get(name: string): any;'
-      return:
-        type:
-          - any
-        description: 类型： String \| Number \| Boolean \| 对象 \| 数组
-      parameters:
-        - id: name
-          description: 要检索的设置的区分大小写的名称。
-          type:
-            - string
-  - uid: 'outlook!Office.RoamingSettings#remove:member(1)'
-    summary: 删除指定的设置
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`Restricted`
+  **重要说明**： `RoamingSettings` 只有在首次加载加载项时，才会从持久化存储初始化对象。 对于任务窗格，这意味着仅在第一次打开任务窗格时才会对其进行初始化。 如果任务窗格导航到另一个页面或重新加载当前页面，则内存中的对象将重置为其初始值，即使您的外接程序具有持续的更改也是如此。 直到关闭并重新打开任务窗格的加载项) 关闭并重新打开时，保留的更改才会在任务窗格 (或项目的情况下可用。
+remarks: >-
+  **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`Restricted`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
-    name: remove(name)
-    fullName: remove(name)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'remove(name: string): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: name
-          description: 要移除的设置的区分大小写的名称。
-          type:
-            - string
-  - uid: 'outlook!Office.RoamingSettings#saveAsync:member(1)'
-    summary: |-
-      保存设置。
 
-      加载项以前保存的任何设置都会在初始化时加载，因此，在会话的生存期期间，可以只使用 set 和 get 方法来处理设置属性包的内存副本。 如果希望保留设置以便可在下次使用外接程序时使用这些设置，请使用 saveAsync 方法。
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`Restricted`
+  **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+- name: get(name)
+  uid: outlook!Office.RoamingSettings#get:member(1)
+  package: outlook!
+  fullName: get(name)
+  summary: 检索指定设置。
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`Restricted`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
 
-      #### <a name="examples"></a>示例
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
 
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/10-roaming-settings/roaming-settings.yaml
-      // Save settings in the mailbox to make it available in future sessions.
-      Office.context.roamingSettings.saveAsync(function(result) {
-        if (result.status !== Office.AsyncResultStatus.Succeeded) {
-          console.error(`Action failed with message ${result.error.message}`);
-        } else {
-          console.log(`Settings saved with status: ${result.status}`);
-        }
-      });
-      ```
-    name: saveAsync(callback)
-    fullName: saveAsync(callback)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'saveAsync(callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数`Office.AsyncResult`<!-- -->.
-          type:
-            - 'outlook!Office.RoamingSettings#saveAsync~0:complex'
-  - uid: 'outlook!Office.RoamingSettings#set:member(1)'
-    summary: |-
-      设置或创建指定设置。
 
-      `set`如果指定名称尚不存在，则该方法将创建一个新设置，或设置指定名称的现有设置。 该值在文档中存储为其数据类型的序列化 JSON 表示形式。
+    #### <a name="examples"></a>示例
 
-      每个加载项的设置最多可使用32KB。
 
-      在调用函数之前，使用 set 函数对设置所做的任何更改都不会保存到服务器 `saveAsync` 。
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`Restricted`
+    ```javascript
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/10-roaming-settings/roaming-settings.yaml
 
-      #### <a name="examples"></a>示例
+    var settingName = $("#settingName").val();
 
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/10-roaming-settings/roaming-settings.yaml
-      var settingName = $("#settingName").val();
-      var settingValue = $("#settingValue").val();
-      Office.context.roamingSettings.set(settingName, settingValue);
-      console.log(`Setting "${settingName}" set to value "${settingValue}".`);
-      ```
-    name: 'set(name, value)'
-    fullName: 'set(name, value)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'set(name: string, value: any): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: name
-          description: 要设置或创建的设置的名称（区分大小写）。
-          type:
-            - string
-        - id: value
-          description: Specifies the value to be stored.
-          type:
-            - any
-references:
-  - uid: 'outlook!Office.RoamingSettings#saveAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
+    var settingValue = Office.context.roamingSettings.get(settingName);
+
+    $("#settingValue").val(settingValue);
+
+    console.log(`The value of setting "${settingName}" is "${settingValue}".`);
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'get(name: string): any;'
+    parameters:
+    - id: name
+      description: 要检索的设置的区分大小写的名称。
+      type: string
+    return:
+      type: any
+      description: 类型： String \| Number \| Boolean \| 对象 \| 数组
+- name: remove(name)
+  uid: outlook!Office.RoamingSettings#remove:member(1)
+  package: outlook!
+  fullName: remove(name)
+  summary: 删除指定的设置
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`Restricted`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'remove(name: string): void;'
+    parameters:
+    - id: name
+      description: 要移除的设置的区分大小写的名称。
+      type: string
+    return:
+      type: void
+      description: ''
+- name: saveAsync(callback)
+  uid: outlook!Office.RoamingSettings#saveAsync:member(1)
+  package: outlook!
+  fullName: saveAsync(callback)
+  summary: >-
+    保存设置。
+
+
+    加载项以前保存的任何设置都会在初始化时加载，因此，在会话的生存期期间，可以只使用 set 和 get 方法来处理设置属性包的内存副本。 如果希望保留设置以便可在下次使用外接程序时使用这些设置，请使用 saveAsync 方法。
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`Restricted`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/10-roaming-settings/roaming-settings.yaml
+
+    // Save settings in the mailbox to make it available in future sessions.
+
+    Office.context.roamingSettings.saveAsync(function(result) {
+      if (result.status !== Office.AsyncResultStatus.Succeeded) {
+        console.error(`Action failed with message ${result.error.message}`);
+      } else {
+        console.log(`Settings saved with status: ${result.status}`);
+      }
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'saveAsync(callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: set(name, value)
+  uid: outlook!Office.RoamingSettings#set:member(1)
+  package: outlook!
+  fullName: set(name, value)
+  summary: >-
+    设置或创建指定设置。
+
+
+    `set`如果指定名称尚不存在，则该方法将创建一个新设置，或设置指定名称的现有设置。 该值在文档中存储为其数据类型的序列化 JSON 表示形式。
+
+
+    每个加载项的设置最多可使用32KB。
+
+
+    在调用函数之前，使用 set 函数对设置所做的任何更改都不会保存到服务器 `saveAsync` 。
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`Restricted`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/10-roaming-settings/roaming-settings.yaml
+
+    var settingName = $("#settingName").val();
+
+    var settingValue = $("#settingValue").val();
+
+    Office.context.roamingSettings.set(settingName, settingValue);
+
+    console.log(`Setting "${settingName}" set to value "${settingValue}".`);
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(name: string, value: any): void;'
+    parameters:
+    - id: name
+      description: 要设置或创建的设置的名称（区分大小写）。
+      type: string
+    - id: value
+      description: Specifies the value to be stored.
+      type: any
+    return:
+      type: void
+      description: ''
+metadata:
+  ms.openlocfilehash: ffdc2ecd6d89b07f2b1575d687df2b2a5eec47f6
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49193325"
