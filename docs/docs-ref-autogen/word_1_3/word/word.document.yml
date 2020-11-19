@@ -1,443 +1,290 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'word!Word.Document:class'
-    summary: |-
-      Document 对象是顶层对象。Document 对象包含一个或多个节、内容控件以及包含文档内容的正文。
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: Word.Document
-    fullName: Word.Document
-    langs:
-      - typeScript
-    type: class
-    extends:
-      - 'office!OfficeExtension.ClientObject:class'
-    package: word!
-    children:
-      - 'word!Word.Document#body:member'
-      - 'word!Word.Document#contentControls:member'
-      - 'word!Word.Document#context:member'
-      - 'word!Word.Document#getSelection:member(1)'
-      - 'word!Word.Document#load:member(1)'
-      - 'word!Word.Document#load:member(2)'
-      - 'word!Word.Document#load:member(3)'
-      - 'word!Word.Document#properties:member'
-      - 'word!Word.Document#save:member(1)'
-      - 'word!Word.Document#saved:member'
-      - 'word!Word.Document#sections:member'
-      - 'word!Word.Document#set:member(1)'
-      - 'word!Word.Document#set:member(2)'
-      - 'word!Word.Document#toJSON:member(1)'
-      - 'word!Word.Document#track:member(1)'
-      - 'word!Word.Document#untrack:member(1)'
-  - uid: 'word!Word.Document#body:member'
-    summary: |-
-      获取文档的正文对象。 正文是不包括标头、页脚、脚注、文本框等的文本。 只读。
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: body
-    fullName: body
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly body: Word.Body;'
-      return:
-        type:
-          - 'word!Word.Body:class'
-  - uid: 'word!Word.Document#contentControls:member'
-    summary: |-
-      获取文档中的内容控件对象的集合。 这包括文档正文、标头、页脚、文本框等中的内容控件。 只读。
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: contentControls
-    fullName: contentControls
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly contentControls: Word.ContentControlCollection;'
-      return:
-        type:
-          - 'word!Word.ContentControlCollection:class'
-  - uid: 'word!Word.Document#context:member'
-    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-    name: context
-    fullName: context
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'context: RequestContext;'
-      return:
-        type:
-          - 'word!Word.RequestContext:class'
-  - uid: 'word!Word.Document#getSelection:member(1)'
-    summary: |-
-      获取文档的当前选定内容。 不支持多重选择。
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: getSelection()
-    fullName: getSelection()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getSelection(): Word.Range;'
-      return:
-        type:
-          - 'word!Word.Range:class'
-        description: |-
+### YamlMime:TSType
+name: Word.Document
+uid: word!Word.Document:class
+package: word!
+fullName: Word.Document
+summary: >-
+  Document 对象是顶层对象。Document 对象包含一个或多个节、内容控件以及包含文档内容的正文。
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          // Run a batch operation against the Word object model.
-          Word.run(function (context) {
-              
-              var textSample = 'This is an example of the insert text method. This is a method ' + 
-                  'which allows users to insert text into a selection. It can insert text into a ' +
-                  'relative location or it can overwrite the current selection. Since the ' +
-                  'getSelection method returns a range object, look up the range object documentation ' +
-                  'for everything you can do with a selection.';
-              
-              // Create a range proxy object for the current selection.
-              var range = context.document.getSelection();
-              
-              // Queue a command to insert text at the end of the selection.
-              range.insertText(textSample, Word.InsertLocation.end);
-              
-              // Synchronize the document state by executing the queued commands, 
-              // and return a promise to indicate task completion.
-              return context.sync().then(function () {
-                  console.log('Inserted the text at the end of the selection.');
-              });  
-          })
-          .catch(function (error) {
-              console.log('Error: ' + JSON.stringify(error));
-              if (error instanceof OfficeExtension.Error) {
-                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-  - uid: 'word!Word.Document#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(options)
-    fullName: load(options)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(options?: Word.Interfaces.DocumentLoadOptions): Word.Document;'
-      return:
-        type:
-          - 'word!Word.Document:class'
-        description: |-
+  \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: body
+  uid: word!Word.Document#body:member
+  package: word!
+  fullName: body
+  summary: >-
+    获取文档的正文对象。 正文是不包括标头、页脚、脚注、文本框等的文本。 只读。
 
 
-          #### <a name="examples"></a>示例
+    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly body: Word.Body;'
+    return:
+      type: <xref uid="word!Word.Body:class" />
+- name: contentControls
+  uid: word!Word.Document#contentControls:member
+  package: word!
+  fullName: contentControls
+  summary: >-
+    获取文档中的内容控件对象的集合。 这包括文档正文、标头、页脚、文本框等中的内容控件。 只读。
 
-          ```javascript
-          // Run a batch operation against the Word object model.
-          Word.run(function (context) {
-              
-              // Create a proxy object for the document.
-              var thisDocument = context.document;
-              
-              // Queue a command to load content control properties.
-              context.load(thisDocument, 'contentControls/id, contentControls/text, contentControls/tag');
-              
-              // Synchronize the document state by executing the queued commands, 
-              // and return a promise to indicate task completion.
-              return context.sync().then(function () {
-                  if (thisDocument.contentControls.items.length !== 0) {
-                      for (var i = 0; i < thisDocument.contentControls.items.length; i++) {
-                          console.log(thisDocument.contentControls.items[i].id);
-                          console.log(thisDocument.contentControls.items[i].text);
-                          console.log(thisDocument.contentControls.items[i].tag);
-                      }
-                  } else {
-                      console.log('No content controls in this document.');
-                  }
-              });  
-          })
-          .catch(function (error) {
-              console.log('Error: ' + JSON.stringify(error));
-              if (error instanceof OfficeExtension.Error) {
-                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: options
-          description: 提供要加载的对象的属性的选项。
-          type:
-            - 'word!Word.Interfaces.DocumentLoadOptions:interface'
-  - uid: 'word!Word.Document#load:member(2)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNames)
-    fullName: load(propertyNames)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNames?: string | string[]): Word.Document;'
-      return:
-        type:
-          - 'word!Word.Document:class'
-        description: ''
-      parameters:
-        - id: propertyNames
-          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
-          type:
-            - 'string | string[]'
-  - uid: 'word!Word.Document#load:member(3)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNamesAndPaths)
-    fullName: load(propertyNamesAndPaths)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: |-
-        load(propertyNamesAndPaths?: {
+
+    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly contentControls: Word.ContentControlCollection;'
+    return:
+      type: <xref uid="word!Word.ContentControlCollection:class" />
+- name: context
+  uid: word!Word.Document#context:member
+  package: word!
+  fullName: context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="word!Word.RequestContext:class" />
+- name: properties
+  uid: word!Word.Document#properties:member
+  package: word!
+  fullName: properties
+  summary: >-
+    获取文档的属性。 只读。
+
+
+    \[[API 集： WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly properties: Word.DocumentProperties;'
+    return:
+      type: <xref uid="word!Word.DocumentProperties:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/word/30-properties/get-built-in-properties.yaml\nawait Word.run(async (context) => {\n    let builtInProperties = context.document.properties;\n    builtInProperties.load(\"*\"); // Let's get all!\n\n    await context.sync();\n    console.log(JSON.stringify(builtInProperties, null, 4));\n});\n```"
+- name: saved
+  uid: word!Word.Document#saved:member
+  package: word!
+  fullName: saved
+  summary: >-
+    指示是否已保存在文档中所做的更改。如果值为 true，表示文档自上次保存以来并未更改。只读。
+
+
+    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly saved: boolean;'
+    return:
+      type: boolean
+- name: sections
+  uid: word!Word.Document#sections:member
+  package: word!
+  fullName: sections
+  summary: >-
+    获取文档中的节对象的集合。 只读。
+
+
+    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly sections: Word.SectionCollection;'
+    return:
+      type: <xref uid="word!Word.SectionCollection:class" />
+methods:
+- name: getSelection()
+  uid: word!Word.Document#getSelection:member(1)
+  package: word!
+  fullName: getSelection()
+  summary: >-
+    获取文档的当前选定内容。 不支持多重选择。
+
+
+    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getSelection(): Word.Range;'
+    return:
+      type: <xref uid="word!Word.Range:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    var textSample = 'This is an example of the insert text method. This is a method ' + \n        'which allows users to insert text into a selection. It can insert text into a ' +\n        'relative location or it can overwrite the current selection. Since the ' +\n        'getSelection method returns a range object, look up the range object documentation ' +\n        'for everything you can do with a selection.';\n    \n    // Create a range proxy object for the current selection.\n    var range = context.document.getSelection();\n    \n    // Queue a command to insert text at the end of the selection.\n    range.insertText(textSample, Word.InsertLocation.end);\n    \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        console.log('Inserted the text at the end of the selection.');\n    });  \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(options)
+  uid: word!Word.Document#load:member(1)
+  package: word!
+  fullName: load(options)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Word.Interfaces.DocumentLoadOptions): Word.Document;'
+    parameters:
+    - id: options
+      description: 提供要加载的对象的属性的选项。
+      type: <xref uid="word!Word.Interfaces.DocumentLoadOptions:interface" />
+    return:
+      type: <xref uid="word!Word.Document:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Create a proxy object for the document.\n    var thisDocument = context.document;\n    \n    // Queue a command to load content control properties.\n    context.load(thisDocument, 'contentControls/id, contentControls/text, contentControls/tag');\n    \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        if (thisDocument.contentControls.items.length !== 0) {\n            for (var i = 0; i < thisDocument.contentControls.items.length; i++) {\n                console.log(thisDocument.contentControls.items[i].id);\n                console.log(thisDocument.contentControls.items[i].text);\n                console.log(thisDocument.contentControls.items[i].tag);\n            }\n        } else {\n            console.log('No content controls in this document.');\n        }\n    });  \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(propertyNames)
+  uid: word!Word.Document#load:member(2)
+  package: word!
+  fullName: load(propertyNames)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Word.Document;'
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      type: string | string[]
+    return:
+      type: <xref uid="word!Word.Document:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: word!Word.Document#load:member(3)
+  package: word!
+  fullName: load(propertyNamesAndPaths)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): Word.Document;
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      type: >-
+        {
                     select?: string;
                     expand?: string;
-                }): Word.Document;
-      return:
-        type:
-          - 'word!Word.Document:class'
-        description: ''
-      parameters:
-        - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
-          type:
-            - |-
-              {
-                          select?: string;
-                          expand?: string;
-                      }
-  - uid: 'word!Word.Document#properties:member'
-    summary: |-
-      获取文档的属性。 只读。
-
-      \[[API 集： WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: properties
-    fullName: properties
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly properties: Word.DocumentProperties;'
-      return:
-        type:
-          - 'word!Word.DocumentProperties:class'
-        description: |-
+                }
+    return:
+      type: <xref uid="word!Word.Document:class" />
+      description: ''
+- name: save()
+  uid: word!Word.Document#save:member(1)
+  package: word!
+  fullName: save()
+  summary: >-
+    保存文档。 如果文档以前未保存过，则这将使用 Word 默认文件命名约定。
 
 
-          #### <a name="examples"></a>示例
-
-          ```typescript
-          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/word/30-properties/get-built-in-properties.yaml
-          await Word.run(async (context) => {
-              let builtInProperties = context.document.properties;
-              builtInProperties.load("*"); // Let's get all!
-
-              await context.sync();
-              console.log(JSON.stringify(builtInProperties, null, 4));
-          });
-          ```
-  - uid: 'word!Word.Document#save:member(1)'
-    summary: |-
-      保存文档。 如果文档以前未保存过，则这将使用 Word 默认文件命名约定。
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: save()
-    fullName: save()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'save(): void;'
-      return:
-        type:
-          - void
-        description: |-
+    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'save(): void;'
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Create a proxy object for the document.\n    var thisDocument = context.document;\n\n    // Queue a command to load the document save state (on the saved property).\n    context.load(thisDocument, 'saved');    \n    \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        \n        if (thisDocument.saved === false) {\n            // Queue a command to save this document.\n            thisDocument.save();\n            \n            // Synchronize the document state by executing the queued commands, \n            // and return a promise to indicate task completion.\n            return context.sync().then(function () {\n                console.log('Saved the document');\n            });\n        } else {\n            console.log('The document has not changed since the last save.');\n        }\n    });  \n})\n.catch(function (error) {\n    console.log(\"Error: \" + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: set(properties, options)
+  uid: word!Word.Document#set:member(1)
+  package: word!
+  fullName: set(properties, options)
+  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+  remarks: >-
+    此方法具有以下附加签名：
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          // Run a batch operation against the Word object model.
-          Word.run(function (context) {
-              
-              // Create a proxy object for the document.
-              var thisDocument = context.document;
-
-              // Queue a command to load the document save state (on the saved property).
-              context.load(thisDocument, 'saved');    
-              
-              // Synchronize the document state by executing the queued commands, 
-              // and return a promise to indicate task completion.
-              return context.sync().then(function () {
-                  
-                  if (thisDocument.saved === false) {
-                      // Queue a command to save this document.
-                      thisDocument.save();
-                      
-                      // Synchronize the document state by executing the queued commands, 
-                      // and return a promise to indicate task completion.
-                      return context.sync().then(function () {
-                          console.log('Saved the document');
-                      });
-                  } else {
-                      console.log('The document has not changed since the last save.');
-                  }
-              });  
-          })
-          .catch(function (error) {
-              console.log("Error: " + JSON.stringify(error));
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-  - uid: 'word!Word.Document#saved:member'
-    summary: |-
-      指示是否已保存在文档中所做的更改。如果值为 true，表示文档自上次保存以来并未更改。只读。
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: saved
-    fullName: saved
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly saved: boolean;'
-      return:
-        type:
-          - boolean
-  - uid: 'word!Word.Document#sections:member'
-    summary: |-
-      获取文档中的节对象的集合。 只读。
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: sections
-    fullName: sections
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly sections: Word.SectionCollection;'
-      return:
-        type:
-          - 'word!Word.SectionCollection:class'
-  - uid: 'word!Word.Document#set:member(1)'
-    summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
-    remarks: |-
-      此方法具有以下附加签名：
-
-      `set(properties: Word.Document): void`
-    name: 'set(properties, options)'
-    fullName: 'set(properties, options)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'set(properties: Interfaces.DocumentUpdateData, options?: OfficeExtension.UpdateOptions): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: properties
-          description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
-          type:
-            - 'word!Word.Interfaces.DocumentUpdateData:interface'
-        - id: options
-          description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
-          type:
-            - 'office!OfficeExtension.UpdateOptions:interface'
-  - uid: 'word!Word.Document#set:member(2)'
-    summary: 基于现有加载的对象同时设置该对象的多个属性。
-    name: set(properties)
-    fullName: set(properties)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'set(properties: Word.Document): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: properties
-          description: ''
-          type:
-            - 'word!Word.Document:class'
-  - uid: 'word!Word.Document#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始 Word.Document 对象是 API 对象，但该 `toJSON` 方法返回一个无格式的 JavaScript 对象（类型为`Word.Interfaces.DocumentData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
-    name: toJSON()
-    fullName: toJSON()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'toJSON(): Word.Interfaces.DocumentData;'
-      return:
-        type:
-          - 'word!Word.Interfaces.DocumentData:interface'
-        description: ''
-  - uid: 'word!Word.Document#track:member(1)'
-    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是的简写`context.trackedObjects.add(thisObject)`<!-- -->. 如果要在多个调用中使用此对象 `.sync` ，并在 "运行" 批处理的顺序执行之外使用此对象，并在设置属性或对对象调用方法时获取 "InvalidObjectPath" 错误，则需要在首次创建对象时将该对象添加到跟踪的对象集合中。
-    name: track()
-    fullName: track()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'track(): Word.Document;'
-      return:
-        type:
-          - 'word!Word.Document:class'
-        description: ''
-  - uid: 'word!Word.Document#untrack:member(1)'
-    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是的简写`context.trackedObjects.remove(thisObject)`<!-- -->. 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在 `context.sync()` 内存释放生效之前，您需要调用该过程。
-    name: untrack()
-    fullName: untrack()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'untrack(): Word.Document;'
-      return:
-        type:
-          - 'word!Word.Document:class'
-        description: ''
-references:
-  - uid: 'office!OfficeExtension.ClientObject:class'
-    name: OfficeExtension.ClientObject
-  - uid: 'word!Word.Body:class'
-    name: Word.Body
-  - uid: 'word!Word.ContentControlCollection:class'
-    name: Word.ContentControlCollection
-  - uid: 'word!Word.RequestContext:class'
-    name: RequestContext
-  - uid: 'word!Word.Range:class'
-    name: Word.Range
-  - uid: 'word!Word.Document:class'
-    name: Word.Document
-  - uid: 'word!Word.Interfaces.DocumentLoadOptions:interface'
-    name: Word.Interfaces.DocumentLoadOptions
-  - uid: 'word!Word.DocumentProperties:class'
-    name: Word.DocumentProperties
-  - uid: 'word!Word.SectionCollection:class'
-    name: Word.SectionCollection
-  - uid: 'word!Word.Interfaces.DocumentUpdateData:interface'
-    name: Interfaces.DocumentUpdateData
-  - uid: 'office!OfficeExtension.UpdateOptions:interface'
-    name: OfficeExtension.UpdateOptions
-  - uid: 'word!Word.Interfaces.DocumentData:interface'
-    name: Word.Interfaces.DocumentData
+    `set(properties: Word.Document): void`
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Interfaces.DocumentUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    parameters:
+    - id: properties
+      description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
+      type: <xref uid="word!Word.Interfaces.DocumentUpdateData:interface" />
+    - id: options
+      description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
+      type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
+    return:
+      type: void
+      description: ''
+- name: set(properties)
+  uid: word!Word.Document#set:member(2)
+  package: word!
+  fullName: set(properties)
+  summary: 基于现有加载的对象同时设置该对象的多个属性。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Word.Document): void;'
+    parameters:
+    - id: properties
+      description: ''
+      type: <xref uid="word!Word.Document:class" />
+    return:
+      type: void
+      description: ''
+- name: toJSON()
+  uid: word!Word.Document#toJSON:member(1)
+  package: word!
+  fullName: toJSON()
+  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始 Word.Document 对象是 API 对象，则该 `toJSON` 方法返回一个简单的 JavaScript 对象 (类型为 `Word.Interfaces.DocumentData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Word.Interfaces.DocumentData;'
+    return:
+      type: <xref uid="word!Word.Interfaces.DocumentData:interface" />
+      description: ''
+- name: track()
+  uid: word!Word.Document#track:member(1)
+  package: word!
+  fullName: track()
+  summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是的简写 `context.trackedObjects.add(thisObject)`<!-- -->. 如果要在多个调用中使用此对象 `.sync` ，并在 "运行" 批处理的顺序执行之外使用此对象，并在设置属性或对对象调用方法时获取 "InvalidObjectPath" 错误，则需要在首次创建对象时将该对象添加到跟踪的对象集合中。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'track(): Word.Document;'
+    return:
+      type: <xref uid="word!Word.Document:class" />
+      description: ''
+- name: untrack()
+  uid: word!Word.Document#untrack:member(1)
+  package: word!
+  fullName: untrack()
+  summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是的简写 `context.trackedObjects.remove(thisObject)`<!-- -->. 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在 `context.sync()` 内存释放生效之前，您需要调用该过程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'untrack(): Word.Document;'
+    return:
+      type: <xref uid="word!Word.Document:class" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 44c3f294d8f6f324fb4d6b2aa7ac401ee358b151
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49171083"
