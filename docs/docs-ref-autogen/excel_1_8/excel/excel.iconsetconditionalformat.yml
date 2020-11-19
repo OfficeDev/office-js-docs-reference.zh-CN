@@ -1,343 +1,215 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'excel!Excel.IconSetConditionalFormat:class'
-    summary: |-
-      表示条件格式的 IconSet 条件。
-
-      \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: Excel.IconSetConditionalFormat
-    fullName: Excel.IconSetConditionalFormat
-    langs:
-      - typeScript
-    type: class
-    extends:
-      - 'office!OfficeExtension.ClientObject:class'
-    package: excel!
-    children:
-      - 'excel!Excel.IconSetConditionalFormat#context:member'
-      - 'excel!Excel.IconSetConditionalFormat#criteria:member'
-      - 'excel!Excel.IconSetConditionalFormat#load:member(1)'
-      - 'excel!Excel.IconSetConditionalFormat#load:member(2)'
-      - 'excel!Excel.IconSetConditionalFormat#load:member(3)'
-      - 'excel!Excel.IconSetConditionalFormat#reverseIconOrder:member'
-      - 'excel!Excel.IconSetConditionalFormat#set:member(1)'
-      - 'excel!Excel.IconSetConditionalFormat#set:member(2)'
-      - 'excel!Excel.IconSetConditionalFormat#showIconOnly:member'
-      - 'excel!Excel.IconSetConditionalFormat#style:member'
-      - 'excel!Excel.IconSetConditionalFormat#toJSON:member(1)'
-  - uid: 'excel!Excel.IconSetConditionalFormat#context:member'
-    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-    name: context
-    fullName: context
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'context: RequestContext;'
-      return:
-        type:
-          - 'excel!Excel.RequestContext:class'
-  - uid: 'excel!Excel.IconSetConditionalFormat#criteria:member'
-    summary: |-
-      用于条件图标的规则和潜在自定义图标的条件和 IconSets 的数组。 请注意，对于第一个条件，只有自定义图标可以修改，而类型、公式和运算符在设置时将被忽略。
-
-      \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: criteria
-    fullName: criteria
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'criteria: Excel.ConditionalIconCriterion[];'
-      return:
-        type:
-          - 'excel!Excel.IconSetConditionalFormat#criteria~0:complex'
-        description: |-
+### YamlMime:TSType
+name: Excel.IconSetConditionalFormat
+uid: excel!Excel.IconSetConditionalFormat:class
+package: excel!
+fullName: Excel.IconSetConditionalFormat
+summary: >-
+  表示条件格式的 IconSet 条件。
 
 
-          #### <a name="examples"></a>示例
+  \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.IconSetConditionalFormat#context:member
+  package: excel!
+  fullName: context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: criteria
+  uid: excel!Excel.IconSetConditionalFormat#criteria:member
+  package: excel!
+  fullName: criteria
+  summary: >-
+    用于条件图标的规则和潜在自定义图标的条件和 IconSets 的数组。 请注意，对于第一个条件，只有自定义图标可以修改，而类型、公式和运算符在设置时将被忽略。
 
-          ```typescript
-          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/14-conditional-formatting/conditional-formatting-basic.yaml
-          await Excel.run(async (context) => {
-              const sheet = context.workbook.worksheets.getItem("Sample");
-              const range = sheet.getRange("B8:E13");
-              const conditionalFormat = range.conditionalFormats
-                  .add(Excel.ConditionalFormatType.iconSet);
-              const iconSetCF = conditionalFormat.iconSet;
-              iconSetCF.style = Excel.IconSet.threeTriangles;
 
-              /*
-                  The iconSetCF.criteria array is automatically prepopulated with
-                  criterion elements whose properties have been given default settings.
-                  You can't write to each property of a criterion directly. Instead,
-                  replace the whole criteria object.
+    \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'criteria: Excel.ConditionalIconCriterion[];'
+    return:
+      type: <xref uid="excel!Excel.ConditionalIconCriterion:interface" />[]
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/14-conditional-formatting/conditional-formatting-basic.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B8:E13\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.iconSet);\n    const iconSetCF = conditionalFormat.iconSet;\n    iconSetCF.style = Excel.IconSet.threeTriangles;\n\n    /*\n        The iconSetCF.criteria array is automatically prepopulated with\n        criterion elements whose properties have been given default settings.\n        You can't write to each property of a criterion directly. Instead,\n        replace the whole criteria object.\n\n        With a \"three*\" icon set style, such as \"threeTriangles\", the third\n        element in the criteria array (criteria[2]) defines the \"top\" icon;\n        e.g., a green triangle. The second (criteria[1]) defines the \"middle\"\n        icon, The first (criteria[0]) defines the \"low\" icon, but it\n        can often be left empty as this method does below, because every\n        cell that does not match the other two criteria always gets the low\n        icon.            \n    */\n    iconSetCF.criteria = [\n        {} as any,\n        {\n            type: Excel.ConditionalFormatIconRuleType.number,\n            operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,\n            formula: \"=700\"\n        },\n        {\n            type: Excel.ConditionalFormatIconRuleType.number,\n            operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,\n            formula: \"=1000\",\n        }\n    ];\n\n    await context.sync();\n});\n```"
+- name: reverseIconOrder
+  uid: excel!Excel.IconSetConditionalFormat#reverseIconOrder:member
+  package: excel!
+  fullName: reverseIconOrder
+  summary: >-
+    如果为 true，则反转 IconSet 的图标订单。 请注意，如果使用自定义图标，则不能设置此设置。
 
-                  With a "three*" icon set style, such as "threeTriangles", the third
-                  element in the criteria array (criteria[2]) defines the "top" icon;
-                  e.g., a green triangle. The second (criteria[1]) defines the "middle"
-                  icon, The first (criteria[0]) defines the "low" icon, but it
-                  can often be left empty as this method does below, because every
-                  cell that does not match the other two criteria always gets the low
-                  icon.            
-              */
-              iconSetCF.criteria = [
-                  {} as any,
-                  {
-                      type: Excel.ConditionalFormatIconRuleType.number,
-                      operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,
-                      formula: "=700"
-                  },
-                  {
-                      type: Excel.ConditionalFormatIconRuleType.number,
-                      operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,
-                      formula: "=1000",
-                  }
-              ];
 
-              await context.sync();
-          });
-          ```
-  - uid: 'excel!Excel.IconSetConditionalFormat#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(options)
-    fullName: load(options)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(options?: Excel.Interfaces.IconSetConditionalFormatLoadOptions): Excel.IconSetConditionalFormat;'
-      return:
-        type:
-          - 'excel!Excel.IconSetConditionalFormat:class'
-        description: ''
-      parameters:
-        - id: options
-          description: 提供要加载的对象的属性的选项。
-          type:
-            - 'excel!Excel.Interfaces.IconSetConditionalFormatLoadOptions:interface'
-  - uid: 'excel!Excel.IconSetConditionalFormat#load:member(2)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNames)
-    fullName: load(propertyNames)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNames?: string | string[]): Excel.IconSetConditionalFormat;'
-      return:
-        type:
-          - 'excel!Excel.IconSetConditionalFormat:class'
-        description: ''
-      parameters:
-        - id: propertyNames
-          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
-          type:
-            - 'string | string[]'
-  - uid: 'excel!Excel.IconSetConditionalFormat#load:member(3)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNamesAndPaths)
-    fullName: load(propertyNamesAndPaths)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: |-
-        load(propertyNamesAndPaths?: {
+    \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'reverseIconOrder: boolean;'
+    return:
+      type: boolean
+- name: showIconOnly
+  uid: excel!Excel.IconSetConditionalFormat#showIconOnly:member
+  package: excel!
+  fullName: showIconOnly
+  summary: >-
+    如果为 true，则隐藏值并仅显示图标。
+
+
+    \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'showIconOnly: boolean;'
+    return:
+      type: boolean
+- name: style
+  uid: excel!Excel.IconSetConditionalFormat#style:member
+  package: excel!
+  fullName: style
+  summary: >-
+    如果设置，则显示条件格式的 IconSet 选项。
+
+
+    \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'style: Excel.IconSet | "Invalid" | "ThreeArrows" | "ThreeArrowsGray" | "ThreeFlags" | "ThreeTrafficLights1" | "ThreeTrafficLights2" | "ThreeSigns" | "ThreeSymbols" | "ThreeSymbols2" | "FourArrows" | "FourArrowsGray" | "FourRedToBlack" | "FourRating" | "FourTrafficLights" | "FiveArrows" | "FiveArrowsGray" | "FiveRating" | "FiveQuarters" | "ThreeStars" | "ThreeTriangles" | "FiveBoxes";'
+    return:
+      type: <xref uid="excel!Excel.IconSet:enum" /> | "Invalid" | "ThreeArrows" | "ThreeArrowsGray" | "ThreeFlags" | "ThreeTrafficLights1" | "ThreeTrafficLights2" | "ThreeSigns" | "ThreeSymbols" | "ThreeSymbols2" | "FourArrows" | "FourArrowsGray" | "FourRedToBlack" | "FourRating" | "FourTrafficLights" | "FiveArrows" | "FiveArrowsGray" | "FiveRating" | "FiveQuarters" | "ThreeStars" | "ThreeTriangles" | "FiveBoxes"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/14-conditional-formatting/conditional-formatting-basic.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B8:E13\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.iconSet);\n    const iconSetCF = conditionalFormat.iconSet;\n    iconSetCF.style = Excel.IconSet.threeTriangles;\n\n    /*\n        The iconSetCF.criteria array is automatically prepopulated with\n        criterion elements whose properties have been given default settings.\n        You can't write to each property of a criterion directly. Instead,\n        replace the whole criteria object.\n\n        With a \"three*\" icon set style, such as \"threeTriangles\", the third\n        element in the criteria array (criteria[2]) defines the \"top\" icon;\n        e.g., a green triangle. The second (criteria[1]) defines the \"middle\"\n        icon, The first (criteria[0]) defines the \"low\" icon, but it\n        can often be left empty as this method does below, because every\n        cell that does not match the other two criteria always gets the low\n        icon.            \n    */\n    iconSetCF.criteria = [\n        {} as any,\n        {\n            type: Excel.ConditionalFormatIconRuleType.number,\n            operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,\n            formula: \"=700\"\n        },\n        {\n            type: Excel.ConditionalFormatIconRuleType.number,\n            operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,\n            formula: \"=1000\",\n        }\n    ];\n\n    await context.sync();\n});\n```"
+methods:
+- name: load(options)
+  uid: excel!Excel.IconSetConditionalFormat#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.IconSetConditionalFormatLoadOptions): Excel.IconSetConditionalFormat;'
+    parameters:
+    - id: options
+      description: 提供要加载的对象的属性的选项。
+      type: <xref uid="excel!Excel.Interfaces.IconSetConditionalFormatLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.IconSetConditionalFormat:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.IconSetConditionalFormat#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.IconSetConditionalFormat;'
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.IconSetConditionalFormat:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.IconSetConditionalFormat#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): Excel.IconSetConditionalFormat;
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      type: >-
+        {
                     select?: string;
                     expand?: string;
-                }): Excel.IconSetConditionalFormat;
-      return:
-        type:
-          - 'excel!Excel.IconSetConditionalFormat:class'
-        description: ''
-      parameters:
-        - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
-          type:
-            - |-
-              {
-                          select?: string;
-                          expand?: string;
-                      }
-  - uid: 'excel!Excel.IconSetConditionalFormat#reverseIconOrder:member'
-    summary: |-
-      如果为 true，则反转 IconSet 的图标订单。 请注意，如果使用自定义图标，则不能设置此设置。
-
-      \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: reverseIconOrder
-    fullName: reverseIconOrder
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'reverseIconOrder: boolean;'
-      return:
-        type:
-          - boolean
-  - uid: 'excel!Excel.IconSetConditionalFormat#set:member(1)'
-    summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
-    remarks: |-
-      此方法具有以下附加签名：
-
-      `set(properties: Excel.IconSetConditionalFormat): void`
-    name: 'set(properties, options)'
-    fullName: 'set(properties, options)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'set(properties: Interfaces.IconSetConditionalFormatUpdateData, options?: OfficeExtension.UpdateOptions): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: properties
-          description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
-          type:
-            - 'excel!Excel.Interfaces.IconSetConditionalFormatUpdateData:interface'
-        - id: options
-          description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
-          type:
-            - 'office!OfficeExtension.UpdateOptions:interface'
-  - uid: 'excel!Excel.IconSetConditionalFormat#set:member(2)'
-    summary: 基于现有加载的对象同时设置该对象的多个属性。
-    name: set(properties)
-    fullName: set(properties)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'set(properties: Excel.IconSetConditionalFormat): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: properties
-          description: ''
-          type:
-            - 'excel!Excel.IconSetConditionalFormat:class'
-  - uid: 'excel!Excel.IconSetConditionalFormat#showIconOnly:member'
-    summary: |-
-      如果为 true，则隐藏值并仅显示图标。
-
-      \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: showIconOnly
-    fullName: showIconOnly
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'showIconOnly: boolean;'
-      return:
-        type:
-          - boolean
-  - uid: 'excel!Excel.IconSetConditionalFormat#style:member'
-    summary: |-
-      如果设置，则显示条件格式的 IconSet 选项。
-
-      \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: style
-    fullName: style
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'style: Excel.IconSet | "Invalid" | "ThreeArrows" | "ThreeArrowsGray" | "ThreeFlags" | "ThreeTrafficLights1" | "ThreeTrafficLights2" | "ThreeSigns" | "ThreeSymbols" | "ThreeSymbols2" | "FourArrows" | "FourArrowsGray" | "FourRedToBlack" | "FourRating" | "FourTrafficLights" | "FiveArrows" | "FiveArrowsGray" | "FiveRating" | "FiveQuarters" | "ThreeStars" | "ThreeTriangles" | "FiveBoxes";'
-      return:
-        type:
-          - 'excel!Excel.IconSetConditionalFormat#style~0:complex'
-        description: |-
+                }
+    return:
+      type: <xref uid="excel!Excel.IconSetConditionalFormat:class" />
+      description: ''
+- name: set(properties, options)
+  uid: excel!Excel.IconSetConditionalFormat#set:member(1)
+  package: excel!
+  fullName: set(properties, options)
+  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+  remarks: >-
+    此方法具有以下附加签名：
 
 
-          #### <a name="examples"></a>示例
-
-          ```typescript
-          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/14-conditional-formatting/conditional-formatting-basic.yaml
-          await Excel.run(async (context) => {
-              const sheet = context.workbook.worksheets.getItem("Sample");
-              const range = sheet.getRange("B8:E13");
-              const conditionalFormat = range.conditionalFormats
-                  .add(Excel.ConditionalFormatType.iconSet);
-              const iconSetCF = conditionalFormat.iconSet;
-              iconSetCF.style = Excel.IconSet.threeTriangles;
-
-              /*
-                  The iconSetCF.criteria array is automatically prepopulated with
-                  criterion elements whose properties have been given default settings.
-                  You can't write to each property of a criterion directly. Instead,
-                  replace the whole criteria object.
-
-                  With a "three*" icon set style, such as "threeTriangles", the third
-                  element in the criteria array (criteria[2]) defines the "top" icon;
-                  e.g., a green triangle. The second (criteria[1]) defines the "middle"
-                  icon, The first (criteria[0]) defines the "low" icon, but it
-                  can often be left empty as this method does below, because every
-                  cell that does not match the other two criteria always gets the low
-                  icon.            
-              */
-              iconSetCF.criteria = [
-                  {} as any,
-                  {
-                      type: Excel.ConditionalFormatIconRuleType.number,
-                      operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,
-                      formula: "=700"
-                  },
-                  {
-                      type: Excel.ConditionalFormatIconRuleType.number,
-                      operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,
-                      formula: "=1000",
-                  }
-              ];
-
-              await context.sync();
-          });
-          ```
-  - uid: 'excel!Excel.IconSetConditionalFormat#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始 IconSetConditionalFormat 对象是 API 对象，但 `toJSON` 方法返回一个无格式的 JavaScript 对象（类型为`Excel.Interfaces.IconSetConditionalFormatData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
-    name: toJSON()
-    fullName: toJSON()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'toJSON(): Excel.Interfaces.IconSetConditionalFormatData;'
-      return:
-        type:
-          - 'excel!Excel.Interfaces.IconSetConditionalFormatData:interface'
-        description: ''
-references:
-  - uid: 'office!OfficeExtension.ClientObject:class'
-    name: OfficeExtension.ClientObject
-  - uid: 'excel!Excel.RequestContext:class'
-    name: RequestContext
-  - uid: 'excel!Excel.IconSetConditionalFormat#criteria~0:complex'
-    name: 'Excel.ConditionalIconCriterion[]'
-    fullName: 'Excel.ConditionalIconCriterion[]'
-    spec.typeScript:
-      - uid: 'excel!Excel.ConditionalIconCriterion:interface'
-        name: Excel.ConditionalIconCriterion
-        fullName: Excel.ConditionalIconCriterion
-      - name: '[]'
-        fullName: '[]'
-  - uid: 'excel!Excel.IconSetConditionalFormat:class'
-    name: Excel.IconSetConditionalFormat
-  - uid: 'excel!Excel.Interfaces.IconSetConditionalFormatLoadOptions:interface'
-    name: Excel.Interfaces.IconSetConditionalFormatLoadOptions
-  - uid: 'excel!Excel.Interfaces.IconSetConditionalFormatUpdateData:interface'
-    name: Interfaces.IconSetConditionalFormatUpdateData
-  - uid: 'office!OfficeExtension.UpdateOptions:interface'
-    name: OfficeExtension.UpdateOptions
-  - uid: 'excel!Excel.IconSetConditionalFormat#style~0:complex'
-    name: Excel.IconSet | "Invalid" | "ThreeArrows" | "ThreeArrowsGray" | "ThreeFlags" | "ThreeTrafficLights1" | "ThreeTrafficLights2" | "ThreeSigns" | "ThreeSymbols" | "ThreeSymbols2" | "FourArrows" | "FourArrowsGray" | "FourRedToBlack" | "FourRating" | "FourTrafficLights" | "FiveArrows" | "FiveArrowsGray" | "FiveRating" | "FiveQuarters" | "ThreeStars" | "ThreeTriangles" | "FiveBoxes"
-    fullName: Excel.IconSet | "Invalid" | "ThreeArrows" | "ThreeArrowsGray" | "ThreeFlags" | "ThreeTrafficLights1" | "ThreeTrafficLights2" | "ThreeSigns" | "ThreeSymbols" | "ThreeSymbols2" | "FourArrows" | "FourArrowsGray" | "FourRedToBlack" | "FourRating" | "FourTrafficLights" | "FiveArrows" | "FiveArrowsGray" | "FiveRating" | "FiveQuarters" | "ThreeStars" | "ThreeTriangles" | "FiveBoxes"
-    spec.typeScript:
-      - uid: 'excel!Excel.IconSet:enum'
-        name: Excel.IconSet
-        fullName: Excel.IconSet
-      - name: ' | "Invalid" | "ThreeArrows" | "ThreeArrowsGray" | "ThreeFlags" | "ThreeTrafficLights1" | "ThreeTrafficLights2" | "ThreeSigns" | "ThreeSymbols" | "ThreeSymbols2" | "FourArrows" | "FourArrowsGray" | "FourRedToBlack" | "FourRating" | "FourTrafficLights" | "FiveArrows" | "FiveArrowsGray" | "FiveRating" | "FiveQuarters" | "ThreeStars" | "ThreeTriangles" | "FiveBoxes"'
-        fullName: ' | "Invalid" | "ThreeArrows" | "ThreeArrowsGray" | "ThreeFlags" | "ThreeTrafficLights1" | "ThreeTrafficLights2" | "ThreeSigns" | "ThreeSymbols" | "ThreeSymbols2" | "FourArrows" | "FourArrowsGray" | "FourRedToBlack" | "FourRating" | "FourTrafficLights" | "FiveArrows" | "FiveArrowsGray" | "FiveRating" | "FiveQuarters" | "ThreeStars" | "ThreeTriangles" | "FiveBoxes"'
-  - uid: 'excel!Excel.Interfaces.IconSetConditionalFormatData:interface'
-    name: Excel.Interfaces.IconSetConditionalFormatData
+    `set(properties: Excel.IconSetConditionalFormat): void`
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Interfaces.IconSetConditionalFormatUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    parameters:
+    - id: properties
+      description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
+      type: <xref uid="excel!Excel.Interfaces.IconSetConditionalFormatUpdateData:interface" />
+    - id: options
+      description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
+      type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
+    return:
+      type: void
+      description: ''
+- name: set(properties)
+  uid: excel!Excel.IconSetConditionalFormat#set:member(2)
+  package: excel!
+  fullName: set(properties)
+  summary: 基于现有加载的对象同时设置该对象的多个属性。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Excel.IconSetConditionalFormat): void;'
+    parameters:
+    - id: properties
+      description: ''
+      type: <xref uid="excel!Excel.IconSetConditionalFormat:class" />
+    return:
+      type: void
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.IconSetConditionalFormat#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始 IconSetConditionalFormat 对象是 API 对象，则该 `toJSON` 方法返回一个 (类型为的纯 JavaScript 对象。 `Excel.Interfaces.IconSetConditionalFormatData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.IconSetConditionalFormatData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.IconSetConditionalFormatData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: b7ddb4ea8e57d5d13d2d53f8ad38a5499cc91ae8
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49332705"
