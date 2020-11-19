@@ -1,218 +1,122 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'office!Office.BindingSelectionChangedEventArgs:interface'
-    summary: 提供有关引发了 SelectionChanged 事件的绑定的信息。
-    name: Office.BindingSelectionChangedEventArgs
-    fullName: Office.BindingSelectionChangedEventArgs
-    langs:
-      - typeScript
-    type: interface
-    package: office!
-    children:
-      - 'office!Office.BindingSelectionChangedEventArgs#binding:member'
-      - 'office!Office.BindingSelectionChangedEventArgs#columnCount:member'
-      - 'office!Office.BindingSelectionChangedEventArgs#rowCount:member'
-      - 'office!Office.BindingSelectionChangedEventArgs#startColumn:member'
-      - 'office!Office.BindingSelectionChangedEventArgs#startRow:member'
-      - 'office!Office.BindingSelectionChangedEventArgs#type:member'
-  - uid: 'office!Office.BindingSelectionChangedEventArgs#binding:member'
-    summary: '获取表示引发 SelectionChanged 事件的绑定的[总公司](xref:office!Office.Binding:interface)对象。'
-    name: binding
-    fullName: binding
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'binding: Binding;'
-      return:
-        type:
-          - 'office!Office.Binding:interface'
-  - uid: 'office!Office.BindingSelectionChangedEventArgs#columnCount:member'
-    summary: |-
-      获取选择的列数。 如果只选择了一个单元格，则返回 1。
-
-      如果用户选择了不连续的单元格，则返回此绑定内最后一个连续选区的计数。
-
-      对于 Word，此属性将仅适用于[BindingType](xref:office!Office.BindingType:enum) "table" 的绑定。 如果绑定类型为"matrix"，将返回 null。 此外，如果表格包含合并单元格，调用将失败，因为表的结构必须统一，此属性才能正确工作。
-    name: columnCount
-    fullName: columnCount
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'columnCount: number;'
-      return:
-        type:
-          - number
-        description: |-
+### YamlMime:TSType
+name: Office.BindingSelectionChangedEventArgs
+uid: office!Office.BindingSelectionChangedEventArgs:interface
+package: office!
+fullName: Office.BindingSelectionChangedEventArgs
+summary: 提供有关引发了 SelectionChanged 事件的绑定的信息。
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+- name: binding
+  uid: office!Office.BindingSelectionChangedEventArgs#binding:member
+  package: office!
+  fullName: binding
+  summary: 获取表示引发 SelectionChanged 事件的绑定的 [总公司](xref:office!Office.Binding:interface) 对象。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'binding: Binding;'
+    return:
+      type: <xref uid="office!Office.Binding:interface" />
+- name: columnCount
+  uid: office!Office.BindingSelectionChangedEventArgs#columnCount:member
+  package: office!
+  fullName: columnCount
+  summary: >-
+    获取选择的列数。 如果只选择了一个单元格，则返回 1。
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          // The following example adds an event handler for the SelectionChanged event to the binding with an id of myTable.
-          // When the user changes the selection, the handler displays the coordinates of the first cell in the selection,
-          // and the number of row and columns selected.
-          function addSelectionHandler() {
-              Office.context.document.bindings.getByIdAsync("myTable", function (result) {
-                  result.value.addHandlerAsync("bindingSelectionChanged", myHandler);
-              });
-          }
-
-          // Display selection start coordinates and row/column count.
-          function myHandler(bArgs) {
-              write("Selection start row/col: " + bArgs.startRow + "," + bArgs.startColumn);
-              write("Selection row count: " + bArgs.rowCount);
-              write("Selection col count: " + bArgs.columnCount);
-          }
-          // Function that writes to a div with id='message' on the page.
-          function write(message){
-              document.getElementById('message').innerText += message; 
-          }
-          ```
-  - uid: 'office!Office.BindingSelectionChangedEventArgs#rowCount:member'
-    summary: |-
-      获取选择的行数。 如果只选择了一个单元格，则返回 1。
-
-      如果用户选择了不连续的单元格，则返回此绑定内最后一个连续选区的计数。
-
-      对于 Word，此属性将仅适用于[BindingType](xref:office!Office.BindingType:enum) "table" 的绑定。 如果绑定类型为"matrix"，将返回 null。 此外，如果表格包含合并单元格，调用将失败，因为表的结构必须统一，此属性才能正确工作。
-    name: rowCount
-    fullName: rowCount
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'rowCount: number;'
-      return:
-        type:
-          - number
-        description: |-
+    如果用户选择了不连续的单元格，则返回此绑定内最后一个连续选区的计数。
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          // The following example adds an event handler for the SelectionChanged event to the binding with an id of myTable.
-          // When the user changes the selection, the handler displays the coordinates of the first cell in the selection,
-          // and the number of row and columns selected.
-          function addSelectionHandler() {
-              Office.context.document.bindings.getByIdAsync("myTable", function (result) {
-                  result.value.addHandlerAsync("bindingSelectionChanged", myHandler);
-              });
-          }
-
-          // Display selection start coordinates and row/column count.
-          function myHandler(bArgs) {
-              write("Selection start row/col: " + bArgs.startRow + "," + bArgs.startColumn);
-              write("Selection row count: " + bArgs.rowCount);
-              write("Selection col count: " + bArgs.columnCount);
-          }
-          // Function that writes to a div with id='message' on the page.
-          function write(message){
-              document.getElementById('message').innerText += message; 
-          }
-          ```
-  - uid: 'office!Office.BindingSelectionChangedEventArgs#startColumn:member'
-    summary: |-
-      所选内容第一列的从零开始的索引；从绑定中最左侧的列开始算起。
-
-      如果用户选择了不连续的单元格，则返回此绑定内最后一个连续选区的坐标。
-
-      对于 Word，此属性将仅适用于[BindingType](xref:office!Office.BindingType:enum) "table" 的绑定。 如果绑定类型为"matrix"，将返回 null。 此外，如果表格包含合并单元格，调用将失败，因为表的结构必须统一，此属性才能正确工作。
-    name: startColumn
-    fullName: startColumn
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'startColumn: number;'
-      return:
-        type:
-          - number
-        description: |-
+    对于 Word，此属性将仅适用于 [BindingType](xref:office!Office.BindingType:enum) "table" 的绑定。 如果绑定类型为"matrix"，将返回 null。 此外，如果表格包含合并单元格，调用将失败，因为表的结构必须统一，此属性才能正确工作。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'columnCount: number;'
+    return:
+      type: number
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following example adds an event handler for the SelectionChanged event to the binding with an id of myTable.\n// When the user changes the selection, the handler displays the coordinates of the first cell in the selection,\n// and the number of row and columns selected.\nfunction addSelectionHandler() {\n    Office.context.document.bindings.getByIdAsync(\"myTable\", function (result) {\n        result.value.addHandlerAsync(\"bindingSelectionChanged\", myHandler);\n    });\n}\n\n// Display selection start coordinates and row/column count.\nfunction myHandler(bArgs) {\n    write(\"Selection start row/col: \" + bArgs.startRow + \",\" + bArgs.startColumn);\n    write(\"Selection row count: \" + bArgs.rowCount);\n    write(\"Selection col count: \" + bArgs.columnCount);\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+- name: rowCount
+  uid: office!Office.BindingSelectionChangedEventArgs#rowCount:member
+  package: office!
+  fullName: rowCount
+  summary: >-
+    获取选择的行数。 如果只选择了一个单元格，则返回 1。
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          // The following example adds an event handler for the SelectionChanged event to the binding with an id of myTable.
-          // When the user changes the selection, the handler displays the coordinates of the first cell in the selection,
-          // and the number of row and columns selected.
-          function addSelectionHandler() {
-              Office.context.document.bindings.getByIdAsync("myTable", function (result) {
-                  result.value.addHandlerAsync("bindingSelectionChanged", myHandler);
-              });
-          }
-
-          // Display selection start coordinates and row/column count.
-          function myHandler(bArgs) {
-              write("Selection start row/col: " + bArgs.startRow + "," + bArgs.startColumn);
-              write("Selection row count: " + bArgs.rowCount);
-              write("Selection col count: " + bArgs.columnCount);
-          }
-          // Function that writes to a div with id='message' on the page.
-          function write(message){
-              document.getElementById('message').innerText += message; 
-          }
-          ```
-  - uid: 'office!Office.BindingSelectionChangedEventArgs#startRow:member'
-    summary: |-
-      所选内容第一行的从零开始的索引；从绑定中的第一行开始算起。
-
-      如果用户选择了不连续的单元格，则返回此绑定内最后一个连续选区的坐标。
-
-      对于 Word，此属性将仅适用于[BindingType](xref:office!Office.BindingType:enum) "table" 的绑定。 如果绑定类型为"matrix"，将返回 null。 此外，如果表格包含合并单元格，调用将失败，因为表的结构必须统一，此属性才能正确工作。
-    name: startRow
-    fullName: startRow
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'startRow: number;'
-      return:
-        type:
-          - number
-        description: |-
+    如果用户选择了不连续的单元格，则返回此绑定内最后一个连续选区的计数。
 
 
-          #### <a name="examples"></a>示例
+    对于 Word，此属性将仅适用于 [BindingType](xref:office!Office.BindingType:enum) "table" 的绑定。 如果绑定类型为"matrix"，将返回 null。 此外，如果表格包含合并单元格，调用将失败，因为表的结构必须统一，此属性才能正确工作。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'rowCount: number;'
+    return:
+      type: number
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following example adds an event handler for the SelectionChanged event to the binding with an id of myTable.\n// When the user changes the selection, the handler displays the coordinates of the first cell in the selection,\n// and the number of row and columns selected.\nfunction addSelectionHandler() {\n    Office.context.document.bindings.getByIdAsync(\"myTable\", function (result) {\n        result.value.addHandlerAsync(\"bindingSelectionChanged\", myHandler);\n    });\n}\n\n// Display selection start coordinates and row/column count.\nfunction myHandler(bArgs) {\n    write(\"Selection start row/col: \" + bArgs.startRow + \",\" + bArgs.startColumn);\n    write(\"Selection row count: \" + bArgs.rowCount);\n    write(\"Selection col count: \" + bArgs.columnCount);\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+- name: startColumn
+  uid: office!Office.BindingSelectionChangedEventArgs#startColumn:member
+  package: office!
+  fullName: startColumn
+  summary: >-
+    所选内容第一列的从零开始的索引；从绑定中最左侧的列开始算起。
 
-          ```javascript
-          // The following example adds an event handler for the SelectionChanged event to the binding with an id of myTable.
-          // When the user changes the selection, the handler displays the coordinates of the first cell in the selection,
-          // and the number of row and columns selected.
-          function addSelectionHandler() {
-              Office.context.document.bindings.getByIdAsync("myTable", function (result) {
-                  result.value.addHandlerAsync("bindingSelectionChanged", myHandler);
-              });
-          }
 
-          // Display selection start coordinates and row/column count.
-          function myHandler(bArgs) {
-              write("Selection start row/col: " + bArgs.startRow + "," + bArgs.startColumn);
-              write("Selection row count: " + bArgs.rowCount);
-              write("Selection col count: " + bArgs.columnCount);
-          }
-          // Function that writes to a div with id='message' on the page.
-          function write(message){
-              document.getElementById('message').innerText += message; 
-          }
-          ```
-  - uid: 'office!Office.BindingSelectionChangedEventArgs#type:member'
-    summary: '获取用于标识所引发事件的类型的[Office.](xref:office!Office.EventType:enum)事件枚举值。'
-    name: type
-    fullName: type
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'type: EventType;'
-      return:
-        type:
-          - 'office!Office.EventType:enum'
-references:
-  - uid: 'office!Office.Binding:interface'
-    name: Binding
-  - uid: 'office!Office.EventType:enum'
-    name: EventType
+    如果用户选择了不连续的单元格，则返回此绑定内最后一个连续选区的坐标。
+
+
+    对于 Word，此属性将仅适用于 [BindingType](xref:office!Office.BindingType:enum) "table" 的绑定。 如果绑定类型为"matrix"，将返回 null。 此外，如果表格包含合并单元格，调用将失败，因为表的结构必须统一，此属性才能正确工作。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'startColumn: number;'
+    return:
+      type: number
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following example adds an event handler for the SelectionChanged event to the binding with an id of myTable.\n// When the user changes the selection, the handler displays the coordinates of the first cell in the selection,\n// and the number of row and columns selected.\nfunction addSelectionHandler() {\n    Office.context.document.bindings.getByIdAsync(\"myTable\", function (result) {\n        result.value.addHandlerAsync(\"bindingSelectionChanged\", myHandler);\n    });\n}\n\n// Display selection start coordinates and row/column count.\nfunction myHandler(bArgs) {\n    write(\"Selection start row/col: \" + bArgs.startRow + \",\" + bArgs.startColumn);\n    write(\"Selection row count: \" + bArgs.rowCount);\n    write(\"Selection col count: \" + bArgs.columnCount);\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+- name: startRow
+  uid: office!Office.BindingSelectionChangedEventArgs#startRow:member
+  package: office!
+  fullName: startRow
+  summary: >-
+    所选内容第一行的从零开始的索引；从绑定中的第一行开始算起。
+
+
+    如果用户选择了不连续的单元格，则返回此绑定内最后一个连续选区的坐标。
+
+
+    对于 Word，此属性将仅适用于 [BindingType](xref:office!Office.BindingType:enum) "table" 的绑定。 如果绑定类型为"matrix"，将返回 null。 此外，如果表格包含合并单元格，调用将失败，因为表的结构必须统一，此属性才能正确工作。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'startRow: number;'
+    return:
+      type: number
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// The following example adds an event handler for the SelectionChanged event to the binding with an id of myTable.\n// When the user changes the selection, the handler displays the coordinates of the first cell in the selection,\n// and the number of row and columns selected.\nfunction addSelectionHandler() {\n    Office.context.document.bindings.getByIdAsync(\"myTable\", function (result) {\n        result.value.addHandlerAsync(\"bindingSelectionChanged\", myHandler);\n    });\n}\n\n// Display selection start coordinates and row/column count.\nfunction myHandler(bArgs) {\n    write(\"Selection start row/col: \" + bArgs.startRow + \",\" + bArgs.startColumn);\n    write(\"Selection row count: \" + bArgs.rowCount);\n    write(\"Selection col count: \" + bArgs.columnCount);\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+- name: type
+  uid: office!Office.BindingSelectionChangedEventArgs#type:member
+  package: office!
+  fullName: type
+  summary: 获取用于标识所引发事件的类型的 [Office.](xref:office!Office.EventType:enum) 事件枚举值。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'type: EventType;'
+    return:
+      type: <xref uid="office!Office.EventType:enum" />
+metadata:
+  ms.openlocfilehash: 4df92e3b19652620404c7b4cc0cb30cdf43d72ee
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49251610"
