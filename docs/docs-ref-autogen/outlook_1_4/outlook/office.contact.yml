@@ -1,137 +1,149 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'outlook!Office.Contact:interface'
-    summary: |-
-      代表联系人的详细信息（类似于从项目正文中提取的实际联系人或名片上的内容）。 仅限阅读模式。
+### YamlMime:TSType
+name: Office.Contact
+uid: outlook!Office.Contact:interface
+package: outlook!
+fullName: Office.Contact
+summary: >-
+  表示联系人的详细信息 (与实际联系人或名片) 从项目正文中提取的内容类似。 仅限阅读模式。
 
-      从电子邮件或约会的正文中提取的联系人列表在 `contacts` 由当前项目的 or 方法返回的[实体](xref:outlook!Office.Entities:interface)对象的属性中 `getEntities` 返回 `getEntitiesByType` 。
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`Restricted`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：读取
+  从电子邮件或约会的正文中提取的联系人列表在 `contacts` 由当前项目的 or 方法返回的 [实体](xref:outlook!Office.Entities:interface) 对象的属性中 `getEntities` 返回 `getEntitiesByType` 。
+remarks: >-
+  **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`Restricted`
 
-      #### <a name="examples"></a>示例
 
-      ```javascript
-      var item = Office.context.mailbox.item;
-      // Get an array of strings that represent contacts in the current item's body.
-      var contacts = item.getEntitiesByType(Office.MailboxEnums.EntityType.Contact);
-      console.log("There are " + contacts.length + " contacts.")
-      contacts.forEach(function (contact) {
-          console.log("Person name: " + JSON.stringify(contact.personName));
-          console.log("Business name: " + JSON.stringify(contact.businessName));
-          console.log("Addresses: " + JSON.stringify(contact.addresses));
-          console.log("Phone numbers: " + JSON.stringify(contact.phoneNumbers));
-          console.log("Email addresses: " + JSON.stringify(contact.emailAddresses));
-          console.log("Urls: " + JSON.stringify(contact.urls));
-      });
+  **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：读取
 
-      /* Example email that includes contact details of sender, John Smith:
-      Hi there,
-      I have received the package.
 
-      Thanks.
-      John Smith
-      Account Manager
-      Contoso Corporation
-      1 Contoso Way, Redmond, WA 98052
-      john.smith@contoso.com
-      111-111-1111
-      https://contoso.com/john.smith
-      */
-      ```
-    name: Office.Contact
-    fullName: Office.Contact
-    langs:
-      - typeScript
-    type: interface
-    package: outlook!
-    children:
-      - 'outlook!Office.Contact#addresses:member'
-      - 'outlook!Office.Contact#businessName:member'
-      - 'outlook!Office.Contact#emailAddresses:member'
-      - 'outlook!Office.Contact#personName:member'
-      - 'outlook!Office.Contact#phoneNumbers:member'
-      - 'outlook!Office.Contact#urls:member'
-  - uid: 'outlook!Office.Contact#addresses:member'
-    summary: 包含与联系人关联的邮件和街道地址的字符串数组。 可为 NULL。
-    name: addresses
-    fullName: addresses
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'addresses: string[];'
-      return:
-        type:
-          - 'string[]'
-  - uid: 'outlook!Office.Contact#businessName:member'
-    summary: 包含与联系人关联的企业名称的字符串。 可为 NULL。
-    name: businessName
-    fullName: businessName
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'businessName: string;'
-      return:
-        type:
-          - string
-  - uid: 'outlook!Office.Contact#emailAddresses:member'
-    summary: 包含与联系人关联的 SMTP 电子邮件地址的字符串数组。 可为 NULL。
-    name: emailAddresses
-    fullName: emailAddresses
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'emailAddresses: string[];'
-      return:
-        type:
-          - 'string[]'
-  - uid: 'outlook!Office.Contact#personName:member'
-    summary: 包含与联系人关联的人员姓名的字符串。 可为 NULL。
-    name: personName
-    fullName: personName
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'personName: string;'
-      return:
-        type:
-          - string
-  - uid: 'outlook!Office.Contact#phoneNumbers:member'
-    summary: 包含与联系人关联的每个电话号码的 `PhoneNumber` 对象的数组。 可为 NULL。
-    name: phoneNumbers
-    fullName: phoneNumbers
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'phoneNumbers: PhoneNumber[];'
-      return:
-        type:
-          - 'outlook!Office.Contact#phoneNumbers~0:complex'
-  - uid: 'outlook!Office.Contact#urls:member'
-    summary: 包含与联系人关联的 Internet URL 的字符串数组。 可为 NULL。
-    name: urls
-    fullName: urls
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'urls: string[];'
-      return:
-        type:
-          - 'string[]'
-references:
-  - uid: 'outlook!Office.Contact#phoneNumbers~0:complex'
-    name: 'PhoneNumber[]'
-    fullName: 'Office.PhoneNumber[]'
-    spec.typeScript:
-      - uid: 'outlook!Office.PhoneNumber:interface'
-        name: PhoneNumber
-        fullName: Office.PhoneNumber
-      - name: '[]'
-        fullName: '[]'
+  #### <a name="examples"></a>示例
+
+
+  ```javascript
+
+  var item = Office.context.mailbox.item;
+
+  // Get an array of strings that represent contacts in the current item's body.
+
+  var contacts = item.getEntitiesByType(Office.MailboxEnums.EntityType.Contact);
+
+  console.log("There are " + contacts.length + " contacts.")
+
+  contacts.forEach(function (contact) {
+      console.log("Person name: " + JSON.stringify(contact.personName));
+      console.log("Business name: " + JSON.stringify(contact.businessName));
+      console.log("Addresses: " + JSON.stringify(contact.addresses));
+      console.log("Phone numbers: " + JSON.stringify(contact.phoneNumbers));
+      console.log("Email addresses: " + JSON.stringify(contact.emailAddresses));
+      console.log("Urls: " + JSON.stringify(contact.urls));
+  });
+
+
+  /* Example email that includes contact details of sender, John Smith:
+
+  Hi there,
+
+  I have received the package.
+
+
+  Thanks.
+
+  John Smith
+
+  Account Manager
+
+  Contoso Corporation
+
+  1 Contoso Way, Redmond, WA 98052
+
+  john.smith@contoso.com
+
+  111-111-1111
+
+  https://contoso.com/john.smith
+
+  */
+
+  ```
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+- name: addresses
+  uid: outlook!Office.Contact#addresses:member
+  package: outlook!
+  fullName: addresses
+  summary: 包含与联系人关联的邮件和街道地址的字符串数组。 可为 Null。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addresses: string[];'
+    return:
+      type: string[]
+- name: businessName
+  uid: outlook!Office.Contact#businessName:member
+  package: outlook!
+  fullName: businessName
+  summary: 包含与联系人关联的企业名称的字符串。 可为 Null。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'businessName: string;'
+    return:
+      type: string
+- name: emailAddresses
+  uid: outlook!Office.Contact#emailAddresses:member
+  package: outlook!
+  fullName: emailAddresses
+  summary: 包含与联系人关联的 SMTP 电子邮件地址的字符串数组。 可为 Null。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'emailAddresses: string[];'
+    return:
+      type: string[]
+- name: personName
+  uid: outlook!Office.Contact#personName:member
+  package: outlook!
+  fullName: personName
+  summary: 包含与联系人关联的人员姓名的字符串。 可为 Null。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'personName: string;'
+    return:
+      type: string
+- name: phoneNumbers
+  uid: outlook!Office.Contact#phoneNumbers:member
+  package: outlook!
+  fullName: phoneNumbers
+  summary: 包含与联系人关联的每个电话号码的 `PhoneNumber` 对象的数组。 可为 Null。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'phoneNumbers: PhoneNumber[];'
+    return:
+      type: <xref uid="outlook!Office.PhoneNumber:interface" />[]
+- name: urls
+  uid: outlook!Office.Contact#urls:member
+  package: outlook!
+  fullName: urls
+  summary: 包含与联系人关联的 Internet URL 的字符串数组。 可为 Null。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'urls: string[];'
+    return:
+      type: string[]
+metadata:
+  ms.openlocfilehash: fb13447dd1064a864bb817544c3da7b7254952b5
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49210730"
