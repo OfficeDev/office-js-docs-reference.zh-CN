@@ -1,500 +1,357 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'excel!Excel.Application:class'
-    summary: |-
-      表示用于管理工作簿的 Excel 应用程序。
-
-      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: Excel.Application
-    fullName: Excel.Application
-    langs:
-      - typeScript
-    type: class
-    extends:
-      - 'office!OfficeExtension.ClientObject:class'
-    package: excel!
-    children:
-      - 'excel!Excel.Application#calculate:member(1)'
-      - 'excel!Excel.Application#calculate:member(2)'
-      - 'excel!Excel.Application#calculationEngineVersion:member'
-      - 'excel!Excel.Application#calculationMode:member'
-      - 'excel!Excel.Application#calculationState:member'
-      - 'excel!Excel.Application#context:member'
-      - 'excel!Excel.Application#cultureInfo:member'
-      - 'excel!Excel.Application#decimalSeparator:member'
-      - 'excel!Excel.Application#iterativeCalculation:member'
-      - 'excel!Excel.Application#load:member(1)'
-      - 'excel!Excel.Application#load:member(2)'
-      - 'excel!Excel.Application#load:member(3)'
-      - 'excel!Excel.Application#set:member(1)'
-      - 'excel!Excel.Application#set:member(2)'
-      - 'excel!Excel.Application#suspendApiCalculationUntilNextSync:member(1)'
-      - 'excel!Excel.Application#suspendScreenUpdatingUntilNextSync:member(1)'
-      - 'excel!Excel.Application#thousandsSeparator:member'
-      - 'excel!Excel.Application#toJSON:member(1)'
-      - 'excel!Excel.Application#useSystemSeparators:member'
-  - uid: 'excel!Excel.Application#calculate:member(1)'
-    summary: |-
-      重新计算 Excel 中当前打开的所有工作簿。
-
-      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: calculate(calculationType)
-    fullName: calculate(calculationType)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'calculate(calculationType: Excel.CalculationType): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: calculationType
-          description: 指定要使用的计算类型。 有关详细信息，请参阅 CalculationType。
-          type:
-            - 'excel!Excel.CalculationType:enum'
-  - uid: 'excel!Excel.Application#calculate:member(2)'
-    summary: |-
-      重新计算 Excel 中当前打开的所有工作簿。
-
-      \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: calculate(calculationTypeString)
-    fullName: calculate(calculationTypeString)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'calculate(calculationTypeString: "Recalculate" | "Full" | "FullRebuild"): void;'
-      return:
-        type:
-          - void
-        description: |-
+### YamlMime:TSType
+name: Excel.Application
+uid: excel!Excel.Application:class
+package: excel!
+fullName: Excel.Application
+summary: >-
+  表示用于管理工作簿的 Excel 应用程序。
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          Excel.run(function (ctx) {
-              ctx.workbook.application.calculate('Full');
-              return ctx.sync();
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: calculationTypeString
-          description: 指定要使用的计算类型。 有关详细信息，请参阅 CalculationType。
-          type:
-            - '"Recalculate" | "Full" | "FullRebuild"'
-  - uid: 'excel!Excel.Application#calculationEngineVersion:member'
-    summary: |-
-      返回用于上次完整重新计算的 Excel 计算引擎版本。
-
-      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: calculationEngineVersion
-    fullName: calculationEngineVersion
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly calculationEngineVersion: number;'
-      return:
-        type:
-          - number
-  - uid: 'excel!Excel.Application#calculationMode:member'
-    summary: |-
-      返回工作簿中使用的计算模式，如 CalculationMode 中的常量所定义。 可能的值包括： `Automatic`<!-- -->，Excel 控制重新计算的位置; `AutomaticExceptTables`<!-- -->，Excel 在其中控制重新计算，但忽略表中的更改。 `Manual`<!-- -->，在用户请求计算时完成计算。
-
-      \[[API 集： ExcelApi 1.1 for get，1.8 （用于设置）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: calculationMode
-    fullName: calculationMode
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'calculationMode: Excel.CalculationMode | "Automatic" | "AutomaticExceptTables" | "Manual";'
-      return:
-        type:
-          - 'excel!Excel.Application#calculationMode~0:complex'
-  - uid: 'excel!Excel.Application#calculationState:member'
-    summary: |-
-      返回应用程序的计算状态。 有关详细信息，请参阅 Excel.CalculationState。
-
-      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: calculationState
-    fullName: calculationState
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly calculationState: Excel.CalculationState | "Done" | "Calculating" | "Pending";'
-      return:
-        type:
-          - 'excel!Excel.Application#calculationState~0:complex'
-  - uid: 'excel!Excel.Application#context:member'
-    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-    name: context
-    fullName: context
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'context: RequestContext;'
-      return:
-        type:
-          - 'excel!Excel.RequestContext:class'
-  - uid: 'excel!Excel.Application#cultureInfo:member'
-    summary: |-
-      基于当前系统区域性设置提供信息。 这包括区域性名称、数字格式和其他区域性相关设置。
-
-      \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: cultureInfo
-    fullName: cultureInfo
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly cultureInfo: Excel.CultureInfo;'
-      return:
-        type:
-          - 'excel!Excel.CultureInfo:class'
-  - uid: 'excel!Excel.Application#decimalSeparator:member'
-    summary: |-
-      获取用作数值的小数分隔符的字符串。 这是基于 Excel 的本地设置。
-
-      \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: decimalSeparator
-    fullName: decimalSeparator
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly decimalSeparator: string;'
-      return:
-        type:
-          - string
-        description: |-
+  \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: calculationEngineVersion
+  uid: excel!Excel.Application#calculationEngineVersion:member
+  package: excel!
+  fullName: calculationEngineVersion
+  summary: >-
+    返回用于上次完整重新计算的 Excel 计算引擎版本。
 
 
-          #### <a name="examples"></a>示例
-
-          ```typescript
-          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/culture-info.yaml
-          await Excel.run(async (context) => {
-            context.application.load("decimalSeparator,thousandsSeparator");
-            context.application.cultureInfo.numberFormat.load("numberDecimalSeparator,numberGroupSeparator");
-            await context.sync();
-
-            // Local settings are set under the "Options > Advanced" menu.
-            const localDecimalSeparator = context.application.decimalSeparator;
-            const localThousandsSeparator = context.application.thousandsSeparator;
-
-            const systemDecimalSeparator = context.application.cultureInfo.numberFormat.numberDecimalSeparator;
-            const systemThousandsSeparator = context.application.cultureInfo.numberFormat.numberGroupSeparator;
-
-            console.log("Local character settings: ");
-            console.log(`  Local decimal separator: ${localDecimalSeparator}`);
-            console.log(`  Local thousands separator: ${localThousandsSeparator}`);
-
-            console.log("System culture settings: ");
-            console.log(`  System decimal separator: ${systemDecimalSeparator}`);
-            console.log(`  System thousands separator: ${systemThousandsSeparator}`);
-            console.log(`  `);
-
-            await context.sync();
-          });
-          ```
-  - uid: 'excel!Excel.Application#iterativeCalculation:member'
-    summary: |-
-      返回“迭代计算”设置。 在 Windows 和 Mac 上的 Excel 中，这些设置将应用于 Excel 应用程序。 在 Excel 中的 web 和其他平台上，这些设置将应用于活动工作簿。
-
-      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: iterativeCalculation
-    fullName: iterativeCalculation
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly iterativeCalculation: Excel.IterativeCalculation;'
-      return:
-        type:
-          - 'excel!Excel.IterativeCalculation:class'
-  - uid: 'excel!Excel.Application#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(options)
-    fullName: load(options)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(options?: Excel.Interfaces.ApplicationLoadOptions): Excel.Application;'
-      return:
-        type:
-          - 'excel!Excel.Application:class'
-        description: ''
-      parameters:
-        - id: options
-          description: 提供要加载的对象的属性的选项。
-          type:
-            - 'excel!Excel.Interfaces.ApplicationLoadOptions:interface'
-  - uid: 'excel!Excel.Application#load:member(2)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNames)
-    fullName: load(propertyNames)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNames?: string | string[]): Excel.Application;'
-      return:
-        type:
-          - 'excel!Excel.Application:class'
-        description: |-
+    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly calculationEngineVersion: number;'
+    return:
+      type: number
+- name: calculationMode
+  uid: excel!Excel.Application#calculationMode:member
+  package: excel!
+  fullName: calculationMode
+  summary: >-
+    返回工作簿中使用的计算模式，如 CalculationMode 中的常量所定义。 可能的值包括： `Automatic`<!-- -->，Excel 控制重新计算的位置; `AutomaticExceptTables`<!-- -->，Excel 在其中控制重新计算，但忽略表中的更改。 `Manual`<!-- -->，在用户请求计算时完成计算。
 
 
-          #### <a name="examples"></a>示例
+    \[[API 集： ExcelApi 1.1 for get，1.8 （用于设置）](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'calculationMode: Excel.CalculationMode | "Automatic" | "AutomaticExceptTables" | "Manual";'
+    return:
+      type: <xref uid="excel!Excel.CalculationMode:enum" /> | "Automatic" | "AutomaticExceptTables" | "Manual"
+- name: calculationState
+  uid: excel!Excel.Application#calculationState:member
+  package: excel!
+  fullName: calculationState
+  summary: >-
+    返回应用程序的计算状态。 有关详细信息，请参阅 Excel.CalculationState。
 
-          ```javascript
-          Excel.run(function (ctx) {
-              var application = ctx.workbook.application;
-              application.load('calculationMode');
-              return ctx.sync().then(function() {
-                  console.log(application.calculationMode);
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: propertyNames
-          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
-          type:
-            - 'string | string[]'
-  - uid: 'excel!Excel.Application#load:member(3)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNamesAndPaths)
-    fullName: load(propertyNamesAndPaths)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: |-
-        load(propertyNamesAndPaths?: {
+
+    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly calculationState: Excel.CalculationState | "Done" | "Calculating" | "Pending";'
+    return:
+      type: <xref uid="excel!Excel.CalculationState:enum" /> | "Done" | "Calculating" | "Pending"
+- name: context
+  uid: excel!Excel.Application#context:member
+  package: excel!
+  fullName: context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: cultureInfo
+  uid: excel!Excel.Application#cultureInfo:member
+  package: excel!
+  fullName: cultureInfo
+  summary: >-
+    基于当前系统区域性设置提供信息。 这包括区域性名称、数字格式和其他区域性相关设置。
+
+
+    \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly cultureInfo: Excel.CultureInfo;'
+    return:
+      type: <xref uid="excel!Excel.CultureInfo:class" />
+- name: decimalSeparator
+  uid: excel!Excel.Application#decimalSeparator:member
+  package: excel!
+  fullName: decimalSeparator
+  summary: >-
+    获取用作数值的小数分隔符的字符串。 这是基于 Excel 的本地设置。
+
+
+    \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly decimalSeparator: string;'
+    return:
+      type: string
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/culture-info.yaml\nawait Excel.run(async (context) => {\n  context.application.load(\"decimalSeparator,thousandsSeparator\");\n  context.application.cultureInfo.numberFormat.load(\"numberDecimalSeparator,numberGroupSeparator\");\n  await context.sync();\n\n  // Local settings are set under the \"Options > Advanced\" menu.\n  const localDecimalSeparator = context.application.decimalSeparator;\n  const localThousandsSeparator = context.application.thousandsSeparator;\n\n  const systemDecimalSeparator = context.application.cultureInfo.numberFormat.numberDecimalSeparator;\n  const systemThousandsSeparator = context.application.cultureInfo.numberFormat.numberGroupSeparator;\n\n  console.log(\"Local character settings: \");\n  console.log(`  Local decimal separator: ${localDecimalSeparator}`);\n  console.log(`  Local thousands separator: ${localThousandsSeparator}`);\n\n  console.log(\"System culture settings: \");\n  console.log(`  System decimal separator: ${systemDecimalSeparator}`);\n  console.log(`  System thousands separator: ${systemThousandsSeparator}`);\n  console.log(`  `);\n\n  await context.sync();\n});\n```"
+- name: iterativeCalculation
+  uid: excel!Excel.Application#iterativeCalculation:member
+  package: excel!
+  fullName: iterativeCalculation
+  summary: >-
+    返回“迭代计算”设置。 在 Windows 和 Mac 上的 Excel 中，这些设置将应用于 Excel 应用程序。 在 Excel 中的 web 和其他平台上，这些设置将应用于活动工作簿。
+
+
+    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly iterativeCalculation: Excel.IterativeCalculation;'
+    return:
+      type: <xref uid="excel!Excel.IterativeCalculation:class" />
+- name: thousandsSeparator
+  uid: excel!Excel.Application#thousandsSeparator:member
+  package: excel!
+  fullName: thousandsSeparator
+  summary: >-
+    获取一个字符串，用于将数字值的小数位数与小数的左边隔开。 这是基于 Excel 的本地设置。
+
+
+    \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly thousandsSeparator: string;'
+    return:
+      type: string
+- name: useSystemSeparators
+  uid: excel!Excel.Application#useSystemSeparators:member
+  package: excel!
+  fullName: useSystemSeparators
+  summary: >-
+    指定是否启用 Excel 的系统分隔符。 系统分隔符包括小数分隔符和千位分隔符。
+
+
+    \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly useSystemSeparators: boolean;'
+    return:
+      type: boolean
+methods:
+- name: calculate(calculationType)
+  uid: excel!Excel.Application#calculate:member(1)
+  package: excel!
+  fullName: calculate(calculationType)
+  summary: >-
+    重新计算 Excel 中当前打开的所有工作簿。
+
+
+    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'calculate(calculationType: Excel.CalculationType): void;'
+    parameters:
+    - id: calculationType
+      description: 指定要使用的计算类型。 有关详细信息，请参阅 CalculationType。
+      type: <xref uid="excel!Excel.CalculationType:enum" />
+    return:
+      type: void
+      description: ''
+- name: calculate(calculationTypeString)
+  uid: excel!Excel.Application#calculate:member(2)
+  package: excel!
+  fullName: calculate(calculationTypeString)
+  summary: >-
+    重新计算 Excel 中当前打开的所有工作簿。
+
+
+    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'calculate(calculationTypeString: "Recalculate" | "Full" | "FullRebuild"): void;'
+    parameters:
+    - id: calculationTypeString
+      description: 指定要使用的计算类型。 有关详细信息，请参阅 CalculationType。
+      type: "\"Recalculate\" | \"Full\" | \"FullRebuild\""
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) {\n    ctx.workbook.application.calculate('Full');\n    return ctx.sync();\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(options)
+  uid: excel!Excel.Application#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.ApplicationLoadOptions): Excel.Application;'
+    parameters:
+    - id: options
+      description: 提供要加载的对象的属性的选项。
+      type: <xref uid="excel!Excel.Interfaces.ApplicationLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.Application:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.Application#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.Application;'
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.Application:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nExcel.run(function (ctx) {\n    var application = ctx.workbook.application;\n    application.load('calculationMode');\n    return ctx.sync().then(function() {\n        console.log(application.calculationMode);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.Application#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): Excel.Application;
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      type: >-
+        {
                     select?: string;
                     expand?: string;
-                }): Excel.Application;
-      return:
-        type:
-          - 'excel!Excel.Application:class'
-        description: ''
-      parameters:
-        - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
-          type:
-            - |-
-              {
-                          select?: string;
-                          expand?: string;
-                      }
-  - uid: 'excel!Excel.Application#set:member(1)'
-    summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
-    remarks: |-
-      此方法具有以下附加签名：
-
-      `set(properties: Excel.Application): void`
-    name: 'set(properties, options)'
-    fullName: 'set(properties, options)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'set(properties: Interfaces.ApplicationUpdateData, options?: OfficeExtension.UpdateOptions): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: properties
-          description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
-          type:
-            - 'excel!Excel.Interfaces.ApplicationUpdateData:interface'
-        - id: options
-          description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
-          type:
-            - 'office!OfficeExtension.UpdateOptions:interface'
-  - uid: 'excel!Excel.Application#set:member(2)'
-    summary: 基于现有加载的对象同时设置该对象的多个属性。
-    name: set(properties)
-    fullName: set(properties)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'set(properties: Excel.Application): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: properties
-          description: ''
-          type:
-            - 'excel!Excel.Application:class'
-  - uid: 'excel!Excel.Application#suspendApiCalculationUntilNextSync:member(1)'
-    summary: |-
-      在下一次调用“context.sync()”前暂停计算。设置后，开发者负责重新计算工作簿，以确保传播所有依赖项。
-
-      \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: suspendApiCalculationUntilNextSync()
-    fullName: suspendApiCalculationUntilNextSync()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'suspendApiCalculationUntilNextSync(): void;'
-      return:
-        type:
-          - void
-        description: ''
-  - uid: 'excel!Excel.Application#suspendScreenUpdatingUntilNextSync:member(1)'
-    summary: |-
-      在调用下一步之前挂起屏幕更新 `context.sync()` 。
-
-      * 注意 * *：请勿 `suspendScreenUpdatingUntilNextSync` 反复调用 (例如在循环) 中。 重复调用将导致 Excel 窗口闪烁。
-
-      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: suspendScreenUpdatingUntilNextSync()
-    fullName: suspendScreenUpdatingUntilNextSync()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'suspendScreenUpdatingUntilNextSync(): void;'
-      return:
-        type:
-          - void
-        description: |-
+                }
+    return:
+      type: <xref uid="excel!Excel.Application:class" />
+      description: ''
+- name: set(properties, options)
+  uid: excel!Excel.Application#set:member(1)
+  package: excel!
+  fullName: set(properties, options)
+  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+  remarks: >-
+    此方法具有以下附加签名：
 
 
-          #### <a name="examples"></a>示例
+    `set(properties: Excel.Application): void`
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Interfaces.ApplicationUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    parameters:
+    - id: properties
+      description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
+      type: <xref uid="excel!Excel.Interfaces.ApplicationUpdateData:interface" />
+    - id: options
+      description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
+      type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
+    return:
+      type: void
+      description: ''
+- name: set(properties)
+  uid: excel!Excel.Application#set:member(2)
+  package: excel!
+  fullName: set(properties)
+  summary: 基于现有加载的对象同时设置该对象的多个属性。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Excel.Application): void;'
+    parameters:
+    - id: properties
+      description: ''
+      type: <xref uid="excel!Excel.Application:class" />
+    return:
+      type: void
+      description: ''
+- name: suspendApiCalculationUntilNextSync()
+  uid: excel!Excel.Application#suspendApiCalculationUntilNextSync:member(1)
+  package: excel!
+  fullName: suspendApiCalculationUntilNextSync()
+  summary: >-
+    在下一次调用“context.sync()”前暂停计算。设置后，开发者负责重新计算工作簿，以确保传播所有依赖项。
 
-          ```typescript
-          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/90-scenarios/performance-optimization.yaml
-          await Excel.run(async (context) => {
-              const sheet = context.workbook.worksheets.getActiveWorksheet();
-              const rowCount = 500;
-              const columnCount = 20;
 
-              const startTime = Date.now();
-              console.log("Starting...");
+    \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'suspendApiCalculationUntilNextSync(): void;'
+    return:
+      type: void
+      description: ''
+- name: suspendScreenUpdatingUntilNextSync()
+  uid: excel!Excel.Application#suspendScreenUpdatingUntilNextSync:member(1)
+  package: excel!
+  fullName: suspendScreenUpdatingUntilNextSync()
+  summary: >-
+    在调用下一步之前挂起屏幕更新 `context.sync()` 。
 
-              if (pauseScreenPainting) {
-                  // Note: Don't call `suspendScreenUpdatingUntilNextSync` repeatedly (such as in a loop).
-                  // Repeated calls will cause the Excel window to flicker. 
-                  context.application.suspendScreenUpdatingUntilNextSync();
-              }
 
-              for (let i = 0; i < rowCount; i++) {
-                  for (let j = 0; j < columnCount; j++) {
-                      let cell = sheet.getCell(i, j);
-                      cell.values = [[i * j * Math.random()]];
-                      if (untrack) {
-                          cell.untrack();
-                      }
-                  }
-              }
+    * 注意 * *：请勿 `suspendScreenUpdatingUntilNextSync` 反复调用 (例如在循环) 中。 重复调用将导致 Excel 窗口闪烁。
 
-              await context.sync();
 
-              console.log(`Ending. Adding ${rowCount * columnCount} cells took ${Date.now() - startTime} milliseconds`);
-          });
-          ```
-  - uid: 'excel!Excel.Application#thousandsSeparator:member'
-    summary: |-
-      获取一个字符串，用于将数字值的小数位数与小数的左边隔开。 这是基于 Excel 的本地设置。
-
-      \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: thousandsSeparator
-    fullName: thousandsSeparator
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly thousandsSeparator: string;'
-      return:
-        type:
-          - string
-  - uid: 'excel!Excel.Application#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始的 Excel. Application 对象是 API 对象，则该 `toJSON` 方法返回一个简单的 JavaScript 对象 (类型为 `Excel.Interfaces.ApplicationData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
-    name: toJSON()
-    fullName: toJSON()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'toJSON(): Excel.Interfaces.ApplicationData;'
-      return:
-        type:
-          - 'excel!Excel.Interfaces.ApplicationData:interface'
-        description: ''
-  - uid: 'excel!Excel.Application#useSystemSeparators:member'
-    summary: |-
-      指定是否启用 Excel 的系统分隔符。 系统分隔符包括小数分隔符和千位分隔符。
-
-      \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: useSystemSeparators
-    fullName: useSystemSeparators
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly useSystemSeparators: boolean;'
-      return:
-        type:
-          - boolean
-references:
-  - uid: 'office!OfficeExtension.ClientObject:class'
-    name: OfficeExtension.ClientObject
-  - uid: 'excel!Excel.CalculationType:enum'
-    name: Excel.CalculationType
-  - uid: 'excel!Excel.Application#calculationMode~0:complex'
-    name: Excel.CalculationMode | "Automatic" | "AutomaticExceptTables" | "Manual"
-    fullName: Excel.CalculationMode | "Automatic" | "AutomaticExceptTables" | "Manual"
-    spec.typeScript:
-      - uid: 'excel!Excel.CalculationMode:enum'
-        name: Excel.CalculationMode
-        fullName: Excel.CalculationMode
-      - name: ' | "Automatic" | "AutomaticExceptTables" | "Manual"'
-        fullName: ' | "Automatic" | "AutomaticExceptTables" | "Manual"'
-  - uid: 'excel!Excel.Application#calculationState~0:complex'
-    name: Excel.CalculationState | "Done" | "Calculating" | "Pending"
-    fullName: Excel.CalculationState | "Done" | "Calculating" | "Pending"
-    spec.typeScript:
-      - uid: 'excel!Excel.CalculationState:enum'
-        name: Excel.CalculationState
-        fullName: Excel.CalculationState
-      - name: ' | "Done" | "Calculating" | "Pending"'
-        fullName: ' | "Done" | "Calculating" | "Pending"'
-  - uid: 'excel!Excel.RequestContext:class'
-    name: RequestContext
-  - uid: 'excel!Excel.CultureInfo:class'
-    name: Excel.CultureInfo
-  - uid: 'excel!Excel.IterativeCalculation:class'
-    name: Excel.IterativeCalculation
-  - uid: 'excel!Excel.Application:class'
-    name: Excel.Application
-  - uid: 'excel!Excel.Interfaces.ApplicationLoadOptions:interface'
-    name: Excel.Interfaces.ApplicationLoadOptions
-  - uid: 'excel!Excel.Interfaces.ApplicationUpdateData:interface'
-    name: Interfaces.ApplicationUpdateData
-  - uid: 'office!OfficeExtension.UpdateOptions:interface'
-    name: OfficeExtension.UpdateOptions
-  - uid: 'excel!Excel.Interfaces.ApplicationData:interface'
-    name: Excel.Interfaces.ApplicationData
+    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'suspendScreenUpdatingUntilNextSync(): void;'
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/90-scenarios/performance-optimization.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    const rowCount = 500;\n    const columnCount = 20;\n\n    const startTime = Date.now();\n    console.log(\"Starting...\");\n\n    if (pauseScreenPainting) {\n        // Note: Don't call `suspendScreenUpdatingUntilNextSync` repeatedly (such as in a loop).\n        // Repeated calls will cause the Excel window to flicker. \n        context.application.suspendScreenUpdatingUntilNextSync();\n    }\n\n    for (let i = 0; i < rowCount; i++) {\n        for (let j = 0; j < columnCount; j++) {\n            let cell = sheet.getCell(i, j);\n            cell.values = [[i * j * Math.random()]];\n            if (untrack) {\n                cell.untrack();\n            }\n        }\n    }\n\n    await context.sync();\n\n    console.log(`Ending. Adding ${rowCount * columnCount} cells took ${Date.now() - startTime} milliseconds`);\n});\n```"
+- name: toJSON()
+  uid: excel!Excel.Application#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始的 Excel. Application 对象是 API 对象，则该 `toJSON` 方法返回一个简单的 JavaScript 对象 (类型为 `Excel.Interfaces.ApplicationData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.ApplicationData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.ApplicationData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: c3e68d18d439d4080e9cf12d05c1d845714ee491
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49158000"
