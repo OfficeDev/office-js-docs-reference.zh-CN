@@ -280,7 +280,7 @@
 |[RangeFill](/javascript/api/excel/excel.rangefill)|[pattern](/javascript/api/excel/excel.rangefill#pattern)|区域的图案。|
 ||[patternColor](/javascript/api/excel/excel.rangefill#patterncolor)|表示范围模式的颜色的 HTML 颜色代码，格式 #RRGGBB (如 "FFA500" ) 或命名的 HTML 颜色 (例如 "橙色" ) 。|
 ||[patternTintAndShade](/javascript/api/excel/excel.rangefill#patterntintandshade)|指定用于使区域填充的图案颜色变浅或变暗的双精度值，该值介于-1 (最暗) 和 1 (明亮的) ，0表示原始颜色。|
-||[tintAndShade](/javascript/api/excel/excel.rangefill#tintandshade)|指定用于将区域填充的颜色变浅或变暗的双精度值，该值介于-1 (最暗) 和 1 (明亮的) 之间，0表示原始颜色。|
+||[tintAndShade](/javascript/api/excel/excel.rangefill#tintandshade)|指定用于将区域填充的颜色变浅或变暗的双精度。|
 |[RangeFont](/javascript/api/excel/excel.rangefont)|[strikethrough](/javascript/api/excel/excel.rangefont#strikethrough)|指定字体的删除线状态。|
 ||[subscript](/javascript/api/excel/excel.rangefont#subscript)|指定字体的下标状态。|
 ||[superscript](/javascript/api/excel/excel.rangefont#superscript)|指定字体的上标状态。|
