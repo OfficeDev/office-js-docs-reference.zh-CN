@@ -1,280 +1,265 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'outlook!Office.Recurrence:interface'
-    summary: |-
-      该 `Recurrence` 对象提供用于获取和设置约会的定期模式的方法，但仅获取会议请求的定期模式。 它将包含具有以下键的字典： `seriesTime`<!-- -->, `recurrenceType`<!-- -->, `recurrenceProperties`<!-- -->，并 `recurrenceTimeZone` (可选) 。
+### YamlMime:TSType
+name: Office.Recurrence
+uid: outlook!Office.Recurrence:interface
+package: outlook!
+fullName: Office.Recurrence
+summary: >-
+  该 `Recurrence` 对象提供用于获取和设置约会的定期模式的方法，但仅获取会议请求的定期模式。 它将包含具有以下键的字典： `seriesTime`<!-- -->, `recurrenceType`<!-- -->, `recurrenceProperties`<!-- -->，并 `recurrenceTimeZone` (可选) 。
 
-      \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
+  \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+remarks: >-
+  **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
-      **市**
 
-      <table> <tr> <th>状态</th> <th>变为?</th> <th>浏览?</th> </tr> <tr> <td>约会组织者-撰写系列</td> <td>是 (setAsync) </td> <td>是 (getAsync) </td> </tr> <tr> <td>约会组织者-撰写实例</td> <td>没有 (setAsync 返回错误) </td> <td>是 (getAsync) </td> </tr> <tr> <td>约会与会者-阅读系列</td> <td>没有 (setAsync 不可用) </td> <td>是 (项目。定期) </td> </tr> <tr> <td>约会与会者-读取实例</td> <td>没有 (setAsync 不可用) </td> <td>是 (项目。定期) </td> </tr> <tr> <td>会议请求-读取系列</td> <td>没有 (setAsync 不可用) </td> <td>是 (项目。定期) </td> </tr> <tr> <td>会议请求-读取实例</td> <td>没有 (setAsync 不可用) </td> <td>是 (项目。定期) </td> </tr> </table>
-    name: Office.Recurrence
-    fullName: Office.Recurrence
-    langs:
-      - typeScript
-    type: interface
-    package: outlook!
-    children:
-      - 'outlook!Office.Recurrence#getAsync:member(1)'
-      - 'outlook!Office.Recurrence#recurrenceProperties:member'
-      - 'outlook!Office.Recurrence#recurrenceTimeZone:member'
-      - 'outlook!Office.Recurrence#recurrenceType:member'
-      - 'outlook!Office.Recurrence#seriesTime:member'
-      - 'outlook!Office.Recurrence#setAsync:member(1)'
-  - uid: 'outlook!Office.Recurrence#getAsync:member(1)'
-    summary: |-
-      返回约会系列的当前定期对象。
+  **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
 
-      此方法返回 `Recurrence` 约会系列的整个对象。
 
-      \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
+  **市**
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
 
-      #### <a name="examples"></a>示例
+  <table> <tr> <th>状态</th> <th>变为?</th> <th>浏览?</th> </tr> <tr> <td>约会组织者-撰写系列</td> <td>是 (setAsync) </td> <td>是 (getAsync) </td> </tr> <tr> <td>约会组织者-撰写实例</td> <td>没有 (setAsync 返回错误) </td> <td>是 (getAsync) </td> </tr> <tr> <td>约会与会者-阅读系列</td> <td>没有 (setAsync 不可用) </td> <td>是 (项目。定期) </td> </tr> <tr> <td>约会与会者-读取实例</td> <td>没有 (setAsync 不可用) </td> <td>是 (项目。定期) </td> </tr> <tr> <td>会议请求-读取系列</td> <td>没有 (setAsync 不可用) </td> <td>是 (项目。定期) </td> </tr> <tr> <td>会议请求-读取实例</td> <td>没有 (setAsync 不可用) </td> <td>是 (项目。定期) </td> </tr> </table>
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+- name: recurrenceProperties
+  uid: outlook!Office.Recurrence#recurrenceProperties:member
+  package: outlook!
+  fullName: recurrenceProperties
+  summary: >-
+    获取或设置定期约会系列的属性。
 
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/50-recurrence/get-set-recurrence-appointment-organizer.yaml
-      Office.context.mailbox.item.recurrence.getAsync(function(asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-          var recurrence = asyncResult.value;
-          if (recurrence === null) {
-            console.log("This is a single appointment.");
-          } else {
-            console.log(`Recurrence pattern: ${JSON.stringify(recurrence)}`);
-          }
+
+    \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'recurrenceProperties?: RecurrenceProperties;'
+    return:
+      type: <xref uid="outlook!Office.RecurrenceProperties:interface" />
+- name: recurrenceTimeZone
+  uid: outlook!Office.Recurrence#recurrenceTimeZone:member
+  package: outlook!
+  fullName: recurrenceTimeZone
+  summary: >-
+    获取或设置定期约会系列的属性。
+
+
+    \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'recurrenceTimeZone?: RecurrenceTimeZone;'
+    return:
+      type: <xref uid="outlook!Office.RecurrenceTimeZone:interface" />
+- name: recurrenceType
+  uid: outlook!Office.Recurrence#recurrenceType:member
+  package: outlook!
+  fullName: recurrenceType
+  summary: >-
+    获取或设置定期约会系列的类型。
+
+
+    \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'recurrenceType: MailboxEnums.RecurrenceType | string;'
+    return:
+      type: <xref uid="outlook!Office.MailboxEnums.RecurrenceType:enum" /> | string
+- name: seriesTime
+  uid: outlook!Office.Recurrence#seriesTime:member
+  package: outlook!
+  fullName: seriesTime
+  summary: >-
+    [SeriesTime](xref:outlook!Office.SeriesTime:interface)对象使您能够管理定期约会系列的开始和结束日期以及实例的常规开始和结束时间。 **此对象不是 UTC 时间。** 而是在由值指定的时区中设置，或将其 `recurrenceTimeZone` 默认值设置为项目的时区。
+
+
+    \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'seriesTime: SeriesTime;'
+    return:
+      type: <xref uid="outlook!Office.SeriesTime:interface" />
+methods:
+- name: getAsync(options, callback)
+  uid: outlook!Office.Recurrence#getAsync:member(1)
+  package: outlook!
+  fullName: getAsync(options, callback)
+  summary: >-
+    返回约会系列的当前定期对象。
+
+
+    此方法返回 `Recurrence` 约会系列的整个对象。
+
+
+    \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/50-recurrence/get-set-recurrence-appointment-organizer.yaml
+
+    Office.context.mailbox.item.recurrence.getAsync(function(asyncResult) {
+      if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+        var recurrence = asyncResult.value;
+        if (recurrence === null) {
+          console.log("This is a single appointment.");
         } else {
-          console.error(asyncResult.error);
+          console.log(`Recurrence pattern: ${JSON.stringify(recurrence)}`);
         }
-      });
-      ```
-    name: 'getAsync(options, callback)'
-    fullName: 'getAsync(options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<Recurrence>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。 `value`结果的属性是一个 `Recurrence` 对象。
-          type:
-            - 'outlook!Office.Recurrence#getAsync~0:complex'
-  - uid: 'outlook!Office.Recurrence#recurrenceProperties:member'
-    summary: |-
-      获取或设置定期约会系列的属性。
+      } else {
+        console.error(asyncResult.error);
+      }
+    });
 
-      \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<Recurrence>) => void): void;'
+    parameters:
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。 `value`结果的属性是一个 `Recurrence` 对象。
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.Recurrence:interface" />&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: setAsync(recurrencePattern, options, callback)
+  uid: outlook!Office.Recurrence#setAsync:member(1)
+  package: outlook!
+  fullName: setAsync(recurrencePattern, options, callback)
+  summary: >-
+    设置约会系列的定期模式。
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
-    name: recurrenceProperties
-    fullName: recurrenceProperties
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'recurrenceProperties?: RecurrenceProperties;'
-      return:
-        type:
-          - 'outlook!Office.RecurrenceProperties:interface'
-  - uid: 'outlook!Office.Recurrence#recurrenceTimeZone:member'
-    summary: |-
-      获取或设置定期约会系列的属性。
 
-      \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
+    **注意**： `setAsync` 应仅适用于系列项而不是实例项。
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
-    name: recurrenceTimeZone
-    fullName: recurrenceTimeZone
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'recurrenceTimeZone?: RecurrenceTimeZone;'
-      return:
-        type:
-          - 'outlook!Office.RecurrenceTimeZone:interface'
-  - uid: 'outlook!Office.Recurrence#recurrenceType:member'
-    summary: |-
-      获取或设置定期约会系列的类型。
 
-      \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
+    \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
-    name: recurrenceType
-    fullName: recurrenceType
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'recurrenceType: MailboxEnums.RecurrenceType | string;'
-      return:
-        type:
-          - 'outlook!Office.Recurrence#recurrenceType~0:complex'
-  - uid: 'outlook!Office.Recurrence#seriesTime:member'
-    summary: |-
-      [SeriesTime](xref:outlook!Office.SeriesTime:interface)对象使您能够管理定期约会系列的开始和结束日期以及实例的常规开始和结束时间。 **此对象不是 UTC 时间。** 而是在由值指定的时区中设置，或将其 `recurrenceTimeZone` 默认值设置为项目的时区。
 
-      \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
-    name: seriesTime
-    fullName: seriesTime
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'seriesTime: SeriesTime;'
-      return:
-        type:
-          - 'outlook!Office.SeriesTime:interface'
-  - uid: 'outlook!Office.Recurrence#setAsync:member(1)'
-    summary: |-
-      设置约会系列的定期模式。
 
-      **注意** ： `setAsync` 应仅适用于系列项而不是实例项。
+    **错误**：
 
-      \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
+    - `InvalidEndTime`<!-- -->：约会结束时间早在其开始时间之前。
 
-      **错误** ：
 
-      - `InvalidEndTime`<!-- -->：约会结束时间早在其开始时间之前。
+    #### <a name="examples"></a>示例
 
-      #### <a name="examples"></a>示例
 
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/50-recurrence/get-set-recurrence-appointment-organizer.yaml
-      // Important: Can only set the recurrence pattern of an appointment series.
+    ```javascript
 
-      var currentDate = new Date();
-      let seriesTimeObject : Office.SeriesTime;
-      // Set series start date to tomorrow.
-      seriesTimeObject.setStartDate(
-        currentDate.getFullYear(),
-        currentDate.getMonth(),
-        currentDate.getDay() + 1
-      );
-      // Set series end date to 1 month from now.
-      seriesTimeObject.setEndDate(
-        currentDate.getFullYear(),
-        currentDate.getMonth() + 1,
-        currentDate.getDay()
-      );
-      // Set start time to 1:30 PM.
-      seriesTimeObject.setStartTime(13, 30);
-      // Set duration to 30 minutes.
-      seriesTimeObject.setDuration(30);
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/50-recurrence/get-set-recurrence-appointment-organizer.yaml
 
-      let pattern : Office.Recurrence = {
-        seriesTime: seriesTimeObject,
-        recurrenceType: "weekly",
-        recurrenceProperties: { interval: 1, days: ["tue", "thu"], firstDayOfWeek: "sun" },
-        recurrenceTimeZone: { name: "Pacific Standard Time" }
-      };
+    // Important: Can only set the recurrence pattern of an appointment series.
 
-      Office.context.mailbox.item.recurrence.setAsync(pattern, (asyncResult) => {
-        if (asyncResult.status !== Office.AsyncResultStatus.Succeeded) {
-          console.error(`Failed to set recurrence. Error: ${asyncResult.error.message}`);
-          return;
-        }
-        console.log(`Succeeded in setting recurrence pattern ${JSON.stringify(pattern)}`);
-      });
-      ```
-    name: 'setAsync(recurrencePattern, options, callback)'
-    fullName: 'setAsync(recurrencePattern, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setAsync(recurrencePattern: Recurrence, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: recurrencePattern
-          description: 一个定期对象。
-          type:
-            - 'outlook!Office.Recurrence:interface'
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
-          type:
-            - 'outlook!Office.Recurrence#setAsync~0:complex'
-references:
-  - uid: 'office!Office.AsyncContextOptions:interface'
-    name: Office.AsyncContextOptions
-  - uid: 'outlook!Office.Recurrence#getAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<Recurrence>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<Office.Recurrence>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <
-        fullName: <
-      - uid: 'outlook!Office.Recurrence:interface'
-        name: Recurrence
-        fullName: Office.Recurrence
-      - name: '>) => void'
-        fullName: '>) => void'
-  - uid: 'outlook!Office.RecurrenceProperties:interface'
-    name: RecurrenceProperties
-  - uid: 'outlook!Office.RecurrenceTimeZone:interface'
-    name: RecurrenceTimeZone
-  - uid: 'outlook!Office.Recurrence#recurrenceType~0:complex'
-    name: MailboxEnums.RecurrenceType | string
-    fullName: Office.MailboxEnums.RecurrenceType | string
-    spec.typeScript:
-      - uid: 'outlook!Office.MailboxEnums.RecurrenceType:enum'
-        name: MailboxEnums.RecurrenceType
-        fullName: Office.MailboxEnums.RecurrenceType
-      - name: ' | string'
-        fullName: ' | string'
-  - uid: 'outlook!Office.SeriesTime:interface'
-    name: SeriesTime
-  - uid: 'outlook!Office.Recurrence:interface'
-    name: Recurrence
-  - uid: 'outlook!Office.Recurrence#setAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
+
+    var currentDate = new Date();
+
+    let seriesTimeObject : Office.SeriesTime;
+
+    // Set series start date to tomorrow.
+
+    seriesTimeObject.setStartDate(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      currentDate.getDay() + 1
+    );
+
+    // Set series end date to 1 month from now.
+
+    seriesTimeObject.setEndDate(
+      currentDate.getFullYear(),
+      currentDate.getMonth() + 1,
+      currentDate.getDay()
+    );
+
+    // Set start time to 1:30 PM.
+
+    seriesTimeObject.setStartTime(13, 30);
+
+    // Set duration to 30 minutes.
+
+    seriesTimeObject.setDuration(30);
+
+
+    let pattern : Office.Recurrence = {
+      seriesTime: seriesTimeObject,
+      recurrenceType: "weekly",
+      recurrenceProperties: { interval: 1, days: ["tue", "thu"], firstDayOfWeek: "sun" },
+      recurrenceTimeZone: { name: "Pacific Standard Time" }
+    };
+
+
+    Office.context.mailbox.item.recurrence.setAsync(pattern, (asyncResult) => {
+      if (asyncResult.status !== Office.AsyncResultStatus.Succeeded) {
+        console.error(`Failed to set recurrence. Error: ${asyncResult.error.message}`);
+        return;
+      }
+      console.log(`Succeeded in setting recurrence pattern ${JSON.stringify(pattern)}`);
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setAsync(recurrencePattern: Recurrence, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: recurrencePattern
+      description: 一个定期对象。
+      type: <xref uid="outlook!Office.Recurrence:interface" />
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+metadata:
+  ms.openlocfilehash: b9ef59a58382ef61aecb04d884df2452fad17604
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49339859"
