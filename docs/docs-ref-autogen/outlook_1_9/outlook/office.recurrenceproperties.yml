@@ -1,183 +1,149 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'outlook!Office.RecurrenceProperties:interface'
-    summary: |-
-      表示定期的属性。
+### YamlMime:TSType
+name: Office.RecurrenceProperties
+uid: outlook!Office.RecurrenceProperties:interface
+package: outlook!
+fullName: Office.RecurrenceProperties
+summary: >-
+  表示定期的属性。
 
-      \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+  \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+remarks: >-
+  **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
-      #### <a name="examples"></a>示例
 
-      ```javascript
-      // This example gets the Recurrence object of an appointment item.
-      Office.context.mailbox.item.recurrence.getAsync(callback);
+  **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
 
-      function callback(asyncResult) {
-          var context = asyncResult.context;
-          var recurrence = asyncResult.value;
-          if (!recurrence) {
-              console.log("One-time appointment or meeting");
-          } else {
-              console.log(JSON.stringify(recurrence));
-          }
+
+  #### <a name="examples"></a>示例
+
+
+  ```javascript
+
+  // This example gets the Recurrence object of an appointment item.
+
+  Office.context.mailbox.item.recurrence.getAsync(callback);
+
+
+  function callback(asyncResult) {
+      var context = asyncResult.context;
+      var recurrence = asyncResult.value;
+      if (!recurrence) {
+          console.log("One-time appointment or meeting");
+      } else {
+          console.log(JSON.stringify(recurrence));
       }
+  }
 
-      // The following example shows the results of the getAsync call that retrieves the recurrence for a series.
-      // NOTE: In this example, seriesTimeObject is a placeholder for the JSON representing the
-      // recurrence.seriesTime property. You should use the SeriesTime object's methods to get the
-      // recurrence date and time properties.
-      Recurrence = {
-          "recurrenceType": "weekly",
-          "recurrenceProperties": {"interval": 2, "days": ["mon","thu","fri"], "firstDayOfWeek": "sun"},
-          "seriesTime": {seriesTimeObject},
-          "recurrenceTimeZone": {"name": "Pacific Standard Time", "offset": -480}
-      }
-      ```
-    name: Office.RecurrenceProperties
-    fullName: Office.RecurrenceProperties
-    langs:
-      - typeScript
-    type: interface
-    package: outlook!
-    children:
-      - 'outlook!Office.RecurrenceProperties#dayOfMonth:member'
-      - 'outlook!Office.RecurrenceProperties#dayOfWeek:member'
-      - 'outlook!Office.RecurrenceProperties#days:member'
-      - 'outlook!Office.RecurrenceProperties#firstDayOfWeek:member'
-      - 'outlook!Office.RecurrenceProperties#interval:member'
-      - 'outlook!Office.RecurrenceProperties#month:member'
-      - 'outlook!Office.RecurrenceProperties#weekNumber:member'
-  - uid: 'outlook!Office.RecurrenceProperties#dayOfMonth:member'
-    summary: 表示月中的某一天。
-    name: dayOfMonth
-    fullName: dayOfMonth
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'dayOfMonth?: number;'
-      return:
-        type:
-          - number
-  - uid: 'outlook!Office.RecurrenceProperties#dayOfWeek:member'
-    summary: 表示一周中的某一天或一天的类型（例如，周末和工作日）。
-    name: dayOfWeek
-    fullName: dayOfWeek
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'dayOfWeek?: MailboxEnums.Days | string;'
-      return:
-        type:
-          - 'outlook!Office.RecurrenceProperties#dayOfWeek~0:complex'
-  - uid: 'outlook!Office.RecurrenceProperties#days:member'
-    summary: 表示此定期事件的一组天数。 有效值为： "周一"、"周二"、"周三"、"Thu"、"周五"、"Sat" 和 "周日"。
-    name: days
-    fullName: days
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'days?: MailboxEnums.Days[] | string[];'
-      return:
-        type:
-          - 'outlook!Office.RecurrenceProperties#days~0:complex'
-  - uid: 'outlook!Office.RecurrenceProperties#firstDayOfWeek:member'
-    summary: 表示您选择的一周的第一天，否则默认值为当前用户设置中的值。 有效值为： "周一"、"周二"、"周三"、"Thu"、"周五"、"Sat" 和 "周日"。
-    name: firstDayOfWeek
-    fullName: firstDayOfWeek
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'firstDayOfWeek?: MailboxEnums.Days | string;'
-      return:
-        type:
-          - 'outlook!Office.RecurrenceProperties#firstDayOfWeek~0:complex'
-  - uid: 'outlook!Office.RecurrenceProperties#interval:member'
-    summary: 表示同一定期系列的两个实例之间的时间段。
-    name: interval
-    fullName: interval
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'interval: number;'
-      return:
-        type:
-          - number
-  - uid: 'outlook!Office.RecurrenceProperties#month:member'
-    summary: 表示月。
-    name: month
-    fullName: month
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'month?: MailboxEnums.Month | string;'
-      return:
-        type:
-          - 'outlook!Office.RecurrenceProperties#month~0:complex'
-  - uid: 'outlook!Office.RecurrenceProperties#weekNumber:member'
-    summary: 代表所选月份中的星期数，例如，月的第一周的 ' first '。
-    name: weekNumber
-    fullName: weekNumber
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'weekNumber?: MailboxEnums.WeekNumber | string;'
-      return:
-        type:
-          - 'outlook!Office.RecurrenceProperties#weekNumber~0:complex'
-references:
-  - uid: 'outlook!Office.RecurrenceProperties#dayOfWeek~0:complex'
-    name: MailboxEnums.Days | string
-    fullName: Office.MailboxEnums.Days | string
-    spec.typeScript:
-      - uid: 'outlook!Office.MailboxEnums.Days:enum'
-        name: MailboxEnums.Days
-        fullName: Office.MailboxEnums.Days
-      - name: ' | string'
-        fullName: ' | string'
-  - uid: 'outlook!Office.RecurrenceProperties#days~0:complex'
-    name: 'MailboxEnums.Days[] | string[]'
-    fullName: 'Office.MailboxEnums.Days[] | string[]'
-    spec.typeScript:
-      - uid: 'outlook!Office.MailboxEnums.Days:enum'
-        name: MailboxEnums.Days
-        fullName: Office.MailboxEnums.Days
-      - name: '[] | string[]'
-        fullName: '[] | string[]'
-  - uid: 'outlook!Office.RecurrenceProperties#firstDayOfWeek~0:complex'
-    name: MailboxEnums.Days | string
-    fullName: Office.MailboxEnums.Days | string
-    spec.typeScript:
-      - uid: 'outlook!Office.MailboxEnums.Days:enum'
-        name: MailboxEnums.Days
-        fullName: Office.MailboxEnums.Days
-      - name: ' | string'
-        fullName: ' | string'
-  - uid: 'outlook!Office.RecurrenceProperties#month~0:complex'
-    name: MailboxEnums.Month | string
-    fullName: Office.MailboxEnums.Month | string
-    spec.typeScript:
-      - uid: 'outlook!Office.MailboxEnums.Month:enum'
-        name: MailboxEnums.Month
-        fullName: Office.MailboxEnums.Month
-      - name: ' | string'
-        fullName: ' | string'
-  - uid: 'outlook!Office.RecurrenceProperties#weekNumber~0:complex'
-    name: MailboxEnums.WeekNumber | string
-    fullName: Office.MailboxEnums.WeekNumber | string
-    spec.typeScript:
-      - uid: 'outlook!Office.MailboxEnums.WeekNumber:enum'
-        name: MailboxEnums.WeekNumber
-        fullName: Office.MailboxEnums.WeekNumber
-      - name: ' | string'
-        fullName: ' | string'
+
+  // The following example shows the results of the getAsync call that retrieves the recurrence for a series.
+
+  // NOTE: In this example, seriesTimeObject is a placeholder for the JSON representing the
+
+  // recurrence.seriesTime property. You should use the SeriesTime object's methods to get the
+
+  // recurrence date and time properties.
+
+  Recurrence = {
+      "recurrenceType": "weekly",
+      "recurrenceProperties": {"interval": 2, "days": ["mon","thu","fri"], "firstDayOfWeek": "sun"},
+      "seriesTime": {seriesTimeObject},
+      "recurrenceTimeZone": {"name": "Pacific Standard Time", "offset": -480}
+  }
+
+  ```
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+- name: dayOfMonth
+  uid: outlook!Office.RecurrenceProperties#dayOfMonth:member
+  package: outlook!
+  fullName: dayOfMonth
+  summary: 表示月中的某一天。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'dayOfMonth?: number;'
+    return:
+      type: number
+- name: dayOfWeek
+  uid: outlook!Office.RecurrenceProperties#dayOfWeek:member
+  package: outlook!
+  fullName: dayOfWeek
+  summary: 表示一周中的某一天或一天的类型（例如，周末和工作日）。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'dayOfWeek?: MailboxEnums.Days | string;'
+    return:
+      type: <xref uid="outlook!Office.MailboxEnums.Days:enum" /> | string
+- name: days
+  uid: outlook!Office.RecurrenceProperties#days:member
+  package: outlook!
+  fullName: days
+  summary: 表示此定期事件的一组天数。 有效值为： "周一"、"周二"、"周三"、"Thu"、"周五"、"Sat" 和 "周日"。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'days?: MailboxEnums.Days[] | string[];'
+    return:
+      type: <xref uid="outlook!Office.MailboxEnums.Days:enum" />[] | string[]
+- name: firstDayOfWeek
+  uid: outlook!Office.RecurrenceProperties#firstDayOfWeek:member
+  package: outlook!
+  fullName: firstDayOfWeek
+  summary: 表示您选择的一周的第一天，否则默认值为当前用户设置中的值。 有效值为： "周一"、"周二"、"周三"、"Thu"、"周五"、"Sat" 和 "周日"。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'firstDayOfWeek?: MailboxEnums.Days | string;'
+    return:
+      type: <xref uid="outlook!Office.MailboxEnums.Days:enum" /> | string
+- name: interval
+  uid: outlook!Office.RecurrenceProperties#interval:member
+  package: outlook!
+  fullName: interval
+  summary: 表示同一定期系列的两个实例之间的时间段。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'interval: number;'
+    return:
+      type: number
+- name: month
+  uid: outlook!Office.RecurrenceProperties#month:member
+  package: outlook!
+  fullName: month
+  summary: 表示月。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'month?: MailboxEnums.Month | string;'
+    return:
+      type: <xref uid="outlook!Office.MailboxEnums.Month:enum" /> | string
+- name: weekNumber
+  uid: outlook!Office.RecurrenceProperties#weekNumber:member
+  package: outlook!
+  fullName: weekNumber
+  summary: 代表所选月份中的星期数，例如，月的第一周的 ' first '。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'weekNumber?: MailboxEnums.WeekNumber | string;'
+    return:
+      type: <xref uid="outlook!Office.MailboxEnums.WeekNumber:enum" /> | string
+metadata:
+  ms.openlocfilehash: 363f914a4df288b3febb666bf1fca7427d844e8a
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49339761"

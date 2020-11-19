@@ -197,7 +197,7 @@
 ||[getRangeByIndexes (startRow： number，startColumn： number，rowCount： number，columnCount： number) ](/javascript/api/excel/excel.worksheet#getrangebyindexes-startrow--startcolumn--rowcount--columncount-)|获取以特定行索引和列索引开始并跨越了一定数量的行和列的 range 对象。|
 ||[freezePanes](/javascript/api/excel/excel.worksheet#freezepanes)|获取一个对象，该对象可用于操作工作表上的冻结窗格。|
 ||[onActivated](/javascript/api/excel/excel.worksheet#onactivated)|当激活工作表时发生此事件。|
-||[onChanged](/javascript/api/excel/excel.worksheet#onchanged)|当指定的工作表上的数据发生更改时发生。|
+||[onChanged](/javascript/api/excel/excel.worksheet#onchanged)|当特定工作表中的数据更改时发生。|
 ||[onDeactivated](/javascript/api/excel/excel.worksheet#ondeactivated)|停用工作表时发生此事件。|
 ||[onSelectionChanged](/javascript/api/excel/excel.worksheet#onselectionchanged)|当指定的工作表上的所选内容更改时发生。|
 ||[standardHeight](/javascript/api/excel/excel.worksheet#standardheight)|返回工作表中所有行的标准（默认）行高，以磅为单位。|
@@ -223,8 +223,8 @@
 ||[type](/javascript/api/excel/excel.worksheetdeletedeventargs#type)|获取事件的类型。|
 ||[worksheetId](/javascript/api/excel/excel.worksheetdeletedeventargs#worksheetid)|获取已从工作簿删除的工作表的 ID。|
 |[WorksheetFreezePanes](/javascript/api/excel/excel.worksheetfreezepanes)|[freezeAt (frozenRange： Range \| string) ](/javascript/api/excel/excel.worksheetfreezepanes#freezeat-frozenrange-)|设置活动工作表视图中的冻结单元格。|
-||[freezeColumns (count？： number) ](/javascript/api/excel/excel.worksheetfreezepanes#freezecolumns-count-)|就地冻结工作表的第一列。|
-||[freezeRows (count？： number) ](/javascript/api/excel/excel.worksheetfreezepanes#freezerows-count-)|就地冻结工作表的顶行。|
+||[freezeColumns (count？： number) ](/javascript/api/excel/excel.worksheetfreezepanes#freezecolumns-count-)|就地冻结工作表的第一列或多列。|
+||[freezeRows (count？： number) ](/javascript/api/excel/excel.worksheetfreezepanes#freezerows-count-)|就地冻结工作表的首行或多行。|
 ||[getLocation()](/javascript/api/excel/excel.worksheetfreezepanes#getlocation--)|获取用于描述活动工作表视图中的冻结单元格的区域。|
 ||[getLocationOrNullObject ( # B1 ](/javascript/api/excel/excel.worksheetfreezepanes#getlocationornullobject--)|获取用于描述活动工作表视图中的冻结单元格的区域。|
 ||[取消冻结 ( # B1 ](/javascript/api/excel/excel.worksheetfreezepanes#unfreeze--)|移除工作表中的所有冻结窗格。|
