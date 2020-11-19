@@ -1,510 +1,311 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'office!Office.Settings:interface'
-    summary: 表示作为名称/值对存储在主机文档中的任务窗格或内容外接程序的自定义设置。
-    remarks: |-
-      **主机**： Excel、PowerPoint、Word
+### YamlMime:TSType
+name: Office.Settings
+uid: office!Office.Settings:interface
+package: office!
+fullName: Office.Settings
+summary: 表示作为名称/值对存储在主机文档中的任务窗格或内容外接程序的自定义设置。
+remarks: >-
+  **主机**： Excel、PowerPoint、Word
 
-      使用 Settings 对象的方法创建的设置将针对每个加载项和文档进行保存。 即，这些设置仅供创建它们的外接程序使用，并且仅来自保存它们的文档。
 
-      设置的名称是一个字符串，而值可以是字符串、数字、布尔值、null、对象或数组。
+  使用 Settings 对象的方法创建的设置将针对每个加载项和文档进行保存。 即，这些设置仅供创建它们的外接程序使用，并且仅来自保存它们的文档。
 
-      设置对象将作为 Document 对象的一部分自动加载，并可通过在外接程序激活时调用该对象的 Settings 属性。
 
-      开发者负责在添加或删除设置后调用 saveAsync 方法，从而将设置保存到文档中。
-    name: Office.Settings
-    fullName: Office.Settings
-    langs:
-      - typeScript
-    type: interface
-    package: office!
-    children:
-      - 'office!Office.Settings#addHandlerAsync:member(1)'
-      - 'office!Office.Settings#addHandlerAsync:member(2)'
-      - 'office!Office.Settings#get:member(1)'
-      - 'office!Office.Settings#refreshAsync:member(1)'
-      - 'office!Office.Settings#remove:member(1)'
-      - 'office!Office.Settings#removeHandlerAsync:member(1)'
-      - 'office!Office.Settings#removeHandlerAsync:member(2)'
-      - 'office!Office.Settings#saveAsync:member(1)'
-      - 'office!Office.Settings#saveAsync:member(2)'
-      - 'office!Office.Settings#set:member(1)'
-  - uid: 'office!Office.Settings#addHandlerAsync:member(1)'
-    summary: |-
-      为 settingsChanged 事件添加事件处理程序。
+  设置的名称是一个字符串，而值可以是字符串、数字、布尔值、null、对象或数组。
 
-      **重要说明**：加载项的代码可以在使用任何 Excel 客户端运行加载项时为 settingsChanged 事件注册处理程序，但只有当加载项是使用在 Excel 的 excel 中打开的电子表格加载的，并且多个用户正在编辑电子表格（合著）时，才会触发该事件。 因此，只有在合著方案中，才会在 web 上的 Excel 中有效地支持 settingsChanged 事件。
-    remarks: |-
-      **要求集**：[不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
 
-      只要每个事件处理程序函数的名称是唯一的，您就可以为指定的事件类型添加多个事件处理程序。
-    name: 'addHandlerAsync(eventType, handler, options, callback)'
-    fullName: 'addHandlerAsync(eventType, handler, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addHandlerAsync(eventType: Office.EventType, handler: any, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: eventType
-          description: 指定要添加事件的类型。 必需。
-          type:
-            - 'office!Office.EventType:enum'
-        - id: handler
-          description: '要添加的事件处理程序函数，其唯一的参数的类型为[SettingsChangedEventArgs](xref:office!Office.SettingsChangedEventArgs:interface)<!-- -->. 必需。'
-          type:
-            - any
-        - id: options
-          description: 提供一个选项，用于保留任何类型的未更改的上下文数据，以供在回调中使用。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: |-
-            可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.
+  设置对象将作为 Document 对象的一部分自动加载，并可通过在外接程序激活时调用该对象的 Settings 属性。
 
-            <table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回  undefined，这是因为添加事件处理程序时没有要检索的数据或对象。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>
-          type:
-            - 'office!Office.Settings#addHandlerAsync~0:complex'
-  - uid: 'office!Office.Settings#addHandlerAsync:member(2)'
-    summary: |-
-      为 settingsChanged 事件添加事件处理程序。
 
-      **重要说明**：加载项的代码可以在使用任何 Excel 客户端运行加载项时为 settingsChanged 事件注册处理程序，但只有当加载项是使用在 Excel 的 excel 中打开的电子表格加载的，并且多个用户正在编辑电子表格（合著）时，才会触发该事件。 因此，只有在合著方案中，才会在 web 上的 Excel 中有效地支持 settingsChanged 事件。
-    remarks: |-
-      **要求集**：[不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
+  开发者负责在添加或删除设置后调用 saveAsync 方法，从而将设置保存到文档中。
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+- name: addHandlerAsync(eventType, handler, options, callback)
+  uid: office!Office.Settings#addHandlerAsync:member(1)
+  package: office!
+  fullName: addHandlerAsync(eventType, handler, options, callback)
+  summary: >-
+    为 settingsChanged 事件添加事件处理程序。
 
-      只要每个事件处理程序函数的名称是唯一的，您就可以为指定的事件类型添加多个事件处理程序。
 
-      #### <a name="examples"></a>示例
+    **重要说明**：加载项的代码可以在使用任何 Excel 客户端运行加载项时为 settingsChanged 事件注册处理程序，但仅当加载项是使用在 Excel 网页上打开的电子表格加载的，并且多个用户正在编辑电子表格 (合著) 中时，才会触发该事件。 因此，只有在合著方案中，才会在 web 上的 Excel 中有效地支持 settingsChanged 事件。
+  remarks: >-
+    **要求集**： [不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
 
-      ```javascript
-      function addSelectionChangedEventHandler() {
-          Office.context.document.settings.addHandlerAsync(Office.EventType.SettingsChanged, MyHandler);
-      }
 
-      function MyHandler(eventArgs) {
-          write('Event raised: ' + eventArgs.type);
-          doSomethingWithSettings(eventArgs.settings);
-      }
+    只要每个事件处理程序函数的名称是唯一的，您就可以为指定的事件类型添加多个事件处理程序。
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addHandlerAsync(eventType: Office.EventType, handler: any, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    parameters:
+    - id: eventType
+      description: 指定要添加事件的类型。 必需。
+      type: <xref uid="office!Office.EventType:enum" />
+    - id: handler
+      description: 要添加的事件处理程序函数，其唯一的参数的类型为 [SettingsChangedEventArgs](xref:office!Office.SettingsChangedEventArgs:interface)<!-- -->. 必需。
+      type: any
+    - id: options
+      description: 提供一个选项，用于保留任何类型的未更改的上下文数据，以供在回调中使用。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: >-
+        可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.
 
-      // Function that writes to a div with id='message' on the page.
-      function write(message){
-          document.getElementById('message').innerText += message; 
-      }
-      ```
-    name: 'addHandlerAsync(eventType, handler, callback)'
-    fullName: 'addHandlerAsync(eventType, handler, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addHandlerAsync(eventType: Office.EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: eventType
-          description: 指定要添加事件的类型。 必需。
-          type:
-            - 'office!Office.EventType:enum'
-        - id: handler
-          description: '要添加的事件处理程序函数，其唯一的参数的类型为[SettingsChangedEventArgs](xref:office!Office.SettingsChangedEventArgs:interface)<!-- -->. 必需。'
-          type:
-            - any
-        - id: callback
-          description: |-
-            可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.
 
-            <table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回  undefined，这是因为添加事件处理程序时没有要检索的数据或对象。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>
-          type:
-            - 'office!Office.Settings#addHandlerAsync~1:complex'
-  - uid: 'office!Office.Settings#get:member(1)'
-    summary: 检索指定设置。
-    remarks: |-
-      **要求集**：[设置](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)
+        <table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回  undefined，这是因为添加事件处理程序时没有要检索的数据或对象。</td> </tr> <tr> <td>AsyncResult。状态</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: addHandlerAsync(eventType, handler, callback)
+  uid: office!Office.Settings#addHandlerAsync:member(2)
+  package: office!
+  fullName: addHandlerAsync(eventType, handler, callback)
+  summary: >-
+    为 settingsChanged 事件添加事件处理程序。
 
-      #### <a name="examples"></a>示例
 
-      ```javascript
-      function displayMySetting() {
-          write('Current value for mySetting: ' + Office.context.document.settings.get('mySetting'));
-      }
-      // Function that writes to a div with id='message' on the page.
-      function write(message){
-          document.getElementById('message').innerText += message; 
-      }
-      ```
-    name: get(name)
-    fullName: get(name)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'get(name: string): any;'
-      return:
-        type:
-          - any
-        description: 具有映射到 JSON 序列化值的属性名称的对象。
-      parameters:
-        - id: name
-          description: ''
-          type:
-            - string
-  - uid: 'office!Office.Settings#refreshAsync:member(1)'
-    summary: 读取文档中保存的所有设置并刷新内容或任务窗格外接程序在内存中保留的这些设置的副本。
-    remarks: |-
-      **要求集**：[不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
+    **重要说明**：加载项的代码可以在使用任何 Excel 客户端运行加载项时为 settingsChanged 事件注册处理程序，但仅当加载项是使用在 Excel 网页上打开的电子表格加载的，并且多个用户正在编辑电子表格 (合著) 中时，才会触发该事件。 因此，只有在合著方案中，才会在 web 上的 Excel 中有效地支持 settingsChanged 事件。
+  remarks: "**要求集**： [不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)\n\n只要每个事件处理程序函数的名称是唯一的，您就可以为指定的事件类型添加多个事件处理程序。\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction addSelectionChangedEventHandler() {\n    Office.context.document.settings.addHandlerAsync(Office.EventType.SettingsChanged, MyHandler);\n}\n\nfunction MyHandler(eventArgs) {\n    write('Event raised: ' + eventArgs.type);\n    doSomethingWithSettings(eventArgs.settings);\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addHandlerAsync(eventType: Office.EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;'
+    parameters:
+    - id: eventType
+      description: 指定要添加事件的类型。 必需。
+      type: <xref uid="office!Office.EventType:enum" />
+    - id: handler
+      description: 要添加的事件处理程序函数，其唯一的参数的类型为 [SettingsChangedEventArgs](xref:office!Office.SettingsChangedEventArgs:interface)<!-- -->. 必需。
+      type: any
+    - id: callback
+      description: >-
+        可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.
 
-      当同一加载项的多个实例在同一文档中运行时，此方法在 Excel、Word 和 PowerPoint 合著方案中非常有用。 由于每个加载项都在用户打开文档时从该文档加载的设置的内存中副本运行，因此每个用户使用的设置值可能会不同步。只要外接程序的实例调用 saveAsync 方法以将该用户的所有设置都保留到文档中，就会发生这种情况。 从外接程序的 settingsChanged 事件的事件处理程序中调用 refreshAsync 方法将会刷新所有用户的设置值。
 
-      在传递给 refreshAsync 方法的回调函数中，您可以使用 AsyncResult 对象的属性返回以下信息。
+        <table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回  undefined，这是因为添加事件处理程序时没有要检索的数据或对象。</td> </tr> <tr> <td>AsyncResult。状态</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: get(name)
+  uid: office!Office.Settings#get:member(1)
+  package: office!
+  fullName: get(name)
+  summary: 检索指定设置。
+  remarks: "**要求集**： [设置](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction displayMySetting() {\n    write('Current value for mySetting: ' + Office.context.document.settings.get('mySetting'));\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'get(name: string): any;'
+    parameters:
+    - id: name
+      description: ''
+      type: string
+    return:
+      type: any
+      description: 具有映射到 JSON 序列化值的属性名称的对象。
+- name: refreshAsync(callback)
+  uid: office!Office.Settings#refreshAsync:member(1)
+  package: office!
+  fullName: refreshAsync(callback)
+  summary: 读取文档中保存的所有设置并刷新内容或任务窗格外接程序在内存中保留的这些设置的副本。
+  remarks: "**要求集**： [不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)\n\n当同一加载项的多个实例在同一文档中运行时，此方法在 Excel、Word 和 PowerPoint 合著方案中非常有用。 由于每个加载项都在用户打开文档时从该文档加载的设置的内存中副本运行，因此每个用户使用的设置值可能会不同步。只要外接程序的实例调用 saveAsync 方法以将该用户的所有设置都保留到文档中，就会发生这种情况。 从外接程序的 settingsChanged 事件的事件处理程序中调用 refreshAsync 方法将会刷新所有用户的设置值。\n\n在传递给 refreshAsync 方法的回调函数中，您可以使用 AsyncResult 对象的属性返回以下信息。\n\n<table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>使用刷新值访问 Settings 对象。</td> </tr> <tr> <td>AsyncResult。状态</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction refreshSettings() {\n    Office.context.document.settings.refreshAsync(function (asyncResult) {\n        write('Settings refreshed with status: ' + asyncResult.status);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'refreshAsync(callback?: (result: AsyncResult<Office.Settings>) => void): void;'
+    parameters:
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是一个包含刷新值的[Office. Settings](xref:office!Office.Settings:interface)对象。
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="office!Office.Settings:interface" />&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: remove(name)
+  uid: office!Office.Settings#remove:member(1)
+  package: office!
+  fullName: remove(name)
+  summary: >-
+    移除指定设置。
 
-      <table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>使用刷新值访问 Settings 对象。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>
 
-      #### <a name="examples"></a>示例
+    **重要说明**：请注意，settings 方法仅影响设置属性包的内存中副本。 若要在调用 Settings.remove 方法之后的某个时间点以及在关闭外接程序之前保留文档中指定设置的删除状态，你必须调用 Settings.saveAsync 方法。
+  remarks: >-
+    **要求集**： [设置](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)
 
-      ```javascript
-      function refreshSettings() {
-          Office.context.document.settings.refreshAsync(function (asyncResult) {
-              write('Settings refreshed with status: ' + asyncResult.status);
-          });
-      }
-      // Function that writes to a div with id='message' on the page.
-      function write(message){
-          document.getElementById('message').innerText += message; 
-      }
-      ```
-    name: refreshAsync(callback)
-    fullName: refreshAsync(callback)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'refreshAsync(callback?: (result: AsyncResult<Office.Settings>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->. `value`结果的属性是一个包含刷新值的[Office. Settings](xref:office!Office.Settings:interface)对象。'
-          type:
-            - 'office!Office.Settings#refreshAsync~0:complex'
-  - uid: 'office!Office.Settings#remove:member(1)'
-    summary: |-
-      移除指定设置。
 
-      **重要说明**：请注意，settings 方法仅影响设置属性包的内存中副本。 若要在调用 Settings.remove 方法之后的某个时间点以及在关闭外接程序之前保留文档中指定设置的删除状态，你必须调用 Settings.saveAsync 方法。
-    remarks: |-
-      **要求集**：[设置](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)
+    null 是设置的有效值。 因此，将 null 分配给设置不会将它从设置属性包中删除。
 
-      null 是设置的有效值。 因此，将 null 分配给设置不会将它从设置属性包中删除。
 
-      #### <a name="examples"></a>示例
+    #### <a name="examples"></a>示例
 
-      ```javascript
-      function removeMySetting() {
-          Office.context.document.settings.remove('mySetting');
-      }
-      ```
-    name: remove(name)
-    fullName: remove(name)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'remove(name: string): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: name
-          description: ''
-          type:
-            - string
-  - uid: 'office!Office.Settings#removeHandlerAsync:member(1)'
-    summary: 删除 settingsChanged 事件的事件处理程序。
-    remarks: |-
-      **要求集**：[不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
 
-      如果调用 removeHandlerAsync 方法时省略可选的 handler 参数，则将删除指定的事件的所有事件处理程序。
+    ```javascript
 
-      当执行传递给 callback 参数的函数时，它会接收您可以从回调函数的唯一参数访问的 AsyncResult 对象。
+    function removeMySetting() {
+        Office.context.document.settings.remove('mySetting');
+    }
 
-      在传递给 removeHandlerAsync 方法的回调函数中，您可以使用 AsyncResult 对象的属性返回以下信息。
-    name: 'removeHandlerAsync(eventType, options, callback)'
-    fullName: 'removeHandlerAsync(eventType, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'removeHandlerAsync(eventType: Office.EventType, options?: RemoveHandlerOptions, callback?: (result: AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: eventType
-          description: 指定要移除事件的类型。 必需。
-          type:
-            - 'office!Office.EventType:enum'
-        - id: options
-          description: 提供用于确定要删除的事件处理程序或处理程序的选项。
-          type:
-            - 'office!Office.RemoveHandlerOptions:interface'
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.'
-          type:
-            - 'office!Office.Settings#removeHandlerAsync~0:complex'
-  - uid: 'office!Office.Settings#removeHandlerAsync:member(2)'
-    summary: 删除 settingsChanged 事件的事件处理程序。
-    remarks: |-
-      **要求集**：[不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'remove(name: string): void;'
+    parameters:
+    - id: name
+      description: ''
+      type: string
+    return:
+      type: void
+      description: ''
+- name: removeHandlerAsync(eventType, options, callback)
+  uid: office!Office.Settings#removeHandlerAsync:member(1)
+  package: office!
+  fullName: removeHandlerAsync(eventType, options, callback)
+  summary: 删除 settingsChanged 事件的事件处理程序。
+  remarks: >-
+    **要求集**： [不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
 
-      如果调用 removeHandlerAsync 方法时省略可选的 handler 参数，则将删除指定的事件的所有事件处理程序。
 
-      当执行传递给 callback 参数的函数时，它会接收您可以从回调函数的唯一参数访问的 AsyncResult 对象。
+    如果调用 removeHandlerAsync 方法时省略可选的 handler 参数，则将删除指定的事件的所有事件处理程序。
 
-      在传递给 removeHandlerAsync 方法的回调函数中，您可以使用 AsyncResult 对象的属性返回以下信息。
 
-      #### <a name="examples"></a>示例
+    当执行传递给 callback 参数的函数时，它会接收您可以从回调函数的唯一参数访问的 AsyncResult 对象。
 
-      ```javascript
-      function removeSettingsChangedEventHandler() {
-          Office.context.document.settings.removeHandlerAsync(Office.EventType.SettingsChanged, MyHandler);
-      }
 
-      function MyHandler(eventArgs) {
-          write('Event raised: ' + eventArgs.type);
-          doSomethingWithSettings(eventArgs.settings);
-      }
+    在传递给 removeHandlerAsync 方法的回调函数中，您可以使用 AsyncResult 对象的属性返回以下信息。
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'removeHandlerAsync(eventType: Office.EventType, options?: RemoveHandlerOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    parameters:
+    - id: eventType
+      description: 指定要移除事件的类型。 必需。
+      type: <xref uid="office!Office.EventType:enum" />
+    - id: options
+      description: 提供用于确定要删除的事件处理程序或处理程序的选项。
+      type: <xref uid="office!Office.RemoveHandlerOptions:interface" />
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: removeHandlerAsync(eventType, callback)
+  uid: office!Office.Settings#removeHandlerAsync:member(2)
+  package: office!
+  fullName: removeHandlerAsync(eventType, callback)
+  summary: 删除 settingsChanged 事件的事件处理程序。
+  remarks: "**要求集**： [不在集合中](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)\n\n如果调用 removeHandlerAsync 方法时省略可选的 handler 参数，则将删除指定的事件的所有事件处理程序。\n\n当执行传递给 callback 参数的函数时，它会接收您可以从回调函数的唯一参数访问的 AsyncResult 对象。\n\n在传递给 removeHandlerAsync 方法的回调函数中，您可以使用 AsyncResult 对象的属性返回以下信息。\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction removeSettingsChangedEventHandler() {\n    Office.context.document.settings.removeHandlerAsync(Office.EventType.SettingsChanged, MyHandler);\n}\n\nfunction MyHandler(eventArgs) {\n    write('Event raised: ' + eventArgs.type);\n    doSomethingWithSettings(eventArgs.settings);\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'removeHandlerAsync(eventType: Office.EventType, callback?: (result: AsyncResult<void>) => void): void;'
+    parameters:
+    - id: eventType
+      description: 指定要移除事件的类型。 必需。
+      type: <xref uid="office!Office.EventType:enum" />
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: saveAsync(options, callback)
+  uid: office!Office.Settings#saveAsync:member(1)
+  package: office!
+  fullName: saveAsync(options, callback)
+  summary: 将设置属性包的内存副本保留到文档中。
+  remarks: >-
+    **要求集**： [设置](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)
 
-      // Function that writes to a div with id='message' on the page.
-      function write(message){
-          document.getElementById('message').innerText += message; 
-      }
-      ```
-    name: 'removeHandlerAsync(eventType, callback)'
-    fullName: 'removeHandlerAsync(eventType, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'removeHandlerAsync(eventType: Office.EventType, callback?: (result: AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: eventType
-          description: 指定要移除事件的类型。 必需。
-          type:
-            - 'office!Office.EventType:enum'
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.'
-          type:
-            - 'office!Office.Settings#removeHandlerAsync~1:complex'
-  - uid: 'office!Office.Settings#saveAsync:member(1)'
-    summary: 将设置属性包的内存副本保留到文档中。
-    remarks: |-
-      **要求集**：[设置](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)
 
-      加载项以前保存的任何设置都会在初始化时加载，因此，在会话的生存期期间，可以只使用 set 和 get 方法来处理设置属性包的内存副本。 如果希望保留设置以便可在下次使用外接程序时使用这些设置，请使用 saveAsync 方法。
+    加载项以前保存的任何设置都会在初始化时加载，因此，在会话的生存期期间，可以只使用 set 和 get 方法来处理设置属性包的内存副本。 如果希望保留设置以便可在下次使用外接程序时使用这些设置，请使用 saveAsync 方法。
 
-      **注意**： saveAsync 方法将内存中设置属性包保留到文档文件中。 但是，仅当用户（或自动恢复设置）将文档保存到文件系统时，对文档文件本身所做的更改才会保存。 RefreshAsync 方法仅在合著方案中非常有用。当同一加载项的其他实例可能会更改设置，并且这些更改应对所有实例可用。
 
-      <table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回 undefined，这是因为没有要检索的对象或数据。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>
-    name: 'saveAsync(options, callback)'
-    fullName: 'saveAsync(options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'saveAsync(options?: SaveSettingsOptions, callback?: (result: AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: options
-          description: 提供用于保存设置的选项。
-          type:
-            - 'office!Office.SaveSettingsOptions:interface'
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.'
-          type:
-            - 'office!Office.Settings#saveAsync~0:complex'
-  - uid: 'office!Office.Settings#saveAsync:member(2)'
-    summary: 将设置属性包的内存副本保留到文档中。
-    remarks: |-
-      **要求集**：[设置](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)
+    **注意**： saveAsync 方法将内存中设置属性包保留到文档文件中。 但是，仅当用户 (或自动恢复设置) 将文档保存到文件系统时，才会保存对文档文件本身所做的更改。 RefreshAsync 方法仅在合著方案中非常有用。当同一加载项的其他实例可能会更改设置，并且这些更改应对所有实例可用。
 
-      加载项以前保存的任何设置都会在初始化时加载，因此，在会话的生存期期间，可以只使用 set 和 get 方法来处理设置属性包的内存副本。 如果希望保留设置以便可在下次使用外接程序时使用这些设置，请使用 saveAsync 方法。
 
-      **注意**： saveAsync 方法将内存中设置属性包保留到文档文件中。 但是，仅当用户（或自动恢复设置）将文档保存到文件系统时，对文档文件本身所做的更改才会保存。 RefreshAsync 方法仅在合著方案中非常有用。当同一加载项的其他实例可能会更改设置，并且这些更改应对所有实例可用。
+    <table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回 undefined，这是因为没有要检索的对象或数据。</td> </tr> <tr> <td>AsyncResult。状态</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'saveAsync(options?: SaveSettingsOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    parameters:
+    - id: options
+      description: 提供用于保存设置的选项。
+      type: <xref uid="office!Office.SaveSettingsOptions:interface" />
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: saveAsync(callback)
+  uid: office!Office.Settings#saveAsync:member(2)
+  package: office!
+  fullName: saveAsync(callback)
+  summary: 将设置属性包的内存副本保留到文档中。
+  remarks: "**要求集**： [设置](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)\n\n加载项以前保存的任何设置都会在初始化时加载，因此，在会话的生存期期间，可以只使用 set 和 get 方法来处理设置属性包的内存副本。 如果希望保留设置以便可在下次使用外接程序时使用这些设置，请使用 saveAsync 方法。\n\n**注意**： saveAsync 方法将内存中设置属性包保留到文档文件中。 但是，仅当用户 (或自动恢复设置) 将文档保存到文件系统时，才会保存对文档文件本身所做的更改。 RefreshAsync 方法仅在合著方案中非常有用。当同一加载项的其他实例可能会更改设置，并且这些更改应对所有实例可用。\n\n<table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回 undefined，这是因为没有要检索的对象或数据。</td> </tr> <tr> <td>AsyncResult。状态</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction persistSettings() {\n    Office.context.document.settings.saveAsync(function (asyncResult) {\n        write('Settings saved with status: ' + asyncResult.status);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'saveAsync(callback?: (result: AsyncResult<void>) => void): void;'
+    parameters:
+    - id: callback
+      description: 可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: set(name, value)
+  uid: office!Office.Settings#set:member(1)
+  package: office!
+  fullName: set(name, value)
+  summary: >-
+    设置或创建指定设置。
 
-      <table> <tr> <th>属性</th> <th>用于...</th> </tr> <tr> <td>AsyncResult.value</td> <td>始终返回 undefined，这是因为没有要检索的对象或数据。</td> </tr> <tr> <td>AsyncResult.status</td> <td>确定操作是成功还是失败。</td> </tr> <tr> <td>AsyncResult.error</td> <td>如果操作失败，则访问提供错误信息的 Error 对象。</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>在 AsyncResult 对象中未经改动的返回的任何类型的用户定义项。</td> </tr> </table>
 
-      #### <a name="examples"></a>示例
+    **重要说明**：请注意，设置方法仅影响设置属性包的内存中副本。 为了确保对设置所做的增补或更改在文档下次打开时、在调用 Settings.set 方法之后的某个时间点以及在关闭外接程序之前对外接程序生效，你必须调用 Settings.saveAsync 方法，将设置保留在文档中。
+  remarks: >-
+    **要求集**： [设置](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)
 
-      ```javascript
-      function persistSettings() {
-          Office.context.document.settings.saveAsync(function (asyncResult) {
-              write('Settings saved with status: ' + asyncResult.status);
-          });
-      }
-      // Function that writes to a div with id='message' on the page.
-      function write(message){
-          document.getElementById('message').innerText += message; 
-      }
-      ```
-    name: saveAsync(callback)
-    fullName: saveAsync(callback)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'saveAsync(callback?: (result: AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: callback
-          description: '可选。 回调返回时调用的函数，其唯一的参数的类型为 " [Office. AsyncResult](xref:office!Office.AsyncResult:interface) "<!-- -->.'
-          type:
-            - 'office!Office.Settings#saveAsync~1:complex'
-  - uid: 'office!Office.Settings#set:member(1)'
-    summary: |-
-      设置或创建指定设置。
 
-      **重要说明**：请注意，设置方法仅影响设置属性包的内存中副本。 为了确保对设置所做的增补或更改在文档下次打开时、在调用 Settings.set 方法之后的某个时间点以及在关闭外接程序之前对外接程序生效，你必须调用 Settings.saveAsync 方法，将设置保留在文档中。
-    remarks: |-
-      **要求集**：[设置](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)
+    Set 方法创建指定名称的新设置（如果它尚不存在），或在 settings 属性包的内存中副本中设置指定名称的现有设置。 在你调用 Settings.saveAsync 方法后，值会作为数据类型的序列化 JSON 表示形式存储在文档中。
 
-      Set 方法创建指定名称的新设置（如果它尚不存在），或在 settings 属性包的内存中副本中设置指定名称的现有设置。 在你调用 Settings.saveAsync 方法后，值会作为数据类型的序列化 JSON 表示形式存储在文档中。
 
-      #### <a name="examples"></a>示例
+    #### <a name="examples"></a>示例
 
-      ```javascript
-      function setMySetting() {
-          Office.context.document.settings.set('mySetting', 'mySetting value');
-      }
-      ```
-    name: 'set(name, value)'
-    fullName: 'set(name, value)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'set(name: string, value: any): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: name
-          description: ''
-          type:
-            - string
-        - id: value
-          description: Specifies the value to be stored.
-          type:
-            - any
-references:
-  - uid: 'office!Office.EventType:enum'
-    name: Office.EventType
-  - uid: 'office!Office.AsyncContextOptions:interface'
-    name: Office.AsyncContextOptions
-  - uid: 'office!Office.Settings#addHandlerAsync~0:complex'
-    name: '(result: AsyncResult<void>) => void'
-    fullName: '(result: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'office!Office.Settings#addHandlerAsync~1:complex'
-    name: '(result: AsyncResult<void>) => void'
-    fullName: '(result: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'office!Office.Settings#refreshAsync~0:complex'
-    name: '(result: AsyncResult<Office.Settings>) => void'
-    fullName: '(result: Office.AsyncResult<Office.Settings>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <
-        fullName: <
-      - uid: 'office!Office.Settings:interface'
-        name: Office.Settings
-        fullName: Office.Settings
-      - name: '>) => void'
-        fullName: '>) => void'
-  - uid: 'office!Office.RemoveHandlerOptions:interface'
-    name: RemoveHandlerOptions
-  - uid: 'office!Office.Settings#removeHandlerAsync~0:complex'
-    name: '(result: AsyncResult<void>) => void'
-    fullName: '(result: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'office!Office.Settings#removeHandlerAsync~1:complex'
-    name: '(result: AsyncResult<void>) => void'
-    fullName: '(result: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'office!Office.SaveSettingsOptions:interface'
-    name: SaveSettingsOptions
-  - uid: 'office!Office.Settings#saveAsync~0:complex'
-    name: '(result: AsyncResult<void>) => void'
-    fullName: '(result: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'office!Office.Settings#saveAsync~1:complex'
-    name: '(result: AsyncResult<void>) => void'
-    fullName: '(result: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(result: '
-        fullName: '(result: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
+
+    ```javascript
+
+    function setMySetting() {
+        Office.context.document.settings.set('mySetting', 'mySetting value');
+    }
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(name: string, value: any): void;'
+    parameters:
+    - id: name
+      description: ''
+      type: string
+    - id: value
+      description: Specifies the value to be stored.
+      type: any
+    return:
+      type: void
+      description: ''
+metadata:
+  ms.openlocfilehash: 82b6e37b0e22462670d0f209c2a1f4a81fabe5ad
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49265862"

@@ -1,250 +1,211 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'outlook!Office.EnhancedLocation:interface'
-    summary: |-
-      表示约会上的位置集。
+### YamlMime:TSType
+name: Office.EnhancedLocation
+uid: outlook!Office.EnhancedLocation:interface
+package: outlook!
+fullName: Office.EnhancedLocation
+summary: >-
+  表示约会上的位置集。
 
-      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
-    name: Office.EnhancedLocation
-    fullName: Office.EnhancedLocation
-    langs:
-      - typeScript
-    type: interface
-    package: outlook!
-    children:
-      - 'outlook!Office.EnhancedLocation#addAsync:member(1)'
-      - 'outlook!Office.EnhancedLocation#getAsync:member(1)'
-      - 'outlook!Office.EnhancedLocation#removeAsync:member(1)'
-  - uid: 'outlook!Office.EnhancedLocation#addAsync:member(1)'
-    summary: |-
-      添加到与约会关联的一组位置。
+  \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+remarks: >-
+  **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
-      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
+  **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+- name: addAsync(locationIdentifiers, options, callback)
+  uid: outlook!Office.EnhancedLocation#addAsync:member(1)
+  package: outlook!
+  fullName: addAsync(locationIdentifiers, options, callback)
+  summary: >-
+    添加到与约会关联的一组位置。
 
-      **错误** ：
 
-      - `InvalidFormatError`<!-- -->：指定的数据对象的格式无效。
+    \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
 
-      #### <a name="examples"></a>示例
 
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-add-remove-enhancedlocation-appointment.yaml
-      var locations = [
-        {
-          id: "Contoso",
-          type: Office.MailboxEnums.LocationType.Custom
-        },
-        {
-          id: "room500@test.com",
-          type: Office.MailboxEnums.LocationType.Room
-        }
-      ];
-      Office.context.mailbox.item.enhancedLocation.addAsync(locations, (result) => {
-        if (result.status === Office.AsyncResultStatus.Succeeded) {
-          console.log(`Successfully added locations ${JSON.stringify(locations)}`);
-        } else {
-          console.error(`Failed to add locations. Error message: ${result.error.message}`);
-        }
-      });
-      ```
-    name: 'addAsync(locationIdentifiers, options, callback)'
-    fullName: 'addAsync(locationIdentifiers, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addAsync(locationIdentifiers: LocationIdentifier[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: locationIdentifiers
-          description: 要添加到当前位置列表中的位置。
-          type:
-            - 'outlook!Office.EnhancedLocation#addAsync~0:complex'
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。 检查 `status` 的属性 `asyncResult` 以确定调用是否成功。
-          type:
-            - 'outlook!Office.EnhancedLocation#addAsync~1:complex'
-  - uid: 'outlook!Office.EnhancedLocation#getAsync:member(1)'
-    summary: |-
-      获取与约会关联的位置集。
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写
 
-      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
+    **错误**：
 
-      #### <a name="examples"></a>示例
 
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-add-remove-enhancedlocation-appointment.yaml
-      Office.context.mailbox.item.enhancedLocation.getAsync((result) => {
-        if (result.status !== Office.AsyncResultStatus.Succeeded) {
-          console.error(`Failed to get locations. Error message: ${result.error.message}`);
-          return;
-        }
-        var places = result.value;
-        if (places && places.length > 0) {
-          result.value.forEach(function(place) {
-            console.log(`Location: ${place.displayName} (type: ${place.locationIdentifier.type})`);
-            if (place.locationIdentifier.type === Office.MailboxEnums.LocationType.Room) {
-              console.log("Email address: " + place.emailAddress);
-            }
-          });
-        } else {
-          console.log("There are no locations.");
-        }
-      });
-      ```
-    name: 'getAsync(options, callback)'
-    fullName: 'getAsync(options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<LocationDetails[]>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
-          type:
-            - 'outlook!Office.EnhancedLocation#getAsync~0:complex'
-  - uid: 'outlook!Office.EnhancedLocation#removeAsync:member(1)'
-    summary: |-
-      删除与约会关联的一组位置。
+    - `InvalidFormatError`<!-- -->：指定的数据对象的格式无效。
 
-      如果存在具有相同名称的多个位置，则即使在中仅指定了一个位置，也会删除所有匹配位置 `locationIdentifiers`<!-- -->.
 
-      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteItem`
+    #### <a name="examples"></a>示例
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
 
-      #### <a name="examples"></a>示例
+    ```javascript
 
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-add-remove-enhancedlocation-appointment.yaml
-      var locations = [
-        {
-          id: "Contoso",
-          type: Office.MailboxEnums.LocationType.Custom
-        },
-        {
-          id: "room500@test.com",
-          type: Office.MailboxEnums.LocationType.Room
-        }
-      ];
-      Office.context.mailbox.item.enhancedLocation.removeAsync(locations, (result) => {
-        if (result.status === Office.AsyncResultStatus.Succeeded) {
-          console.log(`Successfully removed locations ${JSON.stringify(locations)}`);
-        } else {
-          console.error(`Failed to remove locations. Error message: ${result.error.message}`);
-        }
-      });
-      ```
-    name: 'removeAsync(locationIdentifiers, options, callback)'
-    fullName: 'removeAsync(locationIdentifiers, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'removeAsync(locationIdentifiers: LocationIdentifier[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: locationIdentifiers
-          description: 要从当前位置列表中删除的位置。
-          type:
-            - 'outlook!Office.EnhancedLocation#removeAsync~0:complex'
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。 检查 `status` 的属性 `asyncResult` 以确定调用是否成功。
-          type:
-            - 'outlook!Office.EnhancedLocation#removeAsync~1:complex'
-references:
-  - uid: 'outlook!Office.EnhancedLocation#addAsync~0:complex'
-    name: 'LocationIdentifier[]'
-    fullName: 'Office.LocationIdentifier[]'
-    spec.typeScript:
-      - uid: 'outlook!Office.LocationIdentifier:interface'
-        name: LocationIdentifier
-        fullName: Office.LocationIdentifier
-      - name: '[]'
-        fullName: '[]'
-  - uid: 'office!Office.AsyncContextOptions:interface'
-    name: Office.AsyncContextOptions
-  - uid: 'outlook!Office.EnhancedLocation#addAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.EnhancedLocation#getAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<LocationDetails[]>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<Office.LocationDetails[]>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <
-        fullName: <
-      - uid: 'outlook!Office.LocationDetails:interface'
-        name: LocationDetails
-        fullName: Office.LocationDetails
-      - name: '[]>) => void'
-        fullName: '[]>) => void'
-  - uid: 'outlook!Office.EnhancedLocation#removeAsync~0:complex'
-    name: 'LocationIdentifier[]'
-    fullName: 'Office.LocationIdentifier[]'
-    spec.typeScript:
-      - uid: 'outlook!Office.LocationIdentifier:interface'
-        name: LocationIdentifier
-        fullName: Office.LocationIdentifier
-      - name: '[]'
-        fullName: '[]'
-  - uid: 'outlook!Office.EnhancedLocation#removeAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-add-remove-enhancedlocation-appointment.yaml
+
+    var locations = [
+      {
+        id: "Contoso",
+        type: Office.MailboxEnums.LocationType.Custom
+      },
+      {
+        id: "room500@test.com",
+        type: Office.MailboxEnums.LocationType.Room
+      }
+    ];
+
+    Office.context.mailbox.item.enhancedLocation.addAsync(locations, (result) => {
+      if (result.status === Office.AsyncResultStatus.Succeeded) {
+        console.log(`Successfully added locations ${JSON.stringify(locations)}`);
+      } else {
+        console.error(`Failed to add locations. Error message: ${result.error.message}`);
+      }
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addAsync(locationIdentifiers: LocationIdentifier[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: locationIdentifiers
+      description: 要添加到当前位置列表中的位置。
+      type: <xref uid="outlook!Office.LocationIdentifier:interface" />[]
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。 检查 `status` 的属性 `asyncResult` 以确定调用是否成功。
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getAsync(options, callback)
+  uid: outlook!Office.EnhancedLocation#getAsync:member(1)
+  package: outlook!
+  fullName: getAsync(options, callback)
+  summary: >-
+    获取与约会关联的位置集。
+
+
+    \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-add-remove-enhancedlocation-appointment.yaml
+
+    Office.context.mailbox.item.enhancedLocation.getAsync((result) => {
+      if (result.status !== Office.AsyncResultStatus.Succeeded) {
+        console.error(`Failed to get locations. Error message: ${result.error.message}`);
+        return;
+      }
+      var places = result.value;
+      if (places && places.length > 0) {
+        result.value.forEach(function(place) {
+          console.log(`Location: ${place.displayName} (type: ${place.locationIdentifier.type})`);
+          if (place.locationIdentifier.type === Office.MailboxEnums.LocationType.Room) {
+            console.log("Email address: " + place.emailAddress);
+          }
+        });
+      } else {
+        console.log("There are no locations.");
+      }
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<LocationDetails[]>) => void): void;'
+    parameters:
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.LocationDetails:interface" />[]&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: removeAsync(locationIdentifiers, options, callback)
+  uid: outlook!Office.EnhancedLocation#removeAsync:member(1)
+  package: outlook!
+  fullName: removeAsync(locationIdentifiers, options, callback)
+  summary: >-
+    删除与约会关联的一组位置。
+
+
+    如果存在具有相同名称的多个位置，则即使在中仅指定了一个位置，也会删除所有匹配位置 `locationIdentifiers`<!-- -->.
+
+
+    \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-add-remove-enhancedlocation-appointment.yaml
+
+    var locations = [
+      {
+        id: "Contoso",
+        type: Office.MailboxEnums.LocationType.Custom
+      },
+      {
+        id: "room500@test.com",
+        type: Office.MailboxEnums.LocationType.Room
+      }
+    ];
+
+    Office.context.mailbox.item.enhancedLocation.removeAsync(locations, (result) => {
+      if (result.status === Office.AsyncResultStatus.Succeeded) {
+        console.log(`Successfully removed locations ${JSON.stringify(locations)}`);
+      } else {
+        console.error(`Failed to remove locations. Error message: ${result.error.message}`);
+      }
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'removeAsync(locationIdentifiers: LocationIdentifier[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: locationIdentifiers
+      description: 要从当前位置列表中删除的位置。
+      type: <xref uid="outlook!Office.LocationIdentifier:interface" />[]
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。 检查 `status` 的属性 `asyncResult` 以确定调用是否成功。
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+metadata:
+  ms.openlocfilehash: c020247da327d49cd98b4c2aec493c4b58657df0
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49264077"
