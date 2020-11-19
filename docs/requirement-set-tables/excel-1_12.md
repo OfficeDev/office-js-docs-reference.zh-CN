@@ -2,8 +2,8 @@
 |:---|:---|:---|
 |[ChartAxisTitle](/javascript/api/excel/excel.chartaxistitle)|[textOrientation](/javascript/api/excel/excel.chartaxistitle#textorientation)|指定文本面向图表轴标题的角度。|
 |[ChartSeries](/javascript/api/excel/excel.chartseries)|[getDimensionValues (维： ChartSeriesDimension) ](/javascript/api/excel/excel.chartseries#getdimensionvalues-dimension-)|从图表系列的单个维中获取值。|
-|[Comment](/javascript/api/excel/excel.comment)|[contentType](/javascript/api/excel/excel.comment#contenttype)|获取注释的内容类型。|
-|[CommentAddedEventArgs](/javascript/api/excel/excel.commentaddedeventargs)|[commentDetails](/javascript/api/excel/excel.commentaddedeventargs#commentdetails)|获取包含其相关答复的注释 Id 和 Id 的 CommentDetail 数组。|
+|[注释](/javascript/api/excel/excel.comment)|[contentType](/javascript/api/excel/excel.comment#contenttype)|获取注释的内容类型。|
+|[CommentAddedEventArgs](/javascript/api/excel/excel.commentaddedeventargs)|[commentDetails](/javascript/api/excel/excel.commentaddedeventargs#commentdetails)|获取 `CommentDetail` 包含其相关答复的注释 ID 和 id 的数组。|
 ||[source](/javascript/api/excel/excel.commentaddedeventargs#source)|指定时间源。|
 ||[type](/javascript/api/excel/excel.commentaddedeventargs#type)|获取事件的类型。|
 ||[worksheetId](/javascript/api/excel/excel.commentaddedeventargs#worksheetid)|获取发生事件的工作表的 Id。|
@@ -15,7 +15,7 @@
 |[CommentCollection](/javascript/api/excel/excel.commentcollection)|[onAdded](/javascript/api/excel/excel.commentcollection#onadded)|添加注释时发生。|
 ||[onChanged](/javascript/api/excel/excel.commentcollection#onchanged)|当注释集合中的批注或答复发生更改时发生，包括答复被删除的时间。|
 ||[onDeleted](/javascript/api/excel/excel.commentcollection#ondeleted)|在注释集合中删除批注时发生。|
-|[CommentDeletedEventArgs](/javascript/api/excel/excel.commentdeletedeventargs)|[commentDetails](/javascript/api/excel/excel.commentdeletedeventargs#commentdetails)|获取包含其相关答复的注释 Id 和 Id 的 CommentDetail 数组。|
+|[CommentDeletedEventArgs](/javascript/api/excel/excel.commentdeletedeventargs)|[commentDetails](/javascript/api/excel/excel.commentdeletedeventargs#commentdetails)|获取 `CommentDetail` 包含其相关答复的注释 ID 和 id 的数组。|
 ||[source](/javascript/api/excel/excel.commentdeletedeventargs#source)|指定时间源。|
 ||[type](/javascript/api/excel/excel.commentdeletedeventargs#type)|获取事件的类型。|
 ||[worksheetId](/javascript/api/excel/excel.commentdeletedeventargs#worksheetid)|获取发生事件的工作表的 Id。|
@@ -47,7 +47,7 @@
 ||[表达式](/javascript/api/excel/excel.pivotlabelfilter#condition)|指定筛选器的条件，该条件定义了必要的筛选条件。|
 ||[异](/javascript/api/excel/excel.pivotlabelfilter#exclusive)|如果为 true，则筛选 *排除* 满足条件的项目。|
 ||[lowerBound](/javascript/api/excel/excel.pivotlabelfilter#lowerbound)|筛选条件之间的范围的下限。|
-||[substring](/javascript/api/excel/excel.pivotlabelfilter#substring)|用于 `BeginsWith` 、 `EndsWith` 和筛选条件的子字符串 `Contains` 。|
+||[取](/javascript/api/excel/excel.pivotlabelfilter#substring)|用于 `BeginsWith` 、 `EndsWith` 和筛选条件的子字符串 `Contains` 。|
 ||[upperBound](/javascript/api/excel/excel.pivotlabelfilter#upperbound)|筛选条件之间的范围的上限。|
 |[PivotManualFilter](/javascript/api/excel/excel.pivotmanualfilter)|[selectedItems](/javascript/api/excel/excel.pivotmanualfilter#selecteditems)|要手动筛选的选定项的列表。|
 |[PivotTable](/javascript/api/excel/excel.pivottable)|[allowMultipleFiltersPerField](/javascript/api/excel/excel.pivottable#allowmultiplefiltersperfield)|指定数据透视表是否允许对表中给定的透视字段上的多个 PivotFilters 进行应用。|
@@ -76,11 +76,11 @@
 |[RangeAreasCollection](/javascript/api/excel/excel.rangeareascollection)|[getCount()](/javascript/api/excel/excel.rangeareascollection#getcount--)|获取此集合中的 RangeAreas 对象的数目。|
 ||[getItemAt(index: number)](/javascript/api/excel/excel.rangeareascollection#getitemat-index-)|根据集合中的位置返回 RangeAreas 对象。|
 ||[items](/javascript/api/excel/excel.rangeareascollection#items)|获取此集合中已加载的子项。|
-|[WorkbookRangeAreas](/javascript/api/excel/excel.workbookrangeareas)|[getRangeAreasBySheet (项： string) ](/javascript/api/excel/excel.workbookrangeareas#getrangeareasbysheet-key-)|`RangeAreas`基于集合中的工作表 id 或名称返回对象。|
-||[getRangeAreasOrNullObjectBySheet (项： string) ](/javascript/api/excel/excel.workbookrangeareas#getrangeareasornullobjectbysheet-key-)|`RangeAreas`基于集合中的工作表名称或 id 返回对象。|
+|[WorkbookRangeAreas](/javascript/api/excel/excel.workbookrangeareas)|[getRangeAreasBySheet (项： string) ](/javascript/api/excel/excel.workbookrangeareas#getrangeareasbysheet-key-)|`RangeAreas`基于集合中的工作表 ID 或名称返回对象。|
+||[getRangeAreasOrNullObjectBySheet (项： string) ](/javascript/api/excel/excel.workbookrangeareas#getrangeareasornullobjectbysheet-key-)|`RangeAreas`基于集合中的工作表名称或 ID 返回对象。|
 ||[地址](/javascript/api/excel/excel.workbookrangeareas#addresses)|返回 A1 样式的地址数组。|
 ||[areas](/javascript/api/excel/excel.workbookrangeareas#areas)|返回 `RangeAreasCollection` 对象。|
-||[区域](/javascript/api/excel/excel.workbookrangeareas#ranges)|返回在对象中组成此对象的范围 `RangeCollection` 。|
+||[区域](/javascript/api/excel/excel.workbookrangeareas#ranges)|返回在对象中组成此对象的范围  `RangeCollection`   。|
 |[Worksheet](/javascript/api/excel/excel.worksheet)|[customProperties](/javascript/api/excel/excel.worksheet#customproperties)|获取工作表级自定义属性的集合。|
 |[WorksheetCustomProperty](/javascript/api/excel/excel.worksheetcustomproperty)|[delete()](/javascript/api/excel/excel.worksheetcustomproperty#delete--)|删除 custom property 对象。|
 ||[key](/javascript/api/excel/excel.worksheetcustomproperty#key)|获取 customProperty 的键。|
