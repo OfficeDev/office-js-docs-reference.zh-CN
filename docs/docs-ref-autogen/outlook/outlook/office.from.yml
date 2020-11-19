@@ -1,85 +1,79 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'outlook!Office.From:interface'
-    summary: |-
-      提供用于在 Outlook 外接程序中获取邮件的 "发件人" 值的方法。
+### YamlMime:TSType
+name: Office.From
+uid: outlook!Office.From:interface
+package: outlook!
+fullName: Office.From
+summary: >-
+  提供用于在 Outlook 外接程序中获取邮件的 "发件人" 值的方法。
 
-      \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
-    name: Office.From
-    fullName: Office.From
-    langs:
-      - typeScript
-    type: interface
-    package: outlook!
-    children:
-      - 'outlook!Office.From#getAsync:member(1)'
-  - uid: 'outlook!Office.From#getAsync:member(1)'
-    summary: |-
-      获取邮件的起始值。
+  \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+remarks: >-
+  **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
-      `getAsync`方法开始对 Exchange 服务器进行异步调用，以获取邮件的 "发件人" 值。
 
-      项的 "开始" 值作为属性中的 [EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface) 提供 `asyncResult.value` 。
+  **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+- name: getAsync(options, callback)
+  uid: outlook!Office.From#getAsync:member(1)
+  package: outlook!
+  fullName: getAsync(options, callback)
+  summary: >-
+    获取邮件的起始值。
 
-      \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadItem`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写
+    `getAsync`方法开始对 Exchange 服务器进行异步调用，以获取邮件的 "发件人" 值。
 
-      #### <a name="examples"></a>示例
 
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-from-message-compose.yaml
-      Office.context.mailbox.item.from.getAsync(function(asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-          var msgFrom = asyncResult.value;
-          console.log("Message from: " + msgFrom.displayName + " (" + msgFrom.emailAddress + ")");
-        } else {
-          console.error(asyncResult.error);
-        }
-      });
-      ```
-    name: 'getAsync(options, callback)'
-    fullName: 'getAsync(options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<EmailAddressDetails>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。 `value`结果的属性是项目的 from 值，作为一个 `EmailAddressDetails` 对象。
-          type:
-            - 'outlook!Office.From#getAsync~0:complex'
-references:
-  - uid: 'office!Office.AsyncContextOptions:interface'
-    name: Office.AsyncContextOptions
-  - uid: 'outlook!Office.From#getAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<EmailAddressDetails>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<Office.EmailAddressDetails>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <
-        fullName: <
-      - uid: 'outlook!Office.EmailAddressDetails:interface'
-        name: EmailAddressDetails
-        fullName: Office.EmailAddressDetails
-      - name: '>) => void'
-        fullName: '>) => void'
+    项的 "开始" 值作为属性中的 [EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface) 提供 `asyncResult.value` 。
+
+
+    \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-from-message-compose.yaml
+
+    Office.context.mailbox.item.from.getAsync(function(asyncResult) {
+      if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+        var msgFrom = asyncResult.value;
+        console.log("Message from: " + msgFrom.displayName + " (" + msgFrom.emailAddress + ")");
+      } else {
+        console.error(asyncResult.error);
+      }
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<EmailAddressDetails>) => void): void;'
+    parameters:
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。 `value`结果的属性是项目的 from 值，作为一个 `EmailAddressDetails` 对象。
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.EmailAddressDetails:interface" />&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+metadata:
+  ms.openlocfilehash: e1bf3e34641b0ae227310fd74522bfff6eeec9b6
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49211171"
