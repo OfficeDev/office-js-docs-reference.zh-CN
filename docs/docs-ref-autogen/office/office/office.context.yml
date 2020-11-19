@@ -1,389 +1,271 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'office!Office.Context:interface'
-    summary: 表示外接程序的运行时环境，并提供对 API 的关键对象的访问。 当前上下文作为 Office 的属性存在。 可使用 `Office.context`<!-- -->.
-    remarks: '**主机**： Excel、Outlook、PowerPoint、Project、Word'
-    name: Office.Context
-    fullName: Office.Context
-    langs:
-      - typeScript
-    type: interface
-    package: office!
-    children:
-      - 'office!Office.Context#auth:member'
-      - 'office!Office.Context#commerceAllowed:member'
-      - 'office!Office.Context#contentLanguage:member'
-      - 'office!Office.Context#diagnostics:member'
-      - 'office!Office.Context#displayLanguage:member'
-      - 'office!Office.Context#document:member'
-      - 'office!Office.Context#host:member'
-      - 'office!Office.Context#license:member'
-      - 'office!Office.Context#mailbox:member'
-      - 'office!Office.Context#officeTheme:member'
-      - 'office!Office.Context#platform:member'
-      - 'office!Office.Context#requirements:member'
-      - 'office!Office.Context#roamingSettings:member'
-      - 'office!Office.Context#touchEnabled:member'
-      - 'office!Office.Context#ui:member'
-  - uid: 'office!Office.Context#auth:member'
-    summary: 向登录用户提供信息和访问权限。
-    isPreview: true
-    name: auth
-    fullName: auth
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'auth: Auth;'
-      return:
-        type:
-          - 'office!Office.Auth:interface'
-  - uid: 'office!Office.Context#commerceAllowed:member'
-    summary: 如果当前平台允许外接程序显示用于销售或升级的 UI，则为 True; 否则为 false。否则，返回 False。
-    remarks: |-
-      **主机**： Excel、Word
-
-      `commerceAllowed` 仅在 iPad 上的 Office 中才受支持。
-
-      iOS 应用商店不支持提供其他付款系统的链接的应用程序和外接程序。 但是，在 Windows 桌面上或浏览器中运行在 Office 中的 Office 加载项确实允许这样的链接。 如果您希望外接程序的 UI 在非 iOS 平台上提供到外部付款系统的链接，则可以使用 commerceAllowed 属性来控制该链接的显示时间。
-    name: commerceAllowed
-    fullName: commerceAllowed
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'commerceAllowed: boolean;'
-      return:
-        type:
-          - boolean
-  - uid: 'office!Office.Context#contentLanguage:member'
-    summary: 获取用户指定的区域设置（语言）以编辑文档或项目。
-    remarks: |-
-      `contentLanguage`值反映在 Office 主机应用程序中使用**文件 &gt; 选项 &gt; 语言**指定的**编辑语言**设置。
-
-      **支持详细信息**
-
-      下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此属性。 空的单元格表示相应的 Office 主机应用程序不支持此枚举。
-
-      有关 Office 主机应用程序和服务器要求的详细信息，请参阅 [运行 Office 加载项的要求](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
-
-      *支持的主机（按平台）* <table> <tr><th> </th><th> Windows 版 Office </th><th> Web 浏览器中的 Office </th><th> iPad 版 Office </th><th> 移动设备上的 Outlook </th><th> Mac 版 Office </th></tr> <tr><td><strong> Excel </strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong> Outlook </strong></td><td> Y </td><td> Y </td><td> </td><td> Y </td><td> Y </td></tr> <tr><td><strong> PowerPoint </strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong> 项目 </strong></td><td> Y </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong> Word </strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> </table>
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      function sayHelloWithContentLanguage() {
-          var myContentLanguage = Office.context.contentLanguage;
-          switch (myContentLanguage) {
-              case 'en-US':
-                  write('Hello!');
-                  break;
-              case 'en-NZ':
-                  write('G\'day mate!');
-                  break;
-          }
-      }
-      // Function that writes to a div with id='message' on the page.
-      function write(message){
-          document.getElementById('message').innerText += message; 
-      }
-      ```
-    name: contentLanguage
-    fullName: contentLanguage
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'contentLanguage: string;'
-      return:
-        type:
-          - string
-  - uid: 'office!Office.Context#diagnostics:member'
-    summary: 获取有关加载项在其中运行的环境的信息。
-    name: diagnostics
-    fullName: diagnostics
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'diagnostics: ContextInformation;'
-      return:
-        type:
-          - 'office!Office.ContextInformation:interface'
-        description: |-
+### YamlMime:TSType
+name: Office.Context
+uid: office!Office.Context:interface
+package: office!
+fullName: Office.Context
+summary: 表示外接程序的运行时环境，并提供对 API 的关键对象的访问。 当前上下文作为 Office 的属性存在。 可使用 `Office.context`<!-- -->.
+remarks: '**主机**： Excel、Outlook、PowerPoint、Project、Word'
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+- name: auth
+  uid: office!Office.Context#auth:member
+  package: office!
+  fullName: auth
+  summary: 向登录用户提供信息和访问权限。
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'auth: Auth;'
+    return:
+      type: <xref uid="office!Office.Auth:interface" />
+- name: commerceAllowed
+  uid: office!Office.Context#commerceAllowed:member
+  package: office!
+  fullName: commerceAllowed
+  summary: 如果当前平台允许外接程序显示用于销售或升级的 UI，则为 True; 否则为 false。否则，返回 False。
+  remarks: >-
+    **主机**： Excel、Word
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          var contextInfo = Office.context.diagnostics;
-          console.log("Office application: " + contextInfo.host);
-          console.log("Office version: " + contextInfo.version);
-          console.log("Platform: " + contextInfo.platform);
-          ```
-  - uid: 'office!Office.Context#displayLanguage:member'
-    summary: 获取用户针对 Office 主机应用程序的 UI 指定的区域设置（语言）。
-    remarks: |-
-      返回的值是 RFC 1766 语言标记格式的字符串，如 en-us。
-
-      此 `displayLanguage` 值反映了在 Office 主机应用程序中使用**文件 &gt; 选项 &gt; 语言**指定的当前**显示语言**设置。
-
-      在 Outlook 中使用时，适用的模式为 "撰写" 或 "已读"。
-
-      **支持详细信息**
-
-      下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此属性。 空的单元格表示相应的 Office 主机应用程序不支持此枚举。
-
-      有关 Office 主机应用程序和服务器要求的详细信息，请参阅 [运行 Office 加载项的要求](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
-
-      *支持的主机（按平台）* <table> <tr><th> </th><th> Windows 版 Office </th><th> Web 浏览器中的 Office </th><th> iPad 版 Office </th><th> 移动设备上的 Outlook </th><th> Mac 版 Office </th></tr> <tr><td><strong> Excel </strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> Y </td></tr> <tr><td><strong> Outlook </strong></td><td> Y </td><td> Y </td><td> </td><td> Y </td><td> Y </td></tr> <tr><td><strong> PowerPoint </strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> Y </td></tr> <tr><td><strong> 项目 </strong></td><td> Y </td><td> </td><td> </td><td> </td><td> Y </td></tr> <tr><td><strong> Word </strong></td><td> Y </td><td> </td><td> Y </td><td> </td><td> Y </td></tr> </table>
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      function sayHelloWithDisplayLanguage() {
-          var myDisplayLanguage = Office.context.displayLanguage;
-          switch (myDisplayLanguage) {
-              case 'en-US':
-                  write('Hello!');
-                  break;
-              case 'en-NZ':
-                  write('G\'day mate!');
-                  break;
-          }
-      }
-      // Function that writes to a div with id='message' on the page.
-      function write(message){
-          document.getElementById('message').innerText += message; 
-      }
-      ```
-    name: displayLanguage
-    fullName: displayLanguage
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'displayLanguage: string;'
-      return:
-        type:
-          - string
-  - uid: 'office!Office.Context#document:member'
-    summary: 获取表示正与内容或任务窗格外接程序交互的文档的对象。
-    name: document
-    fullName: document
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'document: Office.Document;'
-      return:
-        type:
-          - 'office!Office.Document:interface'
-        description: |-
+    `commerceAllowed` 仅在 iPad 上的 Office 中才受支持。
 
 
-          #### <a name="examples"></a>示例
+    iOS 应用商店不支持提供其他付款系统的链接的应用程序和外接程序。 但是，在 Windows 桌面上或浏览器中运行在 Office 中的 Office 加载项确实允许这样的链接。 如果您希望外接程序的 UI 在非 iOS 平台上提供到外部付款系统的链接，则可以使用 commerceAllowed 属性来控制该链接的显示时间。
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'commerceAllowed: boolean;'
+    return:
+      type: boolean
+- name: contentLanguage
+  uid: office!Office.Context#contentLanguage:member
+  package: office!
+  fullName: contentLanguage
+  summary: 获取用户指定的区域设置（语言）以编辑文档或项目。
+  remarks: "`contentLanguage`值反映在 Office 主机应用程序中使用 **文件 &gt; 选项 &gt; 语言** 指定的 **编辑语言** 设置。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此属性。 空的单元格表示相应的 Office 主机应用程序不支持此枚举。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅 [运行 Office 加载项的要求](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Windows 版 Office </th><th> Web 浏览器中的 Office </th><th> iPad 版 Office </th><th> 移动设备上的 Outlook </th><th> Mac 版 Office </th></tr> <tr><td><strong> Excel </strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong> Outlook </strong></td><td> Y </td><td> Y </td><td> </td><td> Y </td><td> Y </td></tr> <tr><td><strong> PowerPoint </strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> <tr><td><strong> 项目 </strong></td><td> Y </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong> Word </strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> </td></tr> </table>\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction sayHelloWithContentLanguage() {\n    var myContentLanguage = Office.context.contentLanguage;\n    switch (myContentLanguage) {\n        case 'en-US':\n            write('Hello!');\n            break;\n        case 'en-NZ':\n            write('G\\'day mate!');\n            break;\n    }\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'contentLanguage: string;'
+    return:
+      type: string
+- name: diagnostics
+  uid: office!Office.Context#diagnostics:member
+  package: office!
+  fullName: diagnostics
+  summary: 获取有关加载项在其中运行的环境的信息。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'diagnostics: ContextInformation;'
+    return:
+      type: <xref uid="office!Office.ContextInformation:interface" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nvar contextInfo = Office.context.diagnostics;\nconsole.log(\"Office application: \" + contextInfo.host);\nconsole.log(\"Office version: \" + contextInfo.version);\nconsole.log(\"Platform: \" + contextInfo.platform);\n```"
+- name: displayLanguage
+  uid: office!Office.Context#displayLanguage:member
+  package: office!
+  fullName: displayLanguage
+  summary: 获取用户针对 Office 主机应用程序的 UI 指定的区域设置（语言）。
+  remarks: "返回的值是 RFC 1766 语言标记格式的字符串，如 en-us。\n\n此 `displayLanguage` 值反映了在 Office 主机应用程序中使用 **文件 &gt; 选项 &gt; 语言** 指定的当前 **显示语言** 设置。\n\n在 Outlook 中使用时，适用的模式为 \"撰写\" 或 \"已读\"。\n\n**支持详细信息**\n\n下列矩阵中的大写字母 Y 表示相应的 Office 主机应用程序支持此属性。 空的单元格表示相应的 Office 主机应用程序不支持此枚举。\n\n有关 Office 主机应用程序和服务器要求的详细信息，请参阅 [运行 Office 加载项的要求](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*支持的主机（按平台）* <table> <tr><th> </th><th> Windows 版 Office </th><th> Web 浏览器中的 Office </th><th> iPad 版 Office </th><th> 移动设备上的 Outlook </th><th> Mac 版 Office </th></tr> <tr><td><strong> Excel </strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> Y </td></tr> <tr><td><strong> Outlook </strong></td><td> Y </td><td> Y </td><td> </td><td> Y </td><td> Y </td></tr> <tr><td><strong> PowerPoint </strong></td><td> Y </td><td> Y </td><td> Y </td><td> </td><td> Y </td></tr> <tr><td><strong> 项目 </strong></td><td> Y </td><td> </td><td> </td><td> </td><td> Y </td></tr> <tr><td><strong> Word </strong></td><td> Y </td><td> </td><td> Y </td><td> </td><td> Y </td></tr> </table>\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction sayHelloWithDisplayLanguage() {\n    var myDisplayLanguage = Office.context.displayLanguage;\n    switch (myDisplayLanguage) {\n        case 'en-US':\n            write('Hello!');\n            break;\n        case 'en-NZ':\n            write('G\\'day mate!');\n            break;\n    }\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'displayLanguage: string;'
+    return:
+      type: string
+- name: document
+  uid: office!Office.Context#document:member
+  package: office!
+  fullName: document
+  summary: 获取表示正与内容或任务窗格外接程序交互的文档的对象。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'document: Office.Document;'
+    return:
+      type: <xref uid="office!Office.Document:interface" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Extension initialization code.\nvar _document;\n\n// The initialize function is required for all add-ins.\nOffice.initialize = function () {\n    // Checks for the DOM to load using the jQuery ready function.\n    $(document).ready(function () {\n    // After the DOM is loaded, code specific to the add-in can run.\n    // Initialize instance variables to access API objects.\n    _document = Office.context.document;\n    });\n}\n```"
+- name: host
+  uid: office!Office.Context#host:member
+  package: office!
+  fullName: host
+  summary: 包含运行外接程序的 Office 应用程序主机。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'host: HostType;'
+    return:
+      type: <xref uid="office!Office.HostType:enum" />
+- name: license
+  uid: office!Office.Context#license:member
+  package: office!
+  fullName: license
+  summary: 获取用户的 Office 安装的许可证信息。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'license: string;'
+    return:
+      type: string
+- name: mailbox
+  uid: office!Office.Context#mailbox:member
+  package: office!
+  fullName: mailbox
+  summary: 提供对 Microsoft Outlook 加载项对象模型的访问权限。
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`Restricted`
 
-          ```javascript
-          // Extension initialization code.
-          var _document;
 
-          // The initialize function is required for all add-ins.
-          Office.initialize = function () {
-              // Checks for the DOM to load using the jQuery ready function.
-              $(document).ready(function () {
-              // After the DOM is loaded, code specific to the add-in can run.
-              // Initialize instance variables to access API objects.
-              _document = Office.context.document;
-              });
-          }
-          ```
-  - uid: 'office!Office.Context#host:member'
-    summary: 包含运行外接程序的 Office 应用程序主机。
-    name: host
-    fullName: host
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'host: HostType;'
-      return:
-        type:
-          - 'office!Office.HostType:enum'
-  - uid: 'office!Office.Context#license:member'
-    summary: 获取用户的 Office 安装的许可证信息。
-    name: license
-    fullName: license
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'license: string;'
-      return:
-        type:
-          - string
-  - uid: 'office!Office.Context#mailbox:member'
-    summary: 提供对 Microsoft Outlook 加载项对象模型的访问权限。
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`Restricted`
-
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
-
-      **主要属性**：
-
-      - `diagnostics`<!-- -->：将诊断信息提供给 Outlook 外接程序。
-
-      - `item`<!-- -->：提供用于访问 Outlook 外接程序中的邮件或约会的方法和属性。
-
-      - `userProfile`<!-- -->：提供有关 Outlook 外接程序中的用户的信息。
-
-      #### <a name="examples"></a>示例
-
-      ```javascript
-      // The following line of code access the item object of the JavaScript API for Office.
-      var item = Office.context.mailbox.item;
-      ```
-    name: mailbox
-    fullName: mailbox
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'mailbox: Office.Mailbox;'
-      return:
-        type:
-          - 'outlook!Office.Mailbox:interface'
-  - uid: 'office!Office.Context#officeTheme:member'
-    summary: 提供了访问 Office 主题颜色的属性。
-    name: officeTheme
-    fullName: officeTheme
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'officeTheme: OfficeTheme;'
-      return:
-        type:
-          - 'office!Office.OfficeTheme:interface'
-        description: |-
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
 
 
-          #### <a name="examples"></a>示例
+    **主要属性**：
 
-          ```javascript
-          function applyOfficeTheme(){
-              // Get office theme colors.
-              var bodyBackgroundColor = Office.context.officeTheme.bodyBackgroundColor;
-              var bodyForegroundColor = Office.context.officeTheme.bodyForegroundColor;
-              var controlBackgroundColor = Office.context.officeTheme.controlBackgroundColor;
-              var controlForegroundColor = Office.context.officeTheme.controlForegroundColor;
 
-              // Apply body background color to a CSS class.
-              $('.body').css('background-color', bodyBackgroundColor);
-          }
-          ```
-  - uid: 'office!Office.Context#platform:member'
-    summary: 提供在其上运行外接的平台。
-    name: platform
-    fullName: platform
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'platform: PlatformType;'
-      return:
-        type:
-          - 'office!Office.PlatformType:enum'
-  - uid: 'office!Office.Context#requirements:member'
-    summary: 提供用于确定当前主机和平台上支持的要求集的方法。
-    name: requirements
-    fullName: requirements
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'requirements: RequirementSetSupport;'
-      return:
-        type:
-          - 'office!Office.RequirementSetSupport:interface'
-  - uid: 'office!Office.Context#roamingSettings:member'
-    summary: |-
-      获取一个对象，它表示保存到用户邮箱的邮件外接程序的自定义设置或状态。
+    - `diagnostics`<!-- -->：将诊断信息提供给 Outlook 外接程序。
 
-      该 `RoamingSettings` 对象使您可以存储和访问存储在用户邮箱中的邮件外接程序的数据，以便从用于访问该邮箱的任何主机客户端应用程序运行时，该加载项都可使用该加载项。
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **：`Restricted`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **：撰写或阅读
+    - `item`<!-- -->：提供用于访问 Outlook 外接程序中的邮件或约会的方法和属性。
 
-      #### <a name="examples"></a>示例
 
-      ```javascript
-      // Get the current value of the 'myKey' setting.
-      var value = Office.context.roamingSettings.get('myKey');
-      // Update the value of the 'myKey' setting.
-      Office.context.roamingSettings.set('myKey', 'Hello World!');
-      // Persist the change.
-      Office.context.roamingSettings.saveAsync();
-      ```
-    name: roamingSettings
-    fullName: roamingSettings
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'roamingSettings: Office.RoamingSettings;'
-      return:
-        type:
-          - 'outlook!Office.RoamingSettings:interface'
-  - uid: 'office!Office.Context#touchEnabled:member'
-    summary: 指定平台和设备是否允许触摸交互。 如果外接程序在触摸设备（如 iPad）上运行，则为 True;否则为 false。
-    remarks: |-
-      **主机**： Excel、PowerPoint、Word
+    - `userProfile`<!-- -->：提供有关 Outlook 外接程序中的用户的信息。
 
-      `touchEnabled` 仅在 iPad 上的 Office 中才受支持。
 
-      使用 Context.touchenabled 属性可确定外接程序何时在触摸设备上运行，并在必要时调整控件的种类，以及外接程序 UI 中的元素的大小和间距，以适应触摸交互。
-    name: touchEnabled
-    fullName: touchEnabled
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'touchEnabled: boolean;'
-      return:
-        type:
-          - boolean
-  - uid: 'office!Office.Context#ui:member'
-    summary: 提供可用于创建和操作 UI 组件（如对话框）的对象和方法。
-    name: ui
-    fullName: ui
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'ui: UI;'
-      return:
-        type:
-          - 'office!Office.UI:interface'
-references:
-  - uid: 'office!Office.Auth:interface'
-    name: Auth
-  - uid: 'office!Office.ContextInformation:interface'
-    name: ContextInformation
-  - uid: 'office!Office.Document:interface'
-    name: Office.Document
-  - uid: 'office!Office.HostType:enum'
-    name: HostType
-  - uid: 'outlook!Office.Mailbox:interface'
-    name: Office.Mailbox
-  - uid: 'office!Office.OfficeTheme:interface'
-    name: OfficeTheme
-  - uid: 'office!Office.PlatformType:enum'
-    name: PlatformType
-  - uid: 'office!Office.RequirementSetSupport:interface'
-    name: RequirementSetSupport
-  - uid: 'outlook!Office.RoamingSettings:interface'
-    name: Office.RoamingSettings
-  - uid: 'office!Office.UI:interface'
-    name: UI
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // The following line of code access the item object of the JavaScript API for Office.
+
+    var item = Office.context.mailbox.item;
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'mailbox: Office.Mailbox;'
+    return:
+      type: <xref uid="outlook!Office.Mailbox:interface" />
+- name: officeTheme
+  uid: office!Office.Context#officeTheme:member
+  package: office!
+  fullName: officeTheme
+  summary: 提供了访问 Office 主题颜色的属性。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'officeTheme: OfficeTheme;'
+    return:
+      type: <xref uid="office!Office.OfficeTheme:interface" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nfunction applyOfficeTheme(){\n    // Get office theme colors.\n    var bodyBackgroundColor = Office.context.officeTheme.bodyBackgroundColor;\n    var bodyForegroundColor = Office.context.officeTheme.bodyForegroundColor;\n    var controlBackgroundColor = Office.context.officeTheme.controlBackgroundColor;\n    var controlForegroundColor = Office.context.officeTheme.controlForegroundColor;\n\n    // Apply body background color to a CSS class.\n    $('.body').css('background-color', bodyBackgroundColor);\n}\n```"
+- name: platform
+  uid: office!Office.Context#platform:member
+  package: office!
+  fullName: platform
+  summary: 提供在其上运行外接的平台。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'platform: PlatformType;'
+    return:
+      type: <xref uid="office!Office.PlatformType:enum" />
+- name: requirements
+  uid: office!Office.Context#requirements:member
+  package: office!
+  fullName: requirements
+  summary: 提供用于确定当前主机和平台上支持的要求集的方法。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'requirements: RequirementSetSupport;'
+    return:
+      type: <xref uid="office!Office.RequirementSetSupport:interface" />
+- name: roamingSettings
+  uid: office!Office.Context#roamingSettings:member
+  package: office!
+  fullName: roamingSettings
+  summary: >-
+    获取一个对象，它表示保存到用户邮箱的邮件外接程序的自定义设置或状态。
+
+
+    该 `RoamingSettings` 对象使您可以存储和访问存储在用户邮箱中的邮件外接程序的数据，以便从用于访问该邮箱的任何主机客户端应用程序运行时，该加载项都可使用该加载项。
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`Restricted`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // Get the current value of the 'myKey' setting.
+
+    var value = Office.context.roamingSettings.get('myKey');
+
+    // Update the value of the 'myKey' setting.
+
+    Office.context.roamingSettings.set('myKey', 'Hello World!');
+
+    // Persist the change.
+
+    Office.context.roamingSettings.saveAsync();
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'roamingSettings: Office.RoamingSettings;'
+    return:
+      type: <xref uid="outlook!Office.RoamingSettings:interface" />
+- name: touchEnabled
+  uid: office!Office.Context#touchEnabled:member
+  package: office!
+  fullName: touchEnabled
+  summary: 指定平台和设备是否允许触摸交互。 如果外接程序在触摸设备（如 iPad）上运行，则为 True;否则为 false。
+  remarks: >-
+    **主机**： Excel、PowerPoint、Word
+
+
+    `touchEnabled` 仅在 iPad 上的 Office 中才受支持。
+
+
+    使用 Context.touchenabled 属性可确定外接程序何时在触摸设备上运行，并在必要时调整控件的种类，以及外接程序 UI 中的元素的大小和间距，以适应触摸交互。
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'touchEnabled: boolean;'
+    return:
+      type: boolean
+- name: ui
+  uid: office!Office.Context#ui:member
+  package: office!
+  fullName: ui
+  summary: 提供可用于创建和操作 UI 组件（如对话框）的对象和方法。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'ui: UI;'
+    return:
+      type: <xref uid="office!Office.UI:interface" />
+metadata:
+  ms.openlocfilehash: 4a366d9ffedfa94f945405fcadd5152703b32ec1
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49329591"
