@@ -1,449 +1,281 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'word!Word.SearchOptions:class'
-    summary: |-
-      指定要包括在搜索操作中的选项。
-
-      若要了解有关如何使用 Word JavaScript Api 中的搜索选项的详细信息，请参阅[使用搜索选项在 word 外接程序中查找文本](https://docs.microsoft.com/office/dev/add-ins/word/search-option-guidance)<!-- -->.
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: Word.SearchOptions
-    fullName: Word.SearchOptions
-    langs:
-      - typeScript
-    type: class
-    extends:
-      - 'office!OfficeExtension.ClientObject:class'
-    package: word!
-    children:
-      - 'word!Word.SearchOptions#context:member'
-      - 'word!Word.SearchOptions#ignorePunct:member'
-      - 'word!Word.SearchOptions#ignoreSpace:member'
-      - 'word!Word.SearchOptions#load:member(1)'
-      - 'word!Word.SearchOptions#load:member(2)'
-      - 'word!Word.SearchOptions#load:member(3)'
-      - 'word!Word.SearchOptions#matchCase:member'
-      - 'word!Word.SearchOptions#matchPrefix:member'
-      - 'word!Word.SearchOptions#matchSuffix:member'
-      - 'word!Word.SearchOptions#matchWholeWord:member'
-      - 'word!Word.SearchOptions#matchWildcards:member'
-      - 'word!Word.SearchOptions.newObject:member(1)'
-      - 'word!Word.SearchOptions#set:member(1)'
-      - 'word!Word.SearchOptions#set:member(2)'
-      - 'word!Word.SearchOptions#toJSON:member(1)'
-  - uid: 'word!Word.SearchOptions#context:member'
-    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-    name: context
-    fullName: context
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'context: RequestContext;'
-      return:
-        type:
-          - 'word!Word.RequestContext:class'
-  - uid: 'word!Word.SearchOptions#ignorePunct:member'
-    summary: |-
-      获取或设置指示是否忽略单词之间的所有标点符号的值。对应于“查找和替换”对话框中的“忽略标点符号”复选框。
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: ignorePunct
-    fullName: ignorePunct
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'ignorePunct: boolean;'
-      return:
-        type:
-          - boolean
-  - uid: 'word!Word.SearchOptions#ignoreSpace:member'
-    summary: |-
-      获取或设置一个值，该值指示是否忽略单词之间的所有空格。 对应于 "查找和替换" 对话框中的 "忽略空白字符" 复选框。
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: ignoreSpace
-    fullName: ignoreSpace
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'ignoreSpace: boolean;'
-      return:
-        type:
-          - boolean
-  - uid: 'word!Word.SearchOptions#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(options)
-    fullName: load(options)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(options?: Word.Interfaces.SearchOptionsLoadOptions): Word.SearchOptions;'
-      return:
-        type:
-          - 'word!Word.SearchOptions:class'
-        description: |-
+### YamlMime:TSType
+name: Word.SearchOptions
+uid: word!Word.SearchOptions:class
+package: word!
+fullName: Word.SearchOptions
+summary: >-
+  指定要包括在搜索操作中的选项。
 
 
-          #### <a name="examples"></a>示例
+  若要了解有关如何使用 Word JavaScript Api 中的搜索选项的详细信息，请参阅 [使用搜索选项在 word 外接程序中查找文本](https://docs.microsoft.com/office/dev/add-ins/word/search-option-guidance)<!-- -->.
 
-          ```javascript
-          // Ignore punctuation search
-          // Run a batch operation against the Word object model.
-          Word.run(function (context) {
-              
-              // Queue a command to search the document and ignore punctuation.
-              var searchResults = context.document.body.search('video you', {ignorePunct: true});
 
-              // Queue a command to load the search results and get the font property values.
-              context.load(searchResults, 'font');
-              
-              // Synchronize the document state by executing the queued commands, 
-              // and return a promise to indicate task completion.
-              return context.sync().then(function () {
-                  console.log('Found count: ' + searchResults.items.length);
+  \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: word!Word.SearchOptions#context:member
+  package: word!
+  fullName: context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="word!Word.RequestContext:class" />
+- name: ignorePunct
+  uid: word!Word.SearchOptions#ignorePunct:member
+  package: word!
+  fullName: ignorePunct
+  summary: >-
+    获取或设置指示是否忽略单词之间的所有标点符号的值。对应于“查找和替换”对话框中的“忽略标点符号”复选框。
 
-                  // Queue a set of commands to change the font for each found item.
-                  for (var i = 0; i < searchResults.items.length; i++) {
-                      searchResults.items[i].font.color = 'purple';
-                      searchResults.items[i].font.highlightColor = '#FFFF00'; //Yellow
-                      searchResults.items[i].font.bold = true;
-                  }
-                  
-                  // Synchronize the document state by executing the queued commands, 
-                  // and return a promise to indicate task completion.
-                  return context.sync();
-              });  
-          })
-          .catch(function (error) {
-              console.log('Error: ' + JSON.stringify(error));
-              if (error instanceof OfficeExtension.Error) {
-                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-          ```javascript
-          // Search based on a prefix
-          // Run a batch operation against the Word object model.
-          Word.run(function (context) {
-              
-              // Queue a command to search the document based on a prefix.
-              var searchResults = context.document.body.search('vid', {matchPrefix: true});
 
-              // Queue a command to load the search results and get the font property values.
-              context.load(searchResults, 'font');
-              
-              // Synchronize the document state by executing the queued commands, 
-              // and return a promise to indicate task completion.
-              return context.sync().then(function () {
-                  console.log('Found count: ' + searchResults.items.length);
+    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'ignorePunct: boolean;'
+    return:
+      type: boolean
+- name: ignoreSpace
+  uid: word!Word.SearchOptions#ignoreSpace:member
+  package: word!
+  fullName: ignoreSpace
+  summary: >-
+    获取或设置一个值，该值指示是否忽略单词之间的所有空格。 对应于 "查找和替换" 对话框中的 "忽略空白字符" 复选框。
 
-                  // Queue a set of commands to change the font for each found item.
-                  for (var i = 0; i < searchResults.items.length; i++) {
-                      searchResults.items[i].font.color = 'purple';
-                      searchResults.items[i].font.highlightColor = '#FFFF00'; //Yellow
-                      searchResults.items[i].font.bold = true;
-                  }
-                  
-                  // Synchronize the document state by executing the queued commands, 
-                  // and return a promise to indicate task completion.
-                  return context.sync();
-              });  
-          })
-          .catch(function (error) {
-              console.log('Error: ' + JSON.stringify(error));
-              if (error instanceof OfficeExtension.Error) {
-                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-          ```javascript
-          // Search based on a suffix
-          // Run a batch operation against the Word object model.
-          Word.run(function (context) {
 
-              // Queue a command to search the document for any string of characters after 'ly'.
-              var searchResults = context.document.body.search('ly', {matchSuffix: true});
+    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'ignoreSpace: boolean;'
+    return:
+      type: boolean
+- name: matchCase
+  uid: word!Word.SearchOptions#matchCase:member
+  package: word!
+  fullName: matchCase
+  summary: >-
+    获取或设置指示是否执行区分大小写的搜索的值。 对应于 "查找和替换" 对话框中的 "区分大小写" 复选框。
 
-              // Queue a command to load the search results and get the font property values.
-              context.load(searchResults, 'font');
-              
-              // Synchronize the document state by executing the queued commands, 
-              // and return a promise to indicate task completion.
-              return context.sync().then(function () {
-                  console.log('Found count: ' + searchResults.items.length);
 
-                  // Queue a set of commands to change the font for each found item.
-                  for (var i = 0; i < searchResults.items.length; i++) {
-                      searchResults.items[i].font.color = 'orange';
-                      searchResults.items[i].font.highlightColor = 'black';
-                      searchResults.items[i].font.bold = true;
-                  }
-                  
-                  // Synchronize the document state by executing the queued commands, 
-                  // and return a promise to indicate task completion.
-                  return context.sync();
-              });  
-          })
-          .catch(function (error) {
-              console.log('Error: ' + JSON.stringify(error));
-              if (error instanceof OfficeExtension.Error) {
-                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-          ```javascript
-          // Search using a wildcard
-          // Run a batch operation against the Word object model.
-          Word.run(function (context) {
-              
-              // Queue a command to search the document with a wildcard
-              // for any string of characters that starts with 'to' and ends with 'n'.
-              var searchResults = context.document.body.search('to*n', {matchWildCards: true});
+    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'matchCase: boolean;'
+    return:
+      type: boolean
+- name: matchPrefix
+  uid: word!Word.SearchOptions#matchPrefix:member
+  package: word!
+  fullName: matchPrefix
+  summary: >-
+    获取或设置指示是否匹配以搜索字符串开头的单词。对应于“查找和替换”对话框中的“匹配前缀”复选框。
 
-              // Queue a command to load the search results and get the font property values.
-              context.load(searchResults, 'font');
-              
-              // Synchronize the document state by executing the queued commands, 
-              // and return a promise to indicate task completion.
-              return context.sync().then(function () {
-                  console.log('Found count: ' + searchResults.items.length);
 
-                  // Queue a set of commands to change the font for each found item.
-                  for (var i = 0; i < searchResults.items.length; i++) {
-                      searchResults.items[i].font.color = 'purple';
-                      searchResults.items[i].font.highlightColor = 'pink';
-                      searchResults.items[i].font.bold = true;
-                  }
-                  
-                  // Synchronize the document state by executing the queued commands, 
-                  // and return a promise to indicate task completion.
-                  return context.sync();
-              });  
-          })
-          .catch(function (error) {
-              console.log('Error: ' + JSON.stringify(error));
-              if (error instanceof OfficeExtension.Error) {
-                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: options
-          description: 提供要加载的对象的属性的选项。
-          type:
-            - 'word!Word.Interfaces.SearchOptionsLoadOptions:interface'
-  - uid: 'word!Word.SearchOptions#load:member(2)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNames)
-    fullName: load(propertyNames)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNames?: string | string[]): Word.SearchOptions;'
-      return:
-        type:
-          - 'word!Word.SearchOptions:class'
-        description: ''
-      parameters:
-        - id: propertyNames
-          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
-          type:
-            - 'string | string[]'
-  - uid: 'word!Word.SearchOptions#load:member(3)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNamesAndPaths)
-    fullName: load(propertyNamesAndPaths)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: |-
-        load(propertyNamesAndPaths?: {
+    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'matchPrefix: boolean;'
+    return:
+      type: boolean
+- name: matchSuffix
+  uid: word!Word.SearchOptions#matchSuffix:member
+  package: word!
+  fullName: matchSuffix
+  summary: >-
+    获取或设置指示是否匹配以搜索字符串结尾的单词。对应于“查找和替换”对话框中的“匹配后缀”复选框。
+
+
+    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'matchSuffix: boolean;'
+    return:
+      type: boolean
+- name: matchWholeWord
+  uid: word!Word.SearchOptions#matchWholeWord:member
+  package: word!
+  fullName: matchWholeWord
+  summary: >-
+    获取或设置指示是否只查找整个单词，而不查找长单词的一部分的值。对应于“查找和替换”对话框中的“全字匹配”复选框。
+
+
+    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'matchWholeWord: boolean;'
+    return:
+      type: boolean
+- name: matchWildcards
+  uid: word!Word.SearchOptions#matchWildcards:member
+  package: word!
+  fullName: matchWildcards
+  summary: >-
+    获取或设置指示搜索是否使用特殊搜索操作符执行的值。对应于“查找和替换”对话框中的“使用通配符”复选框。
+
+
+    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'matchWildcards: boolean;'
+    return:
+      type: boolean
+methods:
+- name: load(options)
+  uid: word!Word.SearchOptions#load:member(1)
+  package: word!
+  fullName: load(options)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Word.Interfaces.SearchOptionsLoadOptions): Word.SearchOptions;'
+    parameters:
+    - id: options
+      description: 提供要加载的对象的属性的选项。
+      type: <xref uid="word!Word.Interfaces.SearchOptionsLoadOptions:interface" />
+    return:
+      type: <xref uid="word!Word.SearchOptions:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Ignore punctuation search\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Queue a command to search the document and ignore punctuation.\n    var searchResults = context.document.body.search('video you', {ignorePunct: true});\n\n    // Queue a command to load the search results and get the font property values.\n    context.load(searchResults, 'font');\n    \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        console.log('Found count: ' + searchResults.items.length);\n\n        // Queue a set of commands to change the font for each found item.\n        for (var i = 0; i < searchResults.items.length; i++) {\n            searchResults.items[i].font.color = 'purple';\n            searchResults.items[i].font.highlightColor = '#FFFF00'; //Yellow\n            searchResults.items[i].font.bold = true;\n        }\n        \n        // Synchronize the document state by executing the queued commands, \n        // and return a promise to indicate task completion.\n        return context.sync();\n    });  \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Search based on a prefix\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Queue a command to search the document based on a prefix.\n    var searchResults = context.document.body.search('vid', {matchPrefix: true});\n\n    // Queue a command to load the search results and get the font property values.\n    context.load(searchResults, 'font');\n    \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        console.log('Found count: ' + searchResults.items.length);\n\n        // Queue a set of commands to change the font for each found item.\n        for (var i = 0; i < searchResults.items.length; i++) {\n            searchResults.items[i].font.color = 'purple';\n            searchResults.items[i].font.highlightColor = '#FFFF00'; //Yellow\n            searchResults.items[i].font.bold = true;\n        }\n        \n        // Synchronize the document state by executing the queued commands, \n        // and return a promise to indicate task completion.\n        return context.sync();\n    });  \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Search based on a suffix\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n\n    // Queue a command to search the document for any string of characters after 'ly'.\n    var searchResults = context.document.body.search('ly', {matchSuffix: true});\n\n    // Queue a command to load the search results and get the font property values.\n    context.load(searchResults, 'font');\n    \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        console.log('Found count: ' + searchResults.items.length);\n\n        // Queue a set of commands to change the font for each found item.\n        for (var i = 0; i < searchResults.items.length; i++) {\n            searchResults.items[i].font.color = 'orange';\n            searchResults.items[i].font.highlightColor = 'black';\n            searchResults.items[i].font.bold = true;\n        }\n        \n        // Synchronize the document state by executing the queued commands, \n        // and return a promise to indicate task completion.\n        return context.sync();\n    });  \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Search using a wildcard\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Queue a command to search the document with a wildcard\n    // for any string of characters that starts with 'to' and ends with 'n'.\n    var searchResults = context.document.body.search('to*n', {matchWildCards: true});\n\n    // Queue a command to load the search results and get the font property values.\n    context.load(searchResults, 'font');\n    \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        console.log('Found count: ' + searchResults.items.length);\n\n        // Queue a set of commands to change the font for each found item.\n        for (var i = 0; i < searchResults.items.length; i++) {\n            searchResults.items[i].font.color = 'purple';\n            searchResults.items[i].font.highlightColor = 'pink';\n            searchResults.items[i].font.bold = true;\n        }\n        \n        // Synchronize the document state by executing the queued commands, \n        // and return a promise to indicate task completion.\n        return context.sync();\n    });  \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(propertyNames)
+  uid: word!Word.SearchOptions#load:member(2)
+  package: word!
+  fullName: load(propertyNames)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Word.SearchOptions;'
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      type: string | string[]
+    return:
+      type: <xref uid="word!Word.SearchOptions:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: word!Word.SearchOptions#load:member(3)
+  package: word!
+  fullName: load(propertyNamesAndPaths)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): Word.SearchOptions;
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      type: >-
+        {
                     select?: string;
                     expand?: string;
-                }): Word.SearchOptions;
-      return:
-        type:
-          - 'word!Word.SearchOptions:class'
-        description: ''
-      parameters:
-        - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
-          type:
-            - |-
-              {
-                          select?: string;
-                          expand?: string;
-                      }
-  - uid: 'word!Word.SearchOptions#matchCase:member'
-    summary: |-
-      获取或设置指示是否执行区分大小写的搜索的值。 对应于 "查找和替换" 对话框中的 "区分大小写" 复选框。
+                }
+    return:
+      type: <xref uid="word!Word.SearchOptions:class" />
+      description: ''
+- name: newObject(context)
+  uid: word!Word.SearchOptions.newObject:member(1)
+  package: word!
+  fullName: newObject(context)
+  summary: 创建 SearchOptions 对象的新实例
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'static newObject(context: OfficeExtension.ClientRequestContext): Word.SearchOptions;'
+    parameters:
+    - id: context
+      description: ''
+      type: <xref uid="office!OfficeExtension.ClientRequestContext:class" />
+    return:
+      type: <xref uid="word!Word.SearchOptions:class" />
+      description: ''
+- name: set(properties, options)
+  uid: word!Word.SearchOptions#set:member(1)
+  package: word!
+  fullName: set(properties, options)
+  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+  remarks: >-
+    此方法具有以下附加签名：
 
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: matchCase
-    fullName: matchCase
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'matchCase: boolean;'
-      return:
-        type:
-          - boolean
-  - uid: 'word!Word.SearchOptions#matchPrefix:member'
-    summary: |-
-      获取或设置指示是否匹配以搜索字符串开头的单词。对应于“查找和替换”对话框中的“匹配前缀”复选框。
 
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: matchPrefix
-    fullName: matchPrefix
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'matchPrefix: boolean;'
-      return:
-        type:
-          - boolean
-  - uid: 'word!Word.SearchOptions#matchSuffix:member'
-    summary: |-
-      获取或设置指示是否匹配以搜索字符串结尾的单词。对应于“查找和替换”对话框中的“匹配后缀”复选框。
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: matchSuffix
-    fullName: matchSuffix
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'matchSuffix: boolean;'
-      return:
-        type:
-          - boolean
-  - uid: 'word!Word.SearchOptions#matchWholeWord:member'
-    summary: |-
-      获取或设置指示是否只查找整个单词，而不查找长单词的一部分的值。对应于“查找和替换”对话框中的“全字匹配”复选框。
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: matchWholeWord
-    fullName: matchWholeWord
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'matchWholeWord: boolean;'
-      return:
-        type:
-          - boolean
-  - uid: 'word!Word.SearchOptions#matchWildcards:member'
-    summary: |-
-      获取或设置指示搜索是否使用特殊搜索操作符执行的值。对应于“查找和替换”对话框中的“使用通配符”复选框。
-
-      \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-    name: matchWildcards
-    fullName: matchWildcards
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'matchWildcards: boolean;'
-      return:
-        type:
-          - boolean
-  - uid: 'word!Word.SearchOptions.newObject:member(1)'
-    summary: 创建 SearchOptions 对象的新实例
-    name: newObject(context)
-    fullName: newObject(context)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'static newObject(context: OfficeExtension.ClientRequestContext): Word.SearchOptions;'
-      return:
-        type:
-          - 'word!Word.SearchOptions:class'
-        description: ''
-      parameters:
-        - id: context
-          description: ''
-          type:
-            - 'office!OfficeExtension.ClientRequestContext:class'
-  - uid: 'word!Word.SearchOptions#set:member(1)'
-    summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
-    remarks: |-
-      此方法具有以下附加签名：
-
-      `set(properties: Word.SearchOptions): void`
-    name: 'set(properties, options)'
-    fullName: 'set(properties, options)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'set(properties: Interfaces.SearchOptionsUpdateData, options?: OfficeExtension.UpdateOptions): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: properties
-          description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
-          type:
-            - 'word!Word.Interfaces.SearchOptionsUpdateData:interface'
-        - id: options
-          description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
-          type:
-            - 'office!OfficeExtension.UpdateOptions:interface'
-  - uid: 'word!Word.SearchOptions#set:member(2)'
-    summary: 基于现有加载的对象同时设置该对象的多个属性。
-    name: set(properties)
-    fullName: set(properties)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'set(properties: Word.SearchOptions): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: properties
-          description: ''
-          type:
-            - 'word!Word.SearchOptions:class'
-  - uid: 'word!Word.SearchOptions#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始 SearchOptions 对象是 API 对象，但 `toJSON` 方法返回一个无格式的 JavaScript 对象（类型为`Word.Interfaces.SearchOptionsData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
-    name: toJSON()
-    fullName: toJSON()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'toJSON(): Word.Interfaces.SearchOptionsData;'
-      return:
-        type:
-          - 'word!Word.Interfaces.SearchOptionsData:interface'
-        description: ''
-references:
-  - uid: 'office!OfficeExtension.ClientObject:class'
-    name: OfficeExtension.ClientObject
-  - uid: 'word!Word.RequestContext:class'
-    name: RequestContext
-  - uid: 'word!Word.SearchOptions:class'
-    name: Word.SearchOptions
-  - uid: 'word!Word.Interfaces.SearchOptionsLoadOptions:interface'
-    name: Word.Interfaces.SearchOptionsLoadOptions
-  - uid: 'office!OfficeExtension.ClientRequestContext:class'
-    name: OfficeExtension.ClientRequestContext
-  - uid: 'word!Word.Interfaces.SearchOptionsUpdateData:interface'
-    name: Interfaces.SearchOptionsUpdateData
-  - uid: 'office!OfficeExtension.UpdateOptions:interface'
-    name: OfficeExtension.UpdateOptions
-  - uid: 'word!Word.Interfaces.SearchOptionsData:interface'
-    name: Word.Interfaces.SearchOptionsData
+    `set(properties: Word.SearchOptions): void`
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Interfaces.SearchOptionsUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    parameters:
+    - id: properties
+      description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
+      type: <xref uid="word!Word.Interfaces.SearchOptionsUpdateData:interface" />
+    - id: options
+      description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
+      type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
+    return:
+      type: void
+      description: ''
+- name: set(properties)
+  uid: word!Word.SearchOptions#set:member(2)
+  package: word!
+  fullName: set(properties)
+  summary: 基于现有加载的对象同时设置该对象的多个属性。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Word.SearchOptions): void;'
+    parameters:
+    - id: properties
+      description: ''
+      type: <xref uid="word!Word.SearchOptions:class" />
+    return:
+      type: void
+      description: ''
+- name: toJSON()
+  uid: word!Word.SearchOptions#toJSON:member(1)
+  package: word!
+  fullName: toJSON()
+  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始 SearchOptions 对象是 API 对象，则该 `toJSON` 方法返回一个 (类型为的纯 JavaScript 对象。 `Word.Interfaces.SearchOptionsData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Word.Interfaces.SearchOptionsData;'
+    return:
+      type: <xref uid="word!Word.Interfaces.SearchOptionsData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: d27e3e081f46d7bbc06e8d04c3b7bd2f610665df
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49248053"
