@@ -1,276 +1,233 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'outlook!Office.MasterCategories:interface'
-    summary: |-
-      代表邮箱上的类别主列表。
+### YamlMime:TSType
+name: Office.MasterCategories
+uid: outlook!Office.MasterCategories:interface
+package: outlook!
+fullName: Office.MasterCategories
+summary: >-
+  代表邮箱上的类别主列表。
 
-      在 Outlook 中，用户可以通过使用类别对邮件和约会进行着色以对其进行标记。 用户在其邮箱的主列表中定义类别。 然后，他们可以将一个或多个类别应用于项目。
 
-      **重要说明** ：在委派或共享方案中，代理可以获取主列表中的类别，但不能添加或删除类别。
+  在 Outlook 中，用户可以通过使用类别对邮件和约会进行着色以对其进行标记。 用户在其邮箱的主列表中定义类别。 然后，他们可以将一个或多个类别应用于项目。
 
-      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteMailbox`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
-    name: Office.MasterCategories
-    fullName: Office.MasterCategories
-    langs:
-      - typeScript
-    type: interface
-    package: outlook!
-    children:
-      - 'outlook!Office.MasterCategories#addAsync:member(1)'
-      - 'outlook!Office.MasterCategories#getAsync:member(1)'
-      - 'outlook!Office.MasterCategories#getAsync:member(2)'
-      - 'outlook!Office.MasterCategories#removeAsync:member(1)'
-  - uid: 'outlook!Office.MasterCategories#addAsync:member(1)'
-    summary: |-
-      将类别添加到邮箱的主列表中。 每个类别必须具有唯一的名称，但多个类别可以使用相同的颜色。
+  **重要说明**：在委派或共享方案中，代理可以获取主列表中的类别，但不能添加或删除类别。
 
-      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteMailbox`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
+  \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+remarks: >-
+  **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteMailbox`
 
-      **错误** ：
 
-      - `DuplicateCategory`<!-- -->：提供的类别之一已在主类别列表中。
+  **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+- name: addAsync(categories, options, callback)
+  uid: outlook!Office.MasterCategories#addAsync:member(1)
+  package: outlook!
+  fullName: addAsync(categories, options, callback)
+  summary: >-
+    将类别添加到邮箱的主列表中。 每个类别必须具有唯一的名称，但多个类别可以使用相同的颜色。
 
-      - `PermissionDenied`<!-- -->：用户没有执行此操作的权限。
 
-      #### <a name="examples"></a>示例
+    \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteMailbox`
 
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/45-categories/work-with-master-categories.yaml
-      var masterCategoriesToAdd = [
-        {
-          displayName: "TestCategory",
-          color: Office.MailboxEnums.CategoryColor.Preset0
-        }
-      ];
 
-      Office.context.mailbox.masterCategories.addAsync(masterCategoriesToAdd, function(asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-          console.log("Successfully added categories to master list");
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+
+
+    **错误**：
+
+
+    - `DuplicateCategory`<!-- -->：提供的类别之一已在主类别列表中。
+
+
+    - `PermissionDenied`<!-- -->：用户没有执行此操作的权限。
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/45-categories/work-with-master-categories.yaml
+
+    var masterCategoriesToAdd = [
+      {
+        displayName: "TestCategory",
+        color: Office.MailboxEnums.CategoryColor.Preset0
+      }
+    ];
+
+
+    Office.context.mailbox.masterCategories.addAsync(masterCategoriesToAdd, function(asyncResult) {
+      if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+        console.log("Successfully added categories to master list");
+      } else {
+        console.log("masterCategories.addAsync call failed with error: " + asyncResult.error.message);
+      }
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addAsync(categories: CategoryDetails[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: categories
+      description: 要添加到邮箱的主列表中的类别。
+      type: <xref uid="outlook!Office.CategoryDetails:interface" />[]
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getAsync(options, callback)
+  uid: outlook!Office.MasterCategories#getAsync:member(1)
+  package: outlook!
+  fullName: getAsync(options, callback)
+  summary: >-
+    获取邮箱的主类别列表。
+
+
+    \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteMailbox`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<CategoryDetails[]>) => void): void;'
+    parameters:
+    - id: options
+      description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果添加类别失败， `asyncResult.error` 属性将包含一个错误代码。
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.CategoryDetails:interface" />[]&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getAsync(callback)
+  uid: outlook!Office.MasterCategories#getAsync:member(2)
+  package: outlook!
+  fullName: getAsync(callback)
+  summary: >-
+    获取邮箱的主类别列表。
+
+
+    \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteMailbox`
+
+
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+
+
+    #### <a name="examples"></a>示例
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/45-categories/work-with-master-categories.yaml
+
+    Office.context.mailbox.masterCategories.getAsync(function(asyncResult) {
+      if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+        var categories = asyncResult.value;
+        if (categories && categories.length > 0) {
+          console.log("Master categories:");
+          console.log(JSON.stringify(categories));
         } else {
-          console.log("masterCategories.addAsync call failed with error: " + asyncResult.error.message);
+          console.log("There are no categories in the master list.");
         }
-      });
-      ```
-    name: 'addAsync(categories, options, callback)'
-    fullName: 'addAsync(categories, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addAsync(categories: CategoryDetails[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: categories
-          description: 要添加到邮箱的主列表中的类别。
-          type:
-            - 'outlook!Office.MasterCategories#addAsync~0:complex'
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
-          type:
-            - 'outlook!Office.MasterCategories#addAsync~1:complex'
-  - uid: 'outlook!Office.MasterCategories#getAsync:member(1)'
-    summary: |-
-      获取邮箱的主类别列表。
+      } else {
+        console.error(asyncResult.error);
+      }
+    });
 
-      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteMailbox`
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getAsync(callback: (asyncResult: Office.AsyncResult<CategoryDetails[]>) => void): void;'
+    parameters:
+    - id: callback
+      description: 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.CategoryDetails:interface" />[]&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: removeAsync(categories, options, callback)
+  uid: outlook!Office.MasterCategories#removeAsync:member(1)
+  package: outlook!
+  fullName: removeAsync(categories, options, callback)
+  summary: >-
+    从邮箱上的主列表中删除类别。
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
-    name: 'getAsync(options, callback)'
-    fullName: 'getAsync(options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<CategoryDetails[]>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: options
-          description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果添加类别失败， `asyncResult.error` 属性将包含一个错误代码。
-          type:
-            - 'outlook!Office.MasterCategories#getAsync~0:complex'
-  - uid: 'outlook!Office.MasterCategories#getAsync:member(2)'
-    summary: |-
-      获取邮箱的主类别列表。
 
-      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteMailbox`
+    \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteMailbox`
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
 
-      #### <a name="examples"></a>示例
+    **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
 
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/45-categories/work-with-master-categories.yaml
-      Office.context.mailbox.masterCategories.getAsync(function(asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-          var categories = asyncResult.value;
-          if (categories && categories.length > 0) {
-            console.log("Master categories:");
-            console.log(JSON.stringify(categories));
-          } else {
-            console.log("There are no categories in the master list.");
-          }
-        } else {
-          console.error(asyncResult.error);
-        }
-      });
-      ```
-    name: getAsync(callback)
-    fullName: getAsync(callback)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getAsync(callback: (asyncResult: Office.AsyncResult<CategoryDetails[]>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: callback
-          description: 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
-          type:
-            - 'outlook!Office.MasterCategories#getAsync~1:complex'
-  - uid: 'outlook!Office.MasterCategories#removeAsync:member(1)'
-    summary: |-
-      从邮箱上的主列表中删除类别。
 
-      \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** ：`ReadWriteMailbox`
+    **错误**：
 
-      **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** ：撰写或阅读
 
-      **错误** ：
+    - `PermissionDenied`<!-- -->：用户没有执行此操作的权限。
 
-      - `PermissionDenied`<!-- -->：用户没有执行此操作的权限。
 
-      #### <a name="examples"></a>示例
+    #### <a name="examples"></a>示例
 
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/45-categories/work-with-master-categories.yaml
-      var masterCategoriesToRemove = ["TestCategory"];
 
-      Office.context.mailbox.masterCategories.removeAsync(masterCategoriesToRemove, function(asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-          console.log("Successfully removed categories from master list");
-        } else {
-          console.log("masterCategories.removeAsync call failed with error: " + asyncResult.error.message);
-        }
-      });
-      ```
-    name: 'removeAsync(categories, options, callback)'
-    fullName: 'removeAsync(categories, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'removeAsync(categories: string[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: categories
-          description: 要从邮箱上的主列表中删除的类别。
-          type:
-            - 'string[]'
-        - id: options
-          description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果删除类别失败， `asyncResult.error` 属性将包含一个错误代码。
-          type:
-            - 'outlook!Office.MasterCategories#removeAsync~0:complex'
-references:
-  - uid: 'outlook!Office.MasterCategories#addAsync~0:complex'
-    name: 'CategoryDetails[]'
-    fullName: 'Office.CategoryDetails[]'
-    spec.typeScript:
-      - uid: 'outlook!Office.CategoryDetails:interface'
-        name: CategoryDetails
-        fullName: Office.CategoryDetails
-      - name: '[]'
-        fullName: '[]'
-  - uid: 'office!Office.AsyncContextOptions:interface'
-    name: Office.AsyncContextOptions
-  - uid: 'outlook!Office.MasterCategories#addAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.MasterCategories#getAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<CategoryDetails[]>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<Office.CategoryDetails[]>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <
-        fullName: <
-      - uid: 'outlook!Office.CategoryDetails:interface'
-        name: CategoryDetails
-        fullName: Office.CategoryDetails
-      - name: '[]>) => void'
-        fullName: '[]>) => void'
-  - uid: 'outlook!Office.MasterCategories#getAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<CategoryDetails[]>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<Office.CategoryDetails[]>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <
-        fullName: <
-      - uid: 'outlook!Office.CategoryDetails:interface'
-        name: CategoryDetails
-        fullName: Office.CategoryDetails
-      - name: '[]>) => void'
-        fullName: '[]>) => void'
-  - uid: 'outlook!Office.MasterCategories#removeAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/45-categories/work-with-master-categories.yaml
+
+    var masterCategoriesToRemove = ["TestCategory"];
+
+
+    Office.context.mailbox.masterCategories.removeAsync(masterCategoriesToRemove, function(asyncResult) {
+      if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+        console.log("Successfully removed categories from master list");
+      } else {
+        console.log("masterCategories.removeAsync call failed with error: " + asyncResult.error.message);
+      }
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'removeAsync(categories: string[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: categories
+      description: 要从邮箱上的主列表中删除的类别。
+      type: string[]
+    - id: options
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果删除类别失败， `asyncResult.error` 属性将包含一个错误代码。
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+metadata:
+  ms.openlocfilehash: 02b0b9dea225181dbbd5fb44396d355ede54f29a
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49249944"
