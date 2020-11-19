@@ -1,207 +1,142 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'excel!Excel.NumberFormatInfo:class'
-    summary: |-
-      定义适当的区域性格式，以显示数字。 这取决于当前的系统区域性设置。
+### YamlMime:TSType
+name: Excel.NumberFormatInfo
+uid: excel!Excel.NumberFormatInfo:class
+package: excel!
+fullName: Excel.NumberFormatInfo
+summary: >-
+  定义适当的区域性格式，以显示数字。 这取决于当前的系统区域性设置。
 
-      \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: Excel.NumberFormatInfo
-    fullName: Excel.NumberFormatInfo
-    langs:
-      - typeScript
-    type: class
-    extends:
-      - 'office!OfficeExtension.ClientObject:class'
-    package: excel!
-    children:
-      - 'excel!Excel.NumberFormatInfo#context:member'
-      - 'excel!Excel.NumberFormatInfo#load:member(1)'
-      - 'excel!Excel.NumberFormatInfo#load:member(2)'
-      - 'excel!Excel.NumberFormatInfo#load:member(3)'
-      - 'excel!Excel.NumberFormatInfo#numberDecimalSeparator:member'
-      - 'excel!Excel.NumberFormatInfo#numberGroupSeparator:member'
-      - 'excel!Excel.NumberFormatInfo#toJSON:member(1)'
-  - uid: 'excel!Excel.NumberFormatInfo#context:member'
-    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-    name: context
-    fullName: context
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'context: RequestContext;'
-      return:
-        type:
-          - 'excel!Excel.RequestContext:class'
-  - uid: 'excel!Excel.NumberFormatInfo#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(options)
-    fullName: load(options)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(options?: Excel.Interfaces.NumberFormatInfoLoadOptions): Excel.NumberFormatInfo;'
-      return:
-        type:
-          - 'excel!Excel.NumberFormatInfo:class'
-        description: ''
-      parameters:
-        - id: options
-          description: 提供要加载的对象的属性的选项。
-          type:
-            - 'excel!Excel.Interfaces.NumberFormatInfoLoadOptions:interface'
-  - uid: 'excel!Excel.NumberFormatInfo#load:member(2)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNames)
-    fullName: load(propertyNames)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNames?: string | string[]): Excel.NumberFormatInfo;'
-      return:
-        type:
-          - 'excel!Excel.NumberFormatInfo:class'
-        description: ''
-      parameters:
-        - id: propertyNames
-          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
-          type:
-            - 'string | string[]'
-  - uid: 'excel!Excel.NumberFormatInfo#load:member(3)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNamesAndPaths)
-    fullName: load(propertyNamesAndPaths)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: |-
-        load(propertyNamesAndPaths?: {
+
+  \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.NumberFormatInfo#context:member
+  package: excel!
+  fullName: context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: numberDecimalSeparator
+  uid: excel!Excel.NumberFormatInfo#numberDecimalSeparator:member
+  package: excel!
+  fullName: numberDecimalSeparator
+  summary: >-
+    获取用作数值的小数分隔符的字符串。 这取决于当前的系统设置。
+
+
+    \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly numberDecimalSeparator: string;'
+    return:
+      type: string
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/culture-info.yaml\n// This will convert a number like \"14,37\" to \"14.37\"\n// (assuming the system decimal separator is \".\").\n  await Excel.run(async (context) => {\nconst sheet = context.workbook.worksheets.getItem(\"Sample\");\nconst decimalSource = sheet.getRange(\"B2\");\ndecimalSource.load(\"values\");\ncontext.application.cultureInfo.numberFormat.load(\"numberDecimalSeparator\");\nawait context.sync();\n\nconst systemDecimalSeparator = context.application.cultureInfo.numberFormat.numberDecimalSeparator;\nconst oldDecimalString: string = decimalSource.values[0][0];\n\n// This assumes the input column is standardized to use \",\" as the decimal separator. \nconst newDecimalString = oldDecimalString.replace(\",\", systemDecimalSeparator);\n\nconst resultRange = sheet.getRange(\"C2\");\nresultRange.values = [[newDecimalString]];\nresultRange.format.autofitColumns();\nawait context.sync();\n  });\n```"
+- name: numberGroupSeparator
+  uid: excel!Excel.NumberFormatInfo#numberGroupSeparator:member
+  package: excel!
+  fullName: numberGroupSeparator
+  summary: >-
+    获取一个字符串，用于将数字值的小数位数与小数的左边隔开。 这取决于当前的系统设置。
+
+
+    \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly numberGroupSeparator: string;'
+    return:
+      type: string
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/culture-info.yaml\nawait Excel.run(async (context) => {\n  // This will convert a number like \"123-456-789\" to \"123,456,789\"\n  // (assuming the system thousands separator is \",\").\n  const sheet = context.workbook.worksheets.getItem(\"Sample\");\n  const bigNumberSource = sheet.getRange(\"B3\");\n  bigNumberSource.load(\"values\");\n  context.application.cultureInfo.numberFormat.load(\"numberGroupSeparator\");\n  await context.sync();\n\n  const systemThousandsSeparator = context.application.cultureInfo.numberFormat.numberGroupSeparator;\n  const oldBigNumberString: string = bigNumberSource.values[0][0];\n  \n  // This assumes the input column is standardized to use \"-\" as the number group separator. \n  const newBigNumberString = oldBigNumberString.replace(/-/g, systemThousandsSeparator);\n\n  const resultRange = sheet.getRange(\"C3\");\n  resultRange.values = [[newBigNumberString]];\n  resultRange.format.autofitColumns();\n  await context.sync();\n});\n```"
+methods:
+- name: load(options)
+  uid: excel!Excel.NumberFormatInfo#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.NumberFormatInfoLoadOptions): Excel.NumberFormatInfo;'
+    parameters:
+    - id: options
+      description: 提供要加载的对象的属性的选项。
+      type: <xref uid="excel!Excel.Interfaces.NumberFormatInfoLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.NumberFormatInfo:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.NumberFormatInfo#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.NumberFormatInfo;'
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.NumberFormatInfo:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.NumberFormatInfo#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): Excel.NumberFormatInfo;
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      type: >-
+        {
                     select?: string;
                     expand?: string;
-                }): Excel.NumberFormatInfo;
-      return:
-        type:
-          - 'excel!Excel.NumberFormatInfo:class'
-        description: ''
-      parameters:
-        - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
-          type:
-            - |-
-              {
-                          select?: string;
-                          expand?: string;
-                      }
-  - uid: 'excel!Excel.NumberFormatInfo#numberDecimalSeparator:member'
-    summary: |-
-      获取用作数值的小数分隔符的字符串。 这取决于当前的系统设置。
-
-      \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: numberDecimalSeparator
-    fullName: numberDecimalSeparator
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly numberDecimalSeparator: string;'
-      return:
-        type:
-          - string
-        description: |-
-
-
-          #### <a name="examples"></a>示例
-
-          ```typescript
-          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/culture-info.yaml
-          // This will convert a number like "14,37" to "14.37"
-          // (assuming the system decimal separator is ".").
-            await Excel.run(async (context) => {
-          const sheet = context.workbook.worksheets.getItem("Sample");
-          const decimalSource = sheet.getRange("B2");
-          decimalSource.load("values");
-          context.application.cultureInfo.numberFormat.load("numberDecimalSeparator");
-          await context.sync();
-
-          const systemDecimalSeparator = context.application.cultureInfo.numberFormat.numberDecimalSeparator;
-          const oldDecimalString: string = decimalSource.values[0][0];
-
-          // This assumes the input column is standardized to use "," as the decimal separator. 
-          const newDecimalString = oldDecimalString.replace(",", systemDecimalSeparator);
-
-          const resultRange = sheet.getRange("C2");
-          resultRange.values = [[newDecimalString]];
-          resultRange.format.autofitColumns();
-          await context.sync();
-            });
-          ```
-  - uid: 'excel!Excel.NumberFormatInfo#numberGroupSeparator:member'
-    summary: |-
-      获取一个字符串，用于将数字值的小数位数与小数的左边隔开。 这取决于当前的系统设置。
-
-      \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: numberGroupSeparator
-    fullName: numberGroupSeparator
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly numberGroupSeparator: string;'
-      return:
-        type:
-          - string
-        description: |-
-
-
-          #### <a name="examples"></a>示例
-
-          ```typescript
-          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/culture-info.yaml
-          await Excel.run(async (context) => {
-            // This will convert a number like "123-456-789" to "123,456,789"
-            // (assuming the system thousands separator is ",").
-            const sheet = context.workbook.worksheets.getItem("Sample");
-            const bigNumberSource = sheet.getRange("B3");
-            bigNumberSource.load("values");
-            context.application.cultureInfo.numberFormat.load("numberGroupSeparator");
-            await context.sync();
-
-            const systemThousandsSeparator = context.application.cultureInfo.numberFormat.numberGroupSeparator;
-            const oldBigNumberString: string = bigNumberSource.values[0][0];
-            
-            // This assumes the input column is standardized to use "-" as the number group separator. 
-            const newBigNumberString = oldBigNumberString.replace(/-/g, systemThousandsSeparator);
-
-            const resultRange = sheet.getRange("C3");
-            resultRange.values = [[newBigNumberString]];
-            resultRange.format.autofitColumns();
-            await context.sync();
-          });
-          ```
-  - uid: 'excel!Excel.NumberFormatInfo#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始 NumberFormatInfo 对象是 API 对象，但 `toJSON` 方法返回一个无格式的 JavaScript 对象（类型为`Excel.Interfaces.NumberFormatInfoData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
-    name: toJSON()
-    fullName: toJSON()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'toJSON(): Excel.Interfaces.NumberFormatInfoData;'
-      return:
-        type:
-          - 'excel!Excel.Interfaces.NumberFormatInfoData:interface'
-        description: ''
-references:
-  - uid: 'office!OfficeExtension.ClientObject:class'
-    name: OfficeExtension.ClientObject
-  - uid: 'excel!Excel.RequestContext:class'
-    name: RequestContext
-  - uid: 'excel!Excel.NumberFormatInfo:class'
-    name: Excel.NumberFormatInfo
-  - uid: 'excel!Excel.Interfaces.NumberFormatInfoLoadOptions:interface'
-    name: Excel.Interfaces.NumberFormatInfoLoadOptions
-  - uid: 'excel!Excel.Interfaces.NumberFormatInfoData:interface'
-    name: Excel.Interfaces.NumberFormatInfoData
+                }
+    return:
+      type: <xref uid="excel!Excel.NumberFormatInfo:class" />
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.NumberFormatInfo#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始 NumberFormatInfo 对象是 API 对象，则该 `toJSON` 方法返回一个 (类型为的纯 JavaScript 对象。 `Excel.Interfaces.NumberFormatInfoData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.NumberFormatInfoData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.NumberFormatInfoData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: b2f2315269ad82311d4cfdd62b42ec73c3886ca2
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49203023"
