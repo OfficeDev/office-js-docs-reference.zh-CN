@@ -1,797 +1,510 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'onenote!OneNote.Page:class'
-    summary: |-
-      表示一个 OneNote 页面。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: OneNote.Page
-    fullName: OneNote.Page
-    langs:
-      - typeScript
-    type: class
-    extends:
-      - 'office!OfficeExtension.ClientObject:class'
-    package: onenote!
-    children:
-      - 'onenote!OneNote.Page#addOutline:member(1)'
-      - 'onenote!OneNote.Page#analyzePage:member(1)'
-      - 'onenote!OneNote.Page#applyTranslation:member(1)'
-      - 'onenote!OneNote.Page#classNotebookPageSource:member'
-      - 'onenote!OneNote.Page#clientUrl:member'
-      - 'onenote!OneNote.Page#contents:member'
-      - 'onenote!OneNote.Page#context:member'
-      - 'onenote!OneNote.Page#copyToSection:member(1)'
-      - 'onenote!OneNote.Page#copyToSectionAndSetClassNotebookPageSource:member(1)'
-      - 'onenote!OneNote.Page#getRestApiId:member(1)'
-      - 'onenote!OneNote.Page#hasTitleContent:member(1)'
-      - 'onenote!OneNote.Page#id:member'
-      - 'onenote!OneNote.Page#inkAnalysisOrNull:member'
-      - 'onenote!OneNote.Page#insertPageAsSibling:member(1)'
-      - 'onenote!OneNote.Page#insertPageAsSibling:member(2)'
-      - 'onenote!OneNote.Page#load:member(1)'
-      - 'onenote!OneNote.Page#load:member(2)'
-      - 'onenote!OneNote.Page#load:member(3)'
-      - 'onenote!OneNote.Page#pageLevel:member'
-      - 'onenote!OneNote.Page#parentSection:member'
-      - 'onenote!OneNote.Page#set:member(1)'
-      - 'onenote!OneNote.Page#set:member(2)'
-      - 'onenote!OneNote.Page#title:member'
-      - 'onenote!OneNote.Page#toJSON:member(1)'
-      - 'onenote!OneNote.Page#track:member(1)'
-      - 'onenote!OneNote.Page#untrack:member(1)'
-      - 'onenote!OneNote.Page#webUrl:member'
-  - uid: 'onenote!OneNote.Page#addOutline:member(1)'
-    summary: |-
-      添加 Outline 至指定位置的页面。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: 'addOutline(left, top, html)'
-    fullName: 'addOutline(left, top, html)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addOutline(left: number, top: number, html: string): OneNote.Outline;'
-      return:
-        type:
-          - 'onenote!OneNote.Outline:class'
-        description: |-
+### YamlMime:TSType
+name: OneNote.Page
+uid: onenote!OneNote.Page:class
+package: onenote!
+fullName: OneNote.Page
+summary: >-
+  表示一个 OneNote 页面。
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          OneNote.run(function (context) {
-
-              // Gets the active page.
-              var page = context.application.getActivePage();
-
-              // Queue a command to add an outline with given html. 
-              var outline = page.addOutline(200, 200,
-          "<p>Images and a table below:</p> \
-           <img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\"> \
-           <img src=\"http://imagenes.es.sftcdn.net/es/scrn/6653000/6653659/microsoft-onenote-2013-01-535x535.png\"> \
-           <table> \
-             <tr> \
-               <td>Jill</td> \
-               <td>Smith</td> \
-               <td>50</td> \
-             </tr> \
-             <tr> \
-               <td>Eve</td> \
-               <td>Jackson</td> \
-               <td>94</td> \
-             </tr> \
-           </table>"     
-                  );
-
-              // Run the queued commands, and return a promise to indicate task completion.
-              return context.sync()
-                  .catch(function(error) {
-                      console.log("Error: " + error);
-                      if (error instanceof OfficeExtension.Error) {
-                          console.log("Debug info: " + JSON.stringify(error.debugInfo));
-                      }
-                  });
-          });
-          ```
-      parameters:
-        - id: left
-          description: 顶部的左边位置，Outline 的左角。
-          type:
-            - number
-        - id: top
-          description: 顶部的顶层位置，Outline 的左角。
-          type:
-            - number
-        - id: html
-          description: '描述边框的可视化演示文稿的 HTML 字符串。 请参阅 OneNote 外接程序 JavaScript API[支持的 HTML](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) 。'
-          type:
-            - string
-  - uid: 'onenote!OneNote.Page#analyzePage:member(1)'
-    summary: |-
-      以 html 格式返回具有节点 id 和内容的 json 字符串。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: analyzePage()
-    fullName: analyzePage()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'analyzePage(): OfficeExtension.ClientResult<string>;'
-      return:
-        type:
-          - 'onenote!OneNote.Page#analyzePage~0:complex'
-        description: ''
-  - uid: 'onenote!OneNote.Page#applyTranslation:member(1)'
-    summary: |-
-      插入包含已翻译内容的新页面。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: applyTranslation(translatedContent)
-    fullName: applyTranslation(translatedContent)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'applyTranslation(translatedContent: string): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: translatedContent
-          description: 页面的已翻译内容
-          type:
-            - string
-  - uid: 'onenote!OneNote.Page#classNotebookPageSource:member'
-    summary: |-
-      获取页面的 ClassNotebookPageSource。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: classNotebookPageSource
-    fullName: classNotebookPageSource
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly classNotebookPageSource: string;'
-      return:
-        type:
-          - string
-  - uid: 'onenote!OneNote.Page#clientUrl:member'
-    summary: |-
-      页面的客户端 url。 只读
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: clientUrl
-    fullName: clientUrl
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly clientUrl: string;'
-      return:
-        type:
-          - string
-  - uid: 'onenote!OneNote.Page#contents:member'
-    summary: |-
-      页面上 PageContent 对象的集合。 只读
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: contents
-    fullName: contents
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly contents: OneNote.PageContentCollection;'
-      return:
-        type:
-          - 'onenote!OneNote.PageContentCollection:class'
-  - uid: 'onenote!OneNote.Page#context:member'
-    summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
-    name: context
-    fullName: context
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'context: RequestContext;'
-      return:
-        type:
-          - 'onenote!OneNote.RequestContext:class'
-  - uid: 'onenote!OneNote.Page#copyToSection:member(1)'
-    summary: |-
-      将此页复制到指定的分区中。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: copyToSection(destinationSection)
-    fullName: copyToSection(destinationSection)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'copyToSection(destinationSection: OneNote.Section): OneNote.Page;'
-      return:
-        type:
-          - 'onenote!OneNote.Page:class'
-        description: |-
+  \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: classNotebookPageSource
+  uid: onenote!OneNote.Page#classNotebookPageSource:member
+  package: onenote!
+  fullName: classNotebookPageSource
+  summary: >-
+    获取页面的 ClassNotebookPageSource。
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          OneNote.run(function(ctx) {
-              var app = ctx.application;
-              
-              // Gets the active notebook.
-              var notebook = app.getActiveNotebook();
-              
-              // Gets the active page.
-              var page = app.getActivePage();
-              
-              // Queue a command to load sections under the notebook.
-              notebook.load('sections');
-              
-              var newPage;
-              
-              // Run the queued commands, and return a promise to indicate task completion.
-              return ctx.sync()
-                  .then(function() {
-                      var section = notebook.sections.items[0];
-                      
-                      // copy page to the section.
-                      newPage = page.copyToSection(section);
-                      newPage.load('id');
-                      return ctx.sync();
-                  })
-                  .then(function() {
-                      console.log(newPage.id);
-                  });
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: destinationSection
-          description: 要将此页复制到的分区。
-          type:
-            - 'onenote!OneNote.Section:class'
-  - uid: 'onenote!OneNote.Page#copyToSectionAndSetClassNotebookPageSource:member(1)'
-    summary: |-
-      将此页面复制到指定分区并设置 ClassNotebookPageSource。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: copyToSectionAndSetClassNotebookPageSource(destinationSection)
-    fullName: copyToSectionAndSetClassNotebookPageSource(destinationSection)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'copyToSectionAndSetClassNotebookPageSource(destinationSection: OneNote.Section): OneNote.Page;'
-      return:
-        type:
-          - 'onenote!OneNote.Page:class'
-        description: ''
-      parameters:
-        - id: destinationSection
-          description: ''
-          type:
-            - 'onenote!OneNote.Section:class'
-  - uid: 'onenote!OneNote.Page#getRestApiId:member(1)'
-    summary: |-
-      获取 REST API ID。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: getRestApiId()
-    fullName: getRestApiId()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getRestApiId(): OfficeExtension.ClientResult<string>;'
-      return:
-        type:
-          - 'onenote!OneNote.Page#getRestApiId~0:complex'
-        description: |-
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly classNotebookPageSource: string;'
+    return:
+      type: string
+- name: clientUrl
+  uid: onenote!OneNote.Page#clientUrl:member
+  package: onenote!
+  fullName: clientUrl
+  summary: >-
+    页面的客户端 url。 只读
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          OneNote.run(function(ctx){
-              // Get the current page.         
-              var page = ctx.application.getActivePage();
-              var restApiId = page.getRestApiId();
-
-              return ctx.sync().
-                  then(function(){
-                      console.log("The REST API ID is " + restApiId.value);
-                      // Note that the REST API ID isn't all you need to interact with the OneNote REST API.
-                      // This is only required for SharePoint notebooks. baseUrl will be null for OneDrive notebooks.
-                      // For SharePoint notebooks, the notebook baseUrl should be used to talk to the OneNote REST API
-                      // according to the OneNote Development Blog.
-                      // https://blogs.msdn.microsoft.com/onenotedev/2015/06/11/and-sharepoint-makes-three/
-                  });
-          });
-          ```
-  - uid: 'onenote!OneNote.Page#hasTitleContent:member(1)'
-    summary: |-
-      页面是否包含内容标题。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: hasTitleContent()
-    fullName: hasTitleContent()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'hasTitleContent(): OfficeExtension.ClientResult<boolean>;'
-      return:
-        type:
-          - 'onenote!OneNote.Page#hasTitleContent~0:complex'
-        description: ''
-  - uid: 'onenote!OneNote.Page#id:member'
-    summary: |-
-      获取页面的 ID。 只读。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: id
-    fullName: id
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly id: string;'
-      return:
-        type:
-          - string
-  - uid: 'onenote!OneNote.Page#inkAnalysisOrNull:member'
-    summary: |-
-      页面上墨迹的文本解释。 如果没有墨迹分析信息，则返回 null。 只读。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: inkAnalysisOrNull
-    fullName: inkAnalysisOrNull
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly inkAnalysisOrNull: OneNote.InkAnalysis;'
-      return:
-        type:
-          - 'onenote!OneNote.InkAnalysis:class'
-  - uid: 'onenote!OneNote.Page#insertPageAsSibling:member(1)'
-    summary: |-
-      在当前分区之前或之后插入一个新的页面。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: 'insertPageAsSibling(location, title)'
-    fullName: 'insertPageAsSibling(location, title)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'insertPageAsSibling(location: OneNote.InsertLocation, title: string): OneNote.Page;'
-      return:
-        type:
-          - 'onenote!OneNote.Page:class'
-        description: ''
-      parameters:
-        - id: location
-          description: 相对于当前页面的新页面的位置。
-          type:
-            - 'onenote!OneNote.InsertLocation:enum'
-        - id: title
-          description: 新页面的标题。
-          type:
-            - string
-  - uid: 'onenote!OneNote.Page#insertPageAsSibling:member(2)'
-    summary: |-
-      在当前分区之前或之后插入一个新的页面。
-
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: 'insertPageAsSibling(locationString, title)'
-    fullName: 'insertPageAsSibling(locationString, title)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'insertPageAsSibling(locationString: "Before" | "After", title: string): OneNote.Page;'
-      return:
-        type:
-          - 'onenote!OneNote.Page:class'
-        description: |-
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly clientUrl: string;'
+    return:
+      type: string
+- name: contents
+  uid: onenote!OneNote.Page#contents:member
+  package: onenote!
+  fullName: contents
+  summary: >-
+    页面上 PageContent 对象的集合。 只读
 
 
-          #### <a name="examples"></a>示例
-
-          ```javascript
-          OneNote.run(function (context) {
-
-              // Gets the active page.
-              var activePage = context.application.getActivePage();
-
-              // Queue a command to add a new page after the active page. 
-              var newPage = activePage.insertPageAsSibling("After", "Next Page");
-
-              // Queue a command to load the newPage to access its data.
-              context.load(newPage);
-
-              // Run the queued commands, and return a promise to indicate task completion.
-              return context.sync()
-                  .then(function() {
-                      console.log("page is created with title: " + newPage.title);
-                  });
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: locationString
-          description: 相对于当前页面的新页面的位置。
-          type:
-            - '"Before" | "After"'
-        - id: title
-          description: 新页面的标题。
-          type:
-            - string
-  - uid: 'onenote!OneNote.Page#load:member(1)'
-    summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
-    remarks: |-
-      除了此签名之外，此方法还具有以下签名：
-
-      `load(option?: string | string[]): OneNote.Page`-Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
-
-      `load(option?: { select?: string; expand?: string; }): OneNote.Page`-Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Page`-仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
-    name: load(option)
-    fullName: load(option)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(option?: OneNote.Interfaces.PageLoadOptions): OneNote.Page;'
-      return:
-        type:
-          - 'onenote!OneNote.Page:class'
-        description: ''
-      parameters:
-        - id: option
-          description: ''
-          type:
-            - 'onenote!OneNote.Interfaces.PageLoadOptions:interface'
-  - uid: 'onenote!OneNote.Page#load:member(2)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNames)
-    fullName: load(propertyNames)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNames?: string | string[]): OneNote.Page;'
-      return:
-        type:
-          - 'onenote!OneNote.Page:class'
-        description: |-
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly contents: OneNote.PageContentCollection;'
+    return:
+      type: <xref uid="onenote!OneNote.PageContentCollection:class" />
+- name: context
+  uid: onenote!OneNote.Page#context:member
+  package: onenote!
+  fullName: context
+  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="onenote!OneNote.RequestContext:class" />
+- name: id
+  uid: onenote!OneNote.Page#id:member
+  package: onenote!
+  fullName: id
+  summary: >-
+    获取页面的 ID。 只读。
 
 
-          #### <a name="examples"></a>示例
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly id: string;'
+    return:
+      type: string
+- name: inkAnalysisOrNull
+  uid: onenote!OneNote.Page#inkAnalysisOrNull:member
+  package: onenote!
+  fullName: inkAnalysisOrNull
+  summary: >-
+    页面上墨迹的文本解释。 如果没有墨迹分析信息，则返回 null。 只读。
 
-          ```javascript
-          OneNote.run(function (context) {
 
-              // Gets the active page.
-              var activePage = context.application.getActivePage();
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly inkAnalysisOrNull: OneNote.InkAnalysis;'
+    return:
+      type: <xref uid="onenote!OneNote.InkAnalysis:class" />
+- name: pageLevel
+  uid: onenote!OneNote.Page#pageLevel:member
+  package: onenote!
+  fullName: pageLevel
+  summary: >-
+    获取或设置页面的缩进级别。
 
-              // Queue a command to add a new page after the active page. 
-              var pageContents = activePage.contents;
 
-              // Queue a command to load the pageContents to access its data.
-              context.load(pageContents);
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'pageLevel: number;'
+    return:
+      type: number
+- name: parentSection
+  uid: onenote!OneNote.Page#parentSection:member
+  package: onenote!
+  fullName: parentSection
+  summary: >-
+    获取包含页面的分区。 只读。
 
-              // Run the queued commands, and return a promise to indicate task completion.
-              return context.sync()
-                  .then(function() {
-                      for(var i=0; i < pageContents.items.length; i++)
-                      {
-                          var pageContent = pageContents.items[i];
-                          if (pageContent.type == "Outline")
-                          {
-                              console.log("Found an outline");
-                          }
-                          else if (pageContent.type == "Image")
-                          {
-                              console.log("Found an image");
-                          }
-                          else if (pageContent.type == "Other")
-                          {
-                              console.log("Found a type not supported yet.");
-                          }
-                      }
-                  });
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-          ```javascript
-          OneNote.run(function (context) {
 
-              var app = context.application;
-              
-              // Gets the active page.
-              var page = app.getActivePage();
-              
-              // Queue a command to load the webUrl of the page.
-              page.load("webUrl");
-              
-              // Run the queued commands, and return a promise to indicate task completion.
-              return context.sync()
-                  .then(function() {
-                      console.log(page.webUrl);
-                  });
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-          ```javascript
-          OneNote.run(function (ctx) {        
-              var app = ctx.application;
-              
-              // Gets the active page.
-              var page = app.getActivePage();
-              
-              // Load ink words
-              page.load('inkAnalysisOrNull/paragraphs/lines/words');
-              
-              return ctx.sync()
-                  .then(function() {
-                      if (!page.inkAnalysisOrNull.isNull)
-                          console.log(page.inkAnalysisOrNull.paragraphs.length);
-                  });
-          })
-          .catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: propertyNames
-          description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
-          type:
-            - 'string | string[]'
-  - uid: 'onenote!OneNote.Page#load:member(3)'
-    summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
-    name: load(propertyNamesAndPaths)
-    fullName: load(propertyNamesAndPaths)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.Page;'
-      return:
-        type:
-          - 'onenote!OneNote.Page:class'
-        description: ''
-      parameters:
-        - id: propertyNamesAndPaths
-          description: 其中，propertyNamesAndPaths 是用逗号分隔的字符串，用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串，用于指定要加载的导航属性。
-          type:
-            - '{ select?: string; expand?: string; }'
-  - uid: 'onenote!OneNote.Page#pageLevel:member'
-    summary: |-
-      获取或设置页面的缩进级别。
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly parentSection: OneNote.Section;'
+    return:
+      type: <xref uid="onenote!OneNote.Section:class" />
+- name: title
+  uid: onenote!OneNote.Page#title:member
+  package: onenote!
+  fullName: title
+  summary: >-
+    获取或设置页面的标题。
 
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: pageLevel
-    fullName: pageLevel
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'pageLevel: number;'
-      return:
-        type:
-          - number
-  - uid: 'onenote!OneNote.Page#parentSection:member'
-    summary: |-
-      获取包含页面的分区。 只读。
 
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: parentSection
-    fullName: parentSection
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly parentSection: OneNote.Section;'
-      return:
-        type:
-          - 'onenote!OneNote.Section:class'
-  - uid: 'onenote!OneNote.Page#set:member(1)'
-    summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
-    remarks: |-
-      此方法具有以下附加签名：
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'title: string;'
+    return:
+      type: string
+- name: webUrl
+  uid: onenote!OneNote.Page#webUrl:member
+  package: onenote!
+  fullName: webUrl
+  summary: >-
+    页面的 Web URL。 只读
 
-      `set(properties: OneNote.Page): void`
-    name: 'set(properties, options)'
-    fullName: 'set(properties, options)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'set(properties: Interfaces.PageUpdateData, options?: OfficeExtension.UpdateOptions): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: properties
-          description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
-          type:
-            - 'onenote!OneNote.Interfaces.PageUpdateData:interface'
-        - id: options
-          description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
-          type:
-            - 'office!OfficeExtension.UpdateOptions:interface'
-  - uid: 'onenote!OneNote.Page#set:member(2)'
-    summary: 基于现有加载的对象同时设置该对象的多个属性。
-    name: set(properties)
-    fullName: set(properties)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'set(properties: OneNote.Page): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: properties
-          description: ''
-          type:
-            - 'onenote!OneNote.Page:class'
-  - uid: 'onenote!OneNote.Page#title:member'
-    summary: |-
-      获取或设置页面的标题。
 
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: title
-    fullName: title
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'title: string;'
-      return:
-        type:
-          - string
-  - uid: 'onenote!OneNote.Page#toJSON:member(1)'
-    summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，也 `toJSON` 会调用传递给它的对象的方法。尽管原始的 OneNote Page 对象是 API 对象，但 `toJSON` 方法返回一个无格式的 JavaScript 对象（类型为`OneNote.Interfaces.PageData`<!-- -->），其中包含原始对象中所有已加载的子属性的浅表副本。
-    name: toJSON()
-    fullName: toJSON()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'toJSON(): OneNote.Interfaces.PageData;'
-      return:
-        type:
-          - 'onenote!OneNote.Interfaces.PageData:interface'
-        description: ''
-  - uid: 'onenote!OneNote.Page#track:member(1)'
-    summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。
-    name: track()
-    fullName: track()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'track(): OneNote.Page;'
-      return:
-        type:
-          - 'onenote!OneNote.Page:class'
-        description: ''
-  - uid: 'onenote!OneNote.Page#untrack:member(1)'
-    summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前，你需要调用“context.sync()”。
-    name: untrack()
-    fullName: untrack()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'untrack(): OneNote.Page;'
-      return:
-        type:
-          - 'onenote!OneNote.Page:class'
-        description: ''
-  - uid: 'onenote!OneNote.Page#webUrl:member'
-    summary: |-
-      页面的 Web URL。 只读
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly webUrl: string;'
+    return:
+      type: string
+methods:
+- name: addOutline(left, top, html)
+  uid: onenote!OneNote.Page#addOutline:member(1)
+  package: onenote!
+  fullName: addOutline(left, top, html)
+  summary: >-
+    添加 Outline 至指定位置的页面。
 
-      \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-    name: webUrl
-    fullName: webUrl
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly webUrl: string;'
-      return:
-        type:
-          - string
-references:
-  - uid: 'office!OfficeExtension.ClientObject:class'
-    name: OfficeExtension.ClientObject
-  - uid: 'onenote!OneNote.Outline:class'
-    name: OneNote.Outline
-  - uid: 'onenote!OneNote.Page#analyzePage~0:complex'
-    name: OfficeExtension.ClientResult<string>
-    fullName: OfficeExtension.ClientResult<string>
-    spec.typeScript:
-      - uid: 'office!OfficeExtension.ClientResult:class'
-        name: OfficeExtension.ClientResult
-        fullName: OfficeExtension.ClientResult
-      - name: <string>
-        fullName: <string>
-  - uid: 'onenote!OneNote.PageContentCollection:class'
-    name: OneNote.PageContentCollection
-  - uid: 'onenote!OneNote.RequestContext:class'
-    name: RequestContext
-  - uid: 'onenote!OneNote.Page:class'
-    name: OneNote.Page
-  - uid: 'onenote!OneNote.Section:class'
-    name: OneNote.Section
-  - uid: 'onenote!OneNote.Page#getRestApiId~0:complex'
-    name: OfficeExtension.ClientResult<string>
-    fullName: OfficeExtension.ClientResult<string>
-    spec.typeScript:
-      - uid: 'office!OfficeExtension.ClientResult:class'
-        name: OfficeExtension.ClientResult
-        fullName: OfficeExtension.ClientResult
-      - name: <string>
-        fullName: <string>
-  - uid: 'onenote!OneNote.Page#hasTitleContent~0:complex'
-    name: OfficeExtension.ClientResult<boolean>
-    fullName: OfficeExtension.ClientResult<boolean>
-    spec.typeScript:
-      - uid: 'office!OfficeExtension.ClientResult:class'
-        name: OfficeExtension.ClientResult
-        fullName: OfficeExtension.ClientResult
-      - name: <boolean>
-        fullName: <boolean>
-  - uid: 'onenote!OneNote.InkAnalysis:class'
-    name: OneNote.InkAnalysis
-  - uid: 'onenote!OneNote.InsertLocation:enum'
-    name: OneNote.InsertLocation
-  - uid: 'onenote!OneNote.Interfaces.PageLoadOptions:interface'
-    name: OneNote.Interfaces.PageLoadOptions
-  - uid: 'onenote!OneNote.Interfaces.PageUpdateData:interface'
-    name: Interfaces.PageUpdateData
-  - uid: 'office!OfficeExtension.UpdateOptions:interface'
-    name: OfficeExtension.UpdateOptions
-  - uid: 'onenote!OneNote.Interfaces.PageData:interface'
-    name: OneNote.Interfaces.PageData
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addOutline(left: number, top: number, html: string): OneNote.Outline;'
+    parameters:
+    - id: left
+      description: 顶部的左边位置，Outline 的左角。
+      type: number
+    - id: top
+      description: 顶部的顶层位置，Outline 的左角。
+      type: number
+    - id: html
+      description: 描述边框的可视化演示文稿的 HTML 字符串。 请参阅 OneNote 外接程序 JavaScript API [支持的 HTML](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) 。
+      type: string
+    return:
+      type: <xref uid="onenote!OneNote.Outline:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var page = context.application.getActivePage();\n\n    // Queue a command to add an outline with given html. \n    var outline = page.addOutline(200, 200,\n\"<p>Images and a table below:</p> \\\n <img src=\\\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\\\"> \\\n <img src=\\\"http://imagenes.es.sftcdn.net/es/scrn/6653000/6653659/microsoft-onenote-2013-01-535x535.png\\\"> \\\n <table> \\\n   <tr> \\\n     <td>Jill</td> \\\n     <td>Smith</td> \\\n     <td>50</td> \\\n   </tr> \\\n   <tr> \\\n     <td>Eve</td> \\\n     <td>Jackson</td> \\\n     <td>94</td> \\\n   </tr> \\\n </table>\"     \n        );\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .catch(function(error) {\n            console.log(\"Error: \" + error);\n            if (error instanceof OfficeExtension.Error) {\n                console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n            }\n        });\n});\n```"
+- name: analyzePage()
+  uid: onenote!OneNote.Page#analyzePage:member(1)
+  package: onenote!
+  fullName: analyzePage()
+  summary: >-
+    以 html 格式返回具有节点 id 和内容的 json 字符串。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'analyzePage(): OfficeExtension.ClientResult<string>;'
+    return:
+      type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;string&gt;
+      description: ''
+- name: applyTranslation(translatedContent)
+  uid: onenote!OneNote.Page#applyTranslation:member(1)
+  package: onenote!
+  fullName: applyTranslation(translatedContent)
+  summary: >-
+    插入包含已翻译内容的新页面。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'applyTranslation(translatedContent: string): void;'
+    parameters:
+    - id: translatedContent
+      description: 页面的已翻译内容
+      type: string
+    return:
+      type: void
+      description: ''
+- name: copyToSection(destinationSection)
+  uid: onenote!OneNote.Page#copyToSection:member(1)
+  package: onenote!
+  fullName: copyToSection(destinationSection)
+  summary: >-
+    将此页复制到指定的分区中。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'copyToSection(destinationSection: OneNote.Section): OneNote.Page;'
+    parameters:
+    - id: destinationSection
+      description: 要将此页复制到的分区。
+      type: <xref uid="onenote!OneNote.Section:class" />
+    return:
+      type: <xref uid="onenote!OneNote.Page:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    \n    // Gets the active notebook.\n    var notebook = app.getActiveNotebook();\n    \n    // Gets the active page.\n    var page = app.getActivePage();\n    \n    // Queue a command to load sections under the notebook.\n    notebook.load('sections');\n    \n    var newPage;\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync()\n        .then(function() {\n            var section = notebook.sections.items[0];\n            \n            // copy page to the section.\n            newPage = page.copyToSection(section);\n            newPage.load('id');\n            return ctx.sync();\n        })\n        .then(function() {\n            console.log(newPage.id);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: copyToSectionAndSetClassNotebookPageSource(destinationSection)
+  uid: onenote!OneNote.Page#copyToSectionAndSetClassNotebookPageSource:member(1)
+  package: onenote!
+  fullName: copyToSectionAndSetClassNotebookPageSource(destinationSection)
+  summary: >-
+    将此页面复制到指定分区并设置 ClassNotebookPageSource。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'copyToSectionAndSetClassNotebookPageSource(destinationSection: OneNote.Section): OneNote.Page;'
+    parameters:
+    - id: destinationSection
+      description: ''
+      type: <xref uid="onenote!OneNote.Section:class" />
+    return:
+      type: <xref uid="onenote!OneNote.Page:class" />
+      description: ''
+- name: getRestApiId()
+  uid: onenote!OneNote.Page#getRestApiId:member(1)
+  package: onenote!
+  fullName: getRestApiId()
+  summary: >-
+    获取 REST API ID。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getRestApiId(): OfficeExtension.ClientResult<string>;'
+    return:
+      type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;string&gt;
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function(ctx){\n    // Get the current page.         \n    var page = ctx.application.getActivePage();\n    var restApiId = page.getRestApiId();\n\n    return ctx.sync().\n        then(function(){\n            console.log(\"The REST API ID is \" + restApiId.value);\n            // Note that the REST API ID isn't all you need to interact with the OneNote REST API.\n            // This is only required for SharePoint notebooks. baseUrl will be null for OneDrive notebooks.\n            // For SharePoint notebooks, the notebook baseUrl should be used to talk to the OneNote REST API\n            // according to the OneNote Development Blog.\n            // https://blogs.msdn.microsoft.com/onenotedev/2015/06/11/and-sharepoint-makes-three/\n        });\n});\n```"
+- name: hasTitleContent()
+  uid: onenote!OneNote.Page#hasTitleContent:member(1)
+  package: onenote!
+  fullName: hasTitleContent()
+  summary: >-
+    页面是否包含内容标题。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'hasTitleContent(): OfficeExtension.ClientResult<boolean>;'
+    return:
+      type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;boolean&gt;
+      description: ''
+- name: insertPageAsSibling(location, title)
+  uid: onenote!OneNote.Page#insertPageAsSibling:member(1)
+  package: onenote!
+  fullName: insertPageAsSibling(location, title)
+  summary: >-
+    在当前分区之前或之后插入一个新的页面。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'insertPageAsSibling(location: OneNote.InsertLocation, title: string): OneNote.Page;'
+    parameters:
+    - id: location
+      description: 相对于当前页面的新页面的位置。
+      type: <xref uid="onenote!OneNote.InsertLocation:enum" />
+    - id: title
+      description: 新页面的标题。
+      type: string
+    return:
+      type: <xref uid="onenote!OneNote.Page:class" />
+      description: ''
+- name: insertPageAsSibling(locationString, title)
+  uid: onenote!OneNote.Page#insertPageAsSibling:member(2)
+  package: onenote!
+  fullName: insertPageAsSibling(locationString, title)
+  summary: >-
+    在当前分区之前或之后插入一个新的页面。
+
+
+    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'insertPageAsSibling(locationString: "Before" | "After", title: string): OneNote.Page;'
+    parameters:
+    - id: locationString
+      description: 相对于当前页面的新页面的位置。
+      type: "\"Before\" | \"After\""
+    - id: title
+      description: 新页面的标题。
+      type: string
+    return:
+      type: <xref uid="onenote!OneNote.Page:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var activePage = context.application.getActivePage();\n\n    // Queue a command to add a new page after the active page. \n    var newPage = activePage.insertPageAsSibling(\"After\", \"Next Page\");\n\n    // Queue a command to load the newPage to access its data.\n    context.load(newPage);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            console.log(\"page is created with title: \" + newPage.title);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(option)
+  uid: onenote!OneNote.Page#load:member(1)
+  package: onenote!
+  fullName: load(option)
+  summary: 将命令加入队列以加载对象的指定属性。 在读取属性之前，你必须调用“context.sync()”。
+  remarks: >-
+    除了此签名之外，此方法还具有以下签名：
+
+
+    `load(option?: string | string[]): OneNote.Page` -Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
+
+
+    `load(option?: { select?: string; expand?: string; }): OneNote.Page` -Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Page` -仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(option?: OneNote.Interfaces.PageLoadOptions): OneNote.Page;'
+    parameters:
+    - id: option
+      description: ''
+      type: <xref uid="onenote!OneNote.Interfaces.PageLoadOptions:interface" />
+    return:
+      type: <xref uid="onenote!OneNote.Page:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: onenote!OneNote.Page#load:member(2)
+  package: onenote!
+  fullName: load(propertyNames)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): OneNote.Page;'
+    parameters:
+    - id: propertyNames
+      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      type: string | string[]
+    return:
+      type: <xref uid="onenote!OneNote.Page:class" />
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var activePage = context.application.getActivePage();\n\n    // Queue a command to add a new page after the active page. \n    var pageContents = activePage.contents;\n\n    // Queue a command to load the pageContents to access its data.\n    context.load(pageContents);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            for(var i=0; i < pageContents.items.length; i++)\n            {\n                var pageContent = pageContents.items[i];\n                if (pageContent.type == \"Outline\")\n                {\n                    console.log(\"Found an outline\");\n                }\n                else if (pageContent.type == \"Image\")\n                {\n                    console.log(\"Found an image\");\n                }\n                else if (pageContent.type == \"Other\")\n                {\n                    console.log(\"Found a type not supported yet.\");\n                }\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function (context) {\n\n    var app = context.application;\n    \n    // Gets the active page.\n    var page = app.getActivePage();\n    \n    // Queue a command to load the webUrl of the page.\n    page.load(\"webUrl\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            console.log(page.webUrl);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function (ctx) {        \n    var app = ctx.application;\n    \n    // Gets the active page.\n    var page = app.getActivePage();\n    \n    // Load ink words\n    page.load('inkAnalysisOrNull/paragraphs/lines/words');\n    \n    return ctx.sync()\n        .then(function() {\n            if (!page.inkAnalysisOrNull.isNull)\n                console.log(page.inkAnalysisOrNull.paragraphs.length);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(propertyNamesAndPaths)
+  uid: onenote!OneNote.Page#load:member(3)
+  package: onenote!
+  fullName: load(propertyNamesAndPaths)
+  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.Page;'
+    parameters:
+    - id: propertyNamesAndPaths
+      description: 其中，propertyNamesAndPaths 是用逗号分隔的字符串，用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+      type: '{ select?: string; expand?: string; }'
+    return:
+      type: <xref uid="onenote!OneNote.Page:class" />
+      description: ''
+- name: set(properties, options)
+  uid: onenote!OneNote.Page#set:member(1)
+  package: onenote!
+  fullName: set(properties, options)
+  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+  remarks: >-
+    此方法具有以下附加签名：
+
+
+    `set(properties: OneNote.Page): void`
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Interfaces.PageUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    parameters:
+    - id: properties
+      description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
+      type: <xref uid="onenote!OneNote.Interfaces.PageUpdateData:interface" />
+    - id: options
+      description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
+      type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
+    return:
+      type: void
+      description: ''
+- name: set(properties)
+  uid: onenote!OneNote.Page#set:member(2)
+  package: onenote!
+  fullName: set(properties)
+  summary: 基于现有加载的对象同时设置该对象的多个属性。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: OneNote.Page): void;'
+    parameters:
+    - id: properties
+      description: ''
+      type: <xref uid="onenote!OneNote.Page:class" />
+    return:
+      type: void
+      description: ''
+- name: toJSON()
+  uid: onenote!OneNote.Page#toJSON:member(1)
+  package: onenote!
+  fullName: toJSON()
+  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始的 OneNote Page 对象是 API 对象，则该 `toJSON` 方法返回一个简单的 JavaScript 对象 (类型化为 `OneNote.Interfaces.PageData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): OneNote.Interfaces.PageData;'
+    return:
+      type: <xref uid="onenote!OneNote.Interfaces.PageData:interface" />
+      description: ''
+- name: track()
+  uid: onenote!OneNote.Page#track:member(1)
+  package: onenote!
+  fullName: track()
+  summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 如果你在“.sync”调用之间和按顺序执行“.run”批处理之外使用此对象，并且在对象上设置属性或调用方法时出现“InvalidObjectPath”错误，则需要在首次创建对象时为跟踪的对象集合添加对象。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'track(): OneNote.Page;'
+    return:
+      type: <xref uid="onenote!OneNote.Page:class" />
+      description: ''
+- name: untrack()
+  uid: onenote!OneNote.Page#untrack:member(1)
+  package: onenote!
+  fullName: untrack()
+  summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 context.trackedObjects.add(thisObject) 的缩写。 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在内存释放生效之前，你需要调用“context.sync()”。
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'untrack(): OneNote.Page;'
+    return:
+      type: <xref uid="onenote!OneNote.Page:class" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 09599daf0f23c55c03dec55a3d93cc9a9acb79f5
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49172063"
