@@ -1,146 +1,71 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'excel!Excel.SettableCellProperties:interface'
-    summary: |-
-      表示 setCellProperties 的输入参数。
-
-      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: Excel.SettableCellProperties
-    fullName: Excel.SettableCellProperties
-    langs:
-      - typeScript
-    type: interface
-    package: excel!
-    children:
-      - 'excel!Excel.SettableCellProperties#format:member'
-      - 'excel!Excel.SettableCellProperties#hyperlink:member'
-      - 'excel!Excel.SettableCellProperties#style:member'
-  - uid: 'excel!Excel.SettableCellProperties#format:member'
-    summary: |-
-      表示`format`属性。
-
-      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: format
-    fullName: format
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'format?: Excel.CellPropertiesFormat;'
-      return:
-        type:
-          - 'excel!Excel.CellPropertiesFormat:interface'
-  - uid: 'excel!Excel.SettableCellProperties#hyperlink:member'
-    summary: |-
-      表示`hyperlink`属性。
-
-      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: hyperlink
-    fullName: hyperlink
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'hyperlink?: Excel.RangeHyperlink;'
-      return:
-        type:
-          - 'excel!Excel.RangeHyperlink:interface'
-  - uid: 'excel!Excel.SettableCellProperties#style:member'
-    summary: |-
-      表示`style`属性。
-
-      \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: style
-    fullName: style
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'style?: string;'
-      return:
-        type:
-          - string
-        description: |-
+### YamlMime:TSType
+name: Excel.SettableCellProperties
+uid: excel!Excel.SettableCellProperties:interface
+package: excel!
+fullName: Excel.SettableCellProperties
+summary: >-
+  表示 setCellProperties 的输入参数。
 
 
-          #### <a name="examples"></a>示例
+  \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+- name: format
+  uid: excel!Excel.SettableCellProperties#format:member
+  package: excel!
+  fullName: format
+  summary: >-
+    表示`format`属性。
 
-          ```typescript
-          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/42-range/cell-properties.yaml
-          await Excel.run(async (context) => {
-              const sheet = context.workbook.worksheets.getActiveWorksheet();
 
-              // Creating the SettableCellProperties objects to use for the range.
-              // In your add-in, these should be created once, outside the function.
-              const topHeaderProps: Excel.SettableCellProperties = {
-                  // The style property takes a string matching the name of an Excel style.
-                  // Built-in style names are listed in the `BuiltInStyle` enum.
-                  // Note that a style will overwrite any formatting,
-                  // so do not use the format property with the style property.
-                  style: "Heading1"
-              };
+    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'format?: Excel.CellPropertiesFormat;'
+    return:
+      type: <xref uid="excel!Excel.CellPropertiesFormat:interface" />
+- name: hyperlink
+  uid: excel!Excel.SettableCellProperties#hyperlink:member
+  package: excel!
+  fullName: hyperlink
+  summary: >-
+    表示`hyperlink`属性。
 
-              const headerProps: Excel.SettableCellProperties = {
-                  // Any subproperties of format that are not set will not be changed when these cell properties are set.
-                  format: {
-                      fill: {
-                          color: "Blue"
-                      },
-                      font: {
-                          color: "White",
-                          bold: true
-                      }
-                  }
-              };
 
-              const nonApplicableProps: Excel.SettableCellProperties = {
-                  format: {
-                      fill: {
-                          pattern: Excel.FillPattern.gray25
-                      },
-                      font: {
-                          color: "Gray",
-                          italic: true
-                      }
-                  }
-              };
+    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'hyperlink?: Excel.RangeHyperlink;'
+    return:
+      type: <xref uid="excel!Excel.RangeHyperlink:interface" />
+- name: style
+  uid: excel!Excel.SettableCellProperties#style:member
+  package: excel!
+  fullName: style
+  summary: >-
+    表示`style`属性。
 
-              const matchupScoreProps: Excel.SettableCellProperties = {
-                  format: {
-                      borders: {
-                          bottom: {
-                              style: Excel.BorderLineStyle.continuous
-                          },
-                          left: {
-                              style: Excel.BorderLineStyle.continuous
-                          },
-                          right: {
-                              style: Excel.BorderLineStyle.continuous
-                          },
-                          top: {
-                              style: Excel.BorderLineStyle.continuous
-                          }
-                      }
-                  }
-              };
 
-              const range = sheet.getRange("A1:E5");
-
-              // You can use empty JSON objects to avoid changing a cell's properties.
-              range.setCellProperties([
-                  [topHeaderProps, {}, {}, {}, {}],
-                  [{}, {}, headerProps, headerProps, headerProps],
-                  [{}, headerProps, nonApplicableProps, matchupScoreProps, matchupScoreProps],
-                  [{}, headerProps, matchupScoreProps, nonApplicableProps, matchupScoreProps],
-                  [{}, headerProps, matchupScoreProps, matchupScoreProps, nonApplicableProps]
-              ]);
-
-              sheet.getUsedRange().format.autofitColumns();
-              await context.sync();
-          });
-          ```
-references:
-  - uid: 'excel!Excel.CellPropertiesFormat:interface'
-    name: Excel.CellPropertiesFormat
-  - uid: 'excel!Excel.RangeHyperlink:interface'
-    name: Excel.RangeHyperlink
+    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'style?: string;'
+    return:
+      type: string
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/42-range/cell-properties.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n    // Creating the SettableCellProperties objects to use for the range.\n    // In your add-in, these should be created once, outside the function.\n    const topHeaderProps: Excel.SettableCellProperties = {\n        // The style property takes a string matching the name of an Excel style.\n        // Built-in style names are listed in the `BuiltInStyle` enum.\n        // Note that a style will overwrite any formatting,\n        // so do not use the format property with the style property.\n        style: \"Heading1\"\n    };\n\n    const headerProps: Excel.SettableCellProperties = {\n        // Any subproperties of format that are not set will not be changed when these cell properties are set.\n        format: {\n            fill: {\n                color: \"Blue\"\n            },\n            font: {\n                color: \"White\",\n                bold: true\n            }\n        }\n    };\n\n    const nonApplicableProps: Excel.SettableCellProperties = {\n        format: {\n            fill: {\n                pattern: Excel.FillPattern.gray25\n            },\n            font: {\n                color: \"Gray\",\n                italic: true\n            }\n        }\n    };\n\n    const matchupScoreProps: Excel.SettableCellProperties = {\n        format: {\n            borders: {\n                bottom: {\n                    style: Excel.BorderLineStyle.continuous\n                },\n                left: {\n                    style: Excel.BorderLineStyle.continuous\n                },\n                right: {\n                    style: Excel.BorderLineStyle.continuous\n                },\n                top: {\n                    style: Excel.BorderLineStyle.continuous\n                }\n            }\n        }\n    };\n\n    const range = sheet.getRange(\"A1:E5\");\n\n    // You can use empty JSON objects to avoid changing a cell's properties.\n    range.setCellProperties([\n        [topHeaderProps, {}, {}, {}, {}],\n        [{}, {}, headerProps, headerProps, headerProps],\n        [{}, headerProps, nonApplicableProps, matchupScoreProps, matchupScoreProps],\n        [{}, headerProps, matchupScoreProps, nonApplicableProps, matchupScoreProps],\n        [{}, headerProps, matchupScoreProps, matchupScoreProps, nonApplicableProps]\n    ]);\n\n    sheet.getUsedRange().format.autofitColumns();\n    await context.sync();\n});\n```"
+metadata:
+  ms.openlocfilehash: 9f813d14a8ed9a0f3f7251a40ab8808cca69a60e
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49341861"
