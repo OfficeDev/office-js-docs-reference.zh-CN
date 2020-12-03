@@ -282,18 +282,27 @@ methods:
 
     Office.initialize = function (reason) {
         $(document).ready(function () {
-            Office.context.mailbox.addHandlerAsync(Office.EventType.ItemChanged, loadNewItem, function (result) {
-            if (result.status === Office.AsyncResultStatus.Failed) {
-                    // Handle error.
-                }
-            });
+            Office.context.mailbox.addHandlerAsync(
+                Office.EventType.ItemChanged,
+                loadNewItem,
+                function (result) {
+                    if (result.status === Office.AsyncResultStatus.Failed) {
+                        // Handle error.
+                    }
+                });
         });
     };
 
 
     function loadNewItem(eventArgs) {
-        // Load the properties of the newly selected item.
-        loadProps(Office.context.mailbox.item);
+        var item = Office.context.mailbox.item;
+
+        // Check that item is not null.
+        if (item !== null) {
+            // Work with item, e.g., define and call function that
+            // loads the properties of the newly selected item.
+            loadProps(item);
+        }
     }
 
     ```
@@ -1493,9 +1502,9 @@ methods:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: a61069874a318d95246e73bced4cc2d32f3b3453
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 119034126c9d7dd6680010b25c1a30ade74f5f10
+  ms.sourcegitcommit: a6ecbc9abca2ab5c82af4c869e3e2d72c999a4c1
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49182248"
+  ms.lasthandoff: 12/02/2020
+  ms.locfileid: "49550689"
