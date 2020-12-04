@@ -7,13 +7,13 @@ author: o365devx
 ms.author: o365devx
 ms.prod: non-product-specific
 localization_priority: Priority
-ms.date: 10/19/2020
-ms.openlocfilehash: 1bd13892aaa172d958f5e9fcbb0e63871fd2cdd7
-ms.sourcegitcommit: d5885aa1eaab2bbe8ddba2e2fdc618ac99657ef3
+ms.date: 12/01/2020
+ms.openlocfilehash: 3f57487cb210f1f11d6fdbbab2ed970e0db95344
+ms.sourcegitcommit: 551d760f6b9e7ff22afdaf6ce8e0b2863946596d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/23/2020
-ms.locfileid: "48739816"
+ms.lasthandoff: 12/04/2020
+ms.locfileid: "49570438"
 ---
 # <a name="office-add-ins-javascript-api-reference"></a>Office 加载项 JavaScript API 参考
 
@@ -30,140 +30,126 @@ ms.locfileid: "48739816"
 
 <ul class="cardsK panelContent cols cols3">
     <li>
-        <a class="card x-hidden-focus">
-            <div class="cardImageOuter">
-                <div class="cardImage">
-                    <img src="/javascript/api/overview/images/logo-excel.svg" alt="Excel add-ins" />
-                </div>
+        <div class="cardImageOuter">
+            <div class="cardImage">
+                <img src="https://docs.microsoft.com/javascript/api/overview/images/logo-excel.svg" alt="Excel add-ins" height="140" />
             </div>
-            <div class="cardText">
-                <h3>Excel API</h3>
-                <ul>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-preview">ExcelApi 预览</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-online">ExcelApiOnline 1.1</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.12">ExcelApi 1.12</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.11">ExcelApi 1.11</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.10">ExcelApi 1.10</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.9">ExcelApi 1.9</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.8">ExcelApi 1.8</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.7">ExcelApi 1.7</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.6">ExcelApi 1.6</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.5">ExcelApi 1.5</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.4">ExcelApi 1.4</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.3">ExcelApi 1.3</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.2">ExcelApi 1.2</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.1">ExcelApi 1.1</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/office?view=excel-js-preview">通用 API</a></li>
-                </ul>
-            </div>
-        </a>
+        </div>
+        <div class="cardText">
+            <h3>Excel API</h3>
+            <ul>
+                <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-preview">ExcelApi 预览</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-online">ExcelApiOnline 1.1</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.12">ExcelApi 1.12</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.11">ExcelApi 1.11</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.10">ExcelApi 1.10</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.9">ExcelApi 1.9</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.8">ExcelApi 1.8</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.7">ExcelApi 1.7</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.6">ExcelApi 1.6</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.5">ExcelApi 1.5</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.4">ExcelApi 1.4</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.3">ExcelApi 1.3</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.2">ExcelApi 1.2</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.1">ExcelApi 1.1</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/office?view=excel-js-preview">通用 API</a></li>
+            </ul>
+        </div>
     </li>
     <li>
-        <a class="card x-hidden-focus">
-            <div class="cardImageOuter">
-                <div class="cardImage">
-                    <img src="/javascript/api/overview/images/logo-outlook.svg" alt="Outlook add-ins" />
-                </div>
+        <div class="cardImageOuter">
+            <div class="cardImage">
+                <img src="https://docs.microsoft.com/javascript/api/overview/images/logo-outlook.svg" alt="Outlook add-ins" height="140" />
             </div>
-            <div class="cardText">
-                <h3>Outlook API</h3>
-                <ul>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-preview">邮箱预览</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.9">Mailbox 1.9</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.8">Mailbox 1.8</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.7">Mailbox 1.7</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.6">Mailbox 1.6</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.5">Mailbox 1.5</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.4">Mailbox 1.4</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.3">Mailbox 1.3</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.2">Mailbox 1.2</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.1">Mailbox 1.1</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/office?view=outlook-js-preview">通用 API</a></li>
-                </ul>
-            </div>
-        </a>
+        </div>
+        <div class="cardText">
+            <h3>Outlook API</h3>
+            <ul>
+                <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-preview">邮箱预览</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.9">Mailbox 1.9</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.8">Mailbox 1.8</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.7">Mailbox 1.7</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.6">Mailbox 1.6</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.5">Mailbox 1.5</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.4">Mailbox 1.4</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.3">Mailbox 1.3</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.2">Mailbox 1.2</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.1">Mailbox 1.1</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/office?view=outlook-js-preview">通用 API</a></li>
+            </ul>
+        </div>
     </li>
     <li>
-        <a class="card x-hidden-focus">
-            <div class="cardImageOuter">
-                <div class="cardImage">
-                    <img src="/javascript/api/overview/images/logo-word.svg" alt="Word add-ins" />
-                </div>
+        <div class="cardImageOuter">
+            <div class="cardImage">
+                <img src="https://docs.microsoft.com/javascript/api/overview/images/logo-word.svg" alt="Word add-ins" height="140" />
             </div>
-            <div class="cardText">
-                <h3>Word API</h3>
-                <ul>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/word?view=word-js-preview">WordApi 预览</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/word?view=word-js-1.3">WordApi 1.3</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/word?view=word-js-1.2">WordApi 1.2</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/word?view=word-js-1.1">WordApi 1.1</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/office?view=word-js-preview">通用 API</a></li>
-                </ul>
-            </div>
-        </a>
+        </div>
+        <div class="cardText">
+            <h3>Word API</h3>
+            <ul>
+                <li><a style="font-size: 1rem;" href="/javascript/api/word?view=word-js-preview">WordApi 预览</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/word?view=word-js-1.3">WordApi 1.3</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/word?view=word-js-1.2">WordApi 1.2</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/word?view=word-js-1.1">WordApi 1.1</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/office?view=word-js-preview">通用 API</a></li>
+            </ul>
+        </div>
     </li>
     <li>
-        <a class="card x-hidden-focus">
-            <div class="cardImageOuter">
-                <div class="cardImage">
-                    <img src="/javascript/api/overview/images/logo-onenote.svg" alt="OneNote add-ins" />
-                </div>
+        <div class="cardImageOuter">
+            <div class="cardImage">
+                <img src="https://docs.microsoft.com/javascript/api/overview/images/logo-onenote.svg" alt="OneNote add-ins" height="140" />
             </div>
-            <div class="cardText">
-                <h3>OneNote API</h3>
-                <ul>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/onenote?view=onenote-js-1.1">OneNoteApi 1.1</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/office?view=onenote-js-1.1">通用 API</a></li>
-                </ul>
-            </div>
-        </a>
+        </div>
+        <div class="cardText">
+            <h3>OneNote API</h3>
+            <ul>
+                <li><a style="font-size: 1rem;" href="/javascript/api/onenote?view=onenote-js-1.1">OneNoteApi 1.1</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/office?view=onenote-js-1.1">通用 API</a></li>
+            </ul>
+        </div>
     </li>
     <li>
-        <a class="card x-hidden-focus">
-            <div class="cardImageOuter">
-                <div class="cardImage">
-                    <img src="/javascript/api/overview/images/logo-visio.svg" alt="Visio add-ins" />
-                </div>
+        <div class="cardImageOuter">
+            <div class="cardImage">
+                <img src="https://docs.microsoft.com/javascript/api/overview/images/logo-visio.svg" alt="Visio add-ins" height="140" />
             </div>
-            <div class="cardText">
-                <h3>Visio API</h3>
-                <ul>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/visio?view=visio-js-1.1">VisioApi 1.1</a></li>
-                </ul>
-            </div>
-        </a>
+        </div>
+        <div class="cardText">
+            <h3>Visio API</h3>
+            <ul>
+                <li><a style="font-size: 1rem;" href="/javascript/api/visio?view=visio-js-1.1">VisioApi 1.1</a></li>
+            </ul>
+        </div>
     </li>
     <li>
-        <a class="card x-hidden-focus">
-            <div class="cardImageOuter">
-                <div class="cardImage">
-                    <img src="/javascript/api/overview/images/logo-powerpoint.svg" alt="PowerPoint add-ins" />
-                </div>
+        <div class="cardImageOuter">
+            <div class="cardImage">
+                <img src="https://docs.microsoft.com/javascript/api/overview/images/logo-powerpoint.svg" alt="PowerPoint add-ins" height="140" />
             </div>
-            <div class="cardText">
-                <h3>PowerPoint API</h3>
-                <ul>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/powerpoint?view=powerpoint-js-preview">PowerPointApi 预览版</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/powerpoint?view=powerpoint-js-1.1">PowerPointApi 1.1</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/office?view=powerpoint-js-preview">通用 API</a></li>
-                </ul>
-            </div>
-        </a>
+        </div>
+        <div class="cardText">
+            <h3>PowerPoint API</h3>
+            <ul>
+                <li><a style="font-size: 1rem;" href="/javascript/api/powerpoint?view=powerpoint-js-preview">PowerPointApi 预览版</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/powerpoint?view=powerpoint-js-1.1">PowerPointApi 1.1</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/office?view=powerpoint-js-preview">通用 API</a></li>
+            </ul>
+        </div>
     </li>
     <li>
-        <a class="card x-hidden-focus">
-            <div class="cardImageOuter">
-                <div class="cardImage">
-                    <img src="/javascript/api/overview/images/logo-project.svg" alt="Project add-ins" />
-                </div>
+        <div class="cardImageOuter">
+            <div class="cardImage">
+                <img src="https://docs.microsoft.com/javascript/api/overview/images/logo-project.svg" alt="Project add-ins" height="140" />
             </div>
-            <div class="cardText">
-                <h3>Project API</h3>
-                <ul>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/office?view=common-js">仅限通用 API</a></li>
-                </ul>
-            </div>
-        </a>
+        </div>
+        <div class="cardText">
+            <h3>Project API</h3>
+            <ul>
+                <li><a style="font-size: 1rem;" href="/javascript/api/office?view=common-js">仅限通用 API</a></li>
+            </ul>
+        </div>
     </li>
 </ul>
 
