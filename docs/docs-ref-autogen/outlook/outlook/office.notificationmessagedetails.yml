@@ -7,7 +7,7 @@ summary: >-
   `NotificationMessageDetails` 对象的数组由 `NotificationMessages.getAllAsync` 方法返回。
 
 
-  \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  \[[API 集：Mailbox 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
 remarks: >-
   **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -22,11 +22,14 @@ properties:
   package: outlook!
   fullName: actions
   summary: >-
-    指定邮件的操作。 限制：1个操作。 此限制不会计算默认情况下包含的 "消除" 操作。 仅当类型为时才适用 `InsightMessage`<!-- -->. 为不受支持的类型指定此属性或包含过多的操作将引发错误。
+    指定邮件的操作。 限制：1 个操作。 此限制不计入默认包含的"消除"操作。 仅在类型为 `InsightMessage`<!-- -->. 为不支持的类型指定此属性或包括过多操作会引发错误。
+
+
+    **重要** 提示：在新式 Outlook 网页中， `actions` 该属性仅在撰写模式下可用。
 
 
     \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: '**[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写'
+  remarks: '**[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读'
   isPreview: true
   isDeprecated: false
   syntax:
@@ -38,10 +41,10 @@ properties:
   package: outlook!
   fullName: icon
   summary: >-
-    对在清单的 `Resources` 部分中定义的图标的引用。 它将显示在信息栏区域。 仅当类型为时，才适用 `InformationalMessage`<!-- -->. 为不受支持的类型指定此参数将导致异常。
+    对在清单的 `Resources` 部分中定义的图标的引用。 它将显示在信息栏区域。 仅在类型为 `InformationalMessage`<!-- -->. 为不受支持的类型指定此参数将导致异常。
 
 
-    **注意**：目前，自定义图标仅显示在 Windows 上的 Outlook 中，而不是在其他客户端上显示 (例如，Mac、web 浏览器) 。
+    **注意**：目前，自定义图标仅在 Windows 上的 Outlook 中显示，而不是显示在其他客户端上 (例如 Mac、Web 浏览器) 。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -77,7 +80,7 @@ properties:
   uid: outlook!Office.NotificationMessageDetails#persistent:member
   package: outlook!
   fullName: persistent
-  summary: 指定邮件是否应为永久性。 仅当类型为时适用 `InformationalMessage`<!-- -->. 如果为 true，则邮件将一直保留到此加载项删除或由用户解除。 如果为 false，则当用户导航到其他项目时将其删除。 对于错误通知，邮件将一直保留，直到用户看过一次。 为不受支持的类型指定此参数将引发异常。
+  summary: 指定邮件是否应永久。 仅在类型适用时适用 `InformationalMessage`<!-- -->. 如果为 true，则邮件将一直保留，直到此加载项删除或用户将其消除。 如果为 false，则当用户导航到其他项目时，将将其删除。 对于错误通知，邮件将一直保留，直到用户看过一次。 为不受支持的类型指定此参数将引发异常。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -90,13 +93,13 @@ properties:
   package: outlook!
   fullName: type
   summary: >-
-    指定 `ItemNotificationMessageType` 邮件。
+    指定邮件 `ItemNotificationMessageType` 。
 
 
-    如果 type 为 `ProgressIndicator` 或 `ErrorMessage`<!-- -->，将自动提供图标，并且邮件不是永久性的。 因此，图标和持久性的属性对于这些类型的邮件都是无效的。 包括它们将导致 `ArgumentException`<!-- -->.
+    如果类型为 `ProgressIndicator` 或 `ErrorMessage`<!-- -->，则会自动提供图标，并且消息不是永久性的。 因此，图标和持久性的属性对于这些类型的邮件都是无效的。 包括它们将导致 `ArgumentException`<!-- -->.
 
 
-    如果 type 为 `ProgressIndicator`<!-- -->，开发人员应在操作完成时删除或替换进度指示器。
+    如果类型为 `ProgressIndicator`<!-- -->，开发人员应在操作完成时删除或替换进度指示器。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -105,9 +108,9 @@ properties:
     return:
       type: <xref uid="outlook!Office.MailboxEnums.ItemNotificationMessageType:enum" /> | string
 metadata:
-  ms.openlocfilehash: 627ec1652fa0c7e86bda54aaaf846cbc5efc612d
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: c154e5b6a9a4be70bec6fd805121617648296bae
+  ms.sourcegitcommit: 6702d1aafaf1d8114bcf5e5eeb5d7833c108d56a
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49329283"
+  ms.lasthandoff: 12/10/2020
+  ms.locfileid: "49623291"
