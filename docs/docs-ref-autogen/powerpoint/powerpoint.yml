@@ -27,10 +27,10 @@ functions:
   uid: powerpoint!PowerPoint.createPresentation:function(1)
   package: powerpoint!
   summary: >-
-    创建并打开一个新的演示文稿。 （可选）可以使用 base64 编码的 .pptx 文件预填充演示文稿。
+    创建并打开一个新演示文稿。 （可选）可以使用 base64 编码的 .pptx 文件预填充演示文稿。
 
 
-    \[[API 集： PowerPointApi 1.1](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
+    \[[API 集：PowerPointApi 1.1](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -38,7 +38,7 @@ functions:
     content: 'export function createPresentation(base64File?: string): Promise<void>;'
     parameters:
     - id: base64File
-      description: 可选。 Base64 编码的 .pptx 文件。 默认值为 null。
+      description: 可选。 base64 编码的 .pptx 文件。 默认值为 null。
       type: string
     return:
       type: Promise&lt;void&gt;
@@ -46,7 +46,7 @@ functions:
 - name: PowerPoint.run(batch)
   uid: powerpoint!PowerPoint.run:function(1)
   package: powerpoint!
-  summary: 使用新的 RequestContext 执行对 PowerPoint 对象模型执行操作的批处理脚本。 解决承诺时，将释放在执行期间自动分配的任何已跟踪对象。
+  summary: 使用新的 RequestContext 执行对 PowerPoint 对象模型执行动作的批处理脚本。 当承诺得到解析时，在执行期间自动分配的任何跟踪对象都将释放。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -54,15 +54,15 @@ functions:
     content: 'export function run<T>(batch: (context: PowerPoint.RequestContext) => OfficeExtension.IPromise<T>): OfficeExtension.IPromise<T>;'
     parameters:
     - id: batch
-      description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 PowerPoint 应用程序的请求。 由于 Office 加载项和 PowerPoint 应用程序在两个不同的进程中运行，因此需要 RequestContext 才能从外接程序获取对 PowerPoint 对象模型的访问权限。'
-      type: '(context: <xref uid="powerpoint!PowerPoint.RequestContext:class" />) =&gt; <xref uid="powerpoint!OfficeExtension.IPromise:type" />&lt;T&gt;'
+      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数可促进对 PowerPoint 应用程序的请求。 由于 Office 加载项和 PowerPoint 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 PowerPoint 对象模型。
+      type: '(context: <xref uid="powerpoint!PowerPoint.RequestContext:class" />) =&gt; <xref uid="office!OfficeExtension.IPromise:type" />&lt;T&gt;'
     return:
-      type: <xref uid="powerpoint!OfficeExtension.IPromise:type" />&lt;T&gt;
+      type: <xref uid="office!OfficeExtension.IPromise:type" />&lt;T&gt;
       description: ''
 - name: PowerPoint.run(object, batch)
   uid: powerpoint!PowerPoint.run:function(2)
   package: powerpoint!
-  summary: 使用以前创建的 API 对象的 RequestContext，执行对 PowerPoint 对象模型执行操作的批处理脚本。 解决承诺时，将释放在执行期间自动分配的任何已跟踪对象。
+  summary: 使用以前创建的 API 对象的 RequestContext 执行对 PowerPoint 对象模型执行动作的批处理脚本。 当承诺得到解析时，在执行期间自动分配的任何跟踪对象都将释放。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -70,18 +70,18 @@ functions:
     content: 'export function run<T>(object: OfficeExtension.ClientObject, batch: (context: PowerPoint.RequestContext) => OfficeExtension.IPromise<T>): OfficeExtension.IPromise<T>;'
     parameters:
     - id: object
-      description: '以前创建的 API 对象。 批处理将使用与传入的对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由 "context. sync ( # A1" 选取。'
-      type: <xref uid="powerpoint!OfficeExtension.ClientObject:class" />
+      description: 以前创建的 API 对象。 批处理将使用与传入对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由"context.sync () "选取。
+      type: <xref uid="office!OfficeExtension.ClientObject:class" />
     - id: batch
-      description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 PowerPoint 应用程序的请求。 由于 Office 加载项和 PowerPoint 应用程序在两个不同的进程中运行，因此需要 RequestContext 才能从外接程序获取对 PowerPoint 对象模型的访问权限。'
-      type: '(context: <xref uid="powerpoint!PowerPoint.RequestContext:class" />) =&gt; <xref uid="powerpoint!OfficeExtension.IPromise:type" />&lt;T&gt;'
+      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数可促进对 PowerPoint 应用程序的请求。 由于 Office 加载项和 PowerPoint 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 PowerPoint 对象模型。
+      type: '(context: <xref uid="powerpoint!PowerPoint.RequestContext:class" />) =&gt; <xref uid="office!OfficeExtension.IPromise:type" />&lt;T&gt;'
     return:
-      type: <xref uid="powerpoint!OfficeExtension.IPromise:type" />&lt;T&gt;
+      type: <xref uid="office!OfficeExtension.IPromise:type" />&lt;T&gt;
       description: ''
 - name: PowerPoint.run(objects, batch)
   uid: powerpoint!PowerPoint.run:function(3)
   package: powerpoint!
-  summary: 使用以前创建的 API 对象的 RequestContext，执行对 PowerPoint 对象模型执行操作的批处理脚本。
+  summary: 使用以前创建的 API 对象的 RequestContext 执行对 PowerPoint 对象模型执行动作的批处理脚本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -89,18 +89,18 @@ functions:
     content: 'export function run<T>(objects: OfficeExtension.ClientObject[], batch: (context: PowerPoint.RequestContext) => OfficeExtension.IPromise<T>): OfficeExtension.IPromise<T>;'
     parameters:
     - id: objects
-      description: '以前创建的 API 对象的数组。 将验证该数组，以确保所有对象都共享相同的上下文。 批处理将使用此共享 RequestContext，这意味着，应用于这些对象的任何更改都将由 "context. sync ( # A1" 选取。'
-      type: <xref uid="powerpoint!OfficeExtension.ClientObject:class" />[]
+      description: 以前创建的 API 对象数组。 将验证数组以确保所有对象共享同一上下文。 批处理将使用此共享 RequestContext，这意味着应用到这些对象的任何更改都将由"context.sync () "选取。
+      type: <xref uid="office!OfficeExtension.ClientObject:class" />[]
     - id: batch
-      description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 PowerPoint 应用程序的请求。 由于 Office 加载项和 PowerPoint 应用程序在两个不同的进程中运行，因此需要 RequestContext 才能从外接程序获取对 PowerPoint 对象模型的访问权限。'
-      type: '(context: <xref uid="powerpoint!PowerPoint.RequestContext:class" />) =&gt; <xref uid="powerpoint!OfficeExtension.IPromise:type" />&lt;T&gt;'
+      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数可促进对 PowerPoint 应用程序的请求。 由于 Office 加载项和 PowerPoint 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 PowerPoint 对象模型。
+      type: '(context: <xref uid="powerpoint!PowerPoint.RequestContext:class" />) =&gt; <xref uid="office!OfficeExtension.IPromise:type" />&lt;T&gt;'
     return:
-      type: <xref uid="powerpoint!OfficeExtension.IPromise:type" />&lt;T&gt;
+      type: <xref uid="office!OfficeExtension.IPromise:type" />&lt;T&gt;
       description: ''
 metadata:
-  ms.openlocfilehash: 41cca1bab51d7c857741e91ca78813226481e986
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 0700c655698446028a80c15e5e6c7a1d8a728c72
+  ms.sourcegitcommit: 1f0f9464639feee4f4751fda7c2a14aa0d2f8967
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49182178"
+  ms.lasthandoff: 12/12/2020
+  ms.locfileid: "49663768"
