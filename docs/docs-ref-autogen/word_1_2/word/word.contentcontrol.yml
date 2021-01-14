@@ -241,7 +241,7 @@ properties:
   package: word!
   fullName: tag
   summary: >-
-    获取或设置一个标记，用于标识内容控件。
+    获取或设置用于标识内容控件的标记。
 
 
     \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
@@ -252,7 +252,7 @@ properties:
     content: 'tag: string;'
     return:
       type: string
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/word/10-content-controls/insert-and-change-content-controls.yaml\n// Traverses each paragraph of the document and wraps a content control on each with either a even or odd tags.\nawait Word.run(async (context) => {\n  let paragraphs = context.document.body.paragraphs;\n  paragraphs.load(\"$none\"); // Don't need any properties; just wrap each paragraph with a content control.\n\n  await context.sync();\n\n  for (let i = 0; i < paragraphs.items.length; i++) {\n    let contentControl = paragraphs.items[i].insertContentControl();\n    // For even, tag \"even\".\n    if (i % 2 === 0) {\n      contentControl.tag = \"even\";\n    } else {\n      contentControl.tag = \"odd\";\n    }\n  }\n  console.log(\"Content controls inserted: \" + paragraphs.items.length);\n\n  await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/10-content-controls/insert-and-change-content-controls.yaml\n// Traverses each paragraph of the document and wraps a content control on each with either a even or odd tags.\nawait Word.run(async (context) => {\n  let paragraphs = context.document.body.paragraphs;\n  paragraphs.load(\"$none\"); // Don't need any properties; just wrap each paragraph with a content control.\n\n  await context.sync();\n\n  for (let i = 0; i < paragraphs.items.length; i++) {\n    let contentControl = paragraphs.items[i].insertContentControl();\n    // For even, tag \"even\".\n    if (i % 2 === 0) {\n      contentControl.tag = \"even\";\n    } else {\n      contentControl.tag = \"odd\";\n    }\n  }\n  console.log(\"Content controls inserted: \" + paragraphs.items.length);\n\n  await context.sync();\n});\n```"
 - name: text
   uid: word!Word.ContentControl#text:member
   package: word!
@@ -390,10 +390,10 @@ methods:
     content: 'insertBreak(breakType: Word.BreakType, insertLocation: Word.InsertLocation): void;'
     parameters:
     - id: breakType
-      description: 必填。 中断的类型。
+      description: 必需。 中断的类型。
       type: <xref uid="word!Word.BreakType:enum" />
     - id: insertLocation
-      description: 必填。 值可以是"Start"、"End"、"Before"或"After"。
+      description: 必需。 值可以是"Start"、"End"、"Before"或"After"。
       type: <xref uid="word!Word.InsertLocation:enum" />
     return:
       type: void
@@ -414,10 +414,10 @@ methods:
     content: 'insertBreak(breakTypeString: "Page" | "Next" | "SectionNext" | "SectionContinuous" | "SectionEven" | "SectionOdd" | "Line", insertLocation: "Before" | "After" | "Start" | "End" | "Replace"): void;'
     parameters:
     - id: breakTypeString
-      description: 必填。 中断的类型。
+      description: 必需。 中断的类型。
       type: "\"Page\" | \"Next\" | \"SectionNext\" | \"SectionContinuous\" | \"SectionEven\" | \"SectionOdd\" | \"Line\""
     - id: insertLocation
-      description: 必填。 值可以是"Start"、"End"、"Before"或"After"。
+      description: 必需。 值可以是"Start"、"End"、"Before"或"After"。
       type: "\"Before\" | \"After\" | \"Start\" | \"End\" | \"Replace\""
     return:
       type: void
@@ -438,7 +438,7 @@ methods:
     content: 'insertFileFromBase64(base64File: string, insertLocation: Word.InsertLocation): Word.Range;'
     parameters:
     - id: base64File
-      description: 必填。 .docx 文件的 base64 编码内容。
+      description: 必需。 .docx 文件的 base64 编码内容。
       type: string
     - id: insertLocation
       description: 必需。 此值可以为“Replace”、“Start”或“End”。 "Replace"不能与"RichTextTable"和"RichTextTableRow"内容控件一同使用。
@@ -462,7 +462,7 @@ methods:
     content: 'insertFileFromBase64(base64File: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
     parameters:
     - id: base64File
-      description: 必填。 .docx 文件的 base64 编码内容。
+      description: 必需。 .docx 文件的 base64 编码内容。
       type: string
     - id: insertLocationString
       description: 必需。 此值可以为“Replace”、“Start”或“End”。 "Replace"不能与"RichTextTable"和"RichTextTableRow"内容控件一同使用。
@@ -582,7 +582,7 @@ methods:
     content: 'insertOoxml(ooxml: string, insertLocation: Word.InsertLocation): Word.Range;'
     parameters:
     - id: ooxml
-      description: 必填。 要插入到内容控件中的 OOXML。
+      description: 必需。 要插入到内容控件中的 OOXML。
       type: string
     - id: insertLocation
       description: 必需。 此值可以为“Replace”、“Start”或“End”。 "Replace"不能与"RichTextTable"和"RichTextTableRow"内容控件一同使用。
@@ -606,7 +606,7 @@ methods:
     content: 'insertOoxml(ooxml: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
     parameters:
     - id: ooxml
-      description: 必填。 要插入到内容控件中的 OOXML。
+      description: 必需。 要插入到内容控件中的 OOXML。
       type: string
     - id: insertLocationString
       description: 必需。 此值可以为“Replace”、“Start”或“End”。 "Replace"不能与"RichTextTable"和"RichTextTableRow"内容控件一同使用。
@@ -633,7 +633,7 @@ methods:
       description: 必需。 要插入的段落文本。
       type: string
     - id: insertLocation
-      description: 必填。 值可以是"Start"、"End"、"Before"或"After"。 "Before"和"After"不能与"RichTextTable"、"RichTextTableRow"和"RichTextTableCell"内容控件一同使用。
+      description: 必需。 值可以是"Start"、"End"、"Before"或"After"。 "Before"和"After"不能与"RichTextTable"、"RichTextTableRow"和"RichTextTableCell"内容控件一同使用。
       type: <xref uid="word!Word.InsertLocation:enum" />
     return:
       type: <xref uid="word!Word.Paragraph:class" />
@@ -657,7 +657,7 @@ methods:
       description: 必需。 要插入的段落文本。
       type: string
     - id: insertLocationString
-      description: 必填。 值可以是"Start"、"End"、"Before"或"After"。 "Before"和"After"不能与"RichTextTable"、"RichTextTableRow"和"RichTextTableCell"内容控件一同使用。
+      description: 必需。 值可以是"Start"、"End"、"Before"或"After"。 "Before"和"After"不能与"RichTextTable"、"RichTextTableRow"和"RichTextTableCell"内容控件一同使用。
       type: "\"Before\" | \"After\" | \"Start\" | \"End\" | \"Replace\""
     return:
       type: <xref uid="word!Word.Paragraph:class" />
@@ -870,7 +870,7 @@ methods:
 
     ```typescript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/word/10-content-controls/insert-and-change-content-controls.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/10-content-controls/insert-and-change-content-controls.yaml
 
     // Adds title and colors to odd and even content controls and changes their appearance.
 
@@ -979,9 +979,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 002b0b811772f200d788c74b153178c8d9767c75
-  ms.sourcegitcommit: 6702d1aafaf1d8114bcf5e5eeb5d7833c108d56a
+  ms.openlocfilehash: 336d39cde453bd19622c839713d75bb38dbe4117
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 12/10/2020
-  ms.locfileid: "49623452"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49855524"
