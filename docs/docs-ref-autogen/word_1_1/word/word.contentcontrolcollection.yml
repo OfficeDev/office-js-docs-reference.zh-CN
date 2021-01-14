@@ -4,10 +4,10 @@ uid: word!Word.ContentControlCollection:class
 package: word!
 fullName: Word.ContentControlCollection
 summary: >-
-  包含 [ContentControl](xref:word!Word.ContentControl:class) 对象的集合。 内容控件是文档中绑定的、有可能添加标签的区域，它们充当特定类型的内容的容器。 单个内容控件可能包含诸如图片、表或格式化文本段落等内容。 当前仅支持富文本内容控件。
+  包含 [Word.ContentControl 对象](xref:word!Word.ContentControl:class) 的集合。 内容控件是文档中绑定的、有可能添加标签的区域，它们充当特定类型的内容的容器。 单个内容控件可能包含诸如图片、表或格式化文本段落等内容。 当前仅支持富文本内容控件。
 
 
-  \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: word!Word.ContentControlCollection#context:member
   package: word!
   fullName: context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  summary: 与对象关联的请求上下文。 这会将外接程序的进程连接到 Office 主机应用程序的进程。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -43,10 +43,10 @@ methods:
   package: word!
   fullName: getById(id)
   summary: >-
-    按其标识符获取内容控件。 如果此集合中没有带有标识符的内容控件，则会引发错误。
+    按其标识符获取内容控件。 如果此集合中不存在包含标识符的内容控件，则引发错误。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -67,7 +67,7 @@ methods:
     获取具有指定标记的内容控件。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -79,7 +79,7 @@ methods:
       type: string
     return:
       type: <xref uid="word!Word.ContentControlCollection:class" />
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/word/90-scenarios/doc-assembly.yaml\nawait Word.run(async (context) => {\n    let contentControls = context.document.contentControls.getByTag(\"customer\");\n    contentControls.load(\"text\");\n\n    await context.sync();\n\n    for (let i = 0; i < contentControls.items.length; i++) {\n      contentControls.items[i].insertText(\"Fabrikam\", \"Replace\");\n    }\n\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/90-scenarios/doc-assembly.yaml\nawait Word.run(async (context) => {\n    let contentControls = context.document.contentControls.getByTag(\"customer\");\n    contentControls.load(\"text\");\n\n    await context.sync();\n\n    for (let i = 0; i < contentControls.items.length; i++) {\n      contentControls.items[i].insertText(\"Fabrikam\", \"Replace\");\n    }\n\n    await context.sync();\n});\n```"
 - name: getByTitle(title)
   uid: word!Word.ContentControlCollection#getByTitle:member(1)
   package: word!
@@ -88,7 +88,7 @@ methods:
     获取具有指定标题的内容控件。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -106,10 +106,10 @@ methods:
   package: word!
   fullName: getItem(index)
   summary: >-
-    按其在集合中的索引获取内容控件。
+    按内容控件在集合中的索引获取内容控件。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -151,7 +151,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Word.ContentControlCollection;'
     parameters:
     - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="word!Word.ContentControlCollection:class" />
@@ -168,7 +168,7 @@ methods:
     content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Word.ContentControlCollection;'
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，它是一个以逗号分隔的字符串，用于指定要加载的 `propertyNamesAndPaths.expand` 导航属性。'
       type: <xref uid="office!OfficeExtension.LoadOption:interface" />
     return:
       type: <xref uid="word!Word.ContentControlCollection:class" />
@@ -177,7 +177,7 @@ methods:
   uid: word!Word.ContentControlCollection#toJSON:member(1)
   package: word!
   fullName: toJSON()
-  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始 `Word.ContentControlCollection` 对象是 API 对象，则该 `toJSON` 方法返回一个纯 JavaScript 对象 (类型为 `Word.Interfaces.ContentControlCollectionData`<!-- -->包含集合项中任何已加载属性的浅表的 "items" 数组 ) 。
+  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `Word.ContentControlCollection` `toJSON` JavaScript 对象 `Word.Interfaces.ContentControlCollectionData`<!-- -->) 包含"items"数组，其中包含集合项中任何已加载属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -190,7 +190,7 @@ methods:
   uid: word!Word.ContentControlCollection#track:member(1)
   package: word!
   fullName: track()
-  summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是的简写 `context.trackedObjects.add(thisObject)`<!-- -->. 如果要在多个调用中使用此对象 `.sync` ，并在 "运行" 批处理的顺序执行之外使用此对象，并在设置属性或对对象调用方法时获取 "InvalidObjectPath" 错误，则需要在首次创建对象时将该对象添加到跟踪的对象集合中。
+  summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 `context.trackedObjects.add(thisObject)`<!-- -->. 如果在调用期间和顺序执行".run"批处理之外使用此对象，如果在对象上设置属性或调用方法时收到"InvalidObjectPath"错误，则首次创建对象时，需要将该对象添加到跟踪的对象集合中。 `.sync`
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -203,7 +203,7 @@ methods:
   uid: word!Word.ContentControlCollection#untrack:member(1)
   package: word!
   fullName: untrack()
-  summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是的简写 `context.trackedObjects.remove(thisObject)`<!-- -->. 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在 `context.sync()` 内存释放生效之前，您需要调用该过程。
+  summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 `context.trackedObjects.remove(thisObject)`<!-- -->. 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 你需要在内存释放 `context.sync()` 生效之前调用。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -214,9 +214,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 51eb07f2f99accd14832bae6756c16c44eb0bc1f
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 8140616e9e60e6e2a89c081747906527063f080a
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49263384"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49859871"

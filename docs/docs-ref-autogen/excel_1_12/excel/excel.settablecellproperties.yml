@@ -7,7 +7,7 @@ summary: >-
   表示 setCellProperties 的输入参数。
 
 
-  \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -21,7 +21,7 @@ properties:
     表示`format`属性。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -37,7 +37,7 @@ properties:
     表示`hyperlink`属性。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -53,7 +53,7 @@ properties:
     表示`style`属性。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -61,11 +61,11 @@ properties:
     content: 'style?: string;'
     return:
       type: string
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/42-range/cell-properties.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n    // Creating the SettableCellProperties objects to use for the range.\n    // In your add-in, these should be created once, outside the function.\n    const topHeaderProps: Excel.SettableCellProperties = {\n        // The style property takes a string matching the name of an Excel style.\n        // Built-in style names are listed in the `BuiltInStyle` enum.\n        // Note that a style will overwrite any formatting,\n        // so do not use the format property with the style property.\n        style: \"Heading1\"\n    };\n\n    const headerProps: Excel.SettableCellProperties = {\n        // Any subproperties of format that are not set will not be changed when these cell properties are set.\n        format: {\n            fill: {\n                color: \"Blue\"\n            },\n            font: {\n                color: \"White\",\n                bold: true\n            }\n        }\n    };\n\n    const nonApplicableProps: Excel.SettableCellProperties = {\n        format: {\n            fill: {\n                pattern: Excel.FillPattern.gray25\n            },\n            font: {\n                color: \"Gray\",\n                italic: true\n            }\n        }\n    };\n\n    const matchupScoreProps: Excel.SettableCellProperties = {\n        format: {\n            borders: {\n                bottom: {\n                    style: Excel.BorderLineStyle.continuous\n                },\n                left: {\n                    style: Excel.BorderLineStyle.continuous\n                },\n                right: {\n                    style: Excel.BorderLineStyle.continuous\n                },\n                top: {\n                    style: Excel.BorderLineStyle.continuous\n                }\n            }\n        }\n    };\n\n    const range = sheet.getRange(\"A1:E5\");\n\n    // You can use empty JSON objects to avoid changing a cell's properties.\n    range.setCellProperties([\n        [topHeaderProps, {}, {}, {}, {}],\n        [{}, {}, headerProps, headerProps, headerProps],\n        [{}, headerProps, nonApplicableProps, matchupScoreProps, matchupScoreProps],\n        [{}, headerProps, matchupScoreProps, nonApplicableProps, matchupScoreProps],\n        [{}, headerProps, matchupScoreProps, matchupScoreProps, nonApplicableProps]\n    ]);\n\n    sheet.getUsedRange().format.autofitColumns();\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/42-range/cell-properties.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n    // Creating the SettableCellProperties objects to use for the range.\n    // In your add-in, these should be created once, outside the function.\n    const topHeaderProps: Excel.SettableCellProperties = {\n        // The style property takes a string matching the name of an Excel style.\n        // Built-in style names are listed in the `BuiltInStyle` enum.\n        // Note that a style will overwrite any formatting,\n        // so do not use the format property with the style property.\n        style: \"Heading1\"\n    };\n\n    const headerProps: Excel.SettableCellProperties = {\n        // Any subproperties of format that are not set will not be changed when these cell properties are set.\n        format: {\n            fill: {\n                color: \"Blue\"\n            },\n            font: {\n                color: \"White\",\n                bold: true\n            }\n        }\n    };\n\n    const nonApplicableProps: Excel.SettableCellProperties = {\n        format: {\n            fill: {\n                pattern: Excel.FillPattern.gray25\n            },\n            font: {\n                color: \"Gray\",\n                italic: true\n            }\n        }\n    };\n\n    const matchupScoreProps: Excel.SettableCellProperties = {\n        format: {\n            borders: {\n                bottom: {\n                    style: Excel.BorderLineStyle.continuous\n                },\n                left: {\n                    style: Excel.BorderLineStyle.continuous\n                },\n                right: {\n                    style: Excel.BorderLineStyle.continuous\n                },\n                top: {\n                    style: Excel.BorderLineStyle.continuous\n                }\n            }\n        }\n    };\n\n    const range = sheet.getRange(\"A1:E5\");\n\n    // You can use empty JSON objects to avoid changing a cell's properties.\n    range.setCellProperties([\n        [topHeaderProps, {}, {}, {}, {}],\n        [{}, {}, headerProps, headerProps, headerProps],\n        [{}, headerProps, nonApplicableProps, matchupScoreProps, matchupScoreProps],\n        [{}, headerProps, matchupScoreProps, nonApplicableProps, matchupScoreProps],\n        [{}, headerProps, matchupScoreProps, matchupScoreProps, nonApplicableProps]\n    ]);\n\n    sheet.getUsedRange().format.autofitColumns();\n    await context.sync();\n});\n```"
 metadata:
-  ms.openlocfilehash: 9f813d14a8ed9a0f3f7251a40ab8808cca69a60e
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: e16dbef9fe79b796e0420bbe8d7af846190d7f3b
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49324182"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49859962"

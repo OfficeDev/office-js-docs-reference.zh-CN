@@ -401,7 +401,7 @@ properties:
   package: word!
   fullName: tag
   summary: >-
-    获取或设置一个标记，用于标识内容控件。
+    获取或设置用于标识内容控件的标记。
 
 
     \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
@@ -412,7 +412,7 @@ properties:
     content: 'tag: string;'
     return:
       type: string
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/word/10-content-controls/insert-and-change-content-controls.yaml\n// Traverses each paragraph of the document and wraps a content control on each with either a even or odd tags.\nawait Word.run(async (context) => {\n  let paragraphs = context.document.body.paragraphs;\n  paragraphs.load(\"$none\"); // Don't need any properties; just wrap each paragraph with a content control.\n\n  await context.sync();\n\n  for (let i = 0; i < paragraphs.items.length; i++) {\n    let contentControl = paragraphs.items[i].insertContentControl();\n    // For even, tag \"even\".\n    if (i % 2 === 0) {\n      contentControl.tag = \"even\";\n    } else {\n      contentControl.tag = \"odd\";\n    }\n  }\n  console.log(\"Content controls inserted: \" + paragraphs.items.length);\n\n  await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/10-content-controls/insert-and-change-content-controls.yaml\n// Traverses each paragraph of the document and wraps a content control on each with either a even or odd tags.\nawait Word.run(async (context) => {\n  let paragraphs = context.document.body.paragraphs;\n  paragraphs.load(\"$none\"); // Don't need any properties; just wrap each paragraph with a content control.\n\n  await context.sync();\n\n  for (let i = 0; i < paragraphs.items.length; i++) {\n    let contentControl = paragraphs.items[i].insertContentControl();\n    // For even, tag \"even\".\n    if (i % 2 === 0) {\n      contentControl.tag = \"even\";\n    } else {\n      contentControl.tag = \"odd\";\n    }\n  }\n  console.log(\"Content controls inserted: \" + paragraphs.items.length);\n\n  await context.sync();\n});\n```"
 - name: text
   uid: word!Word.ContentControl#text:member
   package: word!
@@ -505,7 +505,7 @@ methods:
   package: word!
   fullName: getHtml()
   summary: >-
-    获取内容控件对象的 HTML 表示形式。 在网页或 HTML 查看器中呈现时，格式与文档的格式设置完全匹配，但不完全匹配。 此方法不会为 Windows、Mac、Web 上的 ) Word 等不同平台上的同一文档返回完全相同的 HTML (。 如果您需要完全保真度或跨平台的一致性，请使用返回的 XML 并将其 `ContentControl.getOoxml()` 转换为 HTML。
+    获取内容控件对象的 HTML 表示形式。 在网页或 HTML 查看器中呈现时，格式与文档的格式设置完全匹配，但不完全匹配。 此方法不会为 Windows、Mac、Web 上的 Word 等不同平台上的同一 (返回完全相同的 HTML) 。 如果您需要完全保真度或跨平台的一致性，请使用返回的 XML 并将其 `ContentControl.getOoxml()` 转换为 HTML。
 
 
     \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
@@ -592,10 +592,10 @@ methods:
     content: 'getTextRanges(endingMarks: string[], trimSpacing?: boolean): Word.RangeCollection;'
     parameters:
     - id: endingMarks
-      description: 必填。 标点符号和/或其他结束标记作为字符串数组。
+      description: 必需。 标点符号和/或其他结束标记作为字符串数组。
       type: string[]
     - id: trimSpacing
-      description: 可选。 指示是否从范围集合中返回的范围 (开始和结尾处剪裁空格、制表符、分栏符和段落结束) 字符间距。 默认值为 false，表示范围集合中包含区域开始和结尾的间距字符。
+      description: 可选。 指示是否从范围集合 (范围的开头和结尾处剪裁空格、制表) 和段落结束标记的间距字符。 默认值为 false，表示范围集合中包含区域开始和结尾的间距字符。
       type: boolean
     return:
       type: <xref uid="word!Word.RangeCollection:class" />
@@ -616,10 +616,10 @@ methods:
     content: 'insertBreak(breakType: Word.BreakType, insertLocation: Word.InsertLocation): void;'
     parameters:
     - id: breakType
-      description: 必填。 中断的类型。
+      description: 必需。 中断的类型。
       type: <xref uid="word!Word.BreakType:enum" />
     - id: insertLocation
-      description: 必填。 值可以是"Start"、"End"、"Before"或"After"。
+      description: 必需。 值可以是"Start"、"End"、"Before"或"After"。
       type: <xref uid="word!Word.InsertLocation:enum" />
     return:
       type: void
@@ -640,10 +640,10 @@ methods:
     content: 'insertBreak(breakTypeString: "Page" | "Next" | "SectionNext" | "SectionContinuous" | "SectionEven" | "SectionOdd" | "Line", insertLocation: "Before" | "After" | "Start" | "End" | "Replace"): void;'
     parameters:
     - id: breakTypeString
-      description: 必填。 中断的类型。
+      description: 必需。 中断的类型。
       type: "\"Page\" | \"Next\" | \"SectionNext\" | \"SectionContinuous\" | \"SectionEven\" | \"SectionOdd\" | \"Line\""
     - id: insertLocation
-      description: 必填。 值可以是"Start"、"End"、"Before"或"After"。
+      description: 必需。 值可以是"Start"、"End"、"Before"或"After"。
       type: "\"Before\" | \"After\" | \"Start\" | \"End\" | \"Replace\""
     return:
       type: void
@@ -664,7 +664,7 @@ methods:
     content: 'insertFileFromBase64(base64File: string, insertLocation: Word.InsertLocation): Word.Range;'
     parameters:
     - id: base64File
-      description: 必填。 .docx 文件的 base64 编码内容。
+      description: 必需。 .docx 文件的 base64 编码内容。
       type: string
     - id: insertLocation
       description: 必需。 此值可以为“Replace”、“Start”或“End”。 "Replace"不能与"RichTextTable"和"RichTextTableRow"内容控件一同使用。
@@ -688,7 +688,7 @@ methods:
     content: 'insertFileFromBase64(base64File: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
     parameters:
     - id: base64File
-      description: 必填。 .docx 文件的 base64 编码内容。
+      description: 必需。 .docx 文件的 base64 编码内容。
       type: string
     - id: insertLocationString
       description: 必需。 此值可以为“Replace”、“Start”或“End”。 "Replace"不能与"RichTextTable"和"RichTextTableRow"内容控件一同使用。
@@ -808,7 +808,7 @@ methods:
     content: 'insertOoxml(ooxml: string, insertLocation: Word.InsertLocation): Word.Range;'
     parameters:
     - id: ooxml
-      description: 必填。 要插入到内容控件中的 OOXML。
+      description: 必需。 要插入到内容控件中的 OOXML。
       type: string
     - id: insertLocation
       description: 必需。 此值可以为“Replace”、“Start”或“End”。 "Replace"不能与"RichTextTable"和"RichTextTableRow"内容控件一同使用。
@@ -832,7 +832,7 @@ methods:
     content: 'insertOoxml(ooxml: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
     parameters:
     - id: ooxml
-      description: 必填。 要插入到内容控件中的 OOXML。
+      description: 必需。 要插入到内容控件中的 OOXML。
       type: string
     - id: insertLocationString
       description: 必需。 此值可以为“Replace”、“Start”或“End”。 "Replace"不能与"RichTextTable"和"RichTextTableRow"内容控件一同使用。
@@ -859,7 +859,7 @@ methods:
       description: 必需。 要插入的段落文本。
       type: string
     - id: insertLocation
-      description: 必填。 值可以是"Start"、"End"、"Before"或"After"。 "Before"和"After"不能与"RichTextTable"、"RichTextTableRow"和"RichTextTableCell"内容控件一同使用。
+      description: 必需。 值可以是"Start"、"End"、"Before"或"After"。 "Before"和"After"不能与"RichTextTable"、"RichTextTableRow"和"RichTextTableCell"内容控件一同使用。
       type: <xref uid="word!Word.InsertLocation:enum" />
     return:
       type: <xref uid="word!Word.Paragraph:class" />
@@ -883,7 +883,7 @@ methods:
       description: 必需。 要插入的段落文本。
       type: string
     - id: insertLocationString
-      description: 必填。 值可以是"Start"、"End"、"Before"或"After"。 "Before"和"After"不能与"RichTextTable"、"RichTextTableRow"和"RichTextTableCell"内容控件一同使用。
+      description: 必需。 值可以是"Start"、"End"、"Before"或"After"。 "Before"和"After"不能与"RichTextTable"、"RichTextTableRow"和"RichTextTableCell"内容控件一同使用。
       type: "\"Before\" | \"After\" | \"Start\" | \"End\" | \"Replace\""
     return:
       type: <xref uid="word!Word.Paragraph:class" />
@@ -910,7 +910,7 @@ methods:
       description: 必需。 表格的列数。
       type: number
     - id: insertLocation
-      description: 必填。 值可以是"Start"、"End"、"Before"或"After"。 "Before"和"After"不能与"RichTextTable"、"RichTextTableRow"和"RichTextTableCell"内容控件一同使用。
+      description: 必需。 值可以是"Start"、"End"、"Before"或"After"。 "Before"和"After"不能与"RichTextTable"、"RichTextTableRow"和"RichTextTableCell"内容控件一同使用。
       type: <xref uid="word!Word.InsertLocation:enum" />
     - id: values
       description: 可选的二维数组。 如果指定数组中的对应字符串，则填充单元格。
@@ -940,7 +940,7 @@ methods:
       description: 必需。 表格的列数。
       type: number
     - id: insertLocationString
-      description: 必填。 值可以是"Start"、"End"、"Before"或"After"。 "Before"和"After"不能与"RichTextTable"、"RichTextTableRow"和"RichTextTableCell"内容控件一同使用。
+      description: 必需。 值可以是"Start"、"End"、"Before"或"After"。 "Before"和"After"不能与"RichTextTable"、"RichTextTableRow"和"RichTextTableCell"内容控件一同使用。
       type: "\"Before\" | \"After\" | \"Start\" | \"End\" | \"Replace\""
     - id: values
       description: 可选的二维数组。 如果指定数组中的对应字符串，则填充单元格。
@@ -1025,7 +1025,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Word.ContentControl;'
     parameters:
     - id: propertyNames
-      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="word!Word.ContentControl:class" />
@@ -1156,7 +1156,7 @@ methods:
 
     ```typescript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/word/10-content-controls/insert-and-change-content-controls.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/10-content-controls/insert-and-change-content-controls.yaml
 
     // Adds title and colors to odd and even content controls and changes their appearance.
 
@@ -1240,7 +1240,7 @@ methods:
     content: 'split(delimiters: string[], multiParagraphs?: boolean, trimDelimiters?: boolean, trimSpacing?: boolean): Word.RangeCollection;'
     parameters:
     - id: delimiters
-      description: 必填。 作为字符串数组的分隔符。
+      description: 必需。 作为字符串数组的分隔符。
       type: string[]
     - id: multiParagraphs
       description: 可选。 指示返回的子范围是否可以包含多个段落。 默认值为 false，表示段落边界也用作分隔符。
@@ -1249,7 +1249,7 @@ methods:
       description: 可选。 指示是否从 range 集合中的区域修整分隔符。 默认值为 false，表示分隔符包含在范围集合中返回的范围中。
       type: boolean
     - id: trimSpacing
-      description: 可选。 指示是否从范围集合中返回的范围 (开始和结尾处剪裁空格、制表符、分栏符和段落结束) 字符间距。 默认值为 false，表示范围集合中包含区域开始和结尾的间距字符。
+      description: 可选。 指示是否从范围集合 (范围的开头和结尾处剪裁空格、制表) 和段落结束标记的间距字符。 默认值为 false，表示范围集合中包含区域开始和结尾的间距字符。
       type: boolean
     return:
       type: <xref uid="word!Word.RangeCollection:class" />
@@ -1295,9 +1295,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: fa7a9de784f9a4ea854fb9f1563a90d78e8f88a8
-  ms.sourcegitcommit: 6702d1aafaf1d8114bcf5e5eeb5d7833c108d56a
+  ms.openlocfilehash: 5cac4c151a7f1730c672dc70f81f931bbf66bff8
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 12/10/2020
-  ms.locfileid: "49623417"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49860970"
