@@ -4,10 +4,10 @@ uid: excel!Excel.NamedItem:class
 package: excel!
 fullName: Excel.NamedItem
 summary: >-
-  表示单元格区域或值的定义名称。 名称可以是基元命名的对象 (如下面的类型) 、range 对象或对区域的引用所示。 此对象可用于获取与名称相关的 range 对象。
+  表示单元格区域或值的定义名称。 名称可以是基元 (对象，如以下类型) range 对象或对区域的引用所示。 此对象可用于获取与名称相关的 range 对象。
 
 
-  \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -21,7 +21,7 @@ properties:
     返回包含已命名项目的值和类型的对象。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -37,7 +37,7 @@ properties:
     指定与此名称关联的注释。
 
 
-    \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -49,7 +49,7 @@ properties:
   uid: excel!Excel.NamedItem#context:member
   package: excel!
   fullName: context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  summary: 与对象关联的请求上下文。 这会将外接程序的进程连接到 Office 主机应用程序的进程。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -65,7 +65,7 @@ properties:
     已命名项的公式。 公式始终以等号 (=) 开头。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -73,7 +73,7 @@ properties:
     content: 'formula: any;'
     return:
       type: any
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/34-named-item/update-named-item.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    // Get the named item\n    const myNamedItem = sheet.names.getItemOrNullObject(\"MyRange\");\n    myNamedItem.load(\"name, formula\");\n    await context.sync();\n\n    if (myNamedItem.isNullObject) {\n        console.log(`There is no named item. Create it with \"Add named item for a range\" first.`);\n    } else {                    \n        // Update named item to point to the second range\n        myNamedItem.formula = \"=Sample!$B$10:$D$14\";\n        sheet.getRange(\"B10:D14\").select();\n        await context.sync();\n\n        console.log(`Just updated the named item \"${myNamedItem.name}\" -- it's now located here: ${myNamedItem.formula}`);\n    }\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/34-named-item/update-named-item.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    // Get the named item\n    const myNamedItem = sheet.names.getItemOrNullObject(\"MyRange\");\n    myNamedItem.load(\"name, formula\");\n    await context.sync();\n\n    if (myNamedItem.isNullObject) {\n        console.log(`There is no named item. Create it with \"Add named item for a range\" first.`);\n    } else {                    \n        // Update named item to point to the second range\n        myNamedItem.formula = \"=Sample!$B$10:$D$14\";\n        sheet.getRange(\"B10:D14\").select();\n        await context.sync();\n\n        console.log(`Just updated the named item \"${myNamedItem.name}\" -- it's now located here: ${myNamedItem.formula}`);\n    }\n});\n```"
 - name: name
   uid: excel!Excel.NamedItem#name:member
   package: excel!
@@ -82,7 +82,7 @@ properties:
     对象的名称。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -95,10 +95,10 @@ properties:
   package: excel!
   fullName: scope
   summary: >-
-    指定名称的范围是工作簿还是特定工作表。 可能的值为：工作表、工作簿。
+    指定名称的范围是工作簿还是特定工作表。 可能的值是：Worksheet、Workbook。
 
 
-    \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -111,10 +111,10 @@ properties:
   package: excel!
   fullName: type
   summary: >-
-    指定由名称的公式返回的值的类型。 有关详细信息，请参阅 NamedItemType。
+    指定名称的公式返回的值的类型。 有关详细信息，请参阅 Excel.NamedItemType。
 
 
-    \[[API 集：字符串、整型、双精度、布尔值、范围、错误的 ExcelApi 1.1、数组的 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.1 for String，Integer，Double，Boolean，Range，Error;1.7 表示数组](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -130,7 +130,7 @@ properties:
     表示 name 公式计算出的值。 对于已命名区域，将返回区域地址。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -146,7 +146,7 @@ properties:
     指定对象是否可见。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -159,10 +159,10 @@ properties:
   package: excel!
   fullName: worksheet
   summary: >-
-    返回已命名项限定到的工作表。 如果项目的作用域改为工作簿，则会引发错误。
+    返回已命名项限定到的工作表。 如果项目改为范围为工作簿，则引发错误。
 
 
-    \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -178,7 +178,7 @@ properties:
     返回已命名项限定到的工作表。 如果项改为限定到工作簿，将返回 NULL 对象。
 
 
-    \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -195,7 +195,7 @@ methods:
     删除给定的名称。
 
 
-    \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -203,7 +203,7 @@ methods:
     content: 'delete(): void;'
     return:
       type: void
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/34-named-item/create-and-remove-named-item.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const totalName = sheet.names.getItemOrNullObject(\"TotalAmount\");\n    totalName.load();\n    await context.sync();\n\n    if (totalName.value) {\n        totalName.delete();\n\n        // Replace the named item (TotalAmount) with the actual formula for TotalAmount to avoid displaying #NAME in the cell.\n        sheet.getRange(\"D11\").values = [[\"=SUM(ExpensesTable[AMOUNT])\"]];\n    } else {\n        console.log(\"No named item created for the formula.\");\n    }\n\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/34-named-item/create-and-remove-named-item.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const totalName = sheet.names.getItemOrNullObject(\"TotalAmount\");\n    totalName.load();\n    await context.sync();\n\n    if (totalName.value) {\n        totalName.delete();\n\n        // Replace the named item (TotalAmount) with the actual formula for TotalAmount to avoid displaying #NAME in the cell.\n        sheet.getRange(\"D11\").values = [[\"=SUM(ExpensesTable[AMOUNT])\"]];\n    } else {\n        console.log(\"No named item created for the formula.\");\n    }\n\n    await context.sync();\n});\n```"
 - name: getRange()
   uid: excel!Excel.NamedItem#getRange:member(1)
   package: excel!
@@ -212,7 +212,7 @@ methods:
     返回与名称相关联的 Range 对象。 如果已命名项的类型不是 Range，将引发错误。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -229,7 +229,7 @@ methods:
     返回与名称相关联的 Range 对象。 如果已命名项的类型不是 Range，将返回 NULL 对象。
 
 
-    \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -267,7 +267,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.NamedItem;'
     parameters:
     - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.NamedItem:class" />
@@ -288,7 +288,7 @@ methods:
               }): Excel.NamedItem;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，它是一个以逗号分隔的字符串，用于指定要加载的 `propertyNamesAndPaths.expand` 导航属性。'
       type: >-
         {
                     select?: string;
@@ -301,7 +301,7 @@ methods:
   uid: excel!Excel.NamedItem#set:member(1)
   package: excel!
   fullName: set(properties, options)
-  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+  summary: 同时设置对象的多个属性。 你可以传递具有相应属性的普通对象，也可以传递同一类型的另一个 API 对象。
   remarks: >-
     此方法具有以下附加签名：
 
@@ -313,10 +313,10 @@ methods:
     content: 'set(properties: Interfaces.NamedItemUpdateData, options?: OfficeExtension.UpdateOptions): void;'
     parameters:
     - id: properties
-      description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
+      description: 一个 JavaScript 对象，其属性以等态方式构造到调用该方法的对象的属性。
       type: <xref uid="excel!Excel.Interfaces.NamedItemUpdateData:interface" />
     - id: options
-      description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
+      description: 提供在属性对象尝试设置任何只读属性时禁止错误的选项。
       type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
     return:
       type: void
@@ -325,7 +325,7 @@ methods:
   uid: excel!Excel.NamedItem#set:member(2)
   package: excel!
   fullName: set(properties)
-  summary: 基于现有加载的对象同时设置该对象的多个属性。
+  summary: 基于现有的已加载对象，同时设置对象上的多个属性。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -342,7 +342,7 @@ methods:
   uid: excel!Excel.NamedItem#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始 NamedItem 对象是 API 对象，则该 `toJSON` 方法返回一个 (类型为的纯 JavaScript 对象。 `Excel.Interfaces.NamedItemData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 Excel.NamedItem 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.NamedItemData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -353,9 +353,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 81dfa884bc7685ba73ae9f7fc47051bf04d42b0d
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: f9faae606f1edda458ddd8212659167b04756359
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49214475"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49861488"
