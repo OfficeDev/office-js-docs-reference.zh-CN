@@ -4,10 +4,10 @@ uid: excel!Excel.WorkbookRangeAreas:class
 package: excel!
 fullName: Excel.WorkbookRangeAreas
 summary: >-
-  代表多个工作表中的一个或多个矩形区域的集合。
+  表示多个工作表中一个或多个矩形区域的集合。
 
 
-  \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -18,10 +18,10 @@ properties:
   package: excel!
   fullName: addresses
   summary: >-
-    返回 A1 样式的地址数组。 Address 值将包含单元格每个矩形块的工作表名称 (例如，"Sheet1！A1： B4、Sheet1！D1： D4 ") 。 只读。
+    返回 A1 样式的地址数组。 地址值将包含单元格区域的每个矩形块的工作表 (例如"Sheet1！A1：b4，Sheet1！D1：D4") 。 只读。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -34,10 +34,10 @@ properties:
   package: excel!
   fullName: areas
   summary: >-
-    返回 `RangeAreasCollection` 对象。 `RangeAreas`集合中的每个对象代表一张工作表中的一个或多个矩形区域。
+    返回 `RangeAreasCollection` 对象。 集合 `RangeAreas` 中的每个对象代表一个工作表中的一个或多个矩形区域。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -45,12 +45,12 @@ properties:
     content: 'readonly areas: Excel.RangeAreasCollection;'
     return:
       type: <xref uid="excel!Excel.RangeAreasCollection:class" />
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/42-range/direct-precedents.yaml\nawait Excel.run(async (context) => {\n  // Precedents are cells referenced by the formula in a cell.\n  let range = context.workbook.getActiveCell();\n  let directPrecedents = range.getDirectPrecedents();\n  range.load(\"address\");\n  directPrecedents.areas.load(\"address\");\n  await context.sync();\n\n  console.log(`Direct precedent cells of ${range.address}:`);\n\n  // Use the direct precedents API to loop through precedents of the active cell. \n  for (var i = 0; i < directPrecedents.areas.items.length; i++) {\n    // Highlight and console the address of each precedent cell.\n    directPrecedents.areas.items[i].format.fill.color = \"Yellow\";\n    console.log(`  ${directPrecedents.areas.items[i].address}`);\n  }\n  await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/42-range/direct-precedents.yaml\nawait Excel.run(async (context) => {\n  // Precedents are cells referenced by the formula in a cell.\n  let range = context.workbook.getActiveCell();\n  let directPrecedents = range.getDirectPrecedents();\n  range.load(\"address\");\n  directPrecedents.areas.load(\"address\");\n  await context.sync();\n\n  console.log(`Direct precedent cells of ${range.address}:`);\n\n  // Use the direct precedents API to loop through precedents of the active cell. \n  for (var i = 0; i < directPrecedents.areas.items.length; i++) {\n    // Highlight and console the address of each precedent cell.\n    directPrecedents.areas.items[i].format.fill.color = \"Yellow\";\n    console.log(`  ${directPrecedents.areas.items[i].address}`);\n  }\n  await context.sync();\n});\n```"
 - name: context
   uid: excel!Excel.WorkbookRangeAreas#context:member
   package: excel!
   fullName: context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  summary: 与对象关联的请求上下文。 这会将外接程序的进程连接到 Office 主机应用程序的进程。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -63,10 +63,10 @@ properties:
   package: excel!
   fullName: ranges
   summary: >-
-    返回在对象中组成此对象的范围 `RangeCollection` 。
+    返回在对象中组成此对象 `RangeCollection` 的范围。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -80,10 +80,10 @@ methods:
   package: excel!
   fullName: getRangeAreasBySheet(key)
   summary: >-
-    `RangeAreas`基于集合中的工作表 ID 或名称返回对象。
+    基于 `RangeAreas` 集合中的工作表 ID 或名称返回对象。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -91,7 +91,7 @@ methods:
     content: 'getRangeAreasBySheet(key: string): Excel.RangeAreas;'
     parameters:
     - id: key
-      description: 工作表的名称或 id。
+      description: 工作表的名称或 ID。
       type: string
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
@@ -101,10 +101,10 @@ methods:
   package: excel!
   fullName: getRangeAreasOrNullObjectBySheet(key)
   summary: >-
-    `RangeAreas`基于集合中的工作表名称或 ID 返回对象。 如果没有 Worksheet 对象，将返回 NULL 对象。
+    基于 `RangeAreas` 集合中的工作表名称或 ID 返回对象。 如果没有 Worksheet 对象，将返回 NULL 对象。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -112,7 +112,7 @@ methods:
     content: 'getRangeAreasOrNullObjectBySheet(key: string): Excel.RangeAreas;'
     parameters:
     - id: key
-      description: 工作表的名称或 id。
+      description: 工作表的名称或 ID。
       type: string
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
@@ -146,7 +146,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.WorkbookRangeAreas;'
     parameters:
     - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.WorkbookRangeAreas:class" />
@@ -167,7 +167,7 @@ methods:
               }): Excel.WorkbookRangeAreas;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，它是一个以逗号分隔的字符串，用于指定要加载的 `propertyNamesAndPaths.expand` 导航属性。'
       type: >-
         {
                     select?: string;
@@ -180,7 +180,7 @@ methods:
   uid: excel!Excel.WorkbookRangeAreas#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始 WorkbookRangeAreas 对象是 API 对象，则该 `toJSON` 方法返回一个 (类型为的纯 JavaScript 对象。 `Excel.Interfaces.WorkbookRangeAreasData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给该对象的对象的方法。) 而原始 Excel.WorkbookRangeAreas 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.WorkbookRangeAreasData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -193,7 +193,7 @@ methods:
   uid: excel!Excel.WorkbookRangeAreas#track:member(1)
   package: excel!
   fullName: track()
-  summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是的简写 `context.trackedObjects.add(thisObject)`<!-- -->. 如果要在多个调用中使用此对象 `.sync` ，并在 "运行" 批处理的顺序执行之外使用此对象，并在设置属性或对对象调用方法时获取 "InvalidObjectPath" 错误，则需要在首次创建对象时将该对象添加到跟踪的对象集合中。
+  summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 `context.trackedObjects.add(thisObject)`<!-- -->. 如果在调用期间和顺序执行".run"批处理之外使用此对象，如果在对象上设置属性或调用方法时收到"InvalidObjectPath"错误，则首次创建对象时，需要将该对象添加到跟踪的对象集合中。 `.sync`
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -206,7 +206,7 @@ methods:
   uid: excel!Excel.WorkbookRangeAreas#untrack:member(1)
   package: excel!
   fullName: untrack()
-  summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是的简写 `context.trackedObjects.remove(thisObject)`<!-- -->. 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在 `context.sync()` 内存释放生效之前，您需要调用该过程。
+  summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 `context.trackedObjects.remove(thisObject)`<!-- -->. 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 你需要在内存释放 `context.sync()` 生效之前调用。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -217,9 +217,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 6603e5d6d3ae3bbba385d444ce8d2d1ee12f8eca
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: d637af879d92b432ed7fa728a8c2422c5b0ec970
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49338263"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49857142"

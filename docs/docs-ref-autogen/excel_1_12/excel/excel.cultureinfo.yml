@@ -4,10 +4,10 @@ uid: excel!Excel.CultureInfo:class
 package: excel!
 fullName: Excel.CultureInfo
 summary: >-
-  基于当前系统区域性设置提供信息。 这包括区域性名称、数字格式和其他区域性相关设置。
+  基于当前系统区域性设置提供相关信息。 这包括区域性名称、数字格式和其他与文化相关的设置。
 
 
-  \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: excel!Excel.CultureInfo#context:member
   package: excel!
   fullName: context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  summary: 与对象关联的请求上下文。 这会将外接程序的进程连接到 Office 主机应用程序的进程。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -30,10 +30,10 @@ properties:
   package: excel!
   fullName: datetimeFormat
   summary: >-
-    定义适当的区域性格式，以显示日期和时间。 这取决于当前的系统区域性设置。
+    定义显示日期和时间的适合文化的格式。 这基于当前系统区域性设置。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -41,16 +41,16 @@ properties:
     content: 'readonly datetimeFormat: Excel.DatetimeFormatInfo;'
     return:
       type: <xref uid="excel!Excel.DatetimeFormatInfo:class" />
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/culture-info-date-time.yaml\nawait Excel.run(async (context) => {\n  context.application.cultureInfo.datetimeFormat.load([\n    \"longDatePattern\",\n    \"shortDatePattern\",\n    \"dateSeparator\",\n    \"longTimePattern\",\n    \"timeSeparator\"\n  ]);\n  await context.sync();\n\n  // Use the cultural settings API to retrieve the user's system date and time settings.\n  const systemLongDatePattern = context.application.cultureInfo.datetimeFormat.longDatePattern;\n  const systemShortDatePattern = context.application.cultureInfo.datetimeFormat.shortDatePattern;\n  const systemDateSeparator = context.application.cultureInfo.datetimeFormat.dateSeparator;\n  const systemLongTimePattern = context.application.cultureInfo.datetimeFormat.longTimePattern;\n  const systemTimeSeparator = context.application.cultureInfo.datetimeFormat.timeSeparator;\n\n  // Write the date and time settings in your table. \n  const sheet = context.workbook.worksheets.getActiveWorksheet();\n  const dateTimeData = sheet.getRange(\"A2:B6\");\n  dateTimeData.values = [\n    [\"Long date\", systemLongDatePattern], \n    [\"Short date\", systemShortDatePattern], \n    [\"Date separator\", systemDateSeparator], \n    [\"Long time format\", systemLongTimePattern],\n    [\"Time separator\", systemTimeSeparator]\n  ];\n\n  sheet.tables\n    .getItemAt(0)\n    .getRange()\n    .format.autofitColumns();\n\n  await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/culture-info-date-time.yaml\nawait Excel.run(async (context) => {\n  context.application.cultureInfo.datetimeFormat.load([\n    \"longDatePattern\",\n    \"shortDatePattern\",\n    \"dateSeparator\",\n    \"longTimePattern\",\n    \"timeSeparator\"\n  ]);\n  await context.sync();\n\n  // Use the cultural settings API to retrieve the user's system date and time settings.\n  const systemLongDatePattern = context.application.cultureInfo.datetimeFormat.longDatePattern;\n  const systemShortDatePattern = context.application.cultureInfo.datetimeFormat.shortDatePattern;\n  const systemDateSeparator = context.application.cultureInfo.datetimeFormat.dateSeparator;\n  const systemLongTimePattern = context.application.cultureInfo.datetimeFormat.longTimePattern;\n  const systemTimeSeparator = context.application.cultureInfo.datetimeFormat.timeSeparator;\n\n  // Write the date and time settings in your table. \n  const sheet = context.workbook.worksheets.getActiveWorksheet();\n  const dateTimeData = sheet.getRange(\"A2:B6\");\n  dateTimeData.values = [\n    [\"Long date\", systemLongDatePattern], \n    [\"Short date\", systemShortDatePattern], \n    [\"Date separator\", systemDateSeparator], \n    [\"Long time format\", systemLongTimePattern],\n    [\"Time separator\", systemTimeSeparator]\n  ];\n\n  sheet.tables\n    .getItemAt(0)\n    .getRange()\n    .format.autofitColumns();\n\n  await context.sync();\n});\n```"
 - name: name
   uid: excel!Excel.CultureInfo#name:member
   package: excel!
   fullName: name
   summary: >-
-    以 languagecode2/regioncode2 (格式获取区域性名称，例如 "zh-tw-cn" or "en-us" ) 。 这取决于当前的系统设置。
+    获取语言代码2-country/regioncode2 格式的区域性名称 (例如，"zh-cn"或"en-us") 。 这基于当前系统设置。
 
 
-    \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -63,10 +63,10 @@ properties:
   package: excel!
   fullName: numberFormat
   summary: >-
-    定义适当的区域性格式，以显示数字。 这取决于当前的系统区域性设置。
+    定义显示数字的适合文化的格式。 这基于当前系统区域性设置。
 
 
-    \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -104,7 +104,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.CultureInfo;'
     parameters:
     - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.CultureInfo:class" />
@@ -125,7 +125,7 @@ methods:
               }): Excel.CultureInfo;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，它是一个以逗号分隔的字符串，用于指定要加载的 `propertyNamesAndPaths.expand` 导航属性。'
       type: >-
         {
                     select?: string;
@@ -138,7 +138,7 @@ methods:
   uid: excel!Excel.CultureInfo#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，将调用 `toJSON` 传递给它的对象的方法。 ) 而原始的 Excel CultureInfo 对象是一个 API 对象，则该 `toJSON` 方法返回一个简单的 JavaScript 对象 (键入为 `Excel.Interfaces.CultureInfoData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给该对象的对象的方法。) 而原始 Excel.CultureInfo 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.CultureInfoData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -149,9 +149,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 2f28d3da757418506d4cd6ae83576b0f13e71116
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: f9208c354ec99cc43321b8e73eda877a60a951d8
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49338627"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49856917"

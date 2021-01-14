@@ -4,10 +4,10 @@ uid: excel!Excel.PivotField:class
 package: excel!
 fullName: Excel.PivotField
 summary: >-
-  表示 Excel 透视字段。
+  代表 Excel PivotField。
 
 
-  \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: excel!Excel.PivotField#context:member
   package: excel!
   fullName: context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  summary: 与对象关联的请求上下文。 这会将外接程序的进程连接到 Office 主机应用程序的进程。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -33,7 +33,7 @@ properties:
     PivotField 的 ID。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -49,7 +49,7 @@ properties:
     返回与 PivotField 相关联的 PivotFields。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -65,7 +65,7 @@ properties:
     PivotField 的名称。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -81,7 +81,7 @@ properties:
     确定是否显示 PivotField 的所有项。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -97,7 +97,7 @@ properties:
     PivotField 小计。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -111,10 +111,10 @@ methods:
   package: excel!
   fullName: applyFilter(filter)
   summary: >-
-    设置一个或多个字段的当前 PivotFilters，并将其应用于字段。 如果提供的筛选器无效或无法应用，则会引发异常。
+    设置字段的一个或多个当前 PivotFilter，并应用于该字段。 如果提供的筛选器无效或无法应用，则会引发异常。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -122,7 +122,7 @@ methods:
     content: 'applyFilter(filter: Excel.PivotFilters): void;'
     parameters:
     - id: filter
-      description: 配置的特定 PivotFilter 或包含多个配置的筛选器的 PivotFilters 接口。
+      description: 配置的特定 PivotFilter 或包含多个已配置筛选器的 PivotFilters 接口。
       type: <xref uid="excel!Excel.PivotFilters:interface" />
     return:
       type: void
@@ -132,10 +132,10 @@ methods:
   package: excel!
   fullName: clearAllFilters()
   summary: >-
-    从字段的所有筛选器中清除所有条件。 这将删除对字段的任何活动筛选。
+    清除所有字段筛选器的所有条件。 这将删除字段上的任何活动筛选。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -143,16 +143,16 @@ methods:
     content: 'clearAllFilters(): void;'
     return:
       type: void
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/38-pivottable/pivottable-pivotfilters.yaml\nawait Excel.run(async (context) => {\n  // Clear all the PivotFilters.\n\n  // Get the PivotTable.\n  const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n  pivotTable.hierarchies.load(\"name\");\n  await context.sync();\n\n  // Clear the filters on each PivotField.\n  pivotTable.hierarchies.items.forEach((hierarchy) => {\n    hierarchy.fields.getItem(hierarchy.name).clearAllFilters();\n  });\n  await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-pivotfilters.yaml\nawait Excel.run(async (context) => {\n  // Clear all the PivotFilters.\n\n  // Get the PivotTable.\n  const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n  pivotTable.hierarchies.load(\"name\");\n  await context.sync();\n\n  // Clear the filters on each PivotField.\n  pivotTable.hierarchies.items.forEach((hierarchy) => {\n    hierarchy.fields.getItem(hierarchy.name).clearAllFilters();\n  });\n  await context.sync();\n});\n```"
 - name: clearFilter(filterType)
   uid: excel!Excel.PivotField#clearFilter:member(1)
   package: excel!
   fullName: clearFilter(filterType)
   summary: >-
-    清除给定类型的字段筛选器中的所有现有条件 (如果当前已将其应用) 。
+    从字段的给定类型筛选器中清除所有现有条件， (当前已应用) 。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -160,7 +160,7 @@ methods:
     content: 'clearFilter(filterType: Excel.PivotFilterType): void;'
     parameters:
     - id: filterType
-      description: 要清除其所有条件的字段的筛选器类型。
+      description: 要清除其所有条件的字段上的筛选器类型。
       type: <xref uid="excel!Excel.PivotFilterType:enum" />
     return:
       type: void
@@ -170,10 +170,10 @@ methods:
   package: excel!
   fullName: clearFilter(filterTypeString)
   summary: >-
-    清除给定类型的字段筛选器中的所有现有条件 (如果当前已将其应用) 。
+    从字段的给定类型筛选器中清除所有现有条件， (当前已应用) 。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -181,7 +181,7 @@ methods:
     content: 'clearFilter(filterTypeString: "Unknown" | "Value" | "Manual" | "Label" | "Date"): void;'
     parameters:
     - id: filterTypeString
-      description: 要清除其所有条件的字段的筛选器类型。
+      description: 要清除其所有条件的字段上的筛选器类型。
       type: "\"Unknown\" | \"Value\" | \"Manual\" | \"Label\" | \"Date\""
     return:
       type: void
@@ -191,10 +191,10 @@ methods:
   package: excel!
   fullName: getFilters()
   summary: >-
-    获取当前应用于字段的所有筛选器。
+    获取当前应用于该字段的所有筛选器。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -202,16 +202,16 @@ methods:
     content: 'getFilters(): OfficeExtension.ClientResult<Excel.PivotFilters>;'
     return:
       type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;<xref uid="excel!Excel.PivotFilters:interface" />&gt;
-      description: 包含所有活动筛选器的 PivotFilters 接口。
+      description: 具有所有活动筛选器的 PivotFilters 接口。
 - name: isFiltered(filterType)
   uid: excel!Excel.PivotField#isFiltered:member(1)
   package: excel!
   fullName: isFiltered(filterType)
   summary: >-
-    检查字段上是否有任何已应用的筛选器。
+    检查字段上是否有已应用的筛选器。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -219,20 +219,20 @@ methods:
     content: 'isFiltered(filterType?: Excel.PivotFilterType): OfficeExtension.ClientResult<boolean>;'
     parameters:
     - id: filterType
-      description: 要检查的筛选器类型。 如果未提供任何类型，此方法将检查是否应用了任何筛选器。
+      description: 要检查的筛选器类型。 如果未提供类型，此方法将检查是否应用了任何筛选器。
       type: <xref uid="excel!Excel.PivotFilterType:enum" />
     return:
       type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;boolean&gt;
-      description: 如果字段具有已应用类型的筛选器，则为 True `filterType` 。 如果未指定 filterType，则返回 true （如果该字段包含任何已应用的筛选器）。
+      description: 如此 如果字段应用了类型的 `filterType` 筛选器。 如果未指定 filterType，则如果字段具有任何应用的筛选器，则返回 true。
 - name: isFiltered(filterTypeString)
   uid: excel!Excel.PivotField#isFiltered:member(2)
   package: excel!
   fullName: isFiltered(filterTypeString)
   summary: >-
-    检查字段上是否有任何已应用的筛选器。
+    检查字段上是否有已应用的筛选器。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -240,11 +240,11 @@ methods:
     content: 'isFiltered(filterTypeString?: "Unknown" | "Value" | "Manual" | "Label" | "Date"): OfficeExtension.ClientResult<boolean>;'
     parameters:
     - id: filterTypeString
-      description: 要检查的筛选器类型。 如果未提供任何类型，此方法将检查是否应用了任何筛选器。
+      description: 要检查的筛选器类型。 如果未提供类型，此方法将检查是否应用了任何筛选器。
       type: "\"Unknown\" | \"Value\" | \"Manual\" | \"Label\" | \"Date\""
     return:
       type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;boolean&gt;
-      description: 如果字段具有已应用类型的筛选器，则为 True `filterType` 。 如果未指定 filterType，则返回 true （如果该字段包含任何已应用的筛选器）。
+      description: 如此 如果字段应用了类型的 `filterType` 筛选器。 如果未指定 filterType，则如果字段具有任何应用的筛选器，则返回 true。
 - name: load(options)
   uid: excel!Excel.PivotField#load:member(1)
   package: excel!
@@ -274,7 +274,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.PivotField;'
     parameters:
     - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.PivotField:class" />
@@ -295,7 +295,7 @@ methods:
               }): Excel.PivotField;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，它是一个以逗号分隔的字符串，用于指定要加载的 `propertyNamesAndPaths.expand` 导航属性。'
       type: >-
         {
                     select?: string;
@@ -308,7 +308,7 @@ methods:
   uid: excel!Excel.PivotField#set:member(1)
   package: excel!
   fullName: set(properties, options)
-  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+  summary: 同时设置对象的多个属性。 你可以传递具有相应属性的普通对象，也可以传递同一类型的另一个 API 对象。
   remarks: >-
     此方法具有以下附加签名：
 
@@ -320,10 +320,10 @@ methods:
     content: 'set(properties: Interfaces.PivotFieldUpdateData, options?: OfficeExtension.UpdateOptions): void;'
     parameters:
     - id: properties
-      description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
+      description: 一个 JavaScript 对象，其属性以等态方式构造到调用该方法的对象的属性。
       type: <xref uid="excel!Excel.Interfaces.PivotFieldUpdateData:interface" />
     - id: options
-      description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
+      description: 提供在属性对象尝试设置任何只读属性时禁止错误的选项。
       type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
     return:
       type: void
@@ -332,7 +332,7 @@ methods:
   uid: excel!Excel.PivotField#set:member(2)
   package: excel!
   fullName: set(properties)
-  summary: 基于现有加载的对象同时设置该对象的多个属性。
+  summary: 基于现有的已加载对象，同时设置对象上的多个属性。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -353,7 +353,7 @@ methods:
     PivotField 排序。 如果指定 DataPivotHierarchy，则会基于它进行排序，如果未指定，则会基于 PivotField 本身进行排序。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -361,7 +361,7 @@ methods:
     content: 'sortByLabels(sortBy: SortBy): void;'
     parameters:
     - id: sortBy
-      description: 指定是按升序还是降序进行排序。
+      description: 指定是按升序还是降序排序。
       type: <xref uid="excel!Excel.SortBy:enum" />
     return:
       type: void
@@ -371,10 +371,10 @@ methods:
   package: excel!
   fullName: sortByValues(sortBy, valuesHierarchy, pivotItemScope)
   summary: >-
-    按给定范围中的指定值对 PivotField 进行排序。 作用域定义在具有相同 DataPivotHierarchy 中的多个值时，将使用哪些特定值进行排序。
+    按给定范围中的指定值对 PivotField 进行排序。 当同一 DataPivotHierarchy 中有多个值时，范围定义将用来排序的特定值。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -382,13 +382,13 @@ methods:
     content: 'sortByValues(sortBy: Excel.SortBy, valuesHierarchy: Excel.DataPivotHierarchy, pivotItemScope?: Array<PivotItem | string>): void;'
     parameters:
     - id: sortBy
-      description: 指定是按升序还是降序进行排序。
+      description: 指定是按升序还是降序排序。
       type: <xref uid="excel!Excel.SortBy:enum" />
     - id: valuesHierarchy
-      description: 指定要用于排序的数据轴上的值层次结构。
+      description: 指定数据轴上用于排序的值层次结构。
       type: <xref uid="excel!Excel.DataPivotHierarchy:class" />
     - id: pivotItemScope
-      description: 应在排序范围中使用的项。 这些项目将构成要作为排序依据的行或列。 如果使用字符串而不是 PivotItem，则该字符串表示 PivotItem 的 ID。 如果您要对其进行排序的轴上没有数据层次结构以外的任何项目，则可以为空。
+      description: 应该用于排序范围的项。 这些项目将成为要排序的行或列的项。 如果使用字符串而不是 PivotItem，则字符串表示 PivotItem 的 ID。 如果除要排序的轴上没有数据层次结构外的其他项，则此项可能为空。
       type: Array&lt;<xref uid="excel!Excel.PivotItem:class" /> | string&gt;
     return:
       type: void
@@ -398,10 +398,10 @@ methods:
   package: excel!
   fullName: sortByValues(sortByString, valuesHierarchy, pivotItemScope)
   summary: >-
-    按给定范围中的指定值对 PivotField 进行排序。 作用域定义在具有相同 DataPivotHierarchy 中的多个值时，将使用哪些特定值进行排序。
+    按给定范围中的指定值对 PivotField 进行排序。 当同一 DataPivotHierarchy 中有多个值时，范围定义将用来排序的特定值。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -409,13 +409,13 @@ methods:
     content: 'sortByValues(sortByString: "Ascending" | "Descending", valuesHierarchy: Excel.DataPivotHierarchy, pivotItemScope?: Array<PivotItem | string>): void;'
     parameters:
     - id: sortByString
-      description: 指定是按升序还是降序进行排序。
+      description: 指定是按升序还是降序排序。
       type: "\"Ascending\" | \"Descending\""
     - id: valuesHierarchy
-      description: 指定要用于排序的数据轴上的值层次结构。
+      description: 指定数据轴上用于排序的值层次结构。
       type: <xref uid="excel!Excel.DataPivotHierarchy:class" />
     - id: pivotItemScope
-      description: 应在排序范围中使用的项。 这些项目将构成要作为排序依据的行或列。 如果使用字符串而不是 PivotItem，则该字符串表示 PivotItem 的 ID。 如果您要对其进行排序的轴上没有数据层次结构以外的任何项目，则可以为空。
+      description: 应该用于排序范围的项。 这些项目将成为要排序的行或列的项。 如果使用字符串而不是 PivotItem，则字符串表示 PivotItem 的 ID。 如果除要排序的轴上没有数据层次结构外的其他项，则此项可能为空。
       type: Array&lt;<xref uid="excel!Excel.PivotItem:class" /> | string&gt;
     return:
       type: void
@@ -424,7 +424,7 @@ methods:
   uid: excel!Excel.PivotField#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始的 Excel. 透视字段对象是 API 对象，则该 `toJSON` 方法返回一个简单的 JavaScript 对象 (类型化为 `Excel.Interfaces.PivotFieldData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 Excel.PivotField 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.PivotFieldData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -435,9 +435,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: c036ad589e3e5a62a85f57ce0a127620a62666d9
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 659673355b5ea9111e963b2ab0cebaca900840b2
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49226242"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49855685"

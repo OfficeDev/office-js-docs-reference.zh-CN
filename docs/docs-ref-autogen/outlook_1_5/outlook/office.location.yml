@@ -7,7 +7,7 @@ summary: >-
   提供用于获取和设置 Outlook 外接程序中的会议地点的方法。
 
 
-  \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  \[[API 集：Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
 remarks: >-
   **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -25,10 +25,10 @@ methods:
     获取约会的位置。
 
 
-    `getAsync` 方法开始对 Exchange 服务器进行异步调用，以获取约会的位置。 约会的位置作为属性中的字符串提供 `asyncResult.value` 。
+    `getAsync` 方法开始对 Exchange 服务器进行异步调用，以获取约会的位置。 约会的位置在属性中以字符串 `asyncResult.value` 形式提供。
 
 
-    \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -58,10 +58,10 @@ methods:
     content: 'getAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<string>) => void): void;'
     parameters:
     - id: options
-      description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
+      description: 方法完成后，使用一个类型参数调用在参数中传递 `callback` 的函数 `Office.AsyncResult`<!-- -->.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
     return:
       type: void
@@ -74,10 +74,10 @@ methods:
     获取约会的位置。
 
 
-    `getAsync` 方法开始对 Exchange 服务器进行异步调用，以获取约会的位置。 约会的位置作为属性中的字符串提供 `asyncResult.value` 。
+    `getAsync` 方法开始对 Exchange 服务器进行异步调用，以获取约会的位置。 约会的位置在属性中以字符串 `asyncResult.value` 形式提供。
 
 
-    \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -90,7 +90,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-set-location-appointment-organizer.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/90-other-item-apis/get-set-location-appointment-organizer.yaml
 
     Office.context.mailbox.item.location.getAsync((result) => {
       if (result.status !== Office.AsyncResultStatus.Succeeded) {
@@ -107,7 +107,7 @@ methods:
     content: 'getAsync(callback: (asyncResult: Office.AsyncResult<string>) => void): void;'
     parameters:
     - id: callback
-      description: 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
+      description: 方法完成后，使用一个类型参数调用在参数中传递 `callback` 的函数 `Office.AsyncResult`<!-- -->.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
     return:
       type: void
@@ -123,7 +123,7 @@ methods:
     `setAsync` 方法开始对 Exchange 服务器进行异步调用，以设置约会的位置。设置约会的位置将覆盖当前位置。
 
 
-    \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -134,7 +134,7 @@ methods:
     **错误**：
 
 
-    - DataExceedsMaximumSize： location 参数的长度超过255个字符。
+    - DataExceedsMaximumSize：位置参数长于 255 个字符。
 
 
     #### <a name="examples"></a>示例
@@ -142,7 +142,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-set-location-appointment-organizer.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/90-other-item-apis/get-set-location-appointment-organizer.yaml
 
     var location = "my office";
 
@@ -164,18 +164,18 @@ methods:
       description: 约会的位置。 字符串大小限制为 255 个字符。
       type: string
     - id: options
-      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果设置位置失败，`asyncResult.error` 属性将包含一个错误代码。
+      description: 可选。 方法完成后，使用一个类型参数调用在参数中传递 `callback` 的函数 `Office.AsyncResult`<!-- -->. 如果设置位置失败，`asyncResult.error` 属性将包含一个错误代码。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: dd16cad0b41bdbcdfdc05dee967d7d52d5faf589
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: ea16fb9319f1eaab2ea0fc71f175bc18a11d9839
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49171790"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49855839"

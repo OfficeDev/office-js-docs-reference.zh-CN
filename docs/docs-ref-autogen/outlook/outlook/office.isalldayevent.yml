@@ -4,7 +4,7 @@ uid: outlook!Office.IsAllDayEvent:interface
 package: outlook!
 fullName: Office.IsAllDayEvent
 summary: >-
-  提供用于获取和设置 Outlook 外接程序中的会议的全天事件状态的方法。
+  提供用于获取和设置 Outlook 外接程序中会议全天事件状态的方法。
 
 
   \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -22,7 +22,7 @@ methods:
   package: outlook!
   fullName: getAsync(options, callback)
   summary: >-
-    获取一个布尔值，该值指示事件是否全天。
+    获取指示事件是否是全天的布尔值。
 
 
     \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -37,10 +37,10 @@ methods:
     content: 'getAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<boolean>) => void): void;'
     parameters:
     - id: options
-      description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
+      description: 方法完成后，使用一个类型参数调用在参数中传递 `callback` 的函数 `Office.AsyncResult`<!-- -->.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;boolean&gt;) =&gt; void'
     return:
       type: void
@@ -50,7 +50,7 @@ methods:
   package: outlook!
   fullName: getAsync(callback)
   summary: >-
-    获取一个布尔值，该值指示事件是否全天。
+    获取指示事件是否是全天的布尔值。
 
 
     \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -66,7 +66,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/99-preview-apis/calendar-properties-apis.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/99-preview-apis/calendar-properties-apis.yaml
 
     Office.context.mailbox.item.isAllDayEvent.getAsync(function(asyncResult) {
       if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
@@ -83,7 +83,7 @@ methods:
     content: 'getAsync(callback: (asyncResult: Office.AsyncResult<boolean>) => void): void;'
     parameters:
     - id: callback
-      description: 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
+      description: 方法完成后，使用一个类型参数调用在参数中传递 `callback` 的函数 `Office.AsyncResult`<!-- -->.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;boolean&gt;) =&gt; void'
     return:
       type: void
@@ -98,7 +98,7 @@ methods:
 
     \[[API 集：邮箱预览](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    如果约会被标记为全天事件：-开始和结束时间将被标记为 12:00 AM (就像在 Outlook UI) 中一样。 开始时间将返回 12:00 AM，结束时间将为 12:00 AM （而不是下一天）。
+    如果约会标记为全天事件： - 开始时间和结束时间将标记为上午 12：00 (就像在 Outlook UI) 。 开始时间将返回 12：00 AM，结束时间将为第二天上午 12：00。
 
 
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
@@ -112,7 +112,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/99-preview-apis/calendar-properties-apis.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/99-preview-apis/calendar-properties-apis.yaml
 
     Office.context.mailbox.item.isAllDayEvent.setAsync(true, function(asyncResult) {
       if (asyncResult.status === Office.AsyncResultStatus.Failed) {
@@ -129,21 +129,21 @@ methods:
     content: 'setAsync(isAllDayEvent: boolean, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: isAllDayEvent
-      description: 用于设置全天事件状态的布尔值。
+      description: 设置全天事件状态的布尔值。
       type: boolean
     - id: options
-      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
+      description: 可选。 方法完成后，用单个参数调用在参数中传递 `callback` 的函数， `asyncResult`<!-- -->，它是一 `Office.AsyncResult` 个对象。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: d205b00d3f27936ce4a869fde98d28cc35d6e83b
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: dd35b999eb2da213c172ad753a4c4bef5f2ec822
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49210967"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49857575"
