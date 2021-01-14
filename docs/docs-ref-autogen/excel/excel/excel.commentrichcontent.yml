@@ -4,10 +4,10 @@ uid: excel!Excel.CommentRichContent:interface
 package: excel!
 fullName: Excel.CommentRichContent
 summary: >-
-  表示包含在批注或批注答复中的内容。 富内容 incudes 文本字符串和注释正文中包含的任何其他对象（如提及）。
+  表示批注或批注回复中包含的内容。 格式内容表示注释正文中包含的文本字符串和任何其他对象，如提及。
 
 
-  \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -18,10 +18,10 @@ properties:
   package: excel!
   fullName: mentions
   summary: >-
-    包含所有实体的数组 (例如，注释中提到的人) 。
+    包含所有实体的数组 (例如，注释) 提及的人员。
 
 
-    \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -29,16 +29,16 @@ properties:
     content: 'mentions?: Excel.CommentMention[];'
     return:
       type: <xref uid="excel!Excel.CommentMention:interface" />[]
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/12-comment/comment-mentions.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Comments\");\n    const mention = {\n        email: \"kakri@contoso.com\",\n        id: 0,\n        name: \"Kate Kristensen\"\n    };\n\n    // This will tag the mention's name using the '@' syntax.\n    // They will be notified via email.\n    const commentBody = {\n        mentions: [mention],\n        richContent: '<at id=\"0\">' + mention.name + \"</at> -  Can you take a look?\"\n    };\n\n    // Note that an InvalidArgument error will be thrown if multiple cells passed to `comment.add`.\n    sheet.comments.add(\"A1\", commentBody, Excel.ContentType.mention);\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/12-comment/comment-mentions.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Comments\");\n    const mention = {\n        email: \"kakri@contoso.com\",\n        id: 0,\n        name: \"Kate Kristensen\"\n    };\n\n    // This will tag the mention's name using the '@' syntax.\n    // They will be notified via email.\n    const commentBody = {\n        mentions: [mention],\n        richContent: '<at id=\"0\">' + mention.name + \"</at> -  Can you take a look?\"\n    };\n\n    // Note that an InvalidArgument error will be thrown if multiple cells passed to `comment.add`.\n    sheet.comments.add(\"A1\", commentBody, Excel.ContentType.mention);\n    await context.sync();\n});\n```"
 - name: richContent
   uid: excel!Excel.CommentRichContent#richContent:member
   package: excel!
   fullName: richContent
   summary: >-
-    指定注释的丰富内容 (例如，注释内容包含提及，第一个提到的实体的 id 属性为0，第二个提到的实体的 id 属性为 1) 。
+    指定注释内容的丰富内容 (例如，包含提及内容的注释内容，第一个提及实体的 id 属性为 0，第二个提及实体的 id 属性为 1) 。
 
 
-    \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -47,9 +47,9 @@ properties:
     return:
       type: string
 metadata:
-  ms.openlocfilehash: 79932005c6b4ea996db90c99e2b00e5670a5224b
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 7d90d270768c5014f84ccdeccf5ba30d8bec0f55
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49169368"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49850855"

@@ -4,10 +4,10 @@ uid: excel!Excel.CommentCollection:class
 package: excel!
 fullName: Excel.CommentCollection
 summary: >-
-  表示属于工作簿的注释对象的集合。
+  表示属于工作簿的 comment 对象的集合。
 
 
-  \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: excel!Excel.CommentCollection#context:member
   package: excel!
   fullName: context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  summary: 与对象关联的请求上下文。 这会将外接程序的进程连接到 Office 主机应用程序的进程。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -45,7 +45,7 @@ properties:
     添加注释时发生。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -53,16 +53,16 @@ properties:
     content: 'readonly onAdded: OfficeExtension.EventHandlers<Excel.CommentAddedEventArgs>;'
     return:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.CommentAddedEventArgs:interface" />&gt;
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/30-events/events-comment-event-handler.yaml\nawait Excel.run(async (context) => {\n    const comments = context.workbook.worksheets.getActiveWorksheet().comments;\n\n    // Register the onAdded, onChanged, and onDeleted comment event handlers.\n    comments.onAdded.add(commentAdded);\n    comments.onChanged.add(commentChanged);\n    comments.onDeleted.add(commentDeleted);\n\n    await context.sync();\n\n    console.log(\"Added event handlers for when comments are added, changed, or deleted.\");\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/30-events/events-comment-event-handler.yaml\nasync function commentAdded(event: Excel.CommentAddedEventArgs) {\n    await Excel.run(async (context) => {\n        // Retrieve the added comment using the comment ID.\n        // Note: This method assumes only a single comment is added at a time. \n        const addedComment = context.workbook.comments.getItem(event.commentDetails[0].commentId);\n\n        // Load the added comment's data.\n        addedComment.load([\"content\", \"authorName\", \"creationDate\"]);\n\n        await context.sync();\n\n        // Print out the added comment's data.\n        console.log(`A comment was added:`);\n        console.log(`    ID: ${event.commentDetails[0].commentId}`);\n        console.log(`    Comment content:${addedComment.content}`);\n        console.log(`    Comment author:${addedComment.authorName}`);\n        console.log(`    Creation date:${addedComment.creationDate}`);\n    });\n}\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nawait Excel.run(async (context) => {\n    const comments = context.workbook.worksheets.getActiveWorksheet().comments;\n\n    // Register the onAdded, onChanged, and onDeleted comment event handlers.\n    comments.onAdded.add(commentAdded);\n    comments.onChanged.add(commentChanged);\n    comments.onDeleted.add(commentDeleted);\n\n    await context.sync();\n\n    console.log(\"Added event handlers for when comments are added, changed, or deleted.\");\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nasync function commentAdded(event: Excel.CommentAddedEventArgs) {\n    await Excel.run(async (context) => {\n        // Retrieve the added comment using the comment ID.\n        // Note: This method assumes only a single comment is added at a time. \n        const addedComment = context.workbook.comments.getItem(event.commentDetails[0].commentId);\n\n        // Load the added comment's data.\n        addedComment.load([\"content\", \"authorName\", \"creationDate\"]);\n\n        await context.sync();\n\n        // Print out the added comment's data.\n        console.log(`A comment was added:`);\n        console.log(`    ID: ${event.commentDetails[0].commentId}`);\n        console.log(`    Comment content:${addedComment.content}`);\n        console.log(`    Comment author:${addedComment.authorName}`);\n        console.log(`    Creation date:${addedComment.creationDate}`);\n    });\n}\n```"
 - name: onChanged
   uid: excel!Excel.CommentCollection#onChanged:member
   package: excel!
   fullName: onChanged
   summary: >-
-    当注释集合中的批注或答复发生更改时发生，包括答复被删除的时间。
+    在批注集合中的批注或回复发生更改时发生，包括删除回复时。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -70,7 +70,7 @@ properties:
     content: 'readonly onChanged: OfficeExtension.EventHandlers<Excel.CommentChangedEventArgs>;'
     return:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.CommentChangedEventArgs:interface" />&gt;
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/30-events/events-comment-event-handler.yaml\nawait Excel.run(async (context) => {\n    const comments = context.workbook.worksheets.getActiveWorksheet().comments;\n\n    // Register the onAdded, onChanged, and onDeleted comment event handlers.\n    comments.onAdded.add(commentAdded);\n    comments.onChanged.add(commentChanged);\n    comments.onDeleted.add(commentDeleted);\n\n    await context.sync();\n\n    console.log(\"Added event handlers for when comments are added, changed, or deleted.\");\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/30-events/events-comment-event-handler.yaml\nasync function commentChanged(event: Excel.CommentChangedEventArgs) {\n    await Excel.run(async (context) => {\n        // Retrieve the changed comment using the comment ID.\n        // Note: This method assumes only a single comment is changed at a time. \n        const changedComment = context.workbook.comments.getItem(event.commentDetails[0].commentId);\n\n        // Load the changed comment's data.\n        changedComment.load([\"content\", \"authorName\", \"creationDate\"]);\n\n        await context.sync();\n\n        // Print out the changed comment's data.\n        console.log(`A comment was changed:`);\n        console.log(`    ID: ${event.commentDetails[0].commentId}`);\n        console.log(`    Updated comment content: ${changedComment.content}`);\n        console.log(`    Comment author: ${changedComment.authorName}`);\n        console.log(`    Creation date: ${changedComment.creationDate}`);\n    });\n}\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nawait Excel.run(async (context) => {\n    const comments = context.workbook.worksheets.getActiveWorksheet().comments;\n\n    // Register the onAdded, onChanged, and onDeleted comment event handlers.\n    comments.onAdded.add(commentAdded);\n    comments.onChanged.add(commentChanged);\n    comments.onDeleted.add(commentDeleted);\n\n    await context.sync();\n\n    console.log(\"Added event handlers for when comments are added, changed, or deleted.\");\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nasync function commentChanged(event: Excel.CommentChangedEventArgs) {\n    await Excel.run(async (context) => {\n        // Retrieve the changed comment using the comment ID.\n        // Note: This method assumes only a single comment is changed at a time. \n        const changedComment = context.workbook.comments.getItem(event.commentDetails[0].commentId);\n\n        // Load the changed comment's data.\n        changedComment.load([\"content\", \"authorName\", \"creationDate\"]);\n\n        await context.sync();\n\n        // Print out the changed comment's data.\n        console.log(`A comment was changed:`);\n        console.log(`    ID: ${event.commentDetails[0].commentId}`);\n        console.log(`    Updated comment content: ${changedComment.content}`);\n        console.log(`    Comment author: ${changedComment.authorName}`);\n        console.log(`    Creation date: ${changedComment.creationDate}`);\n    });\n}\n```"
 - name: onDeleted
   uid: excel!Excel.CommentCollection#onDeleted:member
   package: excel!
@@ -79,7 +79,7 @@ properties:
     在注释集合中删除批注时发生。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -87,17 +87,17 @@ properties:
     content: 'readonly onDeleted: OfficeExtension.EventHandlers<Excel.CommentDeletedEventArgs>;'
     return:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.CommentDeletedEventArgs:interface" />&gt;
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/30-events/events-comment-event-handler.yaml\nawait Excel.run(async (context) => {\n    const comments = context.workbook.worksheets.getActiveWorksheet().comments;\n\n    // Register the onAdded, onChanged, and onDeleted comment event handlers.\n    comments.onAdded.add(commentAdded);\n    comments.onChanged.add(commentChanged);\n    comments.onDeleted.add(commentDeleted);\n\n    await context.sync();\n\n    console.log(\"Added event handlers for when comments are added, changed, or deleted.\");\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/30-events/events-comment-event-handler.yaml\nasync function commentDeleted(event: Excel.CommentDeletedEventArgs) {\n    await Excel.run(async (context) => {\n        // Print out the deleted comment's ID.\n        // Note: This method assumes only a single comment is deleted at a time. \n        console.log(`A comment was deleted:`);\n        console.log(`    ID: ${event.commentDetails[0].commentId}`);\n    });\n}\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nawait Excel.run(async (context) => {\n    const comments = context.workbook.worksheets.getActiveWorksheet().comments;\n\n    // Register the onAdded, onChanged, and onDeleted comment event handlers.\n    comments.onAdded.add(commentAdded);\n    comments.onChanged.add(commentChanged);\n    comments.onDeleted.add(commentDeleted);\n\n    await context.sync();\n\n    console.log(\"Added event handlers for when comments are added, changed, or deleted.\");\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nasync function commentDeleted(event: Excel.CommentDeletedEventArgs) {\n    await Excel.run(async (context) => {\n        // Print out the deleted comment's ID.\n        // Note: This method assumes only a single comment is deleted at a time. \n        console.log(`A comment was deleted:`);\n        console.log(`    ID: ${event.commentDetails[0].commentId}`);\n    });\n}\n```"
 methods:
 - name: add(cellAddress, content, contentType)
   uid: excel!Excel.CommentCollection#add:member(1)
   package: excel!
   fullName: add(cellAddress, content, contentType)
   summary: >-
-    使用给定单元格上的给定内容创建新批注。 `InvalidArgument`如果提供的范围大于一个单元格，则会引发错误。
+    使用给定单元格上的给定内容创建新批注。 如果 `InvalidArgument` 提供的范围大于一个单元格，则会引发错误。
 
 
-    \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -105,26 +105,26 @@ methods:
     content: 'add(cellAddress: Range | string, content: CommentRichContent | string, contentType?: Excel.ContentType): Excel.Comment;'
     parameters:
     - id: cellAddress
-      description: 向其中添加批注的单元格。 它可以是一个 Range 对象或一个字符串。 如果是字符串，则必须包含完整的地址，包括工作表名称。 `InvalidArgument`如果提供的范围大于一个单元格，则会引发错误。
+      description: 将批注添加到的单元格。 它可以是 Range 对象或字符串。 如果是字符串，则必须包含完整地址，包括工作表名称。 如果 `InvalidArgument` 提供的范围大于一个单元格，则会引发错误。
       type: <xref uid="excel!Excel.Range:class" /> | string
     - id: content
-      description: 批注的内容。 它可以是 string 或 CommentRichContent 对象。 字符串用于纯文本。 CommentRichContent 对象允许其他注释功能，如提到。 \[Api 集： ExcelApi 1.10 for string，1.11 （针对 CommentRichContent 对象）\]
+      description: 注释的内容。 它可以是字符串或 CommentRichContent 对象。 字符串用于纯文本。 CommentRichContent 对象允许其他注释功能，例如提及。 \[Api 集：ExcelApi 1.10（用于字符串）和 1.11（针对 CommentRichContent 对象）\]
       type: <xref uid="excel!Excel.CommentRichContent:interface" /> | string
     - id: contentType
-      description: 可选。 包含在注释中的内容类型。 默认值为枚举 `ContentType.Plain`<!-- -->. \[Api 集：枚举 ContentType 的 ExcelApi 1.10。纯，1.11 用于枚举 ContentType。提及\]
+      description: 可选。 注释中包含的内容类型。 默认值为枚举 `ContentType.Plain`<!-- -->. \[Api 集：ExcelApi 1.10 for Enum ContentType.Plain，1.11 for Enum ContentType.Mention\]
       type: <xref uid="excel!Excel.ContentType:enum" />
     return:
       type: <xref uid="excel!Excel.Comment:class" />
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/12-comment/comment-basics.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Comments\");\n\n    // Note that an InvalidArgument error will be thrown if multiple cells passed to `comment.add`.\n    sheet.comments.add(\"A2\", \"TODO: add data.\");\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/12-comment/comment-basics.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Comments\");\n\n    // Note that an InvalidArgument error will be thrown if multiple cells passed to `comment.add`.\n    sheet.comments.add(\"A2\", \"TODO: add data.\");\n    await context.sync();\n});\n```"
 - name: add(cellAddress, content, contentTypeString)
   uid: excel!Excel.CommentCollection#add:member(2)
   package: excel!
   fullName: add(cellAddress, content, contentTypeString)
   summary: >-
-    使用给定单元格上的给定内容创建新批注。 `InvalidArgument`如果提供的范围大于一个单元格，则会引发错误。
+    使用给定单元格上的给定内容创建新批注。 如果 `InvalidArgument` 提供的范围大于一个单元格，则会引发错误。
 
 
-    \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -132,13 +132,13 @@ methods:
     content: 'add(cellAddress: Range | string, content: CommentRichContent | string, contentTypeString?: "Plain" | "Mention"): Excel.Comment;'
     parameters:
     - id: cellAddress
-      description: 向其中添加批注的单元格。 它可以是一个 Range 对象或一个字符串。 如果是字符串，则必须包含完整的地址，包括工作表名称。 `InvalidArgument`如果提供的范围大于一个单元格，则会引发错误。
+      description: 将批注添加到的单元格。 它可以是 Range 对象或字符串。 如果是字符串，则必须包含完整地址，包括工作表名称。 如果 `InvalidArgument` 提供的范围大于一个单元格，则会引发错误。
       type: <xref uid="excel!Excel.Range:class" /> | string
     - id: content
-      description: 批注的内容。 它可以是 string 或 CommentRichContent 对象。 字符串用于纯文本。 CommentRichContent 对象允许其他注释功能，如提到。 \[Api 集： ExcelApi 1.10 for string，1.11 （针对 CommentRichContent 对象）\]
+      description: 注释的内容。 它可以是字符串或 CommentRichContent 对象。 字符串用于纯文本。 CommentRichContent 对象允许其他注释功能，例如提及。 \[Api 集：ExcelApi 1.10（用于字符串）和 1.11（针对 CommentRichContent 对象）\]
       type: <xref uid="excel!Excel.CommentRichContent:interface" /> | string
     - id: contentTypeString
-      description: 可选。 包含在注释中的内容类型。 默认值为枚举 `ContentType.Plain`<!-- -->. \[Api 集：枚举 ContentType 的 ExcelApi 1.10。纯，1.11 用于枚举 ContentType。提及\]
+      description: 可选。 注释中包含的内容类型。 默认值为枚举 `ContentType.Plain`<!-- -->. \[Api 集：ExcelApi 1.10 for Enum ContentType.Plain，1.11 for Enum ContentType.Mention\]
       type: "\"Plain\" | \"Mention\""
     return:
       type: <xref uid="excel!Excel.Comment:class" />
@@ -151,7 +151,7 @@ methods:
     获取集合中的批注数量。
 
 
-    \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -168,7 +168,7 @@ methods:
     根据其 ID 从集合中获取批注。
 
 
-    \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -189,7 +189,7 @@ methods:
     根据其位置从集合中获取批注。
 
 
-    \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -210,7 +210,7 @@ methods:
     从指定单元格获取的批注。
 
 
-    \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -218,7 +218,7 @@ methods:
     content: 'getItemByCell(cellAddress: Range | string): Excel.Comment;'
     parameters:
     - id: cellAddress
-      description: 批注所在的单元格。 它可以是一个 Range 对象或一个字符串。 如果是字符串，则必须包含完整的地址，包括工作表名称。 `InvalidArgument`如果提供的范围大于一个单元格，则会引发错误。
+      description: 批注所基于的单元格。 它可以是 Range 对象或字符串。 如果是字符串，则必须包含完整地址，包括工作表名称。 如果 `InvalidArgument` 提供的范围大于一个单元格，则会引发错误。
       type: <xref uid="excel!Excel.Range:class" /> | string
     return:
       type: <xref uid="excel!Excel.Comment:class" />
@@ -228,10 +228,10 @@ methods:
   package: excel!
   fullName: getItemByReplyId(replyId)
   summary: >-
-    获取给定答复连接到的注释。
+    获取给定答复所连接到的注释。
 
 
-    \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -239,7 +239,7 @@ methods:
     content: 'getItemByReplyId(replyId: string): Excel.Comment;'
     parameters:
     - id: replyId
-      description: 批注答复的标识符。
+      description: 批注回复的标识符。
       type: string
     return:
       type: <xref uid="excel!Excel.Comment:class" />
@@ -273,7 +273,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.CommentCollection;'
     parameters:
     - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.CommentCollection:class" />
@@ -290,7 +290,7 @@ methods:
     content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.CommentCollection;'
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，它是一个以逗号分隔的字符串，用于指定要加载的 `propertyNamesAndPaths.expand` 导航属性。'
       type: <xref uid="office!OfficeExtension.LoadOption:interface" />
     return:
       type: <xref uid="excel!Excel.CommentCollection:class" />
@@ -299,7 +299,7 @@ methods:
   uid: excel!Excel.CommentCollection#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始 `Excel.CommentCollection` 对象是 API 对象，则该 `toJSON` 方法返回一个纯 JavaScript 对象 (类型为 `Excel.Interfaces.CommentCollectionData`<!-- -->包含集合项中任何已加载属性的浅表的 "items" 数组 ) 。
+  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `Excel.CommentCollection` `toJSON` JavaScript 对象 `Excel.Interfaces.CommentCollectionData`<!-- -->) 包含"items"数组，其中包含集合项中任何已加载属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -310,9 +310,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 8d4196141a915abaabd3848c0427dc3625a8db39
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: b7c9ce5b7148b95006979a383a6dabf30483daf6
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49169396"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49850876"

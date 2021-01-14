@@ -4,10 +4,10 @@ uid: excel!Excel.NumberFormatInfo:class
 package: excel!
 fullName: Excel.NumberFormatInfo
 summary: >-
-  定义适当的区域性格式，以显示数字。 这取决于当前的系统区域性设置。
+  定义显示数字的适合文化的格式。 这基于当前系统区域性设置。
 
 
-  \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: excel!Excel.NumberFormatInfo#context:member
   package: excel!
   fullName: context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  summary: 与对象关联的请求上下文。 这会将外接程序的进程连接到 Office 主机应用程序的进程。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -30,10 +30,10 @@ properties:
   package: excel!
   fullName: numberDecimalSeparator
   summary: >-
-    获取用作数值的小数分隔符的字符串。 这取决于当前的系统设置。
+    获取用作数值的小数分隔符的字符串。 这基于当前系统设置。
 
 
-    \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -41,16 +41,16 @@ properties:
     content: 'readonly numberDecimalSeparator: string;'
     return:
       type: string
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/culture-info.yaml\n// This will convert a number like \"14,37\" to \"14.37\"\n// (assuming the system decimal separator is \".\").\n  await Excel.run(async (context) => {\nconst sheet = context.workbook.worksheets.getItem(\"Sample\");\nconst decimalSource = sheet.getRange(\"B2\");\ndecimalSource.load(\"values\");\ncontext.application.cultureInfo.numberFormat.load(\"numberDecimalSeparator\");\nawait context.sync();\n\nconst systemDecimalSeparator = context.application.cultureInfo.numberFormat.numberDecimalSeparator;\nconst oldDecimalString: string = decimalSource.values[0][0];\n\n// This assumes the input column is standardized to use \",\" as the decimal separator. \nconst newDecimalString = oldDecimalString.replace(\",\", systemDecimalSeparator);\n\nconst resultRange = sheet.getRange(\"C2\");\nresultRange.values = [[newDecimalString]];\nresultRange.format.autofitColumns();\nawait context.sync();\n  });\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/culture-info.yaml\n// This will convert a number like \"14,37\" to \"14.37\"\n// (assuming the system decimal separator is \".\").\n  await Excel.run(async (context) => {\nconst sheet = context.workbook.worksheets.getItem(\"Sample\");\nconst decimalSource = sheet.getRange(\"B2\");\ndecimalSource.load(\"values\");\ncontext.application.cultureInfo.numberFormat.load(\"numberDecimalSeparator\");\nawait context.sync();\n\nconst systemDecimalSeparator = context.application.cultureInfo.numberFormat.numberDecimalSeparator;\nconst oldDecimalString: string = decimalSource.values[0][0];\n\n// This assumes the input column is standardized to use \",\" as the decimal separator. \nconst newDecimalString = oldDecimalString.replace(\",\", systemDecimalSeparator);\n\nconst resultRange = sheet.getRange(\"C2\");\nresultRange.values = [[newDecimalString]];\nresultRange.format.autofitColumns();\nawait context.sync();\n  });\n```"
 - name: numberGroupSeparator
   uid: excel!Excel.NumberFormatInfo#numberGroupSeparator:member
   package: excel!
   fullName: numberGroupSeparator
   summary: >-
-    获取一个字符串，用于将数字值的小数位数与小数的左边隔开。 这取决于当前的系统设置。
+    获取用于分隔数字值小数点左侧的一组数字的字符串。 这基于当前系统设置。
 
 
-    \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -58,7 +58,7 @@ properties:
     content: 'readonly numberGroupSeparator: string;'
     return:
       type: string
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/culture-info.yaml\nawait Excel.run(async (context) => {\n  // This will convert a number like \"123-456-789\" to \"123,456,789\"\n  // (assuming the system thousands separator is \",\").\n  const sheet = context.workbook.worksheets.getItem(\"Sample\");\n  const bigNumberSource = sheet.getRange(\"B3\");\n  bigNumberSource.load(\"values\");\n  context.application.cultureInfo.numberFormat.load(\"numberGroupSeparator\");\n  await context.sync();\n\n  const systemThousandsSeparator = context.application.cultureInfo.numberFormat.numberGroupSeparator;\n  const oldBigNumberString: string = bigNumberSource.values[0][0];\n  \n  // This assumes the input column is standardized to use \"-\" as the number group separator. \n  const newBigNumberString = oldBigNumberString.replace(/-/g, systemThousandsSeparator);\n\n  const resultRange = sheet.getRange(\"C3\");\n  resultRange.values = [[newBigNumberString]];\n  resultRange.format.autofitColumns();\n  await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/culture-info.yaml\nawait Excel.run(async (context) => {\n  // This will convert a number like \"123-456-789\" to \"123,456,789\"\n  // (assuming the system thousands separator is \",\").\n  const sheet = context.workbook.worksheets.getItem(\"Sample\");\n  const bigNumberSource = sheet.getRange(\"B3\");\n  bigNumberSource.load(\"values\");\n  context.application.cultureInfo.numberFormat.load(\"numberGroupSeparator\");\n  await context.sync();\n\n  const systemThousandsSeparator = context.application.cultureInfo.numberFormat.numberGroupSeparator;\n  const oldBigNumberString: string = bigNumberSource.values[0][0];\n  \n  // This assumes the input column is standardized to use \"-\" as the number group separator. \n  const newBigNumberString = oldBigNumberString.replace(/-/g, systemThousandsSeparator);\n\n  const resultRange = sheet.getRange(\"C3\");\n  resultRange.values = [[newBigNumberString]];\n  resultRange.format.autofitColumns();\n  await context.sync();\n});\n```"
 methods:
 - name: load(options)
   uid: excel!Excel.NumberFormatInfo#load:member(1)
@@ -89,7 +89,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.NumberFormatInfo;'
     parameters:
     - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.NumberFormatInfo:class" />
@@ -110,7 +110,7 @@ methods:
               }): Excel.NumberFormatInfo;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，它是一个以逗号分隔的字符串，用于指定要加载的 `propertyNamesAndPaths.expand` 导航属性。'
       type: >-
         {
                     select?: string;
@@ -123,7 +123,7 @@ methods:
   uid: excel!Excel.NumberFormatInfo#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始 NumberFormatInfo 对象是 API 对象，则该 `toJSON` 方法返回一个 (类型为的纯 JavaScript 对象。 `Excel.Interfaces.NumberFormatInfoData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给该对象的对象的方法。) 而原始 `toJSON` Excel.NumberFormatInfo 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` JavaScript 对象 `Excel.Interfaces.NumberFormatInfoData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -134,9 +134,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: b2f2315269ad82311d4cfdd62b42ec73c3886ca2
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: b25120f0e3b4bfc62c5f30c49ae3a20d44f8565f
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49295089"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49851247"
