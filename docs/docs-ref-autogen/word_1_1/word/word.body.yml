@@ -7,7 +7,7 @@ summary: >-
   表示文档或节的正文。
 
 
-  \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -21,7 +21,7 @@ properties:
     获取正文中的格式文本内容控件对象的集合。 只读。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -33,7 +33,7 @@ properties:
   uid: word!Word.Body#context:member
   package: word!
   fullName: context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  summary: 与对象关联的请求上下文。 这会将外接程序的进程连接到 Office 主机应用程序的进程。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -46,10 +46,10 @@ properties:
   package: word!
   fullName: font
   summary: >-
-    获取正文的文本格式。 使用此属性可获取和设置字体名称、大小、颜色和其他属性。 只读。
+    获取正文的文本格式。 使用它获取和设置字体名称、大小、颜色和其他属性。 只读。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -63,10 +63,10 @@ properties:
   package: word!
   fullName: inlinePictures
   summary: >-
-    获取正文中 InlinePicture 对象的集合。 集合不包括浮动图像。 只读。
+    获取正文中的 InlinePicture 对象的集合。 集合不包括浮动图像。 只读。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -79,10 +79,10 @@ properties:
   package: word!
   fullName: paragraphs
   summary: >-
-    获取正文中段落对象的集合。 只读。
+    获取 body 中的 paragraph 对象的集合。 只读。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -90,16 +90,16 @@ properties:
     content: 'readonly paragraphs: Word.ParagraphCollection;'
     return:
       type: <xref uid="word!Word.ParagraphCollection:class" />
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/word/25-paragraph/get-word-count.yaml\nawait Word.run(async (context) => {\n  let paragraphs = context.document.body.paragraphs;\n  paragraphs.load(\"text\");\n  await context.sync();\n\n  let text = [];\n  paragraphs.items.forEach((item) => {\n    let paragraph = item.text.trim();\n    if (paragraph) {\n      paragraph.split(\" \").forEach((term) => {\n        let currentTerm = term.trim();\n        if (currentTerm) {\n          text.push(currentTerm);\n        }\n      });\n    }\n  });\n\n  let makeTextDistinct = new Set(text);\n  let distinctText = Array.from(makeTextDistinct);\n  let allSearchResults = [];\n\n  for (let i = 0; i < distinctText.length; i++) {\n    let results = context.document.body.search(distinctText[i], { matchCase: true, matchWholeWord: true });\n    results.load(\"text\");\n\n    // Map search term with its results.\n    let correlatedResults = {\n      searchTerm: distinctText[i],\n      hits: results\n    };\n\n    allSearchResults.push(correlatedResults);\n  }\n\n  await context.sync();\n\n  // Display counts.\n  allSearchResults.forEach((result) => {\n    let length = result.hits.items.length;\n\n    console.log(\"Search term: \" + result.searchTerm + \" => Count: \" + length);\n  });\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/25-paragraph/get-word-count.yaml\nawait Word.run(async (context) => {\n  let paragraphs = context.document.body.paragraphs;\n  paragraphs.load(\"text\");\n  await context.sync();\n\n  let text = [];\n  paragraphs.items.forEach((item) => {\n    let paragraph = item.text.trim();\n    if (paragraph) {\n      paragraph.split(\" \").forEach((term) => {\n        let currentTerm = term.trim();\n        if (currentTerm) {\n          text.push(currentTerm);\n        }\n      });\n    }\n  });\n\n  let makeTextDistinct = new Set(text);\n  let distinctText = Array.from(makeTextDistinct);\n  let allSearchResults = [];\n\n  for (let i = 0; i < distinctText.length; i++) {\n    let results = context.document.body.search(distinctText[i], { matchCase: true, matchWholeWord: true });\n    results.load(\"text\");\n\n    // Map search term with its results.\n    let correlatedResults = {\n      searchTerm: distinctText[i],\n      hits: results\n    };\n\n    allSearchResults.push(correlatedResults);\n  }\n\n  await context.sync();\n\n  // Display counts.\n  allSearchResults.forEach((result) => {\n    let length = result.hits.items.length;\n\n    console.log(\"Search term: \" + result.searchTerm + \" => Count: \" + length);\n  });\n});\n```"
 - name: parentContentControl
   uid: word!Word.Body#parentContentControl:member
   package: word!
   fullName: parentContentControl
   summary: >-
-    获取包含正文的内容控件。 如果没有父内容控件，则会引发错误。 只读。
+    获取包含正文的内容控件。 如果没有父内容控件，则引发错误。 只读。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -115,7 +115,7 @@ properties:
     获取或设置 body 的样式名称。请对自定义样式和本地化样式名称使用此属性。若要使用可以在区域设置之间移植的嵌入样式，请参阅“styleBuiltIn”属性。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -131,7 +131,7 @@ properties:
     获取正文的文本。 使用 insertText 方法插入文本。 只读。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -149,7 +149,7 @@ methods:
     清除 body 对象的内容。 用户可以对已清除的内容执行撤消操作。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -163,10 +163,10 @@ methods:
   package: word!
   fullName: getHtml()
   summary: >-
-    获取 body 对象的 HTML 表示形式。 在网页或 HTML 查看器中呈现时，格式设置将与文档的格式设置完全匹配，但不完全匹配。 此方法不会为不同平台上的同一文档返回完全相同的 HTML (Windows、Mac、Word 网页版，等等 ) 。 如果您需要完全保真度或跨平台的一致性，请使用 `Body.getOoxml()` 并将返回的 XML 转换为 HTML。
+    获取 body 对象的 HTML 表示形式。 在网页或 HTML 查看器中呈现时，格式与文档的格式设置完全匹配，但不完全匹配。 此方法不会为 Windows、Mac、Web 上的 Word 等不同平台上的同一 (返回完全相同的 HTML) 。 如果您需要完全保真度或跨平台的一致性，请使用返回的 XML 并将其 `Body.getOoxml()` 转换为 HTML。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -183,7 +183,7 @@ methods:
     获取 body 对象的 OOXML (Office Open XML) 表示形式。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -200,7 +200,7 @@ methods:
     在主文档的指定位置插入分隔符。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -224,7 +224,7 @@ methods:
     在主文档的指定位置插入分隔符。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -248,7 +248,7 @@ methods:
     使用富文本内容控件封装 body 对象。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -265,7 +265,7 @@ methods:
     将文档插入到正文中的指定位置。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -273,7 +273,7 @@ methods:
     content: 'insertFileFromBase64(base64File: string, insertLocation: Word.InsertLocation): Word.Range;'
     parameters:
     - id: base64File
-      description: 必需。 .Docx 文件的 base64 编码内容。
+      description: 必需。 .docx 文件的 base64 编码内容。
       type: string
     - id: insertLocation
       description: 必需。 此值可以为“Replace”、“Start”或“End”。
@@ -289,7 +289,7 @@ methods:
     将文档插入到正文中的指定位置。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -297,7 +297,7 @@ methods:
     content: 'insertFileFromBase64(base64File: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
     parameters:
     - id: base64File
-      description: 必需。 .Docx 文件的 base64 编码内容。
+      description: 必需。 .docx 文件的 base64 编码内容。
       type: string
     - id: insertLocationString
       description: 必需。 此值可以为“Replace”、“Start”或“End”。
@@ -313,7 +313,7 @@ methods:
     在指定位置插入 HTML。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -337,7 +337,7 @@ methods:
     在指定位置插入 HTML。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -361,7 +361,7 @@ methods:
     在指定位置插入 OOXML。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -385,7 +385,7 @@ methods:
     在指定位置插入 OOXML。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -409,7 +409,7 @@ methods:
     在指定位置插入段落。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -433,7 +433,7 @@ methods:
     在指定位置插入段落。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -457,7 +457,7 @@ methods:
     将文本插入到正文中的指定位置。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -481,7 +481,7 @@ methods:
     将文本插入到正文中的指定位置。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -526,7 +526,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Word.Body;'
     parameters:
     - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="word!Word.Body:class" />
@@ -547,7 +547,7 @@ methods:
               }): Word.Body;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，它是一个以逗号分隔的字符串，用于指定要加载的 `propertyNamesAndPaths.expand` 导航属性。'
       type: >-
         {
                     select?: string;
@@ -561,10 +561,10 @@ methods:
   package: word!
   fullName: search(searchText, searchOptions)
   summary: >-
-    在 body 对象的作用域上使用指定的 SearchOptions 执行搜索。 搜索结果是 range 对象的集合。
+    在 body 对象范围内使用指定的 SearchOptions 执行搜索。 搜索结果是 range 对象的集合。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -581,7 +581,7 @@ methods:
               }): Word.RangeCollection;
     parameters:
     - id: searchText
-      description: 必需。 搜索文本。 最多可以为255个字符。
+      description: 必需。 搜索文本。 最多可包含 255 个字符。
       type: string
     - id: searchOptions
       description: 可选。 用于搜索的选项。
@@ -597,7 +597,7 @@ methods:
                 }
     return:
       type: <xref uid="word!Word.RangeCollection:class" />
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/word/25-paragraph/search.yaml\nawait Word.run(async (context) => {\n  let results = context.document.body.search(\"Online\");\n  results.load(\"length\");\n\n  await context.sync();\n\n  // Let's traverse the search results... and highlight...\n  for (let i = 0; i < results.items.length; i++) {\n    results.items[i].font.highlightColor = \"yellow\";\n  }\n\n  await context.sync();\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/word/25-paragraph/search.yaml\nawait Word.run(async (context) => {\n  // Check out how wildcard expression are built, also use the second parameter of the search method to include search modes\n  // (i.e. use wildcards).\n  let results = context.document.body.search(\"$*.[0-9][0-9]\", { matchWildcards: true });\n  results.load(\"length\");\n\n  await context.sync();\n\n  // Let's traverse the search results... and highlight...\n  for (let i = 0; i < results.items.length; i++) {\n    results.items[i].font.highlightColor = \"red\";\n    results.items[i].font.color = \"white\";\n  }\n\n  await context.sync();\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/word/25-paragraph/get-word-count.yaml\nawait Word.run(async (context) => {\n  let paragraphs = context.document.body.paragraphs;\n  paragraphs.load(\"text\");\n  await context.sync();\n\n  let text = [];\n  paragraphs.items.forEach((item) => {\n    let paragraph = item.text.trim();\n    if (paragraph) {\n      paragraph.split(\" \").forEach((term) => {\n        let currentTerm = term.trim();\n        if (currentTerm) {\n          text.push(currentTerm);\n        }\n      });\n    }\n  });\n\n  let makeTextDistinct = new Set(text);\n  let distinctText = Array.from(makeTextDistinct);\n  let allSearchResults = [];\n\n  for (let i = 0; i < distinctText.length; i++) {\n    let results = context.document.body.search(distinctText[i], { matchCase: true, matchWholeWord: true });\n    results.load(\"text\");\n\n    // Map search term with its results.\n    let correlatedResults = {\n      searchTerm: distinctText[i],\n      hits: results\n    };\n\n    allSearchResults.push(correlatedResults);\n  }\n\n  await context.sync();\n\n  // Display counts.\n  allSearchResults.forEach((result) => {\n    let length = result.hits.items.length;\n\n    console.log(\"Search term: \" + result.searchTerm + \" => Count: \" + length);\n  });\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/25-paragraph/search.yaml\nawait Word.run(async (context) => {\n  let results = context.document.body.search(\"Online\");\n  results.load(\"length\");\n\n  await context.sync();\n\n  // Let's traverse the search results... and highlight...\n  for (let i = 0; i < results.items.length; i++) {\n    results.items[i].font.highlightColor = \"yellow\";\n  }\n\n  await context.sync();\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/25-paragraph/search.yaml\nawait Word.run(async (context) => {\n  // Check out how wildcard expression are built, also use the second parameter of the search method to include search modes\n  // (i.e. use wildcards).\n  let results = context.document.body.search(\"$*.[0-9][0-9]\", { matchWildcards: true });\n  results.load(\"length\");\n\n  await context.sync();\n\n  // Let's traverse the search results... and highlight...\n  for (let i = 0; i < results.items.length; i++) {\n    results.items[i].font.highlightColor = \"red\";\n    results.items[i].font.color = \"white\";\n  }\n\n  await context.sync();\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/25-paragraph/get-word-count.yaml\nawait Word.run(async (context) => {\n  let paragraphs = context.document.body.paragraphs;\n  paragraphs.load(\"text\");\n  await context.sync();\n\n  let text = [];\n  paragraphs.items.forEach((item) => {\n    let paragraph = item.text.trim();\n    if (paragraph) {\n      paragraph.split(\" \").forEach((term) => {\n        let currentTerm = term.trim();\n        if (currentTerm) {\n          text.push(currentTerm);\n        }\n      });\n    }\n  });\n\n  let makeTextDistinct = new Set(text);\n  let distinctText = Array.from(makeTextDistinct);\n  let allSearchResults = [];\n\n  for (let i = 0; i < distinctText.length; i++) {\n    let results = context.document.body.search(distinctText[i], { matchCase: true, matchWholeWord: true });\n    results.load(\"text\");\n\n    // Map search term with its results.\n    let correlatedResults = {\n      searchTerm: distinctText[i],\n      hits: results\n    };\n\n    allSearchResults.push(correlatedResults);\n  }\n\n  await context.sync();\n\n  // Display counts.\n  allSearchResults.forEach((result) => {\n    let length = result.hits.items.length;\n\n    console.log(\"Search term: \" + result.searchTerm + \" => Count: \" + length);\n  });\n});\n```"
 - name: select(selectionMode)
   uid: word!Word.Body#select:member(1)
   package: word!
@@ -606,7 +606,7 @@ methods:
     选择正文并在 Word UI 中进行浏览。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -627,7 +627,7 @@ methods:
     选择正文并在 Word UI 中进行浏览。
 
 
-    \[[API 集： WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[API 集：WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -644,7 +644,7 @@ methods:
   uid: word!Word.Body#set:member(1)
   package: word!
   fullName: set(properties, options)
-  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+  summary: 同时设置对象的多个属性。 你可以传递具有相应属性的普通对象，也可以传递同一类型的另一个 API 对象。
   remarks: >-
     此方法具有以下附加签名：
 
@@ -656,10 +656,10 @@ methods:
     content: 'set(properties: Interfaces.BodyUpdateData, options?: OfficeExtension.UpdateOptions): void;'
     parameters:
     - id: properties
-      description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
+      description: 一个 JavaScript 对象，其属性以等态方式构造到调用该方法的对象的属性。
       type: <xref uid="word!Word.Interfaces.BodyUpdateData:interface" />
     - id: options
-      description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
+      description: 提供在属性对象尝试设置任何只读属性时禁止错误的选项。
       type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
     return:
       type: void
@@ -668,7 +668,7 @@ methods:
   uid: word!Word.Body#set:member(2)
   package: word!
   fullName: set(properties)
-  summary: 基于现有加载的对象同时设置该对象的多个属性。
+  summary: 基于现有的已加载对象，同时设置对象上的多个属性。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -685,7 +685,7 @@ methods:
   uid: word!Word.Body#toJSON:member(1)
   package: word!
   fullName: toJSON()
-  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始的 Word. Body 对象是 API 对象，则该 `toJSON` 方法返回一个简单的 JavaScript 对象 (类型为 `Word.Interfaces.BodyData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给该对象的方法。) 而原始 Word.Body 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Word.Interfaces.BodyData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -698,7 +698,7 @@ methods:
   uid: word!Word.Body#track:member(1)
   package: word!
   fullName: track()
-  summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是的简写 `context.trackedObjects.add(thisObject)`<!-- -->. 如果要在多个调用中使用此对象 `.sync` ，并在 "运行" 批处理的顺序执行之外使用此对象，并在设置属性或对对象调用方法时获取 "InvalidObjectPath" 错误，则需要在首次创建对象时将该对象添加到跟踪的对象集合中。
+  summary: 根据文档中的相应更改来跟踪对象，以便进行自动调整。 此调用是 `context.trackedObjects.add(thisObject)`<!-- -->. 如果在调用期间和顺序执行".run"批处理之外使用此对象，如果在对象上设置属性或调用方法时收到"InvalidObjectPath"错误，则首次创建对象时，需要将该对象添加到跟踪的对象集合中。 `.sync`
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -711,7 +711,7 @@ methods:
   uid: word!Word.Body#untrack:member(1)
   package: word!
   fullName: untrack()
-  summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是的简写 `context.trackedObjects.remove(thisObject)`<!-- -->. 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 在 `context.sync()` 内存释放生效之前，您需要调用该过程。
+  summary: 释放与此对象关联的内存（如果先前已跟踪过）。 此调用是 `context.trackedObjects.remove(thisObject)`<!-- -->. 拥有许多跟踪对象会降低主机应用程序的速度，因此请在使用完毕后释放所添加的任何对象。 你需要在内存释放 `context.sync()` 生效之前调用。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -722,9 +722,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 0e68ab044c1c6681cc5567432081829597deafd9
-  ms.sourcegitcommit: 551d760f6b9e7ff22afdaf6ce8e0b2863946596d
+  ms.openlocfilehash: ef563e55f809f2ba1c057200ed680c1d22fc7c08
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 12/04/2020
-  ms.locfileid: "49570450"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49858639"

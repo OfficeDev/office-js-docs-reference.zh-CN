@@ -4,10 +4,10 @@ uid: outlook!Office.Time:interface
 package: outlook!
 fullName: Office.Time
 summary: >-
-  `Time`在撰写模式下，对象以约会的开始或结束属性的形式返回。
+  在 `Time` 撰写模式下，该对象作为约会的开始或结束属性返回。
 
 
-  \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  \[[API 集：Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
 remarks: >-
   **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -25,10 +25,10 @@ methods:
     获取约会的开始或结束时间。
 
 
-    日期和时间作为 `Date` 属性中的对象提供 `asyncResult.value` 。 该值以协调世界时 (UTC) 表示。 可以使用方法将 UTC 时间转换为本地客户端时间 `convertToLocalClientTime` 。
+    日期和时间作为对象在 `Date` 属性 `asyncResult.value` 中提供。 该值以协调世界时 (UTC) 表示。 您可以使用该方法将 UTC 时间转换为本地客户端 `convertToLocalClientTime` 时间。
 
 
-    \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -40,10 +40,10 @@ methods:
     content: 'getAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<Date>) => void): void;'
     parameters:
     - id: options
-      description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. `value`结果的属性是一个 `Date` 对象。
+      description: 方法完成后，用一个类型参数调用在参数中 `callback` 传递的函数 `Office.AsyncResult`<!-- -->. `value`结果的属性是一 `Date` 个对象。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;Date&gt;) =&gt; void'
     return:
       type: void
@@ -56,10 +56,10 @@ methods:
     获取约会的开始或结束时间。
 
 
-    日期和时间作为 `Date` 属性中的对象提供 `asyncResult.value` 。 该值以协调世界时 (UTC) 表示。 可以使用方法将 UTC 时间转换为本地客户端时间 `convertToLocalClientTime` 。
+    日期和时间作为对象在 `Date` 属性 `asyncResult.value` 中提供。 该值以协调世界时 (UTC) 表示。 您可以使用该方法将 UTC 时间转换为本地客户端 `convertToLocalClientTime` 时间。
 
 
-    \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -72,7 +72,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-set-start-appointment-organizer.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/90-other-item-apis/get-set-start-appointment-organizer.yaml
 
     Office.context.mailbox.item.start.getAsync((result) => {
       if (result.status !== Office.AsyncResultStatus.Succeeded) {
@@ -89,7 +89,7 @@ methods:
     content: 'getAsync(callback: (asyncResult: Office.AsyncResult<Date>) => void): void;'
     parameters:
     - id: callback
-      description: 方法完成后，使用单个参数类型调用在 callback 参数中传递的函数 `Office.AsyncResult`<!-- -->. `value`结果的属性是一个 `Date` 对象。
+      description: 方法完成后，用一个类型参数调用回调参数中传递的函数 `Office.AsyncResult`<!-- -->. `value`结果的属性是一 `Date` 个对象。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;Date&gt;) =&gt; void'
     return:
       type: void
@@ -102,16 +102,16 @@ methods:
     设置约会的开始或结束时间。
 
 
-    如果 `setAsync` 在 start 属性上调用此方法，则 `end` 将调整该属性，以保持约会的持续时间为以前设置。 如果对 `setAsync` 属性调用了`end` 方法，则约会的持续时间将延长到新的结束时间。
+    如果对 start 属性调用该方法，则该属性将进行调整，以保持约会的持续时间 `setAsync` `end` ，如之前设置。 如果对 `setAsync` 属性调用了`end` 方法，则约会的持续时间将延长到新的结束时间。
 
 
     时间必须以 UTC 格式表示；您可以使用 `convertToUtcClientTime` 方法获取正确的 UTC 时间。
 
 
-    **重要说明**：在 Windows 客户端中，不能使用此函数更新定期的开始或结束。
+    **重要** 提示：在 Windows 客户端中，你无法使用此函数更新定期的开始或结束。
 
 
-    \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
 
@@ -122,7 +122,7 @@ methods:
     **错误**：
 
 
-    - `InvalidEndTime`<!-- -->：约会结束时间早在约会开始时间之前。
+    - `InvalidEndTime`<!-- -->：约会结束时间在约会开始时间之前。
 
 
     #### <a name="examples"></a>示例
@@ -150,7 +150,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-set-start-appointment-organizer.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/90-other-item-apis/get-set-start-appointment-organizer.yaml
 
     var start = new Date(); // Represents current date and time.
 
@@ -168,7 +168,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-set-end-appointment-organizer.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/90-other-item-apis/get-set-end-appointment-organizer.yaml
 
     Office.context.mailbox.item.start.getAsync((result) => {
       if (result.status !== Office.AsyncResultStatus.Succeeded) {
@@ -194,21 +194,21 @@ methods:
     content: 'setAsync(dateTime: Date, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: dateTime
-      description: 以协调世界时 (UTC) 的日期-时间对象。
+      description: 使用 UTC 时间协调世界时 (日期) 。
       type: Date
     - id: options
-      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果设置日期和时间失败，`asyncResult.error` 属性将包含一个错误代码。
+      description: 可选。 方法完成后，用一个类型参数调用在参数中 `callback` 传递的函数 `Office.AsyncResult`<!-- -->. 如果设置日期和时间失败，`asyncResult.error` 属性将包含一个错误代码。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: 46d089bfc924ce61e958e73aa86e30ffb68d6c04
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 2a8c23152849591736cb0802711df7a011cbf5d7
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49143160"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49857715"
