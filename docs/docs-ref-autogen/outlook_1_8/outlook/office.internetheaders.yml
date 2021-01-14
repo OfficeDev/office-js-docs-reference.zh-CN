@@ -4,30 +4,30 @@ uid: outlook!Office.InternetHeaders:interface
 package: outlook!
 fullName: Office.InternetHeaders
 summary: >-
-  `InternetHeaders`对象表示在邮件项目离开 Exchange 并转换为 MIME 邮件后保留的自定义 internet 标头。 这些标头存储为 MIME 邮件中的 x 标头。
+  该对象表示在邮件项目离开 Exchange 并转换为 MIME 邮件后保留的自定义 `InternetHeaders` Internet 标头。 这些邮件头在 MIME 邮件中存储为 x-header。
 
 
-  Internet 标头以项/值对的形式存储在每个项的基础上。
+  Internet 标头按项存储为键/值对。
 
 
-  **注意**：此对象用于设置和获取邮件项目的自定义标头。
+  **注意**：此对象用于设置和获取邮件项的自定义邮件头。 若要了解更多信息，请参阅[在 Outlook](https://docs.microsoft.com/office/dev/add-ins/outlook/internet-headers)外接程序中获取和设置邮件的 Internet 标头<!-- -->.
 
 
-  \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  \[[API 集：Mailbox 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
 remarks: >-
   **建议的做法**
 
 
-  目前，internet 邮件头是用户邮箱的有限资源。 当配额耗尽时，您不能在该邮箱上创建更多的 internet 标头，这可能导致依赖于此的客户端的意外行为能够正常运行。
+  目前，Internet 标头是用户邮箱上的有限资源。 当配额用尽时，你无法在此邮箱上创建任何其他 Internet 标头，这可能会导致依赖于此功能的客户端出现意外行为。
 
 
-  在外接程序中创建 internet 邮件头时，请应用以下准则。
+  在外接程序中创建 Internet 标头时，请应用以下准则。
 
 
   - 创建所需的最小标头数。
 
 
-  - 名称标头，以便以后可以重复使用和更新其值。 因此，请避免以变量方式命名标头 (例如，基于用户输入、时间戳等 ) 。
+  - 名称标头，以便以后可以重复使用和更新其值。 因此，避免以可变方式命名标头 (例如，基于用户输入、时间戳等) 。
 
 
   **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
@@ -43,13 +43,13 @@ methods:
   package: outlook!
   fullName: getAsync(names, options, callback)
   summary: >-
-    已知 internet 标头名称的数组，此方法将返回包含这些 internet 标头及其值的字典。 如果外接程序请求的 x 标头不可用，则结果中不会返回该 x 标头。
+    给定 Internet 标头名称数组后，此方法返回包含这些 Internet 标头及其值的字典。 如果加载项请求不可用的 x 标头，将不会在结果中返回该 x 标头。
 
 
-    **注意**：此方法用于返回使用方法设置的自定义标头的值 `setAsync` 。
+    **注意**：此方法用于返回使用该方法设置的自定义标头 `setAsync` 的值。
 
 
-    \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -62,13 +62,18 @@ methods:
 
     ```javascript
 
-    Office.context.mailbox.item.internetHeaders.getAsync(["header1", "header2"], callback);
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/70-mime-headers/manage-custom-internet-headers-message-compose.yaml
 
-
-    function callback(asyncResult) {
-        var dictionary = asyncResult.value;
-        var header1_value = dictionary["header1"];
-    }
+    Office.context.mailbox.item.internetHeaders.getAsync(
+      ["x-preferred-fruit", "x-preferred-vegetable", "x-best-vegetable", "x-nonexistent-header"],
+      function (asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Selected headers: " + JSON.stringify(asyncResult.value));
+        } else {
+          console.log("Error getting selected headers: " + JSON.stringify(asyncResult.error));
+        }
+      }
+    );
 
     ```
   isPreview: false
@@ -77,13 +82,13 @@ methods:
     content: 'getAsync(names: string[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<InternetHeaders>) => void): void;'
     parameters:
     - id: names
-      description: 要返回的 internet 标头的名称。
+      description: 要返回的 Internet 标头的名称。
       type: string[]
     - id: options
-      description: 可选。 一个包含以下一个或多个属性的对象文字： `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      description: 可选。 包含以下一个或多个属性的对象文字： `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
+      description: 可选。 方法完成后，用单个参数调用在参数中传递 `callback` 的函数， `asyncResult`<!-- -->，它是一 `Office.AsyncResult` 个对象。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.InternetHeaders:interface" />&gt;) =&gt; void'
     return:
       type: void
@@ -93,13 +98,13 @@ methods:
   package: outlook!
   fullName: removeAsync(names, options, callback)
   summary: >-
-    已知 internet 标头名称的数组，此方法将从 internet 头集合中移除指定的标头。
+    如果给定一个 Internet 标头名称数组，此方法将删除 Internet 标头集合中的指定标头。
 
 
-    **注意**：此方法用于删除使用方法设置的自定义标头 `setAsync` 。
+    **注意**：此方法用于删除使用该方法设置的自定义 `setAsync` 标头。
 
 
-    \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
 
@@ -112,7 +117,18 @@ methods:
 
     ```javascript
 
-    Office.context.mailbox.item.internetHeaders.removeAsync(["header1", "header2"]);
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/70-mime-headers/manage-custom-internet-headers-message-compose.yaml
+
+    Office.context.mailbox.item.internetHeaders.removeAsync(
+      ["x-best-vegetable", "x-nonexistent-header"],
+      function (asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Successfully removed selected headers");
+        } else {
+          console.log("Error removing selected headers: " + JSON.stringify(asyncResult.error));
+        }
+      }
+    );
 
     ```
   isPreview: false
@@ -121,13 +137,13 @@ methods:
     content: 'removeAsync(names: string[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<InternetHeaders>) => void): void;'
     parameters:
     - id: names
-      description: 要删除的 internet 标头的名称。
+      description: 要删除的 Internet 标头的名称。
       type: string[]
     - id: options
-      description: 可选。 一个包含以下一个或多个属性的对象文字： `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      description: 可选。 包含以下一个或多个属性的对象文字： `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
+      description: 可选。 方法完成后，用单个参数调用在参数中传递 `callback` 的函数， `asyncResult`<!-- -->，它是一 `Office.AsyncResult` 个对象。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.InternetHeaders:interface" />&gt;) =&gt; void'
     return:
       type: void
@@ -137,16 +153,16 @@ methods:
   package: outlook!
   fullName: setAsync(headers, options, callback)
   summary: >-
-    将指定的 internet 标头设置为指定的值。
+    将指定的 Internet 标头设置为指定的值。
 
 
-    `setAsync`如果指定的标头尚不存在，则该方法将创建一个新的标头; 否则，现有值将替换为新值。
+    如果指定的标头不存在，该方法将创建新的标头;否则，现有值 `setAsync` 将替换为新值。
 
 
     **注意**：此方法用于设置自定义标头的值。
 
 
-    \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
 
@@ -159,7 +175,19 @@ methods:
 
     ```javascript
 
-    Office.context.mailbox.item.internetHeaders.setAsync({"header1": "value1", "header2": "value2"});
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/70-mime-headers/manage-custom-internet-headers-message-compose.yaml
+
+    Office.context.mailbox.item.internetHeaders.setAsync(
+      { "x-preferred-fruit": "orange", "x-preferred-vegetable": "broccoli", "x-best-vegetable": "spinach" },
+      function (asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Successfully set headers");
+        } else {
+          console.log("Error setting headers: " + JSON.stringify(asyncResult.error));
+        }
+      }
+
+    );
 
     ```
   isPreview: false
@@ -168,21 +196,21 @@ methods:
     content: 'setAsync(headers: Object, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: headers
-      description: 要设置的标头的名称和相应的值。 应为字典对象，其中的键为 internet 标头的名称，值为 internet 标头的值。
+      description: 要设置的标头的名称和相应的值。 应该是字典对象，其中键是 Internet 标头的名称，值是 Internet 标头的值。
       type: Object
     - id: options
-      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 可选。 方法完成后， `callback` 使用类型为 AsyncResult 的单个参数调用在参数中传递的函数。 `asyncResult.error` 属性中将提供遇到的所有错误。
+      description: 可选。 方法完成后，使用 Office.AsyncResult 类型的单个参数调用在参数 `callback` 中传递的函数。 `asyncResult.error` 属性中将提供遇到的所有错误。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: c26c15caa645c162148936a6906c64a22903a0b7
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: e666b64587a4509d9d2d850231902c4d8b9ebca4
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49328772"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49857316"
