@@ -4,10 +4,10 @@ uid: outlook!Office.RoamingSettings:interface
 package: outlook!
 fullName: Office.RoamingSettings
 summary: >-
-  通过使用 `RoamingSettings` 对象的方法创建的设置将按外接程序和按用户进行保存。 也就是说，它们仅可用于创建它们的外接程序，并且仅可用于保存它们的用户的邮箱。
+  通过使用 `RoamingSettings` 对象的方法创建的设置将按外接程序和按用户进行保存。 即，它们仅可用于创建这些加载项的外接程序，并且只能从保存它们的用户邮箱访问。
 
 
-  虽然 Outlook 加载项 API 将对这些设置的访问限制为仅限创建它们的外接程序，但不应将这些设置视为安全存储。 可以通过 Exchange Web 服务或扩展 MAPI 访问这些设置。 它们不应用于存储敏感信息，如用户凭据或安全令牌。
+  虽然 Outlook 外接程序 API 仅将这些设置的访问权限限制到创建这些设置的外接程序，但不应将这些设置视为安全存储。 可以通过 Exchange Web 服务或扩展 MAPI 访问这些设置。 它们不应用于存储敏感信息，如用户凭据或安全令牌。
 
 
   设置的名称是一个字符串，而值可以是字符串、数字、布尔值、null 值、对象或数组。
@@ -16,13 +16,13 @@ summary: >-
   可通过 `RoamingSettings` 命名空间中的 `roamingSettings` 属性访问 `Office.context` 对象。
 
 
-  **重要说明**：
+  **重要提示**：
 
 
-  - `RoamingSettings`只有在首次加载加载项时，才会从持久化存储初始化该对象。 对于任务窗格，这意味着仅在第一次打开任务窗格时才会对其进行初始化。 如果任务窗格导航到另一个页面或重新加载当前页面，则内存中的对象将重置为其初始值，即使您的外接程序具有持续的更改也是如此。 直到关闭并重新打开任务窗格的加载项) 关闭并重新打开时，保留的更改才会在任务窗格 (或项目的情况下可用。
+  - `RoamingSettings`只有在首次加载加载项时，对象才从保留存储中初始化。 对于任务窗格，这意味着它仅在任务窗格首次打开时初始化。 如果任务窗格导航到另一个页面或重新加载当前页面，则内存中的对象将重置为其初始值，即使您的外接程序已保留更改。 在关闭并重新打开无 UI 加载项 (任务窗格或项目的情况下，保留的更改) 可用。
 
 
-  - 设置并保存通过 Outlook on Windows 或 Mac 时，只有在浏览器刷新后，这些设置才会在 web 上的 Outlook 中反映出来。
+  - 当通过 Windows 或 Mac 上的 Outlook 设置和保存这些设置时，这些设置仅在浏览器刷新后反映在 Web 上的 Outlook 中。
 remarks: >-
   **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`Restricted`
 
@@ -49,7 +49,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/10-roaming-settings/roaming-settings.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/10-roaming-settings/roaming-settings.yaml
 
     var settingName = $("#settingName").val();
 
@@ -70,7 +70,7 @@ methods:
       type: string
     return:
       type: any
-      description: 类型： String \| Number \| Boolean \| 对象 \| 数组
+      description: 类型：字符串 \| 数字 \| 布尔 \| 对象 \| 数组
 - name: remove(name)
   uid: outlook!Office.RoamingSettings#remove:member(1)
   package: outlook!
@@ -100,7 +100,7 @@ methods:
     保存设置。
 
 
-    加载项以前保存的任何设置都会在初始化时加载，因此，在会话的生存期期间，可以只使用 set 和 get 方法来处理设置属性包的内存副本。 如果希望保留设置以便可在下次使用外接程序时使用这些设置，请使用 saveAsync 方法。
+    加载项初始化时将加载之前保存的任何设置，因此在会话生存期内，只需使用设置集并获取方法，就可以使用设置属性包的内存副本。 如果希望保留设置以便可在下次使用外接程序时使用这些设置，请使用 saveAsync 方法。
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`Restricted`
 
@@ -113,7 +113,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/10-roaming-settings/roaming-settings.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/10-roaming-settings/roaming-settings.yaml
 
     // Save settings in the mailbox to make it available in future sessions.
 
@@ -132,7 +132,7 @@ methods:
     content: 'saveAsync(callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: callback
-      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
+      description: 可选。 方法完成后，使用一个类型参数调用在参数中传递 `callback` 的函数 `Office.AsyncResult`<!-- -->.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
@@ -145,13 +145,13 @@ methods:
     设置或创建指定设置。
 
 
-    `set`如果指定名称尚不存在，则该方法将创建一个新设置，或设置指定名称的现有设置。 该值在文档中存储为其数据类型的序列化 JSON 表示形式。
+    如果指定名称不存在，该方法会创建一个新的指定名称设置，或者设置指定名称 `set` 的现有设置。 该值在文档中存储为其数据类型的序列化 JSON 表示形式。
 
 
-    每个加载项的设置最多可使用32KB。
+    每个外接程序的设置最多可提供 32KB。
 
 
-    在调用函数之前，使用 set 函数对设置所做的任何更改都不会保存到服务器 `saveAsync` 。
+    使用 set 函数对设置进行的任何更改在调用该函数之前不会 `saveAsync` 保存到服务器。
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`Restricted`
 
@@ -164,7 +164,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/10-roaming-settings/roaming-settings.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/10-roaming-settings/roaming-settings.yaml
 
     var settingName = $("#settingName").val();
 
@@ -190,9 +190,9 @@ methods:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: f6136a4f9143de97fa15166ec887e0ab878564c0
-  ms.sourcegitcommit: a6ecbc9abca2ab5c82af4c869e3e2d72c999a4c1
+  ms.openlocfilehash: 69b3d5f346602c741f64b0e013b6615cc0cefcbe
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 12/02/2020
-  ms.locfileid: "49532126"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49850092"

@@ -4,10 +4,10 @@ uid: excel!Excel.DataPivotHierarchy:class
 package: excel!
 fullName: Excel.DataPivotHierarchy
 summary: >-
-  表示 Excel DataPivotHierarchy。
+  代表 Excel DataPivotHierarchy。
 
 
-  \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: excel!Excel.DataPivotHierarchy#context:member
   package: excel!
   fullName: context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  summary: 与对象关联的请求上下文。 这会将外接程序的进程连接到 Office 主机应用程序的进程。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -33,7 +33,7 @@ properties:
     返回与 DataPivotHierarchy 相关联的 PivotFields。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -49,7 +49,7 @@ properties:
     DataPivotHierarchy ID。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -65,7 +65,7 @@ properties:
     DataPivotHierarchy 的名称。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -73,7 +73,7 @@ properties:
     content: 'name: string;'
     return:
       type: string
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/38-pivottable/pivottable-create-and-modify.yaml\nawait Excel.run(async (context) => {\n    const dataHierarchies = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\").dataHierarchies\n    dataHierarchies.load(\"no-properties-needed\");\n    await context.sync();\n\n    dataHierarchies.items[0].name = \"Farm Sales\";\n    dataHierarchies.items[1].name = \"Wholesale\";\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-create-and-modify.yaml\nawait Excel.run(async (context) => {\n    const dataHierarchies = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\").dataHierarchies\n    dataHierarchies.load(\"no-properties-needed\");\n    await context.sync();\n\n    dataHierarchies.items[0].name = \"Farm Sales\";\n    dataHierarchies.items[1].name = \"Wholesale\";\n    await context.sync();\n});\n```"
 - name: numberFormat
   uid: excel!Excel.DataPivotHierarchy#numberFormat:member
   package: excel!
@@ -82,7 +82,7 @@ properties:
     DataPivotHierarchy 的数字格式。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -98,7 +98,7 @@ properties:
     DataPivotHierarchy 的位置。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -111,10 +111,10 @@ properties:
   package: excel!
   fullName: showAs
   summary: >-
-    指定是否应将数据显示为特定的汇总计算。
+    指定数据是否显示为特定的摘要计算。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -122,16 +122,16 @@ properties:
     content: 'showAs: Excel.ShowAsRule;'
     return:
       type: <xref uid="excel!Excel.ShowAsRule:interface" />
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/38-pivottable/pivottable-calculations.yaml\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n    const farmDataHierarchy: Excel.DataPivotHierarchy = pivotTable.dataHierarchies.getItem(\"Sum of Crates Sold at Farm\");        \n    const wholesaleDataHierarchy: Excel.DataPivotHierarchy = pivotTable.dataHierarchies.getItem(\"Sum of Crates Sold Wholesale\");\n\n    farmDataHierarchy.load(\"showAs\");\n    wholesaleDataHierarchy.load(\"showAs\");\n    await context.sync();\n\n    // show the crates of each fruit type sold at the farm as a percentage of the column's total\n    let farmShowAs = farmDataHierarchy.showAs;\n    farmShowAs.calculation = Excel.ShowAsCalculation.percentOfColumnTotal;\n    farmShowAs.baseField = pivotTable.rowHierarchies.getItem(\"Type\").fields.getItem(\"Type\");\n    farmDataHierarchy.showAs = farmShowAs;\n\n    let wholesaleShowAs = wholesaleDataHierarchy.showAs;\n    wholesaleShowAs.calculation = Excel.ShowAsCalculation.percentOfColumnTotal;\n    wholesaleShowAs.baseField = pivotTable.rowHierarchies.getItem(\"Type\").fields.getItem(\"Type\");\n    wholesaleDataHierarchy.showAs = wholesaleShowAs;\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-calculations.yaml\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n    const farmDataHierarchy: Excel.DataPivotHierarchy = pivotTable.dataHierarchies.getItem(\"Sum of Crates Sold at Farm\");        \n    const wholesaleDataHierarchy: Excel.DataPivotHierarchy = pivotTable.dataHierarchies.getItem(\"Sum of Crates Sold Wholesale\");\n\n    farmDataHierarchy.load(\"showAs\");\n    wholesaleDataHierarchy.load(\"showAs\");\n    await context.sync();\n\n    // show the crates of each fruit type sold at the farm as a percentage of the column's total\n    let farmShowAs = farmDataHierarchy.showAs;\n    farmShowAs.calculation = Excel.ShowAsCalculation.percentOfColumnTotal;\n    farmShowAs.baseField = pivotTable.rowHierarchies.getItem(\"Type\").fields.getItem(\"Type\");\n    farmDataHierarchy.showAs = farmShowAs;\n\n    let wholesaleShowAs = wholesaleDataHierarchy.showAs;\n    wholesaleShowAs.calculation = Excel.ShowAsCalculation.percentOfColumnTotal;\n    wholesaleShowAs.baseField = pivotTable.rowHierarchies.getItem(\"Type\").fields.getItem(\"Type\");\n    wholesaleDataHierarchy.showAs = wholesaleShowAs;\n    await context.sync();\n});\n```"
 - name: summarizeBy
   uid: excel!Excel.DataPivotHierarchy#summarizeBy:member
   package: excel!
   fullName: summarizeBy
   summary: >-
-    指定是否显示 DataPivotHierarchy 的所有项目。
+    指定是否显示 DataPivotHierarchy 的所有项。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -169,7 +169,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.DataPivotHierarchy;'
     parameters:
     - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.DataPivotHierarchy:class" />
@@ -190,7 +190,7 @@ methods:
               }): Excel.DataPivotHierarchy;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，它是一个以逗号分隔的字符串，用于指定要加载的 `propertyNamesAndPaths.expand` 导航属性。'
       type: >-
         {
                     select?: string;
@@ -203,7 +203,7 @@ methods:
   uid: excel!Excel.DataPivotHierarchy#set:member(1)
   package: excel!
   fullName: set(properties, options)
-  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+  summary: 同时设置对象的多个属性。 你可以传递具有相应属性的普通对象，也可以传递同一类型的另一个 API 对象。
   remarks: >-
     此方法具有以下附加签名：
 
@@ -215,10 +215,10 @@ methods:
     content: 'set(properties: Interfaces.DataPivotHierarchyUpdateData, options?: OfficeExtension.UpdateOptions): void;'
     parameters:
     - id: properties
-      description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
+      description: 一个 JavaScript 对象，其属性以等态方式构造到调用该方法的对象的属性。
       type: <xref uid="excel!Excel.Interfaces.DataPivotHierarchyUpdateData:interface" />
     - id: options
-      description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
+      description: 提供在属性对象尝试设置任何只读属性时禁止错误的选项。
       type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
     return:
       type: void
@@ -227,7 +227,7 @@ methods:
   uid: excel!Excel.DataPivotHierarchy#set:member(2)
   package: excel!
   fullName: set(properties)
-  summary: 基于现有加载的对象同时设置该对象的多个属性。
+  summary: 基于现有的已加载对象，同时设置对象上的多个属性。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -248,7 +248,7 @@ methods:
     将 DataPivotHierarchy 重置回其默认值。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -261,7 +261,7 @@ methods:
   uid: excel!Excel.DataPivotHierarchy#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始 DataPivotHierarchy 对象是 API 对象，则该 `toJSON` 方法返回一个 (类型为的纯 JavaScript 对象。 `Excel.Interfaces.DataPivotHierarchyData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给该对象的方法。) 而原始 `toJSON` Excel.DataPivotHierarchy 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` JavaScript 对象 `Excel.Interfaces.DataPivotHierarchyData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -272,9 +272,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 45ff2f25c8f47ef9c68cce17e46a903ceaa622c7
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 145799914ece11370618f1637b62121d4acaf4c5
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49247403"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49851541"

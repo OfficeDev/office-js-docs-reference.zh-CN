@@ -4,10 +4,10 @@ uid: excel!Excel.DataValidation:class
 package: excel!
 fullName: Excel.DataValidation
 summary: >-
-  表示应用于当前范围的数据验证。 若要了解有关数据验证对象模型的详细信息，请参阅 [向 Excel 区域添加数据验证](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-data-validation)<!-- -->.
+  表示应用于当前区域的数据验证。 若要详细了解数据验证对象模型，请阅读" [将数据验证添加到 Excel 范围"](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-data-validation)<!-- -->.
 
 
-  \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: excel!Excel.DataValidation#context:member
   package: excel!
   fullName: context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  summary: 与对象关联的请求上下文。 这会将外接程序的进程连接到 Office 主机应用程序的进程。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -33,7 +33,7 @@ properties:
     用户输入无效数据时，出现错误警报。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -41,16 +41,16 @@ properties:
     content: 'errorAlert: Excel.DataValidationErrorAlert;'
     return:
       type: <xref uid="excel!Excel.DataValidationErrorAlert:interface" />
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/22-data-validation/data-validation.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Decision\");\n    const commentsRange = \n        sheet.tables.getItem(\"NameOptionsTable\").columns.getItem(\"Comments\").getDataBodyRange();\n\n    // When you are developing, it is a good practice to\n    // clear the dataValidation object with each run of your code.\n    commentsRange.dataValidation.clear();   \n\n    // If the value of A2 is contained in the value of C2, then \n    // SEARCH(A2,C2) returns the number where it begins. Otherwise,\n    // it does not return a number.\n    let redundantStringRule = {\n        custom: {\n            formula: \"=NOT(ISNUMBER(SEARCH(A2,C2)))\"\n        }\n    };\n    commentsRange.dataValidation.rule = redundantStringRule;\n    commentsRange.dataValidation.errorAlert = {\n        message: \"It is redundant to include the baby name in the comment.\",\n        showAlert: true,\n        style: \"Information\",\n        title: \"Baby Name in Comment\"\n    };\n\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/22-data-validation/data-validation.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Decision\");\n    const commentsRange = \n        sheet.tables.getItem(\"NameOptionsTable\").columns.getItem(\"Comments\").getDataBodyRange();\n\n    // When you are developing, it is a good practice to\n    // clear the dataValidation object with each run of your code.\n    commentsRange.dataValidation.clear();   \n\n    // If the value of A2 is contained in the value of C2, then \n    // SEARCH(A2,C2) returns the number where it begins. Otherwise,\n    // it does not return a number.\n    let redundantStringRule = {\n        custom: {\n            formula: \"=NOT(ISNUMBER(SEARCH(A2,C2)))\"\n        }\n    };\n    commentsRange.dataValidation.rule = redundantStringRule;\n    commentsRange.dataValidation.errorAlert = {\n        message: \"It is redundant to include the baby name in the comment.\",\n        showAlert: true,\n        style: \"Information\",\n        title: \"Baby Name in Comment\"\n    };\n\n    await context.sync();\n});\n```"
 - name: ignoreBlanks
   uid: excel!Excel.DataValidation#ignoreBlanks:member
   package: excel!
   fullName: ignoreBlanks
   summary: >-
-    指定是否对空单元格执行数据验证，其默认值为 true。
+    指定是否对空白单元格执行数据验证，默认为 true。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -66,7 +66,7 @@ properties:
     当用户选择单元格时提示。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -74,16 +74,16 @@ properties:
     content: 'prompt: Excel.DataValidationPrompt;'
     return:
       type: <xref uid="excel!Excel.DataValidationPrompt:interface" />
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/22-data-validation/data-validation.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Decision\");\n    const rankingRange = sheet.tables.getItem(\"NameOptionsTable\").columns.getItem(\"Ranking\").getDataBodyRange();\n\n    // When you are developing, it is a good practice to\n    // clear the dataValidation object with each run of your code.\n    rankingRange.dataValidation.clear();\n\n    let greaterThanZeroRule = {\n        wholeNumber: {\n            formula1: 0,\n            operator: Excel.DataValidationOperator.greaterThan\n        }\n    };\n    rankingRange.dataValidation.rule = greaterThanZeroRule;\n\n    rankingRange.dataValidation.prompt = {\n        message: \"Please enter a positive number.\",\n        showPrompt: true,\n        title: \"Positive numbers only.\"\n    };\n\n    rankingRange.dataValidation.errorAlert = {\n        message: \"Sorry, only positive numbers are allowed\",\n        showAlert: true,\n        style: \"Stop\",\n        title: \"Negative Number Entered\"\n    };\n\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/22-data-validation/data-validation.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Decision\");\n    const rankingRange = sheet.tables.getItem(\"NameOptionsTable\").columns.getItem(\"Ranking\").getDataBodyRange();\n\n    // When you are developing, it is a good practice to\n    // clear the dataValidation object with each run of your code.\n    rankingRange.dataValidation.clear();\n\n    let greaterThanZeroRule = {\n        wholeNumber: {\n            formula1: 0,\n            operator: Excel.DataValidationOperator.greaterThan\n        }\n    };\n    rankingRange.dataValidation.rule = greaterThanZeroRule;\n\n    rankingRange.dataValidation.prompt = {\n        message: \"Please enter a positive number.\",\n        showPrompt: true,\n        title: \"Positive numbers only.\"\n    };\n\n    rankingRange.dataValidation.errorAlert = {\n        message: \"Sorry, only positive numbers are allowed\",\n        showAlert: true,\n        style: \"Stop\",\n        title: \"Negative Number Entered\"\n    };\n\n    await context.sync();\n});\n```"
 - name: rule
   uid: excel!Excel.DataValidation#rule:member
   package: excel!
   fullName: rule
   summary: >-
-    包含不同类型的数据验证条件的数据有效性规则。
+    包含不同类型的数据验证条件的数据验证规则。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -91,7 +91,7 @@ properties:
     content: 'rule: Excel.DataValidationRule;'
     return:
       type: <xref uid="excel!Excel.DataValidationRule:interface" />
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/22-data-validation/data-validation.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Decision\");\n    const nameRange = \n        sheet.tables.getItem(\"NameOptionsTable\").columns.getItem(\"Baby Name\").getDataBodyRange();\n\n    // When you are developing, it is a good practice to\n    // clear the dataValidation object with each run of your code.\n    nameRange.dataValidation.clear();\n\n    const nameSourceRange = context.workbook.worksheets.getItem(\"Names\").getRange(\"A1:A3\");\n\n    let approvedListRule = {\n        list: {\n            inCellDropDown: true,\n            source: nameSourceRange\n        }\n    };\n    nameRange.dataValidation.rule = approvedListRule;\n\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/22-data-validation/data-validation.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Decision\");\n    const nameRange = \n        sheet.tables.getItem(\"NameOptionsTable\").columns.getItem(\"Baby Name\").getDataBodyRange();\n\n    // When you are developing, it is a good practice to\n    // clear the dataValidation object with each run of your code.\n    nameRange.dataValidation.clear();\n\n    const nameSourceRange = context.workbook.worksheets.getItem(\"Names\").getRange(\"A1:A3\");\n\n    let approvedListRule = {\n        list: {\n            inCellDropDown: true,\n            source: nameSourceRange\n        }\n    };\n    nameRange.dataValidation.rule = approvedListRule;\n\n    await context.sync();\n});\n```"
 - name: type
   uid: excel!Excel.DataValidation#type:member
   package: excel!
@@ -100,7 +100,7 @@ properties:
     数据有效性类型，有关详细信息，请参阅 Excel.DataValidationType。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -113,10 +113,10 @@ properties:
   package: excel!
   fullName: valid
   summary: >-
-    表示所有单元格值根据数据有效性规则是否全部有效。 如果所有单元格的值都有效，则返回 true; 如果所有单元格值无效，则返回 false。 如果区域中存在有效和无效的单元格值，则返回 null。
+    表示所有单元格值根据数据有效性规则是否全部有效。 如果所有单元格值都有效，则返回 true;如果所有单元格值都无效，则返回 false。 如果单元格范围内同时存在有效和无效的单元格值，则返回 null。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -133,7 +133,7 @@ methods:
     清除当前区域中的数据有效性。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -171,7 +171,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.DataValidation;'
     parameters:
     - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.DataValidation:class" />
@@ -192,7 +192,7 @@ methods:
               }): Excel.DataValidation;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，它是一个以逗号分隔的字符串，用于指定要加载的 `propertyNamesAndPaths.expand` 导航属性。'
       type: >-
         {
                     select?: string;
@@ -205,7 +205,7 @@ methods:
   uid: excel!Excel.DataValidation#set:member(1)
   package: excel!
   fullName: set(properties, options)
-  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+  summary: 同时设置对象的多个属性。 你可以传递具有相应属性的普通对象，也可以传递同一类型的另一个 API 对象。
   remarks: >-
     此方法具有以下附加签名：
 
@@ -217,10 +217,10 @@ methods:
     content: 'set(properties: Interfaces.DataValidationUpdateData, options?: OfficeExtension.UpdateOptions): void;'
     parameters:
     - id: properties
-      description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
+      description: 一个 JavaScript 对象，其属性以等态方式构造到调用该方法的对象的属性。
       type: <xref uid="excel!Excel.Interfaces.DataValidationUpdateData:interface" />
     - id: options
-      description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
+      description: 提供在属性对象尝试设置任何只读属性时禁止错误的选项。
       type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
     return:
       type: void
@@ -229,7 +229,7 @@ methods:
   uid: excel!Excel.DataValidation#set:member(2)
   package: excel!
   fullName: set(properties)
-  summary: 基于现有加载的对象同时设置该对象的多个属性。
+  summary: 基于现有的已加载对象，同时设置对象上的多个属性。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -246,7 +246,7 @@ methods:
   uid: excel!Excel.DataValidation#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始 DataValidation 对象是 API 对象，则该 `toJSON` 方法返回一个 (类型为的纯 JavaScript 对象。 `Excel.Interfaces.DataValidationData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 Excel.DataValidation 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.DataValidationData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -257,9 +257,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 3c99cb447e0ba9ae50d9e5f6dbf51ada79b4e526
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 6694e3bdda28aad17c466000df3d18556e902bff
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49271161"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49851366"
