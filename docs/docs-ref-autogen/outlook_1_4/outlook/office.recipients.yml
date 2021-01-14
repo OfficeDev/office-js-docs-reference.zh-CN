@@ -7,7 +7,7 @@ summary: >-
   表示项目的收件人。 仅限撰写模式。
 
 
-  \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  \[[API 集：Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
 remarks: >-
   **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -25,13 +25,13 @@ methods:
     将收件人列表添加到约会或邮件的现有收件人中。
 
 
-    收件人参数可以是以下项之一的数组：
+    recipients 参数可以是以下各项之一的数组：
 
 
     - 包含 SMTP 电子邮件地址的字符串
 
 
-    - [Emailuser.displayname](xref:outlook!Office.EmailUser:interface) 对象
+    - [EmailUser](xref:outlook!Office.EmailUser:interface) 对象
 
 
     - [EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface) 对象
@@ -40,16 +40,16 @@ methods:
     可添加的最大数量：
 
 
-    - Windows：100收件人。 **注意**：可以重复调用 API，但项目的目标字段中的最大收件人数为500个收件人。
+    - Windows：100 个收件人。 **注意**：可以重复调用 API，但项目上的目标字段中的最大收件人数是 500 个收件人。
 
 
-    - Mac、web 浏览器：100收件人
+    - Mac、Web 浏览器：100 个收件人
 
 
     - 其他：无限制
 
 
-    \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
 
@@ -60,7 +60,7 @@ methods:
     **错误**：
 
 
-    - `NumberOfRecipientsExceeded`<!-- -->：收件人数超过了100个条目。
+    - `NumberOfRecipientsExceeded`<!-- -->：收件人数超过 100 个条目。
 
 
     #### <a name="examples"></a>示例
@@ -102,10 +102,10 @@ methods:
       description: 要添加到收件人列表中的收件人。
       type: (string | <xref uid="outlook!Office.EmailUser:interface" /> | <xref uid="outlook!Office.EmailAddressDetails:interface" />)[]
     - id: options
-      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果添加收件人失败，`asyncResult.error` 属性将包含一个错误代码。
+      description: 可选。 方法完成后，使用一个类型参数调用在参数中传递 `callback` 的函数 `Office.AsyncResult`<!-- -->. 如果添加收件人失败，`asyncResult.error` 属性将包含一个错误代码。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
@@ -118,16 +118,16 @@ methods:
     获取约会或邮件的收件人列表。
 
 
-    当调用完成时，该 `asyncResult.value` 属性将包含 [EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface) 对象的数组。 集合大小限制：
+    调用完成后，该属性 `asyncResult.value` 将包含 [EmailAddressDetails 对象的](xref:outlook!Office.EmailAddressDetails:interface) 数组。 集合大小限制：
 
 
-    - Windows、Mac、web 浏览器：500成员
+    - Windows、Mac、Web 浏览器：500 个成员
 
 
     - 其他：无限制
 
 
-    \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -139,10 +139,10 @@ methods:
     content: 'getAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<EmailAddressDetails[]>) => void): void;'
     parameters:
     - id: options
-      description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. `value`结果的属性是对象的数组 `EmailAddressDetails` 。
+      description: 方法完成后，使用一个类型参数调用在参数中传递 `callback` 的函数 `Office.AsyncResult`<!-- -->. `value`结果的属性是对象 `EmailAddressDetails` 数组。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.EmailAddressDetails:interface" />[]&gt;) =&gt; void'
     return:
       type: void
@@ -155,16 +155,16 @@ methods:
     获取约会或邮件的收件人列表。
 
 
-    当调用完成时，该 `asyncResult.value` 属性将包含 [EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface) 对象的数组。 集合大小限制：
+    调用完成后，该属性 `asyncResult.value` 将包含 [EmailAddressDetails 对象的](xref:outlook!Office.EmailAddressDetails:interface) 数组。 集合大小限制：
 
 
-    - Windows、Mac、web 浏览器：500成员
+    - Windows、Mac、Web 浏览器：500 个成员
 
 
     - 其他：无限制
 
 
-    \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -177,7 +177,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-bcc-message-compose.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/30-recipients-and-attendees/get-set-bcc-message-compose.yaml
 
     Office.context.mailbox.item.bcc.getAsync(function(asyncResult) {
       if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
@@ -195,7 +195,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-cc-message-compose.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/30-recipients-and-attendees/get-set-cc-message-compose.yaml
 
     Office.context.mailbox.item.cc.getAsync(function(asyncResult) {
       if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
@@ -213,7 +213,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-optional-attendees-appointment-organizer.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/30-recipients-and-attendees/get-set-optional-attendees-appointment-organizer.yaml
 
     Office.context.mailbox.item.optionalAttendees.getAsync(function(asyncResult) {
       if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
@@ -237,7 +237,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-required-attendees-appointment-organizer.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/30-recipients-and-attendees/get-set-required-attendees-appointment-organizer.yaml
 
     Office.context.mailbox.item.requiredAttendees.getAsync(function(asyncResult) {
       if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
@@ -261,7 +261,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-to-message-compose.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/30-recipients-and-attendees/get-set-to-message-compose.yaml
 
     Office.context.mailbox.item.to.getAsync(function(asyncResult) {
       if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
@@ -282,7 +282,7 @@ methods:
     content: 'getAsync(callback: (asyncResult: Office.AsyncResult<EmailAddressDetails[]>) => void): void;'
     parameters:
     - id: callback
-      description: 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. `value`结果的属性是对象的数组 `EmailAddressDetails` 。
+      description: 方法完成后，使用一个类型参数调用在参数中传递 `callback` 的函数 `Office.AsyncResult`<!-- -->. `value`结果的属性是对象 `EmailAddressDetails` 数组。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.EmailAddressDetails:interface" />[]&gt;) =&gt; void'
     return:
       type: void
@@ -298,28 +298,28 @@ methods:
     `setAsync` 方法将覆盖当前收件人列表。
 
 
-    收件人参数可以是以下项之一的数组：
+    recipients 参数可以是以下各项之一的数组：
 
 
     - 包含 SMTP 电子邮件地址的字符串
 
 
-    - [Emailuser.displayname](xref:outlook!Office.EmailUser:interface) 对象
+    - [EmailUser](xref:outlook!Office.EmailUser:interface) 对象
 
 
     - [EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface) 对象
 
 
-    可以设置的最大数目：
+    可以设置的最大数量：
 
 
-    - Windows、Mac、web 浏览器：100收件人
+    - Windows、Mac、Web 浏览器：100 个收件人
 
 
     - 其他：无限制
 
 
-    \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
 
@@ -330,7 +330,7 @@ methods:
     **错误**：
 
 
-    - `NumberOfRecipientsExceeded`<!-- -->：收件人数超过了100个条目。
+    - `NumberOfRecipientsExceeded`<!-- -->：收件人数超过 100 个条目。
   isPreview: false
   isDeprecated: false
   syntax:
@@ -340,10 +340,10 @@ methods:
       description: 要添加到收件人列表中的收件人。
       type: (string | <xref uid="outlook!Office.EmailUser:interface" /> | <xref uid="outlook!Office.EmailAddressDetails:interface" />)[]
     - id: options
-      description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果设置收件人失败，`asyncResult.error` 属性将包含一个代码，表示在添加数据时出现的所有错误。
+      description: 方法完成后，使用一个类型参数调用在参数中传递 `callback` 的函数 `Office.AsyncResult`<!-- -->. 如果设置收件人失败，`asyncResult.error` 属性将包含一个代码，表示在添加数据时出现的所有错误。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
@@ -359,28 +359,28 @@ methods:
     `setAsync` 方法将覆盖当前收件人列表。
 
 
-    收件人参数可以是以下项之一的数组：
+    recipients 参数可以是以下各项之一的数组：
 
 
     - 包含 SMTP 电子邮件地址的字符串
 
 
-    - [Emailuser.displayname](xref:outlook!Office.EmailUser:interface) 对象
+    - [EmailUser](xref:outlook!Office.EmailUser:interface) 对象
 
 
     - [EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface) 对象
 
 
-    可以设置的最大数目：
+    可以设置的最大数量：
 
 
-    - Windows、Mac、web 浏览器：100收件人
+    - Windows、Mac、Web 浏览器：100 个收件人
 
 
     - 其他：无限制
 
 
-    \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
 
@@ -391,7 +391,7 @@ methods:
     **错误**：
 
 
-    - `NumberOfRecipientsExceeded`<!-- -->：收件人数超过了100个条目。
+    - `NumberOfRecipientsExceeded`<!-- -->：收件人数超过 100 个条目。
 
 
     #### <a name="examples"></a>示例
@@ -427,7 +427,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-bcc-message-compose.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/30-recipients-and-attendees/get-set-bcc-message-compose.yaml
 
     var email = $("#emailBcc")
       .val()
@@ -446,7 +446,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-cc-message-compose.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/30-recipients-and-attendees/get-set-cc-message-compose.yaml
 
     var email = $("#emailCc")
       .val()
@@ -465,7 +465,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-optional-attendees-appointment-organizer.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/30-recipients-and-attendees/get-set-optional-attendees-appointment-organizer.yaml
 
     var email = $("#emailOptional")
       .val()
@@ -484,7 +484,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-required-attendees-appointment-organizer.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/30-recipients-and-attendees/get-set-required-attendees-appointment-organizer.yaml
 
     var email = $("#emailRequired")
       .val()
@@ -503,7 +503,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-to-message-compose.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/30-recipients-and-attendees/get-set-to-message-compose.yaml
 
     var email = $("#emailTo")
       .val()
@@ -528,15 +528,15 @@ methods:
       description: 要添加到收件人列表中的收件人。
       type: (string | <xref uid="outlook!Office.EmailUser:interface" /> | <xref uid="outlook!Office.EmailAddressDetails:interface" />)[]
     - id: callback
-      description: 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果设置收件人失败，`asyncResult.error` 属性将包含一个代码，表示在添加数据时出现的所有错误。
+      description: 方法完成后，使用一个类型参数调用在参数中传递 `callback` 的函数 `Office.AsyncResult`<!-- -->. 如果设置收件人失败，`asyncResult.error` 属性将包含一个代码，表示在添加数据时出现的所有错误。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: e71255ade8b68ceabccf5383204a500feb0a87ba
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 64d2d140d07a166308c37722b2d165adbe77e225
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49318985"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49855237"
