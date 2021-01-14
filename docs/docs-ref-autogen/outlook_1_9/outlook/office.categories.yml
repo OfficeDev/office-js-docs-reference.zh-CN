@@ -4,16 +4,16 @@ uid: outlook!Office.Categories:interface
 package: outlook!
 fullName: Office.Categories
 summary: >-
-  代表项目上的类别。
+  表示项目上的类别。
 
 
-  在 Outlook 中，用户可以通过使用类别对邮件和约会进行着色以对其进行标记。 用户在其邮箱上 [的主列表中定义类别](xref:outlook!Office.MasterCategories:interface) 。 然后，他们可以将一个或多个类别应用于项目。
+  在 Outlook 中，用户可以使用类别标记邮件和约会，以对邮件和约会进行颜色编码。 用户在邮箱 [的主列表中](xref:outlook!Office.MasterCategories:interface) 定义类别。 然后，他们可以将一个或多个类别应用于项目。
 
 
-  **重要说明**：在 web 上的 Outlook 中，不能使用 API 来管理在撰写模式下应用于邮件的类别。
+  **重要** 提示：在 Outlook 网页中，你无法使用此 API 管理应用于撰写模式下的邮件的类别。
 
 
-  \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  \[[API 集：Mailbox 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
 remarks: >-
   **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -28,10 +28,10 @@ methods:
   package: outlook!
   fullName: addAsync(categories, options, callback)
   summary: >-
-    将类别添加到项目中。 每个类别都必须位于该邮箱上的 "类别" 主列表中，因此必须具有唯一的名称，但多个类别可以使用相同的颜色。
+    向项目添加类别。 每个类别必须位于该邮箱上的类别主列表中，因此必须具有唯一的名称，但多个类别可以使用同一颜色。
 
 
-    \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
 
@@ -42,7 +42,7 @@ methods:
     **错误**：
 
 
-    - `InvalidCategory`<!-- -->：提供了无效的类别。
+    - `InvalidCategory`<!-- -->：提供的类别无效。
 
 
     #### <a name="examples"></a>示例
@@ -50,7 +50,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/45-categories/work-with-categories.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/45-categories/work-with-categories.yaml
 
     // Note: In order for you to successfully add a category,
 
@@ -85,13 +85,13 @@ methods:
     content: 'addAsync(categories: string[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: categories
-      description: 要添加到项目中的类别。
+      description: 要添加到项目的类别。
       type: string[]
     - id: options
-      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->.
+      description: 可选。 方法完成后，使用一个类型参数调用在参数中传递 `callback` 的函数 `Office.AsyncResult`<!-- -->.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
@@ -101,13 +101,13 @@ methods:
   package: outlook!
   fullName: getAsync(options, callback)
   summary: >-
-    获取项的类别。
+    获取项目的类别。
 
 
-    **重要说明**：如果项目上没有类别， `null` 或者将根据 Outlook 版本返回一个空数组，以确保同时处理这两种情况。
+    **重要** 提示：如果项目上没有类别，或者根据 Outlook 版本返回空数组，请确保 `null` 处理这两种情况。
 
 
-    \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -119,10 +119,10 @@ methods:
     content: 'getAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<CategoryDetails[]>) => void): void;'
     parameters:
     - id: options
-      description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果获取类别失败， `asyncResult.error` 属性将包含一个错误代码。
+      description: 方法完成后，使用一个类型参数调用在参数中传递 `callback` 的函数 `Office.AsyncResult`<!-- -->. 如果获取类别失败 `asyncResult.error` ，则该属性将包含错误代码。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.CategoryDetails:interface" />[]&gt;) =&gt; void'
     return:
       type: void
@@ -132,13 +132,13 @@ methods:
   package: outlook!
   fullName: getAsync(callback)
   summary: >-
-    获取项的类别。
+    获取项目的类别。
 
 
-    **重要说明**：如果项目上没有类别， `null` 或者将根据 Outlook 版本返回一个空数组，以确保同时处理这两种情况。
+    **重要** 提示：如果项目上没有类别，或者根据 Outlook 版本返回空数组，请确保 `null` 处理这两种情况。
 
 
-    \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -151,7 +151,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/45-categories/work-with-categories.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/45-categories/work-with-categories.yaml
 
     Office.context.mailbox.item.categories.getAsync(function(asyncResult) {
       if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
@@ -174,7 +174,7 @@ methods:
     content: 'getAsync(callback: (asyncResult: Office.AsyncResult<CategoryDetails[]>) => void): void;'
     parameters:
     - id: callback
-      description: 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果获取类别失败， `asyncResult.error` 属性将包含一个错误代码。
+      description: 方法完成后，使用一个类型参数调用在参数中传递 `callback` 的函数 `Office.AsyncResult`<!-- -->. 如果获取类别失败 `asyncResult.error` ，则该属性将包含错误代码。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.CategoryDetails:interface" />[]&gt;) =&gt; void'
     return:
       type: void
@@ -187,7 +187,7 @@ methods:
     从项目中删除类别。
 
 
-    \[[API 集：邮箱 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
 
@@ -200,7 +200,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/45-categories/work-with-categories.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/45-categories/work-with-categories.yaml
 
     Office.context.mailbox.item.categories.getAsync(function(asyncResult) {
       if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
@@ -233,18 +233,18 @@ methods:
       description: 要从项目中删除的类别。
       type: string[]
     - id: options
-      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 可选。 方法完成后， `callback` 使用单个参数类型调用在参数中传递的函数 `Office.AsyncResult`<!-- -->. 如果删除类别失败， `asyncResult.error` 属性将包含一个错误代码。
+      description: 可选。 方法完成后，使用一个类型参数调用在参数中传递 `callback` 的函数 `Office.AsyncResult`<!-- -->. 如果删除类别失败， `asyncResult.error` 则该属性将包含错误代码。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: a6e956c8c430b49e270354bfa0d21df9dd5595a9
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 35b5c1a9c517220cf55950a126838b46f53e3620
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49318796"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49857743"
