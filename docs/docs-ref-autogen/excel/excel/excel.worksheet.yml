@@ -4,10 +4,10 @@ uid: excel!Excel.Worksheet:class
 package: excel!
 fullName: Excel.Worksheet
 summary: >-
-  Excel 工作表是由单元格组成的网格。 它可以包含数据、表、图表等。若要了解有关工作表对象模型的详细信息，请参阅 [使用 Excel JAVASCRIPT API 处理工作表](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-worksheets)<!-- -->.
+  Excel 工作表是由单元格组成的网格。 它可以包含数据、表、图表等。若要了解有关工作表对象模型的信息，请阅读使用 [Excel JavaScript API 处理工作表](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-worksheets)<!-- -->.
 
 
-  \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -21,7 +21,7 @@ properties:
     表示工作表的 AutoFilter 对象。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -29,16 +29,16 @@ properties:
     content: 'readonly autoFilter: Excel.AutoFilter;'
     return:
       type: <xref uid="excel!Excel.AutoFilter:class" />
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/54-worksheet/worksheet-auto-filter.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    const farmData = sheet.getUsedRange();\n\n    // This filter will only show the rows with the top 25% of values in column 3.\n    sheet.autoFilter.apply(farmData, 3, { criterion1: \"25\", filterOn: Excel.FilterOn.topPercent });\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/54-worksheet/worksheet-auto-filter.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    const farmData = sheet.getUsedRange();\n\n    // This filter will only show the rows with the top 25% of values in column 3.\n    sheet.autoFilter.apply(farmData, 3, { criterion1: \"25\", filterOn: Excel.FilterOn.topPercent });\n    await context.sync();\n});\n```"
 - name: charts
   uid: excel!Excel.Worksheet#charts:member
   package: excel!
   fullName: charts
   summary: >-
-    返回作为工作表的一部分的图表的集合。
+    返回属于工作表的图表的集合。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -54,7 +54,7 @@ properties:
     返回工作表上的所有 Comments 对象的集合。
 
 
-    \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -66,7 +66,7 @@ properties:
   uid: excel!Excel.Worksheet#context:member
   package: excel!
   fullName: context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  summary: 与对象关联的请求上下文。 这会将外接程序的进程连接到 Office 主机应用程序的进程。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -79,10 +79,10 @@ properties:
   package: excel!
   fullName: customProperties
   summary: >-
-    获取工作表级自定义属性的集合。
+    获取工作表级别的自定义属性的集合。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -90,16 +90,16 @@ properties:
     content: 'readonly customProperties: Excel.WorksheetCustomPropertyCollection;'
     return:
       type: <xref uid="excel!Excel.WorksheetCustomPropertyCollection:class" />
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/26-document/custom-properties.yaml\nawait Excel.run(async (context) => {\n  // Load the keys and values of all custom properties in the current worksheet.\n  const customWorksheetProperties = context.workbook.worksheets.getActiveWorksheet().customProperties;\n  customWorksheetProperties.load([\"key\", \"value\"]);\n  await context.sync();\n\n  // Log each custom property to the console.\n  // Note that your document may have more properties than those you have set using this snippet.\n  customWorksheetProperties.items.forEach((property) => {\n    console.log(`${property.key}:${property.value}`);\n  });\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/26-document/custom-properties.yaml\nawait Excel.run(async (context) => {\n  // Load the keys and values of all custom properties in the current worksheet.\n  const customWorksheetProperties = context.workbook.worksheets.getActiveWorksheet().customProperties;\n  customWorksheetProperties.load([\"key\", \"value\"]);\n  await context.sync();\n\n  // Log each custom property to the console.\n  // Note that your document may have more properties than those you have set using this snippet.\n  customWorksheetProperties.items.forEach((property) => {\n    console.log(`${property.key}:${property.value}`);\n  });\n});\n```"
 - name: enableCalculation
   uid: excel!Excel.Worksheet#enableCalculation:member
   package: excel!
   fullName: enableCalculation
   summary: >-
-    确定 Excel 是否应根据需要重新计算工作表。 如此如果 Excel 根据需要重新计算工作表。 如果 Excel 不重新计算工作表，则该值为 False。
+    确定 Excel 是否在必要时重新计算工作表。 如果 Excel 在必要时重新计算工作表，则其为 True。 如果 Excel 不重新计算工作表，则该值为 False。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -112,10 +112,10 @@ properties:
   package: excel!
   fullName: freezePanes
   summary: >-
-    获取一个对象，该对象可用于操作工作表上的冻结窗格。
+    获取一个对象，该对象可用于处理工作表上的冻结窗格。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -131,7 +131,7 @@ properties:
     获取工作表的水平分页符集合。 此集合仅包含手动分页符。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -147,7 +147,7 @@ properties:
     返回用于唯一标识指定工作簿中工作表的值。 即使工作表被重命名或移动，标识符的值仍然相同。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -163,7 +163,7 @@ properties:
     工作表的显示名称。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -176,10 +176,10 @@ properties:
   package: excel!
   fullName: namedSheetViews
   summary: >-
-    返回工作表视图的集合，这些视图显示在工作表中。
+    返回工作表中的工作表视图的集合。
 
 
-    \[[API 集： EXCELAPI BETA (仅预览) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -195,7 +195,7 @@ properties:
     一组范围限定到当前工作表的名称。
 
 
-    \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -208,10 +208,10 @@ properties:
   package: excel!
   fullName: onActivated
   summary: >-
-    当激活工作表时发生此事件。
+    在激活工作表时发生。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -225,10 +225,10 @@ properties:
   package: excel!
   fullName: onCalculated
   summary: >-
-    在计算工作表时发生。
+    计算工作表时发生。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -242,10 +242,10 @@ properties:
   package: excel!
   fullName: onChanged
   summary: >-
-    当特定工作表中的数据更改时发生。
+    当特定工作表中的数据发生更改时发生。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -253,7 +253,7 @@ properties:
     content: 'readonly onChanged: OfficeExtension.EventHandlers<Excel.WorksheetChangedEventArgs>;'
     return:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorksheetChangedEventArgs:interface" />&gt;
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/30-events/events-worksheet.yaml\nawait Excel.run(async (context) => {\n    let sheet = context.workbook.worksheets.getItem(\"Sample\");\n    sheet.onChanged.add(onChange);\n    await context.sync();\n\n    console.log(\"Added a worksheet-level data-changed event handler.\");\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-worksheet.yaml\nawait Excel.run(async (context) => {\n    let sheet = context.workbook.worksheets.getItem(\"Sample\");\n    sheet.onChanged.add(onChange);\n    await context.sync();\n\n    console.log(\"Added a worksheet-level data-changed event handler.\");\n});\n```"
 - name: onColumnSorted
   uid: excel!Excel.Worksheet#onColumnSorted:member
   package: excel!
@@ -262,7 +262,7 @@ properties:
     在已对一个或多个列进行排序时发生。 这是从左到右排序操作的结果。
 
 
-    \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -270,16 +270,16 @@ properties:
     content: 'readonly onColumnSorted: OfficeExtension.EventHandlers<Excel.WorksheetColumnSortedEventArgs>;'
     return:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorksheetColumnSortedEventArgs:interface" />&gt;
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/30-events/event-column-and-row-sort.yaml\nawait Excel.run(async (context) => {\n    console.log(\"Adding column handler\");\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n    // This will fire whenever a column has been moved as the result of a sort action.\n    sheet.onColumnSorted.add((event) => {\n        return Excel.run((context) => {\n            console.log(\"Column sorted: \" + event.address);\n            const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n            // Clear formatting for section, then highlight the sorted area.\n            sheet.getRange(\"A1:E5\").format.fill.clear();\n            if (event.address !== \"\") {\n                sheet.getRanges(event.address).format.fill.color = \"yellow\";\n            }\n\n            return context.sync();\n        });\n    });\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/event-column-and-row-sort.yaml\nawait Excel.run(async (context) => {\n    console.log(\"Adding column handler\");\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n    // This will fire whenever a column has been moved as the result of a sort action.\n    sheet.onColumnSorted.add((event) => {\n        return Excel.run((context) => {\n            console.log(\"Column sorted: \" + event.address);\n            const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n            // Clear formatting for section, then highlight the sorted area.\n            sheet.getRange(\"A1:E5\").format.fill.clear();\n            if (event.address !== \"\") {\n                sheet.getRanges(event.address).format.fill.color = \"yellow\";\n            }\n\n            return context.sync();\n        });\n    });\n});\n```"
 - name: onDeactivated
   uid: excel!Excel.Worksheet#onDeactivated:member
   package: excel!
   fullName: onDeactivated
   summary: >-
-    停用工作表时发生此事件。
+    在工作表停用时发生。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -296,7 +296,7 @@ properties:
     在特定工作表上应用筛选器时发生。
 
 
-    \[[API 集： EXCELAPI BETA (仅预览) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -312,7 +312,7 @@ properties:
     在特定工作表上更改格式时发生。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -325,10 +325,10 @@ properties:
   package: excel!
   fullName: onRowHiddenChanged
   summary: >-
-    在特定工作表上的一个或多个行的隐藏状态更改时发生。
+    当特定工作表上一行或多行的隐藏状态发生更改时发生。
 
 
-    \[[API 集： ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -345,7 +345,7 @@ properties:
     在已对一个或多个行进行排序时发生。 这是从上到下排序操作的结果。
 
 
-    \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -353,16 +353,16 @@ properties:
     content: 'readonly onRowSorted: OfficeExtension.EventHandlers<Excel.WorksheetRowSortedEventArgs>;'
     return:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorksheetRowSortedEventArgs:interface" />&gt;
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/30-events/event-column-and-row-sort.yaml\nawait Excel.run(async (context) => {\n    console.log(\"Adding row handler\");\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n    // This will fire whenever a row has been moved as the result of a sort action.\n    sheet.onRowSorted.add((event) => {\n        return Excel.run((context) => {\n            console.log(\"Row sorted: \" + event.address);\n            const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n            // Clear formatting for section, then highlight the sorted area.\n            sheet.getRange(\"A1:E5\").format.fill.clear();\n            if (event.address !== \"\") {\n                sheet.getRanges(event.address).format.fill.color = \"yellow\";\n            }\n\n            return context.sync();\n        });\n    });\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/event-column-and-row-sort.yaml\nawait Excel.run(async (context) => {\n    console.log(\"Adding row handler\");\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n    // This will fire whenever a row has been moved as the result of a sort action.\n    sheet.onRowSorted.add((event) => {\n        return Excel.run((context) => {\n            console.log(\"Row sorted: \" + event.address);\n            const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n            // Clear formatting for section, then highlight the sorted area.\n            sheet.getRange(\"A1:E5\").format.fill.clear();\n            if (event.address !== \"\") {\n                sheet.getRanges(event.address).format.fill.color = \"yellow\";\n            }\n\n            return context.sync();\n        });\n    });\n});\n```"
 - name: onSelectionChanged
   uid: excel!Excel.Worksheet#onSelectionChanged:member
   package: excel!
   fullName: onSelectionChanged
   summary: >-
-    当指定的工作表上的所选内容更改时发生。
+    当特定工作表上的选定内容发生更改时发生。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -376,16 +376,16 @@ properties:
   package: excel!
   fullName: onSingleClicked
   summary: >-
-    当工作表中发生左击或攻丝操作时发生。 在以下情况下单击时不会触发此事件：
+    在工作表中发生左键单击/点击操作时发生。 在下列情况下单击时不会触发此事件：
 
 
     - 用户拖动鼠标进行多选。
 
 
-    - 当为公式引用选择单元格参数时，用户将选择模式中的单元格。
+    - 为公式引用选择单元格参数时，用户会选择该模式下的单元格。
 
 
-    \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -393,7 +393,7 @@ properties:
     content: 'readonly onSingleClicked: OfficeExtension.EventHandlers<Excel.WorksheetSingleClickedEventArgs>;'
     return:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorksheetSingleClickedEventArgs:interface" />&gt;
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/30-events/event-worksheet-single-click.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    sheet.onSingleClicked.add((event) => {\n        return Excel.run((context) => {\n            console.log(`Click detected at ${event.address} (pixel offset from upper-left cell corner: ${event.offsetX}, ${event.offsetY})`);\n            return context.sync();\n        });\n    });\n\n    console.log(\"The worksheet click handler is registered.\");\n\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/event-worksheet-single-click.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    sheet.onSingleClicked.add((event) => {\n        return Excel.run((context) => {\n            console.log(`Click detected at ${event.address} (pixel offset from upper-left cell corner: ${event.offsetX}, ${event.offsetY})`);\n            return context.sync();\n        });\n    });\n\n    console.log(\"The worksheet click handler is registered.\");\n\n    await context.sync();\n});\n```"
 - name: pageLayout
   uid: excel!Excel.Worksheet#pageLayout:member
   package: excel!
@@ -402,7 +402,7 @@ properties:
     获取工作表的 PageLayout 对象。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -418,7 +418,7 @@ properties:
     一组属于工作表的数据透视表对象。
 
 
-    \[[API 集： ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -426,7 +426,7 @@ properties:
     content: 'readonly pivotTables: Excel.PivotTableCollection;'
     return:
       type: <xref uid="excel!Excel.PivotTableCollection:class" />
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/38-pivottable/pivottable-get-pivottables.yaml\nawait Excel.run(async (context) => {\n  // Get the names of all the PivotTables in the current worksheet.\n  const pivotTables = context.workbook.worksheets.getActiveWorksheet().pivotTables;\n  pivotTables.load(\"name\");\n  await context.sync();\n\n  // Display the names in the console.\n  console.log(\"PivotTables in the current worksheet:\")\n  pivotTables.items.forEach((pivotTable) => {\n    console.log(`\\t${pivotTable.name}`);\n  });\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-get-pivottables.yaml\nawait Excel.run(async (context) => {\n  // Get the names of all the PivotTables in the current worksheet.\n  const pivotTables = context.workbook.worksheets.getActiveWorksheet().pivotTables;\n  pivotTables.load(\"name\");\n  await context.sync();\n\n  // Display the names in the console.\n  console.log(\"PivotTables in the current worksheet:\")\n  pivotTables.items.forEach((pivotTable) => {\n    console.log(`\\t${pivotTable.name}`);\n  });\n});\n```"
 - name: position
   uid: excel!Excel.Worksheet#position:member
   package: excel!
@@ -435,7 +435,7 @@ properties:
     工作表在工作簿中的位置，从零开始。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -452,7 +452,7 @@ properties:
     返回表工作表的工作表保护对象。
 
 
-    \[[API 集： ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -469,7 +469,7 @@ properties:
     返回工作表上的所有 Shape 对象的集合。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -482,10 +482,10 @@ properties:
   package: excel!
   fullName: showGridlines
   summary: >-
-    指定是否对用户显示网格线。
+    指定网格线是否对用户可见。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -493,7 +493,7 @@ properties:
     content: 'showGridlines: boolean;'
     return:
       type: boolean
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/54-worksheet/gridlines.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    sheet.showGridlines = true;\n\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/54-worksheet/gridlines.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    sheet.showGridlines = true;\n\n    await context.sync();\n});\n```"
 - name: showHeadings
   uid: excel!Excel.Worksheet#showHeadings:member
   package: excel!
@@ -502,7 +502,7 @@ properties:
     指定标题是否对用户可见。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -515,10 +515,10 @@ properties:
   package: excel!
   fullName: slicers
   summary: >-
-    返回作为工作表一部分的切片器的集合。
+    返回属于工作表的切片器的集合。
 
 
-    \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -526,7 +526,7 @@ properties:
     content: 'readonly slicers: Excel.SlicerCollection;'
     return:
       type: <xref uid="excel!Excel.SlicerCollection:class" />
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/38-pivottable/pivottable-slicer.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Pivot\");\n    const slicer = sheet.slicers.add(\n        \"Farm Sales\", /* The slicer data source. For PivotTables, this can be the PivotTable object reference or name. */\n        \"Type\" /* The field in the data source to filter by. For PivotTables, this can be a PivotField object reference or ID. */\n    );\n    slicer.name = \"Fruit Slicer\";\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-slicer.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Pivot\");\n    const slicer = sheet.slicers.add(\n        \"Farm Sales\", /* The slicer data source. For PivotTables, this can be the PivotTable object reference or name. */\n        \"Type\" /* The field in the data source to filter by. For PivotTables, this can be a PivotField object reference or ID. */\n    );\n    slicer.name = \"Fruit Slicer\";\n    await context.sync();\n});\n```"
 - name: standardHeight
   uid: excel!Excel.Worksheet#standardHeight:member
   package: excel!
@@ -535,7 +535,7 @@ properties:
     返回工作表中所有行的标准（默认）行高，以磅为单位。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -548,10 +548,10 @@ properties:
   package: excel!
   fullName: standardWidth
   summary: >-
-    指定工作表中所有列的标准 (默认) 宽度。 一个列宽单位等于“常规”样式中一个字符的宽度。 对于比例字体，则使用字符 0（零）的宽度。
+    指定工作表中 (列) 列的默认列宽。 一个列宽单位等于“常规”样式中一个字符的宽度。 对于比例字体，则使用字符 0（零）的宽度。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -564,10 +564,10 @@ properties:
   package: excel!
   fullName: tabColor
   summary: >-
-    工作表的选项卡颜色。 检索选项卡颜色时，如果工作表不可见，则值将为 null。 如果工作表可见但选项卡颜色设置为自动，将返回一个空字符串。 否则，在设置颜色时，属性将设置为颜色，格式为 " \# 123456"，则使用空字符串设置 "自动" 颜色，或使用实际颜色。
+    工作表的选项卡颜色。 检索选项卡颜色时，如果工作表不可见，则该值将为 null。 如果工作表可见，但选项卡颜色设置为自动，则返回空字符串。 否则，该属性将设置为一种颜色，格式为 \# "123456"。设置颜色时，请使用空字符串来设置"auto"颜色，否则使用真实颜色。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -575,7 +575,7 @@ properties:
     content: 'tabColor: string;'
     return:
       type: string
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/54-worksheet/tab-color.yaml\nawait Excel.run(async (context) => {\n    const activeSheet = context.workbook.worksheets.getActiveWorksheet();\n    activeSheet.tabColor = \"#FF0000\";\n\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/54-worksheet/tab-color.yaml\nawait Excel.run(async (context) => {\n    const activeSheet = context.workbook.worksheets.getActiveWorksheet();\n    activeSheet.tabColor = \"#FF0000\";\n\n    await context.sync();\n});\n```"
 - name: tables
   uid: excel!Excel.Worksheet#tables:member
   package: excel!
@@ -584,7 +584,7 @@ properties:
     属于工作表的表的集合。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -597,10 +597,10 @@ properties:
   package: excel!
   fullName: tasks
   summary: >-
-    返回工作表中存在的任务的集合。
+    返回工作表中的任务集合。
 
 
-    \[[API 集： EXCELAPI BETA (仅预览) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -616,7 +616,7 @@ properties:
     获取工作表的垂直分页符集合。 此集合仅包含手动分页符。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -632,7 +632,7 @@ properties:
     工作表的可见性。
 
 
-    \[[API 集： ExcelApi 1.1 用于读取可见性; 1.2 用于设置。](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
+    \[[API 集：用于读取可见性的 ExcelApi 1.1;用于设置它的 1.2。](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -649,7 +649,7 @@ methods:
     在 Excel UI 中激活工作表。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -666,7 +666,7 @@ methods:
     计算工作表上的所有单元格。
 
 
-    \[[API 集： ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -674,7 +674,7 @@ methods:
     content: 'calculate(markAllDirty: boolean): void;'
     parameters:
     - id: markAllDirty
-      description: 如果为 True，则将全部标记为已更新。
+      description: 真，要标记为脏所有。
       type: boolean
     return:
       type: void
@@ -684,10 +684,10 @@ methods:
   package: excel!
   fullName: copy(positionType, relativeTo)
   summary: >-
-    复制工作表并将其放在指定位置。
+    复制工作表，并放置于指定位置。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -695,10 +695,10 @@ methods:
     content: 'copy(positionType?: Excel.WorksheetPositionType, relativeTo?: Excel.Worksheet): Excel.Worksheet;'
     parameters:
     - id: positionType
-      description: 在工作簿中放置新创建的工作表的位置。 默认值为 "无"，这将在工作表的开头插入工作表。
+      description: 工作簿中放置新创建的工作表的位置。 默认值为"None"，将工作表插入工作表的开头。
       type: <xref uid="excel!Excel.WorksheetPositionType:enum" />
     - id: relativeTo
-      description: 确定新创建的工作表位置的现有工作表。 仅当 `positionType` 为 "Before" 或 "After" 时才需要这样做。
+      description: 确定新创建的工作表的位置的现有工作表。 只有在为 `positionType` "Before"或"After"时，才需要这样做。
       type: <xref uid="excel!Excel.Worksheet:class" />
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -711,7 +711,7 @@ methods:
 
         ```typescript
 
-        // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/54-worksheet/worksheet-copy.yaml
+        // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/54-worksheet/worksheet-copy.yaml
 
         await Excel.run(async (context) => {
 
@@ -733,10 +733,10 @@ methods:
   package: excel!
   fullName: copy(positionTypeString, relativeTo)
   summary: >-
-    复制工作表并将其放在指定位置。
+    复制工作表，并放置于指定位置。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -744,10 +744,10 @@ methods:
     content: 'copy(positionTypeString?: "None" | "Before" | "After" | "Beginning" | "End", relativeTo?: Excel.Worksheet): Excel.Worksheet;'
     parameters:
     - id: positionTypeString
-      description: 在工作簿中放置新创建的工作表的位置。 默认值为 "无"，这将在工作表的开头插入工作表。
+      description: 工作簿中放置新创建的工作表的位置。 默认值为"None"，将工作表插入工作表的开头。
       type: "\"None\" | \"Before\" | \"After\" | \"Beginning\" | \"End\""
     - id: relativeTo
-      description: 确定新创建的工作表位置的现有工作表。 仅当 `positionType` 为 "Before" 或 "After" 时才需要这样做。
+      description: 确定新创建的工作表的位置的现有工作表。 只有在为 `positionType` "Before"或"After"时，才需要这样做。
       type: <xref uid="excel!Excel.Worksheet:class" />
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -757,10 +757,10 @@ methods:
   package: excel!
   fullName: delete()
   summary: >-
-    从工作簿中删除工作表。 请注意，如果工作表的可见性设置为 "VeryHidden"，则删除操作将失败，并出现 `InvalidOperation` 异常。 应首先将其可见性更改为隐藏或可见，然后再将其删除。
+    从工作簿中删除工作表。 请注意，如果工作表的可见性设置为"VeryHidden"，删除操作将失败，但出现 `InvalidOperation` 异常。 在删除之前，应首先将其可见性更改为隐藏或可见。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -777,7 +777,7 @@ methods:
     根据指定的条件查找给定字符串的所有匹配项，并将它们作为包含一个或多个矩形区域的 RangeAreas 对象返回。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -788,11 +788,11 @@ methods:
       description: 要查找的字符串。
       type: string
     - id: criteria
-      description: 其他搜索条件，包括搜索是否需要匹配整个单元格或是否区分大小写。
+      description: 其他搜索条件，包括搜索是否需要匹配整个单元格或区分大小写。
       type: <xref uid="excel!Excel.WorksheetSearchCriteria:interface" />
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
-      description: 一个 RangeArea 对象，其中包含一个或多个与搜索条件相匹配的矩形区域。 如果没有满足此条件的单元格，则将引发 ItemNotFound 错误。
+      description: 一个 RangeArea 对象，包含一个或多个与搜索条件匹配的矩形区域。 如果没有单元格满足此条件，将引发 ItemNotFound 错误。
 - name: findAllOrNullObject(text, criteria)
   uid: excel!Excel.Worksheet#findAllOrNullObject:member(1)
   package: excel!
@@ -801,7 +801,7 @@ methods:
     根据指定的条件查找给定字符串的所有匹配项，并将它们作为包含一个或多个矩形区域的 RangeAreas 对象返回。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -812,12 +812,12 @@ methods:
       description: 要查找的字符串。
       type: string
     - id: criteria
-      description: 其他搜索条件，包括搜索是否需要匹配整个单元格或是否区分大小写。
+      description: 其他搜索条件，包括搜索是否需要匹配整个单元格或区分大小写。
       type: <xref uid="excel!Excel.WorksheetSearchCriteria:interface" />
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
       description: >-
-        一个 RangeArea 对象，其中包含一个或多个与搜索条件相匹配的矩形区域。 如果没有匹配项，则此函数将返回一个 null 对象。
+        一个 RangeArea 对象，包含一个或多个与搜索条件匹配的矩形区域。 如果没有匹配项，此函数将返回 null 对象。
 
 
         #### <a name="examples"></a>示例
@@ -825,7 +825,7 @@ methods:
 
         ```typescript
 
-        // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/54-worksheet/worksheet-find-all.yaml
+        // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/54-worksheet/worksheet-find-all.yaml
 
         await Excel.run(async (context) => {
             const sheet = context.workbook.worksheets.getItem("Sample");
@@ -849,10 +849,10 @@ methods:
   package: excel!
   fullName: getCell(row, column)
   summary: >-
-    根据行和列编号获取包含单个单元格的 range 对象。 单元格可以位于其父区域的边界之外，但前提是它停留在工作表网格中。
+    根据行和列编号获取包含单个单元格的 range 对象。 单元格可以位于父区域外部，只要它保持在工作表网格内即可。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -873,10 +873,10 @@ methods:
   package: excel!
   fullName: getNext(visibleOnly)
   summary: >-
-    获取此工作表的后面的工作表。 如果此方法后面没有任何工作表，则此方法将引发错误。
+    获取此工作表后工作表。 如果此工作表后没有工作表，此方法将引发错误。
 
 
-    \[[API 集： ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -888,16 +888,16 @@ methods:
       type: boolean
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/54-worksheet/reference-worksheets-by-relative-position.yaml\nawait Excel.run(async (context) => {\n    const sheets = context.workbook.worksheets;\n\n    // We don't want to include the default worksheet that was created\n    // when the workbook was created, so our \"firstSheet\" will be the one\n    // after the literal first. Note chaining of navigation methods.\n    const firstSheet = sheets.getFirst().getNext();\n    const lastSheet = sheets.getLast();\n    const firstTaxRateRange = firstSheet.getRange(\"B2\");\n    const lastTaxRateRange = lastSheet.getRange(\"B2\");\n\n    firstSheet.load(\"name\");\n    lastSheet.load(\"name\");\n    firstTaxRateRange.load(\"text\");\n    lastTaxRateRange.load(\"text\");\n\n    await context.sync();\n\n    let firstYear = firstSheet.name.substr(5, 4);\n    let lastYear = lastSheet.name.substr(5, 4);\n    console.log(`Tax Rate change from ${firstYear} to ${lastYear}`, `Tax rate for ${firstYear}: ${firstTaxRateRange.text[0][0]}\\nTax rate for ${lastYear}: ${lastTaxRateRange.text[0][0]}`)\n\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/54-worksheet/reference-worksheets-by-relative-position.yaml\nawait Excel.run(async (context) => {\n    const sheets = context.workbook.worksheets;\n\n    // We don't want to include the default worksheet that was created\n    // when the workbook was created, so our \"firstSheet\" will be the one\n    // after the literal first. Note chaining of navigation methods.\n    const firstSheet = sheets.getFirst().getNext();\n    const lastSheet = sheets.getLast();\n    const firstTaxRateRange = firstSheet.getRange(\"B2\");\n    const lastTaxRateRange = lastSheet.getRange(\"B2\");\n\n    firstSheet.load(\"name\");\n    lastSheet.load(\"name\");\n    firstTaxRateRange.load(\"text\");\n    lastTaxRateRange.load(\"text\");\n\n    await context.sync();\n\n    let firstYear = firstSheet.name.substr(5, 4);\n    let lastYear = lastSheet.name.substr(5, 4);\n    console.log(`Tax Rate change from ${firstYear} to ${lastYear}`, `Tax rate for ${firstYear}: ${firstTaxRateRange.text[0][0]}\\nTax rate for ${lastYear}: ${lastTaxRateRange.text[0][0]}`)\n\n    await context.sync();\n});\n```"
 - name: getNextOrNullObject(visibleOnly)
   uid: excel!Excel.Worksheet#getNextOrNullObject:member(1)
   package: excel!
   fullName: getNextOrNullObject(visibleOnly)
   summary: >-
-    获取此工作表的后面的工作表。 如果此方法后面没有任何工作表，则此方法将返回一个 null 对象。
+    获取此工作表后工作表。 如果此工作表后没有工作表，此方法将返回 null 对象。
 
 
-    \[[API 集： ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -915,10 +915,10 @@ methods:
   package: excel!
   fullName: getPrevious(visibleOnly)
   summary: >-
-    获取此项之前的工作表。 如果没有以前的工作表，此方法将引发错误。
+    获取此工作表之前工作表。 如果没有以前的工作表，此方法将引发错误。
 
 
-    \[[API 集： ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -930,16 +930,16 @@ methods:
       type: boolean
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/54-worksheet/reference-worksheets-by-relative-position.yaml\nawait Excel.run(async (context) => {\n    const sheets = context.workbook.worksheets;\n    const currentSheet = sheets.getActiveWorksheet();\n    const previousYearSheet = currentSheet.getPrevious();\n    const currentTaxDueRange = currentSheet.getRange(\"C2\");\n    const previousTaxDueRange = previousYearSheet.getRange(\"C2\");\n\n    currentSheet.load(\"name\");\n    previousYearSheet.load(\"name\");\n    currentTaxDueRange.load(\"text\");\n    previousTaxDueRange.load(\"text\");\n\n    await context.sync();\n\n    let currentYear = currentSheet.name.substr(5, 4);\n    let previousYear = previousYearSheet.name.substr(5, 4);\n    console.log(\"Two Year Tax Due Comparison\", `Tax due for ${currentYear} was ${currentTaxDueRange.text[0][0]}\\nTax due for ${previousYear} was ${previousTaxDueRange.text[0][0]}`)\n\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/54-worksheet/reference-worksheets-by-relative-position.yaml\nawait Excel.run(async (context) => {\n    const sheets = context.workbook.worksheets;\n    const currentSheet = sheets.getActiveWorksheet();\n    const previousYearSheet = currentSheet.getPrevious();\n    const currentTaxDueRange = currentSheet.getRange(\"C2\");\n    const previousTaxDueRange = previousYearSheet.getRange(\"C2\");\n\n    currentSheet.load(\"name\");\n    previousYearSheet.load(\"name\");\n    currentTaxDueRange.load(\"text\");\n    previousTaxDueRange.load(\"text\");\n\n    await context.sync();\n\n    let currentYear = currentSheet.name.substr(5, 4);\n    let previousYear = previousYearSheet.name.substr(5, 4);\n    console.log(\"Two Year Tax Due Comparison\", `Tax due for ${currentYear} was ${currentTaxDueRange.text[0][0]}\\nTax due for ${previousYear} was ${previousTaxDueRange.text[0][0]}`)\n\n    await context.sync();\n});\n```"
 - name: getPreviousOrNullObject(visibleOnly)
   uid: excel!Excel.Worksheet#getPreviousOrNullObject:member(1)
   package: excel!
   fullName: getPreviousOrNullObject(visibleOnly)
   summary: >-
-    获取此项之前的工作表。 如果没有以前的工作表，则此方法将返回一个空的 objet。
+    获取此工作表之前工作表。 如果没有以前的工作表，此方法将返回 null 对象。
 
 
-    \[[API 集： ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -957,10 +957,10 @@ methods:
   package: excel!
   fullName: getRange(address)
   summary: >-
-    获取一个 range 对象，该对象代表由地址或名称指定的单个矩形单元格块。
+    获取 range 对象，该对象代表由地址或名称指定的单个矩形单元格块。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -968,7 +968,7 @@ methods:
     content: 'getRange(address?: string): Excel.Range;'
     parameters:
     - id: address
-      description: 可选。 表示地址或范围名称的字符串。 例如，"A1： B2"。 如果未指定，则返回整个工作表区域。
+      description: 可选。 表示区域地址或名称的字符串。 例如，"A1：B2"。 如果未指定，则返回整个工作表区域。
       type: string
     return:
       type: <xref uid="excel!Excel.Range:class" />
@@ -981,7 +981,7 @@ methods:
     获取以特定行索引和列索引开始并跨越了一定数量的行和列的 range 对象。
 
 
-    \[[API 集： ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -989,16 +989,16 @@ methods:
     content: 'getRangeByIndexes(startRow: number, startColumn: number, rowCount: number, columnCount: number): Excel.Range;'
     parameters:
     - id: startRow
-      description: " (零索引) 的起始行。"
+      description: 起始行 (从零开始) 。
       type: number
     - id: startColumn
-      description: " (零索引) 的起始列。"
+      description: 起始列 (从零开始) 。
       type: number
     - id: rowCount
-      description: 要包含在范围中的行数。
+      description: 要包括在范围中的行数。
       type: number
     - id: columnCount
-      description: 要包含在范围中的列数。
+      description: 要包括在范围中的列数。
       type: number
     return:
       type: <xref uid="excel!Excel.Range:class" />
@@ -1011,7 +1011,7 @@ methods:
     获取按地址或名称指定的 RangeAreas 对象，它表示一个或多个矩形区域块。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1019,20 +1019,16 @@ methods:
     content: 'getRanges(address?: string): Excel.RangeAreas;'
     parameters:
     - id: address
-      description: 可选。 一个包含以逗号分隔的地址或各个区域的名称的字符串。 例如，"A1： B2，A5： B5"。 如果未指定，则返回整个工作表的 RangeArea 对象。
+      description: 可选。 包含以逗号分隔的地址或各个区域的名称的字符串。 例如，"A1：B2， A5：B5"。 如果未指定，则返回整个工作表的 RangeArea 对象。
       type: string
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/42-range/range-areas.yaml\nawait Excel.run(async (context) => {\n\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    const specifiedRanges = sheet.getRanges(\"D3:D5, G3:G5\");\n    specifiedRanges.format.fill.color = \"pink\";\n\n    await context.sync();\n})\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/42-range/range-areas.yaml\nawait Excel.run(async (context) => {\n\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    const specifiedRanges = sheet.getRanges(\"D3:D5, G3:G5\");\n    specifiedRanges.format.fill.color = \"pink\";\n\n    await context.sync();\n})\n```"
 - name: getUsedRange(valuesOnly)
   uid: excel!Excel.Worksheet#getUsedRange:member(1)
   package: excel!
   fullName: getUsedRange(valuesOnly)
-  summary: >-
-    使用的区域是包含分配了值或格式化的任何单元格的最小区域。 如果整个工作表为空，则此函数将返回左上角的单元格 (即它将 *不* 会引发错误) 。
-
-
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  summary: "使用的区域是包含分配了值或格式化的任何单元格的最小区域。 如果整个工作表为空，则此函数将返回左上方 (，即不会引发错误) 。 \n\n\\[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\\]"
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1040,7 +1036,7 @@ methods:
     content: 'getUsedRange(valuesOnly?: boolean): Excel.Range;'
     parameters:
     - id: valuesOnly
-      description: 可选。 如果为 true，则仅将包含值的单元格视为已使用的单元格 (忽略格式设置) 。 \[Api 集： ExcelApi 1。2\]
+      description: 可选。 如果为 true，则仅将值为已用单元格的单元格 (忽略格式设置) 。 \[Api 集：ExcelApi 1.2\]
       type: boolean
     return:
       type: <xref uid="excel!Excel.Range:class" />
@@ -1053,7 +1049,7 @@ methods:
     使用的区域是包含分配了值或格式的任意单元格的最小区域。如果整个工作表为空，此函数将返回 NULL 对象。
 
 
-    \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1095,7 +1091,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.Worksheet;'
     parameters:
     - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -1116,7 +1112,7 @@ methods:
               }): Excel.Worksheet;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，它是一个以逗号分隔的字符串，用于指定要加载的 `propertyNamesAndPaths.expand` 导航属性。'
       type: >-
         {
                     select?: string;
@@ -1133,7 +1129,7 @@ methods:
     根据当前工作表中指定的条件查找并替换给定的字符串。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1144,19 +1140,19 @@ methods:
       description: 要查找的字符串。
       type: string
     - id: replacement
-      description: 要将原始替换为的字符串。
+      description: 要替换为原始字符串。
       type: string
     - id: criteria
       description: 其他替换条件。
       type: <xref uid="excel!Excel.ReplaceCriteria:interface" />
     return:
       type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;number&gt;
-      description: 执行的替换的次数。
+      description: 执行的替换数。
 - name: set(properties, options)
   uid: excel!Excel.Worksheet#set:member(1)
   package: excel!
   fullName: set(properties, options)
-  summary: 同时设置一个对象的多个属性。 您可以传递具有相应属性的纯对象或相同类型的其他 API 对象。
+  summary: 同时设置对象的多个属性。 你可以传递具有相应属性的普通对象，也可以传递同一类型的另一个 API 对象。
   remarks: >-
     此方法具有以下附加签名：
 
@@ -1168,10 +1164,10 @@ methods:
     content: 'set(properties: Interfaces.WorksheetUpdateData, options?: OfficeExtension.UpdateOptions): void;'
     parameters:
     - id: properties
-      description: 一个 JavaScript 对象，其属性的结构 isomorphically 为在其上调用方法的对象的属性。
+      description: 一个 JavaScript 对象，其属性以等态方式构造到调用该方法的对象的属性。
       type: <xref uid="excel!Excel.Interfaces.WorksheetUpdateData:interface" />
     - id: options
-      description: 提供一个选项，以在 properties 对象尝试设置任何只读属性时禁止显示错误。
+      description: 提供在属性对象尝试设置任何只读属性时禁止错误的选项。
       type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
     return:
       type: void
@@ -1180,7 +1176,7 @@ methods:
   uid: excel!Excel.Worksheet#set:member(2)
   package: excel!
   fullName: set(properties)
-  summary: 基于现有加载的对象同时设置该对象的多个属性。
+  summary: 基于现有的已加载对象，同时设置对象上的多个属性。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1198,10 +1194,10 @@ methods:
   package: excel!
   fullName: showOutlineLevels(rowLevels, columnLevels)
   summary: >-
-    按行或列的大纲级别显示组。 勾勒出组合并汇总工作表中的数据列表。 `rowLevels`和 `columnLevels` 参数指定将显示的大纲的级别数。 可接受的参数范围介于0和8之间。 值0不会更改当前显示。 大于当前级别数的值将显示所有级别。
+    按大纲级别显示行或列组。 大纲分组并汇总工作表中的数据列表。 和 `rowLevels` `columnLevels` 参数指定将显示大纲的级别数。 可接受的参数范围介于 0 和 8 之间。 值 0 不会更改当前显示。 大于当前级别数的值将显示所有级别。
 
 
-    \[[API 集： ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1209,19 +1205,19 @@ methods:
     content: 'showOutlineLevels(rowLevels: number, columnLevels: number): void;'
     parameters:
     - id: rowLevels
-      description: 要显示的分级显示的行级别数。
+      description: 要显示的大纲的行级别数。
       type: number
     - id: columnLevels
-      description: 要显示的分级显示的列级别数。
+      description: 要显示的大纲的列级别数。
       type: number
     return:
       type: void
-      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/42-range/outline.yaml\nExcel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n    // This collapses the entire outline.\n    sheet.showOutlineLevels(1, 1);\n    await context.sync();\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/42-range/outline.yaml\nExcel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n    // This shows the top 3 outline levels; collapsing any additional sublevels.\n    sheet.showOutlineLevels(3, 3);\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/42-range/outline.yaml\nExcel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n    // This collapses the entire outline.\n    sheet.showOutlineLevels(1, 1);\n    await context.sync();\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/42-range/outline.yaml\nExcel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n    // This shows the top 3 outline levels; collapsing any additional sublevels.\n    sheet.showOutlineLevels(3, 3);\n    await context.sync();\n});\n```"
 - name: toJSON()
   uid: excel!Excel.Worksheet#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始的 Excel 工作表对象是一个 API 对象，则该 `toJSON` 方法返回一个简单的 JavaScript 对象 (键入为 `Excel.Interfaces.WorksheetData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给该对象的对象的方法。) 而原始 Excel.Worksheet 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.WorksheetData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1232,9 +1228,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 0fbc29a281f5c8bbc016eeee06322f063ef168c6
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: a97fdcf6e4247d09689f105aec02889963a125f9
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49315814"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49852206"

@@ -4,10 +4,10 @@ uid: outlook!Office.Recurrence:interface
 package: outlook!
 fullName: Office.Recurrence
 summary: >-
-  该 `Recurrence` 对象提供用于获取和设置约会的定期模式的方法，但仅获取会议请求的定期模式。 它将包含具有以下键的字典： `seriesTime`<!-- -->, `recurrenceType`<!-- -->, `recurrenceProperties`<!-- -->，并 `recurrenceTimeZone` (可选) 。
+  `Recurrence`该对象提供用于获取和设置约会定期模式方法，但仅获取定期模式请求数。 它将具有具有以下键的字典： `seriesTime`<!-- -->, `recurrenceType`<!-- -->, `recurrenceProperties`<!-- -->， (`recurrenceTimeZone` 可选) 。
 
 
-  \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  \[[API 集：Mailbox 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
 remarks: >-
   **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -15,10 +15,10 @@ remarks: >-
   **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
 
 
-  **市**
+  **状态**
 
 
-  <table> <tr> <th>状态</th> <th>变为?</th> <th>浏览?</th> </tr> <tr> <td>约会组织者-撰写系列</td> <td>是 (setAsync) </td> <td>是 (getAsync) </td> </tr> <tr> <td>约会组织者-撰写实例</td> <td>没有 (setAsync 返回错误) </td> <td>是 (getAsync) </td> </tr> <tr> <td>约会与会者-阅读系列</td> <td>没有 (setAsync 不可用) </td> <td>是 (项目。定期) </td> </tr> <tr> <td>约会与会者-读取实例</td> <td>没有 (setAsync 不可用) </td> <td>是 (项目。定期) </td> </tr> <tr> <td>会议请求-读取系列</td> <td>没有 (setAsync 不可用) </td> <td>是 (项目。定期) </td> </tr> <tr> <td>会议请求-读取实例</td> <td>没有 (setAsync 不可用) </td> <td>是 (项目。定期) </td> </tr> </table>
+  <table> <tr> <th>状态</th> <th>可编辑？</th> <th>可查看？</th> </tr> <tr> <td>约会组织者 - 撰写系列</td> <td>是 (setAsync) </td> <td>是 (getAsync) </td> </tr> <tr> <td>约会管理器 - 撰写实例</td> <td>没有 (setAsync 返回错误) </td> <td>是 (getAsync) </td> </tr> <tr> <td>约会参与者 - 阅读系列</td> <td>没有 (setAsync 不可用) </td> <td>是 (item.recurrence) </td> </tr> <tr> <td>约会与会者 - 读取实例</td> <td>没有 (setAsync 不可用) </td> <td>是 (item.recurrence) </td> </tr> <tr> <td>会议请求 - 读取系列</td> <td>没有 (setAsync 不可用) </td> <td>是 (item.recurrence) </td> </tr> <tr> <td>会议请求 - 读取实例</td> <td>没有 (setAsync 不可用) </td> <td>是 (item.recurrence) </td> </tr> </table>
 isPreview: false
 isDeprecated: false
 type: interface
@@ -31,7 +31,7 @@ properties:
     获取或设置定期约会系列的属性。
 
 
-    \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -51,7 +51,7 @@ properties:
     获取或设置定期约会系列的属性。
 
 
-    \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -71,7 +71,7 @@ properties:
     获取或设置定期约会系列的类型。
 
 
-    \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -88,10 +88,10 @@ properties:
   package: outlook!
   fullName: seriesTime
   summary: >-
-    [SeriesTime](xref:outlook!Office.SeriesTime:interface)对象使您能够管理定期约会系列的开始和结束日期以及实例的常规开始和结束时间。 **此对象不是 UTC 时间。** 而是在由值指定的时区中设置，或将其 `recurrenceTimeZone` 默认值设置为项目的时区。
+    [SeriesTime](xref:outlook!Office.SeriesTime:interface)对象使您能够管理定期约会系列的开始日期和结束日期以及实例的通常开始时间和结束时间。 **此对象不 UTC 时间。** 而是在值指定的时区中设置它，或者默认设置为 `recurrenceTimeZone` 项目的时区。
 
 
-    \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -112,10 +112,10 @@ methods:
     返回约会系列的当前定期对象。
 
 
-    此方法返回 `Recurrence` 约会系列的整个对象。
+    此方法返回约会 `Recurrence` 系列的整个对象。
 
 
-    \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -128,7 +128,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/50-recurrence/get-set-recurrence-appointment-organizer.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/50-recurrence/get-set-recurrence-appointment-organizer.yaml
 
     Office.context.mailbox.item.recurrence.getAsync(function(asyncResult) {
       if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
@@ -150,10 +150,10 @@ methods:
     content: 'getAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<Recurrence>) => void): void;'
     parameters:
     - id: options
-      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。 `value`结果的属性是一个 `Recurrence` 对象。
+      description: 可选。 方法完成后，用单个参数调用在参数中传递 `callback` 的函数， `asyncResult`<!-- -->，它是一 `Office.AsyncResult` 个对象。 `value`结果的属性是一 `Recurrence` 个对象。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.Recurrence:interface" />&gt;) =&gt; void'
     return:
       type: void
@@ -163,13 +163,13 @@ methods:
   package: outlook!
   fullName: setAsync(recurrencePattern, options, callback)
   summary: >-
-    设置约会系列的定期模式。
+    设置定期模式系列的约会集合。
 
 
-    **注意**： `setAsync` 应仅适用于系列项而不是实例项。
+    **注意** `setAsync` ：应仅适用于系列项，而非实例项。
 
 
-    \[[API 集：邮箱 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：Mailbox 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadWriteItem`
 
@@ -180,7 +180,7 @@ methods:
     **错误**：
 
 
-    - `InvalidEndTime`<!-- -->：约会结束时间早在其开始时间之前。
+    - `InvalidEndTime`<!-- -->：约会结束时间在其开始时间之前。
 
 
     #### <a name="examples"></a>示例
@@ -188,7 +188,7 @@ methods:
 
     ```javascript
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/50-recurrence/get-set-recurrence-appointment-organizer.yaml
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/50-recurrence/get-set-recurrence-appointment-organizer.yaml
 
     // Important: Can only set the recurrence pattern of an appointment series.
 
@@ -245,21 +245,21 @@ methods:
     content: 'setAsync(recurrencePattern: Recurrence, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: recurrencePattern
-      description: 一个定期对象。
+      description: 定期对象。
       type: <xref uid="outlook!Office.Recurrence:interface" />
     - id: options
-      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供希望访问的任何对象。
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 可选。 方法完成后， `callback` 使用单个参数调用在参数中传递的函数。 `asyncResult`<!-- -->，它是一个 `Office.AsyncResult` 对象。
+      description: 可选。 方法完成后，用单个参数调用在参数中传递 `callback` 的函数， `asyncResult`<!-- -->，它是一 `Office.AsyncResult` 个对象。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: b9ef59a58382ef61aecb04d884df2452fad17604
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 8b703a7cf4c1f6f8b3d6bb1338625c12a8f84573
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49339859"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49852633"
