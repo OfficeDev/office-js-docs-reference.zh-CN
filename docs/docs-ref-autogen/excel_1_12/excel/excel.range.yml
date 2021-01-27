@@ -222,7 +222,7 @@ properties:
   package: excel!
   fullName: hasSpill
   summary: >-
-    表示所有单元格是否都具有溢出边框。 如果所有单元格都有溢出边框，则返回 true;如果所有单元格没有溢出边框，则返回 false。 如果单元格区域内同时存在溢出边框和没有溢出边框，则返回 null。
+    表示所有单元格是否都具有溢出边框。 如果所有单元格都有溢出边框，则返回 true;如果所有单元格没有溢出边框，则返回 false。 如果单元格同时具有和没有溢出边框，则返回 null。
 
 
     \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -598,7 +598,7 @@ methods:
     使用指定的自动填充逻辑填充从当前范围到目标区域。 目标区域可以是 null，也可以水平或垂直扩展源。 不支持不连续的范围。
 
 
-    有关详细信息，请阅读" [使用自动填充和快速填充"](https://support.office.com/article/video-use-autofill-and-flash-fill-2e79a709-c814-4b27-8bc2-c4dc84d49464)<!-- -->.
+    有关详细信息，请阅读" [使用自动填充"和"快速填充"](https://support.office.com/article/video-use-autofill-and-flash-fill-2e79a709-c814-4b27-8bc2-c4dc84d49464)<!-- -->.
 
 
     \[[API 集：ExcelApi 1.9、ExcelApi `destinationRange` <!-- --> Preview for null](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -625,7 +625,7 @@ methods:
     使用指定的自动填充逻辑填充从当前范围到目标区域。 目标区域可以是 null，也可以水平或垂直扩展源。 不支持不连续的范围。
 
 
-    有关详细信息，请阅读" [使用自动填充和快速填充"](https://support.office.com/article/video-use-autofill-and-flash-fill-2e79a709-c814-4b27-8bc2-c4dc84d49464)<!-- -->.
+    有关详细信息，请阅读" [使用自动填充"和"快速填充"](https://support.office.com/article/video-use-autofill-and-flash-fill-2e79a709-c814-4b27-8bc2-c4dc84d49464)<!-- -->.
 
 
     \[[API 集：ExcelApi 1.9、ExcelApi `destinationRange` <!-- --> Preview for null](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1176,7 +1176,7 @@ methods:
   package: excel!
   fullName: getImage()
   summary: >-
-    将区域呈现为 base64 编码的 png 图像。 *重要提示**：此 API 当前在 Excel for Mac 中不受支持。 访问 [OfficeDev/office-js 问题 \# 235，](https://github.com/OfficeDev/office-js/issues/235) 查看当前状态。
+    将区域呈现为 base64 编码的 png 图像。 **重要** 提示：此 API 当前在 Excel for Mac 中不受支持。 访问 [OfficeDev/office-js 问题 \# 235，](https://github.com/OfficeDev/office-js/issues/235) 查看当前状态。
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1345,7 +1345,7 @@ methods:
       description: 相对于当前范围，展开右下角的行数。使用正数可展开范围，使用负数可合拢范围。
       type: number
     - id: deltaColumns
-      description: 相对于当前区域，右下角展开的列数。 使用正数可展开范围，使用负数可合拢范围。
+      description: 相对于当前范围展开右下角的列数。 使用正数可展开范围，使用负数可合拢范围。
       type: number
     return:
       type: <xref uid="excel!Excel.Range:class" />
@@ -1850,7 +1850,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.Range;'
     parameters:
     - id: propertyNames
-      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.Range:class" />
@@ -2170,7 +2170,7 @@ methods:
   uid: excel!Excel.Range#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 Excel.Range 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.RangeData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给该对象的方法。) 而原始 Excel.Range 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.RangeData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -2266,9 +2266,9 @@ methods:
       description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\nExcel.run(async (context) => {\n    const largeRange = context.workbook.getSelectedRange();\n    largeRange.load([\"rowCount\", \"columnCount\"]);\n    await context.sync();\n\n    for (let i = 0; i < largeRange.rowCount; i++) {\n        for (let j = 0; j < largeRange.columnCount; j++) {\n            let cell = largeRange.getCell(i, j);\n            cell.values = [[i *j]];\n\n            // call untrack() to release the range from memory\n            cell.untrack();\n        }\n    }\n\n    await context.sync();\n});\n```"
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 3e29cdaeb0d744e8d2c29ff9754a95420ab7629d
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: 2b4fa74415a77c23663c90e078896ae43d6a3cd4
+  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49854383"
+  ms.lasthandoff: 01/27/2021
+  ms.locfileid: "49992008"

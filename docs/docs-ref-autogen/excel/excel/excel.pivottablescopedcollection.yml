@@ -4,10 +4,10 @@ uid: excel!Excel.PivotTableScopedCollection:class
 package: excel!
 fullName: Excel.PivotTableScopedCollection
 summary: >-
-  表示数据透视表的限定集合。 数据透视表根据数据透视表左上角的位置进行排序。 它们按从上到下、从左到右的顺序排列。
+  表示数据透视表的范围集合。 数据透视表根据数据透视表左上角的位置进行排序。 它们按从上到下的顺序排序，然后从左到右排序。
 
 
-  \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: excel!Excel.PivotTableScopedCollection#context:member
   package: excel!
   fullName: context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  summary: 与对象关联的请求上下文。 这会将外接程序的进程连接到 Office 主机应用程序的进程。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -43,10 +43,10 @@ methods:
   package: excel!
   fullName: getCount()
   summary: >-
-    获取集合中的数据透视表的数目。
+    获取集合中数据透视表的数量。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -60,10 +60,10 @@ methods:
   package: excel!
   fullName: getFirst()
   summary: >-
-    获取集合中的第一个数据透视表。 集合中的数据透视表按从上到下、从左到右的顺序排序，因此左上角的表格是集合中的第一个数据透视表。
+    获取集合中的第一个数据透视表。 集合中数据透视表按从上到下和从左到右排序，这样，左上表格就是集合中第一个数据透视表。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -80,7 +80,7 @@ methods:
     按名称获取 PivotTable 对象。
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -98,10 +98,10 @@ methods:
   package: excel!
   fullName: getItemOrNullObject(name)
   summary: >-
-    按 PivotTable 对象的名称获取此对象。 如果没有 PivotTable 对象，将返回 NULL 对象。
+    按名称获取 PivotTable 对象。 如果数据透视表不存在，则此函数返回其属性设置为 `isNullObject``true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
-    \[[API 集： ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -143,7 +143,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.PivotTableScopedCollection;'
     parameters:
     - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.PivotTableScopedCollection:class" />
@@ -160,7 +160,7 @@ methods:
     content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.PivotTableScopedCollection;'
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，它是一个以逗号分隔的字符串，用于指定要加载的 `propertyNamesAndPaths.expand` 导航属性。'
       type: <xref uid="office!OfficeExtension.LoadOption:interface" />
     return:
       type: <xref uid="excel!Excel.PivotTableScopedCollection:class" />
@@ -169,7 +169,7 @@ methods:
   uid: excel!Excel.PivotTableScopedCollection#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始 `Excel.PivotTableScopedCollection` 对象是 API 对象，则该 `toJSON` 方法返回一个纯 JavaScript 对象 (类型为 `Excel.Interfaces.PivotTableScopedCollectionData`<!-- -->包含集合项中任何已加载属性的浅表的 "items" 数组 ) 。
+  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `Excel.PivotTableScopedCollection` `toJSON` JavaScript 对象 `Excel.Interfaces.PivotTableScopedCollectionData`<!-- -->) 包含"items"数组，其中包含集合项中任何已加载属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -180,9 +180,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 26a77d1f50ee7f2e4457cab4f6af043ffdb3d63e
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 02daceb130e81067e7d456284a547673f47f99f8
+  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49316913"
+  ms.lasthandoff: 01/27/2021
+  ms.locfileid: "49991538"
