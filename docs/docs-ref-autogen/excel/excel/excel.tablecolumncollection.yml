@@ -7,7 +7,7 @@ summary: >-
   表示属于表的所有列的集合。
 
 
-  \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: excel!Excel.TableColumnCollection#context:member
   package: excel!
   fullName: context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  summary: 与对象关联的请求上下文。 这会将外接程序的进程连接到 Office 主机应用程序的进程。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -33,7 +33,7 @@ properties:
     返回表中的列数。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -62,7 +62,7 @@ methods:
     向表中添加新列。
 
 
-    \[[API 集： ExcelApi 1.1 要求索引小于总列数; 1.4 允许索引是可选的 (null 或-1) 并将在末尾追加一列; 1.4 在创建时允许 name 参数。](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
+    \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)需要的索引小于总列数;1.4 允许索引为可选 (null 或 -1) 并且将在末尾追加列;1.4 允许创建时的名称参数。 \]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -89,7 +89,7 @@ methods:
     获取表中的列数。
 
 
-    \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -106,7 +106,7 @@ methods:
     按名称或 ID 获取 column 对象。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -127,7 +127,7 @@ methods:
     根据其在集合中的位置获取列。
 
 
-    \[[API 集： ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -145,10 +145,10 @@ methods:
   package: excel!
   fullName: getItemOrNullObject(key)
   summary: >-
-    按名称或 ID 获取 column 对象。 如果没有 column 对象，将返回 NULL 对象。
+    按名称或 ID 获取 column 对象。 如果列不存在，则此函数将返回其属性设置为 `isNullObject``true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
-    \[[API 集： ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -190,7 +190,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.TableColumnCollection;'
     parameters:
     - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.TableColumnCollection:class" />
@@ -207,7 +207,7 @@ methods:
     content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.TableColumnCollection;'
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，它是一个以逗号分隔的字符串，用于指定要加载的 `propertyNamesAndPaths.expand` 导航属性。'
       type: <xref uid="office!OfficeExtension.LoadOption:interface" />
     return:
       type: <xref uid="excel!Excel.TableColumnCollection:class" />
@@ -216,7 +216,7 @@ methods:
   uid: excel!Excel.TableColumnCollection#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始 `Excel.TableColumnCollection` 对象是 API 对象，则该 `toJSON` 方法返回一个纯 JavaScript 对象 (类型为 `Excel.Interfaces.TableColumnCollectionData`<!-- -->包含集合项中任何已加载属性的浅表的 "items" 数组 ) 。
+  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `Excel.TableColumnCollection` `toJSON` JavaScript 对象 `Excel.Interfaces.TableColumnCollectionData`<!-- -->) 包含"items"数组，其中包含集合项中任何已加载属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -227,9 +227,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: f067ab9332efdaf20602c223e10d0633ce5a82f0
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: fda6122cccf35dafb401ae2151ef85776974d06b
+  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49293247"
+  ms.lasthandoff: 01/27/2021
+  ms.locfileid: "49991651"

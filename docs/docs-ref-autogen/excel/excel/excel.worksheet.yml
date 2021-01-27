@@ -112,7 +112,7 @@ properties:
   package: excel!
   fullName: freezePanes
   summary: >-
-    获取一个对象，该对象可用于处理工作表上的冻结窗格。
+    获取一个对象，该对象可用于操作工作表上的冻结窗格。
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -320,6 +320,22 @@ properties:
     content: 'readonly onFormatChanged: OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>;'
     return:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorksheetFormatChangedEventArgs:interface" />&gt;
+- name: onFormulaChanged
+  uid: excel!Excel.Worksheet#onFormulaChanged:member
+  package: excel!
+  fullName: onFormulaChanged
+  summary: >-
+    在此工作表中更改一个或多个公式时发生。 此事件用于公式本身更改时，而不是公式计算产生的数据值。
+
+
+    \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'readonly onFormulaChanged: OfficeExtension.EventHandlers<Excel.WorksheetFormulaChangedEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorksheetFormulaChangedEventArgs:interface" />&gt;
 - name: onRowHiddenChanged
   uid: excel!Excel.Worksheet#onRowHiddenChanged:member
   package: excel!
@@ -674,7 +690,7 @@ methods:
     content: 'calculate(markAllDirty: boolean): void;'
     parameters:
     - id: markAllDirty
-      description: 真，要标记为脏所有。
+      description: 真，要标记为脏。
       type: boolean
     return:
       type: void
@@ -817,7 +833,7 @@ methods:
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
       description: >-
-        一个 RangeArea 对象，包含一个或多个与搜索条件匹配的矩形区域。 如果没有匹配项，此函数将返回 null 对象。
+        一个 RangeArea 对象，包含一个或多个与搜索条件匹配的矩形区域。 如果没有匹配项，则此函数将返回其属性设置为 `isNullObject``true`<!-- -->. 有关详细信息，请参阅[ \* OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
         #### <a name="examples"></a>示例
@@ -873,7 +889,7 @@ methods:
   package: excel!
   fullName: getNext(visibleOnly)
   summary: >-
-    获取此工作表后工作表。 如果此工作表后没有工作表，此方法将引发错误。
+    获取此工作表后跟的工作表。 如果此工作表后没有工作表，此方法将引发错误。
 
 
     \[[API 集：ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -894,7 +910,7 @@ methods:
   package: excel!
   fullName: getNextOrNullObject(visibleOnly)
   summary: >-
-    获取此工作表后工作表。 如果此工作表后没有工作表，此方法将返回 null 对象。
+    获取此工作表后跟的工作表。 如果此工作表后没有工作表，则此方法将返回其属性设置为 `isNullObject``true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API 集：ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1046,7 +1062,7 @@ methods:
   package: excel!
   fullName: getUsedRangeOrNullObject(valuesOnly)
   summary: >-
-    使用的区域是包含分配了值或格式的任意单元格的最小区域。如果整个工作表为空，此函数将返回 NULL 对象。
+    使用的区域是包含分配了值或格式化的任何单元格的最小区域。 如果整个工作表为空，则此函数将返回其属性设置为 `isNullObject``true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API 集：ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1091,7 +1107,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.Worksheet;'
     parameters:
     - id: propertyNames
-      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -1217,7 +1233,7 @@ methods:
   uid: excel!Excel.Worksheet#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给该对象的对象的方法。) 而原始 Excel.Worksheet 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.WorksheetData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给该对象的方法。) 而原始 Excel.Worksheet 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.WorksheetData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1228,9 +1244,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: a97fdcf6e4247d09689f105aec02889963a125f9
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: b7f3b4e06e50b3a7d27b2010a07cc6b888de7506
+  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49852206"
+  ms.lasthandoff: 01/27/2021
+  ms.locfileid: "49991672"

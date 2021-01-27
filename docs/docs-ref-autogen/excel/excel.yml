@@ -387,6 +387,7 @@ interfaces:
 - excel!Excel.FiveBoxesSet:interface
 - excel!Excel.FiveQuartersSet:interface
 - excel!Excel.FiveRatingSet:interface
+- excel!Excel.FormulaChangedEventDetail:interface
 - excel!Excel.FourArrowsGraySet:interface
 - excel!Excel.FourArrowsSet:interface
 - excel!Excel.FourRatingSet:interface
@@ -945,6 +946,7 @@ interfaces:
 - excel!Excel.WorksheetDeletedEventArgs:interface
 - excel!Excel.WorksheetFilteredEventArgs:interface
 - excel!Excel.WorksheetFormatChangedEventArgs:interface
+- excel!Excel.WorksheetFormulaChangedEventArgs:interface
 - excel!Excel.WorksheetProtectionOptions:interface
 - excel!Excel.WorksheetRowHiddenChangedEventArgs:interface
 - excel!Excel.WorksheetRowSortedEventArgs:interface
@@ -959,7 +961,7 @@ functions:
     创建并打开新工作簿。 （可选）工作簿可以预先填充 base64 编码的 .xlsx 文件。
 
 
-    \[[API 集： ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1010,7 +1012,7 @@ functions:
 - name: Excel.run(batch)
   uid: excel!Excel.run:function(1)
   package: excel!
-  summary: 使用新的 RequestContext 执行对 Excel 对象模型执行操作的批处理脚本。 解决承诺时，将释放在执行期间自动分配的任何已跟踪对象。
+  summary: 使用新的 RequestContext 执行对 Excel 对象模型执行动作的批处理脚本。 当承诺得到解析时，在执行期间自动分配的任何跟踪对象都将释放。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1018,7 +1020,7 @@ functions:
     content: 'export function run<T>(batch: (context: Excel.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: batch
-      description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
+      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 Excel 对象模型。
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -1026,7 +1028,7 @@ functions:
 - name: Excel.run(object, batch)
   uid: excel!Excel.run:function(2)
   package: excel!
-  summary: 使用以前创建的 API 对象的 RequestContext，执行对 Excel 对象模型执行操作的批处理脚本。 解决承诺时，将释放在执行期间自动分配的任何已跟踪对象。
+  summary: 使用以前创建的 API 对象的 RequestContext 执行对 Excel 对象模型执行动作的批处理脚本。 当承诺得到解析时，在执行期间自动分配的任何跟踪对象都将释放。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1034,10 +1036,10 @@ functions:
     content: 'export function run<T>(object: OfficeExtension.ClientObject, batch: (context: Excel.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: object
-      description: '以前创建的 API 对象。 批处理将使用与传入的对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由 "context. sync ( # A1" 选取。'
+      description: 以前创建的 API 对象。 批处理将使用与传入对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由"context.sync () "选取。
       type: <xref uid="office!OfficeExtension.ClientObject:class" />
     - id: batch
-      description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
+      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 Excel 对象模型。
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -1045,7 +1047,7 @@ functions:
 - name: Excel.run(objects, batch)
   uid: excel!Excel.run:function(3)
   package: excel!
-  summary: 使用以前创建的 API 对象的 RequestContext，执行对 Excel 对象模型执行操作的批处理脚本。
+  summary: 使用以前创建的 API 对象的 RequestContext 执行对 Excel 对象模型执行动作的批处理脚本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1053,10 +1055,10 @@ functions:
     content: 'export function run<T>(objects: OfficeExtension.ClientObject[], batch: (context: Excel.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: objects
-      description: '以前创建的 API 对象的数组。 将验证该数组，以确保所有对象都共享相同的上下文。 批处理将使用此共享 RequestContext，这意味着，应用于这些对象的任何更改都将由 "context. sync ( # A1" 选取。'
+      description: 以前创建的 API 对象的数组。 将验证数组以确保所有对象共享同一上下文。 批处理将使用此共享 RequestContext，这意味着应用到这些对象的任何更改都将由"context.sync () "选取。
       type: <xref uid="office!OfficeExtension.ClientObject:class" />[]
     - id: batch
-      description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
+      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数便于对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 Excel 对象模型。
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -1064,7 +1066,7 @@ functions:
 - name: Excel.run(options, batch)
   uid: excel!Excel.run:function(4)
   package: excel!
-  summary: 使用以前创建的 API 对象的 RequestContext，执行对 Excel 对象模型执行操作的批处理脚本。 解决承诺时，将释放在执行期间自动分配的任何已跟踪对象。
+  summary: 使用以前创建的 API 对象的 RequestContext 执行对 Excel 对象模型执行动作的批处理脚本。 当承诺得到解析时，在执行期间自动分配的任何跟踪对象都将释放。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1072,10 +1074,10 @@ functions:
     content: 'export function run<T>(options: Excel.RunOptions, batch: (context: Excel.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: options
-      description: 此 Excel 的其他选项。运行，它指定以前的对象，是否延迟单元格编辑、会话信息等的请求。
+      description: 此 Excel.run 的其他选项指定以前的对象，是否延迟对单元格编辑、会话信息等的请求。
       type: <xref uid="excel!Excel.RunOptions:interface" />
     - id: batch
-      description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
+      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数便于对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 Excel 对象模型。
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -1083,7 +1085,7 @@ functions:
 - name: Excel.run(context, batch)
   uid: excel!Excel.run:function(5)
   package: excel!
-  summary: 使用以前创建的对象的 RequestContext，执行对 Excel 对象模型执行操作的批处理脚本。 解决承诺时，将释放在执行期间自动分配的任何已跟踪对象。
+  summary: 使用以前创建的对象的 RequestContext 执行对 Excel 对象模型执行动作的批处理脚本。 当承诺得到解析时，在执行期间自动分配的任何跟踪对象都将释放。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1091,18 +1093,18 @@ functions:
     content: 'export function run<T>(context: OfficeExtension.ClientRequestContext, batch: (context: Excel.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: context
-      description: '以前创建的对象。 批处理将使用与传入的对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由 "context. sync ( # A1" 选取。'
+      description: 以前创建的对象。 批处理将使用与传入对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由"context.sync () "选取。
       type: <xref uid="office!OfficeExtension.ClientRequestContext:class" />
     - id: batch
-      description: '一个采用 RequestContext 的函数，并返回一个承诺 (通常情况下，只是 "context ( # A2" 的结果 ) 。 Context 参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此需要 RequestContext 以从外接程序获取对 Excel 对象模型的访问权限。'
+      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 Excel 对象模型。
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
       description: ''
 metadata:
-  ms.openlocfilehash: 0e4507777ddfede44419b8799395b1fe284281c0
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 8160ce4f6112f86c0df05c755460a402b0cb2ac2
+  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49170761"
+  ms.lasthandoff: 01/27/2021
+  ms.locfileid: "49991854"
