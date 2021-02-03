@@ -3,7 +3,7 @@ name: Office.AuthOptions
 uid: office!Office.AuthOptions:interface
 package: office!
 fullName: Office.AuthOptions
-summary: 提供在 Office 从 AAD v 获取对加载项的访问令牌时的用户体验的选项。 2.0 使用 `getAccessToken` 方法。
+summary: 提供 Office 从 AAD v 获取加载项访问令牌时用户体验的选项。 2.0 使用 `getAccessToken` 方法。
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -13,7 +13,7 @@ properties:
   uid: office!Office.AuthOptions#allowConsentPrompt:member
   package: office!
   fullName: allowConsentPrompt
-  summary: 允许 Office 在无提示的情况下或通过交互式许可获取访问令牌（如果需要的话）。 默认值为 `false`<!-- -->. 如果设置为 `false`<!-- -->，Office 将以静默方式尝试获取访问令牌。 如果无法执行此操作，则 Office 将返回描述性错误。 如果设置为 `true`<!-- -->，则 Office 将在无法以无提示方式获取访问令牌后显示交互式同意 UI。 提示将只允许同意 AAD 配置文件作用域，而不是任何 Microsoft Graph 作用域。
+  summary: 允许 Office 以静默方式或交互式同意获取访问令牌（如果需要）。 默认值为 `false`<!-- -->. 如果设置为 `false`<!-- -->，Office 将静默尝试获取访问令牌。 如果未能这样做，Office 将返回一个描述性错误。 如果设置为 `true`<!-- -->，Office 将在无法以静默方式获取访问令牌后显示交互式同意 UI。 该提示仅允许同意 AAD 配置文件范围，不允许任何 Microsoft Graph 范围。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -25,7 +25,7 @@ properties:
   uid: office!Office.AuthOptions#allowSignInPrompt:member
   package: office!
   fullName: allowSignInPrompt
-  summary: 允许 Office 获取一个无提示的访问令牌（即提供同意）或显示交互 UI 以登录用户。 默认值为 `false`<!-- -->. 如果设置为 `false`<!-- -->，Office 将以静默方式尝试获取访问令牌。 如果无法执行此操作，则 Office 将返回描述性错误。 如果设置为 `true`<!-- -->，Office 将在无法以无提示方式获取访问令牌后显示交互式登录 UI。
+  summary: 允许 Office 以静默方式获取访问令牌（如果同意存在）或显示交互式 UI 以登录用户。 默认值为 `false`<!-- -->. 如果设置为 `false`<!-- -->，Office 将静默尝试获取访问令牌。 如果未能这样做，Office 将返回一个描述性错误。 如果设置为 `true`<!-- -->，Office 将在无法以静默方式获取访问令牌后显示交互式登录 UI。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -37,7 +37,7 @@ properties:
   uid: office!Office.AuthOptions#asyncContext:member
   package: office!
   fullName: asyncContext
-  summary: 在 `asyncContext` 传递给回调的对象的属性中，返回的任何类型的用户定义的项目未更改 `AsyncResult` 。
+  summary: 在传递给回调的对象的属性中返回的、未更改的任何类型的用户定义 `asyncContext` `AsyncResult` 项。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -49,7 +49,7 @@ properties:
   uid: office!Office.AuthOptions#authChallenge:member
   package: office!
   fullName: authChallenge
-  summary: 使 Office 在 Microsoft Graph 面向的租赁需要多重身份验证时提示用户提供其他因素。 字符串值标识所需的其他因素的类型。 在大多数情况下，在开发时，您不知道用户的租户是否需要其他因素或该字符串应是什么。 因此，在 Microsoft Graph 之后的 "第二次尝试" 调用中，将会 `getAccessToken` 发送错误，请求添加其他因素，并包含应与该选项一起使用的字符串 `authChallenge` 。
+  summary: 当 Microsoft Graph 所针对的租赁需要多重身份验证时，导致 Office 提示用户提供附加因素。 字符串值标识所需的附加因素的类型。 在大多数情况下，在开发时，你将不会知道用户的租户是否需要其他因素或字符串应是什么。 因此，在 Microsoft Graph 发送错误请求附加因素并包含应该与该选项一起使用的字符串后，将在"第二次尝试"调用中使用此选项 `getAccessToken` `authChallenge` 。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -61,7 +61,11 @@ properties:
   uid: office!Office.AuthOptions#forceAddAccount:member
   package: office!
   fullName: forceAddAccount
-  summary: 提示用户将其 Office 帐户 (或切换到该帐户（如果已将其添加) 中）。 默认值为 `false`<!-- -->.
+  summary: >-
+    提示用户添加 Office 帐户 (或切换到 Office 帐户（如果已) ）。 默认值为 `false`<!-- -->.
+
+
+    **警告** `forceAddAccount` ：已弃用。 请 `allowSignInPrompt` 改为使用。
   remarks: ''
   isPreview: false
   isDeprecated: true
@@ -74,7 +78,11 @@ properties:
   uid: office!Office.AuthOptions#forceConsent:member
   package: office!
   fullName: forceConsent
-  summary: 导致 Office 显示加载项同意体验。 如果加载项的 Azure 权限已更改或用户的同意已被撤销，则很有用。 默认值为 `false`<!-- -->.
+  summary: >-
+    导致 Office 显示加载项同意体验。 如果加载项的 Azure 权限已更改或用户的同意已被撤销，则很有用。 默认值为 `false`<!-- -->.
+
+
+    **警告** `forceConsent` ：已弃用。 请 `allowConsentPrompt` 改为使用。
   remarks: ''
   isPreview: false
   isDeprecated: true
@@ -87,7 +95,7 @@ properties:
   uid: office!Office.AuthOptions#forMSGraphAccess:member
   package: office!
   fullName: forMSGraphAccess
-  summary: 当外接程序要访问 Microsoft Graph 且用户/管理员未向其授予对 Graph 范围的同意时，使 Office 返回描述性错误。 默认值为 `false`<!-- -->. Office 仅在由租户管理员部署加载项时，才支持对图形范围的许可。在开发过程中，此信息将不可用。 将此选项设置为 `true` 将导致 Office 事先通知外接程序 (如果 Graph access 将失败，) 返回描述性错误。
+  summary: 导致 Office 在加载项希望访问 Microsoft Graph 且用户/管理员未授予 Graph 范围许可时返回描述性错误。 默认值为 `false`<!-- -->. Office 仅支持租户管理员部署加载项时同意 Graph 范围。此信息在开发过程中不可用。 设置此选项将导致 Office 在 Graph 访问失败时 (描述性错误) `true` 通知加载项。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -96,9 +104,9 @@ properties:
     return:
       type: boolean
 metadata:
-  ms.openlocfilehash: 622e5b5d59481a8d6984208677307dc21a4de56f
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: c9a42edfa3f6fe0a2873389520ac6e6bdb093ca8
+  ms.sourcegitcommit: 94ed3108858c111541f7430d7482ea329ad21dbd
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49251631"
+  ms.lasthandoff: 02/03/2021
+  ms.locfileid: "50092016"
