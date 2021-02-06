@@ -16,6 +16,51 @@ remarks: >-
 
 
   **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：撰写或阅读
+
+
+  #### <a name="examples"></a>示例
+
+
+  ```javascript
+
+  // Define notification.
+
+  const insightMessage = {
+      type: Office.MailboxEnums.ItemNotificationMessageType.InsightMessage,
+      message: "This is an insight notification",
+      icon: "Icon.80x80",
+      actions: [{
+          actionText: "Open insight",
+          actionType: Office.MailboxEnums.ActionType.ShowTaskPane,
+          commandId: "msgComposeOpenPaneButton",
+          contextData: JSON.stringify({a: "aValue", b: "bValue"})
+      }]
+  };
+
+
+  // Show notification.
+
+  Office.context.mailbox.item.notificationMessages.replaceAsync("messageKey", insightMessage, (result) => {
+      console.log("Added notification:");
+      console.log(result);
+  });
+
+
+  // Retrieve contextData.
+
+  // IMPORTANT: At present, this only works in Outlook on Windows.
+
+  Office.context.mailbox.item.getInitializationContextAsync(function (asyncResult) {
+      console.log("Initialization context:");
+      console.log(asyncResult);
+
+      // Note: Use JSON.parse(asyncResult.value) to read the result. Example:
+      var contextData = JSON.parse(asyncResult.value);
+      console.log("a:")
+      console.log(contextData.a);
+  });
+
+  ```
 isPreview: true
 isDeprecated: false
 type: interface
@@ -60,7 +105,11 @@ properties:
   uid: outlook!Office.NotificationMessageAction#contextData:member
   package: outlook!
   fullName: contextData
-  summary: 按钮需要传递的任何 JSON 数据。 可以通过调用来检索此数据 `item.getInitializationContextAsync`<!-- -->.
+  summary: >-
+    按钮需要传递的任何 JSON 数据。 可以通过调用来检索此数据 `item.getInitializationContextAsync`<!-- -->.
+
+
+    **重要** 提示：在 Outlook 网页中，检索 `contextData` 功能尚不可用。
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -69,9 +118,9 @@ properties:
     return:
       type: any
 metadata:
-  ms.openlocfilehash: 8ec7a20c6784648fe4a9689c8063ef6961550570
-  ms.sourcegitcommit: 6702d1aafaf1d8114bcf5e5eeb5d7833c108d56a
+  ms.openlocfilehash: 6a2b532a355cd539ba93458717175b4f2904c3ea
+  ms.sourcegitcommit: 8eb514f1a5760c86e970fb5a4c10eac1b0c06b93
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 12/10/2020
-  ms.locfileid: "49623333"
+  ms.lasthandoff: 02/06/2021
+  ms.locfileid: "50126648"
