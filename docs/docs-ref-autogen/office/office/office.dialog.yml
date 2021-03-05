@@ -3,8 +3,8 @@ name: Office.Dialog
 uid: office!Office.Dialog:interface
 package: office!
 fullName: Office.Dialog
-summary: 调用时返回的对象 `UI.displayDialogAsync` 。 它公开用于注册事件处理程序和关闭对话框的方法。
-remarks: '**要求集**： [DialogAPI](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)'
+summary: 调用时返回 `UI.displayDialogAsync` 的对象。 它公开用于注册事件处理程序和关闭对话框的方法。
+remarks: '**要求集** [：DialogAPI](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)'
 isPreview: false
 isDeprecated: false
 type: interface
@@ -31,7 +31,7 @@ methods:
       description: 必须是 DialogMessageReceived 或 DialogEventReceived。
       type: <xref uid="office!Office.EventType:enum" />
     - id: handler
-      description: 接受具有属性的对象的函数 `message` （如果 DialogEventReceived 为 DialogMessageReceived）或具有属性的对象 `error` （如果事件选择为）。
+      description: 如果 eventType 为 DialogMessageReceived，则接受具有属性的对象或具有属性的对象（如果 eventType 为 `message` `error` DialogEventReceived）的函数。
       type: '(args: {message: string | boolean} | {error: number}) =&gt; void'
     return:
       type: void
@@ -40,7 +40,11 @@ methods:
   uid: office!Office.Dialog#close:member(1)
   package: office!
   fullName: close()
-  summary: 从父页调用以关闭相应的对话框。
+  summary: >-
+    从父页调用以关闭相应的对话框。
+
+
+    此方法是异步的。 它不接受回调参数，也不返回 Promise 对象，因此它不能使用关键字或函数 `await` `then` 等待。 有关详细信息，请参阅此最佳实践：在关闭另一个对话框 [后立即打开另一个对话框](https://docs.microsoft.com/office/dev/add-ins/develop/dialog-best-practices#opening-another-dialog-immediately-after-closing-one)
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -53,15 +57,15 @@ methods:
   uid: office!Office.Dialog#messageChild:member(1)
   package: office!
   fullName: messageChild(message)
-  summary: 将来自主机页（如任务窗格或无 UI 的函数文件）的消息传递到从页面打开的对话框。
+  summary: 将消息从主机页（如任务窗格或无 UI 函数文件）发送到从页面打开的对话框。
   remarks: >-
-    **主机**： Excel、Outlook (最低要求集：邮箱 1.9) 、PowerPoint、Word
+    **主机：Excel、Outlook** (最低要求集：Mailbox 1.9) 、PowerPoint、Word
 
 
     **要求集**：
 
 
-    - [DialogAPI 1。2](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)
+    - [DialogAPI 1.2](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)
 
 
     - [Mailbox 1.9](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)
@@ -71,7 +75,7 @@ methods:
     content: 'messageChild(message: string): void;'
     parameters:
     - id: message
-      description: 接受来自主机页面的一条消息以传递到对话框。 可以将任何可序列化为字符串的内容（包括 JSON 和 XML）都发送。
+      description: 接受来自主机页的邮件以传递至对话框。 可以发送可序列化为字符串（包括 JSON 和 XML）的一切内容。
       type: string
     return:
       type: void
@@ -94,9 +98,9 @@ methods:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: c007533112e45e4ffec29b45883add8161532d6c
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: f328302115888d80b8d95f5b7d97d4331e0cc2b1
+  ms.sourcegitcommit: f55d2bbeba2a20abb522cbf742e727b82bcf73ee
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49183361"
+  ms.lasthandoff: 03/05/2021
+  ms.locfileid: "50463383"
