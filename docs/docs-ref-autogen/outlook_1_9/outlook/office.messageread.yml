@@ -16,7 +16,7 @@ summary: >-
   - [ItemRead](xref:outlook!Office.ItemRead:interface)
 
 
-  - [消息](xref:outlook!Office.Message:interface)
+  - [邮件](xref:outlook!Office.Message:interface)
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -26,7 +26,7 @@ properties:
   uid: outlook!Office.MessageRead#attachments:member
   package: outlook!
   fullName: attachments
-  summary: 获取作为数组的项目附件。
+  summary: 获取项目的附件作为数组。
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -34,7 +34,7 @@ properties:
     **[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：邮件读取
 
 
-    **注意**：由于潜在的安全问题，某些类型的文件被 Outlook 阻止，因此不会返回。 有关详细信息，请参阅 [Outlook 中的阻止附件](https://support.office.com/article/Blocked-attachments-in-Outlook-434752E1-02D3-4E90-9124-8B81E49A8519)<!-- -->.
+    **注意**：由于潜在的安全问题，某些类型的文件被 Outlook 阻止，因此不会返回。 有关详细信息，请参阅 [Outlook 中阻止的附件](https://support.office.com/article/Blocked-attachments-in-Outlook-434752E1-02D3-4E90-9124-8B81E49A8519)<!-- -->.
 
 
     #### <a name="examples"></a>示例
@@ -90,7 +90,7 @@ properties:
     获取一个提供用于处理项目正文的方法的对象。
 
 
-    \[[API 集：Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：邮箱 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -132,7 +132,7 @@ properties:
   package: outlook!
   fullName: categories
   summary: >-
-    获取一个提供用于管理项目类别的方法的对象。
+    获取一个对象，该对象提供用于管理项目类别的方法。
 
 
     \[[API 集：Mailbox 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -238,7 +238,7 @@ properties:
     提供对邮件的抄送 (Cc) 收件人的访问权限。 对象的类型和访问级别取决于当前项目的模式。
 
 
-    该属性返回一个数组，其中包含邮件的"抄送"行上列出的每个收件人的 `cc` [EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface)对象。  集合大小限制：
+    该属性返回一个数组，其中包含邮件的"抄送"行中列出的每个收件人的 `cc` [EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface)对象。  集合大小限制：
 
 
     - Windows：500 个成员
@@ -351,7 +351,7 @@ properties:
     获取项目最近一次修改的日期和时间。
 
 
-    **注意**：iOS 版或 Android 版 Outlook 不支持此成员。
+    **注意**：此成员在 iOS 或 Android 版 Outlook 中不受支持。
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -383,7 +383,7 @@ properties:
     获取约会结束的日期和时间。
 
 
-    该属性 `end` 是一个对象 `Date` ，该对象表示为 UTC (协调世界时) 日期和时间值。 可以使用该方法将属性值 `convertToLocalClientTime` `end` 转换为客户端的本地日期和时间。
+    该属性 `end` 是一个对象 `Date` ，该对象表示为协调世界时 (UTC) 日期和时间值。 可以使用该方法将属性值 `convertToLocalClientTime` 转换为客户端的本地 `end` 日期和时间。
 
 
     使用 `Time.setAsync` 方法设置结束时间时，应使用 `convertToUtcClientTime` 方法将客户端的本地时间转换为服务器的 UTC。
@@ -418,7 +418,7 @@ properties:
     获取邮件发件人的电子邮件地址。
 
 
-    `from` 和 `sender` 属性表示同一个人，邮件由代理人发送的除外。 在这种情况下，该属性 `from` 表示代理者，而属性 `sender` 表示委托。
+    `from` 和 `sender` 属性表示同一个人，邮件由代理人发送的除外。 在这种情况下，该属性表示代理程序，而属性 `from` `sender` 表示委托。
 
 
     **注意** `recipientType` ：该属性 `EmailAddressDetails` 中对象 `from` 的属性未定义。
@@ -458,7 +458,7 @@ properties:
     获取电子邮件的 Internet 邮件标识符。
 
 
-    **重要** 提示：在 **"已发送项目** "文件夹中，最近发送的项目 `internetMessageId` 可能尚不可用。 在这种情况下，请考虑使用 [Exchange Web 服务](https://docs.microsoft.com/office/dev/add-ins/outlook/web-services) 从 [服务器获取此属性](https://docs.microsoft.com/exchange/client-developer/web-service-reference/internetmessageid)<!-- -->.
+    **重要** 提示：在 **"已发送项目** "文件夹中，最近发送的项目 `internetMessageId` 可能尚不可用。 在这种情况下，请考虑使用 [Exchange Web 服务](https://docs.microsoft.com/office/dev/add-ins/outlook/web-services) 从服务器 [获取此属性](https://docs.microsoft.com/exchange/client-developer/web-service-reference/internetmessageid)<!-- -->.
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -501,7 +501,7 @@ properties:
     `itemClass` 属性指定所选项目的邮件类别。以下是邮件或约会项目的默认邮件类别。
 
 
-    <table> <tr> <th>类型</th> <th>Description</th> <th>Item 类</th> </tr> <tr> <td>约会项目</td> <td>这些是项目类 IPM 的日历项目。约会或 IPM。Appointment.Occurrence。</td> <td>IPM。Appointment，IPM。Appointment.Occurrence</td> </tr> <tr> <td>邮件项目</td> <td>其中包括具有默认邮件类别 IPM 的电子邮件。注意，以及使用 IPM 的会议请求、响应和取消。Schedule.Meeting 作为基本邮件类。</td> <td>IPM。注意，IPM。Schedule.Meeting.Request，IPM。Schedule.Meeting.Neg，IPM。Schedule.Meeting.Pos，IPM。Schedule.Meeting.Tent，IPM。Schedule.Meeting.Canceled</td> </tr> </table>
+    <table> <tr> <th>类型</th> <th>说明</th> <th>Item 类</th> </tr> <tr> <td>约会项目</td> <td>这些是项目类 IPM 的日历项目。约会或 IPM。Appointment.Occurrence。</td> <td>IPM。约会，IPM。Appointment.Occurrence</td> </tr> <tr> <td>邮件项目</td> <td>其中包括具有默认邮件类别 IPM 的电子邮件。请注意，以及使用 IPM 的会议请求、响应和取消。Schedule.Meeting 作为基本邮件类。</td> <td>IPM。注意，IPM。Schedule.Meeting.Request，IPM。Schedule.Meeting.Neg，IPM。Schedule.Meeting.Pos，IPM。Schedule.Meeting.Tent，IPM。Schedule.Meeting.Canceled</td> </tr> </table>
 
 
     #### <a name="examples"></a>示例
@@ -531,7 +531,7 @@ properties:
     `itemId` 属性在撰写模式下不可用。 如果需要项目标识符，`saveAsync` 方法可用于将项目保存到存储，这将在回调函数的 `asyncResult.value` 参数中返回项目标识符。
 
 
-    **注意**：属性返回的 `itemId` 标识符与 [Exchange Web 服务项标识符相同](https://docs.microsoft.com/exchange/client-developer/exchange-web-services/ews-identifiers-in-exchange)<!-- -->. `itemId` 属性与 Outlook 条目 ID 或 Outlook REST API 使用的 ID 不同。 在使用此值进行 REST API 调用之前，应该使用 `Office.context.mailbox.convertToRestId`<!-- -->. 有关详细信息，请参阅从[Outlook](https://docs.microsoft.com/office/dev/add-ins/outlook/use-rest-api#get-the-item-id)外接程序使用 Outlook REST API<!-- -->.
+    **注意**：属性返回的 `itemId` 标识符与 [Exchange Web 服务项标识符相同](https://docs.microsoft.com/exchange/client-developer/exchange-web-services/ews-identifiers-in-exchange)<!-- -->. `itemId` 属性与 Outlook 条目 ID 或 Outlook REST API 使用的 ID 不同。 在使用此值进行 REST API 调用之前，应该使用 `Office.context.mailbox.convertToRestId`<!-- -->. 有关详细信息，请参阅使用 [Outlook 外接程序中的 Outlook REST API](https://docs.microsoft.com/office/dev/add-ins/outlook/use-rest-api#get-the-item-id)<!-- -->.
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -579,7 +579,7 @@ properties:
     获取实例表示的项的类型。
 
 
-    该属性 `itemType` 返回枚举值之一，指示 `ItemType` 项目对象实例是邮件还是约会。
+    该属性返回枚举值之一，指示 `itemType` `ItemType` 项目对象实例是邮件还是约会。
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -675,7 +675,7 @@ properties:
     获取项目的通知邮件。
 
 
-    \[[API 集：Mailbox 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：邮箱 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: "**[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`\n\n**[适用的 Outlook 模式](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**：邮件读取\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/35-notifications/add-getall-remove.yaml\nvar id = $(\"#notificationId\").val();\nvar details =\n  {\n    type: \"progressIndicator\",\n    message: \"Progress indicator with id = \" + id\n  };\nOffice.context.mailbox.item.notificationMessages.addAsync(id, details, handleResult);\n```\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/35-notifications/add-getall-remove.yaml\nvar id = $(\"#notificationId\").val();\nvar details =\n  {\n    type: \"informationalMessage\",\n    message: \"Non-persistent informational notification message with id = \" + id,\n    icon: \"icon1\",\n    persistent: false\n  };\nOffice.context.mailbox.item.notificationMessages.addAsync(id, details, handleResult);\n```\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/35-notifications/add-getall-remove.yaml\nvar id = $(\"#notificationId\").val();\nvar details =\n  {\n    type: \"informationalMessage\",\n    message: \"Persistent informational notification message with id = \" + id,\n    icon: \"icon1\",\n    persistent: true\n  };\nOffice.context.mailbox.item.notificationMessages.addAsync(id, details, handleResult);\n```\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/35-notifications/add-getall-remove.yaml\nOffice.context.mailbox.item.notificationMessages.getAllAsync(handleResult);          \n```\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/35-notifications/add-getall-remove.yaml\nvar id = $(\"#notificationId\").val();\nOffice.context.mailbox.item.notificationMessages.replaceAsync(\n  id,\n  {\n    type: \"informationalMessage\",\n    message: \"Notification message with id = \" + id + \" has been replaced with an informational message.\",\n    icon: \"icon2\",\n    persistent: false\n  },\n  handleResult);\n```\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/35-notifications/add-getall-remove.yaml\nvar id = $(\"#notificationId\").val();\nOffice.context.mailbox.item.notificationMessages.removeAsync(id, handleResult);\n```"
   isPreview: false
   isDeprecated: false
@@ -688,16 +688,16 @@ properties:
   package: outlook!
   fullName: recurrence
   summary: >-
-    获取定期模式的约会。 获取定期模式请求的组。 约会项目的阅读和撰写模式。 会议请求项目的读取模式。
+    获取定期模式约会的日历。 获取定期模式请求的组。 约会项目的阅读和撰写模式。 会议请求项目的读取模式。
 
 
-    如果项目是系列或系列中的实例，则该属性返回定期约会或会议 `recurrence` `Recurrence` 请求的对象。 `null` 返回单个约会和单个约会的会议请求。 `undefined` 返回非会议请求的邮件。
+    如果项目是系列或系列中的实例，则该属性返回用于定期约会或会议 `recurrence` `Recurrence` 请求的对象。 `null` 为单个约会和单个约会的会议请求返回。 `undefined` 返回非会议请求的邮件。
 
 
     **注意**：会议请求的 itemClass 值为 `IPM.Schedule.Meeting.Request`<!-- -->.
 
 
-    **注意**： `recurrence` 如果对象为 null，则表明该对象是单个约会或单个约会的会议请求，而不是系列中的一部分。
+    **注意**：如果对象为 null，则表明该对象是单个约会或单个约会的会议请求， `recurrence` 而不是系列的一部分。
 
 
     \[[API 集：Mailbox 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -741,7 +741,7 @@ properties:
     获取电子邮件发件人的电子邮件地址。
 
 
-    `from` 和 `sender` 属性表示同一个人，邮件由代理人发送的除外。 在这种情况下，该属性 `from` 表示代理者，而属性 `sender` 表示委托。
+    `from` 和 `sender` 属性表示同一个人，邮件由代理人发送的除外。 在这种情况下，该属性表示代理程序，而属性 `from` `sender` 表示委托。
 
 
     **注意** `recipientType` ：该属性 `EmailAddressDetails` 中对象 `sender` 的属性未定义。
@@ -781,10 +781,10 @@ properties:
     在 Outlook 网页版和桌面客户端中，返回此项目所属的父 (系列) 的 Exchange Web 服务 `seriesId` (EWS) ID。 但是，在 iOS 和 Android 上，返回父 `seriesId` 项的 REST ID。
 
 
-    **注意**：属性返回的 `seriesId` 标识符与 Exchange Web 服务项标识符相同。 该属性与 Outlook REST API 使用的 `seriesId` Outlook ID 不同。 在使用此值进行 REST API 调用之前，应该使用 `Office.context.mailbox.convertToRestId`<!-- -->. 有关详细信息，请参阅从[Outlook](https://docs.microsoft.com/office/dev/add-ins/outlook/use-rest-api)外接程序使用 Outlook REST API<!-- -->.
+    **注意**：属性返回的 `seriesId` 标识符与 Exchange Web 服务项标识符相同。 该属性与 Outlook REST API 使用的 `seriesId` Outlook ID 不同。 在使用此值进行 REST API 调用之前，应该使用 `Office.context.mailbox.convertToRestId`<!-- -->. 有关详细信息，请参阅使用 [Outlook 外接程序中的 Outlook REST API](https://docs.microsoft.com/office/dev/add-ins/outlook/use-rest-api)<!-- -->.
 
 
-    对于没有父项目（如单个约会、系列项目或会议请求）的项目，该属性返回;对于任何其他非会议请求的项目，该属性 `seriesId` `null` `undefined` 返回。
+    对于没有父项目（如单个约会、系列项目或会议请求）的项目，该属性返回，对于任何其他非会议请求的项目，该属性 `seriesId` `null` `undefined` 返回。
 
 
     \[[API 集：Mailbox 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -828,7 +828,7 @@ properties:
     获取约会的开始日期和时间。
 
 
-    该属性 `start` 是一个对象 `Date` ，该对象表示为 UTC (协调世界时) 日期和时间值。 可以使用该方法将值转换为客户端 `convertToLocalClientTime` 的本地日期和时间。
+    该属性 `start` 是一个对象 `Date` ，该对象表示为协调世界时 (UTC) 日期和时间值。 可以使用该方法将值转换为客户端 `convertToLocalClientTime` 的本地日期和时间。
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -946,7 +946,7 @@ methods:
     添加支持事件的事件处理程序。 **注意**：事件仅适用于任务窗格。
 
 
-    有关支持的事件，请参阅 ["项目对象](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.8/office.context.mailbox.item#events) 模型事件"部分。
+    有关支持 [的事件，请参阅](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.8/office.context.mailbox.item#events) "Item 对象模型事件"部分。
 
 
     \[[API 集：Mailbox 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -986,10 +986,10 @@ methods:
       description: 用于处理事件的函数。 此函数必须接受一个参数，即对象文本。 参数上的 type 属性将匹配传递给的 eventType `parameter``addHandlerAsync`<!-- -->.
       type: any
     - id: options
-      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以提供他们希望在回调方法中访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 可选。 方法完成后，用单个参数调用在参数中传递 `callback` 的函数， `asyncResult`<!-- -->，它是一 `Office.AsyncResult` 个对象。
+      description: 可选。 方法完成后，使用单个参数调用在参数中传递 `callback` 的函数， `asyncResult`<!-- -->，这是 `Office.AsyncResult` 一个对象。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
@@ -1008,10 +1008,10 @@ methods:
     如果任意字符串参数超出其限制，`displayReplyAllForm` 将引发异常。
 
 
-    在参数中指定附件 `formData.attachments` 时，Outlook 会尝试下载所有附件并将其附加到答复窗体。 如果无法添加任何附件，则在窗体 UI 中显示错误。 如果这不可能，则不引发错误消息。
+    当在参数中指定附件 `formData.attachments` 时，Outlook 将尝试下载所有附件并将其附加到答复窗体。 如果无法添加任何附件，则在窗体 UI 中显示错误。 如果这不可能，则不引发错误消息。
 
 
-    **注意**：iOS 版或 Android 版 Outlook 不支持此方法。
+    **注意**：此方法在 iOS 或 Android 版 Outlook 中不受支持。
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -1140,13 +1140,13 @@ methods:
     如果任意字符串参数超出其限制，`displayReplyAllFormAsync` 将引发异常。
 
 
-    在参数中指定附件 `formData.attachments` 时，Outlook 会尝试下载所有附件并将其附加到答复窗体。 如果无法添加任何附件，则在窗体 UI 中显示错误。 如果这不可能，则不引发错误消息。
+    当在参数中指定附件 `formData.attachments` 时，Outlook 将尝试下载所有附件并将其附加到答复窗体。 如果无法添加任何附件，则在窗体 UI 中显示错误。 如果这不可能，则不引发错误消息。
 
 
-    **注意**：iOS 版或 Android 版 Outlook 不支持此方法。
+    **注意**：此方法在 iOS 或 Android 版 Outlook 中不受支持。
 
 
-    \[[API 集：Mailbox 1.9](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：邮箱 1.9](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -1177,10 +1177,10 @@ methods:
       description: 一个包含文本和 HTML 且表示答复窗体的正文的字符串。 字符串限制为 32 KB 或 [ReplyFormData](xref:outlook!Office.ReplyFormData:interface) 对象，该对象包含正文或附件数据以及回调函数。
       type: string | <xref uid="outlook!Office.ReplyFormData:interface" />
     - id: options
-      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以提供他们希望在回调方法中访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 可选。 方法完成后，用单个参数调用在参数中传递 `callback` 的函数， `asyncResult`<!-- -->，它是一 `Office.AsyncResult` 个对象。
+      description: 可选。 方法完成后，使用单个参数调用在参数中传递 `callback` 的函数， `asyncResult`<!-- -->，这是 `Office.AsyncResult` 一个对象。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
@@ -1199,10 +1199,10 @@ methods:
     如果任意字符串参数超出其限制，`displayReplyForm` 将引发异常。
 
 
-    在参数中指定附件 `formData.attachments` 时，Outlook 会尝试下载所有附件并将其附加到答复窗体。 如果无法添加任何附件，则在窗体 UI 中显示错误。 如果这不可能，则不引发错误消息。
+    当在参数中指定附件 `formData.attachments` 时，Outlook 将尝试下载所有附件并将其附加到答复窗体。 如果无法添加任何附件，则在窗体 UI 中显示错误。 如果这不可能，则不引发错误消息。
 
 
-    **注意**：iOS 版或 Android 版 Outlook 不支持此方法。
+    **注意**：此方法在 iOS 或 Android 版 Outlook 中不受支持。
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -1349,13 +1349,13 @@ methods:
     如果任意字符串参数超出其限制，`displayReplyFormAsync` 将引发异常。
 
 
-    在参数中指定附件 `formData.attachments` 时，Outlook 会尝试下载所有附件并将其附加到答复窗体。 如果无法添加任何附件，则在窗体 UI 中显示错误。 如果这不可能，则不引发错误消息。
+    当在参数中指定附件 `formData.attachments` 时，Outlook 将尝试下载所有附件并将其附加到答复窗体。 如果无法添加任何附件，则在窗体 UI 中显示错误。 如果这不可能，则不引发错误消息。
 
 
-    **注意**：iOS 版或 Android 版 Outlook 不支持此方法。
+    **注意**：此方法在 iOS 或 Android 版 Outlook 中不受支持。
 
 
-    \[[API 集：Mailbox 1.9](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API 集：邮箱 1.9](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -1409,10 +1409,10 @@ methods:
       description: 一个包含文本和 HTML 且表示答复窗体的正文的字符串。 字符串限制为 32 KB 或 [ReplyFormData](xref:outlook!Office.ReplyFormData:interface) 对象，该对象包含正文或附件数据以及回调函数。
       type: string | <xref uid="outlook!Office.ReplyFormData:interface" />
     - id: options
-      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以提供他们希望在回调方法中访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 可选。 方法完成后，用单个参数调用在参数中传递 `callback` 的函数， `asyncResult`<!-- -->，它是一 `Office.AsyncResult` 个对象。
+      description: 可选。 方法完成后，使用单个参数调用在参数中传递 `callback` 的函数， `asyncResult`<!-- -->，这是 `Office.AsyncResult` 一个对象。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
@@ -1470,10 +1470,10 @@ methods:
     content: 'getAllInternetHeadersAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
     parameters:
     - id: options
-      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以提供他们希望在回调方法中访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 可选。 方法完成后，用单个参数调用在参数中传递 `callback` 的函数， `asyncResult`<!-- -->，它是一 `Office.AsyncResult` 个对象。 成功时，Internet 标头数据在属性 `asyncResult.value` 中作为字符串提供。 有关返回的字符串值的格式信息，请参阅[RFC 2183。](https://tools.ietf.org/html/rfc2183) 如果调用失败， `asyncResult.error` 则属性将包含错误代码以及失败原因。
+      description: 可选。 方法完成后，使用单个参数调用在参数中传递 `callback` 的函数， `asyncResult`<!-- -->，这是 `Office.AsyncResult` 一个对象。 成功后，在属性中以字符串形式提供 Internet `asyncResult.value` 标头数据。 有关返回的字符串值的格式信息，请参阅[RFC 2183。](https://tools.ietf.org/html/rfc2183) 如果调用失败， `asyncResult.error` 则属性将包含错误代码以及失败原因。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
     return:
       type: void
@@ -1486,7 +1486,7 @@ methods:
     从邮件或约会获取附件，并作为对象 `AttachmentContent` 返回。
 
 
-    `getAttachmentContentAsync`该方法从项获取具有指定标识符的附件。 最佳做法是，您应该使用该标识符在通过 or 调用检索 attachmentId 的同一会话中检索 `getAttachmentsAsync` `item.attachments` 附件。 在 Outlook 网页版和移动设备上，附件标识符只在同一个会话中才有效。 会话在用户关闭应用时结束，或者如果用户开始撰写内嵌表单，随后弹出该窗体以在单独的窗口中继续。
+    该方法 `getAttachmentContentAsync` 从项获取具有指定标识符的附件。 最佳做法是，您应该使用标识符在通过 or 调用检索 attachmentIds 的同一会话中检索 `getAttachmentsAsync` `item.attachments` 附件。 在 Outlook 网页版和移动设备上，附件标识符只在同一个会话中才有效。 会话在用户关闭应用时结束，或者如果用户开始撰写内嵌表单，然后弹出该窗体以在单独的窗口中继续。
 
 
     \[[API 集：Mailbox 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -1500,7 +1500,7 @@ methods:
     **错误**：
 
 
-    - `AttachmentTypeNotSupported`<!-- -->：不支持附件类型。 不支持的类型包括格式文本格式的嵌入图像，或者电子邮件或日历项目（例如联系人或任务项目 (项目）) 。
+    - `AttachmentTypeNotSupported`<!-- -->：不支持附件类型。 不支持的类型包括格式文本格式的嵌入图像，或者电子邮件或日历项目（如联系人或任务项目） (项目附件) 。
 
 
     - `InvalidAttachmentId`<!-- -->：附件标识符不存在。
@@ -1563,10 +1563,10 @@ methods:
       description: 要获取的附件的标识符。
       type: string
     - id: options
-      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以提供他们希望在回调方法中访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 可选。 方法完成后，用单个参数调用在参数中传递 `callback` 的函数， `asyncResult`<!-- -->，它是一 `Office.AsyncResult` 个对象。 如果调用失败， `asyncResult.error` 则属性将包含错误代码以及失败原因。
+      description: 可选。 方法完成后，使用单个参数调用在参数中传递 `callback` 的函数， `asyncResult`<!-- -->，这是 `Office.AsyncResult` 一个对象。 如果调用失败， `asyncResult.error` 则属性将包含错误代码以及失败原因。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.AttachmentContent:interface" />&gt;) =&gt; void'
     return:
       type: void
@@ -1579,7 +1579,7 @@ methods:
     获取在所选项目的正文中找到的实体。
 
 
-    **注意**：iOS 版或 Android 版 Outlook 不支持此方法。
+    **注意**：此方法在 iOS 或 Android 版 Outlook 中不受支持。
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -1662,7 +1662,7 @@ methods:
     获取所选项目的正文中找到的指定实体类型的所有实体的数组。
 
 
-    **注意**：iOS 版或 Android 版 Outlook 不支持此方法。
+    **注意**：此方法在 iOS 或 Android 版 Outlook 中不受支持。
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`Restricted`
 
@@ -1697,7 +1697,7 @@ methods:
       type: <xref uid="outlook!Office.MailboxEnums.EntityType:enum" /> | string
     return:
       type: (string | <xref uid="outlook!Office.Contact:interface" /> | <xref uid="outlook!Office.MeetingSuggestion:interface" /> | <xref uid="outlook!Office.PhoneNumber:interface" /> | <xref uid="outlook!Office.TaskSuggestion:interface" />)[]
-      description: 如果传入的值不是枚举的有效成员， `entityType` `EntityType` 则该方法返回 `null`<!-- -->. 如果指定类型的任何实体都不存在于该项目的正文中，该方法将返回空数组。 否则，返回的数组中对象的类型取决于 `entityType` 参数中请求实体的类型。
+      description: 如果传入的值不是枚举的有效成员，则 `entityType` `EntityType` 该方法返回 `null`<!-- -->. 如果指定类型的任何实体都不存在于该项目的正文中，该方法将返回空数组。 否则，返回的数组中对象的类型取决于 `entityType` 参数中请求实体的类型。
 - name: getFilteredEntitiesByName(name)
   uid: outlook!Office.MessageRead#getFilteredEntitiesByName:member(1)
   package: outlook!
@@ -1706,10 +1706,10 @@ methods:
     返回传递清单 XML 文件中定义的命名筛选器的所选项目中的已知实体。
 
 
-    该方法返回与清单 XML 文件中具有指定元素值的规则元素中定义的正则表达式 `getFilteredEntitiesByName` `ItemHasKnownEntity` `FilterName` 匹配的实体。
+    该方法返回与在具有指定元素值的清单 XML 文件中规则元素中定义的正则表达式 `getFilteredEntitiesByName` `ItemHasKnownEntity` `FilterName` 匹配的实体。
 
 
-    **注意**：iOS 版或 Android 版 Outlook 不支持此方法。
+    **注意**：此方法在 iOS 或 Android 版 Outlook 中不受支持。
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -1739,7 +1739,7 @@ methods:
       type: string
     return:
       type: (string | <xref uid="outlook!Office.Contact:interface" /> | <xref uid="outlook!Office.MeetingSuggestion:interface" /> | <xref uid="outlook!Office.PhoneNumber:interface" /> | <xref uid="outlook!Office.TaskSuggestion:interface" />)[]
-      description: 如果清单 `ItemHasKnownEntity` 中没有任何元素具有与参数匹配的元素值，则 `FilterName` `name` 该方法返回 `null`<!-- -->. 如果 `name` 参数匹配清单中的 `ItemHasKnownEntity` 元素，但在匹配的当前项目中没有实体，则该方法返回一个空数组。
+      description: 如果清单中不存在具有与参数匹配的元素值的元素，则 `ItemHasKnownEntity` `FilterName` `name` 该方法返回 `null`<!-- -->. 如果 `name` 参数匹配清单中的 `ItemHasKnownEntity` 元素，但在匹配的当前项目中没有实体，则该方法返回一个空数组。
 - name: getRegExMatches()
   uid: outlook!Office.MessageRead#getRegExMatches:member(1)
   package: outlook!
@@ -1754,7 +1754,7 @@ methods:
     如果在项目的正文属性上指定 `ItemHasRegularExpressionMatch` 规则，则正则表达式应进一步筛选正文，不应尝试返回该项目的整个正文。 使用正则表达式（如 .*）获取项目的整个正文并不总是返回预期结果。 而是使用 `Body.getAsync` 方法检索整个正文。
 
 
-    **注意**：iOS 版或 Android 版 Outlook 不支持此方法。
+    **注意**：此方法在 iOS 或 Android 版 Outlook 中不受支持。
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -1839,7 +1839,7 @@ methods:
     如果在项目的正文属性上指定 `ItemHasRegularExpressionMatch` 规则，则正则表达式应进一步筛选正文，不应尝试返回该项目的整个正文。 使用正则表达式（如 .*）获取项目的整个正文并不总是返回预期结果。
 
 
-    **注意**：iOS 版或 Android 版 Outlook 不支持此方法。
+    **注意**：此方法在 iOS 或 Android 版 Outlook 中不受支持。
   remarks: >-
     **[最低权限级别](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**：`ReadItem`
 
@@ -1914,7 +1914,7 @@ methods:
     获取在用户已选择的突出显示匹配项中找到的实体。 突出显示的匹配项适用于上下文外接程序。
 
 
-    **注意**：iOS 版或 Android 版 Outlook 不支持此方法。
+    **注意**：此方法在 iOS 或 Android 版 Outlook 中不受支持。
 
 
     \[[API 集：Mailbox 1.6](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -2006,7 +2006,7 @@ methods:
     如果在项目的正文属性上指定 `ItemHasRegularExpressionMatch` 规则，则正则表达式应进一步筛选正文，不应尝试返回该项目的整个正文。 使用正则表达式（如 .*）获取项目的整个正文并不总是返回预期结果。 而是使用 `Body.getAsync` 方法检索整个正文。
 
 
-    **注意**：iOS 版或 Android 版 Outlook 不支持此方法。
+    **注意**：此方法在 iOS 或 Android 版 Outlook 中不受支持。
 
 
     \[[API 集：Mailbox 1.6](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -2091,13 +2091,13 @@ methods:
   package: outlook!
   fullName: getSharedPropertiesAsync(options, callback)
   summary: >-
-    获取共享文件夹、日历或邮箱中的约会或邮件的属性。
+    获取共享文件夹中约会或邮件的属性。
 
 
     有关使用此 API 的信息，请参阅委派 [访问](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) 文章。
 
 
-    **注意**：iOS 版或 Android 版 Outlook 不支持此方法。
+    **注意**：此方法在 iOS 或 Android 版 Outlook 中不受支持。
 
 
     \[[API 集：Mailbox 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -2163,7 +2163,7 @@ methods:
     content: 'getSharedPropertiesAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<SharedProperties>) => void): void;'
     parameters:
     - id: options
-      description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
+      description: 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以提供他们希望在回调方法中访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
       description: 方法完成后，使用一个类型参数调用在参数中传递 `callback` 的函数 `Office.AsyncResult`<!-- -->. `value`结果的属性是共享项的属性。
@@ -2176,13 +2176,13 @@ methods:
   package: outlook!
   fullName: getSharedPropertiesAsync(callback)
   summary: >-
-    获取共享文件夹、日历或邮箱中的约会或邮件的属性。
+    获取共享文件夹中约会或邮件的属性。
 
 
     有关使用此 API 的信息，请参阅委派 [访问](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) 文章。
 
 
-    **注意**：iOS 版或 Android 版 Outlook 不支持此方法。
+    **注意**：此方法在 iOS 或 Android 版 Outlook 中不受支持。
 
 
     \[[API 集：Mailbox 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -2257,7 +2257,7 @@ methods:
     删除受支持事件类型的事件处理程序。 **注意**：事件仅适用于任务窗格。
 
 
-    有关支持的事件，请参阅 ["项目对象](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.8/office.context.mailbox.item#events) 模型事件"部分。
+    有关支持 [的事件，请参阅](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.8/office.context.mailbox.item#events) "Item 对象模型事件"部分。
 
 
     \[[API 集：Mailbox 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -2275,19 +2275,19 @@ methods:
       description: 应撤销处理程序的事件。
       type: <xref uid="office!Office.EventType:enum" /> | string
     - id: options
-      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以在回调方法中提供他们希望访问的任何对象。
+      description: 可选。 包含一个或多个以下属性的对象文本。 `asyncContext`<!-- -->：开发人员可以提供他们希望在回调方法中访问的任何对象。
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: 可选。 方法完成后，用单个参数调用在参数中传递 `callback` 的函数， `asyncResult`<!-- -->，它是一 `Office.AsyncResult` 个对象。
+      description: 可选。 方法完成后，使用单个参数调用在参数中传递 `callback` 的函数， `asyncResult`<!-- -->，这是 `Office.AsyncResult` 一个对象。
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
       description: ''
 extends: <xref uid="outlook!Office.Message:interface" />
 metadata:
-  ms.openlocfilehash: 7462717312540939cfc5a7cc71a6e76d339c205f
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: b8cc0982ebbf0af3d5bd446c592e43cfe3efc129
+  ms.sourcegitcommit: f55d2bbeba2a20abb522cbf742e727b82bcf73ee
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49859045"
+  ms.lasthandoff: 03/05/2021
+  ms.locfileid: "50462796"
