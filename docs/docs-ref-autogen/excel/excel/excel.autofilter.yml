@@ -4,7 +4,7 @@ uid: excel!Excel.AutoFilter:class
 package: excel!
 fullName: Excel.AutoFilter
 summary: >-
-  代表 AutoFilter 对象。 自动筛选根据单元格内容将 Excel 列中的值转换为特定筛选器。
+  表示 `AutoFilter` 对象。 AutoFilter 根据单元格内容将 Excel 列中的值转换为特定筛选器。
 
 
   \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -90,7 +90,7 @@ methods:
     content: 'apply(range: Range | string, columnIndex?: number, criteria?: Excel.FilterCriteria): void;'
     parameters:
     - id: range
-      description: 自动筛选将应用于的范围。
+      description: 自动筛选将应用的范围。
       type: <xref uid="excel!Excel.Range:class" /> | string
     - id: columnIndex
       description: 自动筛选应用于的从零开始列索引。
@@ -101,6 +101,27 @@ methods:
     return:
       type: void
       description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/54-worksheet/worksheet-auto-filter.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    const farmData = sheet.getUsedRange();\n\n    // This filter will only show the rows with the top 25% of values in column 3.\n    sheet.autoFilter.apply(farmData, 3, { criterion1: \"25\", filterOn: Excel.FilterOn.topPercent });\n    await context.sync();\n});\n```"
+- name: clearColumnCriteria(columnIndex)
+  uid: excel!Excel.AutoFilter#clearColumnCriteria:member(1)
+  package: excel!
+  fullName: clearColumnCriteria(columnIndex)
+  summary: >-
+    清除自动筛选器的筛选条件。
+
+
+    \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'clearColumnCriteria(columnIndex: number): void;'
+    parameters:
+    - id: columnIndex
+      description: 从零开始表示需要清除的列筛选器的列索引。 如果索引值不受支持 (例如，如果值为负数，或者该值大于区域) 中的可用列数，则会引发异常。 `InvalidArgument`
+      type: number
+    return:
+      type: void
+      description: ''
 - name: clearCriteria()
   uid: excel!Excel.AutoFilter#clearCriteria:member(1)
   package: excel!
@@ -123,7 +144,7 @@ methods:
   package: excel!
   fullName: getRange()
   summary: >-
-    返回 Range 对象，该对象表示“自动筛选”应用的区域。
+    返回 `Range` 表示自动筛选应用于的范围的对象。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -140,7 +161,7 @@ methods:
   package: excel!
   fullName: getRangeOrNullObject()
   summary: >-
-    返回 `Range` 表示应用范围 `AutoFilter` 的对象。 如果没有 `Range` 与 `AutoFilter`<!-- -->，则此方法返回其属性设置为 `isNullObject` 的对象 `true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+    返回 `Range` 表示自动筛选应用于的范围的对象。 如果没有与 AutoFilter 关联的对象，则此方法返回其 `Range` `isNullObject` 属性设置为 `true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -249,7 +270,7 @@ methods:
   uid: excel!Excel.AutoFilter#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 Excel.AutoFilter 对象是一个 API 对象，该方法返回一个纯 `toJSON` JavaScript 对象， (类型为 `toJSON``Excel.Interfaces.AutoFilterData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象 `toJSON()` 传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给该对象的对象的方法。) 而原始 Excel.AutoFilter 对象是一个 API 对象，该方法返回一个纯 `toJSON` JavaScript 对象， (类型为 `toJSON``Excel.Interfaces.AutoFilterData`<!-- -->) 原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -260,9 +281,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 0007599fa27b2247c73798735f0d34b67192811a
-  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
+  ms.openlocfilehash: ce09c071d21c03ad8c48d68beb3ef0f5d22f4e58
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/27/2021
-  ms.locfileid: "49991840"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50537986"

@@ -4,7 +4,7 @@ uid: excel!Excel.CommentCollection:class
 package: excel!
 fullName: Excel.CommentCollection
 summary: >-
-  表示属于工作簿的 comment 对象的集合。
+  表示属于工作簿的注释对象的集合。
 
 
   \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -59,7 +59,7 @@ properties:
   package: excel!
   fullName: onChanged
   summary: >-
-    在批注集合中的批注或回复发生更改时发生，包括删除回复时。
+    在注释集合中的注释或回复发生更改时发生，包括删除回复时。
 
 
     \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -76,7 +76,7 @@ properties:
   package: excel!
   fullName: onDeleted
   summary: >-
-    在注释集合中删除批注时发生。
+    在注释集合中删除注释时发生。
 
 
     \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -105,10 +105,10 @@ methods:
     content: 'add(cellAddress: Range | string, content: CommentRichContent | string, contentType?: Excel.ContentType): Excel.Comment;'
     parameters:
     - id: cellAddress
-      description: 将批注添加到的单元格。 它可以是 Range 对象或字符串。 如果是字符串，则必须包含完整地址，包括工作表名称。 如果 `InvalidArgument` 提供的范围大于一个单元格，则会引发错误。
+      description: 添加注释的单元格。 它可以是 `Range` 对象或字符串。 如果是字符串，则必须包含完整地址，包括工作表名称。 如果 `InvalidArgument` 提供的范围大于一个单元格，则会引发错误。
       type: <xref uid="excel!Excel.Range:class" /> | string
     - id: content
-      description: 注释的内容。 它可以是字符串或 CommentRichContent 对象。 字符串用于纯文本。 CommentRichContent 对象允许其他注释功能，例如提及。 \[Api 集：ExcelApi 1.10（用于字符串）和 1.11（针对 CommentRichContent 对象）\]
+      description: 注释的内容。 可以是字符串或 `CommentRichContent` 对象。 字符串用于纯文本。 `CommentRichContent` 对象允许其他注释功能，例如提及。 \[Api 集：ExcelApi 1.10 表示字符串，1.11 表示 CommentRichContent 对象\]
       type: <xref uid="excel!Excel.CommentRichContent:interface" /> | string
     - id: contentType
       description: 可选。 注释中包含的内容类型。 默认值为枚举 `ContentType.Plain`<!-- -->. \[Api 集：ExcelApi 1.10 for Enum ContentType.Plain，1.11 for Enum ContentType.Mention\]
@@ -132,10 +132,10 @@ methods:
     content: 'add(cellAddress: Range | string, content: CommentRichContent | string, contentTypeString?: "Plain" | "Mention"): Excel.Comment;'
     parameters:
     - id: cellAddress
-      description: 将批注添加到的单元格。 它可以是 Range 对象或字符串。 如果是字符串，则必须包含完整地址，包括工作表名称。 如果 `InvalidArgument` 提供的范围大于一个单元格，则会引发错误。
+      description: 添加注释的单元格。 它可以是 `Range` 对象或字符串。 如果是字符串，则必须包含完整地址，包括工作表名称。 如果 `InvalidArgument` 提供的范围大于一个单元格，则会引发错误。
       type: <xref uid="excel!Excel.Range:class" /> | string
     - id: content
-      description: 注释的内容。 它可以是字符串或 CommentRichContent 对象。 字符串用于纯文本。 CommentRichContent 对象允许其他注释功能，例如提及。 \[Api 集：ExcelApi 1.10（用于字符串）和 1.11（针对 CommentRichContent 对象）\]
+      description: 注释的内容。 可以是字符串或 `CommentRichContent` 对象。 字符串用于纯文本。 `CommentRichContent` 对象允许其他注释功能，例如提及。 \[Api 集：ExcelApi 1.10 表示字符串，1.11 表示 CommentRichContent 对象\]
       type: <xref uid="excel!Excel.CommentRichContent:interface" /> | string
     - id: contentTypeString
       description: 可选。 注释中包含的内容类型。 默认值为枚举 `ContentType.Plain`<!-- -->. \[Api 集：ExcelApi 1.10 for Enum ContentType.Plain，1.11 for Enum ContentType.Mention\]
@@ -218,7 +218,7 @@ methods:
     content: 'getItemByCell(cellAddress: Range | string): Excel.Comment;'
     parameters:
     - id: cellAddress
-      description: 批注所基于的单元格。 它可以是 Range 对象或字符串。 如果是字符串，则必须包含完整地址，包括工作表名称。 如果 `InvalidArgument` 提供的范围大于一个单元格，则会引发错误。
+      description: 批注所位于的单元格。 它可以是 `Range` 对象或字符串。 如果是字符串，则必须包含完整地址，包括工作表名称。 如果 `InvalidArgument` 提供的范围大于一个单元格，则会引发错误。
       type: <xref uid="excel!Excel.Range:class" /> | string
     return:
       type: <xref uid="excel!Excel.Comment:class" />
@@ -240,6 +240,27 @@ methods:
     parameters:
     - id: replyId
       description: 批注回复的标识符。
+      type: string
+    return:
+      type: <xref uid="excel!Excel.Comment:class" />
+      description: ''
+- name: getItemOrNullObject(commentId)
+  uid: excel!Excel.CommentCollection#getItemOrNullObject:member(1)
+  package: excel!
+  fullName: getItemOrNullObject(commentId)
+  summary: >-
+    根据其 ID 从集合中获取批注。 如果 comment 对象不存在，则此函数将返回其 `isNullObject` 属性设置为 `true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+
+
+    \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'getItemOrNullObject(commentId: string): Excel.Comment;'
+    parameters:
+    - id: commentId
+      description: 注释的标识符。
       type: string
     return:
       type: <xref uid="excel!Excel.Comment:class" />
@@ -273,7 +294,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.CommentCollection;'
     parameters:
     - id: propertyNames
-      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.CommentCollection:class" />
@@ -299,7 +320,7 @@ methods:
   uid: excel!Excel.CommentCollection#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `Excel.CommentCollection` `toJSON` JavaScript 对象 `Excel.Interfaces.CommentCollectionData`<!-- -->) 包含"items"数组，其中包含集合项中任何已加载属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象 `toJSON()` 传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始对象是 API 对象，该方法返回一个纯 JavaScript 对象， (类型 `toJSON` `Excel.CommentCollection` `toJSON` 为 `Excel.Interfaces.CommentCollectionData`<!-- -->) 包含"items"数组，其中包含集合项中任何已加载属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -310,9 +331,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: b7c9ce5b7148b95006979a383a6dabf30483daf6
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: 7b4ade4b959a0008d640d00d0e564d1ed1183b72
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49850876"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50539274"

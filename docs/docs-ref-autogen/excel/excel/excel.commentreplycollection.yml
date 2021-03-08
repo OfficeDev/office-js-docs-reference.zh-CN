@@ -54,7 +54,7 @@ methods:
     content: 'add(content: CommentRichContent | string, contentType?: Excel.ContentType): Excel.CommentReply;'
     parameters:
     - id: content
-      description: 注释的内容。 这可以是字符串或 Interface CommentRichContent (，例如，对于包含提及内容) 。 \[Api 集：ExcelApi 1.10（用于字符串）和 1.11（针对 CommentRichContent 对象）\]
+      description: 注释的内容。 它可以是字符串或对象 (，例如，对于包含提及内容 `CommentRichContent`) 。 \[Api 集：ExcelApi 1.10 表示字符串，1.11 表示 CommentRichContent 对象\]
       type: <xref uid="excel!Excel.CommentRichContent:interface" /> | string
     - id: contentType
       description: 可选。 注释中包含的内容类型。 默认值为枚举 `ContentType.Plain`<!-- -->. \[Api 集：ExcelApi 1.10 for Enum ContentType.Plain，1.11 for Enum ContentType.Mention\]
@@ -78,7 +78,7 @@ methods:
     content: 'add(content: CommentRichContent | string, contentTypeString?: "Plain" | "Mention"): Excel.CommentReply;'
     parameters:
     - id: content
-      description: 注释的内容。 这可以是字符串或 Interface CommentRichContent (，例如，对于包含提及内容) 。 \[Api 集：ExcelApi 1.10（用于字符串）和 1.11（针对 CommentRichContent 对象）\]
+      description: 注释的内容。 它可以是字符串或对象 (，例如，对于包含提及内容 `CommentRichContent`) 。 \[Api 集：ExcelApi 1.10 表示字符串，1.11 表示 CommentRichContent 对象\]
       type: <xref uid="excel!Excel.CommentRichContent:interface" /> | string
     - id: contentTypeString
       description: 可选。 注释中包含的内容类型。 默认值为枚举 `ContentType.Plain`<!-- -->. \[Api 集：ExcelApi 1.10 for Enum ContentType.Plain，1.11 for Enum ContentType.Mention\]
@@ -145,6 +145,27 @@ methods:
     return:
       type: <xref uid="excel!Excel.CommentReply:class" />
       description: ''
+- name: getItemOrNullObject(commentReplyId)
+  uid: excel!Excel.CommentReplyCollection#getItemOrNullObject:member(1)
+  package: excel!
+  fullName: getItemOrNullObject(commentReplyId)
+  summary: >-
+    返回由其 ID 标识的批注回复。 如果 comment reply 对象不存在，则此函数将返回其 `isNullObject` 属性设置为 `true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+
+
+    \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'getItemOrNullObject(commentReplyId: string): Excel.CommentReply;'
+    parameters:
+    - id: commentReplyId
+      description: 批注回复的标识符
+      type: string
+    return:
+      type: <xref uid="excel!Excel.CommentReply:class" />
+      description: ''
 - name: load(options)
   uid: excel!Excel.CommentReplyCollection#load:member(1)
   package: excel!
@@ -174,7 +195,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.CommentReplyCollection;'
     parameters:
     - id: propertyNames
-      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.CommentReplyCollection:class" />
@@ -200,7 +221,7 @@ methods:
   uid: excel!Excel.CommentReplyCollection#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `Excel.CommentReplyCollection` `toJSON` JavaScript 对象 `Excel.Interfaces.CommentReplyCollectionData`<!-- -->) 包含"items"数组，其中包含集合项中任何已加载属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象 `toJSON()` 传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始对象是 API 对象，该方法返回一个纯 JavaScript 对象， (类型 `toJSON` `Excel.CommentReplyCollection` `toJSON` 为 `Excel.Interfaces.CommentReplyCollectionData`<!-- -->) 包含"items"数组，其中包含集合项中任何已加载属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -211,9 +232,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: aaac2a24a89c95829723a69eb70047fe8e38ba15
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: f9605106e7cc7145e6dbc2e4b0f14d7c9824a841
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49850834"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50538805"

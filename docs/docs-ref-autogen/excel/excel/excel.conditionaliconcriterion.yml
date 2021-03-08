@@ -4,7 +4,7 @@ uid: excel!Excel.ConditionalIconCriterion:interface
 package: excel!
 fullName: Excel.ConditionalIconCriterion
 summary: >-
-  表示包含类型、值、运算符和可选自定义图标（如果未使用图标集）的 Icon Criterion。
+  表示包含类型、值、运算符和可选自定义图标（如果未使用图标集）的图标条件。
 
 
   \[[API 集：ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -18,7 +18,7 @@ properties:
   package: excel!
   fullName: customIcon
   summary: >-
-    如果与默认 IconSet 不同，返回当前条件的自定义图标，否则将返回 null。
+    如果当前条件与默认图标集不同，则返回其他 `null` 自定义图标。
 
 
     \[[API 集：ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -51,7 +51,7 @@ properties:
   package: excel!
   fullName: operator
   summary: >-
-    Icon 条件格式的每个规则类型的 GreaterThan 或 GreaterThanOrEqual。
+    `greaterThan` 或 `greaterThanOrEqual` 图标条件格式的每个规则类型。
 
 
     \[[API 集：ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -81,9 +81,9 @@ properties:
       type: <xref uid="excel!Excel.ConditionalFormatIconRuleType:enum" /> | "Invalid" | "Number" | "Percent" | "Formula" | "Percentile"
       description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/14-conditional-formatting/conditional-formatting-basic.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B8:E13\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.iconSet);\n    const iconSetCF = conditionalFormat.iconSet;\n    iconSetCF.style = Excel.IconSet.threeTriangles;\n\n    /*\n        The iconSetCF.criteria array is automatically prepopulated with\n        criterion elements whose properties have been given default settings.\n        You can't write to each property of a criterion directly. Instead,\n        replace the whole criteria object.\n\n        With a \"three*\" icon set style, such as \"threeTriangles\", the third\n        element in the criteria array (criteria[2]) defines the \"top\" icon;\n        e.g., a green triangle. The second (criteria[1]) defines the \"middle\"\n        icon, The first (criteria[0]) defines the \"low\" icon, but it\n        can often be left empty as this method does below, because every\n        cell that does not match the other two criteria always gets the low\n        icon.            \n    */\n    iconSetCF.criteria = [\n        {} as any,\n        {\n            type: Excel.ConditionalFormatIconRuleType.number,\n            operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,\n            formula: \"=700\"\n        },\n        {\n            type: Excel.ConditionalFormatIconRuleType.number,\n            operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,\n            formula: \"=1000\",\n        }\n    ];\n\n    await context.sync();\n});\n```"
 metadata:
-  ms.openlocfilehash: 7990c628aa5b8787df6eef5e93cad794ff302080
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: 7e3ab5690279bb39aa290ac74509216fd5e94f88
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49851674"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50539155"
