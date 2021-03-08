@@ -85,6 +85,7 @@ enums:
 - excel!Excel.DeleteShiftDirection:enum
 - excel!Excel.DocumentPropertyItem:enum
 - excel!Excel.DocumentPropertyType:enum
+- excel!Excel.DocumentTaskChangeAction:enum
 - excel!Excel.DynamicFilterCriteria:enum
 - excel!Excel.ErrorCodes:enum
 - excel!Excel.EventSource:enum
@@ -100,6 +101,7 @@ enums:
 - excel!Excel.IconSet:enum
 - excel!Excel.ImageFittingMode:enum
 - excel!Excel.InsertShiftDirection:enum
+- excel!Excel.KeyboardDirection:enum
 - excel!Excel.LabelFilterCondition:enum
 - excel!Excel.LinkedDataTypeRefreshMode:enum
 - excel!Excel.LinkedDataTypeState:enum
@@ -154,7 +156,6 @@ enums:
 - excel!Excel.SpecialCellType:enum
 - excel!Excel.SpecialCellValueType:enum
 - excel!Excel.SubtotalLocationType:enum
-- excel!Excel.TaskHistoryRecordType:enum
 - excel!Excel.TopBottomSelectionType:enum
 - excel!Excel.ValueFilterCondition:enum
 - excel!Excel.VerticalAlignment:enum
@@ -237,6 +238,10 @@ classes:
 - excel!Excel.DataValidation:class
 - excel!Excel.DatetimeFormatInfo:class
 - excel!Excel.DocumentProperties:class
+- excel!Excel.DocumentTask:class
+- excel!Excel.DocumentTaskChange:class
+- excel!Excel.DocumentTaskChangeCollection:class
+- excel!Excel.DocumentTaskCollection:class
 - excel!Excel.Filter:class
 - excel!Excel.FilterPivotHierarchy:class
 - excel!Excel.FilterPivotHierarchyCollection:class
@@ -248,6 +253,7 @@ classes:
 - excel!Excel.HeaderFooter:class
 - excel!Excel.HeaderFooterGroup:class
 - excel!Excel.IconSetConditionalFormat:class
+- excel!Excel.IdentityCollection:class
 - excel!Excel.Image:class
 - excel!Excel.IterativeCalculation:class
 - excel!Excel.Line:class
@@ -318,10 +324,6 @@ classes:
 - excel!Excel.TableSort:class
 - excel!Excel.TableStyle:class
 - excel!Excel.TableStyleCollection:class
-- excel!Excel.Task:class
-- excel!Excel.TaskCollection:class
-- excel!Excel.TaskHistoryRecord:class
-- excel!Excel.TaskHistoryRecordCollection:class
 - excel!Excel.TextConditionalFormat:class
 - excel!Excel.TextFrame:class
 - excel!Excel.TextRange:class
@@ -380,6 +382,7 @@ interfaces:
 - excel!Excel.DataValidationPrompt:interface
 - excel!Excel.DataValidationRule:interface
 - excel!Excel.DateTimeDataValidation:interface
+- excel!Excel.DocumentTaskSchedule:interface
 - excel!Excel.FilterCriteria:interface
 - excel!Excel.FilterDatetime:interface
 - excel!Excel.FiveArrowsGraySet:interface
@@ -395,6 +398,8 @@ interfaces:
 - excel!Excel.FourTrafficLightsSet:interface
 - excel!Excel.Icon:interface
 - excel!Excel.IconCollections:interface
+- excel!Excel.Identity:interface
+- excel!Excel.InsertWorksheetOptions:interface
 - excel!Excel.Interfaces.ApplicationData:interface
 - excel!Excel.Interfaces.ApplicationLoadOptions:interface
 - excel!Excel.Interfaces.ApplicationUpdateData:interface
@@ -616,6 +621,18 @@ interfaces:
 - excel!Excel.Interfaces.DocumentPropertiesData:interface
 - excel!Excel.Interfaces.DocumentPropertiesLoadOptions:interface
 - excel!Excel.Interfaces.DocumentPropertiesUpdateData:interface
+- excel!Excel.Interfaces.DocumentTaskChangeCollectionData:interface
+- excel!Excel.Interfaces.DocumentTaskChangeCollectionLoadOptions:interface
+- excel!Excel.Interfaces.DocumentTaskChangeCollectionUpdateData:interface
+- excel!Excel.Interfaces.DocumentTaskChangeData:interface
+- excel!Excel.Interfaces.DocumentTaskChangeLoadOptions:interface
+- excel!Excel.Interfaces.DocumentTaskChangeUpdateData:interface
+- excel!Excel.Interfaces.DocumentTaskCollectionData:interface
+- excel!Excel.Interfaces.DocumentTaskCollectionLoadOptions:interface
+- excel!Excel.Interfaces.DocumentTaskCollectionUpdateData:interface
+- excel!Excel.Interfaces.DocumentTaskData:interface
+- excel!Excel.Interfaces.DocumentTaskLoadOptions:interface
+- excel!Excel.Interfaces.DocumentTaskUpdateData:interface
 - excel!Excel.Interfaces.FilterData:interface
 - excel!Excel.Interfaces.FilterLoadOptions:interface
 - excel!Excel.Interfaces.FilterPivotHierarchyCollectionData:interface
@@ -839,17 +856,6 @@ interfaces:
 - excel!Excel.Interfaces.TableStyleLoadOptions:interface
 - excel!Excel.Interfaces.TableStyleUpdateData:interface
 - excel!Excel.Interfaces.TableUpdateData:interface
-- excel!Excel.Interfaces.TaskCollectionData:interface
-- excel!Excel.Interfaces.TaskCollectionLoadOptions:interface
-- excel!Excel.Interfaces.TaskCollectionUpdateData:interface
-- excel!Excel.Interfaces.TaskData:interface
-- excel!Excel.Interfaces.TaskHistoryRecordCollectionData:interface
-- excel!Excel.Interfaces.TaskHistoryRecordCollectionLoadOptions:interface
-- excel!Excel.Interfaces.TaskHistoryRecordCollectionUpdateData:interface
-- excel!Excel.Interfaces.TaskHistoryRecordData:interface
-- excel!Excel.Interfaces.TaskHistoryRecordLoadOptions:interface
-- excel!Excel.Interfaces.TaskHistoryRecordUpdateData:interface
-- excel!Excel.Interfaces.TaskLoadOptions:interface
 - excel!Excel.Interfaces.TextConditionalFormatData:interface
 - excel!Excel.Interfaces.TextConditionalFormatLoadOptions:interface
 - excel!Excel.Interfaces.TextConditionalFormatUpdateData:interface
@@ -924,7 +930,6 @@ interfaces:
 - excel!Excel.TableDeletedEventArgs:interface
 - excel!Excel.TableFilteredEventArgs:interface
 - excel!Excel.TableSelectionChangedEventArgs:interface
-- excel!Excel.TaskChanges:interface
 - excel!Excel.ThreeArrowsGraySet:interface
 - excel!Excel.ThreeArrowsSet:interface
 - excel!Excel.ThreeFlagsSet:interface
@@ -935,7 +940,7 @@ interfaces:
 - excel!Excel.ThreeTrafficLights1Set:interface
 - excel!Excel.ThreeTrafficLights2Set:interface
 - excel!Excel.ThreeTrianglesSet:interface
-- excel!Excel.User:interface
+- excel!Excel.WorkbookActivatedEventArgs:interface
 - excel!Excel.WorkbookAutoSaveSettingChangedEventArgs:interface
 - excel!Excel.WorksheetActivatedEventArgs:interface
 - excel!Excel.WorksheetAddedEventArgs:interface
@@ -1012,7 +1017,7 @@ functions:
 - name: Excel.run(batch)
   uid: excel!Excel.run:function(1)
   package: excel!
-  summary: 使用新的 RequestContext 执行对 Excel 对象模型执行动作的批处理脚本。 当承诺得到解析时，在执行期间自动分配的任何跟踪对象都将释放。
+  summary: 使用新的 RequestContext 执行对 Excel 对象模型执行操作批处理脚本。 解析承诺后，将释放在执行期间自动分配的任何跟踪对象。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1020,7 +1025,7 @@ functions:
     content: 'export function run<T>(batch: (context: Excel.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: batch
-      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 Excel 对象模型。
+      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数可加快对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 Excel 对象模型。
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -1028,7 +1033,7 @@ functions:
 - name: Excel.run(object, batch)
   uid: excel!Excel.run:function(2)
   package: excel!
-  summary: 使用以前创建的 API 对象的 RequestContext 执行对 Excel 对象模型执行动作的批处理脚本。 当承诺得到解析时，在执行期间自动分配的任何跟踪对象都将释放。
+  summary: 使用以前创建的 API 对象的 RequestContext 执行对 Excel 对象模型执行操作批处理脚本。 解析承诺后，将释放在执行期间自动分配的任何跟踪对象。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1036,10 +1041,10 @@ functions:
     content: 'export function run<T>(object: OfficeExtension.ClientObject, batch: (context: Excel.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: object
-      description: 以前创建的 API 对象。 批处理将使用与传入对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由"context.sync () "选取。
+      description: 以前创建的 API 对象。 批处理将使用与传入对象相同的 RequestContext，这意味着"context.sync () "将选取应用于该对象的任何更改。
       type: <xref uid="office!OfficeExtension.ClientObject:class" />
     - id: batch
-      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 Excel 对象模型。
+      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数可加快对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 Excel 对象模型。
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -1047,7 +1052,7 @@ functions:
 - name: Excel.run(objects, batch)
   uid: excel!Excel.run:function(3)
   package: excel!
-  summary: 使用以前创建的 API 对象的 RequestContext 执行对 Excel 对象模型执行动作的批处理脚本。
+  summary: 使用以前创建的 API 对象的 RequestContext 对 Excel 对象模型执行操作批处理脚本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1055,10 +1060,10 @@ functions:
     content: 'export function run<T>(objects: OfficeExtension.ClientObject[], batch: (context: Excel.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: objects
-      description: 以前创建的 API 对象的数组。 将验证数组以确保所有对象共享同一上下文。 批处理将使用此共享 RequestContext，这意味着应用到这些对象的任何更改都将由"context.sync () "选取。
+      description: 以前创建的 API 对象的数组。 将验证数组以确保所有对象共享同一上下文。 批处理将使用此共享 RequestContext，这意味着应用到这些对象的任何更改都将通过"context.sync () "进行选取。
       type: <xref uid="office!OfficeExtension.ClientObject:class" />[]
     - id: batch
-      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数便于对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 Excel 对象模型。
+      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数可加快对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 Excel 对象模型。
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -1066,7 +1071,7 @@ functions:
 - name: Excel.run(options, batch)
   uid: excel!Excel.run:function(4)
   package: excel!
-  summary: 使用以前创建的 API 对象的 RequestContext 执行对 Excel 对象模型执行动作的批处理脚本。 当承诺得到解析时，在执行期间自动分配的任何跟踪对象都将释放。
+  summary: 使用以前创建的 API 对象的 RequestContext 执行对 Excel 对象模型执行操作批处理脚本。 解析承诺后，将释放在执行期间自动分配的任何跟踪对象。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1074,10 +1079,10 @@ functions:
     content: 'export function run<T>(options: Excel.RunOptions, batch: (context: Excel.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: options
-      description: 此 Excel.run 的其他选项指定以前的对象，是否延迟对单元格编辑、会话信息等的请求。
+      description: 此 Excel.run 的其他选项指定以前的对象，是否延迟单元格编辑请求、会话信息等。
       type: <xref uid="excel!Excel.RunOptions:interface" />
     - id: batch
-      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数便于对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 Excel 对象模型。
+      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数可加快对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 Excel 对象模型。
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -1085,7 +1090,7 @@ functions:
 - name: Excel.run(context, batch)
   uid: excel!Excel.run:function(5)
   package: excel!
-  summary: 使用以前创建的对象的 RequestContext 执行对 Excel 对象模型执行动作的批处理脚本。 当承诺得到解析时，在执行期间自动分配的任何跟踪对象都将释放。
+  summary: 使用以前创建的对象的 RequestContext 执行对 Excel 对象模型执行操作批处理脚本。 解析承诺后，将释放在执行期间自动分配的任何跟踪对象。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1093,18 +1098,18 @@ functions:
     content: 'export function run<T>(context: OfficeExtension.ClientRequestContext, batch: (context: Excel.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: context
-      description: 以前创建的对象。 批处理将使用与传入对象相同的 RequestContext，这意味着应用于该对象的任何更改都将由"context.sync () "选取。
+      description: 以前创建的对象。 批处理将使用与传入对象相同的 RequestContext，这意味着"context.sync () "将选取应用于该对象的任何更改。
       type: <xref uid="office!OfficeExtension.ClientRequestContext:class" />
     - id: batch
-      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数可促进对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 Excel 对象模型。
+      description: 一个接受 RequestContext 并返回承诺 (的函数，通常只是"context.sync () ") 。 上下文参数可加快对 Excel 应用程序的请求。 由于 Office 加载项和 Excel 应用程序在两个不同的进程中运行，因此 RequestContext 需要从加载项访问 Excel 对象模型。
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
       description: ''
 metadata:
-  ms.openlocfilehash: 8160ce4f6112f86c0df05c755460a402b0cb2ac2
-  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
+  ms.openlocfilehash: 6868f8d4f1db0c1409e16c877986d215a80c5e5e
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/27/2021
-  ms.locfileid: "49991854"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50533982"

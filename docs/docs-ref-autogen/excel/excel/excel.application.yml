@@ -34,7 +34,7 @@ properties:
   package: excel!
   fullName: calculationMode
   summary: >-
-    返回工作簿中使用的计算模式，如 Excel.CalculationMode 中的常量所定义。 可能的值包括： `Automatic`<!-- -->，其中 Excel 控制重新计算; `AutomaticExceptTables`<!-- -->，其中 Excel 控制重新计算，但忽略表中的更改; `Manual`<!-- -->，在用户请求计算时完成计算。
+    返回工作簿中使用的计算模式，如 `Excel.CalculationMode`<!-- -->. 可能的值包括： `Automatic`<!-- -->，其中 Excel 控制重新计算; `AutomaticExceptTables`<!-- -->，其中 Excel 控制重新计算，但忽略表中的更改; `Manual`<!-- -->，在用户请求计算时执行计算。
 
 
     \[[API 集：ExcelApi 1.1 for get，1.8 for set](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -50,7 +50,7 @@ properties:
   package: excel!
   fullName: calculationState
   summary: >-
-    返回应用程序的计算状态。 有关详细信息，请参阅 Excel.CalculationState。
+    返回应用程序的计算状态。 有关详细信息，请参阅 `Excel.CalculationState`。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -94,7 +94,7 @@ properties:
   package: excel!
   fullName: decimalSeparator
   summary: >-
-    获取用作数值的小数分隔符的字符串。 这基于 Excel 的本地设置。
+    获取用作数值的小数分隔符的字符串。 这基于本地 Excel 设置。
 
 
     \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -111,7 +111,7 @@ properties:
   package: excel!
   fullName: iterativeCalculation
   summary: >-
-    返回“迭代计算”设置。 在 Windows 和 Mac 上的 Excel 中，这些设置将应用于 Excel 应用程序。 在 Excel 网页和其他平台上，这些设置将应用于活动工作簿。
+    返回迭代计算设置。 在 Windows 和 Mac 上的 Excel 中，这些设置将应用于 Excel 应用程序。 在 Excel 网页和其他平台上，这些设置将应用于活动工作簿。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -127,7 +127,7 @@ properties:
   package: excel!
   fullName: thousandsSeparator
   summary: >-
-    获取用于分隔数字值小数点左侧的一组数字的字符串。 这基于 Excel 的本地设置。
+    获取用于分隔数字值小数左侧的一组数字的字符串。 这基于本地 Excel 设置。
 
 
     \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -171,7 +171,7 @@ methods:
     content: 'calculate(calculationType: Excel.CalculationType): void;'
     parameters:
     - id: calculationType
-      description: 指定要使用的计算类型。 有关详细信息，请参阅 Excel.CalculationType。
+      description: 指定要使用的计算类型。 有关详细信息，请参阅 `Excel.CalculationType`。
       type: <xref uid="excel!Excel.CalculationType:enum" />
     return:
       type: void
@@ -192,7 +192,7 @@ methods:
     content: 'calculate(calculationTypeString: "Recalculate" | "Full" | "FullRebuild"): void;'
     parameters:
     - id: calculationTypeString
-      description: 指定要使用的计算类型。 有关详细信息，请参阅 Excel.CalculationType。
+      description: 指定要使用的计算类型。 有关详细信息，请参阅 `Excel.CalculationType`。
       type: "\"Recalculate\" | \"Full\" | \"FullRebuild\""
     return:
       type: void
@@ -226,7 +226,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.Application;'
     parameters:
     - id: propertyNames
-      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.Application:class" />
@@ -260,7 +260,7 @@ methods:
   uid: excel!Excel.Application#set:member(1)
   package: excel!
   fullName: set(properties, options)
-  summary: 同时设置对象的多个属性。 你可以传递具有相应属性的普通对象，也可以传递同一类型的另一个 API 对象。
+  summary: 同时设置对象的多个属性。 可以使用相应的属性传递普通对象，也可以传递同一类型的另一个 API 对象。
   remarks: >-
     此方法具有以下附加签名：
 
@@ -272,7 +272,7 @@ methods:
     content: 'set(properties: Interfaces.ApplicationUpdateData, options?: OfficeExtension.UpdateOptions): void;'
     parameters:
     - id: properties
-      description: 一个 JavaScript 对象，其属性以等态方式构造到调用该方法的对象的属性。
+      description: 一个 JavaScript 对象，其属性按等态结构构造到调用该方法的对象的属性。
       type: <xref uid="excel!Excel.Interfaces.ApplicationUpdateData:interface" />
     - id: options
       description: 提供在属性对象尝试设置任何只读属性时禁止错误的选项。
@@ -302,7 +302,7 @@ methods:
   package: excel!
   fullName: suspendApiCalculationUntilNextSync()
   summary: >-
-    在下一次调用“context.sync()”前暂停计算。设置后，开发者负责重新计算工作簿，以确保传播所有依赖项。
+    暂停计算，直到调用下一 `context.sync()` 个。 设置后，开发者负责重新计算工作簿，以确保传播所有依赖项。
 
 
     \[[API 集：ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -319,10 +319,10 @@ methods:
   package: excel!
   fullName: suspendScreenUpdatingUntilNextSync()
   summary: >-
-    暂停屏幕更新，直到调用下一 `context.sync()` 个屏幕更新。
+    暂停屏幕更新，直到调用下一 `context.sync()` 个更新。
 
 
-    *注意**：不要重复调用 `suspendScreenUpdatingUntilNextSync` (，如在循环) 。 重复调用将导致 Excel 窗口闪烁。
+    *注意**：不要在循环 (重复调用 `suspendScreenUpdatingUntilNextSync`) 。 重复调用将导致 Excel 窗口闪烁。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -338,7 +338,7 @@ methods:
   uid: excel!Excel.Application#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 Excel.Application 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.ApplicationData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象 `toJSON()` 传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 Excel.Application 对象是一个 API 对象，该方法返回一个纯 `toJSON` JavaScript 对象， (类型为 `toJSON``Excel.Interfaces.ApplicationData`<!-- -->) 原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -349,9 +349,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 889634c8a1cbbb9db4e320257eca11a824ffefad
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: 73861d42743b6e6285a656267ee85fa8ab7dd291
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49850323"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50533990"
