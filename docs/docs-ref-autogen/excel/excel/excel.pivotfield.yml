@@ -30,7 +30,7 @@ properties:
   package: excel!
   fullName: id
   summary: >-
-    PivotField 的 ID。
+    透视字段的 ID。
 
 
     \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -111,7 +111,7 @@ methods:
   package: excel!
   fullName: applyFilter(filter)
   summary: >-
-    设置字段的一个或多个当前 PivotFilter，并应用于该字段。 如果提供的筛选器无效或无法应用，则会引发异常。
+    设置一个或多个字段的当前 PivotFilter，并应用于该字段。 如果提供的筛选器无效或无法应用，则会引发异常。
 
 
     \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -149,7 +149,7 @@ methods:
   package: excel!
   fullName: clearFilter(filterType)
   summary: >-
-    从字段的给定类型筛选器中清除所有现有条件， (当前已应用) 。
+    从给定类型的字段筛选器中清除所有现有条件 (如果当前应用了一个) 。
 
 
     \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -170,7 +170,7 @@ methods:
   package: excel!
   fullName: clearFilter(filterTypeString)
   summary: >-
-    从字段的给定类型筛选器中清除所有现有条件， (当前已应用) 。
+    从给定类型的字段筛选器中清除所有现有条件 (如果当前应用了一个) 。
 
 
     \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -223,7 +223,7 @@ methods:
       type: <xref uid="excel!Excel.PivotFilterType:enum" />
     return:
       type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;boolean&gt;
-      description: 如此 如果字段应用了类型的 `filterType` 筛选器。 如果未指定 filterType，则如果字段具有任何应用的筛选器，则返回 true。
+      description: 如此 如果字段应用了类型的 `filterType` 筛选器。 如果 `filterType` 未指定，则 `true` 返回字段是否具有任何应用的筛选器。
 - name: isFiltered(filterTypeString)
   uid: excel!Excel.PivotField#isFiltered:member(2)
   package: excel!
@@ -244,7 +244,7 @@ methods:
       type: "\"Unknown\" | \"Value\" | \"Manual\" | \"Label\" | \"Date\""
     return:
       type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;boolean&gt;
-      description: 如此 如果字段应用了类型的 `filterType` 筛选器。 如果未指定 filterType，则如果字段具有任何应用的筛选器，则返回 true。
+      description: 如此 如果字段应用了类型的 `filterType` 筛选器。 如果 `filterType` 未指定，则 `true` 返回字段是否具有任何应用的筛选器。
 - name: load(options)
   uid: excel!Excel.PivotField#load:member(1)
   package: excel!
@@ -274,7 +274,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.PivotField;'
     parameters:
     - id: propertyNames
-      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.PivotField:class" />
@@ -308,7 +308,7 @@ methods:
   uid: excel!Excel.PivotField#set:member(1)
   package: excel!
   fullName: set(properties, options)
-  summary: 同时设置对象的多个属性。 你可以传递具有相应属性的普通对象，也可以传递同一类型的另一个 API 对象。
+  summary: 同时设置对象的多个属性。 可以使用相应的属性传递普通对象，也可以传递同一类型的另一个 API 对象。
   remarks: >-
     此方法具有以下附加签名：
 
@@ -320,7 +320,7 @@ methods:
     content: 'set(properties: Interfaces.PivotFieldUpdateData, options?: OfficeExtension.UpdateOptions): void;'
     parameters:
     - id: properties
-      description: 一个 JavaScript 对象，其属性以等态方式构造到调用该方法的对象的属性。
+      description: 一个 JavaScript 对象，其属性按等态结构构造到调用该方法的对象的属性。
       type: <xref uid="excel!Excel.Interfaces.PivotFieldUpdateData:interface" />
     - id: options
       description: 提供在属性对象尝试设置任何只读属性时禁止错误的选项。
@@ -371,7 +371,7 @@ methods:
   package: excel!
   fullName: sortByValues(sortBy, valuesHierarchy, pivotItemScope)
   summary: >-
-    按给定范围中的指定值对 PivotField 进行排序。 当同一 DataPivotHierarchy 中有多个值时，范围定义将用来排序的特定值。
+    按给定范围中的指定值对 PivotField 进行排序。 该范围定义当同一 DataPivotHierarchy 中有多个值时将用来排序的特定值。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -385,10 +385,10 @@ methods:
       description: 指定是按升序还是降序排序。
       type: <xref uid="excel!Excel.SortBy:enum" />
     - id: valuesHierarchy
-      description: 指定数据轴上用于排序的值层次结构。
+      description: 指定数据轴上要用于排序的值层次结构。
       type: <xref uid="excel!Excel.DataPivotHierarchy:class" />
     - id: pivotItemScope
-      description: 应该用于排序范围的项。 这些项目将成为要排序的行或列的项。 如果使用字符串而不是 PivotItem，则字符串表示 PivotItem 的 ID。 如果除要排序的轴上没有数据层次结构外的其他项，则此项可能为空。
+      description: 应用于排序范围的项。 这些将成为要排序的行或列的项。 如果使用字符串而不是 PivotItem，则字符串表示 PivotItem 的 ID。 如果除要排序的轴上的数据层次结构外没有任何项，则此项可能为空。
       type: Array&lt;<xref uid="excel!Excel.PivotItem:class" /> | string&gt;
     return:
       type: void
@@ -398,7 +398,7 @@ methods:
   package: excel!
   fullName: sortByValues(sortByString, valuesHierarchy, pivotItemScope)
   summary: >-
-    按给定范围中的指定值对 PivotField 进行排序。 当同一 DataPivotHierarchy 中有多个值时，范围定义将用来排序的特定值。
+    按给定范围中的指定值对 PivotField 进行排序。 该范围定义当同一 DataPivotHierarchy 中有多个值时将用来排序的特定值。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -412,10 +412,10 @@ methods:
       description: 指定是按升序还是降序排序。
       type: "\"Ascending\" | \"Descending\""
     - id: valuesHierarchy
-      description: 指定数据轴上用于排序的值层次结构。
+      description: 指定数据轴上要用于排序的值层次结构。
       type: <xref uid="excel!Excel.DataPivotHierarchy:class" />
     - id: pivotItemScope
-      description: 应该用于排序范围的项。 这些项目将成为要排序的行或列的项。 如果使用字符串而不是 PivotItem，则字符串表示 PivotItem 的 ID。 如果除要排序的轴上没有数据层次结构外的其他项，则此项可能为空。
+      description: 应用于排序范围的项。 这些将成为要排序的行或列的项。 如果使用字符串而不是 PivotItem，则字符串表示 PivotItem 的 ID。 如果除要排序的轴上的数据层次结构外没有任何项，则此项可能为空。
       type: Array&lt;<xref uid="excel!Excel.PivotItem:class" /> | string&gt;
     return:
       type: void
@@ -424,7 +424,7 @@ methods:
   uid: excel!Excel.PivotField#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给该对象的方法。) 而原始 Excel.PivotField 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.PivotFieldData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象 `toJSON()` 传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 Excel.PivotField 对象是一个 API 对象，该方法返回一个纯 `toJSON` JavaScript 对象， (类型为 `toJSON``Excel.Interfaces.PivotFieldData`<!-- -->) 原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -435,9 +435,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 659673355b5ea9111e963b2ab0cebaca900840b2
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: 64f68b2ee9bc3230f2f49d8dc5e832010df291bd
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49852353"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50538315"

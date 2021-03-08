@@ -46,7 +46,7 @@ properties:
   package: excel!
   fullName: height
   summary: >-
-    返回图表标题的高度，以磅为单位。 如果图表标题不可见，则为空。
+    返回图表标题的高度，以磅为单位。 值 `null` 是图表标题不可见时。
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -78,7 +78,7 @@ properties:
   package: excel!
   fullName: left
   summary: >-
-    指定从图表标题的左边缘到图表区左边缘的距离（以点表示）。 如果图表标题不可见，则为空。
+    指定图表标题的左边缘到图表区域左边缘的距离（以点表示）。 值 `null` 是图表标题不可见时。
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -110,7 +110,7 @@ properties:
   package: excel!
   fullName: position
   summary: >-
-    表示图表标题的位置。 有关详细信息，请参阅 Excel.ChartTitlePosition。
+    表示图表标题的位置。 有关详细信息，请参阅 `Excel.ChartTitlePosition`。
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -158,7 +158,7 @@ properties:
   package: excel!
   fullName: textOrientation
   summary: >-
-    指定文本面向图表标题的角度。 该值应为 -90 到 90 的整数，或垂直方向文本的整数 180。
+    指定文本面向图表标题的角度。 该值应为 -90 到 90 的整数或垂直方向文本的整数 180。
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -175,7 +175,7 @@ properties:
   package: excel!
   fullName: top
   summary: >-
-    指定从图表标题的上边缘到图表区域顶部的距离（以点表示）。 如果图表标题不可见，则为空。
+    指定图表标题的上边缘到图表区域顶部的距离（以点表示）。 值 `null` 是图表标题不可见时。
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -191,7 +191,7 @@ properties:
   package: excel!
   fullName: verticalAlignment
   summary: >-
-    指定图表标题的垂直对齐方式。 有关详细信息，请参阅 Excel.ChartTextVerticalAlignment。
+    指定图表标题的垂直对齐方式。 有关详细信息，请参阅 `Excel.ChartTextVerticalAlignment`。
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -223,7 +223,7 @@ properties:
   package: excel!
   fullName: width
   summary: >-
-    指定图表标题的宽度（以点表示）。 如果图表标题不可见，则为空。
+    指定图表标题的宽度（以点表示）。 值 `null` 是图表标题不可见时。
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -240,7 +240,7 @@ methods:
   package: excel!
   fullName: getSubstring(start, length)
   summary: >-
-    获取图表标题的子字符串。 换行符'<!-- -->\\<!-- -->n' 还算作一个字符。
+    获取图表标题的子字符串。 换行符 '<!-- -->\\<!-- -->n' 计数一个字符。
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -251,7 +251,7 @@ methods:
     content: 'getSubstring(start: number, length: number): Excel.ChartFormatString;'
     parameters:
     - id: start
-      description: 要检索的子字符串的起始位置。 位置以 0 开始。
+      description: 要检索的子字符串的起始位置。 从零开始编制索引。
       type: number
     - id: length
       description: 要检索的子字符串的长度。
@@ -322,7 +322,7 @@ methods:
   uid: excel!Excel.ChartTitle#set:member(1)
   package: excel!
   fullName: set(properties, options)
-  summary: 同时设置对象的多个属性。 你可以传递具有相应属性的普通对象，也可以传递同一类型的另一个 API 对象。
+  summary: 同时设置对象的多个属性。 可以使用相应的属性传递普通对象，也可以传递同一类型的另一个 API 对象。
   remarks: >-
     此方法具有以下附加签名：
 
@@ -334,7 +334,7 @@ methods:
     content: 'set(properties: Interfaces.ChartTitleUpdateData, options?: OfficeExtension.UpdateOptions): void;'
     parameters:
     - id: properties
-      description: 一个 JavaScript 对象，其属性以等态方式构造到调用该方法的对象的属性。
+      description: 一个 JavaScript 对象，其属性按等态结构构造到调用该方法的对象的属性。
       type: <xref uid="excel!Excel.Interfaces.ChartTitleUpdateData:interface" />
     - id: options
       description: 提供在属性对象尝试设置任何只读属性时禁止错误的选项。
@@ -384,7 +384,7 @@ methods:
   uid: excel!Excel.ChartTitle#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 `toJSON` Excel.ChartTitle 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` JavaScript 对象 `Excel.Interfaces.ChartTitleData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象 `toJSON()` 传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 `toJSON` Excel.ChartTitle 对象是一个 API 对象，该方法返回一个纯 JavaScript 对象， (类型为 `toJSON``Excel.Interfaces.ChartTitleData`<!-- -->) 原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -395,9 +395,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: bb4866904e0d57dbeb3e144525f1fb96e749a38e
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: 81d80dd3d2020fb2d4e7815cf2e6fe39b298c6a7
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49850862"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50539400"

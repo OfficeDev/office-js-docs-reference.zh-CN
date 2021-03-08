@@ -67,7 +67,7 @@ properties:
   package: excel!
   fullName: contentType
   summary: >-
-    答复的内容类型。
+    回复的内容类型。
 
 
     \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -111,7 +111,7 @@ properties:
   package: excel!
   fullName: id
   summary: >-
-    指定批注回复标识符。
+    指定注释回复标识符。
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -127,7 +127,7 @@ properties:
   package: excel!
   fullName: mentions
   summary: >-
-    实体 (，例如) 中提到的人员。
+    实体 (，例如) 注释中提到的人员。
 
 
     \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -143,7 +143,7 @@ properties:
   package: excel!
   fullName: resolved
   summary: >-
-    批注回复状态。 值"true"表示答复状态已解决。
+    批注回复状态。 表示 `true` 答复已解决状态的值。
 
 
     \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -159,7 +159,7 @@ properties:
   package: excel!
   fullName: richContent
   summary: >-
-    丰富的注释内容 (例如，注释中的提及) 。 此字符串不应向最终用户显示。 您的外接程序应仅使用它来分析丰富的注释内容。
+    丰富的注释内容 (例如，注释内容中的) 。 此字符串不应向最终用户显示。 您的外接程序应仅使用它来分析丰富的注释内容。
 
 
     \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -171,12 +171,12 @@ properties:
     return:
       type: string
 methods:
-- name: assignTask(email)
+- name: assignTask(assignee)
   uid: excel!Excel.CommentReply#assignTask:member(1)
   package: excel!
-  fullName: assignTask(email)
+  fullName: assignTask(assignee)
   summary: >-
-    将附加到注释的任务分配给指定用户作为唯一的代理人。 如果没有任务，将创建一个任务。
+    将附加到注释的任务作为唯一的代理人分配给给定用户。 如果没有任务，将创建一个任务。
 
 
     \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -184,13 +184,13 @@ methods:
   isPreview: true
   isDeprecated: false
   syntax:
-    content: 'assignTask(email: string): Excel.Task;'
+    content: 'assignTask(assignee: Identity): Excel.DocumentTask;'
     parameters:
-    - id: email
-      description: 要为其分配任务的用户的电子邮件地址。
-      type: string
+    - id: assignee
+      description: 被分配者的用户标识信息。
+      type: <xref uid="excel!Excel.Identity:interface" />
     return:
-      type: <xref uid="excel!Excel.Task:class" />
+      type: <xref uid="excel!Excel.DocumentTask:class" />
       description: ''
 - name: delete()
   uid: excel!Excel.CommentReply#delete:member(1)
@@ -231,7 +231,7 @@ methods:
   package: excel!
   fullName: getParentComment()
   summary: >-
-    获取此答复的父批注。
+    获取此答复的父注释。
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -248,7 +248,7 @@ methods:
   package: excel!
   fullName: getTask()
   summary: >-
-    获取与此注释关联的任务。 如果注释线程没有任务，则会引发 ItemNotFound 异常。
+    获取与此注释回复线程关联的任务。 如果注释线程没有任务，则 `ItemNotFound` 会引发异常。
 
 
     \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -256,16 +256,16 @@ methods:
   isPreview: true
   isDeprecated: false
   syntax:
-    content: 'getTask(): Excel.Task;'
+    content: 'getTask(): Excel.DocumentTask;'
     return:
-      type: <xref uid="excel!Excel.Task:class" />
+      type: <xref uid="excel!Excel.DocumentTask:class" />
       description: ''
 - name: getTaskOrNullObject()
   uid: excel!Excel.CommentReply#getTaskOrNullObject:member(1)
   package: excel!
   fullName: getTaskOrNullObject()
   summary: >-
-    获取与此注释关联的任务。 如果注释线程没有任务，则此函数将返回其属性设置为 `isNullObject``true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+    获取与此注释回复线程关联的任务。 如果注释线程没有任务，则此函数将返回其 `isNullObject` 属性设置为 `true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -273,9 +273,9 @@ methods:
   isPreview: true
   isDeprecated: false
   syntax:
-    content: 'getTaskOrNullObject(): Excel.Task;'
+    content: 'getTaskOrNullObject(): Excel.DocumentTask;'
     return:
-      type: <xref uid="excel!Excel.Task:class" />
+      type: <xref uid="excel!Excel.DocumentTask:class" />
       description: ''
 - name: load(options)
   uid: excel!Excel.CommentReply#load:member(1)
@@ -306,7 +306,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.CommentReply;'
     parameters:
     - id: propertyNames
-      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.CommentReply:class" />
@@ -340,7 +340,7 @@ methods:
   uid: excel!Excel.CommentReply#set:member(1)
   package: excel!
   fullName: set(properties, options)
-  summary: 同时设置对象的多个属性。 你可以传递具有相应属性的普通对象，也可以传递同一类型的另一个 API 对象。
+  summary: 同时设置对象的多个属性。 可以使用相应的属性传递普通对象，也可以传递同一类型的另一个 API 对象。
   remarks: >-
     此方法具有以下附加签名：
 
@@ -352,7 +352,7 @@ methods:
     content: 'set(properties: Interfaces.CommentReplyUpdateData, options?: OfficeExtension.UpdateOptions): void;'
     parameters:
     - id: properties
-      description: 一个 JavaScript 对象，其属性以等态方式构造到调用该方法的对象的属性。
+      description: 一个 JavaScript 对象，其属性按等态结构构造到调用该方法的对象的属性。
       type: <xref uid="excel!Excel.Interfaces.CommentReplyUpdateData:interface" />
     - id: options
       description: 提供在属性对象尝试设置任何只读属性时禁止错误的选项。
@@ -381,7 +381,7 @@ methods:
   uid: excel!Excel.CommentReply#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给该对象的方法。) 而原始 Excel.CommentReply 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.CommentReplyData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象 `toJSON()` 传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 Excel.CommentReply 对象是一个 API 对象，该方法返回一个纯 `toJSON` JavaScript 对象， (类型为 `toJSON``Excel.Interfaces.CommentReplyData`<!-- -->) 原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -406,16 +406,16 @@ methods:
     content: 'updateMentions(contentWithMentions: Excel.CommentRichContent): void;'
     parameters:
     - id: contentWithMentions
-      description: 注释的内容。 其中包含一个特殊格式的字符串和一个将在 Excel 显示时解析为字符串的提及列表。
+      description: 注释的内容。 其中包含一个特殊格式的字符串和一个在 Excel 显示时将解析为字符串的提及列表。
       type: <xref uid="excel!Excel.CommentRichContent:interface" />
     return:
       type: void
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 35fb3c136ed527f3f44a3ae8a35297201967db05
-  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
+  ms.openlocfilehash: ff5ba44251a06565527f37b89feb2ea543574f46
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/27/2021
-  ms.locfileid: "49991791"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50538812"

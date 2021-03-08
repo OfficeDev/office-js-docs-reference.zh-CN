@@ -7,7 +7,7 @@ summary: >-
   表示一组墨迹笔划。
 
 
-  \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  \[[API 集：OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: onenote!OneNote.FloatingInk#context:member
   package: onenote!
   fullName: context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  summary: 与对象关联的请求上下文。 这会将外接程序的进程连接到 Office 主机应用程序的进程。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -33,7 +33,7 @@ properties:
     获取 FloatingInk 对象的 ID。 只读。
 
 
-    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    \[[API 集：OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -49,7 +49,7 @@ properties:
     获取 FloatingInk 对象的笔划。 只读。
 
 
-    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    \[[API 集：OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -65,7 +65,7 @@ properties:
     获取 FloatingInk 对象的 PageContent 父级。 只读。
 
 
-    \[[API 集： OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    \[[API 集：OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -83,13 +83,13 @@ methods:
     除了此签名之外，此方法还具有以下签名：
 
 
-    `load(option?: string | string[]): OneNote.FloatingInk` -Where 选项是一个逗号分隔的字符串或一个字符串数组，用于指定要加载的属性。
+    `load(option?: string | string[]): OneNote.FloatingInk` - 其中选项是逗号分隔的字符串或指定要加载的属性的字符串数组。
 
 
-    `load(option?: { select?: string; expand?: string; }): OneNote.FloatingInk` -Where 选项。选择是一个用逗号分隔的字符串，用于指定要加载的属性和选项。 expand 是一个用逗号分隔的字符串，用于指定要加载的导航属性。
+    `load(option?: { select?: string; expand?: string; }): OneNote.FloatingInk` - 其中 option.select 是一个以逗号分隔的字符串，用于指定要加载的属性，options.expand 是一个以逗号分隔的字符串，用于指定要加载的导航属性。
 
 
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.FloatingInk` -仅适用于集合类型。 它类似于前面的签名。 Top 指定结果中可包含的集合项的最大数量。 选项。 skip 指定要跳过且不包含在结果中的项目数。 如果指定了 top 选项，则在跳过指定数目的项目后将启动结果集。
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.FloatingInk` - 仅适用于集合类型。 它类似于前面的签名。 Option.top 指定结果中可包含的集合项的最大数量。 Option.skip 指定要跳过且未包含在结果中的项目数。 如果指定了 option.top，则结果集指定数量的项目后，将启动此参数。
   isPreview: false
   isDeprecated: false
   syntax:
@@ -113,25 +113,33 @@ methods:
     content: 'load(propertyNames?: string | string[]): OneNote.FloatingInk;'
     parameters:
     - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="onenote!OneNote.FloatingInk:class" />
       description: "\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\nOneNote.run(function(context) {\n\n    // Gets the active page.\n    var page = context.application.getActivePage();\n    var contents = page.contents;\n    \n    // Load page contents and their types.\n    page.load('contents/type');\n    return context.sync()\n        .then(function(){\n        \n            // Load every ink content.\n            $.each(contents.items, function(i, content) {\n                if (content.type == \"Ink\")\n                {\n                    content.load('ink/id');\n                }                            \n            })\n            return context.sync();\n        })\n        .then(function(){\n        \n            // Log ID of every ink content.\n            $.each(contents.items, function(i, content) {\n                if (content.type == \"Ink\")\n                {\n                    console.log(content.ink.id);\n                }                            \n            })                \n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n}); \n```"
-- name: load(propertyNamesAndPaths)
+- name: load(option)
   uid: onenote!OneNote.FloatingInk#load:member(3)
   package: onenote!
-  fullName: load(propertyNamesAndPaths)
-  summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
+  fullName: load(option)
+  summary: ''
   remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.FloatingInk;'
+    content: >-
+      load(option?: {
+                  select?: string;
+                  expand?: string;
+              }): OneNote.FloatingInk;
     parameters:
-    - id: propertyNamesAndPaths
-      description: 其中，propertyNamesAndPaths 是用逗号分隔的字符串，用于指定要加载的属性和 propertyNamesAndPaths。扩展是一个用逗号分隔的字符串，用于指定要加载的导航属性。
-      type: '{ select?: string; expand?: string; }'
+    - id: option
+      description: ''
+      type: >-
+        {
+                    select?: string;
+                    expand?: string;
+                }
     return:
       type: <xref uid="onenote!OneNote.FloatingInk:class" />
       description: ''
@@ -139,7 +147,7 @@ methods:
   uid: onenote!OneNote.FloatingInk#toJSON:member(1)
   package: onenote!
   fullName: toJSON()
-  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) ，而原始 FloatingInk 对象是 API 对象，则该 `toJSON` 方法返回一个 (类型为的纯 JavaScript 对象。 `OneNote.Interfaces.FloatingInkData`<!-- -->) ，其中包含原始对象中任何已加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象 `toJSON()` 传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 `toJSON` OneNote.FloatingInk 对象是一个 API 对象，该方法返回一个纯 `toJSON` JavaScript (类型 `OneNote.Interfaces.FloatingInkData`<!-- -->) 原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -176,9 +184,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: f30f14ee3e56e2abcd86a0ab1259495afa4d1145
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: eebf0ccbe061b5c314b61d3a84207cc5984600be
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49183074"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50538105"

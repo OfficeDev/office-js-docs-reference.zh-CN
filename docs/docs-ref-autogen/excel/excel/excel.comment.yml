@@ -95,7 +95,7 @@ properties:
   package: excel!
   fullName: creationDate
   summary: >-
-    获取批注的创建时间。 如果批注是从备注转换而来的，则返回 null，因为批注没有创建日期。
+    获取批注的创建时间。 返回 `null` 注释是否从注释转换，因为注释没有创建日期。
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -127,7 +127,7 @@ properties:
   package: excel!
   fullName: mentions
   summary: >-
-    获取实体 (例如，注释) 提及的人员。
+    获取 (实体，例如) 注释中提到的人员。
 
 
     \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -159,7 +159,7 @@ properties:
   package: excel!
   fullName: resolved
   summary: >-
-    注释线程状态。 值"true"表示注释线程已解析。
+    注释线程状态。 表示注释 `true` 线程已解析的值。
 
 
     \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -176,7 +176,7 @@ properties:
   package: excel!
   fullName: richContent
   summary: >-
-    获取丰富的注释内容 (例如，注释或批注中的) 。 此字符串不应向最终用户显示。 您的外接程序应仅使用它来分析丰富的注释内容。
+    获取丰富的注释内容 (例如，注释或批注) 。 此字符串不应向最终用户显示。 您的外接程序应仅使用它来分析丰富的注释内容。
 
 
     \[[API 集：ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -188,12 +188,12 @@ properties:
     return:
       type: string
 methods:
-- name: assignTask(email)
+- name: assignTask(assignee)
   uid: excel!Excel.Comment#assignTask:member(1)
   package: excel!
-  fullName: assignTask(email)
+  fullName: assignTask(assignee)
   summary: >-
-    将附加到注释的任务分配给指定用户作为唯一的代理人。 如果没有任务，将创建一个任务。
+    将附加到注释的任务作为收件人分配给给定用户。 如果没有任务，将创建一个任务。
 
 
     \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -201,20 +201,20 @@ methods:
   isPreview: true
   isDeprecated: false
   syntax:
-    content: 'assignTask(email: string): Excel.Task;'
+    content: 'assignTask(assignee: Identity): Excel.DocumentTask;'
     parameters:
-    - id: email
-      description: 要为其分配任务的用户的电子邮件地址。
-      type: string
+    - id: assignee
+      description: 被分配者的用户标识信息。
+      type: <xref uid="excel!Excel.Identity:interface" />
     return:
-      type: <xref uid="excel!Excel.Task:class" />
+      type: <xref uid="excel!Excel.DocumentTask:class" />
       description: ''
 - name: delete()
   uid: excel!Excel.Comment#delete:member(1)
   package: excel!
   fullName: delete()
   summary: >-
-    删除注释以及所有连接的回复。
+    删除注释和连接的所有回复。
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -248,7 +248,7 @@ methods:
   package: excel!
   fullName: getTask()
   summary: >-
-    获取与此注释关联的任务。 如果注释线程没有任务，则会引发 ItemNotFound 异常。
+    获取与此注释关联的任务。 如果注释线程没有任务，则 `ItemNotFound` 会引发异常。
 
 
     \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -256,16 +256,16 @@ methods:
   isPreview: true
   isDeprecated: false
   syntax:
-    content: 'getTask(): Excel.Task;'
+    content: 'getTask(): Excel.DocumentTask;'
     return:
-      type: <xref uid="excel!Excel.Task:class" />
+      type: <xref uid="excel!Excel.DocumentTask:class" />
       description: ''
 - name: getTaskOrNullObject()
   uid: excel!Excel.Comment#getTaskOrNullObject:member(1)
   package: excel!
   fullName: getTaskOrNullObject()
   summary: >-
-    获取与此注释关联的任务。 如果注释线程没有任务，则此函数将返回其属性设置为 `isNullObject``true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+    获取与此注释关联的任务。 如果注释线程没有任务，则此函数将返回其 `isNullObject` 属性设置为 `true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -273,9 +273,9 @@ methods:
   isPreview: true
   isDeprecated: false
   syntax:
-    content: 'getTaskOrNullObject(): Excel.Task;'
+    content: 'getTaskOrNullObject(): Excel.DocumentTask;'
     return:
-      type: <xref uid="excel!Excel.Task:class" />
+      type: <xref uid="excel!Excel.DocumentTask:class" />
       description: ''
 - name: load(options)
   uid: excel!Excel.Comment#load:member(1)
@@ -340,7 +340,7 @@ methods:
   uid: excel!Excel.Comment#set:member(1)
   package: excel!
   fullName: set(properties, options)
-  summary: 同时设置对象的多个属性。 你可以传递具有相应属性的普通对象，也可以传递同一类型的另一个 API 对象。
+  summary: 同时设置对象的多个属性。 可以使用相应的属性传递普通对象，也可以传递同一类型的另一个 API 对象。
   remarks: >-
     此方法具有以下附加签名：
 
@@ -352,7 +352,7 @@ methods:
     content: 'set(properties: Interfaces.CommentUpdateData, options?: OfficeExtension.UpdateOptions): void;'
     parameters:
     - id: properties
-      description: 一个 JavaScript 对象，其属性以等态方式构造到调用该方法的对象的属性。
+      description: 一个 JavaScript 对象，其属性按等态结构构造到调用该方法的对象的属性。
       type: <xref uid="excel!Excel.Interfaces.CommentUpdateData:interface" />
     - id: options
       description: 提供在属性对象尝试设置任何只读属性时禁止错误的选项。
@@ -381,7 +381,7 @@ methods:
   uid: excel!Excel.Comment#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给该对象的方法。) 而原始 Excel.Comment 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.CommentData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象 `toJSON()` 传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 Excel.Comment 对象是一个 API 对象，该方法返回一个纯 JavaScript 对象， (类型 `toJSON` `toJSON` 为 `Excel.Interfaces.CommentData`<!-- -->) 原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -406,16 +406,16 @@ methods:
     content: 'updateMentions(contentWithMentions: Excel.CommentRichContent): void;'
     parameters:
     - id: contentWithMentions
-      description: 注释的内容。 其中包含一个特殊格式的字符串和一个将在 Excel 显示时解析为字符串的提及列表。
+      description: 注释的内容。 其中包含一个特殊格式的字符串和一个在 Excel 显示时将解析为字符串的提及列表。
       type: <xref uid="excel!Excel.CommentRichContent:interface" />
     return:
       type: void
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 10ca1f834a9a7e242f6f567fc5831f566848f4e8
-  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
+  ms.openlocfilehash: bfb3ea3d0a5fa76b0d9812092af4ef957f35391a
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/27/2021
-  ms.locfileid: "49991798"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50539288"
