@@ -18,7 +18,7 @@ properties:
   package: excel!
   fullName: autoFilter
   summary: >-
-    表示表格的 AutoFilter 对象。
+    表示 `AutoFilter` 表的对象。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -129,7 +129,7 @@ properties:
     表的名称。
 
 
-    表集名称必须遵循"重命名 Excel 表"文章中 [指定的](https://support.office.com/article/Rename-an-Excel-table-FBF49A4F-82A3-43EB-8BA2-44D21233B114) 准则。
+    该表的集名称必须遵循"重命名 Excel 表"文章中 [指定的](https://support.office.com/article/Rename-an-Excel-table-FBF49A4F-82A3-43EB-8BA2-44D21233B114) 准则。
 
 
     \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -145,7 +145,7 @@ properties:
   package: excel!
   fullName: onChanged
   summary: >-
-    当单元格中的数据更改特定表格时发生。
+    特定表格上的单元格数据发生更改时发生。
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -162,7 +162,7 @@ properties:
   package: excel!
   fullName: onFiltered
   summary: >-
-    在特定表格上应用筛选器时发生。
+    当筛选应用于特定表时发生。
 
 
     \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -211,7 +211,7 @@ properties:
   package: excel!
   fullName: showBandedColumns
   summary: >-
-    指定列是否显示带格式，其中奇数列的突出显示方式与偶数列不同，以便于阅读表格。
+    指定列是否显示带形格式，其中奇数列的突出显示方式与偶数列不同，以便更轻松地阅读表格。
 
 
     \[[API 集：ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -227,7 +227,7 @@ properties:
   package: excel!
   fullName: showBandedRows
   summary: >-
-    指定行是否显示带格式，其中奇数行的突出显示方式与偶数行不同，以便更轻松地阅读表格。
+    指定行是否显示带区格式，其中奇数行的突出显示方式与偶数行不同，以便更轻松地阅读表格。
 
 
     \[[API 集：ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -275,7 +275,7 @@ properties:
   package: excel!
   fullName: showTotals
   summary: >-
-    指定总计行是否可见。 该值可以设置为显示或删除总计行。
+    指定总行是否可见。 该值可以设置为显示或删除总计行。
 
 
     \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -307,7 +307,7 @@ properties:
   package: excel!
   fullName: style
   summary: >-
-    表示表格样式的常量值。 可能的值包括："TableStyleLight1"到"TableStyleLight21"、"TableStyleMedium1"到"TableStyleMedium28"、"TableStyleDark1"到"TableStyleDark11"。 还可以指定工作簿中显示的用户定义的自定义样式。
+    代表表格样式的常量值。 可能的值包括："TableStyleLight1"到"TableStyleLight21"、"TableStyleMedium1"到"TableStyleMedium28"、"TableStyleDark1"到"TableStyleDark11"。 还可以指定工作簿中显示的用户定义的自定义样式。
 
 
     \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -324,7 +324,7 @@ properties:
   package: excel!
   fullName: tableStyle
   summary: >-
-    应用于 Table 的样式。
+    应用于表格的样式。
 
 
     \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -442,7 +442,7 @@ methods:
   package: excel!
   fullName: getHeaderRowRange()
   summary: >-
-    获取与表的标头行相关的 range 对象。
+    获取与表的标题行相关的 range 对象。
 
 
     \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -564,11 +564,32 @@ methods:
     return:
       type: void
       description: ''
+- name: resize(newRange)
+  uid: excel!Excel.Table#resize:member(1)
+  package: excel!
+  fullName: resize(newRange)
+  summary: >-
+    将表格调整为新区域。 新区域必须与原始表格区域重叠， (或表格顶端的页眉) 必须位于同一行中。
+
+
+    \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'resize(newRange: Range | string): void;'
+    parameters:
+    - id: newRange
+      description: 区域对象或区域地址，用于确定表的新大小。
+      type: <xref uid="excel!Excel.Range:class" /> | string
+    return:
+      type: void
+      description: ''
 - name: set(properties, options)
   uid: excel!Excel.Table#set:member(1)
   package: excel!
   fullName: set(properties, options)
-  summary: 同时设置对象的多个属性。 你可以传递具有相应属性的普通对象，也可以传递同一类型的另一个 API 对象。
+  summary: 同时设置对象的多个属性。 可以使用相应的属性传递普通对象，也可以传递同一类型的另一个 API 对象。
   remarks: >-
     此方法具有以下附加签名：
 
@@ -580,7 +601,7 @@ methods:
     content: 'set(properties: Interfaces.TableUpdateData, options?: OfficeExtension.UpdateOptions): void;'
     parameters:
     - id: properties
-      description: 一个 JavaScript 对象，其属性以等态方式构造到调用该方法的对象的属性。
+      description: 一个 JavaScript 对象，其属性按等态结构构造到调用该方法的对象的属性。
       type: <xref uid="excel!Excel.Interfaces.TableUpdateData:interface" />
     - id: options
       description: 提供在属性对象尝试设置任何只读属性时禁止错误的选项。
@@ -621,7 +642,7 @@ methods:
     content: 'setStyle(style: string | TableStyle | BuiltInTableStyle): void;'
     parameters:
     - id: style
-      description: 应用于表格的样式。 如果 `InvalidArgumentException` 提供的字符串不匹配任何样式的名称，则会引发该字符串。
+      description: 要应用于表格的样式。 如果提供的字符串与任何样式的名称不匹配， `InvalidArgumentException` 则会引发该字符串。
       type: string | <xref uid="excel!Excel.TableStyle:class" /> | <xref uid="excel!Excel.BuiltInTableStyle:enum" />
     return:
       type: void
@@ -630,7 +651,7 @@ methods:
   uid: excel!Excel.Table#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 Excel.Table 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.TableData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象 `toJSON()` 传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 Excel.Table 对象是一个 API 对象，该方法返回一个纯 JavaScript 对象， (类型 `toJSON` `toJSON` 为 `Excel.Interfaces.TableData`<!-- -->) 原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -641,9 +662,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 7d8448d9564dc74c7ae0ca84ebcb9e808a49e765
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: 93c2923406d950514c0d16a1225bf76d940dcd39
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49853466"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50541192"

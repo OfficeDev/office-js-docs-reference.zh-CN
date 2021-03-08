@@ -4,7 +4,7 @@ uid: excel!Excel.Worksheet:class
 package: excel!
 fullName: Excel.Worksheet
 summary: >-
-  Excel 工作表是由单元格组成的网格。 它可以包含数据、表、图表等。若要了解有关工作表对象模型的信息，请阅读使用 [Excel JavaScript API 处理工作表](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-worksheets)<!-- -->.
+  Excel 工作表是由单元格组成的网格。 它可以包含数据、表、图表等。若要了解有关工作表对象模型的信息，请阅读使用[Excel JavaScript API](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-worksheets)处理工作表<!-- -->.
 
 
   \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -18,7 +18,7 @@ properties:
   package: excel!
   fullName: autoFilter
   summary: >-
-    表示工作表的 AutoFilter 对象。
+    表示 `AutoFilter` 工作表的对象。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -35,7 +35,7 @@ properties:
   package: excel!
   fullName: charts
   summary: >-
-    返回属于工作表的图表的集合。
+    返回属于工作表的图表集合。
 
 
     \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -79,7 +79,7 @@ properties:
   package: excel!
   fullName: customProperties
   summary: >-
-    获取工作表级别的自定义属性的集合。
+    获取工作表级自定义属性的集合。
 
 
     \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -176,12 +176,12 @@ properties:
   package: excel!
   fullName: namedSheetViews
   summary: >-
-    返回工作表中的工作表视图的集合。
+    返回工作表中呈现的工作表视图的集合。
 
 
-    \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: 'readonly namedSheetViews: Excel.NamedSheetViewCollection;'
@@ -276,7 +276,7 @@ properties:
   package: excel!
   fullName: onDeactivated
   summary: >-
-    在工作表停用时发生。
+    在工作表被停用时发生。
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -293,7 +293,7 @@ properties:
   package: excel!
   fullName: onFiltered
   summary: >-
-    在特定工作表上应用筛选器时发生。
+    当筛选应用于特定工作表时发生。
 
 
     \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -398,7 +398,7 @@ properties:
     - 用户拖动鼠标进行多选。
 
 
-    - 为公式引用选择单元格参数时，用户会选择该模式下的单元格。
+    - 为公式引用选择单元格参数时，用户选择模式下的单元格。
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -415,7 +415,7 @@ properties:
   package: excel!
   fullName: pageLayout
   summary: >-
-    获取工作表的 PageLayout 对象。
+    获取 `PageLayout` 工作表的对象。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -465,7 +465,7 @@ properties:
   package: excel!
   fullName: protection
   summary: >-
-    返回表工作表的工作表保护对象。
+    返回工作表的工作表保护对象。
 
 
     \[[API 集：ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -580,7 +580,7 @@ properties:
   package: excel!
   fullName: tabColor
   summary: >-
-    工作表的选项卡颜色。 检索选项卡颜色时，如果工作表不可见，则该值将为 null。 如果工作表可见，但选项卡颜色设置为自动，则返回空字符串。 否则，该属性将设置为一种颜色，格式为 \# "123456"。设置颜色时，请使用空字符串来设置"auto"颜色，否则使用真实颜色。
+    工作表的选项卡颜色。 检索选项卡颜色时，如果工作表不可见，则值将为 `null`<!-- -->. 如果工作表可见，但选项卡颜色设置为自动，将返回空字符串。 否则，该属性将设置为颜色，格式为 \# RRGGBB (例如"FFA500") 。 设置颜色时，请使用空字符串设置"自动"颜色，否则使用真实颜色。
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -621,9 +621,9 @@ properties:
   isPreview: true
   isDeprecated: false
   syntax:
-    content: 'readonly tasks: Excel.TaskCollection;'
+    content: 'readonly tasks: Excel.DocumentTaskCollection;'
     return:
-      type: <xref uid="excel!Excel.TaskCollection:class" />
+      type: <xref uid="excel!Excel.DocumentTaskCollection:class" />
 - name: verticalPageBreaks
   uid: excel!Excel.Worksheet#verticalPageBreaks:member
   package: excel!
@@ -690,7 +690,7 @@ methods:
     content: 'calculate(markAllDirty: boolean): void;'
     parameters:
     - id: markAllDirty
-      description: 真，要标记为脏。
+      description: 为 True，则全部标记为脏。
       type: boolean
     return:
       type: void
@@ -711,10 +711,10 @@ methods:
     content: 'copy(positionType?: Excel.WorksheetPositionType, relativeTo?: Excel.Worksheet): Excel.Worksheet;'
     parameters:
     - id: positionType
-      description: 工作簿中放置新创建的工作表的位置。 默认值为"None"，将工作表插入工作表的开头。
+      description: 工作簿中放置新创建的工作表的位置。 默认值为"None"，它插入工作表的开头。
       type: <xref uid="excel!Excel.WorksheetPositionType:enum" />
     - id: relativeTo
-      description: 确定新创建的工作表的位置的现有工作表。 只有在为 `positionType` "Before"或"After"时，才需要这样做。
+      description: 确定新创建的工作表的位置的现有工作表。 这仅在为 `positionType` "Before"或"After"时需要。
       type: <xref uid="excel!Excel.Worksheet:class" />
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -760,10 +760,10 @@ methods:
     content: 'copy(positionTypeString?: "None" | "Before" | "After" | "Beginning" | "End", relativeTo?: Excel.Worksheet): Excel.Worksheet;'
     parameters:
     - id: positionTypeString
-      description: 工作簿中放置新创建的工作表的位置。 默认值为"None"，将工作表插入工作表的开头。
+      description: 工作簿中放置新创建的工作表的位置。 默认值为"None"，它插入工作表的开头。
       type: "\"None\" | \"Before\" | \"After\" | \"Beginning\" | \"End\""
     - id: relativeTo
-      description: 确定新创建的工作表的位置的现有工作表。 只有在为 `positionType` "Before"或"After"时，才需要这样做。
+      description: 确定新创建的工作表的位置的现有工作表。 这仅在为 `positionType` "Before"或"After"时需要。
       type: <xref uid="excel!Excel.Worksheet:class" />
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -773,7 +773,7 @@ methods:
   package: excel!
   fullName: delete()
   summary: >-
-    从工作簿中删除工作表。 请注意，如果工作表的可见性设置为"VeryHidden"，删除操作将失败，但出现 `InvalidOperation` 异常。 在删除之前，应首先将其可见性更改为隐藏或可见。
+    从工作簿中删除工作表。 请注意，如果工作表的可见性设置为"VeryHidden"，删除操作将失败，但出现 `InvalidOperation` 异常。 在删除之前，应先将其可见性更改为隐藏或可见。
 
 
     \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -790,7 +790,7 @@ methods:
   package: excel!
   fullName: findAll(text, criteria)
   summary: >-
-    根据指定的条件查找给定字符串的所有匹配项，并将它们作为包含一个或多个矩形区域的 RangeAreas 对象返回。
+    根据指定的条件查找给定字符串的所有匹配项，并作为包含一个或多个矩形区域的对象 `RangeAreas` 返回它们。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -804,17 +804,17 @@ methods:
       description: 要查找的字符串。
       type: string
     - id: criteria
-      description: 其他搜索条件，包括搜索是否需要匹配整个单元格或区分大小写。
+      description: 其他搜索条件，包括搜索是需要匹配整个单元格还是区分大小写。
       type: <xref uid="excel!Excel.WorksheetSearchCriteria:interface" />
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
-      description: 一个 RangeArea 对象，包含一个或多个与搜索条件匹配的矩形区域。 如果没有单元格满足此条件，将引发 ItemNotFound 错误。
+      description: 包含 `RangeAreas` 一个或多个与搜索条件匹配的矩形区域的对象。 如果没有单元格满足此条件， `ItemNotFound` 将引发错误。
 - name: findAllOrNullObject(text, criteria)
   uid: excel!Excel.Worksheet#findAllOrNullObject:member(1)
   package: excel!
   fullName: findAllOrNullObject(text, criteria)
   summary: >-
-    根据指定的条件查找给定字符串的所有匹配项，并将它们作为包含一个或多个矩形区域的 RangeAreas 对象返回。
+    根据指定的条件查找给定字符串的所有匹配项，并作为包含一个或多个矩形区域的对象 `RangeAreas` 返回它们。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -828,12 +828,12 @@ methods:
       description: 要查找的字符串。
       type: string
     - id: criteria
-      description: 其他搜索条件，包括搜索是否需要匹配整个单元格或区分大小写。
+      description: 其他搜索条件，包括搜索是需要匹配整个单元格还是区分大小写。
       type: <xref uid="excel!Excel.WorksheetSearchCriteria:interface" />
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
       description: >-
-        一个 RangeArea 对象，包含一个或多个与搜索条件匹配的矩形区域。 如果没有匹配项，则此函数将返回其属性设置为 `isNullObject``true`<!-- -->. 有关详细信息，请参阅[ \* OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+        包含 `RangeAreas` 一个或多个与搜索条件匹配的矩形区域的对象。 如果没有匹配项，则此函数将返回其 `isNullObject` 属性设置为 `true`<!-- -->. 有关详细信息，请参阅[ \* OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
         #### <a name="examples"></a>示例
@@ -865,7 +865,7 @@ methods:
   package: excel!
   fullName: getCell(row, column)
   summary: >-
-    根据行和列编号获取包含单个单元格的 range 对象。 单元格可以位于父区域外部，只要它保持在工作表网格内即可。
+    基于 `Range` 行号和列号获取包含单个单元格的对象。 单元格可以位于父区域外，只要它保持在工作表网格内即可。
 
 
     \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -900,7 +900,7 @@ methods:
     content: 'getNext(visibleOnly?: boolean): Excel.Worksheet;'
     parameters:
     - id: visibleOnly
-      description: 可选。 如果为 true，则只考虑可见的工作表，跳过任何隐藏的工作表。
+      description: 可选。 If `true`<!-- -->，只考虑可见的工作表，跳过任何隐藏的工作表。
       type: boolean
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -910,7 +910,7 @@ methods:
   package: excel!
   fullName: getNextOrNullObject(visibleOnly)
   summary: >-
-    获取此工作表后跟的工作表。 如果此工作表后没有工作表，则此方法将返回其属性设置为 `isNullObject``true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+    获取此工作表后跟的工作表。 如果此工作表后没有工作表，则此方法将返回其 `isNullObject` 属性设置为 `true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API 集：ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -921,7 +921,7 @@ methods:
     content: 'getNextOrNullObject(visibleOnly?: boolean): Excel.Worksheet;'
     parameters:
     - id: visibleOnly
-      description: 可选。 如果为 true，则只考虑可见的工作表，跳过任何隐藏的工作表。
+      description: 可选。 If `true`<!-- -->，只考虑可见的工作表，跳过任何隐藏的工作表。
       type: boolean
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -942,7 +942,7 @@ methods:
     content: 'getPrevious(visibleOnly?: boolean): Excel.Worksheet;'
     parameters:
     - id: visibleOnly
-      description: 可选。 如果为 true，则只考虑可见的工作表，跳过任何隐藏的工作表。
+      description: 可选。 If `true`<!-- -->，只考虑可见的工作表，跳过任何隐藏的工作表。
       type: boolean
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -952,7 +952,7 @@ methods:
   package: excel!
   fullName: getPreviousOrNullObject(visibleOnly)
   summary: >-
-    获取此工作表之前工作表。 如果没有以前的工作表，此方法将返回 null 对象。
+    获取此工作表之前工作表。 如果没有以前的工作表，则此方法将返回其属性设置为 `isNullObject``true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API 集：ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -963,7 +963,7 @@ methods:
     content: 'getPreviousOrNullObject(visibleOnly?: boolean): Excel.Worksheet;'
     parameters:
     - id: visibleOnly
-      description: 可选。 如果为 true，则只考虑可见的工作表，跳过任何隐藏的工作表。
+      description: 可选。 If `true`<!-- -->，只考虑可见的工作表，跳过任何隐藏的工作表。
       type: boolean
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -973,7 +973,7 @@ methods:
   package: excel!
   fullName: getRange(address)
   summary: >-
-    获取 range 对象，该对象代表由地址或名称指定的单个矩形单元格块。
+    获取 `Range` 对象，该对象代表由地址或名称指定的单个矩形单元格块。
 
 
     \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -994,7 +994,7 @@ methods:
   package: excel!
   fullName: getRangeByIndexes(startRow, startColumn, rowCount, columnCount)
   summary: >-
-    获取以特定行索引和列索引开始并跨越了一定数量的行和列的 range 对象。
+    获取从特定行索引和列索引开始并跨越一定数量的行 `Range` 和列的对象。
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1024,7 +1024,7 @@ methods:
   package: excel!
   fullName: getRanges(address)
   summary: >-
-    获取按地址或名称指定的 RangeAreas 对象，它表示一个或多个矩形区域块。
+    获取表示由地址或名称 `RangeAreas` 指定的一个或多个矩形区域块的对象。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1052,7 +1052,7 @@ methods:
     content: 'getUsedRange(valuesOnly?: boolean): Excel.Range;'
     parameters:
     - id: valuesOnly
-      description: 可选。 如果为 true，则仅将值为已用单元格的单元格 (忽略格式设置) 。 \[Api 集：ExcelApi 1.2\]
+      description: 可选。 If `true`<!-- -->，将仅将具有值的单元格视为已使用的单元格 (忽略格式设置) 。 \[Api 集：ExcelApi 1.2\]
       type: boolean
     return:
       type: <xref uid="excel!Excel.Range:class" />
@@ -1062,7 +1062,7 @@ methods:
   package: excel!
   fullName: getUsedRangeOrNullObject(valuesOnly)
   summary: >-
-    使用的区域是包含分配了值或格式化的任何单元格的最小区域。 如果整个工作表为空，则此函数将返回其属性设置为 `isNullObject``true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+    使用的区域是包含分配了值或格式化的任何单元格的最小区域。 如果整个工作表为空，则此函数将返回其 `isNullObject` 属性设置为 `true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API 集：ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1156,7 +1156,7 @@ methods:
       description: 要查找的字符串。
       type: string
     - id: replacement
-      description: 要替换为原始字符串。
+      description: 替换原始字符串的字符串。
       type: string
     - id: criteria
       description: 其他替换条件。
@@ -1168,7 +1168,7 @@ methods:
   uid: excel!Excel.Worksheet#set:member(1)
   package: excel!
   fullName: set(properties, options)
-  summary: 同时设置对象的多个属性。 你可以传递具有相应属性的普通对象，也可以传递同一类型的另一个 API 对象。
+  summary: 同时设置对象的多个属性。 可以使用相应的属性传递普通对象，也可以传递同一类型的另一个 API 对象。
   remarks: >-
     此方法具有以下附加签名：
 
@@ -1180,7 +1180,7 @@ methods:
     content: 'set(properties: Interfaces.WorksheetUpdateData, options?: OfficeExtension.UpdateOptions): void;'
     parameters:
     - id: properties
-      description: 一个 JavaScript 对象，其属性以等态方式构造到调用该方法的对象的属性。
+      description: 一个 JavaScript 对象，其属性按等态结构构造到调用该方法的对象的属性。
       type: <xref uid="excel!Excel.Interfaces.WorksheetUpdateData:interface" />
     - id: options
       description: 提供在属性对象尝试设置任何只读属性时禁止错误的选项。
@@ -1210,7 +1210,7 @@ methods:
   package: excel!
   fullName: showOutlineLevels(rowLevels, columnLevels)
   summary: >-
-    按大纲级别显示行或列组。 大纲分组并汇总工作表中的数据列表。 和 `rowLevels` `columnLevels` 参数指定将显示大纲的级别数。 可接受的参数范围介于 0 和 8 之间。 值 0 不会更改当前显示。 大于当前级别数的值将显示所有级别。
+    按其大纲级别显示行或列组。 概述组并汇总工作表中的数据列表。 And `rowLevels` `columnLevels` 参数指定将显示大纲的级别数。 可接受的参数范围介于 0 和 8 之间。 值 0 不会更改当前显示。 大于当前级别数的值将显示所有级别。
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1233,7 +1233,7 @@ methods:
   uid: excel!Excel.Worksheet#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给该对象的方法。) 而原始 Excel.Worksheet 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.WorksheetData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象 `toJSON()` 传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 Excel.Worksheet 对象是一个 API 对象，该方法返回一个纯 `toJSON` JavaScript 对象， (类型为 `toJSON``Excel.Interfaces.WorksheetData`<!-- -->) 原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1244,9 +1244,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: b7f3b4e06e50b3a7d27b2010a07cc6b888de7506
-  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
+  ms.openlocfilehash: 53a0d14e2afb8bb71331d28390a915b9a546e81f
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/27/2021
-  ms.locfileid: "49991672"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50540450"

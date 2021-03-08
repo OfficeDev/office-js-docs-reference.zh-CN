@@ -59,7 +59,7 @@ properties:
   package: excel!
   fullName: onAdded
   summary: >-
-    在将新工作表添加到工作簿时发生。
+    将新工作表添加到工作簿时发生。
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -173,7 +173,7 @@ properties:
   package: excel!
   fullName: onFormatChanged
   summary: >-
-    在更改工作簿中的任何工作表的格式时发生。
+    当工作簿中任何工作表的格式发生更改时发生。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -253,7 +253,7 @@ properties:
   package: excel!
   fullName: onSingleClicked
   summary: >-
-    在工作表集合中发生左键单击/点击操作时发生。 在下列情况下单击时不会触发此事件： - 用户拖动鼠标进行多选。 - 为公式引用选择单元格参数时，用户在模式下选择单元格。
+    在工作表集合中发生左键单击/点击操作时发生。 在下列情况下单击时不会触发此事件：- 用户拖动鼠标进行多选。 - 为公式引用选择单元格参数时，用户选择模式下的单元格。
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -270,7 +270,7 @@ methods:
   package: excel!
   fullName: add(name)
   summary: >-
-    向工作簿添加新工作表。工作表将添加到现有工作表的末尾。如果您想要激活新添加的工作表，请对其调用 ".activate()。
+    向工作簿添加新工作表。 工作表将添加到现有工作表的末尾。 如果要激活新添加的工作表，请 `.activate()` 调用它。
 
 
     \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -281,7 +281,7 @@ methods:
     content: 'add(name?: string): Excel.Worksheet;'
     parameters:
     - id: name
-      description: 可选。要添加的工作表的名称。如果指定，名称应唯一。如果未指定，Excel 将确定新工作表的名称。
+      description: 可选。 要添加的工作表的名称。 如果指定，该名称应是唯一的。 如果未指定，Excel 将确定新工作表的名称。
       type: string
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -294,10 +294,10 @@ methods:
     将工作簿的指定工作表插入当前工作簿。
 
 
-    *注意**：此 API 当前仅受 Windows 和 Mac 上的 Office 支持。
+    *注意**：此 API 当前仅受 Windows 和 Mac 上的 Office 支持。 并且已弃用，请改为 `Workbook.insertWorksheetFromBase64` 使用。
 
 
-    \[[API 集：ExcelApiAddFromBase64String 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -311,14 +311,14 @@ methods:
       description: 可选。 要插入的单个工作表的名称。 默认情况下，将插入源工作簿的所有工作表。
       type: string[]
     - id: positionType
-      description: 可选。 在当前工作簿中将插入新工作表的位置。 有关详细信息，请参阅 Excel.WorksheetPositionType。 默认值为"Start"。
+      description: 可选。 在当前工作簿中的位置，将插入新工作表。 有关详细信息，请参阅 `Excel.WorksheetPositionType`。 默认值为"Start"。
       type: <xref uid="excel!Excel.WorksheetPositionType:enum" />
     - id: relativeTo
-      description: 可选。 当前工作簿中为 positionType 参数引用的工作表。 默认值为 null，并且根据 positionType，它将在当前工作簿的开始或结尾插入工作表。
+      description: 可选。 引用参数的当前工作簿中的 `positionType` 工作表。 默认值 `null` 为和，基于 `positionType`<!-- -->，它将在当前工作簿的开始或末尾插入工作表。
       type: <xref uid="excel!Excel.Worksheet:class" /> | string
     return:
       type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;string[]&gt;
-      description: "对应于每个新插入的工作表的 ID 数组。\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/workbook-insert-external-worksheets.yaml\nconst myFile = <HTMLInputElement>document.getElementById(\"file\");\nconst reader = new FileReader();\n\nreader.onload = (event) => {\n    Excel.run((context) => {\n        // strip off the metadata before the base64-encoded string\n        const startIndex = reader.result.toString().indexOf(\"base64,\");\n        const workbookContents = reader.result.toString().substr(startIndex + 7);\n\n        const sheets = context.workbook.worksheets;\n        sheets.addFromBase64(\n            workbookContents,\n            null, // get all the worksheets \n            Excel.WorksheetPositionType.end // insert them after the current workbook's worksheets\n            );\n        return context.sync();\n    });\n};\n\n// read in the file as a data URL so we can parse the base64-encoded string\nreader.readAsDataURL(myFile.files[0]);\n```"
+      description: "对应于每个新插入的工作表的一组 ID。\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/workbook-insert-external-worksheets.yaml\nconst myFile = <HTMLInputElement>document.getElementById(\"file\");\nconst reader = new FileReader();\n\nreader.onload = (event) => {\n    Excel.run((context) => {\n        // strip off the metadata before the base64-encoded string\n        const startIndex = reader.result.toString().indexOf(\"base64,\");\n        const workbookContents = reader.result.toString().substr(startIndex + 7);\n\n        const sheets = context.workbook.worksheets;\n        sheets.addFromBase64(\n            workbookContents,\n            null, // get all the worksheets \n            Excel.WorksheetPositionType.end // insert them after the current workbook's worksheets\n            );\n        return context.sync();\n    });\n};\n\n// read in the file as a data URL so we can parse the base64-encoded string\nreader.readAsDataURL(myFile.files[0]);\n```"
 - name: addFromBase64(base64File, sheetNamesToInsert, positionTypeString, relativeTo)
   uid: excel!Excel.WorksheetCollection#addFromBase64:member(2)
   package: excel!
@@ -327,10 +327,10 @@ methods:
     将工作簿的指定工作表插入当前工作簿。
 
 
-    *注意**：此 API 当前仅受 Windows 和 Mac 上的 Office 支持。
+    *注意**：此 API 当前仅受 Windows 和 Mac 上的 Office 支持。 并且已弃用，请改为 `Workbook.insertWorksheetFromBase64` 使用。
 
 
-    \[[API 集：ExcelApiAddFromBase64String 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -344,14 +344,14 @@ methods:
       description: 可选。 要插入的单个工作表的名称。 默认情况下，将插入源工作簿的所有工作表。
       type: string[]
     - id: positionTypeString
-      description: 可选。 在当前工作簿中将插入新工作表的位置。 有关详细信息，请参阅 Excel.WorksheetPositionType。 默认值为"Start"。
+      description: 可选。 在当前工作簿中的位置，将插入新工作表。 有关详细信息，请参阅 `Excel.WorksheetPositionType`。 默认值为"Start"。
       type: "\"None\" | \"Before\" | \"After\" | \"Beginning\" | \"End\""
     - id: relativeTo
-      description: 可选。 当前工作簿中为 positionType 参数引用的工作表。 默认值为 null，并且根据 positionType，它将在当前工作簿的开始或结尾插入工作表。
+      description: 可选。 引用参数的当前工作簿中的 `positionType` 工作表。 默认值 `null` 为和，基于 `positionType`<!-- -->，它将在当前工作簿的开始或末尾插入工作表。
       type: <xref uid="excel!Excel.Worksheet:class" /> | string
     return:
       type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;string[]&gt;
-      description: 对应于每个新插入的工作表的 ID 数组。
+      description: 对应于每个新插入的工作表的一组 ID。
 - name: getActiveWorksheet()
   uid: excel!Excel.WorksheetCollection#getActiveWorksheet:member(1)
   package: excel!
@@ -385,7 +385,7 @@ methods:
     content: 'getCount(visibleOnly?: boolean): OfficeExtension.ClientResult<number>;'
     parameters:
     - id: visibleOnly
-      description: 可选。 如果为 true，则只考虑可见的工作表，跳过任何隐藏的工作表。
+      description: 可选。 If `true`<!-- -->，只考虑可见的工作表，跳过任何隐藏的工作表。
       type: boolean
     return:
       type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;number&gt;
@@ -406,7 +406,7 @@ methods:
     content: 'getFirst(visibleOnly?: boolean): Excel.Worksheet;'
     parameters:
     - id: visibleOnly
-      description: 可选。 如果为 true，则只考虑可见的工作表，跳过任何隐藏的工作表。
+      description: 可选。 If `true`<!-- -->，只考虑可见的工作表，跳过任何隐藏的工作表。
       type: boolean
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -416,7 +416,7 @@ methods:
   package: excel!
   fullName: getItem(key)
   summary: >-
-    按 Worksheet 对象的名称或 ID 获取此对象。
+    使用其名称或 ID 获取 worksheet 对象。
 
 
     \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -437,7 +437,7 @@ methods:
   package: excel!
   fullName: getItemOrNullObject(key)
   summary: >-
-    按 Worksheet 对象的名称或 ID 获取此对象。 如果工作表不存在，则此函数将返回其属性设置为 `isNullObject``true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+    使用其名称或 ID 获取 worksheet 对象。 如果工作表不存在，则此函数将返回其 `isNullObject` 属性设置为 `true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API 集：ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -469,7 +469,7 @@ methods:
     content: 'getLast(visibleOnly?: boolean): Excel.Worksheet;'
     parameters:
     - id: visibleOnly
-      description: 可选。 如果为 true，则只考虑可见的工作表，跳过任何隐藏的工作表。
+      description: 可选。 If `true`<!-- -->，只考虑可见的工作表，跳过任何隐藏的工作表。
       type: boolean
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -529,7 +529,7 @@ methods:
   uid: excel!Excel.WorksheetCollection#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `Excel.WorksheetCollection` `toJSON` JavaScript 对象 `Excel.Interfaces.WorksheetCollectionData`<!-- -->) 包含"items"数组，其中包含集合项中任何已加载属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象 `toJSON()` 传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始对象是 API 对象，该方法返回一个纯 JavaScript 对象， (类型 `toJSON` `Excel.WorksheetCollection` `toJSON` 为 `Excel.Interfaces.WorksheetCollectionData`<!-- -->) 包含"items"数组，其中包含集合项中任何已加载属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -540,9 +540,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 217115c6457c6b3150849309c2eff8be4d1cfe79
-  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
+  ms.openlocfilehash: 4faa340672a3607f9720f352711f6bff729b1d5d
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/27/2021
-  ms.locfileid: "49991644"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50540401"
