@@ -4,10 +4,10 @@ uid: excel!Excel.GroupShapeCollection:class
 package: excel!
 fullName: Excel.GroupShapeCollection
 summary: >-
-  代表形状组中的形状集合。
+  代表形状组内的形状集合。
 
 
-  \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: excel!Excel.GroupShapeCollection#context:member
   package: excel!
   fullName: context
-  summary: 与该对象关联的请求上下文。 这会将加载项的进程连接到 Office 主机应用程序的进程。
+  summary: 与对象关联的请求上下文。 这会将外接程序的进程连接到 Office 主机应用程序的进程。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -46,7 +46,7 @@ methods:
     返回形状组中的形状数量。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -60,10 +60,10 @@ methods:
   package: excel!
   fullName: getItem(key)
   summary: >-
-    按名称或 ID 获取形状。
+    使用形状的名称或 ID 获取形状。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -84,7 +84,7 @@ methods:
     根据其在集合中的位置获取形状。
 
 
-    \[[API 集： ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -92,8 +92,29 @@ methods:
     content: 'getItemAt(index: number): Excel.Shape;'
     parameters:
     - id: index
-      description: 要检索的对象的从零开始的索引值。
+      description: 要检索的对象的从零开始索引值。
       type: number
+    return:
+      type: <xref uid="excel!Excel.Shape:class" />
+      description: ''
+- name: getItemOrNullObject(key)
+  uid: excel!Excel.GroupShapeCollection#getItemOrNullObject:member(1)
+  package: excel!
+  fullName: getItemOrNullObject(key)
+  summary: >-
+    使用形状的名称或 ID 获取形状。 如果 shape 对象不存在，则此函数将返回其 `isNullObject` 属性设置为 `true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+
+
+    \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'getItemOrNullObject(key: string): Excel.Shape;'
+    parameters:
+    - id: key
+      description: 要检索的形状的名称或 ID。
+      type: string
     return:
       type: <xref uid="excel!Excel.Shape:class" />
       description: ''
@@ -126,7 +147,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.GroupShapeCollection;'
     parameters:
     - id: propertyNames
-      description: 一个以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.GroupShapeCollection:class" />
@@ -143,7 +164,7 @@ methods:
     content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.GroupShapeCollection;'
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，并且 `propertyNamesAndPaths.expand` 是一个以逗号分隔的字符串，用于指定要加载的导航属性。'
+      description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，它是一个以逗号分隔的字符串，用于指定要加载的 `propertyNamesAndPaths.expand` 导航属性。'
       type: <xref uid="office!OfficeExtension.LoadOption:interface" />
     return:
       type: <xref uid="excel!Excel.GroupShapeCollection:class" />
@@ -152,7 +173,7 @@ methods:
   uid: excel!Excel.GroupShapeCollection#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript `toJSON()` 方法，以便在将 API 对象传递到时提供更有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->反过来，调用 `toJSON` 传递给它的对象的方法。 ) 而原始 `Excel.GroupShapeCollection` 对象是 API 对象，则该 `toJSON` 方法返回一个纯 JavaScript 对象 (类型为 `Excel.Interfaces.GroupShapeCollectionData`<!-- -->包含集合项中任何已加载属性的浅表的 "items" 数组 ) 。
+  summary: 重写 JavaScript 方法，以便向 API 对象 `toJSON()` 传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始对象是 API 对象，该方法返回一个纯 JavaScript 对象， (类型 `toJSON` `Excel.GroupShapeCollection` `toJSON` 为 `Excel.Interfaces.GroupShapeCollectionData`<!-- -->) 包含"items"数组，其中包含集合项中任何已加载属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -163,9 +184,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 104f739b46010b89ef16096374f18324d2a9d8e5
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 23abcc9fcb0b289d450ba707e736604f955c6752
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49206180"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50541073"

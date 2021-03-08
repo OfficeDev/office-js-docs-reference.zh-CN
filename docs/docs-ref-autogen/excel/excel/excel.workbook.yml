@@ -4,7 +4,7 @@ uid: excel!Excel.Workbook:class
 package: excel!
 fullName: Excel.Workbook
 summary: >-
-  Workbook 是顶级对象，其中包含相关的工作簿对象，如工作表、表、区域等。若要详细了解工作簿对象模型，请阅读使用 [Excel JavaScript API 处理工作簿](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-workbooks)<!-- -->.
+  Workbook 是包含相关工作簿对象（如工作表、表和范围）的顶级对象。 若要了解有关工作簿对象模型的内容，请阅读使用[Excel JavaScript API](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-workbooks)处理工作簿<!-- -->.
 
 
   \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -34,7 +34,7 @@ properties:
   package: excel!
   fullName: autoSave
   summary: >-
-    指定工作簿是否位于自动保存模式。
+    指定工作簿是否位于"自动保存"模式。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -98,7 +98,7 @@ properties:
   package: excel!
   fullName: comments
   summary: >-
-    表示与工作簿关联的批注集合。
+    表示与工作簿关联的注释的集合。
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -174,7 +174,7 @@ properties:
   package: excel!
   fullName: isDirty
   summary: >-
-    指定自上次保存工作簿以来是否进行了更改。 如果要关闭修改的工作簿而不保存或提示保存，可以将此属性设置为 true。
+    指定自上次保存工作簿以来是否进行了更改。 如果要关闭修改的工作簿而不保存或提示保存，可以将此属性 `true` 设置为。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -222,7 +222,7 @@ properties:
   package: excel!
   fullName: names
   summary: >-
-    表示工作簿范围内的已命名项目（称为区域和常量）的集合。
+    表示工作簿范围的命名项集合 (范围和) 。
 
 
     \[[API 集：ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -233,12 +233,28 @@ properties:
     content: 'readonly names: Excel.NamedItemCollection;'
     return:
       type: <xref uid="excel!Excel.NamedItemCollection:class" />
+- name: onActivated
+  uid: excel!Excel.Workbook#onActivated:member
+  package: excel!
+  fullName: onActivated
+  summary: >-
+    在激活工作簿时发生。 注意：打开工作簿时不会启动此事件。
+
+
+    \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'readonly onActivated: OfficeExtension.EventHandlers<Excel.WorkbookActivatedEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorkbookActivatedEventArgs:interface" />&gt;
 - name: onAutoSaveSettingChanged
   uid: excel!Excel.Workbook#onAutoSaveSettingChanged:member
   package: excel!
   fullName: onAutoSaveSettingChanged
   summary: >-
-    在工作簿上更改“自动保存”设置时发生。
+    在工作簿上更改"自动保存"设置时发生。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -352,7 +368,7 @@ properties:
   package: excel!
   fullName: readOnly
   summary: >-
-    如果在只读模式下打开工作簿，则为 True。
+    返回 `true` 工作簿是否以只读模式打开。
 
 
     \[[API 集：ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -368,7 +384,7 @@ properties:
   package: excel!
   fullName: settings
   summary: >-
-    表示一组与 workbook 相关联的 setting 对象。
+    表示与工作簿关联的设置的集合。
 
 
     \[[API 集：ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -400,7 +416,7 @@ properties:
   package: excel!
   fullName: slicers
   summary: >-
-    表示与工作簿关联的切片器集合。
+    表示与工作簿关联的切片器的集合。
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -489,9 +505,9 @@ properties:
   isPreview: true
   isDeprecated: false
   syntax:
-    content: 'readonly tasks: Excel.TaskCollection;'
+    content: 'readonly tasks: Excel.DocumentTaskCollection;'
     return:
-      type: <xref uid="excel!Excel.TaskCollection:class" />
+      type: <xref uid="excel!Excel.DocumentTaskCollection:class" />
 - name: timelineStyles
   uid: excel!Excel.Workbook#timelineStyles:member
   package: excel!
@@ -529,7 +545,7 @@ properties:
   package: excel!
   fullName: usePrecisionAsDisplayed
   summary: >-
-    如果此工作簿中的计算仅使用显示的数字精度来完成，则为 True。 将此属性从 false 切换到 true 时，数据将永久失去准确性。
+    如果此工作簿中的计算仅使用显示的数字精度来完成，则为 True。 在将此属性切换到 `false``true`<!-- -->.
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -638,7 +654,7 @@ methods:
   package: excel!
   fullName: getActiveChartOrNullObject()
   summary: >-
-    获取工作簿中的当前活动图表。 如果没有活动图表，则此函数将返回其属性设置为 `isNullObject``true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+    获取工作簿中的当前活动图表。 如果没有活动图表，则此函数将返回其 `isNullObject` 属性设置为 `true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -672,7 +688,7 @@ methods:
   package: excel!
   fullName: getActiveSlicerOrNullObject()
   summary: >-
-    获取工作簿中当前处于活动状态的切片器。 如果没有活动切片器，则此函数将返回其属性设置为 `isNullObject``true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+    获取工作簿中当前处于活动状态的切片器。 如果没有活动切片器，则此函数将返回其 `isNullObject` 属性设置为 `true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -689,7 +705,7 @@ methods:
   package: excel!
   fullName: getIsActiveCollabSession()
   summary: >-
-    如果多个用户正在编辑工作簿（共同创作），则为 True。 请注意，在工作簿状态更改和更改反映在方法结果之间可能有一些延迟。
+    返回 `true` 工作簿是否正由多个用户通过共同创作 (编辑) 。 请注意，在工作簿状态更改和更改反映在方法结果之间可能有一些延迟。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -723,7 +739,7 @@ methods:
   package: excel!
   fullName: getSelectedRanges()
   summary: >-
-    从工作簿中获取当前选定的一个或多个区域。 与 getSelectedRange() 不同，此方法返回表示所有选定区域的 RangeAreas 对象。
+    从工作簿中获取当前选定的一个或多个区域。 与 `getSelectedRange()`<!-- -->，此方法返回 `RangeAreas` 一个对象，该对象代表所有选定的区域。
 
 
     \[[API 集：ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -735,6 +751,33 @@ methods:
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
       description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/42-range/range-areas.yaml\nawait Excel.run(async (context) => {\n\n    const selectedRanges = context.workbook.getSelectedRanges();\n    selectedRanges.format.fill.color = \"lightblue\";\n\n    await context.sync();\n})\n```"
+- name: insertWorksheetsFromBase64(base64File, options)
+  uid: excel!Excel.Workbook#insertWorksheetsFromBase64:member(1)
+  package: excel!
+  fullName: insertWorksheetsFromBase64(base64File, options)
+  summary: >-
+    将源工作簿中的指定工作表插入到当前工作簿中。
+
+
+    *注意**：此 API 当前仅受 Windows、Mac 和 Online 上的 Office 支持。
+
+
+    \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'insertWorksheetsFromBase64(base64File: string, options?: Excel.InsertWorksheetOptions): OfficeExtension.ClientResult<string[]>;'
+    parameters:
+    - id: base64File
+      description: 必需。 base64 编码的字符串，表示源工作簿文件。
+      type: string
+    - id: options
+      description: 可选。 用于定义要插入的工作表以及新工作表在工作簿中的插入位置的选项。 默认情况下，源工作簿的所有工作表都插入到当前工作簿的末尾。
+      type: <xref uid="excel!Excel.InsertWorksheetOptions:interface" />
+    return:
+      type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;string[]&gt;
+      description: 对应于每个新插入的工作表的 ID 数组。
 - name: load(options)
   uid: excel!Excel.Workbook#load:member(1)
   package: excel!
@@ -764,7 +807,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.Workbook;'
     parameters:
     - id: propertyNames
-      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.Workbook:class" />
@@ -840,7 +883,7 @@ methods:
   uid: excel!Excel.Workbook#set:member(1)
   package: excel!
   fullName: set(properties, options)
-  summary: 同时设置对象的多个属性。 你可以传递具有相应属性的普通对象，也可以传递同一类型的另一个 API 对象。
+  summary: 同时设置对象的多个属性。 可以使用相应的属性传递普通对象，也可以传递同一类型的另一个 API 对象。
   remarks: >-
     此方法具有以下附加签名：
 
@@ -852,7 +895,7 @@ methods:
     content: 'set(properties: Interfaces.WorkbookUpdateData, options?: OfficeExtension.UpdateOptions): void;'
     parameters:
     - id: properties
-      description: 一个 JavaScript 对象，其属性以等态方式构造到调用该方法的对象的属性。
+      description: 一个 JavaScript 对象，其属性按等态结构构造到调用该方法的对象的属性。
       type: <xref uid="excel!Excel.Interfaces.WorkbookUpdateData:interface" />
     - id: options
       description: 提供在属性对象尝试设置任何只读属性时禁止错误的选项。
@@ -881,7 +924,7 @@ methods:
   uid: excel!Excel.Workbook#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给该对象的方法。) 而原始 Excel.Workbook 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.WorkbookData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象 `toJSON()` 传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给该对象的对象的方法。) 而原始 Excel.Workbook 对象是一个 API 对象，该方法返回一个纯 `toJSON` JavaScript 对象， (类型为 `toJSON``Excel.Interfaces.WorkbookData`<!-- -->) 原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -892,9 +935,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 290ffa4398d248dd68ea5b12e851158b09235a76
-  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
+  ms.openlocfilehash: f1bff832afa7ed5cafd48a50c93539767475c5d3
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/27/2021
-  ms.locfileid: "49991980"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50540527"

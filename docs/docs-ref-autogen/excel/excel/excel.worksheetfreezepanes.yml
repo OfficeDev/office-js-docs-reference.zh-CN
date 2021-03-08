@@ -38,7 +38,7 @@ methods:
     content: 'freezeAt(frozenRange: Range | string): void;'
     parameters:
     - id: frozenRange
-      description: 一个代表要冻结的单元格或空单元格的范围，用于删除所有冻结窗格。
+      description: 一个代表要冻结的单元格或删除所有冻结窗格 `null` 的范围。
       type: <xref uid="excel!Excel.Range:class" /> | string
     return:
       type: void
@@ -48,7 +48,7 @@ methods:
   package: excel!
   fullName: freezeColumns(count)
   summary: >-
-    就地冻结工作表的第一列或多列。
+    就地冻结工作表的第一列。
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -80,7 +80,7 @@ methods:
     content: 'freezeRows(count?: number): void;'
     parameters:
     - id: count
-      description: 要冻结的行数（可选）或零（用于解除冻结所有行）
+      description: 要冻结的可选行数，或零，用于解除冻结所有行的行数
       type: number
     return:
       type: void
@@ -90,7 +90,7 @@ methods:
   package: excel!
   fullName: getLocation()
   summary: >-
-    获取用于描述活动工作表视图中的冻结单元格的区域。 冻结区域对应于在顶部和左侧窗格中冻结的单元格。
+    获取用于描述活动工作表视图中的冻结单元格的区域。 冻结区域对应于顶部和左侧窗格中冻结的单元格。
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -107,7 +107,7 @@ methods:
   package: excel!
   fullName: getLocationOrNullObject()
   summary: >-
-    获取用于描述活动工作表视图中的冻结单元格的区域。 冻结区域对应于在顶部和左侧窗格中冻结的单元格。 如果没有冻结窗格，则此函数将返回其属性设置为 `isNullObject``true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+    获取用于描述活动工作表视图中的冻结单元格的区域。 冻结区域对应于顶部和左侧窗格中冻结的单元格。 如果没有冻结窗格，则此函数将返回其 `isNullObject` 属性设置为 `true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API 集：ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -123,7 +123,7 @@ methods:
   uid: excel!Excel.WorksheetFreezePanes#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给该对象的方法。) 而原始 `toJSON` Excel.WorksheetFreezePanes 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` JavaScript 对象 `Excel.Interfaces.WorksheetFreezePanesData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象 `toJSON()` 传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 `toJSON` Excel.WorksheetFreezePanes 对象是一个 API 对象，该方法返回一个纯 JavaScript 对象 (类型 `toJSON` 为 `Excel.Interfaces.WorksheetFreezePanesData`<!-- -->) 原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -157,9 +157,9 @@ methods:
       description: "\n\n#### <a name=\"examples\"></a>示例\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/54-worksheet/worksheet-freeze-panes.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    sheet.freezePanes.unfreeze();\n\n    await context.sync();\n});\n```"
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 94f334a0f3e2a1890bb1f0e1c7e068f342893601
-  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
+  ms.openlocfilehash: 03fa3cc3ad5f10e961cf45dfe1abd37079994349
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/27/2021
-  ms.locfileid: "49991434"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50540261"

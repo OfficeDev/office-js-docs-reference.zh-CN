@@ -4,7 +4,7 @@ uid: excel!Excel.PivotTableScopedCollection:class
 package: excel!
 fullName: Excel.PivotTableScopedCollection
 summary: >-
-  表示数据透视表的范围集合。 数据透视表根据数据透视表左上角的位置进行排序。 它们按从上到下的顺序排序，然后从左到右排序。
+  代表数据透视表的范围集合。 数据透视表根据数据透视表左上角的位置进行排序。 它们按从上到下的顺序排序，然后从左到右排序。
 
 
   \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -60,7 +60,7 @@ methods:
   package: excel!
   fullName: getFirst()
   summary: >-
-    获取集合中的第一个数据透视表。 集合中数据透视表按从上到下和从左到右排序，这样，左上表格就是集合中第一个数据透视表。
+    获取集合中的第一个数据透视表。 集合中的数据透视表按从上到下和从左到右顺序排序，这样，从左上到左表格就是集合中第一个数据透视表。
 
 
     \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -69,6 +69,23 @@ methods:
   isDeprecated: false
   syntax:
     content: 'getFirst(): Excel.PivotTable;'
+    return:
+      type: <xref uid="excel!Excel.PivotTable:class" />
+      description: ''
+- name: getFirstOrNullObject()
+  uid: excel!Excel.PivotTableScopedCollection#getFirstOrNullObject:member(1)
+  package: excel!
+  fullName: getFirstOrNullObject()
+  summary: >-
+    获取集合中的第一个数据透视表。 集合中的数据透视表按从上到下和从左到右顺序排序，这样，从左上到左的表格就是集合中的第一个数据透视表。 如果集合为空，则此函数返回其 `isNullObject` 属性设置为 `true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+
+
+    \[[API 集：ExcelApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'getFirstOrNullObject(): Excel.PivotTable;'
     return:
       type: <xref uid="excel!Excel.PivotTable:class" />
       description: ''
@@ -98,7 +115,7 @@ methods:
   package: excel!
   fullName: getItemOrNullObject(name)
   summary: >-
-    按名称获取 PivotTable 对象。 如果数据透视表不存在，则此函数返回其属性设置为 `isNullObject``true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+    按名称获取 PivotTable 对象。 如果数据透视表不存在，则此函数返回其 `isNullObject` 属性设置为 `true`<!-- -->. 有关详细信息，请参阅 [*OrNullObject 方法和属性](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API 集：ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -143,7 +160,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.PivotTableScopedCollection;'
     parameters:
     - id: propertyNames
-      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.PivotTableScopedCollection:class" />
@@ -169,7 +186,7 @@ methods:
   uid: excel!Excel.PivotTableScopedCollection#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `Excel.PivotTableScopedCollection` `toJSON` JavaScript 对象 `Excel.Interfaces.PivotTableScopedCollectionData`<!-- -->) 包含"items"数组，其中包含集合项中任何已加载属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象 `toJSON()` 传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始对象是 API 对象，该方法返回一个纯 JavaScript 对象， (类型 `toJSON` `Excel.PivotTableScopedCollection` `toJSON` 为 `Excel.Interfaces.PivotTableScopedCollectionData`<!-- -->) 包含"items"数组，其中包含集合项中任何已加载属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -180,9 +197,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 02daceb130e81067e7d456284a547673f47f99f8
-  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
+  ms.openlocfilehash: 3bcc714d505d53418258e5f480d1a3e46fadfc7f
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/27/2021
-  ms.locfileid: "49991538"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50541843"

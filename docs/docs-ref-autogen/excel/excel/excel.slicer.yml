@@ -4,7 +4,7 @@ uid: excel!Excel.Slicer:class
 package: excel!
 fullName: Excel.Slicer
 summary: >-
-  表示工作簿中的切片器对象。
+  表示 `Slicer` 工作簿中的对象。
 
 
   \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -46,7 +46,7 @@ properties:
   package: excel!
   fullName: height
   summary: >-
-    表示切片器的高度（以磅为单位）。 引发"参数无效或缺失或格式不正确"。 当设置为负值或零作为输入时出现异常。
+    表示切片器的高度（以磅为单位）。 当设置为负值或零作为输入时 `InvalidArgument` 引发异常。
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -78,7 +78,7 @@ properties:
   package: excel!
   fullName: isFilterCleared
   summary: >-
-    如果已清除当前切片器上应用的所有筛选器，则为 True。
+    值 `true` 是当前应用于切片器的所有筛选器均被清除。
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -94,7 +94,7 @@ properties:
   package: excel!
   fullName: left
   summary: >-
-    表示从切片器左侧到工作表左侧的距离（以磅为单位）。 引发"参数无效或缺失或格式不正确"。 异常。如果设置为负值作为输入。
+    表示从切片器左侧到工作表左侧的距离（以磅为单位）。 当将负 `InvalidArgument` 值设置为输入时引发错误。
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -142,7 +142,7 @@ properties:
   package: excel!
   fullName: slicerItems
   summary: >-
-    表示作为切片器一部分的 SlicerItems 的集合。
+    表示作为切片器一部分的切片器项的集合。
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -190,7 +190,7 @@ properties:
   package: excel!
   fullName: style
   summary: >-
-    表示切片器样式的常量值。 可能的值包括："SlicerStyleLight1"到"SlicerStyleLight6"，"TableStyleOther1"到"TableStyleOther2"，"SlicerStyleDark1"到"SlicerStyleDark6"。 还可以指定工作簿中显示的用户定义的自定义样式。
+    代表切片器样式的常量值。 可能的值包括："SlicerStyleLight1"到"SlicerStyleLight6"，"TableStyleOther1"到"TableStyleOther2"，"SlicerStyleDark1"到"SlicerStyleDark6"。 还可以指定工作簿中显示的用户定义的自定义样式。
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -207,7 +207,7 @@ properties:
   package: excel!
   fullName: top
   summary: >-
-    表示从切片器上边缘到工作表顶部的距离（以磅为单位）。 引发"参数无效或缺失或格式不正确"。 异常。如果设置为负值作为输入。
+    表示从切片器上边缘到工作表顶部的距离（以磅为单位）。 当将负 `InvalidArgument` 值设置为输入时引发错误。
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -223,7 +223,7 @@ properties:
   package: excel!
   fullName: width
   summary: >-
-    表示切片器的宽度（以磅为单位）。 引发"参数无效或缺失或格式不正确"。 当设置为负值或零作为输入时出现异常。
+    表示切片器的宽度（以磅为单位）。 当设置为负值或零作为输入时 `InvalidArgument` 引发错误。
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -331,7 +331,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.Slicer;'
     parameters:
     - id: propertyNames
-      description: 用逗号分隔的字符串或字符串数组，用于指定要加载的属性。
+      description: 以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.Slicer:class" />
@@ -366,7 +366,7 @@ methods:
   package: excel!
   fullName: selectItems(items)
   summary: >-
-    基于切片器项的键选择切片器项。 清除前面的选择。 如果数组为空，则默认情况下将选择所有项目。
+    根据切片器项的键选择切片器项。 清除前面的选定内容。 如果数组为空，则默认情况下将选择所有项目。
 
 
     \[[API 集：ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -386,7 +386,7 @@ methods:
   uid: excel!Excel.Slicer#set:member(1)
   package: excel!
   fullName: set(properties, options)
-  summary: 同时设置对象的多个属性。 你可以传递具有相应属性的普通对象，也可以传递同一类型的另一个 API 对象。
+  summary: 同时设置对象的多个属性。 可以使用相应的属性传递普通对象，也可以传递同一类型的另一个 API 对象。
   remarks: >-
     此方法具有以下附加签名：
 
@@ -398,7 +398,7 @@ methods:
     content: 'set(properties: Interfaces.SlicerUpdateData, options?: OfficeExtension.UpdateOptions): void;'
     parameters:
     - id: properties
-      description: 一个 JavaScript 对象，其属性以等态方式构造到调用该方法的对象的属性。
+      description: 一个 JavaScript 对象，其属性按等态结构构造到调用该方法的对象的属性。
       type: <xref uid="excel!Excel.Interfaces.SlicerUpdateData:interface" />
     - id: options
       description: 提供在属性对象尝试设置任何只读属性时禁止错误的选项。
@@ -439,7 +439,7 @@ methods:
     content: 'setStyle(style: string | SlicerStyle | BuiltInSlicerStyle): void;'
     parameters:
     - id: style
-      description: 要应用于切片器的样式。 如果 `InvalidArgumentException` 提供的字符串不匹配任何样式的名称，则会引发该字符串。
+      description: 应用于切片器的样式。 如果提供的字符串与任何样式的名称不匹配， `InvalidArgument` 则会引发错误。
       type: string | <xref uid="excel!Excel.SlicerStyle:class" /> | <xref uid="excel!Excel.BuiltInSlicerStyle:enum" />
     return:
       type: void
@@ -448,7 +448,7 @@ methods:
   uid: excel!Excel.Slicer#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 重写 JavaScript 方法，以便向 API 对象传递 `toJSON()` 时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 Excel.Slicer 对象是一个 API 对象，该方法返回一个类型为 (`toJSON` `toJSON` JavaScript 对象 `Excel.Interfaces.SlicerData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
+  summary: 重写 JavaScript 方法，以便向 API 对象 `toJSON()` 传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的方法。) 而原始 Excel.Slicer 对象是一个 API 对象，该方法返回一个纯 `toJSON` JavaScript 对象， (类型为 `toJSON``Excel.Interfaces.SlicerData`<!-- -->) 原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -459,9 +459,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 93369502a3dc39bc7c980a2b683921512ad4c840
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: b81f2141b698cd3873dbac5435f202e238ecae06
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49852577"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50541368"
