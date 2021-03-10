@@ -777,7 +777,7 @@ methods:
       type: <xref uid="excel!Excel.InsertWorksheetOptions:interface" />
     return:
       type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;string[]&gt;
-      description: 对应于每个新插入的工作表的 ID 数组。
+      description: "对应于每个新插入的工作表的 ID 数组。\n\n#### <a name=\"examples\"></a>示例\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/workbook-insert-external-worksheets.yaml\nconst myFile = <HTMLInputElement>document.getElementById(\"file\");\nconst reader = new FileReader();\n\nreader.onload = (event) => {\n    Excel.run((context) => {\n        // Remove the metadata before the base64-encoded string.\n        const startIndex = reader.result.toString().indexOf(\"base64,\");\n        const workbookContents = reader.result.toString().substr(startIndex + 7);\n        \n        // Retrieve the workbook.\n        const workbook = context.workbook;\n        \n        // Set up the insert options. \n        var options = { \n            sheetNamesToInsert: [], // Insert all the worksheets from the source workbook.\n            positionType: Excel.WorksheetPositionType.after, // Insert after the `relativeTo` sheet.\n            relativeTo: \"Sheet1\" }; // The sheet relative to which the other worksheets will be inserted. Used with `positionType`.\n        \n        // Insert the workbook. \n        workbook.insertWorksheetsFromBase64(workbookContents, options);\n        return context.sync();\n    });\n};\n\n// Read the file as a data URL so that we can parse the base64-encoded string.\nreader.readAsDataURL(myFile.files[0]);\n```"
 - name: load(options)
   uid: excel!Excel.Workbook#load:member(1)
   package: excel!
@@ -935,9 +935,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: f1bff832afa7ed5cafd48a50c93539767475c5d3
-  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
+  ms.openlocfilehash: 26f69c0a824e1ed090b3a34b2243721d585c77cf
+  ms.sourcegitcommit: 7a78c85d4a5378180c50442becb98dd816065c5c
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 03/08/2021
-  ms.locfileid: "50540527"
+  ms.lasthandoff: 03/10/2021
+  ms.locfileid: "50607575"
