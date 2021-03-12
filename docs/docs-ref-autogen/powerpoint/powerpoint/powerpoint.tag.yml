@@ -1,10 +1,10 @@
 ### YamlMime:TSType
-name: PowerPoint.Shape
-uid: powerpoint!PowerPoint.Shape:class
+name: PowerPoint.Tag
+uid: powerpoint!PowerPoint.Tag:class
 package: powerpoint!
-fullName: PowerPoint.Shape
+fullName: PowerPoint.Tag
 summary: >-
-  表示幻灯片中的单个形状。
+  表示幻灯片中的单个标记。
 
 
   \[[API 集：PowerPointApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
@@ -14,7 +14,7 @@ isDeprecated: false
 type: class
 properties:
 - name: context
-  uid: powerpoint!PowerPoint.Shape#context:member
+  uid: powerpoint!PowerPoint.Tag#context:member
   package: powerpoint!
   fullName: context
   summary: 与对象关联的请求上下文。 这会将加载项进程连接到 Office 主机应用程序的进程。
@@ -25,12 +25,12 @@ properties:
     content: 'context: RequestContext;'
     return:
       type: <xref uid="powerpoint!PowerPoint.RequestContext:class" />
-- name: id
-  uid: powerpoint!PowerPoint.Shape#id:member
+- name: key
+  uid: powerpoint!PowerPoint.Tag#key:member
   package: powerpoint!
-  fullName: id
+  fullName: key
   summary: >-
-    获取形状的唯一 ID。 `id`在幻灯片中是唯一的。
+    获取标记的唯一 ID。 `key`在拥有中是唯一的， `TagCollection` 并且始终在文档中存储为大写字母。
 
 
     \[[API 集：PowerPointApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
@@ -38,15 +38,15 @@ properties:
   isPreview: true
   isDeprecated: false
   syntax:
-    content: 'readonly id: string;'
+    content: 'readonly key: string;'
     return:
       type: string
-- name: tags
-  uid: powerpoint!PowerPoint.Shape#tags:member
+- name: value
+  uid: powerpoint!PowerPoint.Tag#value:member
   package: powerpoint!
-  fullName: tags
+  fullName: value
   summary: >-
-    返回形状中的标记集合。
+    获取标记的值。
 
 
     \[[API 集：PowerPointApi BETA (预览版) ](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
@@ -54,12 +54,12 @@ properties:
   isPreview: true
   isDeprecated: false
   syntax:
-    content: 'readonly tags: PowerPoint.TagCollection;'
+    content: 'value: string;'
     return:
-      type: <xref uid="powerpoint!PowerPoint.TagCollection:class" />
+      type: string
 methods:
 - name: load(options)
-  uid: powerpoint!PowerPoint.Shape#load:member(1)
+  uid: powerpoint!PowerPoint.Tag#load:member(1)
   package: powerpoint!
   fullName: load(options)
   summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
@@ -67,16 +67,16 @@ methods:
   isPreview: true
   isDeprecated: false
   syntax:
-    content: 'load(options?: PowerPoint.Interfaces.ShapeLoadOptions): PowerPoint.Shape;'
+    content: 'load(options?: PowerPoint.Interfaces.TagLoadOptions): PowerPoint.Tag;'
     parameters:
     - id: options
       description: 提供要加载的对象的属性的选项。
-      type: <xref uid="powerpoint!PowerPoint.Interfaces.ShapeLoadOptions:interface" />
+      type: <xref uid="powerpoint!PowerPoint.Interfaces.TagLoadOptions:interface" />
     return:
-      type: <xref uid="powerpoint!PowerPoint.Shape:class" />
+      type: <xref uid="powerpoint!PowerPoint.Tag:class" />
       description: ''
 - name: load(propertyNames)
-  uid: powerpoint!PowerPoint.Shape#load:member(2)
+  uid: powerpoint!PowerPoint.Tag#load:member(2)
   package: powerpoint!
   fullName: load(propertyNames)
   summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
@@ -84,16 +84,16 @@ methods:
   isPreview: true
   isDeprecated: false
   syntax:
-    content: 'load(propertyNames?: string | string[]): PowerPoint.Shape;'
+    content: 'load(propertyNames?: string | string[]): PowerPoint.Tag;'
     parameters:
     - id: propertyNames
       description: 以逗号分隔的字符串或字符串数组，用于指定要加载的属性。
       type: string | string[]
     return:
-      type: <xref uid="powerpoint!PowerPoint.Shape:class" />
+      type: <xref uid="powerpoint!PowerPoint.Tag:class" />
       description: ''
 - name: load(propertyNamesAndPaths)
-  uid: powerpoint!PowerPoint.Shape#load:member(3)
+  uid: powerpoint!PowerPoint.Tag#load:member(3)
   package: powerpoint!
   fullName: load(propertyNamesAndPaths)
   summary: 将命令加入队列以加载对象的指定属性。 阅读属性前必须先调用 `context.sync()`。
@@ -105,7 +105,7 @@ methods:
       load(propertyNamesAndPaths?: {
                   select?: string;
                   expand?: string;
-              }): PowerPoint.Shape;
+              }): PowerPoint.Tag;
     parameters:
     - id: propertyNamesAndPaths
       description: '`propertyNamesAndPaths.select` 是一个以逗号分隔的字符串，用于指定要加载的属性，它是一个以逗号分隔的字符串，用于指定要加载 `propertyNamesAndPaths.expand` 的导航属性。'
@@ -115,26 +115,26 @@ methods:
                     expand?: string;
                 }
     return:
-      type: <xref uid="powerpoint!PowerPoint.Shape:class" />
+      type: <xref uid="powerpoint!PowerPoint.Tag:class" />
       description: ''
 - name: toJSON()
-  uid: powerpoint!PowerPoint.Shape#toJSON:member(1)
+  uid: powerpoint!PowerPoint.Tag#toJSON:member(1)
   package: powerpoint!
   fullName: toJSON()
-  summary: 重写 JavaScript `toJSON()` 方法，以便向 API 对象传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的对象的 方法。) 而原始 PowerPoint.Shape 对象是 API 对象，该方法返回一个纯 JavaScript 对象 (键入 `toJSON` `toJSON` 为 `PowerPoint.Interfaces.ShapeData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
+  summary: 重写 JavaScript `toJSON()` 方法，以便向 API 对象传递时提供更多有用的输出 `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->，反过来，调用传递给它的 对象的 方法。) 而原始 PowerPoint.Tag 对象是 API 对象，该方法返回一个纯 JavaScript 对象 (键入 `toJSON` `toJSON` 为 `PowerPoint.Interfaces.TagData`<!-- -->) 包含原始对象中任何加载的子属性的浅表副本。
   remarks: ''
   isPreview: true
   isDeprecated: false
   syntax:
-    content: 'toJSON(): PowerPoint.Interfaces.ShapeData;'
+    content: 'toJSON(): PowerPoint.Interfaces.TagData;'
     return:
-      type: <xref uid="powerpoint!PowerPoint.Interfaces.ShapeData:interface" />
+      type: <xref uid="powerpoint!PowerPoint.Interfaces.TagData:interface" />
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 6536dd418bc5e2be0db6001e320e7607e8740f21
+  ms.openlocfilehash: 67ffa175ed19d51bd29623cca67b1229de569e08
   ms.sourcegitcommit: 0649842a034c42b1c1ec0b56c5ac3144ff51a849
   ms.translationtype: MT
   ms.contentlocale: zh-CN
   ms.lasthandoff: 03/12/2021
-  ms.locfileid: "50756296"
+  ms.locfileid: "50756567"
