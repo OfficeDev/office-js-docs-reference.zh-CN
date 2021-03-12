@@ -3,7 +3,7 @@ name: Office.Addin
 uid: office!Office.Addin:interface
 package: office!
 fullName: Office.Addin
-summary: 表示用于操作或配置外接程序的各个方面的外接程序级别功能。
+summary: 表示外接程序级别的功能，用于操作或配置外接程序的各个方面。
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -13,7 +13,7 @@ methods:
   uid: office!Office.Addin#getStartupBehavior:member(1)
   package: office!
   fullName: getStartupBehavior()
-  summary: 获取外接程序的当前启动行为。
+  summary: 获取加载项的当前启动行为。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -34,12 +34,12 @@ methods:
     content: 'hide(): Promise<void>;'
     return:
       type: Promise&lt;void&gt;
-      description: 当 UI 处于隐藏状态时解决的承诺。
+      description: 隐藏 UI 时解析的承诺。
 - name: onVisibilityModeChanged(listener)
   uid: office!Office.Addin#onVisibilityModeChanged:member(1)
   package: office!
   fullName: onVisibilityModeChanged(listener)
-  summary: 为事件添加侦听器 `onVisibilityModeChanged` 。
+  summary: 为事件添加 `onVisibilityModeChanged` 侦听器。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -47,19 +47,19 @@ methods:
     content: >-
       onVisibilityModeChanged(
                   listener: (message: VisibilityModeChangedMessage) => void,
-              ): Promise<RemoveEventListener>;
+              ): Promise<() => Promise<void>>;
     parameters:
     - id: listener
       description: 发出事件时调用的侦听器函数。 此函数接受接收组件的消息。
       type: '(message: <xref uid="office!Office.VisibilityModeChangedMessage:interface" />) =&gt; void'
     return:
-      type: Promise&lt;<xref uid="office!Office.RemoveEventListener:type" />&gt;
-      description: 在添加侦听器时解析为函数的承诺。 `RemoveEventListener`类型定义方式为`type RemoveEventListener = () => Promise<void>`<!-- -->. 调用它会删除侦听器。
+      type: Promise&lt;() =&gt; Promise&lt;void&gt;&gt;
+      description: 在添加侦听器时解析为函数的承诺。 调用它会删除侦听器。
 - name: setStartupBehavior(behavior)
   uid: office!Office.Addin#setStartupBehavior:member(1)
   package: office!
   fullName: setStartupBehavior(behavior)
-  summary: 为外接程序设置下次打开文档时的启动行为。
+  summary: 设置下次打开文档时加载项的启动行为。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -67,7 +67,7 @@ methods:
     content: 'setStartupBehavior(behavior: Office.StartupBehavior): Promise<void>;'
     parameters:
     - id: behavior
-      description: 指定加载项的启动行为。
+      description: 指定外接程序的启动行为。
       type: <xref uid="office!Office.StartupBehavior:enum" />
     return:
       type: Promise&lt;void&gt;
@@ -76,7 +76,7 @@ methods:
   uid: office!Office.Addin#showAsTaskpane:member(1)
   package: office!
   fullName: showAsTaskpane()
-  summary: 显示与加载项关联的任务窗格。
+  summary: 显示与外接程序关联的任务窗格。
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -84,11 +84,11 @@ methods:
     content: 'showAsTaskpane(): Promise<void>;'
     return:
       type: Promise&lt;void&gt;
-      description: 在显示 UI 时解决的承诺。
+      description: 显示 UI 时解析的承诺。
 metadata:
-  ms.openlocfilehash: 05d535750f27d0923865f6a3aae0938c7e7edc39
-  ms.sourcegitcommit: 50d278a47f7095ea4453a3564f739eb5ad499a76
+  ms.openlocfilehash: 94ff2bcc2fd5938657d80d2f13601318027016bc
+  ms.sourcegitcommit: 0649842a034c42b1c1ec0b56c5ac3144ff51a849
   ms.translationtype: MT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 11/25/2020
-  ms.locfileid: "49420739"
+  ms.lasthandoff: 03/12/2021
+  ms.locfileid: "50756401"
